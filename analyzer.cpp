@@ -137,7 +137,7 @@ private:
         for (const auto& r : data) for (const auto& kv : r.stats) keys.insert(kv.first);
         std::vector<std::string> headerKeys(keys.begin(), keys.end());
 
-        std::ofstream csv("temp_table.csv");
+        std::ofstream csv("bin/temp_table.csv");
         const char bom[] = { (char)0xEF, (char)0xBB, (char)0xBF };
         csv.write(bom, 3);
 
@@ -145,7 +145,7 @@ private:
         for (const auto& k : headerKeys) csv << "," << get_chinese_header(k);
         csv << "\n";
         for (const auto& r : data) {
-            csv<< "," << r.zone << "," << r.college << "," << r.teamName << "," << get_chinese_header(r.type);
+            csv<< r.zone << "," << r.college << "," << r.teamName << "," << get_chinese_header(r.type);
             for (const auto& k : headerKeys) {
                 csv << ",";
                 if (r.stats.count(k)) csv << r.stats.at(k);
@@ -157,9 +157,9 @@ private:
         std::cout << ">> 正在启动界面 (默认排序: " << (defaultSort.empty() ? "无" : defaultSort) << ")...\n";
         
         // 传递第3个参数：默认排序列名
-        std::string cmd = "python3 view_table.py temp_table.csv \"" + title + "\" \"" + defaultSort + "\"";
+        std::string cmd = "python3 view_table.py bin/temp_table.csv \"" + title + "\" \"" + defaultSort + "\"";
         #ifdef _WIN32
-        cmd = "python view_table.py temp_table.csv \"" + title + "\" \"" + defaultSort + "\"";
+        cmd = "python view_table.py bin/temp_table.csv \"" + title + "\" \"" + defaultSort + "\"";
         #endif
         system(cmd.c_str());
     }
@@ -222,8 +222,8 @@ public:
         std::string targetType = translate_type(typeKey);
         std::vector<RobotData> res;
         for (const auto& r : database) {
-            bool z = (zoneKey == "ALL") || (r.zone.find(zoneKey) != std::string::npos);
-            bool t = (targetType == "ALL") || (r.type == targetType);
+            bool z = (zoneKey == "全部") || (r.zone.find(zoneKey) != std::string::npos);
+            bool t = (targetType == "全部") || (r.type == targetType);
             if (z && t) res.push_back(r);
         }
         // 获取默认排序键
