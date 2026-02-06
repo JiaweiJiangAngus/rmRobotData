@@ -48,6 +48,14 @@ std::string translate_type(const std::string& input) {
     return input;
 }
 
+// 辅助函数：判断一个字符串是否是兵种名称 (用于区分输入意图)
+bool is_robot_type(const std::string& input) {
+    std::string t = translate_type(input);
+    static std::set<std::string> types = {
+        "Infantry", "Hero", "Sapper", "Guard", "Airplane", "Dart", "Radar"
+    };
+    return types.count(t);
+}
 // ==========================================
 // 2. 翻译与默认排序配置
 // ==========================================
@@ -231,17 +239,22 @@ public:
         export_and_show(res, zoneKey + " " + typeKey, defaultSort);
     }
 
-    // 模式2：搜学校/队伍 (全兵种)
-    void search_by_team(const std::string& key) {
+    // 模式2 (增强版)：搜多个学校/队伍 (全兵种)
+    void search_by_multiple_teams(const std::vector<std::string>& keywords) {
         std::vector<RobotData> res;
         for (const auto& r : database) {
-            if (r.college.find(key) != std::string::npos || r.teamName.find(key) != std::string::npos) {
-                res.push_back(r);
+            bool matched = false;
+            // 检查该机器人是否匹配输入的任一关键词
+            for (const auto& key : keywords) {
+                if (r.college == key || r.teamName == key) {
+                    matched = true;
+                    break;
+                }
             }
+            if (matched) res.push_back(r);
         }
-        // 搜学校时，默认排序可以传空，或者传一个通用的比如"对敌伤害量"
-        // 因为 Python 端会在每个兵种 Tab 里尝试排序，如果该兵种没有这个指标，会自动忽略
-        export_and_show(res, key + " 数据汇总", "对敌伤害量");
+        // 多个队伍展示时，标题显示“多队伍数据汇总”，默认按对敌伤害排序
+        export_and_show(res, "多队伍数据对比", "对敌伤害量");
     }
 };
 
@@ -262,8 +275,8 @@ int main() {
         std::cout << "\n========================================\n";
         std::cout << " RM 综合数据查询终端\n";
         std::cout << "========================================\n";
-        std::cout << "模式 1: [赛区] [兵种]\n";
-        std::cout << "模式 2: [学校/队名]\n";
+        std::cout << "用法 1 (排行): [赛区] [兵种]  \n";
+        std::cout << "用法 2 (搜队): [队名1] [队名2]...\n";
         std::cout << "输入 exit 退出\n> ";
 
         std::string line;
@@ -278,12 +291,18 @@ int main() {
 
         if (args.empty()) continue;
 
-        if (args.size() >= 2) {
-            // 两个参数 -> 模式1 (赛区 + 兵种)
+        // === 智能判断逻辑 ===
+        
+        // 只有当参数恰好是2个，且第2个参数是合法的兵种名称时，才视为模式1
+        if (args.size() == 2 && is_robot_type(args[1])) {
+            if (args[0] == "全部" || args[0] == "全部赛区" || args[0] == "所有") {
+                args[0] = "ALL";
+            }
             mgr.search_by_zone_type(args[0], args[1]);
-        } else {
-            // 一个参数 -> 模式2 (搜学校)
-            mgr.search_by_team(args[0]);
+        } 
+        else {
+            // 否则，无论输入了多少个参数，都视为学校/战队名称列表
+            mgr.search_by_multiple_teams(args);
         }
     }
     return 0;
