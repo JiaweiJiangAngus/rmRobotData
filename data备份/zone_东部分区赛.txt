@@ -1,0 +1,1828 @@
+Zone Name: 东部分区赛
+
+Team: 江苏大学 (Aurora)
+  Type: Infantry
+  EA Small Hit Rate: 26.100000
+  EAG Hurt: 504.900000
+  EA KDA: 1.2/0.8/0.6
+  EA gkda Score: 1.500000
+  Big Energy: 0.000000
+  GK Damage: 120.000000
+  G Kill Count: 1.600000
+  ------------------------
+  Type: Hero
+  EA Big Hit Rate: 16.900000
+  EA KDA: 0.0/0.4444444444444444/0.0
+  EA gkda Score: 0.000000
+  GK Damage: 802.200000
+  G Kill Count: 0.000000
+  EA Snipe Count: 0.000000
+  ------------------------
+  Type: Sapper
+  EA KDA: 0.0/0.1111111111111111/0.0
+  EA gkda Score: 0.000000
+  EA Exchange Economy: 45.000000
+  A Mine Time: 10.100000
+  A Mine Difficulty: 0.700000
+  ------------------------
+  Type: Airplane
+  EA Small Hit Rate: 1.500000
+  EAG Hurt: 71.800000
+  EA KDA: 0.0/0.1111111111111111/0.1111111111111111
+  EA gkda Score: 0.100000
+  GK Damage: 52.200000
+  G Kill Count: 0.000000
+  A Shoot Number: 470
+  ------------------------
+  Type: Guard
+  EA Small Hit Rate: 4.000000
+  EAG Hurt: 83.300000
+  EA KDA: 0.1111111111111111/0.0/0.1111111111111111
+  EA gkda Score: 0.200000
+  GK Damage: 0.000000
+  G Kill Count: 0.100000
+  ------------------------
+  Type: Dart
+  EA KDA: 0.0/0.0/0.0
+  EA gkda Score: 0.000000
+  GK Damage: 0.000000
+  G Kill Count: 0.000000
+  ET Outpost Count: 0
+  ET Fixed Count: 0
+  ET Random Fixed Count: 0
+  ET Random Move Count: 0
+  ------------------------
+  Type: Radar
+  EA Marker Time: 331.000000
+  EA Debuff Damage: 52.700000
+  ------------------------
+
+Team: 大连理工大学 (凌BUG)
+  Type: Infantry
+  EA Small Hit Rate: 22.400000
+  EAG Hurt: 402.500000
+  EA KDA: 0.9/1.3/1.0
+  EA gkda Score: 1.200000
+  Big Energy: 0.000000
+  GK Damage: 48.200000
+  G Kill Count: 0.900000
+  ------------------------
+  Type: Hero
+  EA Big Hit Rate: 25.300000
+  EA KDA: 0.0/1.0588235294117647/0.17647058823529413
+  EA gkda Score: 0.200000
+  GK Damage: 2130.000000
+  G Kill Count: 0.000000
+  EA Snipe Count: 4.800000
+  ------------------------
+  Type: Sapper
+  EA KDA: 0.0/0.17647058823529413/0.0
+  EA gkda Score: 0.000000
+  EA Exchange Economy: 513.180000
+  A Mine Time: 18.400000
+  A Mine Difficulty: 2.300000
+  ------------------------
+  Type: Airplane
+  EA Small Hit Rate: 8.300000
+  EAG Hurt: 747.100000
+  EA KDA: 0.47058823529411764/0.11764705882352941/1.4705882352941178
+  EA gkda Score: 1.900000
+  GK Damage: 490.000000
+  G Kill Count: 0.500000
+  A Shoot Number: 964
+  ------------------------
+  Type: Guard
+  EA Small Hit Rate: 10.200000
+  EAG Hurt: 325.400000
+  EA KDA: 0.5294117647058824/0.5882352941176471/0.8823529411764706
+  EA gkda Score: 1.400000
+  GK Damage: 72.900000
+  G Kill Count: 0.500000
+  ------------------------
+  Type: Dart
+  EA KDA: 0.47058823529411764/0.0/0.0
+  EA gkda Score: 0.500000
+  GK Damage: 1026.400000
+  G Kill Count: 0.500000
+  ET Outpost Count: 0
+  ET Fixed Count: 2
+  ET Random Fixed Count: 26
+  ET Random Move Count: 0
+  ------------------------
+  Type: Radar
+  EA Marker Time: 186.000000
+  EA Debuff Damage: 53.300000
+  ------------------------
+
+Team: 山东科技大学 (SmartRobot)
+  Type: Infantry
+  EA Small Hit Rate: 21.200000
+  EAG Hurt: 546.000000
+  EA KDA: 1.3/1.0/1.3
+  EA gkda Score: 1.900000
+  Big Energy: 0.000000
+  GK Damage: 30.500000
+  G Kill Count: 1.400000
+  ------------------------
+  Type: Hero
+  EA Big Hit Rate: 43.400000
+  EA KDA: 0.0/0.7272727272727273/0.18181818181818182
+  EA gkda Score: 0.100000
+  GK Damage: 4531.800000
+  G Kill Count: 0.000000
+  EA Snipe Count: 8.800000
+  ------------------------
+  Type: Sapper
+  EA KDA: 0.0/0.18181818181818182/0.0
+  EA gkda Score: 0.000000
+  EA Exchange Economy: 940.180000
+  A Mine Time: 13.400000
+  A Mine Difficulty: 3.000000
+  ------------------------
+  Type: Airplane
+  EA Small Hit Rate: 5.500000
+  EAG Hurt: 368.700000
+  EA KDA: 0.45454545454545453/0.0/1.0909090909090908
+  EA gkda Score: 1.500000
+  GK Damage: 173.600000
+  G Kill Count: 0.500000
+  A Shoot Number: 517
+  ------------------------
+  Type: Guard
+  EA Small Hit Rate: 7.800000
+  EAG Hurt: 109.500000
+  EA KDA: 0.18181818181818182/0.09090909090909091/0.8181818181818182
+  EA gkda Score: 1.000000
+  GK Damage: 2.300000
+  G Kill Count: 0.200000
+  ------------------------
+  Type: Dart
+  EA KDA: 0.0/0.0/0.0
+  EA gkda Score: 0.000000
+  GK Damage: 113.600000
+  G Kill Count: 0.000000
+  ET Outpost Count: 0
+  ET Fixed Count: 2
+  ET Random Fixed Count: 0
+  ET Random Move Count: 0
+  ------------------------
+  Type: Radar
+  EA Marker Time: 133.700000
+  EA Debuff Damage: 41.200000
+  ------------------------
+
+Team: 东华大学 (DIODE)
+  Type: Infantry
+  EA Small Hit Rate: 10.600000
+  EAG Hurt: 312.100000
+  EA KDA: 0.3/0.8/0.2
+  EA gkda Score: 0.300000
+  Big Energy: 0.000000
+  GK Damage: 50.000000
+  G Kill Count: 0.300000
+  ------------------------
+  Type: Hero
+  EA Big Hit Rate: 4.300000
+  EA KDA: 0.0/0.5/0.0
+  EA gkda Score: 0.000000
+  GK Damage: 200.000000
+  G Kill Count: 0.000000
+  EA Snipe Count: 0.000000
+  ------------------------
+  Type: Sapper
+  EA KDA: 0.0/1.0/0.0
+  EA gkda Score: 0.000000
+  EA Exchange Economy: 205.170000
+  A Mine Time: 10.000000
+  A Mine Difficulty: 1.400000
+  ------------------------
+  Type: Airplane
+  EA Small Hit Rate: 2.400000
+  EAG Hurt: 108.300000
+  EA KDA: 0.0/0.16666666666666666/0.0
+  EA gkda Score: 0.000000
+  GK Damage: 100.000000
+  G Kill Count: 0.000000
+  A Shoot Number: 279
+  ------------------------
+  Type: Guard
+  EA Small Hit Rate: 0.000000
+  EAG Hurt: 0.000000
+  EA KDA: 0.0/1.6666666666666667/0.0
+  EA gkda Score: 0.000000
+  GK Damage: 0.000000
+  G Kill Count: 0.000000
+  ------------------------
+  Type: Dart
+  EA KDA: 0.0/0.0/0.0
+  EA gkda Score: 0.000000
+  GK Damage: 0.000000
+  G Kill Count: 0.000000
+  ET Outpost Count: 0
+  ET Fixed Count: 0
+  ET Random Fixed Count: 0
+  ET Random Move Count: 0
+  ------------------------
+  Type: Radar
+  EA Marker Time: 0.000000
+  EA Debuff Damage: 0.000000
+  ------------------------
+
+Team: 中北大学 (606)
+  Type: Infantry
+  EA Small Hit Rate: 23.800000
+  EAG Hurt: 687.500000
+  EA KDA: 1.3/0.8/0.9
+  EA gkda Score: 1.600000
+  Big Energy: 0.000000
+  GK Damage: 9.200000
+  G Kill Count: 1.800000
+  ------------------------
+  Type: Hero
+  EA Big Hit Rate: 15.400000
+  EA KDA: 0.0/1.5/0.2
+  EA gkda Score: 0.200000
+  GK Damage: 1306.000000
+  G Kill Count: 0.000000
+  EA Snipe Count: 1.400000
+  ------------------------
+  Type: Sapper
+  EA KDA: 0.0/0.3/0.0
+  EA gkda Score: 0.000000
+  EA Exchange Economy: 609.600000
+  A Mine Time: 27.300000
+  A Mine Difficulty: 2.900000
+  ------------------------
+  Type: Airplane
+  EA Small Hit Rate: 6.200000
+  EAG Hurt: 288.300000
+  EA KDA: 0.1/0.0/0.4
+  EA gkda Score: 0.500000
+  GK Damage: 255.500000
+  G Kill Count: 0.100000
+  A Shoot Number: 375
+  ------------------------
+  Type: Guard
+  EA Small Hit Rate: 5.300000
+  EAG Hurt: 175.300000
+  EA KDA: 0.0/0.4/0.5
+  EA gkda Score: 0.400000
+  GK Damage: 66.000000
+  G Kill Count: 0.000000
+  ------------------------
+  Type: Dart
+  EA KDA: 0.0/0.0/0.0
+  EA gkda Score: 0.000000
+  GK Damage: 0.000000
+  G Kill Count: 0.000000
+  ET Outpost Count: 0
+  ET Fixed Count: 0
+  ET Random Fixed Count: 0
+  ET Random Move Count: 0
+  ------------------------
+  Type: Radar
+  EA Marker Time: 86.500000
+  EA Debuff Damage: 29.300000
+  ------------------------
+
+Team: 吉林大学 (TARS_Go)
+  Type: Infantry
+  EA Small Hit Rate: 23.700000
+  EAG Hurt: 457.400000
+  EA KDA: 1.1/1.1/1.2
+  EA gkda Score: 1.500000
+  Big Energy: 0.000000
+  GK Damage: 26.800000
+  G Kill Count: 1.600000
+  ------------------------
+  Type: Hero
+  EA Big Hit Rate: 44.600000
+  EA KDA: 0.0/0.7058823529411765/0.11764705882352941
+  EA gkda Score: 0.100000
+  GK Damage: 4080.500000
+  G Kill Count: 0.000000
+  EA Snipe Count: 7.400000
+  ------------------------
+  Type: Sapper
+  EA KDA: 0.0/0.11764705882352941/0.0
+  EA gkda Score: 0.000000
+  EA Exchange Economy: 971.240000
+  A Mine Time: 19.400000
+  A Mine Difficulty: 3.000000
+  ------------------------
+  Type: Airplane
+  EA Small Hit Rate: 6.300000
+  EAG Hurt: 646.400000
+  EA KDA: 1.0/0.058823529411764705/1.9411764705882353
+  EA gkda Score: 2.900000
+  GK Damage: 265.600000
+  G Kill Count: 1.000000
+  A Shoot Number: 1071
+  ------------------------
+  Type: Guard
+  EA Small Hit Rate: 13.600000
+  EAG Hurt: 310.300000
+  EA KDA: 0.29411764705882354/0.35294117647058826/1.2352941176470589
+  EA gkda Score: 1.400000
+  GK Damage: 6.300000
+  G Kill Count: 0.300000
+  ------------------------
+  Type: Dart
+  EA KDA: 0.0/0.0/0.0
+  EA gkda Score: 0.000000
+  GK Damage: 0.000000
+  G Kill Count: 0.000000
+  ET Outpost Count: 0
+  ET Fixed Count: 0
+  ET Random Fixed Count: 0
+  ET Random Move Count: 0
+  ------------------------
+  Type: Radar
+  EA Marker Time: 324.000000
+  EA Debuff Damage: 115.600000
+  ------------------------
+
+Team: 北京理工大学 (追梦)
+  Type: Infantry
+  EA Small Hit Rate: 23.200000
+  EAG Hurt: 564.100000
+  EA KDA: 1.5/1.3/0.7
+  EA gkda Score: 1.400000
+  Big Energy: 0.000000
+  GK Damage: 10.000000
+  G Kill Count: 1.700000
+  ------------------------
+  Type: Hero
+  EA Big Hit Rate: 31.000000
+  EA KDA: 0.0/1.3/0.0
+  EA gkda Score: 0.000000
+  GK Damage: 2019.000000
+  G Kill Count: 0.000000
+  EA Snipe Count: 2.900000
+  ------------------------
+  Type: Sapper
+  EA KDA: 0.0/0.9/0.0
+  EA gkda Score: 0.000000
+  EA Exchange Economy: 172.500000
+  A Mine Time: 31.100000
+  A Mine Difficulty: 1.800000
+  ------------------------
+  Type: Airplane
+  EA Small Hit Rate: 5.100000
+  EAG Hurt: 339.900000
+  EA KDA: 0.3/0.0/0.7
+  EA gkda Score: 1.000000
+  GK Damage: 211.100000
+  G Kill Count: 0.300000
+  A Shoot Number: 729
+  ------------------------
+  Type: Guard
+  EA Small Hit Rate: 17.900000
+  EAG Hurt: 133.600000
+  EA KDA: 0.2/0.1/0.2
+  EA gkda Score: 0.400000
+  GK Damage: 0.000000
+  G Kill Count: 0.200000
+  ------------------------
+  Type: Dart
+  EA KDA: 0.0/0.0/0.0
+  EA gkda Score: 0.000000
+  GK Damage: 0.000000
+  G Kill Count: 0.000000
+  ET Outpost Count: 0
+  ET Fixed Count: 0
+  ET Random Fixed Count: 0
+  ET Random Move Count: 0
+  ------------------------
+  Type: Radar
+  EA Marker Time: 43.500000
+  EA Debuff Damage: 8.300000
+  ------------------------
+
+Team: 青岛大学 (未来)
+  Type: Infantry
+  EA Small Hit Rate: 14.400000
+  EAG Hurt: 380.300000
+  EA KDA: 0.6/0.8/0.3
+  EA gkda Score: 0.800000
+  Big Energy: 0.000000
+  GK Damage: 16.700000
+  G Kill Count: 0.700000
+  ------------------------
+  Type: Hero
+  EA Big Hit Rate: 17.900000
+  EA KDA: 0.0/2.5714285714285716/0.0
+  EA gkda Score: 0.000000
+  GK Damage: 731.400000
+  G Kill Count: 0.000000
+  EA Snipe Count: 0.000000
+  ------------------------
+  Type: Sapper
+  EA KDA: 0.0/1.1428571428571428/0.0
+  EA gkda Score: 0.000000
+  EA Exchange Economy: 271.860000
+  A Mine Time: 66.000000
+  A Mine Difficulty: 2.600000
+  ------------------------
+  Type: Airplane
+  EA Small Hit Rate: 0.000000
+  EAG Hurt: 0.000000
+  EA KDA: 0.0/0.0/0.0
+  EA gkda Score: 0.000000
+  GK Damage: 0.000000
+  G Kill Count: 0.000000
+  A Shoot Number: 0
+  ------------------------
+  Type: Guard
+  EA Small Hit Rate: 10.100000
+  EAG Hurt: 131.100000
+  EA KDA: 0.14285714285714285/0.2857142857142857/0.2857142857142857
+  EA gkda Score: 0.400000
+  GK Damage: 1.400000
+  G Kill Count: 0.100000
+  ------------------------
+  Type: Dart
+  EA KDA: 0.0/0.0/0.0
+  EA gkda Score: 0.000000
+  GK Damage: 0.000000
+  G Kill Count: 0.000000
+  ET Outpost Count: 0
+  ET Fixed Count: 0
+  ET Random Fixed Count: 0
+  ET Random Move Count: 0
+  ------------------------
+  Type: Radar
+  EA Marker Time: 338.100000
+  EA Debuff Damage: 57.200000
+  ------------------------
+
+Team: 山东理工大学 (齐奇)
+  Type: Infantry
+  EA Small Hit Rate: 27.800000
+  EAG Hurt: 690.500000
+  EA KDA: 1.5/1.3/0.8
+  EA gkda Score: 1.300000
+  Big Energy: 0.000000
+  GK Damage: 40.500000
+  G Kill Count: 1.000000
+  ------------------------
+  Type: Hero
+  EA Big Hit Rate: 22.800000
+  EA KDA: 0.0/1.7/0.0
+  EA gkda Score: 0.000000
+  GK Damage: 1720.500000
+  G Kill Count: 0.000000
+  EA Snipe Count: 1.600000
+  ------------------------
+  Type: Sapper
+  EA KDA: 0.0/0.2/0.0
+  EA gkda Score: 0.000000
+  EA Exchange Economy: 490.500000
+  A Mine Time: 24.300000
+  A Mine Difficulty: 2.400000
+  ------------------------
+  Type: Airplane
+  EA Small Hit Rate: 0.000000
+  EAG Hurt: 0.000000
+  EA KDA: 0.0/0.0/0.0
+  EA gkda Score: 0.000000
+  GK Damage: 0.000000
+  G Kill Count: 0.000000
+  A Shoot Number: 0
+  ------------------------
+  Type: Guard
+  EA Small Hit Rate: 13.400000
+  EAG Hurt: 197.300000
+  EA KDA: 0.0/1.4/0.0
+  EA gkda Score: 0.000000
+  GK Damage: 180.000000
+  G Kill Count: 0.000000
+  ------------------------
+  Type: Dart
+  EA KDA: 0.0/0.0/0.0
+  EA gkda Score: 0.000000
+  GK Damage: 0.000000
+  G Kill Count: 0.000000
+  ET Outpost Count: 0
+  ET Fixed Count: 0
+  ET Random Fixed Count: 0
+  ET Random Move Count: 0
+  ------------------------
+  Type: Radar
+  EA Marker Time: 622.600000
+  EA Debuff Damage: 114.800000
+  ------------------------
+
+Team: 南京理工大学 (Alliance)
+  Type: Infantry
+  EA Small Hit Rate: 23.000000
+  EAG Hurt: 748.200000
+  EA KDA: 1.6/1.1/1.0
+  EA gkda Score: 1.900000
+  Big Energy: 0.000000
+  GK Damage: 151.800000
+  G Kill Count: 1.800000
+  ------------------------
+  Type: Hero
+  EA Big Hit Rate: 32.200000
+  EA KDA: 0.05/1.0/0.05
+  EA gkda Score: 0.100000
+  GK Damage: 3124.900000
+  G Kill Count: 0.100000
+  EA Snipe Count: 6.100000
+  ------------------------
+  Type: Sapper
+  EA KDA: 0.0/0.4/0.0
+  EA gkda Score: 0.000000
+  EA Exchange Economy: 658.700000
+  A Mine Time: 16.600000
+  A Mine Difficulty: 2.600000
+  ------------------------
+  Type: Airplane
+  EA Small Hit Rate: 1.900000
+  EAG Hurt: 99.700000
+  EA KDA: 0.05/0.1/0.15
+  EA gkda Score: 0.200000
+  GK Damage: 44.000000
+  G Kill Count: 0.100000
+  A Shoot Number: 270
+  ------------------------
+  Type: Guard
+  EA Small Hit Rate: 1.400000
+  EAG Hurt: 2.300000
+  EA KDA: 0.0/0.05/0.0
+  EA gkda Score: 0.000000
+  GK Damage: 0.000000
+  G Kill Count: 0.000000
+  ------------------------
+  Type: Dart
+  EA KDA: 0.0/0.0/0.0
+  EA gkda Score: 0.000000
+  GK Damage: 106.300000
+  G Kill Count: 0.000000
+  ET Outpost Count: 2
+  ET Fixed Count: 1
+  ET Random Fixed Count: 0
+  ET Random Move Count: 0
+  ------------------------
+  Type: Radar
+  EA Marker Time: 506.800000
+  EA Debuff Damage: 104.600000
+  ------------------------
+
+Team: 上海科技大学 (Magician)
+  Type: Infantry
+  EA Small Hit Rate: 23.500000
+  EAG Hurt: 542.800000
+  EA KDA: 0.7/0.9/0.7
+  EA gkda Score: 1.100000
+  Big Energy: 0.000000
+  GK Damage: 45.700000
+  G Kill Count: 1.300000
+  ------------------------
+  Type: Hero
+  EA Big Hit Rate: 11.100000
+  EA KDA: 0.0/0.14285714285714285/0.0
+  EA gkda Score: 0.000000
+  GK Damage: 485.700000
+  G Kill Count: 0.000000
+  EA Snipe Count: 0.600000
+  ------------------------
+  Type: Sapper
+  EA KDA: 0.0/1.0/0.0
+  EA gkda Score: 0.000000
+  EA Exchange Economy: 122.290000
+  A Mine Time: 22.300000
+  A Mine Difficulty: 1.700000
+  ------------------------
+  Type: Airplane
+  EA Small Hit Rate: 4.800000
+  EAG Hurt: 433.700000
+  EA KDA: 0.0/0.14285714285714285/0.0
+  EA gkda Score: 0.000000
+  GK Damage: 399.300000
+  G Kill Count: 0.000000
+  A Shoot Number: 482
+  ------------------------
+  Type: Guard
+  EA Small Hit Rate: 1.100000
+  EAG Hurt: 35.700000
+  EA KDA: 0.14285714285714285/0.14285714285714285/0.2857142857142857
+  EA gkda Score: 0.400000
+  GK Damage: 1.400000
+  G Kill Count: 0.100000
+  ------------------------
+  Type: Dart
+  EA KDA: 0.0/0.14285714285714285/0.0
+  EA gkda Score: 0.000000
+  GK Damage: 0.000000
+  G Kill Count: 0.000000
+  ET Outpost Count: 0
+  ET Fixed Count: 0
+  ET Random Fixed Count: 0
+  ET Random Move Count: 0
+  ------------------------
+  Type: Radar
+  EA Marker Time: 609.200000
+  EA Debuff Damage: 32.100000
+  ------------------------
+
+Team: 河北工业大学 (山海机甲)
+  Type: Infantry
+  EA Small Hit Rate: 12.900000
+  EAG Hurt: 320.800000
+  EA KDA: 0.2/1.8/0.3
+  EA gkda Score: 0.300000
+  Big Energy: 0.000000
+  GK Damage: 25.700000
+  G Kill Count: 0.200000
+  ------------------------
+  Type: Hero
+  EA Big Hit Rate: 3.100000
+  EA KDA: 0.0/2.3333333333333335/0.0
+  EA gkda Score: 0.000000
+  GK Damage: 88.900000
+  G Kill Count: 0.000000
+  EA Snipe Count: 0.000000
+  ------------------------
+  Type: Sapper
+  EA KDA: 0.0/0.0/0.0
+  EA gkda Score: 0.000000
+  EA Exchange Economy: 397.440000
+  A Mine Time: 29.800000
+  A Mine Difficulty: 2.500000
+  ------------------------
+  Type: Airplane
+  EA Small Hit Rate: 3.100000
+  EAG Hurt: 343.000000
+  EA KDA: 0.1111111111111111/0.0/0.3333333333333333
+  EA gkda Score: 0.400000
+  GK Damage: 259.400000
+  G Kill Count: 0.100000
+  A Shoot Number: 1283
+  ------------------------
+  Type: Guard
+  EA Small Hit Rate: 11.700000
+  EAG Hurt: 378.400000
+  EA KDA: 0.4444444444444444/0.0/0.1111111111111111
+  EA gkda Score: 0.600000
+  GK Damage: 21.700000
+  G Kill Count: 0.400000
+  ------------------------
+  Type: Dart
+  EA KDA: 0.0/0.0/0.0
+  EA gkda Score: 0.000000
+  GK Damage: 0.000000
+  G Kill Count: 0.000000
+  ET Outpost Count: 0
+  ET Fixed Count: 0
+  ET Random Fixed Count: 0
+  ET Random Move Count: 0
+  ------------------------
+  Type: Radar
+  EA Marker Time: 793.600000
+  EA Debuff Damage: 117.500000
+  ------------------------
+
+Team: 西安理工大学 (NEXT E)
+  Type: Infantry
+  EA Small Hit Rate: 18.500000
+  EAG Hurt: 263.000000
+  EA KDA: 0.2/1.9/0.3
+  EA gkda Score: 0.200000
+  Big Energy: 0.000000
+  GK Damage: 44.100000
+  G Kill Count: 0.200000
+  ------------------------
+  Type: Hero
+  EA Big Hit Rate: 11.600000
+  EA KDA: 0.0/1.7777777777777777/0.0
+  EA gkda Score: 0.000000
+  GK Damage: 365.600000
+  G Kill Count: 0.000000
+  EA Snipe Count: 0.000000
+  ------------------------
+  Type: Sapper
+  EA KDA: 0.0/1.4444444444444444/0.0
+  EA gkda Score: 0.000000
+  EA Exchange Economy: 13.560000
+  A Mine Time: 5.600000
+  A Mine Difficulty: 0.300000
+  ------------------------
+  Type: Airplane
+  EA Small Hit Rate: 5.800000
+  EAG Hurt: 207.800000
+  EA KDA: 0.0/0.0/0.3333333333333333
+  EA gkda Score: 0.300000
+  GK Damage: 192.200000
+  G Kill Count: 0.000000
+  A Shoot Number: 629
+  ------------------------
+  Type: Guard
+  EA Small Hit Rate: 7.100000
+  EAG Hurt: 117.800000
+  EA KDA: 0.3333333333333333/0.7777777777777778/0.2222222222222222
+  EA gkda Score: 0.400000
+  GK Damage: 10.000000
+  G Kill Count: 0.300000
+  ------------------------
+  Type: Dart
+  EA KDA: 0.0/0.0/0.0
+  EA gkda Score: 0.000000
+  GK Damage: 0.000000
+  G Kill Count: 0.000000
+  ET Outpost Count: 0
+  ET Fixed Count: 0
+  ET Random Fixed Count: 0
+  ET Random Move Count: 0
+  ------------------------
+  Type: Radar
+  EA Marker Time: 70.200000
+  EA Debuff Damage: 0.800000
+  ------------------------
+
+Team: 首都师范大学 (PIE)
+  Type: Infantry
+  EA Small Hit Rate: 28.000000
+  EAG Hurt: 652.500000
+  EA KDA: 2.1/1.0/1.4
+  EA gkda Score: 2.300000
+  Big Energy: 16.000000
+  GK Damage: 12.400000
+  G Kill Count: 2.500000
+  ------------------------
+  Type: Hero
+  EA Big Hit Rate: 21.600000
+  EA KDA: 0.0/0.7142857142857143/0.14285714285714285
+  EA gkda Score: 0.100000
+  GK Damage: 888.600000
+  G Kill Count: 0.000000
+  EA Snipe Count: 0.000000
+  ------------------------
+  Type: Sapper
+  EA KDA: 0.0/0.5/0.0
+  EA gkda Score: 0.000000
+  EA Exchange Economy: 729.930000
+  A Mine Time: 12.000000
+  A Mine Difficulty: 2.400000
+  ------------------------
+  Type: Airplane
+  EA Small Hit Rate: 10.600000
+  EAG Hurt: 994.200000
+  EA KDA: 0.5714285714285714/0.0/1.0714285714285714
+  EA gkda Score: 1.600000
+  GK Damage: 707.600000
+  G Kill Count: 0.600000
+  A Shoot Number: 931
+  ------------------------
+  Type: Guard
+  EA Small Hit Rate: 9.600000
+  EAG Hurt: 349.300000
+  EA KDA: 0.6428571428571429/0.8571428571428571/1.2142857142857142
+  EA gkda Score: 1.700000
+  GK Damage: 84.100000
+  G Kill Count: 0.600000
+  ------------------------
+  Type: Dart
+  EA KDA: 0.0/0.0/0.0
+  EA gkda Score: 0.000000
+  GK Damage: 44.600000
+  G Kill Count: 0.000000
+  ET Outpost Count: 0
+  ET Fixed Count: 1
+  ET Random Fixed Count: 0
+  ET Random Move Count: 0
+  ------------------------
+  Type: Radar
+  EA Marker Time: 388.500000
+  EA Debuff Damage: 52.000000
+  ------------------------
+
+Team: 齐鲁工业大学 (Adam)
+  Type: Infantry
+  EA Small Hit Rate: 18.000000
+  EAG Hurt: 441.900000
+  EA KDA: 0.7/1.5/1.0
+  EA gkda Score: 1.000000
+  Big Energy: 0.000000
+  GK Damage: 0.300000
+  G Kill Count: 0.900000
+  ------------------------
+  Type: Hero
+  EA Big Hit Rate: 14.900000
+  EA KDA: 0.09090909090909091/1.2727272727272727/0.0
+  EA gkda Score: 0.000000
+  GK Damage: 718.200000
+  G Kill Count: 0.100000
+  EA Snipe Count: 0.600000
+  ------------------------
+  Type: Sapper
+  EA KDA: 0.0/0.2727272727272727/0.0
+  EA gkda Score: 0.000000
+  EA Exchange Economy: 455.090000
+  A Mine Time: 39.300000
+  A Mine Difficulty: 2.500000
+  ------------------------
+  Type: Airplane
+  EA Small Hit Rate: 5.700000
+  EAG Hurt: 843.500000
+  EA KDA: 1.0909090909090908/0.0/1.8181818181818181
+  EA gkda Score: 2.900000
+  GK Damage: 310.900000
+  G Kill Count: 1.100000
+  A Shoot Number: 1441
+  ------------------------
+  Type: Guard
+  EA Small Hit Rate: 2.700000
+  EAG Hurt: 47.300000
+  EA KDA: 0.0/0.09090909090909091/0.18181818181818182
+  EA gkda Score: 0.200000
+  GK Damage: 31.800000
+  G Kill Count: 0.000000
+  ------------------------
+  Type: Dart
+  EA KDA: 0.0/0.0/0.0
+  EA gkda Score: 0.000000
+  GK Damage: 0.000000
+  G Kill Count: 0.000000
+  ET Outpost Count: 0
+  ET Fixed Count: 0
+  ET Random Fixed Count: 0
+  ET Random Move Count: 0
+  ------------------------
+  Type: Radar
+  EA Marker Time: 291.400000
+  EA Debuff Damage: 66.800000
+  ------------------------
+
+Team: 北京科技大学 (Reborn)
+  Type: Infantry
+  EA Small Hit Rate: 21.900000
+  EAG Hurt: 353.900000
+  EA KDA: 0.8/1.2/0.9
+  EA gkda Score: 1.300000
+  Big Energy: 0.000000
+  GK Damage: 3.000000
+  G Kill Count: 0.800000
+  ------------------------
+  Type: Hero
+  EA Big Hit Rate: 28.100000
+  EA KDA: 0.17647058823529413/0.8235294117647058/0.11764705882352941
+  EA gkda Score: 0.300000
+  GK Damage: 2444.700000
+  G Kill Count: 0.200000
+  EA Snipe Count: 6.200000
+  ------------------------
+  Type: Sapper
+  EA KDA: 0.0/0.4117647058823529/0.0
+  EA gkda Score: 0.000000
+  EA Exchange Economy: 241.760000
+  A Mine Time: 17.800000
+  A Mine Difficulty: 1.900000
+  ------------------------
+  Type: Airplane
+  EA Small Hit Rate: 3.700000
+  EAG Hurt: 338.900000
+  EA KDA: 0.23529411764705882/0.0/0.9411764705882353
+  EA gkda Score: 1.200000
+  GK Damage: 193.100000
+  G Kill Count: 0.200000
+  A Shoot Number: 1066
+  ------------------------
+  Type: Guard
+  EA Small Hit Rate: 8.100000
+  EAG Hurt: 138.200000
+  EA KDA: 0.17647058823529413/0.4117647058823529/0.11764705882352941
+  EA gkda Score: 0.200000
+  GK Damage: 51.200000
+  G Kill Count: 0.200000
+  ------------------------
+  Type: Dart
+  EA KDA: 0.0/0.0/0.0
+  EA gkda Score: 0.000000
+  GK Damage: 0.000000
+  G Kill Count: 0.000000
+  ET Outpost Count: 0
+  ET Fixed Count: 0
+  ET Random Fixed Count: 0
+  ET Random Move Count: 0
+  ------------------------
+  Type: Radar
+  EA Marker Time: 46.400000
+  EA Debuff Damage: 10.900000
+  ------------------------
+
+Team: 哈尔滨工业大学（威海） (HERO)
+  Type: Infantry
+  EA Small Hit Rate: 30.000000
+  EAG Hurt: 968.900000
+  EA KDA: 2.2/1.2/2.0
+  EA gkda Score: 2.900000
+  Big Energy: 0.000000
+  GK Damage: 57.200000
+  G Kill Count: 2.400000
+  ------------------------
+  Type: Hero
+  EA Big Hit Rate: 21.900000
+  EA KDA: 0.05263157894736842/1.2105263157894737/0.15789473684210525
+  EA gkda Score: 0.100000
+  GK Damage: 2743.700000
+  G Kill Count: 0.100000
+  EA Snipe Count: 5.500000
+  ------------------------
+  Type: Sapper
+  EA KDA: 0.0/0.42105263157894735/0.0
+  EA gkda Score: 0.000000
+  EA Exchange Economy: 1259.890000
+  A Mine Time: 13.700000
+  A Mine Difficulty: 3.000000
+  ------------------------
+  Type: Airplane
+  EA Small Hit Rate: 7.600000
+  EAG Hurt: 776.000000
+  EA KDA: 1.0526315789473684/0.0/1.263157894736842
+  EA gkda Score: 2.300000
+  GK Damage: 322.100000
+  G Kill Count: 1.100000
+  A Shoot Number: 1119
+  ------------------------
+  Type: Guard
+  EA Small Hit Rate: 13.800000
+  EAG Hurt: 529.900000
+  EA KDA: 1.5263157894736843/0.15789473684210525/1.4210526315789473
+  EA gkda Score: 2.800000
+  GK Damage: 22.100000
+  G Kill Count: 1.500000
+  ------------------------
+  Type: Dart
+  EA KDA: 0.0/0.0/0.0
+  EA gkda Score: 0.000000
+  GK Damage: 0.000000
+  G Kill Count: 0.000000
+  ET Outpost Count: 0
+  ET Fixed Count: 0
+  ET Random Fixed Count: 0
+  ET Random Move Count: 0
+  ------------------------
+  Type: Radar
+  EA Marker Time: 255.800000
+  EA Debuff Damage: 75.900000
+  ------------------------
+
+Team: 燕山大学 (燕鹰)
+  Type: Infantry
+  EA Small Hit Rate: 10.900000
+  EAG Hurt: 280.900000
+  EA KDA: 0.3/1.6/0.3
+  EA gkda Score: 0.300000
+  Big Energy: 0.000000
+  GK Damage: 6.500000
+  G Kill Count: 0.500000
+  ------------------------
+  Type: Hero
+  EA Big Hit Rate: 30.200000
+  EA KDA: 0.0/1.3636363636363635/0.0
+  EA gkda Score: 0.000000
+  GK Damage: 1889.500000
+  G Kill Count: 0.000000
+  EA Snipe Count: 2.600000
+  ------------------------
+  Type: Sapper
+  EA KDA: 0.0/0.5454545454545454/0.0
+  EA gkda Score: 0.000000
+  EA Exchange Economy: 183.000000
+  A Mine Time: 32.800000
+  A Mine Difficulty: 1.900000
+  ------------------------
+  Type: Airplane
+  EA Small Hit Rate: 7.900000
+  EAG Hurt: 373.900000
+  EA KDA: 0.09090909090909091/0.09090909090909091/0.2727272727272727
+  EA gkda Score: 0.400000
+  GK Damage: 204.700000
+  G Kill Count: 0.100000
+  A Shoot Number: 536
+  ------------------------
+  Type: Guard
+  EA Small Hit Rate: 8.100000
+  EAG Hurt: 41.800000
+  EA KDA: 0.09090909090909091/0.2727272727272727/0.18181818181818182
+  EA gkda Score: 0.300000
+  GK Damage: 0.000000
+  G Kill Count: 0.100000
+  ------------------------
+  Type: Dart
+  EA KDA: 0.0/0.0/0.0
+  EA gkda Score: 0.000000
+  GK Damage: 136.400000
+  G Kill Count: 0.000000
+  ET Outpost Count: 2
+  ET Fixed Count: 0
+  ET Random Fixed Count: 0
+  ET Random Move Count: 0
+  ------------------------
+  Type: Radar
+  EA Marker Time: 0.000000
+  EA Debuff Damage: 0.000000
+  ------------------------
+
+Team: 上海工程技术大学 (木鸢Birdiebot)
+  Type: Infantry
+  EA Small Hit Rate: 25.100000
+  EAG Hurt: 753.300000
+  EA KDA: 1.8/1.7/1.1
+  EA gkda Score: 2.000000
+  Big Energy: 0.000000
+  GK Damage: 25.000000
+  G Kill Count: 2.300000
+  ------------------------
+  Type: Hero
+  EA Big Hit Rate: 29.000000
+  EA KDA: 0.0/1.2/0.0
+  EA gkda Score: 0.000000
+  GK Damage: 2346.800000
+  G Kill Count: 0.000000
+  EA Snipe Count: 3.900000
+  ------------------------
+  Type: Sapper
+  EA KDA: 0.0/0.9/0.0
+  EA gkda Score: 0.000000
+  EA Exchange Economy: 553.600000
+  A Mine Time: 32.400000
+  A Mine Difficulty: 2.800000
+  ------------------------
+  Type: Airplane
+  EA Small Hit Rate: 2.700000
+  EAG Hurt: 355.100000
+  EA KDA: 0.6/0.0/1.5
+  EA gkda Score: 2.100000
+  GK Damage: 174.300000
+  G Kill Count: 0.600000
+  A Shoot Number: 1091
+  ------------------------
+  Type: Guard
+  EA Small Hit Rate: 4.100000
+  EAG Hurt: 110.900000
+  EA KDA: 0.0/0.1/0.2
+  EA gkda Score: 0.200000
+  GK Damage: 38.400000
+  G Kill Count: 0.000000
+  ------------------------
+  Type: Dart
+  EA KDA: 0.0/0.0/0.0
+  EA gkda Score: 0.000000
+  GK Damage: 0.000000
+  G Kill Count: 0.000000
+  ET Outpost Count: 0
+  ET Fixed Count: 0
+  ET Random Fixed Count: 0
+  ET Random Move Count: 0
+  ------------------------
+  Type: Radar
+  EA Marker Time: 195.500000
+  EA Debuff Damage: 53.700000
+  ------------------------
+
+Team: 华中科技大学 (狼牙)
+  Type: Infantry
+  EA Small Hit Rate: 23.500000
+  EAG Hurt: 587.800000
+  EA KDA: 1.6/1.0/1.2
+  EA gkda Score: 2.100000
+  Big Energy: 21.000000
+  GK Damage: 2.600000
+  G Kill Count: 2.100000
+  ------------------------
+  Type: Hero
+  EA Big Hit Rate: 43.400000
+  EA KDA: 0.0/1.375/0.3125
+  EA gkda Score: 0.300000
+  GK Damage: 3978.100000
+  G Kill Count: 0.000000
+  EA Snipe Count: 6.300000
+  ------------------------
+  Type: Sapper
+  EA KDA: 0.0/0.4375/0.0
+  EA gkda Score: 0.000000
+  EA Exchange Economy: 716.130000
+  A Mine Time: 30.000000
+  A Mine Difficulty: 3.000000
+  ------------------------
+  Type: Airplane
+  EA Small Hit Rate: 1.500000
+  EAG Hurt: 215.100000
+  EA KDA: 0.4375/0.1875/1.125
+  EA gkda Score: 1.600000
+  GK Damage: 51.300000
+  G Kill Count: 0.400000
+  A Shoot Number: 801
+  ------------------------
+  Type: Guard
+  EA Small Hit Rate: 10.600000
+  EAG Hurt: 252.400000
+  EA KDA: 0.5/0.8125/0.5
+  EA gkda Score: 0.600000
+  GK Damage: 10.600000
+  G Kill Count: 0.500000
+  ------------------------
+  Type: Dart
+  EA KDA: 0.0/0.0/0.0
+  EA gkda Score: 0.000000
+  GK Damage: 0.000000
+  G Kill Count: 0.000000
+  ET Outpost Count: 0
+  ET Fixed Count: 0
+  ET Random Fixed Count: 0
+  ET Random Move Count: 0
+  ------------------------
+  Type: Radar
+  EA Marker Time: 858.000000
+  EA Debuff Damage: 242.300000
+  ------------------------
+
+Team: 中国石油大学（北京） (SPR)
+  Type: Infantry
+  EA Small Hit Rate: 22.800000
+  EAG Hurt: 622.500000
+  EA KDA: 1.2/2.1/1.3
+  EA gkda Score: 1.100000
+  Big Energy: 0.000000
+  GK Damage: 77.400000
+  G Kill Count: 1.300000
+  ------------------------
+  Type: Hero
+  EA Big Hit Rate: 16.700000
+  EA KDA: 0.125/0.9375/0.0625
+  EA gkda Score: 0.200000
+  GK Damage: 1854.900000
+  G Kill Count: 0.100000
+  EA Snipe Count: 4.300000
+  ------------------------
+  Type: Sapper
+  EA KDA: 0.0/0.4375/0.0
+  EA gkda Score: 0.000000
+  EA Exchange Economy: 539.750000
+  A Mine Time: 23.200000
+  A Mine Difficulty: 2.400000
+  ------------------------
+  Type: Airplane
+  EA Small Hit Rate: 4.200000
+  EAG Hurt: 408.900000
+  EA KDA: 0.5625/0.0/0.3125
+  EA gkda Score: 0.900000
+  GK Damage: 209.500000
+  G Kill Count: 0.600000
+  A Shoot Number: 1108
+  ------------------------
+  Type: Guard
+  EA Small Hit Rate: 9.500000
+  EAG Hurt: 250.000000
+  EA KDA: 0.4375/0.1875/0.5
+  EA gkda Score: 0.800000
+  GK Damage: 12.500000
+  G Kill Count: 0.400000
+  ------------------------
+  Type: Dart
+  EA KDA: 0.0/0.0/0.0
+  EA gkda Score: 0.000000
+  GK Damage: 0.000000
+  G Kill Count: 0.000000
+  ET Outpost Count: 0
+  ET Fixed Count: 0
+  ET Random Fixed Count: 0
+  ET Random Move Count: 0
+  ------------------------
+  Type: Radar
+  EA Marker Time: 651.500000
+  EA Debuff Damage: 150.800000
+  ------------------------
+
+Team: 东北大学 (TDT)
+  Type: Infantry
+  EA Small Hit Rate: 27.900000
+  EAG Hurt: 563.800000
+  EA KDA: 1.4/1.6/1.3
+  EA gkda Score: 1.800000
+  Big Energy: 28.000000
+  GK Damage: 80.400000
+  G Kill Count: 1.400000
+  ------------------------
+  Type: Hero
+  EA Big Hit Rate: 38.200000
+  EA KDA: 0.0/0.8181818181818182/0.18181818181818182
+  EA gkda Score: 0.100000
+  GK Damage: 2889.000000
+  G Kill Count: 0.000000
+  EA Snipe Count: 2.200000
+  ------------------------
+  Type: Sapper
+  EA KDA: 0.0/1.0/0.0
+  EA gkda Score: 0.000000
+  EA Exchange Economy: 857.550000
+  A Mine Time: 10.500000
+  A Mine Difficulty: 2.700000
+  ------------------------
+  Type: Airplane
+  EA Small Hit Rate: 3.800000
+  EAG Hurt: 277.900000
+  EA KDA: 0.09090909090909091/0.18181818181818182/1.0
+  EA gkda Score: 0.900000
+  GK Damage: 143.600000
+  G Kill Count: 0.100000
+  A Shoot Number: 537
+  ------------------------
+  Type: Guard
+  EA Small Hit Rate: 12.300000
+  EAG Hurt: 432.400000
+  EA KDA: 0.9090909090909091/0.8181818181818182/0.9090909090909091
+  EA gkda Score: 1.500000
+  GK Damage: 30.300000
+  G Kill Count: 0.900000
+  ------------------------
+  Type: Dart
+  EA KDA: 0.0/0.0/0.0
+  EA gkda Score: 0.000000
+  GK Damage: 625.000000
+  G Kill Count: 0.000000
+  ET Outpost Count: 0
+  ET Fixed Count: 11
+  ET Random Fixed Count: 0
+  ET Random Move Count: 0
+  ------------------------
+  Type: Radar
+  EA Marker Time: 857.400000
+  EA Debuff Damage: 224.500000
+  ------------------------
+
+Team: 辽宁科技大学 (COD)
+  Type: Infantry
+  EA Small Hit Rate: 17.000000
+  EAG Hurt: 425.700000
+  EA KDA: 1.0/0.9/1.1
+  EA gkda Score: 1.600000
+  Big Energy: 0.000000
+  GK Damage: 1.800000
+  G Kill Count: 1.100000
+  ------------------------
+  Type: Hero
+  EA Big Hit Rate: 34.900000
+  EA KDA: 0.09090909090909091/1.4545454545454546/0.18181818181818182
+  EA gkda Score: 0.200000
+  GK Damage: 1654.500000
+  G Kill Count: 0.100000
+  EA Snipe Count: 3.000000
+  ------------------------
+  Type: Sapper
+  EA KDA: 0.0/0.09090909090909091/0.0
+  EA gkda Score: 0.000000
+  EA Exchange Economy: 284.360000
+  A Mine Time: 37.500000
+  A Mine Difficulty: 1.900000
+  ------------------------
+  Type: Airplane
+  EA Small Hit Rate: 7.900000
+  EAG Hurt: 801.000000
+  EA KDA: 0.9090909090909091/0.0/0.9090909090909091
+  EA gkda Score: 1.800000
+  GK Damage: 505.900000
+  G Kill Count: 0.900000
+  A Shoot Number: 1059
+  ------------------------
+  Type: Guard
+  EA Small Hit Rate: 12.700000
+  EAG Hurt: 251.400000
+  EA KDA: 0.09090909090909091/0.36363636363636365/0.6363636363636364
+  EA gkda Score: 0.600000
+  GK Damage: 45.500000
+  G Kill Count: 0.100000
+  ------------------------
+  Type: Dart
+  EA KDA: 0.0/0.0/0.0
+  EA gkda Score: 0.000000
+  GK Damage: 0.000000
+  G Kill Count: 0.000000
+  ET Outpost Count: 0
+  ET Fixed Count: 0
+  ET Random Fixed Count: 0
+  ET Random Move Count: 0
+  ------------------------
+  Type: Radar
+  EA Marker Time: 331.800000
+  EA Debuff Damage: 66.100000
+  ------------------------
+
+Team: 南京航空航天大学 (长空御风)
+  Type: Infantry
+  EA Small Hit Rate: 17.700000
+  EAG Hurt: 616.100000
+  EA KDA: 1.3/0.9/1.3
+  EA gkda Score: 2.100000
+  Big Energy: 0.000000
+  GK Damage: 14.400000
+  G Kill Count: 1.200000
+  ------------------------
+  Type: Hero
+  EA Big Hit Rate: 49.700000
+  EA KDA: 0.0/2.4761904761904763/0.0
+  EA gkda Score: 0.000000
+  GK Damage: 4484.000000
+  G Kill Count: 0.000000
+  EA Snipe Count: 8.800000
+  ------------------------
+  Type: Sapper
+  EA KDA: 0.0/0.8095238095238095/0.0
+  EA gkda Score: 0.000000
+  EA Exchange Economy: 1001.050000
+  A Mine Time: 15.200000
+  A Mine Difficulty: 2.900000
+  ------------------------
+  Type: Airplane
+  EA Small Hit Rate: 4.200000
+  EAG Hurt: 281.000000
+  EA KDA: 0.42857142857142855/0.047619047619047616/1.1428571428571428
+  EA gkda Score: 1.500000
+  GK Damage: 28.700000
+  G Kill Count: 0.400000
+  A Shoot Number: 707
+  ------------------------
+  Type: Guard
+  EA Small Hit Rate: 13.500000
+  EAG Hurt: 238.800000
+  EA KDA: 0.47619047619047616/1.0952380952380953/0.6190476190476191
+  EA gkda Score: 0.700000
+  GK Damage: 14.800000
+  G Kill Count: 0.500000
+  ------------------------
+  Type: Dart
+  EA KDA: 0.047619047619047616/0.0/0.0
+  EA gkda Score: 0.000000
+  GK Damage: 292.900000
+  G Kill Count: 0.000000
+  ET Outpost Count: 0
+  ET Fixed Count: 6
+  ET Random Fixed Count: 0
+  ET Random Move Count: 2
+  ------------------------
+  Type: Radar
+  EA Marker Time: 270.200000
+  EA Debuff Damage: 54.800000
+  ------------------------
+
+Team: 东南大学 (3SE)
+  Type: Infantry
+  EA Small Hit Rate: 26.300000
+  EAG Hurt: 735.800000
+  EA KDA: 1.8/1.4/1.4
+  EA gkda Score: 2.000000
+  Big Energy: 0.000000
+  GK Damage: 34.400000
+  G Kill Count: 2.400000
+  ------------------------
+  Type: Hero
+  EA Big Hit Rate: 28.000000
+  EA KDA: 0.1875/1.1875/0.0
+  EA gkda Score: 0.200000
+  GK Damage: 3468.400000
+  G Kill Count: 0.200000
+  EA Snipe Count: 9.000000
+  ------------------------
+  Type: Sapper
+  EA KDA: 0.0/0.375/0.0
+  EA gkda Score: 0.000000
+  EA Exchange Economy: 1027.690000
+  A Mine Time: 16.400000
+  A Mine Difficulty: 3.000000
+  ------------------------
+  Type: Airplane
+  EA Small Hit Rate: 6.600000
+  EAG Hurt: 482.100000
+  EA KDA: 0.625/0.3125/1.125
+  EA gkda Score: 1.600000
+  GK Damage: 248.500000
+  G Kill Count: 0.600000
+  A Shoot Number: 590
+  ------------------------
+  Type: Guard
+  EA Small Hit Rate: 6.800000
+  EAG Hurt: 165.700000
+  EA KDA: 0.125/0.5/0.4375
+  EA gkda Score: 0.400000
+  GK Damage: 7.500000
+  G Kill Count: 0.100000
+  ------------------------
+  Type: Dart
+  EA KDA: 0.0/0.0/0.0
+  EA gkda Score: 0.000000
+  GK Damage: 390.600000
+  G Kill Count: 0.000000
+  ET Outpost Count: 0
+  ET Fixed Count: 10
+  ET Random Fixed Count: 0
+  ET Random Move Count: 0
+  ------------------------
+  Type: Radar
+  EA Marker Time: 226.800000
+  EA Debuff Damage: 111.600000
+  ------------------------
+
+Team: 浙江纺织服装职业技术学院 (RoboFuture)
+  Type: Infantry
+  EA Small Hit Rate: 29.000000
+  EAG Hurt: 548.000000
+  EA KDA: 0.6/2.0/0.3
+  EA gkda Score: 0.500000
+  Big Energy: 26.000000
+  GK Damage: 117.000000
+  G Kill Count: 0.800000
+  ------------------------
+  Type: Hero
+  EA Big Hit Rate: 33.100000
+  EA KDA: 0.0/1.6363636363636365/0.0
+  EA gkda Score: 0.000000
+  GK Damage: 1460.500000
+  G Kill Count: 0.000000
+  EA Snipe Count: 1.600000
+  ------------------------
+  Type: Sapper
+  EA KDA: 0.0/1.0/0.0
+  EA gkda Score: 0.000000
+  EA Exchange Economy: 363.000000
+  A Mine Time: 7.300000
+  A Mine Difficulty: 1.600000
+  ------------------------
+  Type: Airplane
+  EA Small Hit Rate: 4.300000
+  EAG Hurt: 127.500000
+  EA KDA: 0.0/0.2727272727272727/0.09090909090909091
+  EA gkda Score: 0.100000
+  GK Damage: 85.400000
+  G Kill Count: 0.000000
+  A Shoot Number: 243
+  ------------------------
+  Type: Guard
+  EA Small Hit Rate: 6.700000
+  EAG Hurt: 164.100000
+  EA KDA: 0.0/1.0909090909090908/0.18181818181818182
+  EA gkda Score: 0.200000
+  GK Damage: 26.400000
+  G Kill Count: 0.000000
+  ------------------------
+  Type: Dart
+  EA KDA: 0.0/0.0/0.0
+  EA gkda Score: 0.000000
+  GK Damage: 0.000000
+  G Kill Count: 0.000000
+  ET Outpost Count: 0
+  ET Fixed Count: 0
+  ET Random Fixed Count: 0
+  ET Random Move Count: 0
+  ------------------------
+  Type: Radar
+  EA Marker Time: 185.200000
+  EA Debuff Damage: 49.400000
+  ------------------------
+
+Team: 浙江理工大学 (钱塘蛟)
+  Type: Infantry
+  EA Small Hit Rate: 13.200000
+  EAG Hurt: 180.800000
+  EA KDA: 0.2/1.7/0.4
+  EA gkda Score: 0.200000
+  Big Energy: 0.000000
+  GK Damage: 0.200000
+  G Kill Count: 0.000000
+  ------------------------
+  Type: Hero
+  EA Big Hit Rate: 23.600000
+  EA KDA: 0.16666666666666666/1.8333333333333333/0.16666666666666666
+  EA gkda Score: 0.000000
+  GK Damage: 1000.000000
+  G Kill Count: 0.200000
+  EA Snipe Count: 0.200000
+  ------------------------
+  Type: Sapper
+  EA KDA: 0.0/0.16666666666666666/0.0
+  EA gkda Score: 0.000000
+  EA Exchange Economy: 335.670000
+  A Mine Time: 23.900000
+  A Mine Difficulty: 2.000000
+  ------------------------
+  Type: Airplane
+  EA Small Hit Rate: 3.500000
+  EAG Hurt: 459.700000
+  EA KDA: 0.16666666666666666/0.16666666666666666/0.3333333333333333
+  EA gkda Score: 0.500000
+  GK Damage: 266.700000
+  G Kill Count: 0.200000
+  A Shoot Number: 826
+  ------------------------
+  Type: Guard
+  EA Small Hit Rate: 1.400000
+  EAG Hurt: 21.700000
+  EA KDA: 0.0/0.0/0.16666666666666666
+  EA gkda Score: 0.200000
+  GK Damage: 1.700000
+  G Kill Count: 0.000000
+  ------------------------
+  Type: Dart
+  EA KDA: 0.0/0.0/0.0
+  EA gkda Score: 0.000000
+  GK Damage: 0.000000
+  G Kill Count: 0.000000
+  ET Outpost Count: 0
+  ET Fixed Count: 0
+  ET Random Fixed Count: 0
+  ET Random Move Count: 0
+  ------------------------
+  Type: Radar
+  EA Marker Time: 0.000000
+  EA Debuff Damage: 0.000000
+  ------------------------
+
+Team: 宁波工程学院 (New Legends)
+  Type: Infantry
+  EA Small Hit Rate: 16.100000
+  EAG Hurt: 246.300000
+  EA KDA: 0.6/1.7/0.1
+  EA gkda Score: 0.500000
+  Big Energy: 0.000000
+  GK Damage: 21.300000
+  G Kill Count: 0.800000
+  ------------------------
+  Type: Hero
+  EA Big Hit Rate: 26.700000
+  EA KDA: 0.0/2.25/0.125
+  EA gkda Score: 0.100000
+  GK Damage: 1117.500000
+  G Kill Count: 0.000000
+  EA Snipe Count: 0.000000
+  ------------------------
+  Type: Sapper
+  EA KDA: 0.0/0.375/0.0
+  EA gkda Score: 0.000000
+  EA Exchange Economy: 115.500000
+  A Mine Time: 16.800000
+  A Mine Difficulty: 1.300000
+  ------------------------
+  Type: Airplane
+  EA Small Hit Rate: 4.100000
+  EAG Hurt: 374.000000
+  EA KDA: 0.125/0.125/0.375
+  EA gkda Score: 0.400000
+  GK Damage: 198.800000
+  G Kill Count: 0.100000
+  A Shoot Number: 876
+  ------------------------
+  Type: Guard
+  EA Small Hit Rate: 6.900000
+  EAG Hurt: 73.800000
+  EA KDA: 0.0/0.375/0.375
+  EA gkda Score: 0.400000
+  GK Damage: 0.000000
+  G Kill Count: 0.000000
+  ------------------------
+  Type: Dart
+  EA KDA: 0.0/0.0/0.0
+  EA gkda Score: 0.000000
+  GK Damage: 0.000000
+  G Kill Count: 0.000000
+  ET Outpost Count: 0
+  ET Fixed Count: 0
+  ET Random Fixed Count: 0
+  ET Random Move Count: 0
+  ------------------------
+  Type: Radar
+  EA Marker Time: 84.400000
+  EA Debuff Damage: 0.800000
+  ------------------------
+
+Team: 中国矿业大学 (CUBOT)
+  Type: Infantry
+  EA Small Hit Rate: 23.100000
+  EAG Hurt: 618.600000
+  EA KDA: 1.7/1.7/1.5
+  EA gkda Score: 2.200000
+  Big Energy: 0.000000
+  GK Damage: 50.500000
+  G Kill Count: 1.500000
+  ------------------------
+  Type: Hero
+  EA Big Hit Rate: 21.500000
+  EA KDA: 0.0/0.9230769230769231/0.0
+  EA gkda Score: 0.000000
+  GK Damage: 2381.500000
+  G Kill Count: 0.000000
+  EA Snipe Count: 6.400000
+  ------------------------
+  Type: Sapper
+  EA KDA: 0.0/0.6923076923076923/0.0
+  EA gkda Score: 0.000000
+  EA Exchange Economy: 986.690000
+  A Mine Time: 11.400000
+  A Mine Difficulty: 2.800000
+  ------------------------
+  Type: Airplane
+  EA Small Hit Rate: 5.200000
+  EAG Hurt: 608.300000
+  EA KDA: 0.7692307692307693/0.0/1.1538461538461537
+  EA gkda Score: 1.900000
+  GK Damage: 411.200000
+  G Kill Count: 0.800000
+  A Shoot Number: 1205
+  ------------------------
+  Type: Guard
+  EA Small Hit Rate: 17.800000
+  EAG Hurt: 590.500000
+  EA KDA: 0.9230769230769231/1.5384615384615385/1.6923076923076923
+  EA gkda Score: 2.000000
+  GK Damage: 120.800000
+  G Kill Count: 0.900000
+  ------------------------
+  Type: Dart
+  EA KDA: 0.0/0.0/0.0
+  EA gkda Score: 0.000000
+  GK Damage: 240.400000
+  G Kill Count: 0.000000
+  ET Outpost Count: 0
+  ET Fixed Count: 5
+  ET Random Fixed Count: 0
+  ET Random Move Count: 0
+  ------------------------
+  Type: Radar
+  EA Marker Time: 0.000000
+  EA Debuff Damage: 0.000000
+  ------------------------
+
+Team: 天津大学 (北洋机甲)
+  Type: Infantry
+  EA Small Hit Rate: 25.800000
+  EAG Hurt: 590.100000
+  EA KDA: 1.2/1.3/0.9
+  EA gkda Score: 1.500000
+  Big Energy: 0.000000
+  GK Damage: 8.100000
+  G Kill Count: 1.300000
+  ------------------------
+  Type: Hero
+  EA Big Hit Rate: 48.400000
+  EA KDA: 0.0/1.4210526315789473/0.0
+  EA gkda Score: 0.000000
+  GK Damage: 3742.600000
+  G Kill Count: 0.000000
+  EA Snipe Count: 7.900000
+  ------------------------
+  Type: Sapper
+  EA KDA: 0.0/0.631578947368421/0.0
+  EA gkda Score: 0.000000
+  EA Exchange Economy: 522.000000
+  A Mine Time: 39.300000
+  A Mine Difficulty: 2.800000
+  ------------------------
+  Type: Airplane
+  EA Small Hit Rate: 0.600000
+  EAG Hurt: 13.700000
+  EA KDA: 0.0/0.05263157894736842/0.0
+  EA gkda Score: 0.000000
+  GK Damage: 13.700000
+  G Kill Count: 0.000000
+  A Shoot Number: 12
+  ------------------------
+  Type: Guard
+  EA Small Hit Rate: 2.300000
+  EAG Hurt: 74.600000
+  EA KDA: 0.05263157894736842/0.47368421052631576/0.10526315789473684
+  EA gkda Score: 0.200000
+  GK Damage: 0.000000
+  G Kill Count: 0.100000
+  ------------------------
+  Type: Dart
+  EA KDA: 0.0/0.0/0.0
+  EA gkda Score: 0.000000
+  GK Damage: 263.200000
+  G Kill Count: 0.000000
+  ET Outpost Count: 0
+  ET Fixed Count: 8
+  ET Random Fixed Count: 0
+  ET Random Move Count: 0
+  ------------------------
+  Type: Radar
+  EA Marker Time: 397.800000
+  EA Debuff Damage: 89.100000
+  ------------------------
+
+Team: 同济大学 (SuperPower)
+  Type: Infantry
+  EA Small Hit Rate: 30.200000
+  EAG Hurt: 901.800000
+  EA KDA: 1.9/1.1/2.6
+  EA gkda Score: 3.200000
+  Big Energy: 0.000000
+  GK Damage: 74.200000
+  G Kill Count: 2.300000
+  ------------------------
+  Type: Hero
+  EA Big Hit Rate: 40.900000
+  EA KDA: 0.10526315789473684/0.5789473684210527/0.5263157894736842
+  EA gkda Score: 0.400000
+  GK Damage: 4664.800000
+  G Kill Count: 0.100000
+  EA Snipe Count: 10.100000
+  ------------------------
+  Type: Sapper
+  EA KDA: 0.0/0.3157894736842105/0.0
+  EA gkda Score: 0.000000
+  EA Exchange Economy: 1218.680000
+  A Mine Time: 7.800000
+  A Mine Difficulty: 2.900000
+  ------------------------
+  Type: Airplane
+  EA Small Hit Rate: 5.500000
+  EAG Hurt: 552.800000
+  EA KDA: 0.631578947368421/0.05263157894736842/1.1578947368421053
+  EA gkda Score: 1.800000
+  GK Damage: 238.000000
+  G Kill Count: 0.600000
+  A Shoot Number: 1083
+  ------------------------
+  Type: Guard
+  EA Small Hit Rate: 19.600000
+  EAG Hurt: 551.600000
+  EA KDA: 1.736842105263158/0.05263157894736842/1.1578947368421053
+  EA gkda Score: 2.900000
+  GK Damage: 15.800000
+  G Kill Count: 1.700000
+  ------------------------
+  Type: Dart
+  EA KDA: 0.0/0.0/0.0
+  EA gkda Score: 0.000000
+  GK Damage: 32.900000
+  G Kill Count: 0.000000
+  ET Outpost Count: 0
+  ET Fixed Count: 1
+  ET Random Fixed Count: 0
+  ET Random Move Count: 0
+  ------------------------
+  Type: Radar
+  EA Marker Time: 165.300000
+  EA Debuff Damage: 97.600000
+  ------------------------
+
+Team: 太原工业学院 (火线)
+  Type: Infantry
+  EA Small Hit Rate: 26.000000
+  EAG Hurt: 660.000000
+  EA KDA: 1.6/1.1/1.8
+  EA gkda Score: 2.400000
+  Big Energy: 0.000000
+  GK Damage: 80.900000
+  G Kill Count: 1.800000
+  ------------------------
+  Type: Hero
+  EA Big Hit Rate: 46.200000
+  EA KDA: 0.0/0.8823529411764706/0.058823529411764705
+  EA gkda Score: 0.100000
+  GK Damage: 4422.600000
+  G Kill Count: 0.000000
+  EA Snipe Count: 11.200000
+  ------------------------
+  Type: Sapper
+  EA KDA: 0.0/0.0/0.0
+  EA gkda Score: 0.000000
+  EA Exchange Economy: 826.650000
+  A Mine Time: 19.400000
+  A Mine Difficulty: 3.000000
+  ------------------------
+  Type: Airplane
+  EA Small Hit Rate: 14.400000
+  EAG Hurt: 197.600000
+  EA KDA: 0.17647058823529413/0.11764705882352941/0.9411764705882353
+  EA gkda Score: 1.100000
+  GK Damage: 152.700000
+  G Kill Count: 0.200000
+  A Shoot Number: 380
+  ------------------------
+  Type: Guard
+  EA Small Hit Rate: 16.100000
+  EAG Hurt: 387.300000
+  EA KDA: 0.5294117647058824/0.5294117647058824/1.0
+  EA gkda Score: 1.300000
+  GK Damage: 160.300000
+  G Kill Count: 0.500000
+  ------------------------
+  Type: Dart
+  EA KDA: 0.0/0.0/0.0
+  EA gkda Score: 0.000000
+  GK Damage: 257.400000
+  G Kill Count: 0.000000
+  ET Outpost Count: 0
+  ET Fixed Count: 7
+  ET Random Fixed Count: 0
+  ET Random Move Count: 0
+  ------------------------
+  Type: Radar
+  EA Marker Time: 373.000000
+  EA Debuff Damage: 144.700000
+  ------------------------
+
+========================
+
