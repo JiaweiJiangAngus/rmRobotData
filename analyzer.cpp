@@ -132,7 +132,7 @@ std::string get_default_sort_key(const std::string& type_eng) {
 class DataManager {
 private:
     std::vector<RobotData> database;
-
+    std::set<std::string> knownZones; // 【新增】存储所有已知的赛区名
     // 通用导出CSV函数
     void export_and_show(const std::vector<RobotData>& data, const std::string& title, const std::string& defaultSort) {
         if (data.empty()) {
@@ -193,7 +193,10 @@ public:
         while (std::getline(file, line)) {
             line = trim(line);
             if (line.empty()) continue;
-            if (line.find("Zone Name:") == 0) currZone = trim(line.substr(10));
+            if (line.find("Zone Name:") == 0) {
+                currZone = trim(line.substr(10));
+                knownZones.insert(currZone);
+            }
             else if (line.find("Team:") == 0) {
                 save();
                 std::string content = trim(line.substr(5));
@@ -225,6 +228,15 @@ public:
         save();
     }
 
+    bool is_zone_keyword(const std::string& key) {
+        if (key == "全部" || key == "所有" || key == "ALL" || key == "全部赛区") return true;
+        // 只要已知的赛区名包含用户输入的关键词，就认为是赛区 (例如输入"南部"匹配"南部赛区")
+        for (const auto& z : knownZones) {
+            if (z.find(key) != std::string::npos) return true;
+        }
+        return false;
+    }
+
     // 模式1：赛区 + 兵种查询
     void search_by_zone_type(const std::string& zoneKey, const std::string& typeKey) {
         std::string targetType = translate_type(typeKey);
@@ -239,7 +251,7 @@ public:
         export_and_show(res, zoneKey + " " + typeKey, defaultSort);
     }
 
-    // 模式2 (增强版)：搜多个学校/队伍 (全兵种)
+    // 模式2 ：搜多个学校/队伍 (全兵种)
     void search_by_multiple_teams(const std::vector<std::string>& keywords) {
         std::vector<RobotData> res;
         for (const auto& r : database) {
@@ -254,7 +266,27 @@ public:
             if (matched) res.push_back(r);
         }
         // 多个队伍展示时，标题显示“多队伍数据汇总”，默认按对敌伤害排序
-        export_and_show(res, "多队伍数据对比", "对敌伤害量");
+        export_and_show(res, "多队伍数据对比", "命中率");
+    }
+
+    // 模式3 ：指定赛区 + 搜多个学校/队伍
+    void search_by_zone_and_teams(const std::string& zoneKey, const std::vector<std::string>& teams) {
+        std::vector<RobotData> res;
+        for (const auto& r : database) {
+            // 先匹配赛区
+            bool zoneMatch = (zoneKey == "ALL") || (r.zone.find(zoneKey) != std::string::npos);
+            if (!zoneMatch) continue;
+
+            // 再匹配队伍
+            bool teamMatch = false;
+            for (const auto& key : teams) {
+                if (r.college == key || r.teamName == key) {
+                    teamMatch = true; break;
+                }
+            }
+            if (teamMatch) res.push_back(r);
+        }
+        export_and_show(res, zoneKey + " 多队伍数据", "小弹丸命中率");
     }
 };
 
@@ -277,6 +309,7 @@ int main() {
         std::cout << "========================================\n";
         std::cout << "用法 1 (排行): [赛区] [兵种]  \n";
         std::cout << "用法 2 (搜队): [队名1] [队名2]...\n";
+        std::cout << "用法 3 (搜队): [赛区] [队名1]...\n";
         std::cout << "输入 exit 退出\n> ";
 
         std::string line;
@@ -295,14 +328,34 @@ int main() {
         
         // 只有当参数恰好是2个，且第2个参数是合法的兵种名称时，才视为模式1
         if (args.size() == 2 && is_robot_type(args[1])) {
-            if (args[0] == "全部" || args[0] == "全部赛区" || args[0] == "所有") {
-                args[0] = "ALL";
-            }
-            mgr.search_by_zone_type(args[0], args[1]);
+            std::string zone = args[0];
+            if (zone == "全部" || zone == "全部赛区" || zone == "所有") zone = "ALL";
+            mgr.search_by_zone_type(zone, args[1]);
         } 
         else {
-            // 否则，无论输入了多少个参数，都视为学校/战队名称列表
-            mgr.search_by_multiple_teams(args);
+            // 判定2：第一个参数是不是赛区？
+            std::string firstArg = args[0];
+            // 预处理关键字
+            if (firstArg == "全部" || firstArg == "全部赛区" || firstArg == "所有") firstArg = "ALL";
+            
+            if (mgr.is_zone_keyword(firstArg)) {
+                // 是赛区 -> 模式3：[赛区] [队1] [队2]
+                std::string zoneKey = (firstArg == "ALL") ? "ALL" : args[0];
+                
+                // 提取剩下的参数作为队名
+                std::vector<std::string> teamNames;
+                for(size_t i = 1; i < args.size(); ++i) teamNames.push_back(args[i]);
+                
+                if (teamNames.empty()) {
+                    std::cout << ">> 请输入至少一个队伍名称。\n";
+                } else {
+                    mgr.search_by_zone_and_teams(zoneKey, teamNames);
+                }
+            } 
+            else {
+                // 不是赛区 -> 模式2：所有参数都是队名
+                mgr.search_by_multiple_teams(args);
+            }
         }
     }
     return 0;
