@@ -30,7 +30,8 @@ bool is_target_zone(const std::string& zoneName) {
     return zoneName.find("联盟赛") != std::string::npos ||
            zoneName.find("部赛区") != std::string::npos ||
            zoneName.find("复活赛") != std::string::npos ||
-           zoneName.find("全国赛") != std::string::npos;
+           zoneName.find("全国赛") != std::string::npos ||
+           zoneName.find("站") != std::string::npos;
 }
 
 inline int robot_ID(std::string type_name) {
