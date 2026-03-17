@@ -16,7 +16,7 @@ if [ ! -d "bin" ]; then
     mkdir -p bin
 fi
 
-# 设置 Python 环境变量 (根据你的要求)
+# 设置 Python 环境变量
 export PYTHONPATH=$HOME/.local/lib/python3.10/site-packages
 
 # ==========================================

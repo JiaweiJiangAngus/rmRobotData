@@ -44,6 +44,10 @@ int main() {
                 if (pos != std::string::npos) {
                     zoneName.replace(pos, std::string("部赛区").length(), "部分区赛");
                 }
+                pos = zoneName.find("站");
+                if (pos != std::string::npos) {
+                    zoneName.replace(pos, std::string("站").length(), "站3V3联盟赛");
+                }
                 files[zoneName] = std::ofstream("data/zone_" + zoneName + ".txt");
             }
 
