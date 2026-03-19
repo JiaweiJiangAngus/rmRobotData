@@ -8,6 +8,8 @@
 #include <algorithm>
 #include <sstream>
 #include <iomanip>
+#include <cctype>
+#include <cstdlib>
 
 namespace fs = std::filesystem;
 
@@ -46,6 +48,44 @@ std::string translate_type(const std::string& input) {
     if (input == "飞镖") return "Dart";
     if (input == "雷达") return "Radar";
     return input;
+}
+
+std::string shell_escape(const std::string& input) {
+    std::string escaped = "'";
+    for (char ch : input) {
+        if (ch == '\'') escaped += "'\\''";
+        else escaped += ch;
+    }
+    escaped += "'";
+    return escaped;
+}
+
+bool env_flag_enabled(const char* name) {
+    const char* value = std::getenv(name);
+    if (!value) return false;
+    std::string flag = value;
+    std::transform(flag.begin(), flag.end(), flag.begin(), [](unsigned char ch) {
+        return static_cast<char>(std::tolower(ch));
+    });
+    return !(flag.empty() || flag == "0" || flag == "false" || flag == "no");
+}
+
+bool open_in_browser(const fs::path& filePath) {
+    std::string absolutePath = fs::absolute(filePath).string();
+
+    #ifdef _WIN32
+    std::string cmd = "cmd /c start \"\" \"" + absolutePath + "\"";
+    return system(cmd.c_str()) == 0;
+    #elif __APPLE__
+    std::string cmd = "open " + shell_escape(absolutePath);
+    return system(cmd.c_str()) == 0;
+    #else
+    std::string xdgCmd = "xdg-open " + shell_escape(absolutePath);
+    if (system(xdgCmd.c_str()) == 0) return true;
+
+    std::string gioCmd = "gio open " + shell_escape(absolutePath);
+    return system(gioCmd.c_str()) == 0;
+    #endif
 }
 
 // 辅助函数：判断一个字符串是否是兵种名称 (用于区分输入意图)
@@ -118,11 +158,11 @@ std::string get_default_sort_key(const std::string& type_eng) {
     if (type_eng == "Hero") 
         return "大弹丸命中率";
     if (type_eng == "Sapper") 
-        return "局均经济";
+        return "局均兑换经济数";
     if (type_eng == "Dart") 
-        return "随机移动靶";
+        return "累计随机移动靶数";
     if (type_eng == "Radar") 
-        return "易伤时间";
+        return "双倍易伤时间";
     return "";
 }
 
@@ -133,8 +173,26 @@ class DataManager {
 private:
     std::vector<RobotData> database;
     std::set<std::string> knownZones; // 【新增】存储所有已知的赛区名
+    bool autoOpenBrowser = false;
+    bool browserOpened = false;
+    
+    std::string resolve_zone_name(const std::string& zoneKey) const {
+        if (zoneKey == "ALL" || zoneKey == "全部") return "全部";
+        for (const auto& zone : knownZones) {
+            if (zone == zoneKey) return zone;
+        }
+        for (const auto& zone : knownZones) {
+            if (zone.find(zoneKey) != std::string::npos) return zone;
+        }
+        return zoneKey;
+    }
+
     // 通用导出CSV函数
-    void export_and_show(const std::vector<RobotData>& data, const std::string& title, const std::string& defaultSort) {
+    void export_and_show(const std::vector<RobotData>& data,
+                         const std::string& title,
+                         const std::string& defaultSort,
+                         const std::string& initialZone = "全部",
+                         const std::string& initialType = "全部") {
         if (data.empty()) {
             std::cout << ">> 未找到数据。\n";
             return;
@@ -145,7 +203,10 @@ private:
         for (const auto& r : data) for (const auto& kv : r.stats) keys.insert(kv.first);
         std::vector<std::string> headerKeys(keys.begin(), keys.end());
 
-        std::ofstream csv("bin/temp_table.csv");
+        fs::create_directories("bin");
+
+        std::string csvPath = "bin/temp_table.csv";
+        std::ofstream csv(csvPath);
         const char bom[] = { (char)0xEF, (char)0xBB, (char)0xBF };
         csv.write(bom, 3);
 
@@ -162,23 +223,49 @@ private:
         }
         csv.close();
 
-        std::cout << ">> 正在启动界面 (默认排序: " << (defaultSort.empty() ? "无" : defaultSort) << ")...\n";
+        std::cout << ">> 正在生成网页报告 (默认排序: " << (defaultSort.empty() ? "无" : defaultSort) << ")...\n" << std::flush;
         
-        // 传递第3个参数：默认排序列名
-        std::string cmd = "python3 view_table.py bin/temp_table.csv \"" + title + "\" \"" + defaultSort + "\"";
+        std::string cmd = "python3 view_table.py " + shell_escape(csvPath) + " " +
+                          shell_escape(title) + " " + shell_escape(defaultSort) + " " +
+                          shell_escape(initialZone) + " " + shell_escape(initialType);
         #ifdef _WIN32
-        cmd = "python view_table.py bin/temp_table.csv \"" + title + "\" \"" + defaultSort + "\"";
+        cmd = "python view_table.py " + shell_escape(csvPath) + " " +
+              shell_escape(title) + " " + shell_escape(defaultSort) + " " +
+              shell_escape(initialZone) + " " + shell_escape(initialType);
         #endif
-        system(cmd.c_str());
+        int result = system(cmd.c_str());
+        if (result != 0) {
+            std::cout << ">> 网页生成失败，请检查 Python 环境。\n";
+            return;
+        }
+
+        std::string outputHtml = fs::absolute("bin/robot_dashboard.html").string();
+        std::cout << ">> 网页已生成: " << outputHtml << "\n";
+        if (autoOpenBrowser && !browserOpened) {
+            if (open_in_browser(outputHtml)) {
+                browserOpened = true;
+                std::cout << ">> 已自动在默认浏览器中打开网页。\n";
+            } else {
+                std::cout << ">> 自动打开浏览器失败，请手动打开该文件。\n";
+            }
+        } else {
+            std::cout << ">> 用浏览器直接打开它即可查看。\n";
+        }
     }
 
 public:
+    explicit DataManager(bool autoOpen = false) : autoOpenBrowser(autoOpen) {}
+
     void load_data(const std::string& dirPath) {
         database.clear();
         if (!fs::exists(dirPath)) return;
         for (const auto& entry : fs::directory_iterator(dirPath)) {
             if (entry.path().extension() == ".txt") parse_file(entry.path().string());
         }
+    }
+
+    void show_interactive_dashboard() {
+        export_and_show(database, "RM 全量数据总览", "小弹丸命中率", "全部", "全部");
     }
 
     void parse_file(const std::string& filepath) {
@@ -240,15 +327,10 @@ public:
     // 模式1：赛区 + 兵种查询
     void search_by_zone_type(const std::string& zoneKey, const std::string& typeKey) {
         std::string targetType = translate_type(typeKey);
-        std::vector<RobotData> res;
-        for (const auto& r : database) {
-            bool z = (zoneKey == "全部") || (r.zone.find(zoneKey) != std::string::npos);
-            bool t = (targetType == "全部") || (r.type == targetType);
-            if (z && t) res.push_back(r);
-        }
-        // 获取默认排序键
         std::string defaultSort = get_default_sort_key(targetType);
-        export_and_show(res, zoneKey + " " + typeKey, defaultSort);
+        std::string initialZone = resolve_zone_name(zoneKey);
+        std::string initialType = (targetType == "全部") ? "全部" : get_chinese_header(targetType);
+        export_and_show(database, zoneKey + " " + typeKey, defaultSort, initialZone, initialType);
     }
 
     // 模式2 ：搜多个学校/队伍 (全兵种)
@@ -266,7 +348,7 @@ public:
             if (matched) res.push_back(r);
         }
         // 多个队伍展示时，标题显示“多队伍数据汇总”，默认按对敌伤害排序
-        export_and_show(res, "多队伍数据对比", "命中率");
+        export_and_show(res, "多队伍数据对比", "KDA得分");
     }
 
     // 模式3 ：指定赛区 + 搜多个学校/队伍
@@ -298,15 +380,17 @@ int main() {
     system("chcp 65001");
     #endif
 
-    DataManager mgr;
+    DataManager mgr(env_flag_enabled("RM_AUTO_OPEN_BROWSER"));
     std::cout << ">> 正在加载数据库...\n";
     mgr.load_data("data");
     std::cout << ">> 加载完成！\n";
+    mgr.show_interactive_dashboard();
 
     while (true) {
         std::cout << "\n========================================\n";
         std::cout << " RM 综合数据查询终端\n";
         std::cout << "========================================\n";
+        std::cout << "已生成交互网页，可直接在浏览器打开 bin/robot_dashboard.html\n";
         std::cout << "用法 1 (排行): [赛区] [兵种]  \n";
         std::cout << "用法 2 (搜队): [队名1] [队名2]...\n";
         std::cout << "用法 3 (搜队): [赛区] [队名1]...\n";

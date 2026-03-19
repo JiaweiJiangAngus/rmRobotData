@@ -122,7 +122,7 @@ int main() {
                             out << "  EA Marker Time: " << get_string(r, "eaRadarMarkerTime") << "\n";
                             out << "  EA Debuff Damage: " << get_string(r, "eaRadarDebuffDmg") << "\n";
                             break;
-                        defalut :
+                        default :
                             break;
                     }
                     out << "  ------------------------\n";

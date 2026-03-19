@@ -1,13 +1,11 @@
 #!/bin/bash
-echo "[Checking] Python libraries..."
-python3 -c "import pandas, matplotlib, tkinter" > /dev/null 2>&1
+echo "[Checking] Python runtime..."
+python3 --version > /dev/null 2>&1
 if [ $? -ne 0 ]; then
-    echo "正在安装必要的 Python 库..."
-    pip3 install pandas matplotlib
-    # tkinter 通常是 apt install python3-tk
-    echo "提示: 如果运行报错缺少 tkinter，请执行: sudo apt-get install python3-tk"
+    echo "未找到 python3，请先安装 Python 3。"
+    exit 1
 else
-    echo "Python 库检查通过。"
+    echo "Python 运行环境检查通过。"
 fi
 
 # 创建 bin 文件夹（如果不存在）
@@ -45,4 +43,5 @@ echo "[3/4] 正在编译 analyzer..."
 g++ -std=c++17 analyzer.cpp -o bin/analyze
 
 echo "[4/4] 编译完成!"
+echo "查询结果会生成到 bin/robot_dashboard.html，可直接用run.bash打开。"
 echo "----------------------------------------"
