@@ -70,6 +70,15 @@ bool env_flag_enabled(const char* name) {
     return !(flag.empty() || flag == "0" || flag == "false" || flag == "no");
 }
 
+std::string join_strings(const std::vector<std::string>& items, const std::string& delimiter = " ") {
+    std::ostringstream oss;
+    for (size_t i = 0; i < items.size(); ++i) {
+        if (i > 0) oss << delimiter;
+        oss << items[i];
+    }
+    return oss.str();
+}
+
 bool open_in_browser(const fs::path& filePath) {
     std::string absolutePath = fs::absolute(filePath).string();
 
@@ -188,19 +197,20 @@ private:
     }
 
     // 通用导出CSV函数
-    void export_and_show(const std::vector<RobotData>& data,
+    void export_and_show(const std::vector<RobotData>& matchedData,
                          const std::string& title,
                          const std::string& defaultSort,
                          const std::string& initialZone = "全部",
-                         const std::string& initialType = "全部") {
-        if (data.empty()) {
+                         const std::string& initialType = "全部",
+                         const std::string& initialKeyword = "") {
+        if (matchedData.empty()) {
             std::cout << ">> 未找到数据。\n";
             return;
         }
 
-        // 收集列名
+        // 始终导出全量库，让前端既能保留当前查询视图，也能计算赛区均值等上下文指标。
         std::set<std::string> keys;
-        for (const auto& r : data) for (const auto& kv : r.stats) keys.insert(kv.first);
+        for (const auto& r : database) for (const auto& kv : r.stats) keys.insert(kv.first);
         std::vector<std::string> headerKeys(keys.begin(), keys.end());
 
         fs::create_directories("bin");
@@ -213,7 +223,7 @@ private:
         csv << "赛区,学校,战队,兵种";
         for (const auto& k : headerKeys) csv << "," << get_chinese_header(k);
         csv << "\n";
-        for (const auto& r : data) {
+        for (const auto& r : database) {
             csv<< r.zone << "," << r.college << "," << r.teamName << "," << get_chinese_header(r.type);
             for (const auto& k : headerKeys) {
                 csv << ",";
@@ -227,11 +237,13 @@ private:
         
         std::string cmd = "python3 view_table.py " + shell_escape(csvPath) + " " +
                           shell_escape(title) + " " + shell_escape(defaultSort) + " " +
-                          shell_escape(initialZone) + " " + shell_escape(initialType);
+                          shell_escape(initialZone) + " " + shell_escape(initialType) + " " +
+                          shell_escape(initialKeyword);
         #ifdef _WIN32
         cmd = "python view_table.py " + shell_escape(csvPath) + " " +
               shell_escape(title) + " " + shell_escape(defaultSort) + " " +
-              shell_escape(initialZone) + " " + shell_escape(initialType);
+              shell_escape(initialZone) + " " + shell_escape(initialType) + " " +
+              shell_escape(initialKeyword);
         #endif
         int result = system(cmd.c_str());
         if (result != 0) {
@@ -348,7 +360,7 @@ public:
             if (matched) res.push_back(r);
         }
         // 多个队伍展示时，标题显示“多队伍数据汇总”，默认按对敌伤害排序
-        export_and_show(res, "多队伍数据对比", "KDA得分");
+        export_and_show(res, "多队伍数据对比", "KDA得分", "全部", "全部", join_strings(keywords));
     }
 
     // 模式3 ：指定赛区 + 搜多个学校/队伍
@@ -368,7 +380,14 @@ public:
             }
             if (teamMatch) res.push_back(r);
         }
-        export_and_show(res, zoneKey + " 多队伍数据", "小弹丸命中率");
+        export_and_show(
+            res,
+            zoneKey + " 多队伍数据",
+            "小弹丸命中率",
+            resolve_zone_name(zoneKey),
+            "全部",
+            join_strings(teams)
+        );
     }
 };
 

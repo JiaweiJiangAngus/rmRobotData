@@ -494,6 +494,133 @@ def render_html(title, payload):
       color: var(--muted);
     }}
 
+    .team-row {{
+      cursor: pointer;
+    }}
+
+    .team-row:hover {{
+      transform: translateY(-1px);
+    }}
+
+    .radar-card {{
+      padding: 0;
+      overflow: hidden;
+    }}
+
+    .radar-header {{
+      display: flex;
+      justify-content: space-between;
+      gap: 20px;
+      padding: 24px 26px 12px;
+      align-items: flex-start;
+    }}
+
+    .radar-header h3 {{
+      margin: 10px 0 8px;
+      font-family: var(--font-display);
+      font-size: clamp(28px, 4vw, 40px);
+      font-weight: 400;
+      line-height: 1.1;
+    }}
+
+    .radar-header p {{
+      margin: 0;
+      max-width: 42rem;
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.7;
+    }}
+
+    .radar-layout {{
+      display: grid;
+      grid-template-columns: minmax(0, 1.15fr) minmax(280px, 0.85fr);
+      gap: 18px;
+      padding: 0 26px 26px;
+    }}
+
+    .radar-stage,
+    .radar-side {{
+      border-radius: 22px;
+      border: 1px solid var(--line);
+      background: rgba(255, 255, 255, 0.74);
+    }}
+
+    .radar-stage {{
+      padding: 18px 18px 12px;
+    }}
+
+    .radar-side {{
+      padding: 18px;
+      display: grid;
+      gap: 12px;
+      align-content: start;
+    }}
+
+    .radar-legend {{
+      display: inline-flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 12px;
+    }}
+
+    .legend-chip {{
+      padding: 8px 12px;
+      border-radius: 999px;
+      background: rgba(184, 92, 56, 0.1);
+      color: var(--accent-deep);
+      font-size: 12px;
+    }}
+
+    .radar-svg {{
+      width: 100%;
+      height: auto;
+      display: block;
+    }}
+
+    .radar-note {{
+      margin-top: 8px;
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.6;
+    }}
+
+    .axis-list {{
+      display: grid;
+      gap: 10px;
+    }}
+
+    .axis-card {{
+      padding: 14px;
+      border-radius: 18px;
+      background: linear-gradient(180deg, rgba(255,255,255,0.94), rgba(250, 242, 233, 0.9));
+      border: 1px solid rgba(107, 79, 52, 0.1);
+    }}
+
+    .axis-top {{
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 8px;
+      align-items: baseline;
+    }}
+
+    .axis-name {{
+      font-size: 15px;
+      font-weight: 700;
+    }}
+
+    .axis-ratio {{
+      color: var(--accent-deep);
+      font-weight: 700;
+      font-variant-numeric: tabular-nums;
+    }}
+
+    .axis-meta {{
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.7;
+    }}
+
     @media (max-width: 1100px) {{
       .hero,
       .main-grid {{
@@ -502,6 +629,10 @@ def render_html(title, payload):
 
       .control-panel {{
         position: static;
+      }}
+
+      .radar-layout {{
+        grid-template-columns: 1fr;
       }}
     }}
 
@@ -537,6 +668,16 @@ def render_html(title, payload):
       .bar-value {{
         text-align: left;
       }}
+
+      .radar-header,
+      .radar-layout {{
+        padding-left: 16px;
+        padding-right: 16px;
+      }}
+
+      .radar-header {{
+        flex-direction: column;
+      }}
     }}
   </style>
 </head>
@@ -546,7 +687,7 @@ def render_html(title, payload):
       <div class="hero-card">
         <span class="eyebrow">RM DATA DASHBOARD</span>
         <h1 id="heroTitle">{safe_title}</h1>
-        <p id="heroSubtitle">把原来偏“文本堆叠”的查询结果整理成网页化仪表盘了。现在可以按兵种切换、按关键字搜索、按任意指标排序，还会在上方自动展示当前筛选结果的 Top 榜单。</p>
+        <p id="heroSubtitle">把原来偏“文本堆叠”的查询结果整理成网页化仪表盘了。现在可以按兵种切换、按关键字搜索、按任意指标排序；当筛到单支战队时，会直接在表格上方显示七边形雷达图，对比它在赛区里的兵种综合水平。</p>
       </div>
       <aside class="summary-card">
         <div class="summary-title">当前概览</div>
@@ -641,13 +782,23 @@ def render_html(title, payload):
       "局均兑换经济数",
       "双倍易伤时间",
     ];
+    const radarAxes = [
+      {{ type: "英雄", metricKey: "对敌伤害量", fallbackMetricKeys: ["建筑伤害"], metricLabel: "局均总伤害" }},
+      {{ type: "步兵", metricKey: "对敌伤害量", metricLabel: "局均总伤害" }},
+      {{ type: "哨兵", metricKey: "对敌伤害量", metricLabel: "局均总伤害" }},
+      {{ type: "无人机", metricKey: "对敌伤害量", metricLabel: "局均总伤害" }},
+      {{ type: "雷达", metricKey: "双倍易伤时间", metricLabel: "局均易伤时长" }},
+      {{ type: "工程", metricKey: "局均兑换经济数", metricLabel: "局均兑换经济" }},
+      {{ type: "飞镖", metricKey: "建筑伤害", metricLabel: "局均建筑伤害" }},
+    ];
+    const radarScaleSteps = [0.6, 1, 2, 3];
 
     let state = {{
       selectedZone: payload.initialZone || "全部",
       selectedType: payload.initialType || "全部",
       metric: payload.defaultMetric || "",
       direction: "desc",
-      keyword: "",
+      keyword: payload.initialKeyword || "",
       limit: 50,
       activeSortColumn: payload.defaultMetric || "",
       activeSortDirection: "desc",
@@ -674,6 +825,8 @@ def render_html(title, payload):
       emptyState: document.getElementById("emptyState"),
     }};
 
+    els.searchInput.value = state.keyword;
+
     function formatValue(value) {{
       if (value === null || value === undefined || value === "") return "-";
       if (typeof value === "number") {{
@@ -690,6 +843,232 @@ def render_html(title, payload):
         .replace(/>/g, "&gt;")
         .replace(/"/g, "&quot;")
         .replace(/'/g, "&#39;");
+    }}
+
+    function formatPercent(value) {{
+      if (value === null || value === undefined || !Number.isFinite(value)) return "-";
+      return `${{Math.round(value * 100)}}%`;
+    }}
+
+    function getTeamKey(row) {{
+      return [row["学校"] || "", row["战队"] || ""].join("::");
+    }}
+
+    function getTeamLabel(row) {{
+      return [row["学校"], row["战队"]].filter(Boolean).join(" / ") || "未知队伍";
+    }}
+
+    function getZoneRows(zoneName) {{
+      if (!zoneName || zoneName === "全部") return [];
+      return payload.rows.filter((row) => row["赛区"] === zoneName);
+    }}
+
+    function getSingleTeamCandidate(rows) {{
+      if (!rows.length) return null;
+
+      const zones = new Set(rows.map((row) => row["赛区"]).filter(Boolean));
+      if (zones.size !== 1) return null;
+
+      const teamMap = new Map();
+      rows.forEach((row) => {{
+        const key = getTeamKey(row);
+        if (!key.trim()) return;
+        if (!teamMap.has(key)) {{
+          teamMap.set(key, {{
+            key,
+            label: getTeamLabel(row),
+            zone: row["赛区"],
+          }});
+        }}
+      }});
+
+      if (teamMap.size !== 1) return null;
+      return Array.from(teamMap.values())[0];
+    }}
+
+    function getAxisMetricValue(row, axis) {{
+      if (!row) return null;
+      if (axis.metricKey === "__dart_total_hits__") {{
+        const dartColumns = ["累计命中前哨站数", "累计命中固定靶数", "累计随机固定靶数", "累计随机移动靶数"];
+        const values = dartColumns
+          .map((column) => row[column])
+          .filter((value) => typeof value === "number" && Number.isFinite(value));
+        if (!values.length) return null;
+        return values.reduce((sum, value) => sum + value, 0);
+      }}
+
+      const metricKeys = [axis.metricKey, ...(axis.fallbackMetricKeys || [])];
+      for (const key of metricKeys) {{
+        const value = row[key];
+        if (typeof value === "number" && Number.isFinite(value)) {{
+          return value;
+        }}
+      }}
+      return null;
+    }}
+
+    function buildRadarModel(teamKey, zoneName) {{
+      const zoneRows = getZoneRows(zoneName);
+      if (!zoneRows.length) return null;
+
+      const teamRows = zoneRows.filter((row) => getTeamKey(row) === teamKey);
+      if (!teamRows.length) return null;
+
+      const teamLabel = getTeamLabel(teamRows[0]);
+      const axes = radarAxes.map((axis) => {{
+        const zoneTypeRows = zoneRows.filter((row) => row["兵种"] === axis.type);
+        const teamRow = teamRows.find((row) => row["兵种"] === axis.type);
+        const zoneValues = zoneTypeRows
+          .map((row) => getAxisMetricValue(row, axis))
+          .filter((value) => value !== null);
+        const zoneAverage = zoneValues.length
+          ? zoneValues.reduce((sum, value) => sum + value, 0) / zoneValues.length
+          : null;
+        const teamValue = getAxisMetricValue(teamRow, axis);
+
+        let ratio = null;
+        if (teamValue !== null && zoneAverage !== null) {{
+          ratio = zoneAverage === 0 ? 0 : teamValue / zoneAverage;
+        }}
+
+        return {{
+          ...axis,
+          teamValue,
+          zoneAverage,
+          ratio,
+          clippedRatio: ratio === null ? 0 : Math.max(0, Math.min(ratio, 3)),
+          overflow: ratio !== null && ratio > 3,
+        }};
+      }});
+
+      return {{ teamLabel, zoneName, axes }};
+    }}
+
+    function getRadarPoint(index, ratio, center, radius, count) {{
+      const angle = (-Math.PI / 2) + (Math.PI * 2 * index) / count;
+      const scaled = (ratio / 3) * radius;
+      return {{
+        x: center + Math.cos(angle) * scaled,
+        y: center + Math.sin(angle) * scaled,
+        angle,
+      }};
+    }}
+
+    function renderRadarCard(radar) {{
+      if (!radar) {{
+        return `
+          <article class="chart-card radar-card">
+            <div class="radar-header">
+              <div>
+                <h3>七边形雷达图</h3>
+                <p>当前筛选没有足够的数据来生成赛区对比雷达图。</p>
+              </div>
+            </div>
+          </article>
+        `;
+      }}
+
+      const size = 420;
+      const center = size / 2;
+      const radius = 146;
+      const axisCount = radar.axes.length;
+      const gridPolygons = radarScaleSteps.map((step) => {{
+        const points = radar.axes.map((_, index) => {{
+          const point = getRadarPoint(index, step, center, radius, axisCount);
+          return `${{point.x.toFixed(2)}},${{point.y.toFixed(2)}}`;
+        }}).join(" ");
+        return {{ step, points }};
+      }});
+
+      const areaPoints = radar.axes.map((axis, index) => {{
+        const point = getRadarPoint(index, axis.clippedRatio, center, radius, axisCount);
+        return `${{point.x.toFixed(2)}},${{point.y.toFixed(2)}}`;
+      }}).join(" ");
+
+      const axisMarkup = radar.axes.map((axis, index) => {{
+        const outer = getRadarPoint(index, 3, center, radius, axisCount);
+        const label = getRadarPoint(index, 3.32, center, radius, axisCount);
+        const dot = getRadarPoint(index, axis.clippedRatio, center, radius, axisCount);
+        const anchor = label.x < center - 20 ? "end" : (label.x > center + 20 ? "start" : "middle");
+        return `
+          <line x1="${{center}}" y1="${{center}}" x2="${{outer.x}}" y2="${{outer.y}}" stroke="rgba(143,59,31,0.16)" stroke-width="1" />
+          <circle cx="${{dot.x}}" cy="${{dot.y}}" r="4.5" fill="#8f3b1f" />
+          <text x="${{label.x}}" y="${{label.y}}" text-anchor="${{anchor}}" font-size="13" fill="#5a4633">${{escapeHtml(axis.type)}}</text>
+        `;
+      }}).join("");
+
+      const scaleMarkup = radarScaleSteps.map((step) => {{
+        const y = center - (step / 3) * radius;
+        return `
+          <text x="${{center + 10}}" y="${{y + 4}}" font-size="11" fill="rgba(120, 98, 74, 0.95)">
+            ${{Math.round(step * 100)}}%
+          </text>
+        `;
+      }}).join("");
+
+      const overflowAxes = radar.axes.filter((axis) => axis.overflow).map((axis) => axis.type);
+      const noteText = overflowAxes.length
+        ? `注: ${{overflowAxes.join("、")}} 超过 300% 均值，图形按外圈封顶显示。`
+        : "注: 英雄、步兵、哨兵、无人机按局均总伤害，雷达按局均易伤时长，工程按局均兑换经济，飞镖按局均建筑伤害。";
+
+      return `
+        <article class="chart-card radar-card">
+          <div class="radar-header">
+            <div>
+              <span class="eyebrow">ZONE RADAR</span>
+              <h3>${{escapeHtml(radar.teamLabel)}} 七边形雷达图</h3>
+              <p>${{escapeHtml(radar.zoneName)}}赛区基线下的兵种综合水平，100% 表示该赛区该兵种均值。</p>
+            </div>
+          </div>
+          <div class="radar-layout">
+            <div class="radar-stage">
+              <div class="radar-legend">
+                <span class="legend-chip">等高线: 60% / 100% / 200% / 300%</span>
+                <span class="legend-chip">100% = 该赛区对应兵种均值</span>
+              </div>
+              <svg class="radar-svg" viewBox="0 0 ${{size}} ${{size}}" role="img" aria-label="${{escapeHtml(radar.teamLabel)}} 赛区七边形雷达图">
+                <defs>
+                  <linearGradient id="radarAreaFill" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" stop-color="#d88457" stop-opacity="0.45" />
+                    <stop offset="100%" stop-color="#b85c38" stop-opacity="0.22" />
+                  </linearGradient>
+                </defs>
+                <polygon points="${{gridPolygons[3].points}}" fill="rgba(212,168,74,0.05)" stroke="#c9a227" stroke-width="2.4" />
+                ${{gridPolygons.slice(0, 3).map((grid, index) => `
+                  <polygon
+                    points="${{grid.points}}"
+                    fill="none"
+                    stroke="${{grid.step === 1 ? "#c83f2b" : `rgba(143,59,31,${{index === 1 ? 0.24 : 0.18}})`}}"
+                    stroke-width="${{grid.step === 1 ? 2.8 : 1}}"
+                    stroke-dasharray="${{grid.step === 0.6 ? "4 4" : "none"}}"
+                  />
+                `).join("")}}
+                ${{axisMarkup}}
+                <polygon points="${{areaPoints}}" fill="url(#radarAreaFill)" stroke="#b85c38" stroke-width="3" />
+                ${{scaleMarkup}}
+              </svg>
+              <div class="radar-note">${{escapeHtml(noteText)}}</div>
+            </div>
+            <aside class="radar-side">
+              <div class="summary-title">维度明细</div>
+              <div class="axis-list">
+                ${{radar.axes.map((axis) => `
+                  <article class="axis-card">
+                    <div class="axis-top">
+                      <div class="axis-name">${{escapeHtml(axis.type)}}</div>
+                      <div class="axis-ratio">${{axis.ratio === null ? "缺数据" : escapeHtml(formatPercent(axis.ratio))}}</div>
+                    </div>
+                    <div class="axis-meta">
+                      队伍${{escapeHtml(axis.metricLabel)}}: ${{escapeHtml(formatValue(axis.teamValue))}}<br>
+                      赛区均值: ${{escapeHtml(formatValue(axis.zoneAverage))}}
+                    </div>
+                  </article>
+                `).join("")}}
+              </div>
+            </aside>
+          </div>
+        </article>
+      `;
     }}
 
     function getMetricColumns() {{
@@ -843,6 +1222,12 @@ def render_html(title, payload):
     }}
 
     function renderCharts(rows) {{
+      const singleTeam = getSingleTeamCandidate(rows);
+      if (singleTeam) {{
+        els.chartGrid.innerHTML = renderRadarCard(buildRadarModel(singleTeam.key, singleTeam.zone));
+        return;
+      }}
+
       if (!state.metric) {{
         els.chartGrid.innerHTML = "";
         return;
@@ -946,13 +1331,18 @@ def render_html(title, payload):
       const heroTitle = titleParts.length
         ? `${{titleParts.join(" · ")}}`
         : payload.title;
+      const singleTeam = getSingleTeamCandidate(filteredRows);
 
       els.heroTitle.textContent = heroTitle;
       els.heroSubtitle.textContent = filteredRows.length
-        ? `当前筛选命中 ${{filteredRows.length}} 条记录，你可以继续切赛区、兵种和排序指标，页面会自动收起无数据字段。`
+        ? (singleTeam
+          ? `当前已锁定 ${{singleTeam.label}}，七边形雷达图会直接显示在表格上方，对比它在 ${{singleTeam.zone}} 赛区里的兵种综合水平。`
+          : `当前筛选命中 ${{filteredRows.length}} 条记录，你可以继续切赛区、兵种和排序指标，页面会自动收起无数据字段。`)
         : "当前筛选下没有可展示的数据，可以换个赛区、兵种或搜索词再试。";
       els.tableTitle.textContent = currentTitle;
-      els.tableMeta.textContent = `当前显示 ${{filteredRows.length}} 条匹配记录，按“${{metricLabel}}”排序`;
+      els.tableMeta.textContent = singleTeam
+        ? `当前显示 ${{filteredRows.length}} 条匹配记录，按“${{metricLabel}}”排序，已在上方展示赛区综合雷达图`
+        : `当前显示 ${{filteredRows.length}} 条匹配记录，按“${{metricLabel}}”排序`;
       document.title = heroTitle;
     }}
 
@@ -1008,7 +1398,7 @@ def render_html(title, payload):
 """
 
 
-def main(csv_file, title, default_sort=None, initial_zone="全部", initial_type="全部"):
+def main(csv_file, title, default_sort=None, initial_zone="全部", initial_type="全部", initial_keyword=""):
     csv_path = Path(csv_file)
     if not csv_path.exists():
         print(f"CSV not found: {csv_path}")
@@ -1034,6 +1424,7 @@ def main(csv_file, title, default_sort=None, initial_zone="全部", initial_type
         "summary": build_summary(rows, metric) if metric else {},
         "initialZone": initial_zone,
         "initialType": initial_type,
+        "initialKeyword": initial_keyword,
     }
 
     output_path = csv_path.with_name("robot_dashboard.html")
@@ -1047,5 +1438,6 @@ if __name__ == "__main__":
         sort_col = sys.argv[3] if len(sys.argv) > 3 else None
         zone = sys.argv[4] if len(sys.argv) > 4 else "全部"
         robot_type = sys.argv[5] if len(sys.argv) > 5 else "全部"
-        raise SystemExit(main(sys.argv[1], sys.argv[2], sort_col, zone, robot_type))
-    raise SystemExit("Usage: python3 view_table.py <csv_file> <title> [default_sort] [initial_zone] [initial_type]")
+        keyword = sys.argv[6] if len(sys.argv) > 6 else ""
+        raise SystemExit(main(sys.argv[1], sys.argv[2], sort_col, zone, robot_type, keyword))
+    raise SystemExit("Usage: python3 view_table.py <csv_file> <title> [default_sort] [initial_zone] [initial_type] [initial_keyword]")
