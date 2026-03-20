@@ -791,6 +791,7 @@ def render_html(title, payload):
       {{ type: "工程", metricKey: "局均兑换经济数", metricLabel: "局均兑换经济" }},
       {{ type: "飞镖", metricKey: "建筑伤害", metricLabel: "局均建筑伤害" }},
     ];
+    const league3v3Types = ["英雄", "步兵", "哨兵"];
     const radarScaleSteps = [0.6, 1, 2, 3];
 
     let state = {{
@@ -858,9 +859,29 @@ def render_html(title, payload):
       return [row["学校"], row["战队"]].filter(Boolean).join(" / ") || "未知队伍";
     }}
 
+    function is3v3LeagueZone(zoneName) {{
+      if (!zoneName || zoneName === "全部") return false;
+      const normalized = String(zoneName).toLowerCase().replace(/\s+/g, "");
+      return normalized.includes("3v3联盟赛") || normalized.includes("3vs3联盟赛");
+    }}
+
+    function getAllowedTypesForZone(zoneName) {{
+      return is3v3LeagueZone(zoneName) ? league3v3Types : payload.types;
+    }}
+
+    function getRadarAxesForZone(zoneName) {{
+      if (!is3v3LeagueZone(zoneName)) return radarAxes;
+      return radarAxes.filter((axis) => league3v3Types.includes(axis.type));
+    }}
+
+    function getRadarShapeLabel(zoneName) {{
+      return is3v3LeagueZone(zoneName) ? "三角形雷达图" : "七边形雷达图";
+    }}
+
     function getZoneRows(zoneName) {{
       if (!zoneName || zoneName === "全部") return [];
-      return payload.rows.filter((row) => row["赛区"] === zoneName);
+      const allowedTypes = getAllowedTypesForZone(zoneName);
+      return payload.rows.filter((row) => row["赛区"] === zoneName && allowedTypes.includes(row["兵种"]));
     }}
 
     function getSingleTeamCandidate(rows) {{
@@ -915,7 +936,7 @@ def render_html(title, payload):
       if (!teamRows.length) return null;
 
       const teamLabel = getTeamLabel(teamRows[0]);
-      const axes = radarAxes.map((axis) => {{
+      const axes = getRadarAxesForZone(zoneName).map((axis) => {{
         const zoneTypeRows = zoneRows.filter((row) => row["兵种"] === axis.type);
         const teamRow = teamRows.find((row) => row["兵种"] === axis.type);
         const zoneValues = zoneTypeRows
@@ -941,7 +962,7 @@ def render_html(title, payload):
         }};
       }});
 
-      return {{ teamLabel, zoneName, axes }};
+      return {{ teamLabel, zoneName, axes, shapeLabel: getRadarShapeLabel(zoneName) }};
     }}
 
     function getRadarPoint(index, ratio, center, radius, count) {{
@@ -960,7 +981,7 @@ def render_html(title, payload):
           <article class="chart-card radar-card">
             <div class="radar-header">
               <div>
-                <h3>七边形雷达图</h3>
+                <h3>综合雷达图</h3>
                 <p>当前筛选没有足够的数据来生成赛区对比雷达图。</p>
               </div>
             </div>
@@ -1009,14 +1030,16 @@ def render_html(title, payload):
       const overflowAxes = radar.axes.filter((axis) => axis.overflow).map((axis) => axis.type);
       const noteText = overflowAxes.length
         ? `注: ${{overflowAxes.join("、")}} 超过 300% 均值，图形按外圈封顶显示。`
-        : "注: 英雄、步兵、哨兵、无人机按局均总伤害，雷达按局均易伤时长，工程按局均兑换经济，飞镖按局均建筑伤害。";
+        : (radar.axes.length === 3
+          ? "注: 3V3 联盟赛仅展示英雄、步兵、哨兵，三条轴都按局均总伤害计算。"
+          : "注: 英雄、步兵、哨兵、无人机按局均总伤害，雷达按局均易伤时长，工程按局均兑换经济，飞镖按局均建筑伤害。");
 
       return `
         <article class="chart-card radar-card">
           <div class="radar-header">
             <div>
               <span class="eyebrow">ZONE RADAR</span>
-              <h3>${{escapeHtml(radar.teamLabel)}} 七边形雷达图</h3>
+              <h3>${{escapeHtml(radar.teamLabel)}} ${{escapeHtml(radar.shapeLabel)}}</h3>
               <p>${{escapeHtml(radar.zoneName)}}赛区基线下的兵种综合水平，100% 表示该赛区该兵种均值。</p>
             </div>
           </div>
@@ -1080,6 +1103,9 @@ def render_html(title, payload):
 
       if (state.selectedZone !== "全部") {{
         rows = rows.filter((row) => row["赛区"] === state.selectedZone);
+        if (is3v3LeagueZone(state.selectedZone)) {{
+          rows = rows.filter((row) => league3v3Types.includes(row["兵种"]));
+        }}
       }}
 
       if (state.selectedType !== "全部") {{
@@ -1190,7 +1216,7 @@ def render_html(title, payload):
 
     function renderFilterSelects() {{
       const zones = ["全部", ...payload.zones];
-      const types = ["全部", ...payload.types];
+      const types = ["全部", ...getAllowedTypesForZone(state.selectedZone)];
 
       if (!zones.includes(state.selectedZone)) {{
         state.selectedZone = "全部";
@@ -1332,11 +1358,12 @@ def render_html(title, payload):
         ? `${{titleParts.join(" · ")}}`
         : payload.title;
       const singleTeam = getSingleTeamCandidate(filteredRows);
+      const radarLabel = getRadarShapeLabel(singleTeam ? singleTeam.zone : state.selectedZone);
 
       els.heroTitle.textContent = heroTitle;
       els.heroSubtitle.textContent = filteredRows.length
         ? (singleTeam
-          ? `当前已锁定 ${{singleTeam.label}}，七边形雷达图会直接显示在表格上方，对比它在 ${{singleTeam.zone}} 赛区里的兵种综合水平。`
+          ? `当前已锁定 ${{singleTeam.label}}，${{radarLabel}}会直接显示在表格上方，对比它在 ${{singleTeam.zone}} 赛区里的兵种综合水平。`
           : `当前筛选命中 ${{filteredRows.length}} 条记录，你可以继续切赛区、兵种和排序指标，页面会自动收起无数据字段。`)
         : "当前筛选下没有可展示的数据，可以换个赛区、兵种或搜索词再试。";
       els.tableTitle.textContent = currentTitle;
