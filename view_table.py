@@ -1168,6 +1168,12 @@ def render_html(title, payload):
         const b = right[sortColumn];
         const aIsNumber = typeof a === "number";
         const bIsNumber = typeof b === "number";
+        const sortIsMetric = !baseColumns.includes(sortColumn);
+
+        if (sortIsMetric && aIsNumber !== bIsNumber) {{
+          // Sorting metric columns should keep rows with actual numeric data ahead of blanks.
+          return aIsNumber ? -1 : 1;
+        }}
 
         if (aIsNumber && bIsNumber) {{
           return direction === "asc" ? a - b : b - a;
@@ -1268,15 +1274,25 @@ def render_html(title, payload):
         return;
       }}
 
-      const topValue = chartRows[0][state.metric] || 1;
+      const metricValues = chartRows
+        .map((row) => row[state.metric])
+        .filter((value) => typeof value === "number");
+      const maxValue = Math.max(...metricValues, 0);
+      const isAscending = state.activeSortDirection === "asc";
+      const chartTitle = isAscending ? "最低 10 名" : "最高 10 名";
+      const chartSubtitle = isAscending
+        ? "按当前筛选结果升序展示，条形长度按当前图表中的最大值统一缩放。"
+        : "按当前筛选结果降序展示，方便快速看前十名对比。";
       els.chartGrid.innerHTML = `
         <article class="chart-card">
-          <h3>${{escapeHtml(state.metric)}} Top 10</h3>
-          <p class="chart-subtitle">按当前筛选结果自动排序，方便快速看前十名对比。</p>
+          <h3>${{escapeHtml(state.metric)}} ${{chartTitle}}</h3>
+          <p class="chart-subtitle">${{chartSubtitle}}</p>
           <div class="bar-list">
             ${{chartRows.map((row, index) => {{
               const value = row[state.metric];
-              const width = Math.max(8, Math.round((value / topValue) * 100));
+              const width = maxValue > 0
+                ? Math.max(8, Math.min(100, Math.round((value / maxValue) * 100)))
+                : 8;
               const teamLabel = [row["学校"], row["战队"]].filter(Boolean).join(" / ") || "未知队伍";
               const metaLabel = [row["赛区"], row["兵种"]].filter(Boolean).join(" · ");
               return `
