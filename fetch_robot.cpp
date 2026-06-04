@@ -87,6 +87,9 @@ int main() {
                         case 2 :
                             out << "  EA KDA: " << get_string(r, "eaKDA") << "\n";
                             out << "  EA gkda Score: " << get_string(r, "eagKdaScore") << "\n";
+                            out << "  EA Assemble Economy: " << get_string(r, "eaAssembleEcon") << "\n";
+                            out << "  EA Assemble Success Count: " << get_string(r, "eaAssembleSuccCnt") << "\n";
+                            out << "  A Assemble Difficulty: " << get_string(r, "avgAssembleDiff") << "\n";
                             out << "  EA Exchange Economy: " << get_string(r, "eaExchangeEcon") << "\n";
                             out << "  A Mine Time: " << get_string(r, "avgMineTime") << "\n";
                             out << "  A Mine Difficulty: " << get_string(r, "avgMineDiff") << "\n";
@@ -117,9 +120,12 @@ int main() {
                             out << "  ET Fixed Count: " << get_string(r, "etDartFixedCnt") << "\n";
                             out << "  ET Random Fixed Count: " << get_string(r, "etDartRDFixCnt") << "\n";
                             out << "  ET Random Move Count: " << get_string(r, "etDartRDMoveCnt") << "\n";
+                            out << "  ET End Move Count: " << get_string(r, "etDartEndMoveCnt") << "\n";
                             break;
                         case 6 :
                             out << "  EA Marker Time: " << get_string(r, "eaRadarMarkerTime") << "\n";
+                            out << "  EA Radar Parse Success Count: " << get_string(r, "eaRadarParseSuccCnt") << "\n";
+                            out << "  EA Radar Counter Time: " << get_string(r, "eaRadarCounterTime") << "\n";
                             out << "  EA Debuff Damage: " << get_string(r, "eaRadarDebuffDmg") << "\n";
                             break;
                         default :

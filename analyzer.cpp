@@ -70,6 +70,16 @@ bool env_flag_enabled(const char* name) {
     return !(flag.empty() || flag == "0" || flag == "false" || flag == "no");
 }
 
+bool command_exists(const std::string& command) {
+    std::string cmd = "command -v " + command + " >/dev/null 2>&1";
+    return system(cmd.c_str()) == 0;
+}
+
+bool launch_silently(const std::string& command) {
+    std::string cmd = command + " >/dev/null 2>&1 &";
+    return system(cmd.c_str()) == 0;
+}
+
 std::string join_strings(const std::vector<std::string>& items, const std::string& delimiter = " ") {
     std::ostringstream oss;
     for (size_t i = 0; i < items.size(); ++i) {
@@ -79,6 +89,13 @@ std::string join_strings(const std::vector<std::string>& items, const std::strin
     return oss.str();
 }
 
+std::string zone_name_from_file(const std::string& filepath) {
+    std::string stem = fs::path(filepath).stem().string();
+    const std::string prefix = "zone_";
+    if (stem.rfind(prefix, 0) == 0) return stem.substr(prefix.size());
+    return "";
+}
+
 bool open_in_browser(const fs::path& filePath) {
     std::string absolutePath = fs::absolute(filePath).string();
 
@@ -86,14 +103,27 @@ bool open_in_browser(const fs::path& filePath) {
     std::string cmd = "cmd /c start \"\" \"" + absolutePath + "\"";
     return system(cmd.c_str()) == 0;
     #elif __APPLE__
-    std::string cmd = "open " + shell_escape(absolutePath);
-    return system(cmd.c_str()) == 0;
+    return launch_silently("open " + shell_escape(absolutePath));
     #else
-    std::string xdgCmd = "xdg-open " + shell_escape(absolutePath);
-    if (system(xdgCmd.c_str()) == 0) return true;
+    const std::vector<std::string> browserCommands = {
+        "google-chrome-stable",
+        "google-chrome",
+        "chromium-browser",
+        "chromium",
+        "microsoft-edge",
+        "firefox",
+        "brave-browser"
+    };
 
-    std::string gioCmd = "gio open " + shell_escape(absolutePath);
-    return system(gioCmd.c_str()) == 0;
+    for (const auto& browser : browserCommands) {
+        if (command_exists(browser) && launch_silently(browser + " " + shell_escape(absolutePath))) {
+            return true;
+        }
+    }
+
+    if (command_exists("xdg-open") && launch_silently("xdg-open " + shell_escape(absolutePath))) return true;
+
+    return command_exists("gio") && launch_silently("gio open " + shell_escape(absolutePath));
     #endif
 }
 
@@ -141,6 +171,9 @@ std::string get_chinese_header(const std::string& key) {
         {"A Mine Time", "平均兑矿时间(s)"},
         {"A Mine Difficulty", "兑矿难度系数"},
         {"EA Exchange Economy", "局均兑换经济数"},
+        {"EA Assemble Economy", "局均组装经济数"},
+        {"EA Assemble Success Count", "局均组装成功次数"},
+        {"A Assemble Difficulty", "平均组装难度系数"},
         
         // 能量机关 (大符/小符)
         {"Big Energy", "大能量机关平均激活环数"},
@@ -150,9 +183,12 @@ std::string get_chinese_header(const std::string& key) {
         {"ET Fixed Count", "累计命中固定靶数"},
         {"ET Random Fixed Count", "累计随机固定靶数"},
         {"ET Random Move Count", "累计随机移动靶数"},
+        {"ET End Move Count", "累计移动靶末端命中数"},
         
         // 雷达
         {"EA Marker Time", "双倍易伤时间"},
+        {"EA Radar Parse Success Count", "雷达解算成功次数"},
+        {"EA Radar Counter Time", "雷达反制时长"},
         {"EA Debuff Damage", "额外伤害"}
     };
     if (dict.count(key)) return dict[key];
@@ -167,11 +203,11 @@ std::string get_default_sort_key(const std::string& type_eng) {
     if (type_eng == "Hero") 
         return "大弹丸命中率";
     if (type_eng == "Sapper") 
-        return "局均兑换经济数";
+        return "局均组装经济数";
     if (type_eng == "Dart") 
         return "累计随机移动靶数";
     if (type_eng == "Radar") 
-        return "双倍易伤时间";
+        return "雷达反制时长";
     return "";
 }
 
@@ -283,6 +319,7 @@ public:
     void parse_file(const std::string& filepath) {
         std::ifstream file(filepath);
         std::string line, currZone, currCollege, currTeam, currType;
+        std::string fileZone = zone_name_from_file(filepath);
         std::map<std::string, double> currStats;
         auto save = [&]() {
             if (!currType.empty() && !currCollege.empty()) 
@@ -293,7 +330,7 @@ public:
             line = trim(line);
             if (line.empty()) continue;
             if (line.find("Zone Name:") == 0) {
-                currZone = trim(line.substr(10));
+                currZone = fileZone.empty() ? trim(line.substr(10)) : fileZone;
                 knownZones.insert(currZone);
             }
             else if (line.find("Team:") == 0) {

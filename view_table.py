@@ -60,8 +60,13 @@ def choose_default_metric(columns, preferred_metric):
         "建筑伤害",
         "击杀数",
         "场均发弹量",
+        "局均组装经济数",
+        "局均组装成功次数",
         "局均兑换经济数",
+        "雷达反制时长",
+        "雷达解算成功次数",
         "双倍易伤时间",
+        "累计移动靶末端命中数",
     ]
 
     for column in priority_columns:
@@ -300,6 +305,50 @@ def render_html(title, payload):
       border-color: rgba(184, 92, 56, 0.45);
       box-shadow: 0 0 0 4px rgba(184, 92, 56, 0.1);
       transform: translateY(-1px);
+    }}
+
+    .zone-checklist {{
+      display: grid;
+      gap: 8px;
+      max-height: 260px;
+      overflow: auto;
+      padding: 10px;
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      background: rgba(255,255,255,0.66);
+    }}
+
+    .zone-option {{
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      min-width: 0;
+      padding: 8px 10px;
+      border-radius: 10px;
+      color: var(--muted);
+      cursor: pointer;
+      transition: background 0.18s ease, color 0.18s ease;
+    }}
+
+    .zone-option:hover,
+    .zone-option.active {{
+      background: var(--accent-soft);
+      color: var(--accent-deep);
+    }}
+
+    .zone-option input {{
+      width: 16px;
+      height: 16px;
+      flex: 0 0 auto;
+      accent-color: var(--accent);
+    }}
+
+    .zone-option span {{
+      min-width: 0;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      font-size: 13px;
     }}
 
     .type-tabs {{
@@ -720,8 +769,8 @@ def render_html(title, payload):
           <input id="searchInput" type="text" placeholder="例如 华南理工 / 南部 / 英雄">
         </div>
         <div class="field">
-          <label for="zoneSelect">赛区选择</label>
-          <select id="zoneSelect"></select>
+          <label>赛区选择</label>
+          <div class="zone-checklist" id="zoneChecklist"></div>
         </div>
         <div class="field">
           <label for="typeSelect">兵种选择</label>
@@ -779,23 +828,31 @@ def render_html(title, payload):
       "建筑伤害",
       "击杀数",
       "场均发弹量",
+      "局均组装经济数",
+      "局均组装成功次数",
       "局均兑换经济数",
+      "雷达反制时长",
+      "雷达解算成功次数",
       "双倍易伤时间",
+      "累计移动靶末端命中数",
     ];
+    const effectiveZeroMetricColumns = new Set([
+      "累计移动靶末端命中数",
+    ]);
     const radarAxes = [
       {{ type: "英雄", metricKey: "对敌伤害量", fallbackMetricKeys: ["建筑伤害"], metricLabel: "局均总伤害" }},
       {{ type: "步兵", metricKey: "对敌伤害量", metricLabel: "局均总伤害" }},
       {{ type: "哨兵", metricKey: "对敌伤害量", metricLabel: "局均总伤害" }},
       {{ type: "无人机", metricKey: "对敌伤害量", metricLabel: "局均总伤害" }},
       {{ type: "雷达", metricKey: "双倍易伤时间", metricLabel: "局均易伤时长" }},
-      {{ type: "工程", metricKey: "局均兑换经济数", metricLabel: "局均兑换经济" }},
+      {{ type: "工程", metricKey: "局均组装经济数", fallbackMetricKeys: ["局均兑换经济数"], metricLabel: "局均工程经济" }},
       {{ type: "飞镖", metricKey: "建筑伤害", metricLabel: "局均建筑伤害" }},
     ];
     const league3v3Types = ["英雄", "步兵", "哨兵"];
     const radarScaleSteps = [0.6, 1, 2, 3];
 
     let state = {{
-      selectedZone: payload.initialZone || "全部",
+      selectedZones: payload.initialZone && payload.initialZone !== "全部" ? [payload.initialZone] : [],
       selectedType: payload.initialType || "全部",
       metric: payload.defaultMetric || "",
       direction: "desc",
@@ -813,7 +870,7 @@ def render_html(title, payload):
       typeCount: document.getElementById("typeCount"),
       avgMetric: document.getElementById("avgMetric"),
       searchInput: document.getElementById("searchInput"),
-      zoneSelect: document.getElementById("zoneSelect"),
+      zoneChecklist: document.getElementById("zoneChecklist"),
       typeSelect: document.getElementById("typeSelect"),
       metricSelect: document.getElementById("metricSelect"),
       sortDirection: document.getElementById("sortDirection"),
@@ -865,8 +922,27 @@ def render_html(title, payload):
       return normalized.includes("3v3联盟赛") || normalized.includes("3vs3联盟赛");
     }}
 
+    function getSelectedZones() {{
+      return state.selectedZones.filter((zone) => payload.zones.includes(zone));
+    }}
+
+    function getSelectedZoneLabel() {{
+      const zones = getSelectedZones();
+      if (!zones.length) return "全部赛区";
+      if (zones.length === 1) return zones[0];
+      return `${{zones.length}} 个赛区`;
+    }}
+
     function getAllowedTypesForZone(zoneName) {{
       return is3v3LeagueZone(zoneName) ? league3v3Types : payload.types;
+    }}
+
+    function getAllowedTypesForSelectedZones() {{
+      const zones = getSelectedZones();
+      if (zones.length > 0 && zones.every((zone) => is3v3LeagueZone(zone))) {{
+        return league3v3Types;
+      }}
+      return payload.types;
     }}
 
     function getRadarAxesForZone(zoneName) {{
@@ -910,7 +986,7 @@ def render_html(title, payload):
     function getAxisMetricValue(row, axis) {{
       if (!row) return null;
       if (axis.metricKey === "__dart_total_hits__") {{
-        const dartColumns = ["累计命中前哨站数", "累计命中固定靶数", "累计随机固定靶数", "累计随机移动靶数"];
+        const dartColumns = ["累计命中前哨站数", "累计命中固定靶数", "累计随机固定靶数", "累计随机移动靶数", "累计移动靶末端命中数"];
         const values = dartColumns
           .map((column) => row[column])
           .filter((value) => typeof value === "number" && Number.isFinite(value));
@@ -1032,7 +1108,7 @@ def render_html(title, payload):
         ? `注: ${{overflowAxes.join("、")}} 超过 300% 均值，图形按外圈封顶显示。`
         : (radar.axes.length === 3
           ? "注: 3V3 联盟赛仅展示英雄、步兵、哨兵，三条轴都按局均总伤害计算。"
-          : "注: 英雄、步兵、哨兵、无人机按局均总伤害，雷达按局均易伤时长，工程按局均兑换经济，飞镖按局均建筑伤害。");
+          : "注: 英雄、步兵、哨兵、无人机按局均总伤害，雷达按局均易伤时长，工程优先按局均组装经济，飞镖按局均建筑伤害。");
 
       return `
         <article class="chart-card radar-card">
@@ -1100,12 +1176,11 @@ def render_html(title, payload):
 
     function getFilteredRows() {{
       let rows = payload.rows.slice();
+      const selectedZones = getSelectedZones();
 
-      if (state.selectedZone !== "全部") {{
-        rows = rows.filter((row) => row["赛区"] === state.selectedZone);
-        if (is3v3LeagueZone(state.selectedZone)) {{
-          rows = rows.filter((row) => league3v3Types.includes(row["兵种"]));
-        }}
+      if (selectedZones.length) {{
+        rows = rows.filter((row) => selectedZones.includes(row["赛区"]));
+        rows = rows.filter((row) => !is3v3LeagueZone(row["赛区"]) || league3v3Types.includes(row["兵种"]));
       }}
 
       if (state.selectedType !== "全部") {{
@@ -1131,9 +1206,16 @@ def render_html(title, payload):
       return value !== null && value !== undefined && value !== "";
     }}
 
+    function hasMetricData(column, value) {{
+      if (!hasData(value)) return false;
+      if (effectiveZeroMetricColumns.has(column)) return true;
+      if (typeof value === "number") return Number.isFinite(value) && value !== 0;
+      return true;
+    }}
+
     function getVisibleColumns(rows) {{
       const metricColumns = getMetricColumns().filter((column) =>
-        rows.some((row) => hasData(row[column]))
+        rows.some((row) => hasMetricData(column, row[column]))
       );
       return [...baseColumns, ...metricColumns];
     }}
@@ -1220,18 +1302,52 @@ def render_html(title, payload):
       els.metricSelect.disabled = metrics.length === 0;
     }}
 
-    function renderFilterSelects() {{
-      const zones = ["全部", ...payload.zones];
-      const types = ["全部", ...getAllowedTypesForZone(state.selectedZone)];
+    function renderZoneChecklist() {{
+      const selectedZones = new Set(getSelectedZones());
+      const allSelected = selectedZones.size === 0;
+      const options = [
+        {{ value: "全部", label: "全部赛区", checked: allSelected }},
+        ...payload.zones.map((zone) => ({{
+          value: zone,
+          label: zone,
+          checked: selectedZones.has(zone),
+        }})),
+      ];
 
-      if (!zones.includes(state.selectedZone)) {{
-        state.selectedZone = "全部";
-      }}
+      els.zoneChecklist.innerHTML = options.map((option) => `
+        <label class="zone-option ${{option.checked ? "active" : ""}}" title="${{escapeHtml(option.label)}}">
+          <input type="checkbox" value="${{escapeHtml(option.value)}}" ${{option.checked ? "checked" : ""}}>
+          <span>${{escapeHtml(option.label)}}</span>
+        </label>
+      `).join("");
+
+      els.zoneChecklist.querySelectorAll("input").forEach((input) => {{
+        input.addEventListener("change", () => {{
+          if (input.value === "全部") {{
+            state.selectedZones = [];
+          }} else {{
+            const nextZones = new Set(getSelectedZones());
+            if (input.checked) {{
+              nextZones.add(input.value);
+            }} else {{
+              nextZones.delete(input.value);
+            }}
+            state.selectedZones = Array.from(nextZones);
+          }}
+          render();
+        }});
+      }});
+    }}
+
+    function renderFilterSelects() {{
+      state.selectedZones = getSelectedZones();
+      const types = ["全部", ...getAllowedTypesForSelectedZones()];
+
       if (!types.includes(state.selectedType)) {{
         state.selectedType = "全部";
       }}
 
-      renderSelectOptions(els.zoneSelect, zones, state.selectedZone);
+      renderZoneChecklist();
       renderSelectOptions(els.typeSelect, types, state.selectedType);
     }}
 
@@ -1253,6 +1369,55 @@ def render_html(title, payload):
       els.avgMetric.textContent = avgMetric === null ? "-" : formatValue(avgMetric);
     }}
 
+    function renderZoneComparisonCard(rows) {{
+      const selectedZones = getSelectedZones();
+      if (selectedZones.length < 2 || !state.metric) return "";
+
+      const zoneStats = selectedZones.map((zone) => {{
+        const values = rows
+          .filter((row) => row["赛区"] === zone)
+          .map((row) => row[state.metric])
+          .filter((value) => typeof value === "number" && Number.isFinite(value));
+        const average = values.length
+          ? values.reduce((sum, value) => sum + value, 0) / values.length
+          : null;
+        return {{ zone, average, count: values.length }};
+      }}).filter((item) => item.average !== null);
+
+      if (zoneStats.length < 2) return "";
+
+      zoneStats.sort((left, right) => {{
+        return state.activeSortDirection === "asc"
+          ? left.average - right.average
+          : right.average - left.average;
+      }});
+
+      const maxValue = Math.max(...zoneStats.map((item) => item.average), 0);
+      return `
+        <article class="chart-card">
+          <h3>${{escapeHtml(state.metric)}} 赛区均值对比</h3>
+          <p class="chart-subtitle">按当前筛选条件汇总所选赛区，每个条形使用该赛区当前指标的均值。</p>
+          <div class="bar-list">
+            ${{zoneStats.map((item, index) => {{
+              const width = maxValue > 0
+                ? Math.max(8, Math.min(100, Math.round((item.average / maxValue) * 100)))
+                : 8;
+              return `
+                <div class="bar-item">
+                  <div class="bar-rank">#${{index + 1}}</div>
+                  <div class="bar-team" title="${{escapeHtml(item.zone)}}">${{escapeHtml(item.zone)}}</div>
+                  <div class="bar-track" title="${{escapeHtml(`${{item.count}} 条记录`)}}">
+                    <div class="bar-fill" style="width: ${{width}}%"></div>
+                  </div>
+                  <div class="bar-value">${{escapeHtml(formatValue(item.average))}}</div>
+                </div>
+              `;
+            }}).join("")}}
+          </div>
+        </article>
+      `;
+    }}
+
     function renderCharts(rows) {{
       const singleTeam = getSingleTeamCandidate(rows);
       if (singleTeam) {{
@@ -1265,12 +1430,16 @@ def render_html(title, payload):
         return;
       }}
 
+      const cards = [];
+      const comparisonCard = renderZoneComparisonCard(rows);
+      if (comparisonCard) cards.push(comparisonCard);
+
       const chartRows = rows
         .filter((row) => typeof row[state.metric] === "number")
         .slice(0, 10);
 
       if (!chartRows.length) {{
-        els.chartGrid.innerHTML = "";
+        els.chartGrid.innerHTML = cards.join("");
         return;
       }}
 
@@ -1283,7 +1452,7 @@ def render_html(title, payload):
       const chartSubtitle = isAscending
         ? "按当前筛选结果升序展示，条形长度按当前图表中的最大值统一缩放。"
         : "按当前筛选结果降序展示，方便快速看前十名对比。";
-      els.chartGrid.innerHTML = `
+      cards.push(`
         <article class="chart-card">
           <h3>${{escapeHtml(state.metric)}} ${{chartTitle}}</h3>
           <p class="chart-subtitle">${{chartSubtitle}}</p>
@@ -1308,7 +1477,8 @@ def render_html(title, payload):
             }}).join("")}}
           </div>
         </article>
-      `;
+      `);
+      els.chartGrid.innerHTML = cards.join("");
     }}
 
     function renderTable(rows, columns) {{
@@ -1364,7 +1534,8 @@ def render_html(title, payload):
     function renderMeta(filteredRows) {{
       const metricLabel = state.activeSortColumn || state.metric || "默认";
       const titleParts = [];
-      if (state.selectedZone !== "全部") titleParts.push(state.selectedZone);
+      const selectedZones = getSelectedZones();
+      if (selectedZones.length) titleParts.push(getSelectedZoneLabel());
       if (state.selectedType !== "全部") titleParts.push(state.selectedType);
 
       const currentTitle = titleParts.length
@@ -1374,18 +1545,22 @@ def render_html(title, payload):
         ? `${{titleParts.join(" · ")}}`
         : payload.title;
       const singleTeam = getSingleTeamCandidate(filteredRows);
-      const radarLabel = getRadarShapeLabel(singleTeam ? singleTeam.zone : state.selectedZone);
+      const radarLabel = getRadarShapeLabel(singleTeam ? singleTeam.zone : (selectedZones.length === 1 ? selectedZones[0] : "全部"));
 
       els.heroTitle.textContent = heroTitle;
       els.heroSubtitle.textContent = filteredRows.length
         ? (singleTeam
           ? `当前已锁定 ${{singleTeam.label}}，${{radarLabel}}会直接显示在表格上方，对比它在 ${{singleTeam.zone}} 赛区里的兵种综合水平。`
-          : `当前筛选命中 ${{filteredRows.length}} 条记录，你可以继续切赛区、兵种和排序指标，页面会自动收起无数据字段。`)
+          : (selectedZones.length > 1
+            ? `当前正在比较 ${{selectedZones.length}} 个赛区，图表会按“${{metricLabel}}”汇总所选赛区的均值。`
+            : `当前筛选命中 ${{filteredRows.length}} 条记录，你可以继续切赛区、兵种和排序指标，页面会自动收起无数据字段。`))
         : "当前筛选下没有可展示的数据，可以换个赛区、兵种或搜索词再试。";
       els.tableTitle.textContent = currentTitle;
       els.tableMeta.textContent = singleTeam
         ? `当前显示 ${{filteredRows.length}} 条匹配记录，按“${{metricLabel}}”排序，已在上方展示赛区综合雷达图`
-        : `当前显示 ${{filteredRows.length}} 条匹配记录，按“${{metricLabel}}”排序`;
+        : (selectedZones.length > 1
+          ? `当前显示 ${{filteredRows.length}} 条匹配记录，已选择 ${{selectedZones.length}} 个赛区，按“${{metricLabel}}”排序`
+          : `当前显示 ${{filteredRows.length}} 条匹配记录，按“${{metricLabel}}”排序`);
       document.title = heroTitle;
     }}
 
@@ -1394,20 +1569,16 @@ def render_html(title, payload):
       const filteredRows = getFilteredRows();
       renderMetricSelect(filteredRows);
       const visibleColumns = getVisibleColumns(filteredRows);
-      const rows = getVisibleRows(filteredRows, visibleColumns);
+      const sortedRows = sortRows(filteredRows.slice(), visibleColumns);
+      const rows = sortedRows.slice(0, state.limit);
       renderSummary(filteredRows);
       renderMeta(filteredRows);
-      renderCharts(rows);
+      renderCharts(sortedRows);
       renderTable(rows, visibleColumns);
     }}
 
     els.searchInput.addEventListener("input", (event) => {{
       state.keyword = event.target.value.trim();
-      render();
-    }});
-
-    els.zoneSelect.addEventListener("change", (event) => {{
-      state.selectedZone = event.target.value;
       render();
     }});
 
