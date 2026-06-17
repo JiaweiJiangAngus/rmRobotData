@@ -17,6 +17,105 @@ def parse_value(raw):
         return value
 
 
+
+DART_SCORE_COLUMN = "总场次飞镖分数"
+RADAR_SCORE_COLUMN = "局均雷达分数"
+
+
+def get_number(row, column):
+    value = row.get(column)
+    if isinstance(value, (int, float)):
+        return float(value)
+    return None
+
+
+def weighted_sum(row, weights):
+    has_any_value = False
+    total = 0.0
+    for column, weight in weights:
+        value = get_number(row, column)
+        if value is None:
+            continue
+        has_any_value = True
+        total += value * weight
+    return round(total, 2) if has_any_value else None
+
+
+def add_column_after(columns, new_column, anchor_columns):
+    if new_column in columns:
+        return columns
+
+    insert_at = None
+    for anchor in anchor_columns:
+        if anchor in columns:
+            insert_at = columns.index(anchor) + 1
+    if insert_at is None:
+        columns.append(new_column)
+    else:
+        columns.insert(insert_at, new_column)
+    return columns
+
+
+def add_derived_metrics(columns, rows):
+    columns = list(columns)
+    add_column_after(columns, DART_SCORE_COLUMN, [
+        "累计命中前哨站数",
+        "累计命中固定靶数",
+        "累计随机固定靶数",
+        "累计随机移动靶数",
+        "累计移动靶末端命中数",
+    ])
+    add_column_after(columns, RADAR_SCORE_COLUMN, [
+        "双倍易伤时间",
+        "雷达反制时长",
+        "雷达解算成功次数",
+        "额外伤害",
+    ])
+
+    dart_weights = [
+        ("累计命中前哨站数", 1),
+        ("累计命中固定靶数", 5),
+        ("累计随机固定靶数", 10),
+        ("累计随机移动靶数", 100),
+        ("累计移动靶末端命中数", 200),
+    ]
+
+    radar_weights = [
+        ("双倍易伤时间", 1),
+        ("雷达反制时长", 20 / 45),
+        ("雷达解算成功次数", 200),
+    ]
+
+    for row in rows:
+        robot_type = row.get("兵种")
+        if robot_type == "飞镖":
+            row[DART_SCORE_COLUMN] = weighted_sum(row, dart_weights)
+        else:
+            row[DART_SCORE_COLUMN] = None
+
+        if robot_type == "雷达":
+            row[RADAR_SCORE_COLUMN] = weighted_sum(row, radar_weights)
+        else:
+            row[RADAR_SCORE_COLUMN] = None
+
+    return columns, rows
+
+
+def normalize_preferred_metric(preferred_metric, columns):
+    preferred_aliases = {
+        "累计随机移动靶数": DART_SCORE_COLUMN,
+        "累计移动靶末端命中数": DART_SCORE_COLUMN,
+        "建筑伤害": DART_SCORE_COLUMN,
+        "雷达反制时长": RADAR_SCORE_COLUMN,
+        "雷达解算成功次数": RADAR_SCORE_COLUMN,
+        "双倍易伤时间": RADAR_SCORE_COLUMN,
+    }
+    replacement = preferred_aliases.get(preferred_metric)
+    if replacement in columns:
+        return replacement
+    return preferred_metric
+
+
 def build_summary(rows, metric):
     numeric_values = []
     teams = set()
@@ -48,6 +147,7 @@ def build_summary(rows, metric):
 
 
 def choose_default_metric(columns, preferred_metric):
+    preferred_metric = normalize_preferred_metric(preferred_metric, columns)
     if preferred_metric and preferred_metric in columns:
         return preferred_metric
 
@@ -63,6 +163,8 @@ def choose_default_metric(columns, preferred_metric):
         "局均组装经济数",
         "局均组装成功次数",
         "局均兑换经济数",
+        DART_SCORE_COLUMN,
+        RADAR_SCORE_COLUMN,
         "雷达反制时长",
         "雷达解算成功次数",
         "双倍易伤时间",
@@ -831,6 +933,8 @@ def render_html(title, payload):
       "局均组装经济数",
       "局均组装成功次数",
       "局均兑换经济数",
+      "总场次飞镖分数",
+      "局均雷达分数",
       "雷达反制时长",
       "雷达解算成功次数",
       "双倍易伤时间",
@@ -838,15 +942,17 @@ def render_html(title, payload):
     ];
     const effectiveZeroMetricColumns = new Set([
       "累计移动靶末端命中数",
+      "总场次飞镖分数",
+      "局均雷达分数",
     ]);
     const radarAxes = [
       {{ type: "英雄", metricKey: "对敌伤害量", fallbackMetricKeys: ["建筑伤害"], metricLabel: "局均总伤害" }},
       {{ type: "步兵", metricKey: "对敌伤害量", metricLabel: "局均总伤害" }},
       {{ type: "哨兵", metricKey: "对敌伤害量", metricLabel: "局均总伤害" }},
       {{ type: "无人机", metricKey: "对敌伤害量", metricLabel: "局均总伤害" }},
-      {{ type: "雷达", metricKey: "双倍易伤时间", metricLabel: "局均易伤时长" }},
+      {{ type: "雷达", metricKey: "局均雷达分数", fallbackMetricKeys: ["双倍易伤时间"], metricLabel: "局均雷达分数" }},
       {{ type: "工程", metricKey: "局均组装经济数", fallbackMetricKeys: ["局均兑换经济数"], metricLabel: "局均工程经济" }},
-      {{ type: "飞镖", metricKey: "建筑伤害", metricLabel: "局均建筑伤害" }},
+      {{ type: "飞镖", metricKey: "总场次飞镖分数", fallbackMetricKeys: ["建筑伤害"], metricLabel: "总场次飞镖分数" }},
     ];
     const league3v3Types = ["英雄", "步兵", "哨兵"];
     const radarScaleSteps = [0.6, 1, 2, 3];
@@ -918,7 +1024,7 @@ def render_html(title, payload):
 
     function is3v3LeagueZone(zoneName) {{
       if (!zoneName || zoneName === "全部") return false;
-      const normalized = String(zoneName).toLowerCase().replace(/\s+/g, "");
+      const normalized = String(zoneName).toLowerCase().replace(/\\s+/g, "");
       return normalized.includes("3v3联盟赛") || normalized.includes("3vs3联盟赛");
     }}
 
@@ -983,15 +1089,47 @@ def render_html(title, payload):
       return Array.from(teamMap.values())[0];
     }}
 
+    function getFiniteNumber(row, column) {{
+      const value = row ? row[column] : null;
+      return typeof value === "number" && Number.isFinite(value) ? value : null;
+    }}
+
+    function calculateDartScore(row) {{
+      const weights = [
+        ["累计命中前哨站数", 1],
+        ["累计命中固定靶数", 5],
+        ["累计随机固定靶数", 10],
+        ["累计随机移动靶数", 100],
+        ["累计移动靶末端命中数", 200],
+      ];
+      let hasValue = false;
+      let total = 0;
+      weights.forEach(([column, weight]) => {{
+        const value = getFiniteNumber(row, column);
+        if (value === null) return;
+        hasValue = true;
+        total += value * weight;
+      }});
+      return hasValue ? total : null;
+    }}
+
+    function calculateRadarScore(row) {{
+      const markerTime = getFiniteNumber(row, "双倍易伤时间");
+      const counterTime = getFiniteNumber(row, "雷达反制时长");
+      const parseScore = getFiniteNumber(row, "雷达解算成功次数");
+      if (markerTime === null && counterTime === null && parseScore === null) return null;
+      return (markerTime || 0) + ((counterTime || 0) / 45 * 20) + ((parseScore || 0) * 200);
+    }}
+
     function getAxisMetricValue(row, axis) {{
       if (!row) return null;
-      if (axis.metricKey === "__dart_total_hits__") {{
-        const dartColumns = ["累计命中前哨站数", "累计命中固定靶数", "累计随机固定靶数", "累计随机移动靶数", "累计移动靶末端命中数"];
-        const values = dartColumns
-          .map((column) => row[column])
-          .filter((value) => typeof value === "number" && Number.isFinite(value));
-        if (!values.length) return null;
-        return values.reduce((sum, value) => sum + value, 0);
+      if (axis.metricKey === "总场次飞镖分数") {{
+        const value = getFiniteNumber(row, "总场次飞镖分数");
+        return value === null ? calculateDartScore(row) : value;
+      }}
+      if (axis.metricKey === "局均雷达分数") {{
+        const value = getFiniteNumber(row, "局均雷达分数");
+        return value === null ? calculateRadarScore(row) : value;
       }}
 
       const metricKeys = [axis.metricKey, ...(axis.fallbackMetricKeys || [])];
@@ -1108,7 +1246,7 @@ def render_html(title, payload):
         ? `注: ${{overflowAxes.join("、")}} 超过 300% 均值，图形按外圈封顶显示。`
         : (radar.axes.length === 3
           ? "注: 3V3 联盟赛仅展示英雄、步兵、哨兵，三条轴都按局均总伤害计算。"
-          : "注: 英雄、步兵、哨兵、无人机按局均总伤害，雷达按局均易伤时长，工程优先按局均组装经济，飞镖按局均建筑伤害。");
+          : "注: 英雄、步兵、哨兵、无人机按局均总伤害，雷达按局均雷达分数，工程优先按局均组装经济，飞镖按总场次飞镖分数。");
 
       return `
         <article class="chart-card radar-card">
@@ -1625,6 +1763,8 @@ def main(csv_file, title, default_sort=None, initial_zone="全部", initial_type
         for raw_row in reader:
             row = {column: parse_value(raw_row.get(column, "")) for column in columns}
             rows.append(row)
+
+    columns, rows = add_derived_metrics(columns, rows)
 
     metric = choose_default_metric(columns, default_sort)
     robot_types = sorted({str(row["兵种"]) for row in rows if row.get("兵种")})
