@@ -20,6 +20,14 @@ def parse_value(raw):
 
 DART_SCORE_COLUMN = "总场次飞镖分数"
 RADAR_SCORE_COLUMN = "局均雷达分数"
+MVP_COUNT_COLUMN = "MVP次数"
+MVP_DATA_PREFIX = "mvp_"
+
+
+def normalize_key_part(value):
+    if value is None:
+        return ""
+    return str(value).strip()
 
 
 def get_number(row, column):
@@ -101,6 +109,78 @@ def add_derived_metrics(columns, rows):
     return columns, rows
 
 
+def load_mvp_rows():
+    data_dirs = [
+        Path("data"),
+        Path(__file__).resolve().parent / "data",
+    ]
+    data_dir = next((path for path in data_dirs if path.exists()), None)
+    if data_dir is None:
+        return []
+
+    rows = []
+    expected_columns = ["赛区", "学校", "战队", "兵种", MVP_COUNT_COLUMN]
+    for path in sorted(data_dir.glob(f"{MVP_DATA_PREFIX}*.txt")):
+        fallback_zone = path.stem[len(MVP_DATA_PREFIX):]
+        with path.open("r", encoding="utf-8-sig", newline="") as handle:
+            reader = csv.DictReader(handle)
+            for raw_row in reader:
+                row = {column: parse_value(raw_row.get(column, "")) for column in expected_columns}
+                row["赛区"] = row.get("赛区") or fallback_zone
+                if not row.get("学校") or not row.get("战队") or not row.get("兵种"):
+                    continue
+                if row.get(MVP_COUNT_COLUMN) is None:
+                    row[MVP_COUNT_COLUMN] = 0
+                rows.append(row)
+    return rows
+
+
+def build_mvp_count_lookup(mvp_rows):
+    lookup = {}
+    infantry_totals = {}
+
+    for row in mvp_rows:
+        zone = normalize_key_part(row.get("赛区"))
+        school = normalize_key_part(row.get("学校"))
+        team = normalize_key_part(row.get("战队"))
+        robot_type = normalize_key_part(row.get("兵种"))
+        value = get_number(row, MVP_COUNT_COLUMN)
+        if not zone or not school or not team or not robot_type or value is None:
+            continue
+
+        key = (zone, school, team, robot_type)
+        lookup[key] = value
+
+        if robot_type in {"步兵3", "步兵4"}:
+            infantry_key = (zone, school, team)
+            infantry_totals[infantry_key] = infantry_totals.get(infantry_key, 0.0) + value
+
+    for (zone, school, team), total in infantry_totals.items():
+        lookup[(zone, school, team, "步兵")] = total
+
+    return lookup
+
+
+def add_mvp_counts(columns, rows, mvp_rows):
+    if not mvp_rows:
+        return columns, rows
+
+    columns = list(columns)
+    add_column_after(columns, MVP_COUNT_COLUMN, [DART_SCORE_COLUMN, RADAR_SCORE_COLUMN])
+    mvp_lookup = build_mvp_count_lookup(mvp_rows)
+
+    for row in rows:
+        key = (
+            normalize_key_part(row.get("赛区")),
+            normalize_key_part(row.get("学校")),
+            normalize_key_part(row.get("战队")),
+            normalize_key_part(row.get("兵种")),
+        )
+        row[MVP_COUNT_COLUMN] = mvp_lookup.get(key)
+
+    return columns, rows
+
+
 def normalize_preferred_metric(preferred_metric, columns):
     preferred_aliases = {
         "累计随机移动靶数": DART_SCORE_COLUMN,
@@ -165,6 +245,7 @@ def choose_default_metric(columns, preferred_metric):
         "局均兑换经济数",
         DART_SCORE_COLUMN,
         RADAR_SCORE_COLUMN,
+        MVP_COUNT_COLUMN,
         "雷达反制时长",
         "雷达解算成功次数",
         "双倍易伤时间",
@@ -838,7 +919,7 @@ def render_html(title, payload):
       <div class="hero-card">
         <span class="eyebrow">RM DATA DASHBOARD</span>
         <h1 id="heroTitle">{safe_title}</h1>
-        <p id="heroSubtitle">把原来偏“文本堆叠”的查询结果整理成网页化仪表盘了。现在可以按兵种切换、按关键字搜索、按任意指标排序；当筛到单支战队时，会直接在表格上方显示七边形雷达图，对比它在赛区里的兵种综合水平。</p>
+        <p id="heroSubtitle">把原来偏“文本堆叠”的查询结果整理成网页化仪表盘了。现在可以按兵种切换、按关键字搜索、按任意指标排序；当筛到单支战队时，会直接在表格上方显示七边形雷达图，对比它在赛区里的兵种综合水平，并在有 MVP 数据时同步展示 MVP 雷达图。</p>
       </div>
       <aside class="summary-card">
         <div class="summary-title">当前概览</div>
@@ -935,6 +1016,7 @@ def render_html(title, payload):
       "局均兑换经济数",
       "总场次飞镖分数",
       "局均雷达分数",
+      "MVP次数",
       "雷达反制时长",
       "雷达解算成功次数",
       "双倍易伤时间",
@@ -944,6 +1026,7 @@ def render_html(title, payload):
       "累计移动靶末端命中数",
       "总场次飞镖分数",
       "局均雷达分数",
+      "MVP次数",
     ]);
     const radarAxes = [
       {{ type: "英雄", metricKey: "对敌伤害量", fallbackMetricKeys: ["建筑伤害"], metricLabel: "局均总伤害" }},
@@ -953,6 +1036,16 @@ def render_html(title, payload):
       {{ type: "雷达", metricKey: "局均雷达分数", fallbackMetricKeys: ["双倍易伤时间"], metricLabel: "局均雷达分数" }},
       {{ type: "工程", metricKey: "局均组装经济数", fallbackMetricKeys: ["局均兑换经济数"], metricLabel: "局均工程经济" }},
       {{ type: "飞镖", metricKey: "总场次飞镖分数", fallbackMetricKeys: ["建筑伤害"], metricLabel: "总场次飞镖分数" }},
+    ];
+    const mvpRadarAxes = [
+      {{ type: "英雄", metricKey: "MVP次数", metricLabel: "MVP次数" }},
+      {{ type: "步兵3", metricKey: "MVP次数", metricLabel: "MVP次数" }},
+      {{ type: "步兵4", metricKey: "MVP次数", metricLabel: "MVP次数" }},
+      {{ type: "哨兵", metricKey: "MVP次数", metricLabel: "MVP次数" }},
+      {{ type: "无人机", metricKey: "MVP次数", metricLabel: "MVP次数" }},
+      {{ type: "雷达", metricKey: "MVP次数", metricLabel: "MVP次数" }},
+      {{ type: "工程", metricKey: "MVP次数", metricLabel: "MVP次数" }},
+      {{ type: "飞镖", metricKey: "MVP次数", metricLabel: "MVP次数" }},
     ];
     const league3v3Types = ["英雄", "步兵", "哨兵"];
     const radarScaleSteps = [0.6, 1, 2, 3];
@@ -1015,7 +1108,9 @@ def render_html(title, payload):
     }}
 
     function getTeamKey(row) {{
-      return [row["学校"] || "", row["战队"] || ""].join("::");
+      return [row["学校"] || "", row["战队"] || ""]
+        .map((value) => String(value).trim())
+        .join("::");
     }}
 
     function getTeamLabel(row) {{
@@ -1064,6 +1159,34 @@ def render_html(title, payload):
       if (!zoneName || zoneName === "全部") return [];
       const allowedTypes = getAllowedTypesForZone(zoneName);
       return payload.rows.filter((row) => row["赛区"] === zoneName && allowedTypes.includes(row["兵种"]));
+    }}
+
+    function getMvpRows() {{
+      return Array.isArray(payload.mvpRows) ? payload.mvpRows : [];
+    }}
+
+    function getMvpZoneRows(zoneName) {{
+      if (!zoneName || zoneName === "全部") return [];
+      return getMvpRows().filter((row) => row["赛区"] === zoneName);
+    }}
+
+    function isInfantryMvpAxis(axis) {{
+      return axis && (axis.type === "步兵3" || axis.type === "步兵4");
+    }}
+
+    function getCombinedInfantryMvpAverage(zoneRows) {{
+      const totalsByTeam = new Map();
+      zoneRows.forEach((row) => {{
+        if (row["兵种"] !== "步兵3" && row["兵种"] !== "步兵4") return;
+        const key = getTeamKey(row);
+        if (!key.trim()) return;
+        const value = getFiniteNumber(row, "MVP次数");
+        totalsByTeam.set(key, (totalsByTeam.get(key) || 0) + (value || 0));
+      }});
+      const totals = Array.from(totalsByTeam.values());
+      return totals.length
+        ? totals.reduce((sum, value) => sum + value, 0) / totals.length
+        : null;
     }}
 
     function getSingleTeamCandidate(rows) {{
@@ -1179,6 +1302,62 @@ def render_html(title, payload):
       return {{ teamLabel, zoneName, axes, shapeLabel: getRadarShapeLabel(zoneName) }};
     }}
 
+    function buildMvpRadarModel(teamKey, zoneName) {{
+      const zoneRows = getMvpZoneRows(zoneName);
+      if (!zoneRows.length) return null;
+
+      const teamRows = zoneRows.filter((row) => getTeamKey(row) === teamKey);
+      if (!teamRows.length) return null;
+
+      const teamLabel = getTeamLabel(teamRows[0]);
+      const combinedInfantryAverage = getCombinedInfantryMvpAverage(zoneRows);
+      const axes = mvpRadarAxes.map((axis) => {{
+        const zoneTypeRows = zoneRows.filter((row) => row["兵种"] === axis.type);
+        const teamRow = teamRows.find((row) => row["兵种"] === axis.type);
+        const zoneValues = zoneTypeRows
+          .map((row) => getFiniteNumber(row, "MVP次数"))
+          .filter((value) => value !== null);
+        const individualZoneAverage = zoneValues.length
+          ? zoneValues.reduce((sum, value) => sum + value, 0) / zoneValues.length
+          : null;
+        const zoneAverage = isInfantryMvpAxis(axis)
+          ? combinedInfantryAverage
+          : individualZoneAverage;
+        const teamValue = getFiniteNumber(teamRow, "MVP次数");
+
+        let ratio = null;
+        if (teamValue !== null && zoneAverage !== null) {{
+          ratio = zoneAverage === 0 ? 0 : teamValue / zoneAverage;
+        }}
+
+        return {{
+          ...axis,
+          teamValue,
+          zoneAverage,
+          ratio,
+          clippedRatio: ratio === null ? 0 : Math.max(0, Math.min(ratio, 3)),
+          overflow: ratio !== null && ratio > 3,
+          zoneAverageLabel: isInfantryMvpAxis(axis) ? "赛区步兵总均值" : "赛区均值",
+        }};
+      }});
+
+      return {{
+        teamLabel,
+        zoneName,
+        axes,
+        shapeLabel: "MVP八边形雷达图",
+        eyebrow: "MVP RADAR",
+        title: `${{teamLabel}} MVP八边形雷达图`,
+        description: `${{zoneName}}赛区 MVP 次数分布；步兵3/步兵4单独成轴，但都按步兵总 MVP 均值归一化。`,
+        gradientId: "mvpRadarAreaFill",
+        legendChips: [
+          "等高线: 60% / 100% / 200% / 300%",
+          "步兵轴 100% = 该赛区每队步兵3+步兵4总 MVP 均值",
+        ],
+        noteText: "注: MVP 数字表示该兵种在该赛区获得 MVP 的次数；步兵3和步兵4独立成轴，但两个步兵轴共用步兵3+步兵4的赛区总均值。",
+      }};
+    }}
+
     function getRadarPoint(index, ratio, center, radius, count) {{
       const angle = (-Math.PI / 2) + (Math.PI * 2 * index) / count;
       const scaled = (ratio / 3) * radius;
@@ -1203,6 +1382,14 @@ def render_html(title, payload):
         `;
       }}
 
+      const eyebrow = radar.eyebrow || "ZONE RADAR";
+      const radarTitle = radar.title || `${{radar.teamLabel}} ${{radar.shapeLabel}}`;
+      const radarDescription = radar.description || `${{radar.zoneName}}赛区基线下的兵种综合水平，100% 表示该赛区该兵种均值。`;
+      const gradientId = radar.gradientId || "radarAreaFill";
+      const legendChips = radar.legendChips || [
+        "等高线: 60% / 100% / 200% / 300%",
+        "100% = 该赛区对应兵种均值",
+      ];
       const size = 420;
       const center = size / 2;
       const radius = 146;
@@ -1242,30 +1429,30 @@ def render_html(title, payload):
       }}).join("");
 
       const overflowAxes = radar.axes.filter((axis) => axis.overflow).map((axis) => axis.type);
-      const noteText = overflowAxes.length
+      const defaultNoteText = overflowAxes.length
         ? `注: ${{overflowAxes.join("、")}} 超过 300% 均值，图形按外圈封顶显示。`
         : (radar.axes.length === 3
           ? "注: 3V3 联盟赛仅展示英雄、步兵、哨兵，三条轴都按局均总伤害计算。"
           : "注: 英雄、步兵、哨兵、无人机按局均总伤害，雷达按局均雷达分数，工程优先按局均组装经济，飞镖按总场次飞镖分数。");
+      const noteText = radar.noteText || defaultNoteText;
 
       return `
         <article class="chart-card radar-card">
           <div class="radar-header">
             <div>
-              <span class="eyebrow">ZONE RADAR</span>
-              <h3>${{escapeHtml(radar.teamLabel)}} ${{escapeHtml(radar.shapeLabel)}}</h3>
-              <p>${{escapeHtml(radar.zoneName)}}赛区基线下的兵种综合水平，100% 表示该赛区该兵种均值。</p>
+              <span class="eyebrow">${{escapeHtml(eyebrow)}}</span>
+              <h3>${{escapeHtml(radarTitle)}}</h3>
+              <p>${{escapeHtml(radarDescription)}}</p>
             </div>
           </div>
           <div class="radar-layout">
             <div class="radar-stage">
               <div class="radar-legend">
-                <span class="legend-chip">等高线: 60% / 100% / 200% / 300%</span>
-                <span class="legend-chip">100% = 该赛区对应兵种均值</span>
+                ${{legendChips.map((chip) => `<span class="legend-chip">${{escapeHtml(chip)}}</span>`).join("")}}
               </div>
-              <svg class="radar-svg" viewBox="0 0 ${{size}} ${{size}}" role="img" aria-label="${{escapeHtml(radar.teamLabel)}} 赛区七边形雷达图">
+              <svg class="radar-svg" viewBox="0 0 ${{size}} ${{size}}" role="img" aria-label="${{escapeHtml(radarTitle)}}">
                 <defs>
-                  <linearGradient id="radarAreaFill" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <linearGradient id="${{escapeHtml(gradientId)}}" x1="0%" y1="0%" x2="100%" y2="100%">
                     <stop offset="0%" stop-color="#d88457" stop-opacity="0.45" />
                     <stop offset="100%" stop-color="#b85c38" stop-opacity="0.22" />
                   </linearGradient>
@@ -1281,7 +1468,7 @@ def render_html(title, payload):
                   />
                 `).join("")}}
                 ${{axisMarkup}}
-                <polygon points="${{areaPoints}}" fill="url(#radarAreaFill)" stroke="#b85c38" stroke-width="3" />
+                <polygon points="${{areaPoints}}" fill="url(#${{escapeHtml(gradientId)}})" stroke="#b85c38" stroke-width="3" />
                 ${{scaleMarkup}}
               </svg>
               <div class="radar-note">${{escapeHtml(noteText)}}</div>
@@ -1297,7 +1484,7 @@ def render_html(title, payload):
                     </div>
                     <div class="axis-meta">
                       队伍${{escapeHtml(axis.metricLabel)}}: ${{escapeHtml(formatValue(axis.teamValue))}}<br>
-                      赛区均值: ${{escapeHtml(formatValue(axis.zoneAverage))}}
+                      ${{escapeHtml(axis.zoneAverageLabel || "赛区均值")}}: ${{escapeHtml(formatValue(axis.zoneAverage))}}
                     </div>
                   </article>
                 `).join("")}}
@@ -1559,7 +1746,10 @@ def render_html(title, payload):
     function renderCharts(rows) {{
       const singleTeam = getSingleTeamCandidate(rows);
       if (singleTeam) {{
-        els.chartGrid.innerHTML = renderRadarCard(buildRadarModel(singleTeam.key, singleTeam.zone));
+        const cards = [renderRadarCard(buildRadarModel(singleTeam.key, singleTeam.zone))];
+        const mvpRadar = buildMvpRadarModel(singleTeam.key, singleTeam.zone);
+        if (mvpRadar) cards.push(renderRadarCard(mvpRadar));
+        els.chartGrid.innerHTML = cards.join("");
         return;
       }}
 
@@ -1684,18 +1874,19 @@ def render_html(title, payload):
         : payload.title;
       const singleTeam = getSingleTeamCandidate(filteredRows);
       const radarLabel = getRadarShapeLabel(singleTeam ? singleTeam.zone : (selectedZones.length === 1 ? selectedZones[0] : "全部"));
+      const mvpRadar = singleTeam ? buildMvpRadarModel(singleTeam.key, singleTeam.zone) : null;
 
       els.heroTitle.textContent = heroTitle;
       els.heroSubtitle.textContent = filteredRows.length
         ? (singleTeam
-          ? `当前已锁定 ${{singleTeam.label}}，${{radarLabel}}会直接显示在表格上方，对比它在 ${{singleTeam.zone}} 赛区里的兵种综合水平。`
+          ? `当前已锁定 ${{singleTeam.label}}，${{radarLabel}}会直接显示在表格上方，对比它在 ${{singleTeam.zone}} 赛区里的兵种综合水平。${{mvpRadar ? "检测到该队伍此赛区的 MVP 数据，已同步展示 MVP 雷达图。" : ""}}`
           : (selectedZones.length > 1
             ? `当前正在比较 ${{selectedZones.length}} 个赛区，图表会按“${{metricLabel}}”汇总所选赛区的均值。`
             : `当前筛选命中 ${{filteredRows.length}} 条记录，你可以继续切赛区、兵种和排序指标，页面会自动收起无数据字段。`))
         : "当前筛选下没有可展示的数据，可以换个赛区、兵种或搜索词再试。";
       els.tableTitle.textContent = currentTitle;
       els.tableMeta.textContent = singleTeam
-        ? `当前显示 ${{filteredRows.length}} 条匹配记录，按“${{metricLabel}}”排序，已在上方展示赛区综合雷达图`
+        ? `当前显示 ${{filteredRows.length}} 条匹配记录，按“${{metricLabel}}”排序，已在上方展示赛区综合雷达图${{mvpRadar ? "和 MVP 雷达图" : ""}}`
         : (selectedZones.length > 1
           ? `当前显示 ${{filteredRows.length}} 条匹配记录，已选择 ${{selectedZones.length}} 个赛区，按“${{metricLabel}}”排序`
           : `当前显示 ${{filteredRows.length}} 条匹配记录，按“${{metricLabel}}”排序`);
@@ -1765,6 +1956,8 @@ def main(csv_file, title, default_sort=None, initial_zone="全部", initial_type
             rows.append(row)
 
     columns, rows = add_derived_metrics(columns, rows)
+    mvp_rows = load_mvp_rows()
+    columns, rows = add_mvp_counts(columns, rows, mvp_rows)
 
     metric = choose_default_metric(columns, default_sort)
     robot_types = sorted({str(row["兵种"]) for row in rows if row.get("兵种")})
@@ -1774,6 +1967,7 @@ def main(csv_file, title, default_sort=None, initial_zone="全部", initial_type
         "rows": rows,
         "zones": sorted({str(row["赛区"]) for row in rows if row.get("赛区")}),
         "types": robot_types,
+        "mvpRows": mvp_rows,
         "defaultMetric": metric,
         "summary": build_summary(rows, metric) if metric else {},
         "initialZone": initial_zone,

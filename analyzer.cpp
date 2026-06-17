@@ -308,7 +308,9 @@ public:
         database.clear();
         if (!fs::exists(dirPath)) return;
         for (const auto& entry : fs::directory_iterator(dirPath)) {
-            if (entry.path().extension() == ".txt") parse_file(entry.path().string());
+            if (entry.path().extension() != ".txt") continue;
+            if (entry.path().stem().string().rfind("mvp_", 0) == 0) continue;
+            parse_file(entry.path().string());
         }
     }
 

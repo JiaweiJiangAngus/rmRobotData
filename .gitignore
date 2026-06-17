@@ -1,5 +1,6 @@
 .vscode/
 bin/
-data/
+data/*
+!data/mvp_*.txt
 __pycache__/
 *.pyc
