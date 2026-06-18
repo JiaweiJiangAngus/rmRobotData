@@ -4,6 +4,8 @@ import json
 import sys
 from pathlib import Path
 
+from team_eval_rules import get_team_evaluation_config
+
 
 def parse_value(raw):
     if raw is None:
@@ -816,6 +818,101 @@ def render_html(title, payload):
       line-height: 1.6;
     }}
 
+    .insight-card {{
+      display: grid;
+      gap: 16px;
+    }}
+
+    .insight-header {{
+      display: flex;
+      justify-content: space-between;
+      gap: 18px;
+      align-items: flex-start;
+    }}
+
+    .insight-header h3 {{
+      margin: 8px 0 6px;
+      font-family: var(--font-display);
+      font-size: clamp(24px, 3vw, 34px);
+      font-weight: 400;
+    }}
+
+    .insight-summary {{
+      margin: 0;
+      color: var(--muted);
+      line-height: 1.7;
+      font-size: 14px;
+    }}
+
+    .insight-score {{
+      min-width: 104px;
+      text-align: right;
+      color: var(--accent-deep);
+      font-variant-numeric: tabular-nums;
+    }}
+
+    .insight-score strong {{
+      display: block;
+      font-size: 30px;
+      line-height: 1;
+    }}
+
+    .insight-grid {{
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 14px;
+    }}
+
+    .insight-section {{
+      min-width: 0;
+      padding-top: 12px;
+      border-top: 1px solid var(--line);
+    }}
+
+    .insight-section h4 {{
+      margin: 0 0 10px;
+      font-size: 14px;
+      color: var(--text);
+    }}
+
+    .insight-list {{
+      display: grid;
+      gap: 8px;
+    }}
+
+    .insight-chip {{
+      display: flex;
+      justify-content: space-between;
+      gap: 10px;
+      align-items: center;
+      min-width: 0;
+      padding: 8px 10px;
+      border-radius: 12px;
+      background: rgba(255,255,255,0.66);
+      border: 1px solid rgba(107, 79, 52, 0.1);
+      font-size: 13px;
+    }}
+
+    .insight-chip span:first-child {{
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      color: var(--text);
+    }}
+
+    .insight-chip span:last-child {{
+      color: var(--accent-deep);
+      font-variant-numeric: tabular-nums;
+      flex: 0 0 auto;
+    }}
+
+    .insight-note {{
+      margin: 10px 0 0;
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.65;
+    }}
+
     .axis-list {{
       display: grid;
       gap: 10px;
@@ -864,6 +961,10 @@ def render_html(title, payload):
       }}
 
       .radar-layout {{
+        grid-template-columns: 1fr;
+      }}
+
+      .insight-grid {{
         grid-template-columns: 1fr;
       }}
     }}
@@ -1170,25 +1271,6 @@ def render_html(title, payload):
       return getMvpRows().filter((row) => row["赛区"] === zoneName);
     }}
 
-    function isInfantryMvpAxis(axis) {{
-      return axis && (axis.type === "步兵3" || axis.type === "步兵4");
-    }}
-
-    function getCombinedInfantryMvpAverage(zoneRows) {{
-      const totalsByTeam = new Map();
-      zoneRows.forEach((row) => {{
-        if (row["兵种"] !== "步兵3" && row["兵种"] !== "步兵4") return;
-        const key = getTeamKey(row);
-        if (!key.trim()) return;
-        const value = getFiniteNumber(row, "MVP次数");
-        totalsByTeam.set(key, (totalsByTeam.get(key) || 0) + (value || 0));
-      }});
-      const totals = Array.from(totalsByTeam.values());
-      return totals.length
-        ? totals.reduce((sum, value) => sum + value, 0) / totals.length
-        : null;
-    }}
-
     function getSingleTeamCandidate(rows) {{
       if (!rows.length) return null;
 
@@ -1310,34 +1392,30 @@ def render_html(title, payload):
       if (!teamRows.length) return null;
 
       const teamLabel = getTeamLabel(teamRows[0]);
-      const combinedInfantryAverage = getCombinedInfantryMvpAverage(zoneRows);
+      const teamValueByType = new Map();
+      mvpRadarAxes.forEach((axis) => {{
+        const row = teamRows.find((item) => item["兵种"] === axis.type);
+        teamValueByType.set(axis.type, getFiniteNumber(row, "MVP次数") || 0);
+      }});
+      const teamTotal = Array.from(teamValueByType.values()).reduce((sum, value) => sum + value, 0);
+      const teamAverage = teamTotal / mvpRadarAxes.length;
       const axes = mvpRadarAxes.map((axis) => {{
-        const zoneTypeRows = zoneRows.filter((row) => row["兵种"] === axis.type);
-        const teamRow = teamRows.find((row) => row["兵种"] === axis.type);
-        const zoneValues = zoneTypeRows
-          .map((row) => getFiniteNumber(row, "MVP次数"))
-          .filter((value) => value !== null);
-        const individualZoneAverage = zoneValues.length
-          ? zoneValues.reduce((sum, value) => sum + value, 0) / zoneValues.length
-          : null;
-        const zoneAverage = isInfantryMvpAxis(axis)
-          ? combinedInfantryAverage
-          : individualZoneAverage;
-        const teamValue = getFiniteNumber(teamRow, "MVP次数");
+        const teamValue = teamValueByType.get(axis.type) || 0;
+        const baseline = teamTotal > 0 ? teamAverage : null;
 
         let ratio = null;
-        if (teamValue !== null && zoneAverage !== null) {{
-          ratio = zoneAverage === 0 ? 0 : teamValue / zoneAverage;
+        if (baseline !== null) {{
+          ratio = baseline === 0 ? 0 : teamValue / baseline;
         }}
 
         return {{
           ...axis,
           teamValue,
-          zoneAverage,
+          zoneAverage: baseline,
           ratio,
           clippedRatio: ratio === null ? 0 : Math.max(0, Math.min(ratio, 3)),
           overflow: ratio !== null && ratio > 3,
-          zoneAverageLabel: isInfantryMvpAxis(axis) ? "赛区步兵总均值" : "赛区均值",
+          zoneAverageLabel: "队内均值",
         }};
       }});
 
@@ -1348,13 +1426,13 @@ def render_html(title, payload):
         shapeLabel: "MVP八边形雷达图",
         eyebrow: "MVP RADAR",
         title: `${{teamLabel}} MVP八边形雷达图`,
-        description: `${{zoneName}}赛区 MVP 次数分布；步兵3/步兵4单独成轴，但都按步兵总 MVP 均值归一化。`,
+        description: `${{zoneName}}赛区 MVP 次数分布；每个轴按该队 8 个兵种 MVP 次数的队内均值归一化。`,
         gradientId: "mvpRadarAreaFill",
         legendChips: [
           "等高线: 60% / 100% / 200% / 300%",
-          "步兵轴 100% = 该赛区每队步兵3+步兵4总 MVP 均值",
+          "100% = 该队 8 个兵种 MVP 总数 / 8",
         ],
-        noteText: "注: MVP 数字表示该兵种在该赛区获得 MVP 的次数；步兵3和步兵4独立成轴，但两个步兵轴共用步兵3+步兵4的赛区总均值。",
+        noteText: "注: MVP 图展示队内 MVP 分布比例；轴值 = 该兵种 MVP 次数 /（该队 8 个兵种 MVP 总数 / 8）。",
       }};
     }}
 
@@ -1743,11 +1821,176 @@ def render_html(title, payload):
       `;
     }}
 
+    function getTeamEvaluationConfig() {{
+      return payload.teamEvaluation || {{}};
+    }}
+
+    function getAxisTip(axisType) {{
+      const config = getTeamEvaluationConfig();
+      return (config.axisTips && config.axisTips[axisType]) || "";
+    }}
+
+    function getRatedAxes(radar) {{
+      if (!radar || !Array.isArray(radar.axes)) return [];
+      return radar.axes
+        .filter((axis) => typeof axis.ratio === "number" && Number.isFinite(axis.ratio))
+        .map((axis) => ({{
+          type: axis.type,
+          ratio: axis.ratio,
+          value: axis.teamValue,
+          metricLabel: axis.metricLabel,
+        }}));
+    }}
+
+    function sortByRatioDesc(left, right) {{
+      return right.ratio - left.ratio;
+    }}
+
+    function sortByRatioAsc(left, right) {{
+      return left.ratio - right.ratio;
+    }}
+
+    function joinAxisNames(items) {{
+      return items.map((item) => item.type).join("、");
+    }}
+
+    function buildTeamEvaluationModel(radar, mvpRadar) {{
+      const config = getTeamEvaluationConfig();
+      const maxItems = config.maxItems || 3;
+      const strongThreshold = config.strongThreshold || 1.25;
+      const eliteThreshold = config.eliteThreshold || 1.6;
+      const weakThreshold = config.weakThreshold || 0.75;
+      const criticalThreshold = config.criticalThreshold || 0.45;
+      const mvpFocusThreshold = config.mvpFocusThreshold || 1.5;
+      const mvpQuietThreshold = config.mvpQuietThreshold || 0.5;
+
+      const radarAxes = getRatedAxes(radar);
+      if (!radarAxes.length) return null;
+
+      const avgRatio = radarAxes.reduce((sum, axis) => sum + axis.ratio, 0) / radarAxes.length;
+      const strongAxes = radarAxes
+        .filter((axis) => axis.ratio >= strongThreshold)
+        .sort(sortByRatioDesc)
+        .slice(0, maxItems);
+      const weakAxes = radarAxes
+        .filter((axis) => axis.ratio <= weakThreshold)
+        .sort(sortByRatioAsc)
+        .slice(0, maxItems);
+      const eliteAxes = radarAxes.filter((axis) => axis.ratio >= eliteThreshold);
+      const criticalAxes = radarAxes.filter((axis) => axis.ratio <= criticalThreshold);
+
+      const mvpAxes = getRatedAxes(mvpRadar);
+      const mvpTotal = mvpRadar && Array.isArray(mvpRadar.axes)
+        ? mvpRadar.axes.reduce((sum, axis) => sum + (getFiniteNumber(axis, "teamValue") || 0), 0)
+        : 0;
+      const mvpFocusAxes = mvpTotal > 0
+        ? mvpAxes.filter((axis) => axis.ratio >= mvpFocusThreshold).sort(sortByRatioDesc).slice(0, maxItems)
+        : [];
+      const mvpQuietAxes = mvpTotal > 0
+        ? mvpAxes.filter((axis) => axis.ratio <= mvpQuietThreshold).sort(sortByRatioAsc).slice(0, maxItems)
+        : [];
+
+      let level = "接近均线";
+      if (avgRatio >= 1.15) level = "整体高于均线";
+      if (avgRatio >= 1.35) level = "整体明显强势";
+      if (avgRatio < 0.9) level = "整体略低于均线";
+
+      const summaryParts = [`综合雷达均值为 ${{formatPercent(avgRatio)}}，${{level}}。`];
+      if (strongAxes.length) {{
+        summaryParts.push(`优势更集中在 ${{joinAxisNames(strongAxes)}}。`);
+      }} else {{
+        summaryParts.push("目前没有特别突出的单轴，表现更偏均衡。");
+      }}
+      if (weakAxes.length) {{
+        summaryParts.push(`优先关注 ${{joinAxisNames(weakAxes)}}。`);
+      }}
+      if (mvpFocusAxes.length) {{
+        summaryParts.push(`队内 MVP 高光更偏向 ${{joinAxisNames(mvpFocusAxes)}}。`);
+      }}
+
+      return {{
+        teamLabel: radar.teamLabel,
+        zoneName: radar.zoneName,
+        avgRatio,
+        level,
+        strongAxes,
+        weakAxes,
+        eliteAxes,
+        criticalAxes,
+        mvpFocusAxes,
+        mvpQuietAxes,
+        summary: summaryParts.join(""),
+      }};
+    }}
+
+    function renderInsightItems(items, emptyText) {{
+      if (!items.length) {{
+        return `<p class="insight-note">${{escapeHtml(emptyText)}}</p>`;
+      }}
+      return `
+        <div class="insight-list">
+          ${{items.map((item) => `
+            <div class="insight-chip" title="${{escapeHtml(getAxisTip(item.type))}}">
+              <span>${{escapeHtml(item.type)}}</span>
+              <span>${{escapeHtml(formatPercent(item.ratio))}}</span>
+            </div>
+          `).join("")}}
+        </div>
+      `;
+    }}
+
+    function renderTeamEvaluationCard(evaluation) {{
+      if (!evaluation) return "";
+      const leadTip = evaluation.strongAxes.length
+        ? getAxisTip(evaluation.strongAxes[0].type)
+        : (evaluation.weakAxes.length ? getAxisTip(evaluation.weakAxes[0].type) : "");
+      const riskNote = evaluation.criticalAxes.length
+        ? `${{joinAxisNames(evaluation.criticalAxes)}} 已低于 45%，建议优先复盘。`
+        : (evaluation.weakAxes.length ? "问题轴不一定代表不能打，更像是当前赛区均值下的相对短板。" : "没有明显低于阈值的兵种轴。");
+      const mvpNote = evaluation.mvpFocusAxes.length
+        ? `MVP 分布高点: ${{joinAxisNames(evaluation.mvpFocusAxes)}}。`
+        : (evaluation.mvpQuietAxes.length ? `MVP 较少落在 ${{joinAxisNames(evaluation.mvpQuietAxes)}}。` : "MVP 分布没有明显偏向。");
+
+      return `
+        <article class="chart-card insight-card">
+          <div class="insight-header">
+            <div>
+              <span class="eyebrow">TEAM SCOUT</span>
+              <h3>${{escapeHtml(evaluation.teamLabel)}} 队伍简评</h3>
+              <p class="insight-summary">${{escapeHtml(evaluation.summary)}}</p>
+            </div>
+            <div class="insight-score">
+              <strong>${{escapeHtml(formatPercent(evaluation.avgRatio))}}</strong>
+              <span>综合均值</span>
+            </div>
+          </div>
+          <div class="insight-grid">
+            <section class="insight-section">
+              <h4>优势兵种</h4>
+              ${{renderInsightItems(evaluation.strongAxes, "没有超过优势阈值的兵种轴。")}}
+              <p class="insight-note">${{escapeHtml(leadTip || "优势轴按相对赛区均值排序。")}}</p>
+            </section>
+            <section class="insight-section">
+              <h4>问题兵种</h4>
+              ${{renderInsightItems(evaluation.weakAxes, "没有明显低于均线的兵种轴。")}}
+              <p class="insight-note">${{escapeHtml(riskNote)}}</p>
+            </section>
+            <section class="insight-section">
+              <h4>MVP倾向</h4>
+              ${{renderInsightItems(evaluation.mvpFocusAxes, "MVP 高光分布比较均衡或暂缺数据。")}}
+              <p class="insight-note">${{escapeHtml(mvpNote)}}</p>
+            </section>
+          </div>
+        </article>
+      `;
+    }}
+
     function renderCharts(rows) {{
       const singleTeam = getSingleTeamCandidate(rows);
       if (singleTeam) {{
-        const cards = [renderRadarCard(buildRadarModel(singleTeam.key, singleTeam.zone))];
+        const radar = buildRadarModel(singleTeam.key, singleTeam.zone);
         const mvpRadar = buildMvpRadarModel(singleTeam.key, singleTeam.zone);
+        const cards = [renderTeamEvaluationCard(buildTeamEvaluationModel(radar, mvpRadar)), renderRadarCard(radar)];
         if (mvpRadar) cards.push(renderRadarCard(mvpRadar));
         els.chartGrid.innerHTML = cards.join("");
         return;
@@ -1968,6 +2211,7 @@ def main(csv_file, title, default_sort=None, initial_zone="全部", initial_type
         "zones": sorted({str(row["赛区"]) for row in rows if row.get("赛区")}),
         "types": robot_types,
         "mvpRows": mvp_rows,
+        "teamEvaluation": get_team_evaluation_config(),
         "defaultMetric": metric,
         "summary": build_summary(rows, metric) if metric else {},
         "initialZone": initial_zone,
