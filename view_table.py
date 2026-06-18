@@ -859,7 +859,7 @@ def render_html(title, payload):
 
     .insight-grid {{
       display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
+      grid-template-columns: repeat(4, minmax(0, 1fr));
       gap: 14px;
     }}
 
@@ -964,6 +964,12 @@ def render_html(title, payload):
         grid-template-columns: 1fr;
       }}
 
+      .insight-grid {{
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }}
+    }}
+
+    @media (max-width: 720px) {{
       .insight-grid {{
         grid-template-columns: 1fr;
       }}
@@ -1161,6 +1167,7 @@ def render_html(title, payload):
       activeSortColumn: payload.defaultMetric || "",
       activeSortDirection: "desc",
     }};
+    let insightTypewriterRun = 0;
 
     const els = {{
       heroTitle: document.getElementById("heroTitle"),
@@ -1854,7 +1861,86 @@ def render_html(title, payload):
       return items.map((item) => item.type).join("、");
     }}
 
-    function buildTeamEvaluationModel(radar, mvpRadar) {{
+    function getEvaluationMetrics() {{
+      const config = getTeamEvaluationConfig();
+      return Array.isArray(config.perGameMetrics) ? config.perGameMetrics : [];
+    }}
+
+    function getConfiguredMetricColumns(metric) {{
+      return [metric.column, ...(metric.fallbackColumns || [])].filter(Boolean);
+    }}
+
+    function getConfiguredMetricValue(row, metric) {{
+      for (const column of getConfiguredMetricColumns(metric)) {{
+        const value = getFiniteNumber(row, column);
+        if (value !== null) return {{ value, column }};
+      }}
+      return null;
+    }}
+
+    function getMetricRatio(teamValue, zoneAverage, lowerIsBetter) {{
+      if (teamValue === null || zoneAverage === null) return null;
+      if (lowerIsBetter) {{
+        if (teamValue === 0) return zoneAverage === 0 ? 1 : 3;
+        return zoneAverage / teamValue;
+      }}
+      if (zoneAverage === 0) return teamValue > 0 ? 3 : 1;
+      return teamValue / zoneAverage;
+    }}
+
+    function joinMetricNames(items) {{
+      return items.map((item) => `${{item.type}}${{item.label}}`).join("、");
+    }}
+
+    function buildPerGameMetricInsights(teamKey, zoneName, maxItems, strongThreshold, weakThreshold) {{
+      const zoneRows = getZoneRows(zoneName);
+      const teamRows = zoneRows.filter((row) => getTeamKey(row) === teamKey);
+      const metricItems = [];
+
+      getEvaluationMetrics().forEach((metric) => {{
+        teamRows.forEach((teamRow) => {{
+          const robotType = teamRow["兵种"];
+          if (Array.isArray(metric.types) && !metric.types.includes(robotType)) return;
+          const metricValue = getConfiguredMetricValue(teamRow, metric);
+          if (!metricValue) return;
+
+          const zoneValues = zoneRows
+            .filter((row) => row["兵种"] === robotType)
+            .map((row) => getConfiguredMetricValue(row, metric))
+            .filter(Boolean)
+            .map((item) => item.value);
+          if (!zoneValues.length) return;
+
+          const zoneAverage = zoneValues.reduce((sum, value) => sum + value, 0) / zoneValues.length;
+          const ratio = getMetricRatio(metricValue.value, zoneAverage, Boolean(metric.lowerIsBetter));
+          if (ratio === null || !Number.isFinite(ratio)) return;
+
+          metricItems.push({{
+            type: robotType,
+            label: metric.label || metricValue.column,
+            column: metricValue.column,
+            teamValue: metricValue.value,
+            zoneAverage,
+            ratio,
+            lowerIsBetter: Boolean(metric.lowerIsBetter),
+          }});
+        }});
+      }});
+
+      return {{
+        items: metricItems,
+        strong: metricItems
+          .filter((item) => item.ratio >= strongThreshold)
+          .sort(sortByRatioDesc)
+          .slice(0, maxItems),
+        weak: metricItems
+          .filter((item) => item.ratio <= weakThreshold)
+          .sort(sortByRatioAsc)
+          .slice(0, maxItems),
+      }};
+    }}
+
+    function buildTeamEvaluationModel(radar, mvpRadar, teamKey, zoneName) {{
       const config = getTeamEvaluationConfig();
       const maxItems = config.maxItems || 3;
       const strongThreshold = config.strongThreshold || 1.25;
@@ -1878,6 +1964,7 @@ def render_html(title, payload):
         .slice(0, maxItems);
       const eliteAxes = radarAxes.filter((axis) => axis.ratio >= eliteThreshold);
       const criticalAxes = radarAxes.filter((axis) => axis.ratio <= criticalThreshold);
+      const metricInsights = buildPerGameMetricInsights(teamKey, zoneName, maxItems, strongThreshold, weakThreshold);
 
       const mvpAxes = getRatedAxes(mvpRadar);
       const mvpTotal = mvpRadar && Array.isArray(mvpRadar.axes)
@@ -1895,17 +1982,41 @@ def render_html(title, payload):
       if (avgRatio >= 1.35) level = "整体明显强势";
       if (avgRatio < 0.9) level = "整体略低于均线";
 
+      const orderedAxes = radarAxes.slice().sort(sortByRatioDesc);
+      const topAxis = orderedAxes[0] || null;
+      const bottomAxis = orderedAxes[orderedAxes.length - 1] || null;
+      const spread = topAxis && bottomAxis ? topAxis.ratio - bottomAxis.ratio : 0;
+      const structureLabel = spread >= 1.2
+        ? "结构偏科比较明显"
+        : (spread >= 0.65 ? "强弱层次比较清楚" : "各轴相对均衡");
+      const strongestText = topAxis ? `${{topAxis.type}}最高，达到${{formatPercent(topAxis.ratio)}}` : "";
+      const weakestText = bottomAxis ? `${{bottomAxis.type}}最低，为${{formatPercent(bottomAxis.ratio)}}` : "";
+
       const summaryParts = [`综合雷达均值为 ${{formatPercent(avgRatio)}}，${{level}}。`];
+      if (strongestText && weakestText) {{
+        summaryParts.push(`${{strongestText}}；${{weakestText}}，整体看${{structureLabel}}。`);
+      }}
       if (strongAxes.length) {{
-        summaryParts.push(`优势更集中在 ${{joinAxisNames(strongAxes)}}。`);
+        summaryParts.push(`优势更集中在 ${{joinAxisNames(strongAxes)}}，这些轴更适合作为当前对局的主动发力点。`);
       }} else {{
-        summaryParts.push("目前没有特别突出的单轴，表现更偏均衡。");
+        summaryParts.push("目前没有特别突出的单轴，打法上更适合依赖整体协同和稳定执行。");
+      }}
+      if (metricInsights.strong.length) {{
+        summaryParts.push(`局均/场均细项里，${{joinMetricNames(metricInsights.strong)}}明显高于同赛区同兵种均值，是比 MVP 更稳定的支撑证据。`);
       }}
       if (weakAxes.length) {{
-        summaryParts.push(`优先关注 ${{joinAxisNames(weakAxes)}}。`);
+        summaryParts.push(`相对短板在 ${{joinAxisNames(weakAxes)}}，建议复盘资源投入、对位压力和关键失误来源。`);
+      }} else if (metricInsights.weak.length) {{
+        summaryParts.push(`综合轴没有明显塌陷，但局均/场均细项提示 ${{joinMetricNames(metricInsights.weak)}} 需要继续观察。`);
+      }} else {{
+        summaryParts.push("后续重点不在救短板，而是看优势轴能否稳定转化成击杀、经济或建筑压力。");
       }}
       if (mvpFocusAxes.length) {{
-        summaryParts.push(`队内 MVP 高光更偏向 ${{joinAxisNames(mvpFocusAxes)}}。`);
+        const focusText = joinAxisNames(mvpFocusAxes);
+        const overlaps = strongAxes.filter((axis) => mvpFocusAxes.some((item) => item.type === axis.type));
+        summaryParts.push(`队内 MVP 高光更偏向 ${{focusText}}，${{overlaps.length ? `其中${{joinAxisNames(overlaps)}}和综合强项互相印证` : "这些高光点和综合强项不完全重合，可能更像关键局发挥"}}。`);
+      }} else if (mvpTotal > 0) {{
+        summaryParts.push("队内高光来源比较分散，临场发挥不太依赖单一兵种。");
       }}
 
       return {{
@@ -1917,6 +2028,8 @@ def render_html(title, payload):
         weakAxes,
         eliteAxes,
         criticalAxes,
+        metricStrongItems: metricInsights.strong,
+        metricWeakItems: metricInsights.weak,
         mvpFocusAxes,
         mvpQuietAxes,
         summary: summaryParts.join(""),
@@ -1939,6 +2052,26 @@ def render_html(title, payload):
       `;
     }}
 
+    function renderMetricInsightItems(items, emptyText) {{
+      if (!items.length) {{
+        return `<p class="insight-note">${{escapeHtml(emptyText)}}</p>`;
+      }}
+      return `
+        <div class="insight-list">
+          ${{items.map((item) => {{
+            const direction = item.lowerIsBetter ? "越低越好" : "越高越好";
+            const detail = `队伍${{item.label}}: ${{formatValue(item.teamValue)}}；同赛区同兵种均值: ${{formatValue(item.zoneAverage)}}；${{direction}}`;
+            return `
+              <div class="insight-chip" title="${{escapeHtml(detail)}}">
+                <span>${{escapeHtml(`${{item.type}} · ${{item.label}}`)}}</span>
+                <span>${{escapeHtml(formatPercent(item.ratio))}}</span>
+              </div>
+            `;
+          }}).join("")}}
+        </div>
+      `;
+    }}
+
     function renderTeamEvaluationCard(evaluation) {{
       if (!evaluation) return "";
       const leadTip = evaluation.strongAxes.length
@@ -1950,6 +2083,21 @@ def render_html(title, payload):
       const mvpNote = evaluation.mvpFocusAxes.length
         ? `MVP 分布高点: ${{joinAxisNames(evaluation.mvpFocusAxes)}}。`
         : (evaluation.mvpQuietAxes.length ? `MVP 较少落在 ${{joinAxisNames(evaluation.mvpQuietAxes)}}。` : "MVP 分布没有明显偏向。");
+      const leadNoteMarkup = evaluation.strongAxes.length || leadTip
+        ? `<p class="insight-note">${{escapeHtml(leadTip || "优势轴按相对赛区均值排序。")}}</p>`
+        : "";
+      const riskItemsMarkup = renderInsightItems(evaluation.weakAxes, riskNote);
+      const riskNoteMarkup = evaluation.weakAxes.length
+        ? `<p class="insight-note">${{escapeHtml(riskNote)}}</p>`
+        : "";
+      const mvpItemsMarkup = renderInsightItems(evaluation.mvpFocusAxes, mvpNote);
+      const mvpNoteMarkup = evaluation.mvpFocusAxes.length
+        ? `<p class="insight-note">${{escapeHtml(mvpNote)}}</p>`
+        : "";
+      const metricItemsMarkup = renderMetricInsightItems(evaluation.metricStrongItems, "局均/场均细项没有明显高出均值的项目。");
+      const metricNote = evaluation.metricWeakItems.length
+        ? `同时留意 ${{joinMetricNames(evaluation.metricWeakItems)}}。`
+        : "这里优先展示局均、场均和关键收益项，比 MVP 更适合作为稳定性判断。";
 
       return `
         <article class="chart-card insight-card">
@@ -1957,7 +2105,7 @@ def render_html(title, payload):
             <div>
               <span class="eyebrow">TEAM SCOUT</span>
               <h3>${{escapeHtml(evaluation.teamLabel)}} 队伍简评</h3>
-              <p class="insight-summary">${{escapeHtml(evaluation.summary)}}</p>
+              <p class="insight-summary" data-typewriter="${{escapeHtml(evaluation.summary)}}">${{escapeHtml(evaluation.summary)}}</p>
             </div>
             <div class="insight-score">
               <strong>${{escapeHtml(formatPercent(evaluation.avgRatio))}}</strong>
@@ -1968,21 +2116,45 @@ def render_html(title, payload):
             <section class="insight-section">
               <h4>优势兵种</h4>
               ${{renderInsightItems(evaluation.strongAxes, "没有超过优势阈值的兵种轴。")}}
-              <p class="insight-note">${{escapeHtml(leadTip || "优势轴按相对赛区均值排序。")}}</p>
+              ${{leadNoteMarkup}}
+            </section>
+            <section class="insight-section">
+              <h4>局均数据</h4>
+              ${{metricItemsMarkup}}
+              <p class="insight-note">${{escapeHtml(metricNote)}}</p>
             </section>
             <section class="insight-section">
               <h4>问题兵种</h4>
-              ${{renderInsightItems(evaluation.weakAxes, "没有明显低于均线的兵种轴。")}}
-              <p class="insight-note">${{escapeHtml(riskNote)}}</p>
+              ${{riskItemsMarkup}}
+              ${{riskNoteMarkup}}
             </section>
             <section class="insight-section">
               <h4>MVP倾向</h4>
-              ${{renderInsightItems(evaluation.mvpFocusAxes, "MVP 高光分布比较均衡或暂缺数据。")}}
-              <p class="insight-note">${{escapeHtml(mvpNote)}}</p>
+              ${{mvpItemsMarkup}}
+              ${{mvpNoteMarkup}}
             </section>
           </div>
         </article>
       `;
+    }}
+
+    function runInsightTypewriter() {{
+      const runId = ++insightTypewriterRun;
+      const summaries = els.chartGrid.querySelectorAll(".insight-summary[data-typewriter]");
+      summaries.forEach((summary) => {{
+        const fullText = summary.dataset.typewriter || "";
+        let index = 0;
+        summary.textContent = "";
+        const tick = () => {{
+          if (runId !== insightTypewriterRun) return;
+          index = Math.min(fullText.length, index + 2);
+          summary.textContent = fullText.slice(0, index);
+          if (index < fullText.length) {{
+            window.setTimeout(tick, 18);
+          }}
+        }};
+        window.setTimeout(tick, 80);
+      }});
     }}
 
     function renderCharts(rows) {{
@@ -1990,13 +2162,15 @@ def render_html(title, payload):
       if (singleTeam) {{
         const radar = buildRadarModel(singleTeam.key, singleTeam.zone);
         const mvpRadar = buildMvpRadarModel(singleTeam.key, singleTeam.zone);
-        const cards = [renderTeamEvaluationCard(buildTeamEvaluationModel(radar, mvpRadar)), renderRadarCard(radar)];
+        const cards = [renderTeamEvaluationCard(buildTeamEvaluationModel(radar, mvpRadar, singleTeam.key, singleTeam.zone)), renderRadarCard(radar)];
         if (mvpRadar) cards.push(renderRadarCard(mvpRadar));
         els.chartGrid.innerHTML = cards.join("");
+        runInsightTypewriter();
         return;
       }}
 
       if (!state.metric) {{
+        insightTypewriterRun += 1;
         els.chartGrid.innerHTML = "";
         return;
       }}
@@ -2010,6 +2184,7 @@ def render_html(title, payload):
         .slice(0, 10);
 
       if (!chartRows.length) {{
+        insightTypewriterRun += 1;
         els.chartGrid.innerHTML = cards.join("");
         return;
       }}
@@ -2049,6 +2224,7 @@ def render_html(title, payload):
           </div>
         </article>
       `);
+      insightTypewriterRun += 1;
       els.chartGrid.innerHTML = cards.join("");
     }}
 
