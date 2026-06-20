@@ -906,6 +906,22 @@ def render_html(title, payload):
       flex: 0 0 auto;
     }}
 
+    .insight-chip-block {{
+      display: grid;
+      align-items: start;
+      gap: 4px;
+    }}
+
+    .insight-chip-block span:first-child {{
+      white-space: normal;
+    }}
+
+    .insight-chip-block small {{
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.55;
+    }}
+
     .insight-note {{
       margin: 10px 0 0;
       color: var(--muted);
@@ -1892,6 +1908,322 @@ def render_html(title, payload):
       return items.map((item) => `${{item.type}}${{item.label}}`).join("、");
     }}
 
+    function getTacticalMetricConfig() {{
+      const config = getTeamEvaluationConfig();
+      return config.tacticalMetrics || {{}};
+    }}
+
+    function getTacticalMetricsForType(teamKey, zoneName, robotType) {{
+      const metricConfig = getTacticalMetricConfig();
+      const metrics = Array.isArray(metricConfig[robotType]) ? metricConfig[robotType] : [];
+      if (!metrics.length) return [];
+
+      const zoneRows = getZoneRows(zoneName);
+      const teamRows = zoneRows.filter((row) => getTeamKey(row) === teamKey);
+      const teamRow = teamRows.find((row) => row["兵种"] === robotType);
+      if (!teamRow) return [];
+
+      return metrics.map((metric) => {{
+        const metricValue = getConfiguredMetricValue(teamRow, metric);
+        if (!metricValue) return null;
+
+        const zoneValues = zoneRows
+          .filter((row) => row["兵种"] === robotType)
+          .map((row) => getConfiguredMetricValue(row, metric))
+          .filter(Boolean)
+          .map((item) => item.value);
+        if (!zoneValues.length) return null;
+
+        const zoneAverage = zoneValues.reduce((sum, value) => sum + value, 0) / zoneValues.length;
+        const ratio = getMetricRatio(metricValue.value, zoneAverage, Boolean(metric.lowerIsBetter));
+        if (ratio === null || !Number.isFinite(ratio)) return null;
+
+        return {{
+          type: robotType,
+          label: metric.label || metricValue.column,
+          column: metricValue.column,
+          teamValue: metricValue.value,
+          zoneAverage,
+          ratio,
+          lowerIsBetter: Boolean(metric.lowerIsBetter),
+        }};
+      }}).filter(Boolean);
+    }}
+
+    function getMetricByLabel(metrics, label) {{
+      return metrics.find((metric) => metric.label === label) || null;
+    }}
+
+    function metricRatio(metrics, label) {{
+      const metric = getMetricByLabel(metrics, label);
+      return metric && typeof metric.ratio === "number" ? metric.ratio : null;
+    }}
+
+    function metricIsStrong(metrics, label, threshold) {{
+      const ratio = metricRatio(metrics, label);
+      return ratio !== null && ratio >= threshold;
+    }}
+
+    function metricIsWeak(metrics, label, threshold) {{
+      const ratio = metricRatio(metrics, label);
+      return ratio !== null && ratio <= threshold;
+    }}
+
+    function averageMetricRatios(metrics, labels) {{
+      const wanted = new Set(labels);
+      const values = metrics
+        .filter((metric) => wanted.has(metric.label))
+        .map((metric) => metric.ratio)
+        .filter((ratio) => typeof ratio === "number" && Number.isFinite(ratio));
+      if (!values.length) return null;
+      return values.reduce((sum, value) => sum + value, 0) / values.length;
+    }}
+
+    function formatTacticalMetric(metric) {{
+      if (!metric) return "";
+      return `${{metric.label}} ${{formatValue(metric.teamValue)}}（均值 ${{formatValue(metric.zoneAverage)}}，${{formatPercent(metric.ratio)}}）`;
+    }}
+
+    function buildMvpEvidenceByType(mvpRadar, focusThreshold, quietThreshold) {{
+      const evidence = new Map();
+      if (!mvpRadar || !Array.isArray(mvpRadar.axes) || !mvpRadar.axes.length) return evidence;
+
+      const axesByType = new Map(mvpRadar.axes.map((axis) => [axis.type, axis]));
+      const teamTotal = mvpRadar.axes.reduce((sum, axis) => sum + (getFiniteNumber(axis, "teamValue") || 0), 0);
+      if (teamTotal <= 0) return evidence;
+
+      const teamAverage = teamTotal / mvpRadar.axes.length;
+      const putEvidence = (type, axisTypes) => {{
+        const count = axisTypes.reduce((sum, axisType) => {{
+          const axis = axesByType.get(axisType);
+          return sum + (getFiniteNumber(axis, "teamValue") || 0);
+        }}, 0);
+        const baseline = teamAverage * axisTypes.length;
+        const ratio = baseline > 0 ? count / baseline : null;
+        const level = ratio === null
+          ? "none"
+          : (ratio >= focusThreshold ? "focus" : (ratio <= quietThreshold ? "quiet" : "neutral"));
+        evidence.set(type, {{ type, count, ratio, level, available: true }});
+      }};
+
+      putEvidence("英雄", ["英雄"]);
+      putEvidence("步兵", ["步兵3", "步兵4"]);
+      putEvidence("哨兵", ["哨兵"]);
+      putEvidence("无人机", ["无人机"]);
+      putEvidence("雷达", ["雷达"]);
+      putEvidence("工程", ["工程"]);
+      putEvidence("飞镖", ["飞镖"]);
+      return evidence;
+    }}
+
+    function getMvpSupportText(mvpEvidence) {{
+      if (!mvpEvidence || !mvpEvidence.available || mvpEvidence.ratio === null) {{
+        return "MVP 暂无有效样本，不参与主判断。";
+      }}
+      const countText = `${{formatValue(mvpEvidence.count)}} 次`;
+      if (mvpEvidence.level === "focus") {{
+        return `MVP 有 ${{countText}}，高于该队对应位置的平均分布，可以作为高光佐证。`;
+      }}
+      if (mvpEvidence.level === "quiet") {{
+        return `MVP 只有 ${{countText}}，说明高光不常落在这里，但不直接推翻局均判断。`;
+      }}
+      return `MVP 为 ${{countText}}，接近队内分布，只作为中性旁证。`;
+    }}
+
+    function makeTacticalProfile(type, title, status, confidence, detail, metrics, evidenceLabels, mvpEvidence) {{
+      const candidateMetrics = evidenceLabels
+        .map((label) => getMetricByLabel(metrics, label))
+        .filter(Boolean);
+      const directionalMetrics = status === "weak"
+        ? candidateMetrics.filter((metric) => metric.ratio <= 1)
+        : candidateMetrics.filter((metric) => metric.ratio >= 1);
+      const evidenceMetrics = (directionalMetrics.length ? directionalMetrics : candidateMetrics)
+        .sort(status === "weak" ? sortByRatioAsc : sortByRatioDesc)
+        .slice(0, 3);
+      const evidenceText = evidenceMetrics.length
+        ? evidenceMetrics.map(formatTacticalMetric).join("；")
+        : "关键数据样本不足。";
+
+      return {{
+        type,
+        title,
+        status,
+        confidence: confidence || 1,
+        detail,
+        evidenceMetrics,
+        evidenceText,
+        mvpEvidence,
+        mvpText: getMvpSupportText(mvpEvidence),
+      }};
+    }}
+
+    function classifyHeroTactic(metrics, mvpEvidence, thresholds) {{
+      const score = averageMetricRatios(metrics, ["大弹丸命中率", "建筑伤害", "KDA得分", "场均击杀", "场均死亡"]) || 1;
+      const weakSignalCount = ["大弹丸命中率", "建筑伤害", "KDA得分", "场均击杀"]
+        .filter((label) => metricIsWeak(metrics, label, thresholds.low))
+        .length;
+      if (score <= thresholds.weak || weakSignalCount >= 3) {{
+        return makeTacticalProfile(
+          "英雄",
+          "英雄支撑偏弱",
+          "weak",
+          score,
+          "英雄关键输出和生存数据低于赛区均值时，才更适合判断为英雄位偏弱，而不是简单说打法偏近战或远程。",
+          metrics,
+          ["KDA得分", "建筑伤害", "大弹丸命中率", "场均死亡"],
+          mvpEvidence
+        );
+      }}
+      if (metricIsStrong(metrics, "部署命中", thresholds.high)) {{
+        return makeTacticalProfile(
+          "英雄",
+          "远程英雄压制型",
+          "tactic",
+          Math.max(metricRatio(metrics, "部署命中") || 1, score),
+          "部署命中明显高，说明英雄更常通过远程架点、部署命中和安全距离制造价值。",
+          metrics,
+          ["部署命中", "大弹丸命中率", "建筑伤害"],
+          mvpEvidence
+        );
+      }}
+      if (metricIsStrong(metrics, "建筑伤害", thresholds.high) || metricIsStrong(metrics, "场均击杀", thresholds.high)) {{
+        return makeTacticalProfile(
+          "英雄",
+          "近战英雄切入型",
+          "tactic",
+          Math.max(metricRatio(metrics, "建筑伤害") || 1, metricRatio(metrics, "场均击杀") || 1, score),
+          "部署命中不是主信号，但建筑伤害、击杀或 KDA 有支撑，更像跟随正面节奏完成近距离压制和拆建筑。",
+          metrics,
+          ["建筑伤害", "场均击杀", "KDA得分"],
+          mvpEvidence
+        );
+      }}
+      return makeTacticalProfile(
+        "英雄",
+        "常规正面英雄",
+        "balanced",
+        score,
+        "部署命中没有明显拉开，英雄更像随队伍正面节奏补伤害和拆建筑。",
+        metrics,
+        ["大弹丸命中率", "建筑伤害", "KDA得分"],
+        mvpEvidence
+      );
+    }}
+
+    function classifyInfantryTactic(metrics, mvpEvidence, thresholds) {{
+      const score = averageMetricRatios(metrics, ["小弹丸命中率", "对敌伤害", "KDA得分", "场均击杀", "场均死亡"]) || 1;
+      if (score <= thresholds.weak || metricIsWeak(metrics, "对敌伤害", thresholds.critical)) {{
+        return makeTacticalProfile("步兵", "步兵线偏弱", "weak", score, "步兵的命中、伤害、KDA 或生存低于赛区均值时，才说明正面交换质量有问题。", metrics, ["对敌伤害", "KDA得分", "小弹丸命中率", "场均死亡"], mvpEvidence);
+      }}
+      if (metricIsStrong(metrics, "对敌伤害", thresholds.high) && metricIsStrong(metrics, "场均击杀", thresholds.high)) {{
+        return makeTacticalProfile("步兵", "正面输出击杀型", "tactic", Math.max(metricRatio(metrics, "对敌伤害") || 1, metricRatio(metrics, "场均击杀") || 1), "伤害和击杀同时高，说明步兵线更像主动接团、持续给正面压力的核心输出。", metrics, ["对敌伤害", "场均击杀", "KDA得分"], mvpEvidence);
+      }}
+      if (metricIsStrong(metrics, "对敌伤害", thresholds.high) || metricIsStrong(metrics, "场均助攻", thresholds.high)) {{
+        return makeTacticalProfile("步兵", "火力消耗压制型", "tactic", Math.max(metricRatio(metrics, "对敌伤害") || 1, metricRatio(metrics, "场均助攻") || 1), "伤害或助攻更突出，说明步兵线更偏持续消耗、压血线和给队友创造收割窗口。", metrics, ["对敌伤害", "场均助攻", "小弹丸命中率"], mvpEvidence);
+      }}
+      if (metricIsStrong(metrics, "场均死亡", thresholds.high)) {{
+        return makeTacticalProfile("步兵", "稳健控线型", "balanced", Math.max(metricRatio(metrics, "场均死亡") || 1, score), "死亡控制较好，步兵线更偏稳健控线，价值不一定全部体现在击杀。", metrics, ["场均死亡", "KDA得分", "小弹丸命中率"], mvpEvidence);
+      }}
+      return makeTacticalProfile("步兵", "均衡对枪型", "balanced", score, "步兵线各项接近赛区均值，打法更像常规正面交换。", metrics, ["小弹丸命中率", "对敌伤害", "KDA得分"], mvpEvidence);
+    }}
+
+    function classifyGuardTactic(metrics, mvpEvidence, thresholds) {{
+      const score = averageMetricRatios(metrics, ["小弹丸命中率", "对敌伤害", "KDA得分", "场均死亡"]) || 1;
+      if (score <= thresholds.weak) {{
+        return makeTacticalProfile("哨兵", "哨兵防线偏弱", "weak", score, "哨兵伤害、KDA 或死亡控制低于均值时，防线容错会被明显压低。", metrics, ["对敌伤害", "KDA得分", "场均死亡"], mvpEvidence);
+      }}
+      if (metricIsStrong(metrics, "场均死亡", thresholds.high) && (metricIsStrong(metrics, "KDA得分", 1.02) || metricIsStrong(metrics, "对敌伤害", 1.02))) {{
+        return makeTacticalProfile("哨兵", "防线稳固型", "tactic", Math.max(metricRatio(metrics, "场均死亡") || 1, score), "死亡控制好且输出不低，说明哨兵更像防线稳定器，能抬高整队容错。", metrics, ["场均死亡", "KDA得分", "对敌伤害"], mvpEvidence);
+      }}
+      if (metricIsStrong(metrics, "对敌伤害", thresholds.high) || metricIsStrong(metrics, "场均击杀", thresholds.high)) {{
+        return makeTacticalProfile("哨兵", "主动火力哨兵", "tactic", Math.max(metricRatio(metrics, "对敌伤害") || 1, metricRatio(metrics, "场均击杀") || 1), "伤害或击杀高，说明哨兵不只是守点，也在参与正面火力压制。", metrics, ["对敌伤害", "场均击杀", "小弹丸命中率"], mvpEvidence);
+      }}
+      return makeTacticalProfile("哨兵", "常规防守型", "balanced", score, "哨兵数据接近赛区均值，主要承担常规防守和牵制。", metrics, ["小弹丸命中率", "对敌伤害", "KDA得分"], mvpEvidence);
+    }}
+
+    function classifyDroneTactic(metrics, mvpEvidence, thresholds) {{
+      const score = averageMetricRatios(metrics, ["场均发弹", "小弹丸命中率", "对敌伤害", "KDA得分", "场均击杀"]) || 1;
+      if (score <= thresholds.weak || metricIsWeak(metrics, "对敌伤害", thresholds.critical)) {{
+        return makeTacticalProfile("无人机", "无人机收益偏低", "weak", score, "无人机发弹、伤害或 KDA 低时，空中单位对正面局势的转化不够明显。", metrics, ["场均发弹", "对敌伤害", "KDA得分"], mvpEvidence);
+      }}
+      if (metricIsStrong(metrics, "对敌伤害", thresholds.high) && metricIsStrong(metrics, "场均击杀", thresholds.high)) {{
+        return makeTacticalProfile("无人机", "空中收割型", "tactic", Math.max(metricRatio(metrics, "对敌伤害") || 1, metricRatio(metrics, "场均击杀") || 1), "伤害和击杀同时高，说明无人机更像抓残血、打局部收割的空中火力点。", metrics, ["对敌伤害", "场均击杀", "KDA得分"], mvpEvidence);
+      }}
+      if (metricIsStrong(metrics, "场均发弹", thresholds.high) && metricIsStrong(metrics, "对敌伤害", 1.02)) {{
+        return makeTacticalProfile("无人机", "高频火力覆盖型", "tactic", Math.max(metricRatio(metrics, "场均发弹") || 1, metricRatio(metrics, "对敌伤害") || 1), "发弹量高且伤害有转化，说明无人机更偏持续覆盖和压制走位。", metrics, ["场均发弹", "对敌伤害", "小弹丸命中率"], mvpEvidence);
+      }}
+      if (metricIsStrong(metrics, "建筑伤害", thresholds.high)) {{
+        return makeTacticalProfile("无人机", "建筑骚扰型", "tactic", Math.max(metricRatio(metrics, "建筑伤害") || 1, score), "建筑伤害高，说明无人机有一定战略目标骚扰价值。", metrics, ["建筑伤害", "对敌伤害", "KDA得分"], mvpEvidence);
+      }}
+      return makeTacticalProfile("无人机", "机会支援型", "balanced", score, "无人机数据没有单项特别拔尖，更像跟随局势寻找输出窗口。", metrics, ["场均发弹", "对敌伤害", "KDA得分"], mvpEvidence);
+    }}
+
+    function classifyRadarTactic(metrics, mvpEvidence, thresholds) {{
+      const score = averageMetricRatios(metrics, ["雷达收益", "双倍易伤", "反制时长", "解算成功", "额外伤害"]) || 1;
+      if (score <= thresholds.weak || metricIsWeak(metrics, "雷达收益", thresholds.critical)) {{
+        return makeTacticalProfile("雷达", "雷达收益偏低", "weak", score, "雷达收益低时，说明信息、易伤或反制没有稳定转成团队优势。", metrics, ["雷达收益", "双倍易伤", "解算成功"], mvpEvidence);
+      }}
+      if (metricIsStrong(metrics, "双倍易伤", thresholds.high) || metricIsStrong(metrics, "解算成功", thresholds.high)) {{
+        return makeTacticalProfile("雷达", "易伤信息放大型", "tactic", Math.max(metricRatio(metrics, "双倍易伤") || 1, metricRatio(metrics, "解算成功") || 1, score), "双倍易伤或解算成功高，说明雷达更偏把信息转成集火窗口。", metrics, ["双倍易伤", "解算成功", "雷达收益"], mvpEvidence);
+      }}
+      if (metricIsStrong(metrics, "反制时长", thresholds.high)) {{
+        return makeTacticalProfile("雷达", "反制控制型", "tactic", Math.max(metricRatio(metrics, "反制时长") || 1, score), "反制时长高，说明雷达更像限制对方信息链的控制点。", metrics, ["反制时长", "雷达收益", "额外伤害"], mvpEvidence);
+      }}
+      if (metricIsStrong(metrics, "额外伤害", thresholds.high)) {{
+        return makeTacticalProfile("雷达", "伤害转化型", "tactic", Math.max(metricRatio(metrics, "额外伤害") || 1, score), "额外伤害高，说明信息收益有更直接的伤害转化。", metrics, ["额外伤害", "双倍易伤", "雷达收益"], mvpEvidence);
+      }}
+      return makeTacticalProfile("雷达", "常规信息支撑型", "balanced", score, "雷达数据接近均值，主要承担常规信息支撑。", metrics, ["雷达收益", "双倍易伤", "额外伤害"], mvpEvidence);
+    }}
+
+    function classifyEngineerTactic(metrics, mvpEvidence, thresholds) {{
+      const score = averageMetricRatios(metrics, ["组装经济", "兑换经济", "组装成功", "兑矿速度"]) || 1;
+      if (score <= thresholds.weak) {{
+        return makeTacticalProfile("工程", "工程经济偏弱", "weak", score, "工程经济、组装成功或兑矿速度低于均值时，会影响中后期资源循环。", metrics, ["组装经济", "兑换经济", "组装成功", "兑矿速度"], mvpEvidence);
+      }}
+      if (metricIsStrong(metrics, "组装经济", thresholds.high) || metricIsStrong(metrics, "组装成功", thresholds.high)) {{
+        return makeTacticalProfile("工程", "组装经济滚动型", "tactic", Math.max(metricRatio(metrics, "组装经济") || 1, metricRatio(metrics, "组装成功") || 1, score), "组装经济或成功次数高，说明工程更偏通过组装和资源滚动给全队续航。", metrics, ["组装经济", "组装成功", "兑换经济"], mvpEvidence);
+      }}
+      if (metricIsStrong(metrics, "兑换经济", thresholds.high) && metricIsStrong(metrics, "兑矿速度", 1.02)) {{
+        return makeTacticalProfile("工程", "稳定兑矿运营型", "tactic", Math.max(metricRatio(metrics, "兑换经济") || 1, metricRatio(metrics, "兑矿速度") || 1), "兑换经济高且兑矿速度不拖后腿，说明工程更偏稳定运营。", metrics, ["兑换经济", "兑矿速度", "组装成功"], mvpEvidence);
+      }}
+      return makeTacticalProfile("工程", "常规经济支撑型", "balanced", score, "工程数据接近均值，更多提供常规经济支撑。", metrics, ["组装经济", "兑换经济", "兑矿速度"], mvpEvidence);
+    }}
+
+    function classifyDartTactic(metrics, mvpEvidence, thresholds) {{
+      const score = averageMetricRatios(metrics, ["飞镖收益", "随机移动靶", "末端移动靶", "随机固定靶", "固定靶", "前哨站"]) || 1;
+      if (score <= thresholds.weak || metricIsWeak(metrics, "飞镖收益", thresholds.critical)) {{
+        return makeTacticalProfile("飞镖", "飞镖收益偏低", "weak", score, "飞镖总收益或关键目标命中低时，战略目标压力不足。", metrics, ["飞镖收益", "随机移动靶", "末端移动靶"], mvpEvidence);
+      }}
+      if (metricIsStrong(metrics, "末端移动靶", thresholds.high) || metricIsStrong(metrics, "随机移动靶", thresholds.high)) {{
+        return makeTacticalProfile("飞镖", "高价值目标打击型", "tactic", Math.max(metricRatio(metrics, "末端移动靶") || 1, metricRatio(metrics, "随机移动靶") || 1, score), "随机移动靶或末端移动靶高，说明飞镖更偏拿高价值目标收益。", metrics, ["末端移动靶", "随机移动靶", "飞镖收益"], mvpEvidence);
+      }}
+      if (metricIsStrong(metrics, "固定靶", thresholds.high) || metricIsStrong(metrics, "随机固定靶", thresholds.high)) {{
+        return makeTacticalProfile("飞镖", "基础靶稳定拿分型", "tactic", Math.max(metricRatio(metrics, "固定靶") || 1, metricRatio(metrics, "随机固定靶") || 1, score), "固定靶和随机固定靶更突出，说明飞镖更偏稳定拿基础目标分。", metrics, ["固定靶", "随机固定靶", "飞镖收益"], mvpEvidence);
+      }}
+      return makeTacticalProfile("飞镖", "常规飞镖支援型", "balanced", score, "飞镖目标收益接近均值，没有明显高价值目标倾向。", metrics, ["飞镖收益", "随机固定靶", "固定靶"], mvpEvidence);
+    }}
+
+    function buildTacticalProfiles(teamKey, zoneName, mvpRadar, thresholds) {{
+      const classifiers = {{
+        "英雄": classifyHeroTactic,
+        "步兵": classifyInfantryTactic,
+        "哨兵": classifyGuardTactic,
+        "无人机": classifyDroneTactic,
+        "雷达": classifyRadarTactic,
+        "工程": classifyEngineerTactic,
+        "飞镖": classifyDartTactic,
+      }};
+      const mvpEvidenceByType = buildMvpEvidenceByType(mvpRadar, thresholds.mvpFocus, thresholds.mvpQuiet);
+
+      return getAllowedTypesForZone(zoneName)
+        .map((robotType) => {{
+          const metrics = getTacticalMetricsForType(teamKey, zoneName, robotType);
+          if (!metrics.length || !classifiers[robotType]) return null;
+          return classifiers[robotType](metrics, mvpEvidenceByType.get(robotType), thresholds);
+        }})
+        .filter(Boolean);
+    }}
+
     function buildPerGameMetricInsights(teamKey, zoneName, maxItems, strongThreshold, weakThreshold) {{
       const zoneRows = getZoneRows(zoneName);
       const teamRows = zoneRows.filter((row) => getTeamKey(row) === teamKey);
@@ -1977,46 +2309,79 @@ def render_html(title, payload):
         ? mvpAxes.filter((axis) => axis.ratio <= mvpQuietThreshold).sort(sortByRatioAsc).slice(0, maxItems)
         : [];
 
+      const tacticalThresholds = {{
+        high: config.tacticalHighThreshold || 1.22,
+        low: config.tacticalLowThreshold || 0.82,
+        weak: config.tacticalWeakThreshold || 0.78,
+        critical: config.tacticalCriticalThreshold || 0.55,
+        mvpFocus: mvpFocusThreshold,
+        mvpQuiet: mvpQuietThreshold,
+      }};
+      const tacticalProfiles = buildTacticalProfiles(teamKey, zoneName, mvpRadar, tacticalThresholds);
+      const tacticProfiles = tacticalProfiles
+        .filter((profile) => profile.status === "tactic")
+        .sort((left, right) => right.confidence - left.confidence)
+        .slice(0, maxItems);
+      const balancedProfiles = tacticalProfiles
+        .filter((profile) => profile.status === "balanced")
+        .sort((left, right) => right.confidence - left.confidence)
+        .slice(0, maxItems);
+      const weakProfiles = tacticalProfiles
+        .filter((profile) => profile.status === "weak")
+        .sort((left, right) => left.confidence - right.confidence)
+        .slice(0, maxItems);
+      const tacticEvidenceItems = tacticalProfiles
+        .flatMap((profile) => profile.evidenceMetrics.map((metric) => ({{
+          ...metric,
+          tacticType: profile.type,
+          tacticTitle: profile.title,
+        }})))
+        .sort(sortByRatioDesc)
+        .slice(0, maxItems + 1);
+      const mvpEvidenceItems = tacticalProfiles
+        .filter((profile) => profile.mvpEvidence && profile.mvpEvidence.available)
+        .sort((left, right) => {{
+          const leftRatio = left.mvpEvidence && left.mvpEvidence.ratio !== null ? left.mvpEvidence.ratio : 0;
+          const rightRatio = right.mvpEvidence && right.mvpEvidence.ratio !== null ? right.mvpEvidence.ratio : 0;
+          return rightRatio - leftRatio;
+        }})
+        .slice(0, maxItems);
+
       let level = "接近均线";
       if (avgRatio >= 1.15) level = "整体高于均线";
       if (avgRatio >= 1.35) level = "整体明显强势";
       if (avgRatio < 0.9) level = "整体略低于均线";
 
-      const orderedAxes = radarAxes.slice().sort(sortByRatioDesc);
-      const topAxis = orderedAxes[0] || null;
-      const bottomAxis = orderedAxes[orderedAxes.length - 1] || null;
-      const spread = topAxis && bottomAxis ? topAxis.ratio - bottomAxis.ratio : 0;
-      const structureLabel = spread >= 1.2
-        ? "结构偏科比较明显"
-        : (spread >= 0.65 ? "强弱层次比较清楚" : "各轴相对均衡");
-      const strongestText = topAxis ? `${{topAxis.type}}最高，达到${{formatPercent(topAxis.ratio)}}` : "";
-      const weakestText = bottomAxis ? `${{bottomAxis.type}}最低，为${{formatPercent(bottomAxis.ratio)}}` : "";
+      const summaryParts = [];
+      const primaryTactics = tacticProfiles.length ? tacticProfiles : balancedProfiles;
+      if (primaryTactics.length) {{
+        const primary = primaryTactics[0];
+        summaryParts.push(`从局均数据看，${{radar.teamLabel}}最清晰的打法信号是${{primary.type}}的「${{primary.title}}」：${{primary.detail}}关键证据是${{primary.evidenceText}}。`);
+        if (primaryTactics.length > 1) {{
+          const secondary = primaryTactics.slice(1, 3).map((profile) => `${{profile.type}}「${{profile.title}}」`).join("、");
+          summaryParts.push(`另外还能看到${{secondary}}，这些判断都来自同赛区同兵种的局均/场均对比，而不是 MVP 次数本身。`);
+        }}
+      }} else {{
+        summaryParts.push(`当前可用的局均样本不足，暂时只能看到综合均值 ${{formatPercent(avgRatio)}}，${{level}}。`);
+      }}
 
-      const summaryParts = [`综合雷达均值为 ${{formatPercent(avgRatio)}}，${{level}}。`];
-      if (strongestText && weakestText) {{
-        summaryParts.push(`${{strongestText}}；${{weakestText}}，整体看${{structureLabel}}。`);
-      }}
-      if (strongAxes.length) {{
-        summaryParts.push(`优势更集中在 ${{joinAxisNames(strongAxes)}}，这些轴更适合作为当前对局的主动发力点。`);
-      }} else {{
-        summaryParts.push("目前没有特别突出的单轴，打法上更适合依赖整体协同和稳定执行。");
-      }}
-      if (metricInsights.strong.length) {{
-        summaryParts.push(`局均/场均细项里，${{joinMetricNames(metricInsights.strong)}}明显高于同赛区同兵种均值，是比 MVP 更稳定的支撑证据。`);
-      }}
-      if (weakAxes.length) {{
-        summaryParts.push(`相对短板在 ${{joinAxisNames(weakAxes)}}，建议复盘资源投入、对位压力和关键失误来源。`);
+      if (weakProfiles.length) {{
+        const weakText = weakProfiles.map((profile) => `${{profile.type}}「${{profile.title}}」`).join("、");
+        const weakEvidence = weakProfiles.map((profile) => profile.evidenceText).join("；");
+        summaryParts.push(`真正需要标成偏弱的是${{weakText}}，因为关键数据已经低于同赛区均值：${{weakEvidence}}。`);
       }} else if (metricInsights.weak.length) {{
-        summaryParts.push(`综合轴没有明显塌陷，但局均/场均细项提示 ${{joinMetricNames(metricInsights.weak)}} 需要继续观察。`);
+        summaryParts.push(`没有兵种被直接判为偏弱，但 ${{joinMetricNames(metricInsights.weak)}} 有低于均值的信号，适合继续复盘对位压力和资源投入。`);
       }} else {{
-        summaryParts.push("后续重点不在救短板，而是看优势轴能否稳定转化成击杀、经济或建筑压力。");
+        summaryParts.push("目前没有明确到足以判定“某兵种偏弱”的数据，评价重点应放在打法侧重点和稳定性，而不是强行找短板。");
       }}
-      if (mvpFocusAxes.length) {{
-        const focusText = joinAxisNames(mvpFocusAxes);
-        const overlaps = strongAxes.filter((axis) => mvpFocusAxes.some((item) => item.type === axis.type));
-        summaryParts.push(`队内 MVP 高光更偏向 ${{focusText}}，${{overlaps.length ? `其中${{joinAxisNames(overlaps)}}和综合强项互相印证` : "这些高光点和综合强项不完全重合，可能更像关键局发挥"}}。`);
+
+      const focusedMvpProfiles = mvpEvidenceItems.filter((profile) => profile.mvpEvidence.level === "focus");
+      if (focusedMvpProfiles.length) {{
+        summaryParts.push(`MVP 只作为佐证：${{focusedMvpProfiles.map((profile) => `${{profile.type}}${{formatValue(profile.mvpEvidence.count)}}次`).join("、")}} 的高光分布和部分数据判断能互相印证。`);
       }} else if (mvpTotal > 0) {{
-        summaryParts.push("队内高光来源比较分散，临场发挥不太依赖单一兵种。");
+        summaryParts.push("MVP 分布没有形成决定性证据，所以不把它作为主判断，只用来解释哪些兵种更容易在关键局被看见。");
+      }} else {{
+        summaryParts.push("该筛选下没有有效 MVP 样本，战术判断完全按局均/场均数据给出。");
       }}
 
       return {{
@@ -2030,6 +2395,12 @@ def render_html(title, payload):
         criticalAxes,
         metricStrongItems: metricInsights.strong,
         metricWeakItems: metricInsights.weak,
+        tacticalProfiles,
+        tacticProfiles,
+        balancedProfiles,
+        weakProfiles,
+        tacticEvidenceItems,
+        mvpEvidenceItems,
         mvpFocusAxes,
         mvpQuietAxes,
         summary: summaryParts.join(""),
@@ -2072,32 +2443,79 @@ def render_html(title, payload):
       `;
     }}
 
+    function renderTacticalProfileItems(items, emptyText) {{
+      if (!items.length) {{
+        return `<p class="insight-note">${{escapeHtml(emptyText)}}</p>`;
+      }}
+      return `
+        <div class="insight-list">
+          ${{items.map((item) => {{
+            const detail = `${{item.detail}} 证据：${{item.evidenceText}} ${{item.mvpText}}`;
+            return `
+              <div class="insight-chip insight-chip-block" title="${{escapeHtml(detail)}}">
+                <span>${{escapeHtml(`${{item.type}} · ${{item.title}}`)}}</span>
+                <small>${{escapeHtml(item.evidenceText)}}</small>
+              </div>
+            `;
+          }}).join("")}}
+        </div>
+      `;
+    }}
+
+    function renderTacticalEvidenceItems(items, emptyText) {{
+      if (!items.length) {{
+        return `<p class="insight-note">${{escapeHtml(emptyText)}}</p>`;
+      }}
+      return `
+        <div class="insight-list">
+          ${{items.map((item) => {{
+            const direction = item.lowerIsBetter ? "越低越好" : "越高越好";
+            const detail = `${{item.tacticType}}${{item.tacticTitle}}：${{formatTacticalMetric(item)}}；${{direction}}`;
+            return `
+              <div class="insight-chip insight-chip-block" title="${{escapeHtml(detail)}}">
+                <span>${{escapeHtml(`${{item.tacticType}} · ${{item.label}}`)}}</span>
+                <small>${{escapeHtml(`队伍 ${{formatValue(item.teamValue)}} / 均值 ${{formatValue(item.zoneAverage)}} · ${{formatPercent(item.ratio)}}`)}}</small>
+              </div>
+            `;
+          }}).join("")}}
+        </div>
+      `;
+    }}
+
+    function renderMvpEvidenceItems(items, emptyText) {{
+      if (!items.length) {{
+        return `<p class="insight-note">${{escapeHtml(emptyText)}}</p>`;
+      }}
+      return `
+        <div class="insight-list">
+          ${{items.map((item) => {{
+            const evidence = item.mvpEvidence;
+            return `
+              <div class="insight-chip insight-chip-block" title="${{escapeHtml(item.mvpText)}}">
+                <span>${{escapeHtml(`${{item.type}} · MVP ${{formatValue(evidence.count)}}次`)}}</span>
+                <small>${{escapeHtml(`${{evidence.ratio === null ? "无比例" : formatPercent(evidence.ratio)}} · ${{item.title}}`)}}</small>
+              </div>
+            `;
+          }}).join("")}}
+        </div>
+      `;
+    }}
+
     function renderTeamEvaluationCard(evaluation) {{
       if (!evaluation) return "";
-      const leadTip = evaluation.strongAxes.length
-        ? getAxisTip(evaluation.strongAxes[0].type)
-        : (evaluation.weakAxes.length ? getAxisTip(evaluation.weakAxes[0].type) : "");
-      const riskNote = evaluation.criticalAxes.length
-        ? `${{joinAxisNames(evaluation.criticalAxes)}} 已低于 45%，建议优先复盘。`
-        : (evaluation.weakAxes.length ? "问题轴不一定代表不能打，更像是当前赛区均值下的相对短板。" : "没有明显低于阈值的兵种轴。");
-      const mvpNote = evaluation.mvpFocusAxes.length
-        ? `MVP 分布高点: ${{joinAxisNames(evaluation.mvpFocusAxes)}}。`
-        : (evaluation.mvpQuietAxes.length ? `MVP 较少落在 ${{joinAxisNames(evaluation.mvpQuietAxes)}}。` : "MVP 分布没有明显偏向。");
-      const leadNoteMarkup = evaluation.strongAxes.length || leadTip
-        ? `<p class="insight-note">${{escapeHtml(leadTip || "优势轴按相对赛区均值排序。")}}</p>`
-        : "";
-      const riskItemsMarkup = renderInsightItems(evaluation.weakAxes, riskNote);
-      const riskNoteMarkup = evaluation.weakAxes.length
-        ? `<p class="insight-note">${{escapeHtml(riskNote)}}</p>`
-        : "";
-      const mvpItemsMarkup = renderInsightItems(evaluation.mvpFocusAxes, mvpNote);
-      const mvpNoteMarkup = evaluation.mvpFocusAxes.length
-        ? `<p class="insight-note">${{escapeHtml(mvpNote)}}</p>`
-        : "";
-      const metricItemsMarkup = renderMetricInsightItems(evaluation.metricStrongItems, "局均/场均细项没有明显高出均值的项目。");
-      const metricNote = evaluation.metricWeakItems.length
-        ? `同时留意 ${{joinMetricNames(evaluation.metricWeakItems)}}。`
-        : "这里优先展示局均、场均和关键收益项，比 MVP 更适合作为稳定性判断。";
+      const tacticDisplayItems = evaluation.tacticProfiles.length
+        ? evaluation.tacticProfiles
+        : evaluation.balancedProfiles;
+      const tacticItemsMarkup = renderTacticalProfileItems(tacticDisplayItems, "局均数据暂时没有形成明确打法画像。");
+      const evidenceItemsMarkup = renderTacticalEvidenceItems(evaluation.tacticEvidenceItems, "还没有足够的关键数据证据。");
+      const riskItemsMarkup = evaluation.weakProfiles.length
+        ? renderTacticalProfileItems(evaluation.weakProfiles, "没有明确偏弱兵种。")
+        : renderMetricInsightItems(evaluation.metricWeakItems, "没有明确到足以判定偏弱的低位数据。");
+      const riskNote = evaluation.weakProfiles.length
+        ? "这里的“偏弱”只在关键局均/场均数据低于同赛区均值时出现。"
+        : "不强行找短板；低位细项只作为复盘线索。";
+      const mvpItemsMarkup = renderMvpEvidenceItems(evaluation.mvpEvidenceItems, "MVP 暂无有效样本。");
+      const mvpNote = "MVP 只用于佐证高光归属，主判断仍以局均/场均和关键收益数据为准。";
 
       return `
         <article class="chart-card insight-card">
@@ -2114,24 +2532,23 @@ def render_html(title, payload):
           </div>
           <div class="insight-grid">
             <section class="insight-section">
-              <h4>优势兵种</h4>
-              ${{renderInsightItems(evaluation.strongAxes, "没有超过优势阈值的兵种轴。")}}
-              ${{leadNoteMarkup}}
+              <h4>打法画像</h4>
+              ${{tacticItemsMarkup}}
             </section>
             <section class="insight-section">
-              <h4>局均数据</h4>
-              ${{metricItemsMarkup}}
-              <p class="insight-note">${{escapeHtml(metricNote)}}</p>
+              <h4>关键数据</h4>
+              ${{evidenceItemsMarkup}}
+              <p class="insight-note">优先展示能解释打法类型的局均/场均数据。</p>
             </section>
             <section class="insight-section">
-              <h4>问题兵种</h4>
+              <h4>待复盘点</h4>
               ${{riskItemsMarkup}}
-              ${{riskNoteMarkup}}
+              <p class="insight-note">${{escapeHtml(riskNote)}}</p>
             </section>
             <section class="insight-section">
-              <h4>MVP倾向</h4>
+              <h4>MVP佐证</h4>
               ${{mvpItemsMarkup}}
-              ${{mvpNoteMarkup}}
+              <p class="insight-note">${{escapeHtml(mvpNote)}}</p>
             </section>
           </div>
         </article>
