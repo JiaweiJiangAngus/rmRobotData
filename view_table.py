@@ -642,6 +642,17 @@ def render_html(title, payload):
       font-size: 13px;
     }}
 
+    .bar-team small {{
+      display: block;
+      margin-top: 2px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      color: var(--muted);
+      font-size: 11px;
+      line-height: 1.3;
+    }}
+
     .bar-value {{
       text-align: right;
       color: var(--accent-deep);
@@ -662,6 +673,63 @@ def render_html(title, payload):
       background: linear-gradient(90deg, #d88457, #b85c38);
       transform-origin: left center;
       animation: grow 0.7s ease;
+    }}
+
+    .strength-table-wrap {{
+      overflow: auto;
+      max-height: 560px;
+      border: 1px solid rgba(107, 79, 52, 0.1);
+      border-radius: 14px;
+      background: rgba(255,255,255,0.54);
+    }}
+
+    .strength-table {{
+      width: 100%;
+      min-width: 900px;
+      border-collapse: collapse;
+      font-size: 13px;
+    }}
+
+    .strength-table th,
+    .strength-table td {{
+      padding: 10px 12px;
+      border-bottom: 1px solid rgba(107, 79, 52, 0.1);
+      text-align: right;
+      font-variant-numeric: tabular-nums;
+      white-space: nowrap;
+    }}
+
+    .strength-table th {{
+      position: sticky;
+      top: 0;
+      z-index: 1;
+      background: rgba(255, 250, 242, 0.96);
+      color: var(--muted);
+      font-weight: 700;
+    }}
+
+    .strength-table th:first-child,
+    .strength-table th:nth-child(2),
+    .strength-table td:first-child,
+    .strength-table td:nth-child(2) {{
+      text-align: left;
+    }}
+
+    .strength-table td:first-child {{
+      color: var(--accent-deep);
+      font-weight: 700;
+    }}
+
+    .strength-table td:nth-child(2) {{
+      max-width: 260px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      color: var(--text);
+    }}
+
+    .strength-table .total-cell {{
+      color: var(--accent-deep);
+      font-weight: 800;
     }}
 
     @keyframes grow {{
@@ -1844,6 +1912,172 @@ def render_html(title, payload):
       `;
     }}
 
+    function rowMatchesKeyword(row) {{
+      if (!state.keyword) return true;
+      const keywords = state.keyword.toLowerCase().split(/\\s+/).filter(Boolean);
+      if (!keywords.length) return true;
+      const haystack = payload.columns
+        .map((column) => row[column])
+        .filter((value) => value !== null && value !== undefined)
+        .join(" ")
+        .toLowerCase();
+      return keywords.some((keyword) => haystack.includes(keyword));
+    }}
+
+    function getCrossZoneRankingRows(selectedZones) {{
+      const selectedZoneSet = new Set(selectedZones);
+      return payload.rows.filter((row) => {{
+        if (!selectedZoneSet.has(row["赛区"])) return false;
+        if (!getAllowedTypesForZone(row["赛区"]).includes(row["兵种"])) return false;
+        return rowMatchesKeyword(row);
+      }});
+    }}
+
+    function getCrossZoneRankingAxes(selectedZones) {{
+      const axisTypes = new Set();
+      selectedZones.forEach((zone) => {{
+        getRadarAxesForZone(zone).forEach((axis) => axisTypes.add(axis.type));
+      }});
+      return radarAxes.filter((axis) => axisTypes.has(axis.type));
+    }}
+
+    function buildCombinedAxisAverageMap(selectedZones, axes) {{
+      const selectedZoneSet = new Set(selectedZones);
+      const averageMap = new Map();
+      axes.forEach((axis) => {{
+        const values = payload.rows
+          .filter((row) => selectedZoneSet.has(row["赛区"]))
+          .filter((row) => getAllowedTypesForZone(row["赛区"]).includes(row["兵种"]))
+          .filter((row) => row["兵种"] === axis.type)
+          .map((row) => getAxisMetricValue(row, axis))
+          .filter((value) => value !== null && Number.isFinite(value));
+        const average = values.length
+          ? values.reduce((sum, value) => sum + value, 0) / values.length
+          : null;
+        averageMap.set(axis.type, average);
+      }});
+      return averageMap;
+    }}
+
+    function buildCrossZoneTeamRanking() {{
+      const selectedZones = getSelectedZones();
+      if (selectedZones.length < 2) return [];
+
+      const rows = getCrossZoneRankingRows(selectedZones);
+      if (!rows.length) return [];
+
+      const axes = getCrossZoneRankingAxes(selectedZones);
+      const axisAverageMap = buildCombinedAxisAverageMap(selectedZones, axes);
+      const teamMap = new Map();
+
+      rows.forEach((row) => {{
+        const robotType = row["兵种"];
+        const axis = axes.find((item) => item.type === robotType);
+        if (!axis) return;
+
+        const teamValue = getAxisMetricValue(row, axis);
+        const combinedAverage = axisAverageMap.get(robotType);
+        if (teamValue === null || combinedAverage === null || !Number.isFinite(combinedAverage)) return;
+
+        const teamKey = getTeamKey(row);
+        if (!teamKey.trim()) return;
+        if (!teamMap.has(teamKey)) {{
+          teamMap.set(teamKey, {{
+            key: teamKey,
+            label: getTeamLabel(row),
+            zones: new Set(),
+            axisValuesByType: new Map(),
+          }});
+        }}
+
+        const entry = teamMap.get(teamKey);
+        entry.zones.add(row["赛区"]);
+        if (!entry.axisValuesByType.has(robotType)) {{
+          entry.axisValuesByType.set(robotType, []);
+        }}
+        entry.axisValuesByType.get(robotType).push(teamValue);
+      }});
+
+      return Array.from(teamMap.values()).map((entry) => {{
+        const axisScores = axes.map((axis) => {{
+          const values = entry.axisValuesByType.get(axis.type) || [];
+          const combinedAverage = axisAverageMap.get(axis.type);
+          if (!values.length || combinedAverage === null || !Number.isFinite(combinedAverage)) {{
+            return {{ ...axis, ratio: null, teamValue: null, combinedAverage }};
+          }}
+          const teamValue = values.reduce((sum, value) => sum + value, 0) / values.length;
+          const ratio = combinedAverage === 0 ? (teamValue > 0 ? 3 : 1) : teamValue / combinedAverage;
+          return {{
+            ...axis,
+            ratio: Number.isFinite(ratio) ? ratio : null,
+            teamValue,
+            combinedAverage,
+          }};
+        }});
+        const validScores = axisScores
+          .map((axis) => axis.ratio)
+          .filter((ratio) => ratio !== null && Number.isFinite(ratio));
+        const score = validScores.length
+          ? validScores.reduce((sum, value) => sum + value, 0) / validScores.length
+          : null;
+        return {{
+          ...entry,
+          axes: axisScores,
+          zoneCount: entry.zones.size,
+          axisCount: validScores.length,
+          score,
+        }};
+      }})
+        .filter((entry) => entry.score !== null)
+        .sort((left, right) => right.score - left.score);
+    }}
+
+    function renderCrossZoneRankingCard() {{
+      const selectedZones = getSelectedZones();
+      if (selectedZones.length < 2) return "";
+
+      const ranking = buildCrossZoneTeamRanking();
+      if (ranking.length < 2) return "";
+
+      const axes = ranking[0].axes || [];
+      return `
+        <article class="chart-card">
+          <h3>跨赛区总实力表</h3>
+          <p class="chart-subtitle">纵轴为学校 / 战队，横轴为兵种；每个兵种列 = 该队关键数据 / 所选赛区合并后的该兵种均值，总分为可用兵种列平均。声明：总实力排名仅代表个人观点，无引战倾向。</p>
+          <div class="strength-table-wrap">
+            <table class="strength-table">
+              <thead>
+                <tr>
+                  <th>排名</th>
+                  <th>学校 / 战队</th>
+                  ${{axes.map((axis) => `<th>${{escapeHtml(axis.type)}}</th>`).join("")}}
+                  <th>总分</th>
+                </tr>
+              </thead>
+              <tbody>
+                ${{ranking.map((item, index) => {{
+                  const zoneText = Array.from(item.zones).join("、");
+                  return `
+                    <tr>
+                      <td>#${{index + 1}}</td>
+                      <td title="${{escapeHtml(zoneText)}}">${{escapeHtml(item.label)}}</td>
+                      ${{item.axes.map((axis) => {{
+                        const title = axis.ratio === null
+                          ? "该兵种缺少可用数据"
+                          : `${{axis.metricLabel}}: 队伍 ${{formatValue(axis.teamValue)}} / 合并均值 ${{formatValue(axis.combinedAverage)}}`;
+                        return `<td title="${{escapeHtml(title)}}">${{escapeHtml(axis.ratio === null ? "-" : formatPercent(axis.ratio))}}</td>`;
+                      }}).join("")}}
+                      <td class="total-cell">${{escapeHtml(formatPercent(item.score))}}</td>
+                    </tr>
+                  `;
+                }}).join("")}}
+              </tbody>
+            </table>
+          </div>
+        </article>
+      `;
+    }}
+
     function getTeamEvaluationConfig() {{
       return payload.teamEvaluation || {{}};
     }}
@@ -2593,6 +2827,9 @@ def render_html(title, payload):
       }}
 
       const cards = [];
+      const crossZoneRankingCard = renderCrossZoneRankingCard();
+      if (crossZoneRankingCard) cards.push(crossZoneRankingCard);
+
       const comparisonCard = renderZoneComparisonCard(rows);
       if (comparisonCard) cards.push(comparisonCard);
 
@@ -2717,14 +2954,14 @@ def render_html(title, payload):
         ? (singleTeam
           ? `当前已锁定 ${{singleTeam.label}}，${{radarLabel}}会直接显示在表格上方，对比它在 ${{singleTeam.zone}} 赛区里的兵种综合水平。${{mvpRadar ? "检测到该队伍此赛区的 MVP 数据，已同步展示 MVP 雷达图。" : ""}}`
           : (selectedZones.length > 1
-            ? `当前正在比较 ${{selectedZones.length}} 个赛区，图表会按“${{metricLabel}}”汇总所选赛区的均值。`
+            ? `当前正在比较 ${{selectedZones.length}} 个赛区，图表会先按七边形雷达图规则生成跨赛区战队总榜，再按“${{metricLabel}}”汇总赛区均值。`
             : `当前筛选命中 ${{filteredRows.length}} 条记录，你可以继续切赛区、兵种和排序指标，页面会自动收起无数据字段。`))
         : "当前筛选下没有可展示的数据，可以换个赛区、兵种或搜索词再试。";
       els.tableTitle.textContent = currentTitle;
       els.tableMeta.textContent = singleTeam
         ? `当前显示 ${{filteredRows.length}} 条匹配记录，按“${{metricLabel}}”排序，已在上方展示赛区综合雷达图${{mvpRadar ? "和 MVP 雷达图" : ""}}`
         : (selectedZones.length > 1
-          ? `当前显示 ${{filteredRows.length}} 条匹配记录，已选择 ${{selectedZones.length}} 个赛区，按“${{metricLabel}}”排序`
+          ? `当前显示 ${{filteredRows.length}} 条匹配记录，已选择 ${{selectedZones.length}} 个赛区；上方总榜按 7 个兵种关键数据相对赛区均值排序`
           : `当前显示 ${{filteredRows.length}} 条匹配记录，按“${{metricLabel}}”排序`);
       document.title = heroTitle;
     }}
