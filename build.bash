@@ -1,47 +1,59 @@
-#!/bin/bash
-echo "[Checking] Python runtime..."
-python3 --version > /dev/null 2>&1
-if [ $? -ne 0 ]; then
-    echo "未找到 python3，请先安装 Python 3。"
-    exit 1
+#!/usr/bin/env bash
+set -euo pipefail
+
+# 始终切到脚本所在目录，避免从别的目录执行时生成路径错乱
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+cd "$SCRIPT_DIR"
+
+CXX="${CXX:-g++}"
+CXXFLAGS="${CXXFLAGS:--std=c++17 -O2 -Wall -Wextra}"
+LDFLAGS_CURL="${LDFLAGS_CURL:--lcurl}"
+
+log()  { printf '\033[1;36m%s\033[0m\n' "$*"; }
+warn() { printf '\033[1;33m%s\033[0m\n' "$*"; }
+err()  { printf '\033[1;31m%s\033[0m\n' "$*" >&2; }
+
+check_cmd() {
+    if ! command -v "$1" >/dev/null 2>&1; then
+        err "未找到 $1。"
+        return 1
+    fi
+}
+
+check_header() {
+    local header="$1"
+    local package_hint="$2"
+    if ! printf '#include <%s>\nint main(){return 0;}\n' "$header" | "$CXX" -std=c++17 -x c++ -fsyntax-only - >/dev/null 2>&1; then
+        err "缺少头文件 <$header>。"
+        err "Ubuntu/Debian 可尝试安装：$package_hint"
+        return 1
+    fi
+}
+
+log "[Checking] 检查构建环境..."
+check_cmd python3
+check_cmd "$CXX"
+check_header "curl/curl.h" "sudo apt install libcurl4-openssl-dev"
+check_header "nlohmann/json.hpp" "sudo apt install nlohmann-json3-dev"
+
+mkdir -p bin
+
+log "----------------------------------------"
+log "[1/4] 正在编译 fetch_robot..."
+"$CXX" $CXXFLAGS fetch_robot.cpp -o bin/fetch_robot $LDFLAGS_CURL
+
+if [[ "${1:-}" == "--no-fetch" ]]; then
+    warn "[2/4] 已跳过抓取数据：收到 --no-fetch 参数。"
 else
-    echo "Python 运行环境检查通过。"
+    log "[2/4] 正在抓取最新数据..."
+    ./bin/fetch_robot
 fi
 
-# 创建 bin 文件夹（如果不存在）
-if [ ! -d "bin" ]; then
-    echo ">> 创建 bin 目录..."
-    mkdir -p bin
-fi
+log "----------------------------------------"
+log "[3/4] 正在编译 analyzer..."
+"$CXX" $CXXFLAGS analyzer.cpp -o bin/analyze
 
-# 设置 Python 环境变量
-export PYTHONPATH=$HOME/.local/lib/python3.10/site-packages
-
-# ==========================================
-# 2. 编译 & 运行数据抓取程序 (fetch_robot)
-# ==========================================
-
-echo "----------------------------------------"
-echo "[1/4] 正在编译 fetch_robot..."
-# 将可执行文件输出到 bin/fetch_robot
-g++ fetch_robot.cpp -o bin/fetch_robot -lcurl
-
-echo "[2/4] 正在抓取最新数据..."
-# 运行 bin 目录下的程序
-# 注意：程序运行时的"当前目录"依然是项目根目录，
-# 所以生成的 data 文件夹会出现在根目录下，这是正确的。
-./bin/fetch_robot
-
-# ==========================================
-# 3. 编译 & 运行分析程序 (analyzer)
-# ==========================================
-
-echo "----------------------------------------"
-echo "[3/4] 正在编译 analyzer..."
-# 将可执行文件输出到 bin/analyze
-# 加上 -std=c++17 确保兼容性
-g++ -std=c++17 analyzer.cpp -o bin/analyze
-
-echo "[4/4] 编译完成!"
-echo "查询结果会生成到 bin/robot_dashboard.html，可直接用run.bash打开。"
-echo "----------------------------------------"
+log "[4/4] 构建完成。"
+log "运行 ./run.bash 可生成并打开 bin/robot_dashboard.html。"
+log "只想编译、不抓取数据时，可执行：./build.bash --no-fetch"
+log "----------------------------------------"

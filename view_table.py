@@ -274,22 +274,81 @@ def render_html(title, payload):
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>{safe_title}</title>
+  <script>
+    (() => {{
+      const savedTheme = localStorage.getItem("rm-dashboard-theme");
+      const savedDensity = localStorage.getItem("rm-dashboard-density") || "standard";
+      const prefersNight = window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches;
+      const theme = savedTheme || (prefersNight ? "night" : "day");
+      document.documentElement.dataset.theme = theme;
+      document.documentElement.dataset.density = savedDensity;
+    }})();
+  </script>
   <style>
     :root {{
+      color-scheme: light;
       --bg: #f4efe7;
+      --page-bg:
+        radial-gradient(circle at top left, rgba(255, 206, 156, 0.5), transparent 30%),
+        radial-gradient(circle at 80% 10%, rgba(176, 216, 255, 0.35), transparent 26%),
+        linear-gradient(180deg, #f9f3eb 0%, #f4efe7 45%, #efe8dc 100%);
       --panel: rgba(255, 250, 242, 0.82);
       --panel-strong: rgba(255, 247, 236, 0.96);
+      --panel-soft: rgba(255, 255, 255, 0.66);
       --line: rgba(107, 79, 52, 0.14);
+      --glass-line: rgba(255, 255, 255, 0.5);
       --text: #2d241b;
       --muted: #78624a;
       --accent: #b85c38;
       --accent-deep: #8f3b1f;
       --accent-soft: rgba(184, 92, 56, 0.12);
+      --table-alt: rgba(255, 252, 247, 0.55);
+      --input-bg: rgba(255,255,255,0.78);
+      --button-bg: rgba(255,255,255,0.75);
+      --glow-warm: rgba(237, 170, 92, 0.28);
+      --glow-cool: rgba(95, 149, 186, 0.18);
       --shadow: 0 18px 50px rgba(89, 57, 28, 0.12);
       --radius: 24px;
       --radius-sm: 16px;
       --font-sans: "Noto Sans SC", "PingFang SC", "Microsoft YaHei", sans-serif;
       --font-display: "ZCOOL XiaoWei", "STKaiti", "KaiTi", serif;
+      --grid-color: rgba(107, 79, 52, 0.075);
+      --grid-accent: rgba(184, 92, 56, 0.13);
+      --aurora-a: rgba(255, 190, 122, 0.34);
+      --aurora-b: rgba(94, 154, 196, 0.20);
+      --aurora-c: rgba(184, 92, 56, 0.16);
+      --sparkle: rgba(255, 255, 255, 0.62);
+    }}
+
+    html[data-theme="night"] {{
+      color-scheme: dark;
+      --bg: #0f1724;
+      --page-bg:
+        radial-gradient(circle at top left, rgba(70, 96, 130, 0.34), transparent 32%),
+        radial-gradient(circle at 82% 8%, rgba(184, 92, 56, 0.16), transparent 28%),
+        linear-gradient(180deg, #101827 0%, #0d1420 46%, #090f19 100%);
+      --panel: rgba(20, 29, 44, 0.84);
+      --panel-strong: rgba(19, 27, 40, 0.96);
+      --panel-soft: rgba(30, 41, 59, 0.66);
+      --line: rgba(226, 232, 240, 0.13);
+      --glass-line: rgba(226, 232, 240, 0.14);
+      --text: #e8edf5;
+      --muted: #a6b2c2;
+      --accent: #d88457;
+      --accent-deep: #ffb27a;
+      --accent-soft: rgba(216, 132, 87, 0.16);
+      --table-alt: rgba(255, 255, 255, 0.035);
+      --input-bg: rgba(12, 18, 29, 0.72);
+      --button-bg: rgba(30, 41, 59, 0.74);
+      --glow-warm: rgba(216, 132, 87, 0.15);
+      --glow-cool: rgba(91, 141, 204, 0.16);
+      --shadow: 0 18px 60px rgba(0, 0, 0, 0.34);
+      --grid-color: rgba(148, 163, 184, 0.085);
+      --grid-accent: rgba(216, 132, 87, 0.16);
+      --aurora-a: rgba(63, 127, 255, 0.19);
+      --aurora-b: rgba(216, 132, 87, 0.17);
+      --aurora-c: rgba(93, 234, 218, 0.10);
+      --sparkle: rgba(226, 232, 240, 0.36);
     }}
 
     * {{
@@ -301,10 +360,7 @@ def render_html(title, payload):
       min-height: 100vh;
       color: var(--text);
       font-family: var(--font-sans);
-      background:
-        radial-gradient(circle at top left, rgba(255, 206, 156, 0.5), transparent 30%),
-        radial-gradient(circle at 80% 10%, rgba(176, 216, 255, 0.35), transparent 26%),
-        linear-gradient(180deg, #f9f3eb 0%, #f4efe7 45%, #efe8dc 100%);
+      background: var(--page-bg);
     }}
 
     body::before,
@@ -324,13 +380,187 @@ def render_html(title, payload):
     body::before {{
       top: -10rem;
       right: -10rem;
-      background: rgba(237, 170, 92, 0.28);
+      background: var(--glow-warm);
     }}
 
     body::after {{
       bottom: -12rem;
       left: -12rem;
-      background: rgba(95, 149, 186, 0.18);
+      background: var(--glow-cool);
+    }}
+
+    .animated-backdrop {{
+      position: fixed;
+      inset: 0;
+      overflow: hidden;
+      pointer-events: none;
+      z-index: 0;
+    }}
+
+    .animated-backdrop .grid {{
+      position: absolute;
+      inset: -20%;
+      background-image:
+        linear-gradient(var(--grid-color) 1px, transparent 1px),
+        linear-gradient(90deg, var(--grid-color) 1px, transparent 1px),
+        radial-gradient(circle at 50% 50%, var(--grid-accent), transparent 34%);
+      background-size: 46px 46px, 46px 46px, 780px 780px;
+      mask-image: radial-gradient(ellipse at 50% 18%, rgba(0,0,0,0.86), transparent 72%);
+      opacity: 0.62;
+      transform: perspective(900px) rotateX(62deg) translateY(-20%);
+      transform-origin: top center;
+      animation: grid-drift 34s linear infinite;
+    }}
+
+    .animated-backdrop .aurora {{
+      position: absolute;
+      inset: -18% -10% auto -10%;
+      height: 58%;
+      background:
+        radial-gradient(ellipse at 20% 35%, var(--aurora-a), transparent 45%),
+        radial-gradient(ellipse at 66% 22%, var(--aurora-b), transparent 42%),
+        radial-gradient(ellipse at 86% 58%, var(--aurora-c), transparent 40%);
+      filter: blur(34px) saturate(1.08);
+      opacity: 0.9;
+      animation: aurora-flow 18s ease-in-out infinite alternate;
+    }}
+
+    .animated-backdrop .orb {{
+      position: absolute;
+      width: 18rem;
+      height: 18rem;
+      border-radius: 999px;
+      background: radial-gradient(circle, var(--aurora-a), transparent 68%);
+      filter: blur(18px);
+      opacity: 0.38;
+      animation: orb-float 16s ease-in-out infinite alternate;
+    }}
+
+    .animated-backdrop .orb.one {{
+      top: 16%;
+      left: 6%;
+    }}
+
+    .animated-backdrop .orb.two {{
+      right: 7%;
+      bottom: 12%;
+      width: 22rem;
+      height: 22rem;
+      background: radial-gradient(circle, var(--aurora-b), transparent 68%);
+      animation-duration: 20s;
+      animation-delay: -5s;
+    }}
+
+    .animated-backdrop .spark {{
+      position: absolute;
+      inset: 0;
+      background-image:
+        radial-gradient(circle, var(--sparkle) 0 1px, transparent 1.6px),
+        radial-gradient(circle, var(--sparkle) 0 1px, transparent 1.4px);
+      background-size: 92px 92px, 137px 137px;
+      background-position: 18px 22px, 70px 54px;
+      opacity: 0.22;
+      animation: sparkle-drift 26s linear infinite;
+    }}
+
+    .hero-card,
+    .summary-card,
+    .control-panel,
+    .table-panel,
+    .chart-card,
+    .stat,
+    .axis-card,
+    .radar-panel,
+    .mvp-panel,
+    .league-panel {{
+      position: relative;
+    }}
+
+    .hero-card::before,
+    .summary-card::before,
+    .control-panel::before,
+    .table-panel::before {{
+      content: "";
+      position: absolute;
+      inset: 0;
+      border-radius: inherit;
+      pointer-events: none;
+      background: linear-gradient(135deg, rgba(255,255,255,0.28), transparent 32%, rgba(255,255,255,0.08));
+      opacity: 0.7;
+    }}
+
+    html[data-theme="night"] .hero-card::before,
+    html[data-theme="night"] .summary-card::before,
+    html[data-theme="night"] .control-panel::before,
+    html[data-theme="night"] .table-panel::before {{
+      background: linear-gradient(135deg, rgba(255,255,255,0.10), transparent 36%, rgba(216,132,87,0.07));
+      opacity: 0.86;
+    }}
+
+    .hero-card > *,
+    .summary-card > *,
+    .control-panel > *,
+    .table-panel > * {{
+      position: relative;
+      z-index: 1;
+    }}
+
+    .stat,
+    .chart-card,
+    .axis-card,
+    .type-tab,
+    .theme-toggle {{
+      will-change: transform;
+    }}
+
+    .stat:hover,
+    .chart-card:hover,
+    .axis-card:hover {{
+      transform: translateY(-2px);
+      box-shadow: 0 14px 34px rgba(0,0,0,0.10);
+    }}
+
+    html[data-theme="night"] .stat:hover,
+    html[data-theme="night"] .chart-card:hover,
+    html[data-theme="night"] .axis-card:hover {{
+      box-shadow: 0 16px 38px rgba(0,0,0,0.28), 0 0 0 1px rgba(216,132,87,0.08);
+    }}
+
+    @keyframes grid-drift {{
+      from {{ background-position: 0 0, 0 0, 0 0; }}
+      to {{ background-position: 46px 46px, 46px 46px, 220px 120px; }}
+    }}
+
+    @keyframes aurora-flow {{
+      from {{ transform: translate3d(-2%, -1%, 0) scale(1); }}
+      to {{ transform: translate3d(3%, 4%, 0) scale(1.06); }}
+    }}
+
+    @keyframes orb-float {{
+      from {{ transform: translate3d(0, 0, 0) scale(1); }}
+      to {{ transform: translate3d(42px, -34px, 0) scale(1.12); }}
+    }}
+
+    @keyframes sparkle-drift {{
+      from {{ transform: translate3d(0, 0, 0); }}
+      to {{ transform: translate3d(-92px, 92px, 0); }}
+    }}
+
+    @media (prefers-reduced-motion: reduce) {{
+      .animated-backdrop .grid,
+      .animated-backdrop .aurora,
+      .animated-backdrop .orb,
+      .animated-backdrop .spark {{
+        animation: none;
+      }}
+
+      .stat:hover,
+      .chart-card:hover,
+      .axis-card:hover,
+      .type-tab:hover,
+      .theme-toggle:hover {{
+        transform: none;
+      }}
     }}
 
     .page {{
@@ -354,10 +584,36 @@ def render_html(title, payload):
     .control-panel,
     .table-panel {{
       background: var(--panel);
-      border: 1px solid rgba(255, 255, 255, 0.5);
+      border: 1px solid var(--glass-line);
       backdrop-filter: blur(12px);
       box-shadow: var(--shadow);
       border-radius: var(--radius);
+    }}
+
+    .hero-toolbar {{
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 12px;
+    }}
+
+    .theme-toggle {{
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      background: var(--button-bg);
+      color: var(--text);
+      padding: 8px 13px;
+      font-size: 13px;
+      font-weight: 700;
+      cursor: pointer;
+      box-shadow: 0 8px 22px rgba(0,0,0,0.08);
+      transition: transform 0.18s ease, background 0.18s ease, border-color 0.18s ease;
+    }}
+
+    .theme-toggle:hover {{
+      transform: translateY(-1px);
+      border-color: var(--accent);
     }}
 
     .hero-card {{
@@ -429,6 +685,7 @@ def render_html(title, payload):
       border-radius: var(--radius-sm);
       background: linear-gradient(180deg, rgba(255,255,255,0.82), rgba(255,245,235,0.74));
       border: 1px solid var(--line);
+      transition: transform 0.22s ease, box-shadow 0.22s ease, border-color 0.22s ease;
     }}
 
     .stat-label {{
@@ -479,7 +736,7 @@ def render_html(title, payload):
       border: 1px solid var(--line);
       border-radius: 14px;
       font-size: 14px;
-      background: rgba(255,255,255,0.78);
+      background: var(--input-bg);
       color: var(--text);
       outline: none;
       transition: border-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
@@ -500,7 +757,7 @@ def render_html(title, payload):
       padding: 10px;
       border: 1px solid var(--line);
       border-radius: 14px;
-      background: rgba(255,255,255,0.66);
+      background: var(--panel-soft);
     }}
 
     .zone-option {{
@@ -548,7 +805,7 @@ def render_html(title, payload):
       cursor: pointer;
       padding: 10px 14px;
       border-radius: 999px;
-      background: rgba(255,255,255,0.75);
+      background: var(--button-bg);
       color: var(--muted);
       font-size: 13px;
       transition: transform 0.18s ease, background 0.18s ease, color 0.18s ease, box-shadow 0.18s ease;
@@ -601,6 +858,7 @@ def render_html(title, payload):
       border-radius: 18px;
       background: linear-gradient(180deg, rgba(255,255,255,0.9), rgba(252,245,236,0.78));
       border: 1px solid var(--line);
+      transition: transform 0.22s ease, box-shadow 0.22s ease, border-color 0.22s ease;
     }}
 
     .chart-card h3 {{
@@ -775,7 +1033,7 @@ def render_html(title, payload):
     }}
 
     tbody tr:nth-child(2n) {{
-      background: rgba(255, 252, 247, 0.55);
+      background: var(--table-alt);
     }}
 
     tbody tr:hover {{
@@ -956,7 +1214,7 @@ def render_html(title, payload):
       min-width: 0;
       padding: 8px 10px;
       border-radius: 12px;
-      background: rgba(255,255,255,0.66);
+      background: var(--panel-soft);
       border: 1px solid rgba(107, 79, 52, 0.1);
       font-size: 13px;
     }}
@@ -1007,6 +1265,7 @@ def render_html(title, payload):
       border-radius: 18px;
       background: linear-gradient(180deg, rgba(255,255,255,0.94), rgba(250, 242, 233, 0.9));
       border: 1px solid rgba(107, 79, 52, 0.1);
+      transition: transform 0.22s ease, box-shadow 0.22s ease, border-color 0.22s ease;
     }}
 
     .axis-top {{
@@ -1032,6 +1291,94 @@ def render_html(title, payload):
       color: var(--muted);
       font-size: 12px;
       line-height: 1.7;
+    }}
+
+    html[data-theme="night"] .hero-card::after {{
+      background: radial-gradient(circle, rgba(216, 132, 87, 0.15), transparent 70%);
+    }}
+
+    html[data-theme="night"] .summary-grid,
+    html[data-theme="night"] .zone-checklist,
+    html[data-theme="night"] .table-wrap,
+    html[data-theme="night"] .radar-panel,
+    html[data-theme="night"] .mvp-panel,
+    html[data-theme="night"] .league-panel {{
+      border-color: var(--line);
+      background: rgba(15, 23, 36, 0.42);
+    }}
+
+    html[data-theme="night"] input,
+    html[data-theme="night"] select {{
+      border-color: var(--line);
+      background: var(--input-bg);
+      color: var(--text);
+    }}
+
+    html[data-theme="night"] input::placeholder {{
+      color: rgba(226, 232, 240, 0.52);
+    }}
+
+    html[data-theme="night"] th {{
+      background: rgba(15, 23, 36, 0.96);
+      color: var(--accent-deep);
+    }}
+
+    html[data-theme="night"] td {{
+      border-color: var(--line);
+    }}
+
+    html[data-theme="night"] tbody tr:hover {{
+      background: var(--accent-soft);
+    }}
+
+    html[data-theme="night"] .empty {{
+      background: rgba(15, 23, 36, 0.84);
+    }}
+
+    html[data-theme="night"] .eyebrow {{
+      background: rgba(30, 41, 59, 0.68);
+      border: 1px solid var(--line);
+      color: var(--accent-deep);
+    }}
+
+    html[data-theme="night"] .stat,
+    html[data-theme="night"] .chart-card,
+    html[data-theme="night"] .axis-card {{
+      background: linear-gradient(180deg, rgba(24, 34, 50, 0.94), rgba(15, 23, 36, 0.90));
+      border-color: var(--line);
+    }}
+
+    html[data-theme="night"] .strength-table-wrap,
+    html[data-theme="night"] .table-wrap,
+    html[data-theme="night"] .radar-stage,
+    html[data-theme="night"] .radar-side {{
+      background: rgba(12, 18, 29, 0.68);
+      border-color: var(--line);
+    }}
+
+    html[data-theme="night"] .strength-table th {{
+      background: rgba(15, 23, 36, 0.98);
+      color: var(--muted);
+    }}
+
+    html[data-theme="night"] .strength-table th,
+    html[data-theme="night"] .strength-table td,
+    html[data-theme="night"] .insight-chip {{
+      border-color: var(--line);
+    }}
+
+    html[data-theme="night"] .insight-chip {{
+      background: rgba(20, 29, 44, 0.72);
+    }}
+
+    html[data-theme="night"] .bar-track,
+    html[data-theme="night"] .legend-chip {{
+      background: rgba(216, 132, 87, 0.14);
+    }}
+
+    html[data-theme="night"] select option {{
+      background: #111827;
+      color: var(--text);
     }}
 
     @media (max-width: 1100px) {{
@@ -1102,15 +1449,2473 @@ def render_html(title, payload):
         flex-direction: column;
       }}
     }}
+
+
+    /* ========== Mecha Cockpit Skin v3 ========== */
+    :root {{
+      --bg: #e8ecef;
+      --page-bg:
+        radial-gradient(circle at 12% 10%, rgba(24, 102, 154, 0.18), transparent 28%),
+        radial-gradient(circle at 86% 0%, rgba(225, 72, 40, 0.15), transparent 32%),
+        linear-gradient(135deg, #f6f8fb 0%, #dfe6ec 42%, #f3f5f7 100%);
+      --panel: rgba(244, 248, 251, 0.82);
+      --panel-strong: rgba(255, 255, 255, 0.94);
+      --panel-soft: rgba(235, 242, 247, 0.72);
+      --line: rgba(26, 43, 58, 0.14);
+      --glass-line: rgba(255, 255, 255, 0.66);
+      --text: #17212b;
+      --muted: #5f7080;
+      --accent: #e6532e;
+      --accent-deep: #b83318;
+      --accent-soft: rgba(230, 83, 46, 0.12);
+      --hud-cyan: #087ea4;
+      --hud-cyan-soft: rgba(8, 126, 164, 0.12);
+      --hud-green: #0b8a73;
+      --hud-warn: #e6a700;
+      --table-alt: rgba(8, 126, 164, 0.045);
+      --input-bg: rgba(255,255,255,0.82);
+      --button-bg: rgba(245,250,253,0.82);
+      --shadow: 0 22px 60px rgba(15, 28, 40, 0.14);
+      --grid-color: rgba(8, 126, 164, 0.08);
+      --grid-accent: rgba(230, 83, 46, 0.14);
+      --aurora-a: rgba(8, 126, 164, 0.20);
+      --aurora-b: rgba(230, 83, 46, 0.17);
+      --aurora-c: rgba(11, 138, 115, 0.12);
+      --sparkle: rgba(8, 126, 164, 0.48);
+      --armor-edge: rgba(23, 33, 43, 0.17);
+      --scanline: rgba(8, 126, 164, 0.22);
+    }}
+
+    html[data-theme="night"] {{
+      --bg: #04070d;
+      --page-bg:
+        radial-gradient(circle at 12% 8%, rgba(0, 180, 255, 0.18), transparent 30%),
+        radial-gradient(circle at 82% 2%, rgba(255, 73, 35, 0.16), transparent 34%),
+        linear-gradient(135deg, #05070c 0%, #09111f 42%, #02040a 100%);
+      --panel: rgba(9, 18, 31, 0.76);
+      --panel-strong: rgba(10, 19, 34, 0.94);
+      --panel-soft: rgba(10, 25, 43, 0.70);
+      --line: rgba(107, 211, 255, 0.16);
+      --glass-line: rgba(117, 211, 255, 0.18);
+      --text: #eaf7ff;
+      --muted: #8ea4b7;
+      --accent: #ff5c32;
+      --accent-deep: #ff9b5f;
+      --accent-soft: rgba(255, 92, 50, 0.14);
+      --hud-cyan: #37d8ff;
+      --hud-cyan-soft: rgba(55, 216, 255, 0.12);
+      --hud-green: #33f5b4;
+      --hud-warn: #ffd166;
+      --table-alt: rgba(55, 216, 255, 0.035);
+      --input-bg: rgba(4, 12, 22, 0.76);
+      --button-bg: rgba(8, 21, 37, 0.82);
+      --shadow: 0 24px 70px rgba(0, 0, 0, 0.46);
+      --grid-color: rgba(55, 216, 255, 0.10);
+      --grid-accent: rgba(255, 92, 50, 0.18);
+      --aurora-a: rgba(55, 216, 255, 0.17);
+      --aurora-b: rgba(255, 92, 50, 0.16);
+      --aurora-c: rgba(51, 245, 180, 0.10);
+      --sparkle: rgba(127, 225, 255, 0.46);
+      --armor-edge: rgba(117, 211, 255, 0.16);
+      --scanline: rgba(55, 216, 255, 0.25);
+    }}
+
+    body {{
+      background: var(--page-bg);
+      overflow-x: hidden;
+    }}
+
+    body::before {{
+      width: 34rem;
+      height: 34rem;
+      background: radial-gradient(circle, var(--aurora-b), transparent 68%);
+      filter: blur(35px);
+    }}
+
+    body::after {{
+      width: 32rem;
+      height: 32rem;
+      background: radial-gradient(circle, var(--aurora-a), transparent 70%);
+      filter: blur(34px);
+    }}
+
+    .animated-backdrop {{
+      background:
+        linear-gradient(115deg, transparent 0 16%, rgba(255,255,255,0.025) 16.1% 16.8%, transparent 16.9% 100%),
+        linear-gradient(245deg, transparent 0 72%, rgba(255,255,255,0.028) 72.2% 73%, transparent 73.2% 100%);
+    }}
+
+    html[data-theme="night"] .animated-backdrop {{
+      background:
+        linear-gradient(115deg, transparent 0 16%, rgba(55,216,255,0.04) 16.1% 16.8%, transparent 16.9% 100%),
+        linear-gradient(245deg, transparent 0 72%, rgba(255,92,50,0.04) 72.2% 73%, transparent 73.2% 100%);
+    }}
+
+    .animated-backdrop .grid {{
+      inset: -28%;
+      opacity: 0.76;
+      background-image:
+        linear-gradient(var(--grid-color) 1px, transparent 1px),
+        linear-gradient(90deg, var(--grid-color) 1px, transparent 1px),
+        linear-gradient(30deg, transparent 0 48%, var(--grid-accent) 49%, transparent 50%),
+        radial-gradient(circle at 50% 50%, var(--grid-accent), transparent 34%);
+      background-size: 42px 42px, 42px 42px, 128px 128px, 820px 820px;
+      mask-image: linear-gradient(to bottom, transparent 0%, rgba(0,0,0,.72) 18%, rgba(0,0,0,.92) 52%, transparent 100%);
+      transform: perspective(950px) rotateX(66deg) translateY(-24%);
+      animation: grid-drift 24s linear infinite;
+    }}
+
+    .animated-backdrop .hex-field {{
+      position: absolute;
+      inset: 0;
+      opacity: 0.25;
+      background-image:
+        linear-gradient(30deg, var(--grid-color) 12%, transparent 12.5%, transparent 87%, var(--grid-color) 87.5%, var(--grid-color)),
+        linear-gradient(150deg, var(--grid-color) 12%, transparent 12.5%, transparent 87%, var(--grid-color) 87.5%, var(--grid-color)),
+        linear-gradient(30deg, var(--grid-color) 12%, transparent 12.5%, transparent 87%, var(--grid-color) 87.5%, var(--grid-color)),
+        linear-gradient(150deg, var(--grid-color) 12%, transparent 12.5%, transparent 87%, var(--grid-color) 87.5%, var(--grid-color));
+      background-size: 72px 126px;
+      background-position: 0 0, 0 0, 36px 63px, 36px 63px;
+      animation: hex-slide 36s linear infinite;
+    }}
+
+    .animated-backdrop .mech-blueprint {{
+      position: absolute;
+      right: clamp(16px, 5vw, 90px);
+      top: 96px;
+      width: min(34vw, 520px);
+      aspect-ratio: 1 / 1.25;
+      opacity: 0.20;
+      filter: drop-shadow(0 0 18px var(--hud-cyan-soft));
+      background:
+        linear-gradient(90deg, transparent 38%, var(--hud-cyan) 38% 39.2%, transparent 39.2% 60.8%, var(--hud-cyan) 60.8% 62%, transparent 62%),
+        linear-gradient(0deg, transparent 14%, var(--hud-cyan) 14% 15.2%, transparent 15.2% 30%, var(--hud-cyan) 30% 31%, transparent 31% 66%, var(--hud-cyan) 66% 67.2%, transparent 67.2%),
+        radial-gradient(circle at 50% 14%, transparent 0 10%, var(--hud-cyan) 10.2% 11.4%, transparent 11.8%),
+        linear-gradient(135deg, transparent 0 18%, var(--hud-cyan-soft) 18% 23%, transparent 23% 78%, var(--hud-cyan-soft) 78% 83%, transparent 83%);
+      clip-path: polygon(50% 2%, 68% 18%, 63% 36%, 82% 45%, 74% 75%, 60% 70%, 57% 98%, 43% 98%, 40% 70%, 26% 75%, 18% 45%, 37% 36%, 32% 18%);
+      border: 1px solid var(--hud-cyan);
+      animation: blueprint-pulse 4s ease-in-out infinite alternate;
+    }}
+
+    .animated-backdrop .reticle {{
+      position: absolute;
+      left: clamp(14px, 6vw, 120px);
+      top: 34%;
+      width: 168px;
+      height: 168px;
+      border-radius: 50%;
+      border: 1px solid var(--hud-cyan);
+      opacity: 0.22;
+      box-shadow: 0 0 0 24px rgba(55,216,255,0.02), inset 0 0 26px var(--hud-cyan-soft);
+      animation: reticle-lock 5.5s ease-in-out infinite;
+    }}
+
+    .animated-backdrop .reticle::before,
+    .animated-backdrop .reticle::after {{
+      content: "";
+      position: absolute;
+      background: var(--hud-cyan);
+      opacity: 0.75;
+    }}
+
+    .animated-backdrop .reticle::before {{
+      left: 50%;
+      top: -28px;
+      width: 1px;
+      height: 224px;
+    }}
+
+    .animated-backdrop .reticle::after {{
+      left: -28px;
+      top: 50%;
+      width: 224px;
+      height: 1px;
+    }}
+
+    .animated-backdrop .scanline {{
+      position: absolute;
+      inset: -20% 0 auto 0;
+      height: 160px;
+      background: linear-gradient(to bottom, transparent, var(--scanline), transparent);
+      opacity: 0.26;
+      transform: translateY(-20vh);
+      animation: scan-pass 7.5s linear infinite;
+    }}
+
+    .animated-backdrop .warning-stripes {{
+      position: absolute;
+      left: -80px;
+      bottom: 9%;
+      width: 420px;
+      height: 28px;
+      opacity: 0.18;
+      transform: rotate(-22deg);
+      background: repeating-linear-gradient(90deg, var(--accent) 0 18px, transparent 18px 34px);
+      filter: blur(0.2px);
+    }}
+
+    .hud-frame {{
+      position: fixed;
+      inset: 14px;
+      z-index: 2;
+      pointer-events: none;
+      opacity: 0.55;
+      background:
+        linear-gradient(var(--hud-cyan), var(--hud-cyan)) left top / 104px 1px no-repeat,
+        linear-gradient(var(--hud-cyan), var(--hud-cyan)) left top / 1px 104px no-repeat,
+        linear-gradient(var(--hud-cyan), var(--hud-cyan)) right top / 104px 1px no-repeat,
+        linear-gradient(var(--hud-cyan), var(--hud-cyan)) right top / 1px 104px no-repeat,
+        linear-gradient(var(--hud-cyan), var(--hud-cyan)) left bottom / 104px 1px no-repeat,
+        linear-gradient(var(--hud-cyan), var(--hud-cyan)) left bottom / 1px 104px no-repeat,
+        linear-gradient(var(--hud-cyan), var(--hud-cyan)) right bottom / 104px 1px no-repeat,
+        linear-gradient(var(--hud-cyan), var(--hud-cyan)) right bottom / 1px 104px no-repeat;
+      mix-blend-mode: multiply;
+    }}
+
+    html[data-theme="night"] .hud-frame {{
+      mix-blend-mode: screen;
+      opacity: 0.62;
+    }}
+
+    .page {{
+      max-width: 1760px;
+      padding-top: 24px;
+    }}
+
+    .cockpit-rail {{
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 10px;
+      margin: 0 0 14px;
+      color: var(--hud-cyan);
+      font-size: 11px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+    }}
+
+    .cockpit-rail span {{
+      min-width: 0;
+      padding: 8px 12px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      background: linear-gradient(90deg, var(--hud-cyan-soft), transparent);
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }}
+
+    .hero-card,
+    .summary-card,
+    .control-panel,
+    .table-panel,
+    .chart-card {{
+      border: 1px solid var(--glass-line);
+      background:
+        linear-gradient(135deg, rgba(255,255,255,0.18), transparent 28%),
+        linear-gradient(180deg, var(--panel), var(--panel-strong));
+      box-shadow: var(--shadow), inset 0 0 0 1px rgba(255,255,255,0.06);
+      clip-path: polygon(0 16px, 16px 0, 100% 0, 100% calc(100% - 16px), calc(100% - 16px) 100%, 0 100%);
+    }}
+
+    .hero-card::before,
+    .summary-card::before,
+    .control-panel::before,
+    .table-panel::before,
+    .chart-card::before {{
+      content: "";
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      border-radius: inherit;
+      background:
+        linear-gradient(90deg, var(--hud-cyan) 0 54px, transparent 54px calc(100% - 72px), var(--accent) calc(100% - 72px) 100%) top / 100% 2px no-repeat,
+        linear-gradient(90deg, var(--accent) 0 36px, transparent 36px calc(100% - 42px), var(--hud-cyan) calc(100% - 42px) 100%) bottom / 100% 2px no-repeat;
+      opacity: 0.36;
+    }}
+
+    .hero-card > *,
+    .summary-card > *,
+    .control-panel > *,
+    .table-panel > *,
+    .chart-card > * {{
+      position: relative;
+      z-index: 1;
+    }}
+
+    .hero-toolbar {{
+      margin-bottom: 14px;
+    }}
+
+    .toolbar-actions {{
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+    }}
+
+    .eyebrow {{
+      border: 1px solid var(--line);
+      background:
+        linear-gradient(90deg, var(--accent-soft), var(--hud-cyan-soft));
+      color: var(--accent-deep);
+      font-weight: 900;
+      letter-spacing: 0.13em;
+      box-shadow: inset 0 0 18px rgba(255,255,255,0.08);
+    }}
+
+    h1 {{
+      font-family: "Arial Black", "Noto Sans SC", "Microsoft YaHei", sans-serif;
+      font-weight: 900;
+      letter-spacing: -0.06em;
+      text-transform: uppercase;
+      text-shadow: 0 0 28px rgba(55,216,255,0.14);
+    }}
+
+    .combat-strip {{
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 20px;
+    }}
+
+    .combat-strip span {{
+      padding: 9px 12px;
+      border-radius: 12px;
+      border: 1px solid var(--line);
+      background: linear-gradient(90deg, var(--panel-soft), transparent);
+      color: var(--muted);
+      font-size: 12px;
+      letter-spacing: 0.08em;
+    }}
+
+    .combat-strip b {{
+      color: var(--hud-cyan);
+    }}
+
+    .theme-toggle {{
+      border-color: var(--line);
+      background:
+        linear-gradient(135deg, var(--button-bg), var(--hud-cyan-soft));
+      color: var(--text);
+      font-weight: 900;
+      letter-spacing: 0.04em;
+      box-shadow: 0 10px 28px rgba(0,0,0,0.12), inset 0 0 0 1px rgba(255,255,255,0.08);
+    }}
+
+    .theme-toggle:hover {{
+      border-color: var(--hud-cyan);
+      box-shadow: 0 0 0 1px var(--hud-cyan-soft), 0 12px 30px rgba(0,0,0,0.16);
+    }}
+
+    .summary-card {{
+      background:
+        linear-gradient(135deg, rgba(230,83,46,0.08), transparent 34%),
+        linear-gradient(180deg, var(--panel), var(--panel-strong));
+    }}
+
+    .summary-title,
+    .panel-title,
+    .table-topbar h2,
+    .chart-card h3,
+    .radar-header h3,
+    .insight-header h3 {{
+      font-family: "Arial Black", "Noto Sans SC", "Microsoft YaHei", sans-serif;
+      letter-spacing: -0.03em;
+    }}
+
+    .stat {{
+      background:
+        linear-gradient(135deg, var(--hud-cyan-soft), transparent 52%),
+        linear-gradient(180deg, rgba(255,255,255,0.72), rgba(233,241,247,0.62));
+      border-color: var(--line);
+      clip-path: polygon(0 10px, 10px 0, 100% 0, 100% 100%, 0 100%);
+    }}
+
+    html[data-theme="night"] .stat {{
+      background:
+        linear-gradient(135deg, rgba(55,216,255,0.09), transparent 52%),
+        linear-gradient(180deg, rgba(10,24,42,0.92), rgba(5,12,23,0.86));
+    }}
+
+    .stat-value {{
+      color: var(--hud-cyan);
+      text-shadow: 0 0 24px var(--hud-cyan-soft);
+    }}
+
+    .control-panel {{
+      top: 18px;
+    }}
+
+    .field input,
+    .field select,
+    .zone-checklist {{
+      border-color: var(--line);
+      background: var(--input-bg);
+      box-shadow: inset 0 0 18px rgba(0,0,0,0.025);
+    }}
+
+    .field input:focus,
+    .field select:focus {{
+      border-color: var(--hud-cyan);
+      box-shadow: 0 0 0 4px var(--hud-cyan-soft), inset 0 0 18px rgba(0,0,0,0.035);
+    }}
+
+    .zone-option:hover,
+    .zone-option.active {{
+      background: linear-gradient(90deg, var(--hud-cyan-soft), var(--accent-soft));
+      color: var(--text);
+    }}
+
+    .type-tab {{
+      border: 1px solid var(--line);
+      background: linear-gradient(135deg, var(--button-bg), transparent);
+      font-weight: 800;
+    }}
+
+    .type-tab.active {{
+      background: linear-gradient(135deg, var(--accent), var(--hud-cyan));
+      color: #fff;
+      box-shadow: 0 0 26px var(--accent-soft);
+    }}
+
+    .table-wrap,
+    .strength-table-wrap,
+    .radar-stage,
+    .radar-side {{
+      background: rgba(255,255,255,0.58);
+      border-color: var(--line);
+      box-shadow: inset 0 0 32px rgba(8,126,164,0.035);
+    }}
+
+    html[data-theme="night"] .table-wrap,
+    html[data-theme="night"] .strength-table-wrap,
+    html[data-theme="night"] .radar-stage,
+    html[data-theme="night"] .radar-side {{
+      background: rgba(4, 12, 22, 0.66);
+      box-shadow: inset 0 0 34px rgba(55,216,255,0.04);
+    }}
+
+    thead th,
+    .strength-table th {{
+      background: linear-gradient(180deg, var(--panel-strong), rgba(255,255,255,0.84));
+      color: var(--hud-cyan);
+      text-transform: uppercase;
+      font-weight: 900;
+    }}
+
+    html[data-theme="night"] thead th,
+    html[data-theme="night"] .strength-table th {{
+      background: linear-gradient(180deg, rgba(6,18,32,0.98), rgba(5,12,23,0.92));
+      color: var(--hud-cyan);
+    }}
+
+    tbody tr {{
+      position: relative;
+    }}
+
+    tbody tr:hover {{
+      background: linear-gradient(90deg, var(--hud-cyan-soft), var(--accent-soft));
+      box-shadow: inset 3px 0 0 var(--hud-cyan);
+    }}
+
+    .row-rank {{
+      color: var(--muted);
+      font-weight: 900;
+    }}
+
+    .row-rank.rank-top {{
+      color: var(--accent-deep);
+      text-shadow: 0 0 14px var(--accent-soft);
+    }}
+
+    .team-name-cell {{
+      font-weight: 800;
+    }}
+
+    .type-badge {{
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 46px;
+      padding: 5px 9px;
+      border-radius: 999px;
+      border: 1px solid var(--line);
+      background: var(--panel-soft);
+      color: var(--text);
+      font-size: 12px;
+      font-weight: 900;
+      letter-spacing: 0.05em;
+    }}
+
+    .type-badge[data-type="英雄"] {{ background: rgba(255,92,50,0.14); color: var(--accent-deep); }}
+    .type-badge[data-type="步兵"],
+    .type-badge[data-type="步兵3"],
+    .type-badge[data-type="步兵4"] {{ background: rgba(55,216,255,0.13); color: var(--hud-cyan); }}
+    .type-badge[data-type="哨兵"] {{ background: rgba(51,245,180,0.13); color: var(--hud-green); }}
+    .type-badge[data-type="无人机"] {{ background: rgba(159,122,234,0.15); color: #8b5cf6; }}
+    .type-badge[data-type="雷达"] {{ background: rgba(24,180,255,0.16); color: var(--hud-cyan); }}
+    .type-badge[data-type="工程"] {{ background: rgba(255,209,102,0.18); color: #b7791f; }}
+    .type-badge[data-type="飞镖"] {{ background: rgba(255,92,50,0.16); color: var(--accent-deep); }}
+
+    .focus-metric {{
+      position: relative;
+      overflow: hidden;
+      color: var(--text);
+      font-weight: 900;
+    }}
+
+    .focus-metric .metric-value {{
+      position: relative;
+      z-index: 1;
+    }}
+
+    .focus-metric .metric-heat {{
+      position: absolute;
+      left: 10px;
+      bottom: 5px;
+      width: var(--heat, 0%);
+      max-width: calc(100% - 20px);
+      height: 3px;
+      border-radius: 999px;
+      background: linear-gradient(90deg, var(--accent), var(--hud-cyan));
+      box-shadow: 0 0 12px var(--hud-cyan-soft);
+      opacity: 0.9;
+    }}
+
+    .bar-track {{
+      height: 16px;
+      border: 1px solid var(--line);
+      background:
+        linear-gradient(90deg, transparent 0 24%, rgba(255,255,255,0.10) 24% 25%, transparent 25% 49%, rgba(255,255,255,0.10) 49% 50%, transparent 50% 74%, rgba(255,255,255,0.10) 74% 75%, transparent 75%),
+        var(--hud-cyan-soft);
+    }}
+
+    .bar-fill {{
+      background: linear-gradient(90deg, var(--accent), var(--hud-cyan));
+      box-shadow: 0 0 16px var(--accent-soft);
+    }}
+
+    .legend-chip,
+    .insight-chip,
+    .axis-card {{
+      border-color: var(--line);
+      background: linear-gradient(135deg, var(--panel-soft), transparent);
+    }}
+
+    .radar-svg polygon[fill^="url"] {{
+      filter: drop-shadow(0 0 8px var(--hud-cyan-soft));
+    }}
+
+    html[data-density="compact"] .page {{
+      max-width: 1880px;
+    }}
+
+    html[data-density="compact"] .hero {{
+      grid-template-columns: minmax(0, 1fr) 420px;
+      margin-bottom: 14px;
+    }}
+
+    html[data-density="compact"] .hero-card,
+    html[data-density="compact"] .summary-card,
+    html[data-density="compact"] .control-panel,
+    html[data-density="compact"] .table-panel {{
+      padding: 16px;
+    }}
+
+    html[data-density="compact"] .hero p {{
+      line-height: 1.55;
+    }}
+
+    html[data-density="compact"] .combat-strip {{
+      margin-top: 12px;
+    }}
+
+    html[data-density="compact"] th,
+    html[data-density="compact"] td {{
+      padding: 9px 11px;
+      font-size: 13px;
+    }}
+
+    html[data-density="compact"] .chart-card {{
+      padding: 14px;
+    }}
+
+    html[data-density="compact"] .bar-list {{
+      gap: 8px;
+    }}
+
+    html[data-density="compact"] .field {{
+      margin-bottom: 10px;
+    }}
+
+    html[data-density="compact"] .zone-checklist {{
+      max-height: 210px;
+    }}
+
+    @keyframes hex-slide {{
+      from {{ transform: translate3d(0,0,0); }}
+      to {{ transform: translate3d(-72px,63px,0); }}
+    }}
+
+    @keyframes scan-pass {{
+      0% {{ transform: translateY(-24vh); opacity: 0; }}
+      12% {{ opacity: 0.26; }}
+      70% {{ opacity: 0.22; }}
+      100% {{ transform: translateY(124vh); opacity: 0; }}
+    }}
+
+    @keyframes reticle-lock {{
+      0%, 100% {{ transform: scale(0.98) rotate(0deg); opacity: 0.16; }}
+      50% {{ transform: scale(1.04) rotate(3deg); opacity: 0.28; }}
+    }}
+
+    @keyframes blueprint-pulse {{
+      from {{ opacity: 0.13; transform: translateY(0); }}
+      to {{ opacity: 0.23; transform: translateY(-8px); }}
+    }}
+
+
+
+    /* ========== Readability Hotfix v4: lighter mecha background ========== */
+    :root {{
+      --page-bg:
+        radial-gradient(circle at 12% 8%, rgba(35, 118, 170, 0.13), transparent 30%),
+        radial-gradient(circle at 86% 0%, rgba(225, 72, 40, 0.10), transparent 34%),
+        linear-gradient(135deg, #fafcff 0%, #edf3f7 44%, #f8fafc 100%);
+      --panel: rgba(250, 253, 255, 0.90);
+      --panel-strong: rgba(255, 255, 255, 0.98);
+      --panel-soft: rgba(242, 247, 251, 0.86);
+      --text: #111c27;
+      --muted: #475968;
+      --line: rgba(22, 37, 50, 0.16);
+      --glass-line: rgba(255, 255, 255, 0.78);
+      --input-bg: rgba(255,255,255,0.92);
+      --button-bg: rgba(250,253,255,0.92);
+      --grid-color: rgba(8, 126, 164, 0.052);
+      --grid-accent: rgba(230, 83, 46, 0.09);
+      --shadow: 0 18px 46px rgba(15, 28, 40, 0.10);
+    }}
+
+    html[data-theme="night"] {{
+      --bg: #151f2d;
+      --page-bg:
+        radial-gradient(circle at 12% 8%, rgba(64, 156, 214, 0.15), transparent 32%),
+        radial-gradient(circle at 84% 2%, rgba(255, 103, 64, 0.11), transparent 34%),
+        linear-gradient(135deg, #182332 0%, #142033 46%, #101927 100%);
+      --panel: rgba(27, 39, 56, 0.92);
+      --panel-strong: rgba(31, 45, 63, 0.98);
+      --panel-soft: rgba(38, 53, 73, 0.86);
+      --line: rgba(173, 207, 229, 0.18);
+      --glass-line: rgba(190, 220, 240, 0.20);
+      --text: #f4f8fc;
+      --muted: #c5d2df;
+      --accent: #ff7650;
+      --accent-deep: #ffc19d;
+      --accent-soft: rgba(255, 118, 80, 0.13);
+      --hud-cyan: #76ddff;
+      --hud-cyan-soft: rgba(118, 221, 255, 0.11);
+      --hud-green: #78f3c6;
+      --hud-warn: #ffe08a;
+      --table-alt: rgba(255, 255, 255, 0.045);
+      --input-bg: rgba(34, 49, 68, 0.94);
+      --button-bg: rgba(40, 57, 78, 0.92);
+      --shadow: 0 18px 54px rgba(0, 0, 0, 0.30);
+      --grid-color: rgba(118, 221, 255, 0.055);
+      --grid-accent: rgba(255, 118, 80, 0.10);
+      --aurora-a: rgba(118, 221, 255, 0.11);
+      --aurora-b: rgba(255, 118, 80, 0.10);
+      --aurora-c: rgba(120, 243, 198, 0.07);
+      --sparkle: rgba(210, 235, 250, 0.26);
+      --armor-edge: rgba(190, 220, 240, 0.15);
+      --scanline: rgba(118, 221, 255, 0.13);
+    }}
+
+    body::before,
+    body::after {{
+      opacity: 0.22;
+    }}
+
+    html[data-theme="night"] body::before,
+    html[data-theme="night"] body::after {{
+      opacity: 0.16;
+      filter: blur(44px);
+    }}
+
+    .animated-backdrop .grid {{
+      opacity: 0.42;
+      mask-image: linear-gradient(to bottom, transparent 0%, rgba(0,0,0,.48) 20%, rgba(0,0,0,.58) 55%, transparent 100%);
+    }}
+
+    .animated-backdrop .hex-field {{
+      opacity: 0.14;
+    }}
+
+    .animated-backdrop .mech-blueprint {{
+      opacity: 0.12;
+    }}
+
+    .animated-backdrop .reticle {{
+      opacity: 0.12;
+    }}
+
+    .animated-backdrop .scanline {{
+      opacity: 0.13;
+    }}
+
+    .animated-backdrop .warning-stripes {{
+      opacity: 0.11;
+    }}
+
+    html[data-theme="night"] .animated-backdrop .grid {{
+      opacity: 0.30;
+    }}
+
+    html[data-theme="night"] .animated-backdrop .hex-field,
+    html[data-theme="night"] .animated-backdrop .reticle,
+    html[data-theme="night"] .animated-backdrop .scanline,
+    html[data-theme="night"] .animated-backdrop .warning-stripes {{
+      opacity: 0.09;
+    }}
+
+    html[data-theme="night"] .animated-backdrop .mech-blueprint {{
+      opacity: 0.08;
+    }}
+
+    .hud-frame {{
+      opacity: 0.36;
+    }}
+
+    html[data-theme="night"] .hud-frame {{
+      opacity: 0.30;
+    }}
+
+    .hero-card,
+    .summary-card,
+    .control-panel,
+    .table-panel,
+    .chart-card {{
+      background:
+        linear-gradient(135deg, rgba(255,255,255,0.14), transparent 30%),
+        linear-gradient(180deg, var(--panel), var(--panel-strong));
+    }}
+
+    html[data-theme="night"] .hero-card,
+    html[data-theme="night"] .summary-card,
+    html[data-theme="night"] .control-panel,
+    html[data-theme="night"] .table-panel,
+    html[data-theme="night"] .chart-card {{
+      background:
+        linear-gradient(135deg, rgba(118,221,255,0.055), transparent 34%),
+        linear-gradient(180deg, rgba(33, 48, 68, 0.96), rgba(24, 36, 53, 0.98));
+      box-shadow: var(--shadow), inset 0 0 0 1px rgba(255,255,255,0.045);
+    }}
+
+    html[data-theme="night"] .summary-card {{
+      background:
+        linear-gradient(135deg, rgba(255,118,80,0.07), transparent 36%),
+        linear-gradient(180deg, rgba(33, 48, 68, 0.96), rgba(24, 36, 53, 0.98));
+    }}
+
+    html[data-theme="night"] .stat {{
+      background:
+        linear-gradient(135deg, rgba(118,221,255,0.065), transparent 52%),
+        linear-gradient(180deg, rgba(43, 59, 80, 0.96), rgba(30, 43, 61, 0.98));
+    }}
+
+    .table-wrap,
+    .strength-table-wrap,
+    .radar-stage,
+    .radar-side {{
+      background: rgba(255,255,255,0.78);
+    }}
+
+    html[data-theme="night"] .table-wrap,
+    html[data-theme="night"] .strength-table-wrap,
+    html[data-theme="night"] .radar-stage,
+    html[data-theme="night"] .radar-side {{
+      background: rgba(32, 46, 65, 0.90);
+      box-shadow: inset 0 0 20px rgba(118,221,255,0.025);
+    }}
+
+    html[data-theme="night"] thead th,
+    html[data-theme="night"] .strength-table th {{
+      background: linear-gradient(180deg, rgba(45, 62, 84, 0.99), rgba(34, 49, 69, 0.98));
+      color: #d9f6ff;
+    }}
+
+    html[data-theme="night"] td,
+    html[data-theme="night"] .strength-table td,
+    html[data-theme="night"] .team-name-cell,
+    html[data-theme="night"] .focus-metric {{
+      color: #f4f8fc;
+    }}
+
+    html[data-theme="night"] .row-rank,
+    html[data-theme="night"] .combat-strip span,
+    html[data-theme="night"] .summary-desc,
+    html[data-theme="night"] .hint,
+    html[data-theme="night"] .muted {{
+      color: #c5d2df;
+    }}
+
+    html[data-theme="night"] input,
+    html[data-theme="night"] select,
+    html[data-theme="night"] .zone-checklist {{
+      background: rgba(38, 54, 74, 0.96);
+      color: #f4f8fc;
+    }}
+
+    h1,
+    .stat-value,
+    .combat-strip b {{
+      text-shadow: none;
+    }}
+
+    @media (prefers-reduced-motion: reduce) {{
+      .animated-backdrop .hex-field,
+      .animated-backdrop .reticle,
+      .animated-backdrop .scanline,
+      .animated-backdrop .mech-blueprint {{
+        animation: none;
+      }}
+    }}
+
+    @media (max-width: 900px) {{
+      .cockpit-rail {{
+        grid-template-columns: 1fr 1fr;
+      }}
+      .animated-backdrop .mech-blueprint {{
+        opacity: 0.10;
+        width: 70vw;
+      }}
+    }}
+
+    @media (max-width: 640px) {{
+      .cockpit-rail {{ display: none; }}
+      .toolbar-actions {{ width: 100%; justify-content: flex-start; }}
+      .hud-frame {{ inset: 8px; }}
+    }}
+
+
+    /* ===== 重装机甲皮肤：重点不再是荧光，而是装甲、接缝、铆钉、液压和机库层级 ===== */
+    :root {{
+      --armor-dark: #2c3138;
+      --armor-mid: #4d5560;
+      --armor-light: #8b96a3;
+      --armor-edge: rgba(42, 48, 56, 0.34);
+      --paint-red: #c33b2f;
+      --paint-yellow: #e4a92e;
+      --bolt: rgba(36, 42, 50, 0.46);
+      --steel-scratch: rgba(255, 255, 255, 0.26);
+      --visor: rgba(24, 111, 145, 0.16);
+      --mecha-shadow: rgba(22, 27, 32, 0.24);
+    }}
+
+    html[data-theme="night"] {{
+      --armor-dark: #111820;
+      --armor-mid: #242d38;
+      --armor-light: #607080;
+      --armor-edge: rgba(153, 174, 194, 0.24);
+      --paint-red: #ff4e3d;
+      --paint-yellow: #ffd15c;
+      --bolt: rgba(224, 237, 250, 0.32);
+      --steel-scratch: rgba(255, 255, 255, 0.10);
+      --visor: rgba(42, 218, 255, 0.18);
+      --mecha-shadow: rgba(0, 0, 0, 0.46);
+    }}
+
+    body {{
+      background:
+        radial-gradient(circle at 50% 0%, rgba(255,255,255,0.18), transparent 24%),
+        linear-gradient(180deg, #d7d4cb 0%, #bfc2c1 42%, #a9adaf 100%);
+    }}
+
+    html[data-theme="night"] body {{
+      background:
+        radial-gradient(circle at 50% -10%, rgba(48, 83, 104, 0.26), transparent 30%),
+        linear-gradient(180deg, #06090d 0%, #0d1219 42%, #0b0f14 100%);
+    }}
+
+    .animated-backdrop {{
+      overflow: hidden;
+      background:
+        linear-gradient(90deg, rgba(0,0,0,0.08), transparent 16%, transparent 84%, rgba(0,0,0,0.08)),
+        repeating-linear-gradient(90deg, rgba(255,255,255,0.035) 0 1px, transparent 1px 92px),
+        repeating-linear-gradient(0deg, rgba(0,0,0,0.055) 0 2px, transparent 2px 92px),
+        var(--page-bg);
+    }}
+
+    .animated-backdrop::before {{
+      content: "";
+      position: absolute;
+      inset: -80px;
+      opacity: 0.55;
+      background:
+        linear-gradient(115deg, transparent 0 12%, rgba(255,255,255,0.06) 12% 13%, transparent 13% 36%, rgba(0,0,0,0.10) 36% 37%, transparent 37%),
+        repeating-linear-gradient(135deg, transparent 0 28px, rgba(0,0,0,0.06) 28px 30px, transparent 30px 72px);
+      mix-blend-mode: multiply;
+      pointer-events: none;
+    }}
+
+    html[data-theme="night"] .animated-backdrop::before {{
+      opacity: 0.72;
+      mix-blend-mode: screen;
+      background:
+        linear-gradient(115deg, transparent 0 12%, rgba(120,190,220,0.08) 12% 13%, transparent 13% 36%, rgba(255,96,72,0.08) 36% 37%, transparent 37%),
+        repeating-linear-gradient(135deg, transparent 0 28px, rgba(255,255,255,0.035) 28px 30px, transparent 30px 72px);
+    }}
+
+    .aurora, .orb, .spark {{
+      display: none;
+    }}
+
+    .grid {{
+      opacity: 0.22;
+      transform: perspective(720px) rotateX(62deg) translateY(10vh);
+      background-size: 92px 92px, 92px 92px;
+      mask-image: linear-gradient(to bottom, transparent, #000 24%, #000 74%, transparent);
+    }}
+
+    .hex-field {{
+      opacity: 0.16;
+      filter: none;
+    }}
+
+    .warning-stripes {{
+      opacity: 0.18;
+      background:
+        repeating-linear-gradient(135deg, var(--paint-yellow) 0 14px, rgba(0,0,0,0.42) 14px 28px),
+        linear-gradient(90deg, transparent, rgba(0,0,0,0.12), transparent);
+      clip-path: polygon(0 0, 16% 0, 10% 100%, 0 100%);
+    }}
+
+    .mech-blueprint {{
+      display: none;
+    }}
+
+    .mecha-hangar {{
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      opacity: 0.86;
+    }}
+
+    .bay-door {{
+      position: absolute;
+      top: 9vh;
+      bottom: 6vh;
+      width: min(18vw, 260px);
+      background:
+        radial-gradient(circle at 24px 24px, var(--bolt) 0 3px, transparent 4px) 0 0 / 58px 58px,
+        linear-gradient(90deg, rgba(255,255,255,0.10), transparent 36%, rgba(0,0,0,0.14)),
+        repeating-linear-gradient(0deg, transparent 0 54px, var(--armor-edge) 54px 56px),
+        linear-gradient(180deg, var(--armor-mid), var(--armor-dark));
+      border: 1px solid var(--armor-edge);
+      box-shadow: inset 0 0 28px rgba(0,0,0,0.22), 0 24px 60px var(--mecha-shadow);
+      clip-path: polygon(0 0, 88% 0, 100% 7%, 100% 93%, 88% 100%, 0 100%);
+    }}
+
+    .bay-door.left {{ left: -42px; }}
+    .bay-door.right {{
+      right: -42px;
+      transform: scaleX(-1);
+    }}
+
+    .bay-door::after {{
+      content: "ARMOR BAY";
+      position: absolute;
+      top: 42px;
+      left: 26px;
+      writing-mode: vertical-rl;
+      letter-spacing: 0.18em;
+      font-size: 12px;
+      font-weight: 900;
+      color: rgba(255,255,255,0.42);
+      text-shadow: 0 1px 0 rgba(0,0,0,0.3);
+    }}
+
+    .gantry {{
+      position: absolute;
+      left: 8vw;
+      right: 8vw;
+      height: 42px;
+      border: 1px solid var(--armor-edge);
+      background:
+        radial-gradient(circle at 18px 50%, var(--bolt) 0 3px, transparent 4px) 0 0 / 64px 100%,
+        repeating-linear-gradient(90deg, transparent 0 72px, rgba(0,0,0,0.12) 72px 75px),
+        linear-gradient(180deg, var(--armor-light), var(--armor-mid) 48%, var(--armor-dark));
+      box-shadow: inset 0 -10px 22px rgba(0,0,0,0.18), 0 14px 34px var(--mecha-shadow);
+      clip-path: polygon(24px 0, calc(100% - 24px) 0, 100% 50%, calc(100% - 24px) 100%, 24px 100%, 0 50%);
+      opacity: 0.8;
+    }}
+
+    .gantry.top {{ top: 20px; }}
+    .gantry.bottom {{ bottom: 18px; transform: rotate(180deg); opacity: 0.58; }}
+
+    .hydraulic-set {{
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      opacity: 0.52;
+    }}
+
+    .hydraulic-set span {{
+      position: absolute;
+      width: 9px;
+      height: min(34vh, 360px);
+      top: 18vh;
+      border-radius: 10px;
+      background:
+        linear-gradient(90deg, rgba(255,255,255,0.30), transparent 20% 72%, rgba(0,0,0,0.22)),
+        linear-gradient(180deg, #aeb7c0, #4b5560 42%, #151b22 43% 57%, #7e8994);
+      box-shadow: 0 0 0 1px var(--armor-edge), 0 22px 44px var(--mecha-shadow);
+    }}
+
+    .hydraulic-set span:nth-child(1) {{ left: 9.6vw; transform: rotate(8deg); }}
+    .hydraulic-set span:nth-child(2) {{ left: 13.2vw; top: 36vh; height: min(25vh, 280px); transform: rotate(-11deg); }}
+    .hydraulic-set span:nth-child(3) {{ right: 9.6vw; transform: rotate(-8deg); }}
+    .hydraulic-set span:nth-child(4) {{ right: 13.2vw; top: 36vh; height: min(25vh, 280px); transform: rotate(11deg); }}
+
+    .mecha-suit {{
+      position: absolute;
+      right: clamp(16px, 4vw, 82px);
+      top: 13vh;
+      width: min(28vw, 390px);
+      height: min(58vh, 620px);
+      opacity: 0.18;
+      filter: drop-shadow(0 34px 50px var(--mecha-shadow));
+      transform: rotate(-2deg);
+      pointer-events: none;
+    }}
+
+    html[data-theme="night"] .mecha-suit {{ opacity: 0.30; }}
+
+    .mecha-head, .mecha-core, .mecha-shoulder, .mecha-arm, .mecha-leg {{
+      position: absolute;
+      background:
+        linear-gradient(135deg, rgba(255,255,255,0.16), transparent 18%),
+        linear-gradient(180deg, var(--armor-light), var(--armor-mid) 42%, var(--armor-dark));
+      border: 1px solid var(--armor-edge);
+      box-shadow: inset 0 -14px 24px rgba(0,0,0,0.28), inset 0 1px 0 rgba(255,255,255,0.12);
+    }}
+
+    .mecha-head {{
+      left: 38%; top: 0; width: 24%; height: 13%;
+      clip-path: polygon(18% 0, 82% 0, 100% 34%, 86% 100%, 14% 100%, 0 34%);
+    }}
+
+    .mecha-head i {{
+      position: absolute;
+      left: 18%; right: 18%; top: 44%; height: 14%;
+      background: linear-gradient(90deg, transparent, var(--hud-cyan), transparent);
+      box-shadow: 0 0 22px var(--hud-cyan-soft);
+    }}
+
+    .mecha-core {{
+      left: 28%; top: 15%; width: 44%; height: 34%;
+      clip-path: polygon(18% 0, 82% 0, 100% 22%, 90% 100%, 10% 100%, 0 22%);
+    }}
+
+    .mecha-core span {{
+      position: absolute;
+      left: 34%; top: 32%; width: 32%; aspect-ratio: 1;
+      border-radius: 50%;
+      background: radial-gradient(circle, var(--accent) 0 18%, transparent 20% 48%, var(--accent) 50% 54%, transparent 56%);
+      box-shadow: 0 0 28px var(--accent-soft);
+    }}
+
+    .mecha-shoulder {{ top: 17%; width: 30%; height: 15%; }}
+    .mecha-shoulder.left {{ left: 0; clip-path: polygon(0 22%, 88% 0, 100% 72%, 18% 100%); }}
+    .mecha-shoulder.right {{ right: 0; clip-path: polygon(12% 0, 100% 22%, 82% 100%, 0 72%); }}
+
+    .mecha-arm {{ top: 34%; width: 18%; height: 35%; }}
+    .mecha-arm.left {{ left: 5%; clip-path: polygon(22% 0, 100% 8%, 72% 100%, 0 88%); }}
+    .mecha-arm.right {{ right: 5%; clip-path: polygon(0 8%, 78% 0, 100% 88%, 28% 100%); }}
+
+    .mecha-leg {{ top: 52%; width: 22%; height: 42%; }}
+    .mecha-leg.left {{ left: 27%; clip-path: polygon(8% 0, 92% 0, 100% 100%, 0 94%); }}
+    .mecha-leg.right {{ right: 27%; clip-path: polygon(8% 0, 92% 0, 100% 94%, 0 100%); }}
+
+    .page {{
+      position: relative;
+      z-index: 2;
+      max-width: min(1540px, calc(100vw - 36px));
+    }}
+
+    .cockpit-rail {{
+      position: relative;
+      padding: 10px 18px;
+      border: 1px solid var(--armor-edge);
+      background:
+        linear-gradient(90deg, rgba(0,0,0,0.16), transparent 12% 88%, rgba(0,0,0,0.16)),
+        repeating-linear-gradient(135deg, transparent 0 18px, rgba(255,255,255,0.06) 18px 19px, transparent 19px 38px),
+        linear-gradient(180deg, rgba(255,255,255,0.12), rgba(0,0,0,0.08));
+      clip-path: polygon(18px 0, calc(100% - 18px) 0, 100% 50%, calc(100% - 18px) 100%, 18px 100%, 0 50%);
+      box-shadow: inset 0 0 0 1px rgba(255,255,255,0.05), 0 14px 34px var(--mecha-shadow);
+    }}
+
+    .cockpit-rail span {{
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }}
+
+    .cockpit-rail span::before {{
+      content: "";
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--hud-green);
+      box-shadow: 0 0 12px var(--hud-green);
+    }}
+
+    .hero-card, .summary-card, .control-panel, .table-panel, .chart-card, .radar-panel, .mvp-panel, .league-panel {{
+      position: relative;
+      border: 1px solid var(--armor-edge) !important;
+      border-radius: 0 !important;
+      clip-path: polygon(18px 0, calc(100% - 18px) 0, 100% 18px, 100% calc(100% - 18px), calc(100% - 18px) 100%, 18px 100%, 0 calc(100% - 18px), 0 18px);
+      background:
+        radial-gradient(circle at 18px 18px, var(--bolt) 0 3px, transparent 4px) 0 0 / 88px 88px,
+        radial-gradient(circle at calc(100% - 18px) 18px, var(--bolt) 0 3px, transparent 4px) 0 0 / 88px 88px,
+        linear-gradient(135deg, rgba(255,255,255,0.16), transparent 18%),
+        repeating-linear-gradient(0deg, transparent 0 38px, rgba(0,0,0,0.035) 38px 39px),
+        linear-gradient(180deg, var(--panel-strong), var(--panel)) !important;
+      box-shadow:
+        inset 0 0 0 1px rgba(255,255,255,0.08),
+        inset 0 -18px 32px rgba(0,0,0,0.08),
+        0 20px 50px var(--mecha-shadow) !important;
+    }}
+
+    html[data-theme="night"] .hero-card,
+    html[data-theme="night"] .summary-card,
+    html[data-theme="night"] .control-panel,
+    html[data-theme="night"] .table-panel,
+    html[data-theme="night"] .chart-card,
+    html[data-theme="night"] .radar-panel,
+    html[data-theme="night"] .mvp-panel,
+    html[data-theme="night"] .league-panel {{
+      background:
+        radial-gradient(circle at 18px 18px, var(--bolt) 0 3px, transparent 4px) 0 0 / 88px 88px,
+        radial-gradient(circle at calc(100% - 18px) 18px, var(--bolt) 0 3px, transparent 4px) 0 0 / 88px 88px,
+        linear-gradient(135deg, rgba(255,255,255,0.07), transparent 18%),
+        repeating-linear-gradient(0deg, transparent 0 38px, rgba(255,255,255,0.025) 38px 39px),
+        linear-gradient(180deg, rgba(30,38,48,0.96), rgba(15,21,30,0.92)) !important;
+    }}
+
+    .hero-card::before, .summary-card::before, .control-panel::before, .table-panel::before, .chart-card::before {{
+      content: "";
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      background:
+        linear-gradient(90deg, var(--paint-red) 0 82px, transparent 82px calc(100% - 132px), var(--paint-yellow) calc(100% - 132px) calc(100% - 42px), transparent calc(100% - 42px)) top / 100% 4px no-repeat,
+        linear-gradient(90deg, transparent 0 36px, var(--armor-edge) 36px calc(100% - 36px), transparent calc(100% - 36px)) bottom / 100% 1px no-repeat;
+      opacity: 0.78;
+    }}
+
+    .hero-card::after, .summary-card::after, .control-panel::after, .table-panel::after, .chart-card::after {{
+      content: "";
+      position: absolute;
+      right: 16px;
+      bottom: 14px;
+      width: 94px;
+      height: 22px;
+      pointer-events: none;
+      opacity: 0.30;
+      background:
+        repeating-linear-gradient(135deg, var(--paint-yellow) 0 7px, rgba(0,0,0,0.42) 7px 14px);
+      clip-path: polygon(9px 0, 100% 0, calc(100% - 9px) 100%, 0 100%);
+    }}
+
+    .hero {{
+      grid-template-columns: minmax(0, 1.6fr) minmax(320px, 0.72fr);
+      align-items: stretch;
+    }}
+
+    .hero-card {{
+      overflow: hidden;
+      padding-top: 30px;
+    }}
+
+    .hero-card h1 {{
+      letter-spacing: -0.04em;
+      text-transform: uppercase;
+      text-shadow: 0 2px 0 rgba(0,0,0,0.10);
+    }}
+
+    html[data-theme="night"] .hero-card h1 {{
+      text-shadow: 0 0 28px rgba(55,216,255,0.12), 0 2px 0 rgba(0,0,0,0.65);
+    }}
+
+    .hero-toolbar {{
+      border-bottom: 1px solid var(--armor-edge);
+      padding-bottom: 12px;
+      margin-bottom: 16px;
+    }}
+
+    .eyebrow, .summary-title, .panel-title, .table-title, .chart-card h3 {{
+      font-family: "DIN Alternate", "Arial Narrow", var(--font-sans);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }}
+
+    .theme-toggle, button, select, input {{
+      border-radius: 0 !important;
+      clip-path: polygon(10px 0, 100% 0, 100% calc(100% - 10px), calc(100% - 10px) 100%, 0 100%, 0 10px);
+    }}
+
+    .theme-toggle {{
+      border-color: var(--armor-edge) !important;
+      background:
+        linear-gradient(135deg, rgba(255,255,255,0.18), transparent 34%),
+        linear-gradient(180deg, var(--button-bg), rgba(0,0,0,0.05)) !important;
+      box-shadow: inset 0 -8px 14px rgba(0,0,0,0.08);
+    }}
+
+    .stat {{
+      position: relative;
+      border-radius: 0 !important;
+      clip-path: polygon(12px 0, 100% 0, 100% calc(100% - 12px), calc(100% - 12px) 100%, 0 100%, 0 12px);
+      border: 1px solid var(--armor-edge) !important;
+      background:
+        linear-gradient(135deg, rgba(255,255,255,0.14), transparent 36%),
+        linear-gradient(180deg, var(--panel-soft), rgba(0,0,0,0.03)) !important;
+    }}
+
+    .stat::before {{
+      content: "";
+      position: absolute;
+      left: 12px; top: 10px;
+      width: 34px; height: 3px;
+      background: var(--accent);
+      box-shadow: 42px 0 0 var(--hud-cyan-soft);
+    }}
+
+    .zone-checklist, .table-wrap, .strength-table-wrap, .radar-stage, .radar-side {{
+      border-radius: 0 !important;
+      clip-path: polygon(12px 0, 100% 0, 100% calc(100% - 12px), calc(100% - 12px) 100%, 0 100%, 0 12px);
+      border-color: var(--armor-edge) !important;
+      background:
+        linear-gradient(135deg, rgba(255,255,255,0.12), transparent 22%),
+        var(--panel-soft) !important;
+    }}
+
+    .table-wrap {{
+      max-height: 72vh;
+      overflow: auto;
+      box-shadow: inset 0 0 0 1px rgba(255,255,255,0.04), inset 0 0 32px rgba(0,0,0,0.08);
+    }}
+
+    thead th {{
+      position: sticky;
+      top: 0;
+      z-index: 6;
+      backdrop-filter: blur(14px);
+      background:
+        linear-gradient(180deg, rgba(255,255,255,0.20), rgba(0,0,0,0.05)),
+        var(--panel-strong) !important;
+      border-bottom: 1px solid var(--accent) !important;
+    }}
+
+    tbody tr {{
+      background-image: linear-gradient(90deg, transparent, rgba(255,255,255,0.035), transparent);
+    }}
+
+    tbody tr:hover {{
+      transform: none !important;
+      background:
+        linear-gradient(90deg, var(--accent-soft), transparent 42%),
+        linear-gradient(180deg, rgba(255,255,255,0.06), transparent) !important;
+      box-shadow: inset 4px 0 0 var(--accent), inset 0 1px 0 var(--armor-edge), inset 0 -1px 0 var(--armor-edge);
+    }}
+
+    .row-rank {{
+      font-family: "DIN Alternate", "Arial Narrow", var(--font-sans);
+      letter-spacing: 0.04em;
+    }}
+
+    .rank-top {{
+      color: var(--paint-yellow) !important;
+      text-shadow: 0 0 16px rgba(228,169,46,0.22);
+    }}
+
+    .type-badge {{
+      border-radius: 0 !important;
+      clip-path: polygon(8px 0, 100% 0, calc(100% - 8px) 100%, 0 100%);
+      border: 1px solid currentColor;
+      box-shadow: inset 0 -8px 14px rgba(0,0,0,0.08);
+    }}
+
+    .metric-heat {{
+      height: 4px !important;
+      border-radius: 0 !important;
+      background:
+        linear-gradient(90deg, var(--accent), var(--paint-yellow)) left / var(--heat) 100% no-repeat,
+        rgba(127, 127, 127, 0.14) !important;
+      box-shadow: 0 0 16px rgba(228,169,46,0.16);
+    }}
+
+    .bar-track {{
+      border-radius: 0 !important;
+      background:
+        linear-gradient(90deg, rgba(0,0,0,0.16), rgba(255,255,255,0.05)),
+        rgba(127,127,127,0.14) !important;
+      border: 1px solid var(--armor-edge);
+    }}
+
+    .bar-fill {{
+      border-radius: 0 !important;
+      box-shadow: inset 0 -8px 12px rgba(0,0,0,0.14), 0 0 16px var(--accent-soft);
+    }}
+
+    .radar-svg {{
+      filter: drop-shadow(0 18px 22px rgba(0,0,0,0.12));
+    }}
+
+    .axis-card {{
+      border-radius: 0 !important;
+      clip-path: polygon(10px 0, 100% 0, 100% calc(100% - 10px), calc(100% - 10px) 100%, 0 100%, 0 10px);
+      border: 1px solid var(--armor-edge) !important;
+      background:
+        linear-gradient(135deg, rgba(255,255,255,0.12), transparent 28%),
+        var(--panel-soft) !important;
+    }}
+
+    .control-panel .field label::before {{
+      content: "▰";
+      color: var(--paint-red);
+      margin-right: 6px;
+      font-size: 0.85em;
+    }}
+
+    .table-topbar {{
+      border-bottom: 1px solid var(--armor-edge);
+      padding-bottom: 14px;
+    }}
+
+    .chart-grid {{
+      gap: 18px;
+    }}
+
+    html[data-density="compact"] .table-wrap {{
+      max-height: 78vh;
+    }}
+
+    html[data-density="compact"] td,
+    html[data-density="compact"] th {{
+      padding-top: 7px !important;
+      padding-bottom: 7px !important;
+    }}
+
+    @media (max-width: 1100px) {{
+      .bay-door, .hydraulic-set, .mecha-suit {{ opacity: 0.12; }}
+      .hero {{ grid-template-columns: 1fr; }}
+    }}
+
+    @media (max-width: 720px) {{
+      .mecha-hangar, .mecha-suit, .hydraulic-set {{ display: none; }}
+      .page {{ max-width: calc(100vw - 20px); }}
+    }}
+
+  
+
+    /* ========== Low-rivet readability patch v5: 机甲感保留，背景铆钉退场 ========== */
+    .mecha-hangar {{
+      opacity: 0.28 !important;
+      filter: saturate(0.78) contrast(0.86) !important;
+    }}
+
+    .bay-door {{
+      width: min(13vw, 190px) !important;
+      opacity: 0.28 !important;
+      background:
+        linear-gradient(90deg, rgba(255,255,255,0.07), transparent 34%, rgba(0,0,0,0.08)),
+        repeating-linear-gradient(0deg, transparent 0 84px, rgba(0,0,0,0.055) 84px 86px),
+        linear-gradient(180deg, var(--armor-mid), var(--armor-dark)) !important;
+      box-shadow: inset 0 0 18px rgba(0,0,0,0.12), 0 16px 36px rgba(0,0,0,0.10) !important;
+    }}
+
+    html[data-theme="night"] .bay-door {{
+      opacity: 0.22 !important;
+      background:
+        linear-gradient(90deg, rgba(255,255,255,0.045), transparent 34%, rgba(0,0,0,0.10)),
+        repeating-linear-gradient(0deg, transparent 0 96px, rgba(255,255,255,0.035) 96px 98px),
+        linear-gradient(180deg, rgba(45,55,67,0.58), rgba(19,27,38,0.54)) !important;
+    }}
+
+    .bay-door::after {{
+      opacity: 0.28 !important;
+      letter-spacing: 0.22em !important;
+    }}
+
+    .gantry {{
+      opacity: 0.20 !important;
+      height: 34px !important;
+      background:
+        repeating-linear-gradient(90deg, transparent 0 108px, rgba(0,0,0,0.08) 108px 110px),
+        linear-gradient(180deg, var(--armor-light), var(--armor-mid) 52%, var(--armor-dark)) !important;
+      box-shadow: inset 0 -6px 12px rgba(0,0,0,0.10), 0 8px 20px rgba(0,0,0,0.08) !important;
+    }}
+
+    .gantry.bottom {{
+      opacity: 0.12 !important;
+    }}
+
+    .hydraulic-set {{
+      opacity: 0.24 !important;
+    }}
+
+    .mecha-suit {{
+      opacity: 0.12 !important;
+      filter: drop-shadow(0 18px 28px rgba(0,0,0,0.12)) blur(0.15px) !important;
+    }}
+
+    html[data-theme="night"] .mecha-suit {{
+      opacity: 0.10 !important;
+    }}
+
+    .hero-card, .summary-card, .control-panel, .table-panel, .chart-card, .radar-panel, .mvp-panel, .league-panel {{
+      background:
+        linear-gradient(135deg, rgba(255,255,255,0.13), transparent 16%),
+        linear-gradient(180deg, var(--panel-strong), var(--panel)) !important;
+      backdrop-filter: blur(7px) saturate(1.05) !important;
+      -webkit-backdrop-filter: blur(7px) saturate(1.05) !important;
+    }}
+
+    html[data-theme="night"] .hero-card,
+    html[data-theme="night"] .summary-card,
+    html[data-theme="night"] .control-panel,
+    html[data-theme="night"] .table-panel,
+    html[data-theme="night"] .chart-card,
+    html[data-theme="night"] .radar-panel,
+    html[data-theme="night"] .mvp-panel,
+    html[data-theme="night"] .league-panel {{
+      background:
+        linear-gradient(135deg, rgba(255,255,255,0.055), transparent 16%),
+        linear-gradient(180deg, rgba(34,43,55,0.965), rgba(18,25,35,0.95)) !important;
+    }}
+
+    .hero-card::before, .summary-card::before, .control-panel::before, .table-panel::before, .chart-card::before {{
+      opacity: 0.52 !important;
+    }}
+
+    .hero-card::after, .summary-card::after, .control-panel::after, .table-panel::after, .chart-card::after {{
+      opacity: 0.46 !important;
+    }}
+
+    .table-wrap, .strength-table-wrap, .radar-stage, .radar-side, .stat {{
+      background-image: none !important;
+    }}
+
+    tbody td, .metric, .team-name, .college-name, .muted, .small-note {{
+      text-shadow: none !important;
+    }}
+
+    table tbody tr:hover {{
+      box-shadow: inset 3px 0 0 var(--accent), inset 0 0 0 999px rgba(52, 129, 181, 0.055) !important;
+    }}
+
+    @media (max-width: 900px) {{
+      .bay-door, .gantry, .hydraulic-set, .mecha-suit {{
+        opacity: 0.08 !important;
+      }}
+    }}
+
+
+
+    /* ========== Tactical Brief + View Optimizer ========== */
+    .tactical-brief {{
+      display: grid;
+      grid-template-columns: minmax(220px, 0.95fr) minmax(0, 1.45fr);
+      gap: 14px;
+      margin: 0 0 16px;
+      padding: 16px;
+      border-radius: 22px;
+      border: 1px solid var(--glass-line);
+      background:
+        linear-gradient(135deg, rgba(255,255,255,0.78), rgba(237, 244, 248, 0.62)),
+        linear-gradient(90deg, rgba(230, 83, 46, 0.10), transparent 38%, rgba(8, 126, 164, 0.08));
+      box-shadow: 0 14px 34px rgba(15, 28, 40, 0.10);
+      overflow: hidden;
+      position: relative;
+    }}
+
+    .tactical-brief::before {{
+      content: "";
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      background:
+        linear-gradient(90deg, var(--accent) 0 5px, transparent 5px),
+        linear-gradient(180deg, rgba(255,255,255,0.26), transparent 34%);
+      opacity: 0.8;
+    }}
+
+    .tactical-brief > * {{
+      position: relative;
+      z-index: 1;
+    }}
+
+    html[data-theme="night"] .tactical-brief {{
+      background:
+        linear-gradient(135deg, rgba(16, 30, 48, 0.88), rgba(10, 20, 34, 0.76)),
+        linear-gradient(90deg, rgba(255, 92, 50, 0.12), transparent 40%, rgba(55, 216, 255, 0.08));
+      border-color: rgba(117, 211, 255, 0.16);
+      box-shadow: 0 18px 42px rgba(0,0,0,0.32);
+    }}
+
+    .brief-head {{
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 10px;
+      min-width: 0;
+    }}
+
+    .brief-kicker {{
+      font-size: 11px;
+      letter-spacing: 0.18em;
+      color: var(--accent-deep);
+      font-weight: 900;
+    }}
+
+    .brief-title {{
+      margin: 0;
+      font-size: 20px;
+      line-height: 1.25;
+      font-weight: 900;
+      letter-spacing: -0.02em;
+    }}
+
+    .brief-chips {{
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }}
+
+    .brief-chip {{
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 5px 9px;
+      border-radius: 999px;
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,0.58);
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 800;
+    }}
+
+    html[data-theme="night"] .brief-chip {{
+      background: rgba(4, 12, 22, 0.48);
+    }}
+
+    .brief-body {{
+      display: grid;
+      gap: 10px;
+      align-content: center;
+    }}
+
+    .brief-line {{
+      display: grid;
+      grid-template-columns: 22px minmax(0, 1fr);
+      gap: 9px;
+      align-items: start;
+      color: var(--text);
+      font-size: 14px;
+      line-height: 1.65;
+    }}
+
+    .brief-line b {{
+      color: var(--accent-deep);
+    }}
+
+    .brief-icon {{
+      width: 22px;
+      height: 22px;
+      display: inline-grid;
+      place-items: center;
+      border-radius: 7px;
+      color: var(--accent-deep);
+      background: var(--accent-soft);
+      font-size: 12px;
+      font-weight: 900;
+      margin-top: 2px;
+    }}
+
+    .metric-presets {{
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 8px;
+      margin-top: 8px;
+    }}
+
+    .metric-preset {{
+      border: 1px solid var(--line);
+      background: var(--button-bg);
+      color: var(--text);
+      border-radius: 14px;
+      padding: 9px 10px;
+      font: inherit;
+      font-size: 12px;
+      font-weight: 850;
+      cursor: pointer;
+      transition: transform 0.18s ease, border-color 0.18s ease, background 0.18s ease;
+    }}
+
+    .metric-preset:hover {{
+      transform: translateY(-1px);
+      border-color: var(--accent);
+      background: var(--accent-soft);
+    }}
+
+    .metric-preset.active {{
+      color: var(--accent-deep);
+      border-color: rgba(230, 83, 46, 0.38);
+      background: linear-gradient(135deg, var(--accent-soft), rgba(8,126,164,0.06));
+    }}
+
+    .view-hint {{
+      margin-top: 8px;
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.55;
+    }}
+
+    html[data-density="compact"] .tactical-brief {{
+      padding: 12px;
+      gap: 10px;
+    }}
+
+    html[data-density="compact"] .brief-title {{
+      font-size: 17px;
+    }}
+
+    html[data-density="compact"] .brief-line {{
+      font-size: 12.5px;
+      line-height: 1.45;
+    }}
+
+    @media (max-width: 900px) {{
+      .tactical-brief {{
+        grid-template-columns: 1fr;
+      }}
+
+      .metric-presets {{
+        grid-template-columns: 1fr;
+      }}
+    }}
+
+
+
+    /* ========== Analysis Extensions: credibility, outliers, disclaimer ========== */
+    .brief-disclaimer,
+    .insight-disclaimer,
+    .diagnostic-note {{
+      border: 1px dashed rgba(120, 132, 148, 0.42);
+      background: rgba(255, 255, 255, 0.46);
+      color: var(--muted);
+      border-radius: 14px;
+      padding: 10px 12px;
+      font-size: 12px;
+      line-height: 1.65;
+    }}
+
+    html[data-theme="night"] .brief-disclaimer,
+    html[data-theme="night"] .insight-disclaimer,
+    html[data-theme="night"] .diagnostic-note {{
+      background: rgba(6, 16, 28, 0.38);
+      border-color: rgba(145, 197, 255, 0.20);
+    }}
+
+    .brief-disclaimer {{
+      grid-column: 1 / -1;
+      margin-top: 2px;
+    }}
+
+    .insight-disclaimer {{
+      margin-top: 14px;
+    }}
+
+    .diagnostic-card h3 {{
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }}
+
+    .diagnostic-grid {{
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 10px;
+      margin: 12px 0;
+    }}
+
+    .diagnostic-stat {{
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      padding: 10px 11px;
+      background: rgba(255,255,255,0.48);
+      min-width: 0;
+    }}
+
+    html[data-theme="night"] .diagnostic-stat {{
+      background: rgba(10, 24, 40, 0.44);
+    }}
+
+    .diagnostic-label {{
+      font-size: 11px;
+      color: var(--muted);
+      font-weight: 800;
+    }}
+
+    .diagnostic-value {{
+      margin-top: 3px;
+      font-size: 20px;
+      font-weight: 950;
+      color: var(--text);
+      font-variant-numeric: tabular-nums;
+    }}
+
+    .diagnostic-pill-row {{
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 10px;
+    }}
+
+    .diagnostic-pill {{
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 6px 9px;
+      border-radius: 999px;
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,0.42);
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 850;
+    }}
+
+    .diagnostic-pill[data-level="high"] {{ color: #087f5b; border-color: rgba(8,127,91,0.28); }}
+    .diagnostic-pill[data-level="mid"] {{ color: #9a5b00; border-color: rgba(184,113,0,0.30); }}
+    .diagnostic-pill[data-level="low"] {{ color: #b42318; border-color: rgba(180,35,24,0.30); }}
+    html[data-theme="night"] .diagnostic-pill[data-level="high"] {{ color: #6ee7b7; }}
+    html[data-theme="night"] .diagnostic-pill[data-level="mid"] {{ color: #facc15; }}
+    html[data-theme="night"] .diagnostic-pill[data-level="low"] {{ color: #fb7185; }}
+
+    .outlier-list {{
+      display: grid;
+      gap: 9px;
+      margin-top: 12px;
+    }}
+
+    .outlier-item {{
+      display: grid;
+      grid-template-columns: minmax(130px, 1.2fr) minmax(70px, 0.45fr) minmax(0, 1fr);
+      gap: 10px;
+      align-items: center;
+      padding: 9px 10px;
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      background: rgba(255,255,255,0.42);
+    }}
+
+    html[data-theme="night"] .outlier-item {{
+      background: rgba(10, 24, 40, 0.36);
+    }}
+
+    .outlier-team {{
+      min-width: 0;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      font-weight: 900;
+    }}
+
+    .outlier-score {{
+      font-weight: 950;
+      color: var(--accent-deep);
+      font-variant-numeric: tabular-nums;
+    }}
+
+    .outlier-reason {{
+      min-width: 0;
+      color: var(--muted);
+      font-size: 12px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }}
+
+    .role-grid {{
+      display: grid;
+      gap: 10px;
+      margin-top: 12px;
+    }}
+
+    .role-row {{
+      display: grid;
+      grid-template-columns: 64px minmax(0, 1fr) 76px;
+      gap: 10px;
+      align-items: center;
+      font-size: 13px;
+    }}
+
+    .role-track {{
+      position: relative;
+      height: 9px;
+      border-radius: 999px;
+      overflow: hidden;
+      background: rgba(120, 132, 148, 0.16);
+    }}
+
+    .role-fill {{
+      position: absolute;
+      inset: 0 auto 0 0;
+      width: var(--w);
+      border-radius: inherit;
+      background: linear-gradient(90deg, var(--accent), rgba(8,126,164,0.72));
+    }}
+
+    @media (max-width: 760px) {{
+      .diagnostic-grid {{ grid-template-columns: 1fr; }}
+      .outlier-item {{ grid-template-columns: 1fr; }}
+      .role-row {{ grid-template-columns: 54px minmax(0, 1fr) 62px; }}
+    }}
+
+
+    /* ========== Deep Review Toolkit: metric guide, snapshot, copy brief ========== */
+    .review-grid {{
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+      margin-top: 12px;
+    }}
+
+    .review-chip-row {{
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 10px;
+    }}
+
+    .review-chip {{
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 6px 9px;
+      border-radius: 999px;
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,0.42);
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 850;
+    }}
+
+    html[data-theme="night"] .review-chip {{
+      background: rgba(10, 24, 40, 0.38);
+    }}
+
+    .metric-guide-card .metric-name {{
+      display: inline-flex;
+      align-items: center;
+      width: fit-content;
+      padding: 7px 10px;
+      border-radius: 999px;
+      background: var(--accent-soft);
+      color: var(--accent-deep);
+      font-size: 12px;
+      font-weight: 950;
+      margin-bottom: 10px;
+    }}
+
+    .metric-guide-card .metric-desc {{
+      margin: 0;
+      line-height: 1.72;
+      color: var(--text);
+      font-size: 13px;
+    }}
+
+    .metric-rule-grid {{
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 10px;
+      margin-top: 12px;
+    }}
+
+    .metric-rule {{
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      padding: 10px 11px;
+      background: rgba(255,255,255,0.42);
+      min-width: 0;
+    }}
+
+    html[data-theme="night"] .metric-rule {{
+      background: rgba(10, 24, 40, 0.36);
+    }}
+
+    .metric-rule b {{
+      display: block;
+      margin-bottom: 4px;
+      color: var(--text);
+      font-size: 12px;
+    }}
+
+    .metric-rule span {{
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.55;
+    }}
+
+    .snapshot-list {{
+      display: grid;
+      gap: 9px;
+      margin-top: 12px;
+    }}
+
+    .snapshot-row {{
+      display: grid;
+      grid-template-columns: 42px minmax(150px, 1.15fr) minmax(120px, 0.9fr) 86px 92px;
+      gap: 10px;
+      align-items: center;
+      padding: 9px 10px;
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      background: rgba(255,255,255,0.42);
+      font-size: 12px;
+    }}
+
+    html[data-theme="night"] .snapshot-row {{
+      background: rgba(10, 24, 40, 0.36);
+    }}
+
+    .snapshot-rank {{
+      font-weight: 950;
+      color: var(--accent-deep);
+      font-variant-numeric: tabular-nums;
+    }}
+
+    .snapshot-team,
+    .snapshot-meta {{
+      min-width: 0;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }}
+
+    .snapshot-team {{
+      font-weight: 900;
+      color: var(--text);
+    }}
+
+    .snapshot-meta {{
+      color: var(--muted);
+    }}
+
+    .snapshot-value {{
+      text-align: right;
+      font-weight: 950;
+      color: var(--accent-deep);
+      font-variant-numeric: tabular-nums;
+    }}
+
+    .snapshot-ratio {{
+      justify-self: end;
+      padding: 4px 7px;
+      border-radius: 999px;
+      border: 1px solid var(--line);
+      color: var(--muted);
+      font-weight: 900;
+      font-variant-numeric: tabular-nums;
+    }}
+
+    .snapshot-ratio[data-level="high"] {{ color: #087f5b; border-color: rgba(8,127,91,0.30); }}
+    .snapshot-ratio[data-level="mid"] {{ color: #9a5b00; border-color: rgba(184,113,0,0.30); }}
+    .snapshot-ratio[data-level="low"] {{ color: #b42318; border-color: rgba(180,35,24,0.30); }}
+    html[data-theme="night"] .snapshot-ratio[data-level="high"] {{ color: #6ee7b7; }}
+    html[data-theme="night"] .snapshot-ratio[data-level="mid"] {{ color: #facc15; }}
+    html[data-theme="night"] .snapshot-ratio[data-level="low"] {{ color: #fb7185; }}
+
+    .copy-brief-body {{
+      margin: 12px 0;
+      padding: 12px;
+      border-radius: 14px;
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,0.42);
+      color: var(--text);
+      font-size: 13px;
+      line-height: 1.72;
+      white-space: pre-line;
+    }}
+
+    html[data-theme="night"] .copy-brief-body {{
+      background: rgba(10, 24, 40, 0.36);
+    }}
+
+    .copy-brief-button {{
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      background: linear-gradient(135deg, var(--accent), #cd7b52);
+      color: #fff;
+      padding: 9px 13px;
+      font-size: 13px;
+      font-weight: 950;
+      cursor: pointer;
+      box-shadow: 0 10px 22px rgba(184, 92, 56, 0.20);
+    }}
+
+    .copy-brief-button:active {{
+      transform: translateY(1px);
+    }}
+
+    .action-list {{
+      display: grid;
+      gap: 9px;
+      margin-top: 12px;
+    }}
+
+    .action-item {{
+      display: grid;
+      grid-template-columns: 34px minmax(0, 1fr);
+      gap: 10px;
+      align-items: start;
+      padding: 10px 11px;
+      border-radius: 14px;
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,0.42);
+      color: var(--text);
+      font-size: 13px;
+      line-height: 1.62;
+    }}
+
+    html[data-theme="night"] .action-item {{
+      background: rgba(10, 24, 40, 0.36);
+    }}
+
+    .action-index {{
+      display: inline-grid;
+      place-items: center;
+      width: 26px;
+      height: 26px;
+      border-radius: 9px;
+      background: var(--accent-soft);
+      color: var(--accent-deep);
+      font-weight: 950;
+    }}
+
+
+    /* ========== Team Compare Bay: wide 8-team battle station ========== */
+    .compare-panel {{
+      margin: 0 0 18px;
+      padding: 18px;
+      border: 1px solid var(--line);
+      border-radius: 22px;
+      background:
+        linear-gradient(135deg, rgba(255,255,255,0.62), rgba(255,255,255,0.28)),
+        var(--panel-soft);
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.35), 0 14px 34px rgba(0,0,0,0.08);
+      overflow: hidden;
+    }}
+
+    html[data-theme="night"] .compare-panel {{
+      background:
+        linear-gradient(135deg, rgba(18, 38, 58, 0.72), rgba(7, 18, 31, 0.48)),
+        rgba(10, 24, 40, 0.42);
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.06), 0 14px 38px rgba(0,0,0,0.22);
+    }}
+
+    .compare-panel .compare-head {{
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 16px;
+      margin-bottom: 14px;
+    }}
+
+    .compare-panel h3 {{
+      margin: 0;
+      font-size: 20px;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+    }}
+
+    .compare-cap {{
+      padding: 7px 12px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      color: var(--accent-deep);
+      background: var(--accent-soft);
+      font-size: 13px;
+      font-weight: 950;
+      white-space: nowrap;
+      font-variant-numeric: tabular-nums;
+    }}
+
+    .compare-tools {{
+      display: grid;
+      grid-template-columns: minmax(150px, 0.85fr) minmax(220px, 1.15fr) minmax(320px, 1.8fr) minmax(190px, 0.9fr);
+      gap: 12px;
+      align-items: stretch;
+    }}
+
+    .compare-field {{
+      min-width: 0;
+      display: grid;
+      gap: 6px;
+    }}
+
+    .compare-field label {{
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 850;
+      letter-spacing: 0.04em;
+    }}
+
+    .compare-field input,
+    .compare-field select {{
+      width: 100%;
+      min-height: 48px;
+      padding: 12px 14px;
+      border: 1px solid var(--line);
+      border-radius: 15px;
+      background: var(--input-bg);
+      color: var(--text);
+      font-size: 14px;
+      font-weight: 780;
+      outline: none;
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.22);
+    }}
+
+    .compare-field select {{
+      text-overflow: ellipsis;
+    }}
+
+    .compare-field input:focus,
+    .compare-field select:focus {{
+      border-color: rgba(184, 92, 56, 0.48);
+      box-shadow: 0 0 0 4px rgba(184, 92, 56, 0.1), inset 0 1px 0 rgba(255,255,255,0.22);
+    }}
+
+    .compare-button-row {{
+      display: grid;
+      grid-template-columns: 1.1fr 0.75fr;
+      gap: 10px;
+      align-items: end;
+    }}
+
+    .compare-button {{
+      min-height: 48px;
+      border: 1px solid var(--line);
+      border-radius: 15px;
+      padding: 12px 14px;
+      background: linear-gradient(135deg, var(--accent-soft), rgba(255,255,255,0.34));
+      color: var(--accent-deep);
+      font-size: 14px;
+      font-weight: 950;
+      cursor: pointer;
+      transition: transform 0.16s ease, border-color 0.16s ease, opacity 0.16s ease;
+    }}
+
+    .compare-button:hover:not(:disabled) {{
+      transform: translateY(-1px);
+      border-color: var(--accent-deep);
+    }}
+
+    .compare-button.secondary {{
+      background: var(--button-bg);
+      color: var(--muted);
+    }}
+
+    .compare-button:disabled {{
+      opacity: 0.45;
+      cursor: not-allowed;
+      transform: none;
+    }}
+
+    .compare-tray {{
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+      gap: 10px;
+      margin-top: 14px;
+      min-height: 42px;
+    }}
+
+    .compare-chip {{
+      display: flex;
+      align-items: center;
+      gap: 9px;
+      min-width: 0;
+      max-width: 100%;
+      padding: 10px 11px;
+      border: 1px solid var(--line);
+      border-radius: 15px;
+      background: rgba(255,255,255,0.48);
+      color: var(--text);
+      font-size: 13px;
+      font-weight: 880;
+    }}
+
+    html[data-theme="night"] .compare-chip {{
+      background: rgba(10, 24, 40, 0.42);
+    }}
+
+    .compare-chip i {{
+      width: 9px;
+      height: 9px;
+      border-radius: 50%;
+      background: var(--dot);
+      box-shadow: 0 0 0 3px color-mix(in srgb, var(--dot), transparent 78%);
+      flex: 0 0 auto;
+    }}
+
+    .compare-chip span {{
+      min-width: 0;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }}
+
+    .compare-chip button {{
+      border: 0;
+      background: transparent;
+      color: var(--muted);
+      cursor: pointer;
+      font-weight: 950;
+      padding: 0 2px;
+    }}
+
+    .compare-hint {{
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.6;
+      margin-top: 8px;
+    }}
+
+    .compare-radar-card {{
+      grid-column: 1 / -1;
+    }}
+
+    .compare-radar-layout {{
+      display: grid;
+      grid-template-columns: minmax(320px, 520px) minmax(260px, 1fr);
+      gap: 16px;
+      align-items: start;
+      margin-top: 14px;
+    }}
+
+    .compare-svg-wrap {{
+      position: relative;
+      padding: 12px;
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      background: radial-gradient(circle at 50% 40%, rgba(255,255,255,0.42), transparent 62%), rgba(255,255,255,0.22);
+      overflow: hidden;
+    }}
+
+    html[data-theme="night"] .compare-svg-wrap {{
+      background: radial-gradient(circle at 50% 40%, rgba(55,216,255,0.08), transparent 62%), rgba(10, 24, 40, 0.36);
+    }}
+
+    .compare-svg {{
+      width: 100%;
+      height: auto;
+      display: block;
+      overflow: visible;
+    }}
+
+    .compare-legend {{
+      display: grid;
+      gap: 8px;
+    }}
+
+    .compare-legend-row {{
+      display: grid;
+      grid-template-columns: 14px minmax(0, 1fr) 74px;
+      gap: 9px;
+      align-items: center;
+      padding: 8px 9px;
+      border: 1px solid var(--line);
+      border-radius: 13px;
+      background: rgba(255,255,255,0.38);
+      font-size: 12px;
+    }}
+
+    html[data-theme="night"] .compare-legend-row {{
+      background: rgba(10, 24, 40, 0.34);
+    }}
+
+    .compare-color {{
+      width: 11px;
+      height: 11px;
+      border-radius: 50%;
+      background: var(--c);
+      box-shadow: 0 0 0 3px color-mix(in srgb, var(--c), transparent 78%);
+    }}
+
+    .compare-name {{
+      min-width: 0;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      font-weight: 900;
+    }}
+
+    .compare-score {{
+      text-align: right;
+      color: var(--accent-deep);
+      font-weight: 950;
+      font-variant-numeric: tabular-nums;
+    }}
+
+    .compare-summary {{
+      margin-top: 12px;
+      display: grid;
+      gap: 8px;
+    }}
+
+    .compare-summary-line {{
+      display: flex;
+      gap: 8px;
+      align-items: flex-start;
+      padding: 9px 10px;
+      border-radius: 13px;
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,0.34);
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.65;
+    }}
+
+    html[data-theme="night"] .compare-summary-line {{
+      background: rgba(10, 24, 40, 0.32);
+    }}
+
+    .compare-summary-line b {{
+      color: var(--text);
+    }}
+
+    .compare-disclaimer {{
+      margin-top: 12px;
+      padding: 10px 12px;
+      border-radius: 15px;
+      border: 1px dashed var(--line);
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.7;
+      background: rgba(255,255,255,0.28);
+    }}
+
+    html[data-theme="night"] .compare-disclaimer {{
+      background: rgba(10, 24, 40, 0.26);
+    }}
+
+    @media (max-width: 1280px) {{
+      .compare-tools {{
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }}
+
+      .compare-button-row {{
+        align-items: stretch;
+      }}
+    }}
+
+    @media (max-width: 720px) {{
+      .compare-panel {{
+        padding: 14px;
+      }}
+
+      .compare-tools {{
+        grid-template-columns: 1fr;
+      }}
+
+      .compare-tray {{
+        grid-template-columns: 1fr;
+      }}
+    }}
+
+    @media (max-width: 980px) {{
+      .compare-radar-layout {{
+        grid-template-columns: 1fr;
+      }}
+    }}
+
+    @media (max-width: 980px) {{
+      .review-grid,
+      .metric-rule-grid {{
+        grid-template-columns: 1fr;
+      }}
+
+      .snapshot-row {{
+        grid-template-columns: 38px minmax(0, 1fr) 76px;
+      }}
+
+      .snapshot-meta,
+      .snapshot-ratio {{
+        display: none;
+      }}
+    }}
+
   </style>
 </head>
 <body>
+  <div class="animated-backdrop" aria-hidden="true">
+    <div class="aurora"></div>
+    <div class="grid"></div>
+    <div class="hex-field"></div>
+    <div class="mech-blueprint"></div>
+    <div class="reticle"></div>
+    <div class="scanline"></div>
+    <div class="warning-stripes"></div>
+    <div class="orb one"></div>
+    <div class="orb two"></div>
+    <div class="spark"></div>
+    <div class="mecha-hangar">
+      <div class="bay-door left"></div>
+      <div class="bay-door right"></div>
+      <div class="gantry top"></div>
+      <div class="gantry bottom"></div>
+    </div>
+    <div class="mecha-suit" aria-hidden="true">
+      <div class="mecha-head"><i></i></div>
+      <div class="mecha-core"><span></span></div>
+      <div class="mecha-shoulder left"></div>
+      <div class="mecha-shoulder right"></div>
+      <div class="mecha-arm left"></div>
+      <div class="mecha-arm right"></div>
+      <div class="mecha-leg left"></div>
+      <div class="mecha-leg right"></div>
+    </div>
+    <div class="hydraulic-set" aria-hidden="true">
+      <span></span><span></span><span></span><span></span>
+    </div>
+  </div>
+  <div class="hud-frame" aria-hidden="true"></div>
   <div class="page">
+    <div class="cockpit-rail" aria-hidden="true">
+      <span>T-DT ARMOR-BAY</span>
+      <span>SERVO LINK READY</span>
+      <span>BALLISTIC DATA CORE</span>
+      <span>TACTICAL VIEW ONLINE</span>
+    </div>
     <section class="hero">
       <div class="hero-card">
-        <span class="eyebrow">RM DATA DASHBOARD</span>
+        <div class="hero-toolbar">
+          <span class="eyebrow">RM ARMOR BAY // MECHA DATA CORE</span>
+          <div class="toolbar-actions">
+            <button id="densityToggle" class="theme-toggle density-toggle" type="button" aria-label="切换表格密度">▤ 紧凑</button>
+            <button id="themeToggle" class="theme-toggle" type="button" aria-label="切换白昼或夜间模式">🌙 夜间</button>
+          </div>
+        </div>
         <h1 id="heroTitle">{safe_title}</h1>
-        <p id="heroSubtitle">把原来偏“文本堆叠”的查询结果整理成网页化仪表盘了。现在可以按兵种切换、按关键字搜索、按任意指标排序；当筛到单支战队时，会直接在表格上方显示七边形雷达图，对比它在赛区里的兵种综合水平，并在有 MVP 数据时同步展示 MVP 雷达图。</p>
+        <p id="heroSubtitle">这是按机甲驾驶舱思路重做的 RM 数据分析面板：左侧像武器/传感器控制台，右侧是装甲数据舱。可以按兵种、赛区、关键词筛选，按任意指标排序；筛到单支战队时会生成兵种能力雷达图和 MVP 追踪视图。</p>
+        <div class="combat-strip" aria-hidden="true">
+          <span><b>CORE</b> ONLINE</span>
+          <span><b>RADAR</b> SYNC</span>
+          <span><b>MVP</b> TRACE</span>
+          <span><b>TACTIC</b> SCOUT</span>
+        </div>
       </div>
       <aside class="summary-card">
         <div class="summary-title">当前概览</div>
@@ -1140,7 +3945,7 @@ def render_html(title, payload):
         <h2 class="panel-title">筛选与排序</h2>
         <div class="field">
           <label for="searchInput">搜索学校 / 战队 / 赛区</label>
-          <input id="searchInput" type="text" placeholder="例如 华南理工 / 南部 / 英雄">
+          <input id="searchInput" type="text" placeholder="例如 tdt / 北部 / 无人机">
         </div>
         <div class="field">
           <label>赛区选择</label>
@@ -1153,6 +3958,15 @@ def render_html(title, payload):
         <div class="field">
           <label for="metricSelect">排序指标</label>
           <select id="metricSelect"></select>
+          <div class="metric-presets" id="metricPresetBar">
+            <button class="metric-preset" type="button" data-metric-preset="自瞄命中综合">自瞄命中</button>
+            <button class="metric-preset" type="button" data-metric-preset="火力输出综合">火力输出</button>
+            <button class="metric-preset" type="button" data-metric-preset="MVP次数">MVP追踪</button>
+            <button class="metric-preset" type="button" data-metric-preset="局均雷达分数">雷达压制</button>
+            <button class="metric-preset" type="button" data-metric-preset="局均组装经济数">工程经济</button>
+            <button class="metric-preset" type="button" data-metric-preset="总场次飞镖分数">飞镖打击</button>
+          </div>
+          <div class="view-hint">常用指标可以直接点，不用在长下拉框里翻。</div>
         </div>
         <div class="field">
           <label for="sortDirection">排序方向</label>
@@ -1170,15 +3984,46 @@ def render_html(title, payload):
             <option value="9999">全部</option>
           </select>
         </div>
+
       </aside>
 
       <section class="table-panel">
+        <section class="compare-panel compare-wide" aria-label="队伍比拼台">
+          <div class="compare-head">
+            <div>
+              <h3>队伍比拼台</h3>
+              <div class="view-hint">最多 8 支队伍，适合做跨赛区/同赛区内部比拼；右侧会叠加七边形雷达图。</div>
+            </div>
+            <span class="compare-cap" id="compareCap">0/8</span>
+          </div>
+          <div class="compare-tools">
+            <div class="compare-field">
+              <label for="compareZoneSelect">对比赛区</label>
+              <select id="compareZoneSelect" aria-label="选择对比赛区"></select>
+            </div>
+            <div class="compare-field">
+              <label for="compareSearchInput">搜索队伍</label>
+              <input id="compareSearchInput" type="text" placeholder="战队名关键词">
+            </div>
+            <div class="compare-field">
+              <label for="compareTeamSelect">候选队伍</label>
+              <select id="compareTeamSelect" aria-label="选择对比队伍"></select>
+            </div>
+            <div class="compare-button-row">
+              <button id="compareAddButton" class="compare-button" type="button">加入比拼</button>
+              <button id="compareClearButton" class="compare-button secondary" type="button">清空</button>
+            </div>
+          </div>
+          <div class="compare-tray" id="compareTray"></div>
+          <div class="compare-hint">口径：每支队伍按它所在赛区的同兵种均值归一化，100% 表示该赛区该兵种平均水平；只作复盘参考，不代表官方排名。</div>
+        </section>
         <div class="table-topbar">
           <div>
             <h2 id="tableTitle">数据列表</h2>
             <div class="table-meta" id="tableMeta">准备中...</div>
           </div>
         </div>
+        <section class="tactical-brief" id="tacticalBrief" aria-live="polite"></section>
         <div class="chart-grid" id="chartGrid"></div>
         <div class="table-wrap">
           <table>
@@ -1195,6 +4040,8 @@ def render_html(title, payload):
     const payload = {payload_json};
     const baseColumns = ["赛区", "学校", "战队", "兵种"];
     const metricPriority = [
+      "自瞄命中综合",
+      "火力输出综合",
       "小弹丸命中率",
       "大弹丸命中率",
       "KDA得分",
@@ -1241,6 +4088,12 @@ def render_html(title, payload):
     const league3v3Types = ["英雄", "步兵", "哨兵"];
     const radarScaleSteps = [0.6, 1, 2, 3];
 
+    const compareMaxTeams = 8;
+    const comparePalette = [
+      "#ff5c32", "#37d8ff", "#33f5b4", "#ffd166",
+      "#a78bfa", "#f472b6", "#60a5fa", "#f97316"
+    ];
+
     let state = {{
       selectedZones: payload.initialZone && payload.initialZone !== "全部" ? [payload.initialZone] : [],
       selectedType: payload.initialType || "全部",
@@ -1250,6 +4103,10 @@ def render_html(title, payload):
       limit: 50,
       activeSortColumn: payload.defaultMetric || "",
       activeSortDirection: "desc",
+
+      compareSelections: [],
+      compareZone: payload.initialZone && payload.initialZone !== "全部" ? payload.initialZone : "",
+      compareKeyword: "",
     }};
     let insightTypewriterRun = 0;
 
@@ -1271,7 +4128,18 @@ def render_html(title, payload):
       tableTitle: document.getElementById("tableTitle"),
       tableMeta: document.getElementById("tableMeta"),
       chartGrid: document.getElementById("chartGrid"),
+      tacticalBrief: document.getElementById("tacticalBrief"),
       emptyState: document.getElementById("emptyState"),
+      themeToggle: document.getElementById("themeToggle"),
+      densityToggle: document.getElementById("densityToggle"),
+
+      compareZoneSelect: document.getElementById("compareZoneSelect"),
+      compareSearchInput: document.getElementById("compareSearchInput"),
+      compareTeamSelect: document.getElementById("compareTeamSelect"),
+      compareAddButton: document.getElementById("compareAddButton"),
+      compareClearButton: document.getElementById("compareClearButton"),
+      compareTray: document.getElementById("compareTray"),
+      compareCap: document.getElementById("compareCap"),
     }};
 
     els.searchInput.value = state.keyword;
@@ -1388,6 +4256,64 @@ def render_html(title, payload):
     function getFiniteNumber(row, column) {{
       const value = row ? row[column] : null;
       return typeof value === "number" && Number.isFinite(value) ? value : null;
+    }}
+
+    const virtualMetricColumns = ["自瞄命中综合", "火力输出综合"];
+    const attackTypes = new Set(["英雄", "步兵", "哨兵", "无人机"]);
+
+    function getAimHitValue(row) {{
+      const type = row ? row["兵种"] : "";
+      if (type === "英雄") return getFiniteNumber(row, "大弹丸命中率");
+      if (type === "步兵" || type === "哨兵" || type === "无人机") return getFiniteNumber(row, "小弹丸命中率");
+      return null;
+    }}
+
+    function getFireRawValue(row) {{
+      const type = row ? row["兵种"] : "";
+      if (!attackTypes.has(type)) return null;
+      if (type === "英雄") {{
+        return getFiniteNumber(row, "建筑伤害")
+          ?? getFiniteNumber(row, "击杀数")
+          ?? getFiniteNumber(row, "场均击杀数");
+      }}
+      return getFiniteNumber(row, "对敌伤害量")
+        ?? getFiniteNumber(row, "建筑伤害")
+        ?? getFiniteNumber(row, "击杀数")
+        ?? getFiniteNumber(row, "场均击杀数");
+    }}
+
+    function buildAverageMap(rows, valueGetter) {{
+      const bucket = new Map();
+      rows.forEach((row) => {{
+        const value = valueGetter(row);
+        if (typeof value !== "number" || !Number.isFinite(value)) return;
+        const key = `${{row["赛区"] || "全部"}}::${{row["兵种"] || "未知兵种"}}`;
+        if (!bucket.has(key)) bucket.set(key, []);
+        bucket.get(key).push(value);
+      }});
+      const averageMap = new Map();
+      bucket.forEach((values, key) => {{
+        const avg = values.length ? values.reduce((sum, value) => sum + value, 0) / values.length : null;
+        averageMap.set(key, avg);
+      }});
+      return averageMap;
+    }}
+
+    function initializeVirtualMetrics() {{
+      virtualMetricColumns.forEach((column) => {{
+        if (!payload.columns.includes(column)) payload.columns.push(column);
+      }});
+
+      const fireAverageMap = buildAverageMap(payload.rows, getFireRawValue);
+      payload.rows.forEach((row) => {{
+        row["自瞄命中综合"] = getAimHitValue(row);
+        const rawFire = getFireRawValue(row);
+        const fireKey = `${{row["赛区"] || "全部"}}::${{row["兵种"] || "未知兵种"}}`;
+        const fireAvg = fireAverageMap.get(fireKey);
+        row["火力输出综合"] = (typeof rawFire === "number" && Number.isFinite(rawFire) && fireAvg && fireAvg > 0)
+          ? (rawFire / fireAvg) * 100
+          : null;
+      }});
     }}
 
     function calculateDartScore(row) {{
@@ -1582,16 +4508,16 @@ def render_html(title, payload):
         const dot = getRadarPoint(index, axis.clippedRatio, center, radius, axisCount);
         const anchor = label.x < center - 20 ? "end" : (label.x > center + 20 ? "start" : "middle");
         return `
-          <line x1="${{center}}" y1="${{center}}" x2="${{outer.x}}" y2="${{outer.y}}" stroke="rgba(143,59,31,0.16)" stroke-width="1" />
-          <circle cx="${{dot.x}}" cy="${{dot.y}}" r="4.5" fill="#8f3b1f" />
-          <text x="${{label.x}}" y="${{label.y}}" text-anchor="${{anchor}}" font-size="13" fill="#5a4633">${{escapeHtml(axis.type)}}</text>
+          <line x1="${{center}}" y1="${{center}}" x2="${{outer.x}}" y2="${{outer.y}}" stroke="var(--line)" stroke-width="1" />
+          <circle cx="${{dot.x}}" cy="${{dot.y}}" r="4.5" fill="var(--accent-deep)" />
+          <text x="${{label.x}}" y="${{label.y}}" text-anchor="${{anchor}}" font-size="13" fill="var(--text)">${{escapeHtml(axis.type)}}</text>
         `;
       }}).join("");
 
       const scaleMarkup = radarScaleSteps.map((step) => {{
         const y = center - (step / 3) * radius;
         return `
-          <text x="${{center + 10}}" y="${{y + 4}}" font-size="11" fill="rgba(120, 98, 74, 0.95)">
+          <text x="${{center + 10}}" y="${{y + 4}}" font-size="11" fill="var(--muted)">
             ${{Math.round(step * 100)}}%
           </text>
         `;
@@ -1863,6 +4789,142 @@ def render_html(title, payload):
       els.avgMetric.textContent = avgMetric === null ? "-" : formatValue(avgMetric);
     }}
 
+
+
+    function getMetricValues(rows, metric) {{
+      if (!metric) return [];
+      return rows
+        .map((row) => row[metric])
+        .filter((value) => typeof value === "number" && Number.isFinite(value));
+    }}
+
+    function getAverage(values) {{
+      return values.length ? values.reduce((sum, value) => sum + value, 0) / values.length : null;
+    }}
+
+    function buildZoneAverageRanking(rows, metric) {{
+      const zoneMap = new Map();
+      rows.forEach((row) => {{
+        const zone = row["赛区"] || "未知赛区";
+        const value = row[metric];
+        if (typeof value !== "number" || !Number.isFinite(value)) return;
+        if (!zoneMap.has(zone)) zoneMap.set(zone, []);
+        zoneMap.get(zone).push(value);
+      }});
+      return Array.from(zoneMap.entries())
+        .map(([zone, values]) => ({{ zone, count: values.length, average: getAverage(values) }}))
+        .filter((item) => item.average !== null)
+        .sort((left, right) => state.activeSortDirection === "asc" ? left.average - right.average : right.average - left.average);
+    }}
+
+    function getDominantType(rows) {{
+      const typeMap = new Map();
+      rows.forEach((row) => {{
+        const type = row["兵种"] || "未知兵种";
+        typeMap.set(type, (typeMap.get(type) || 0) + 1);
+      }});
+      return Array.from(typeMap.entries()).sort((a, b) => b[1] - a[1])[0] || null;
+    }}
+
+    function renderMetricPresets(visibleColumns) {{
+      document.querySelectorAll("[data-metric-preset]").forEach((button) => {{
+        const metric = button.dataset.metricPreset;
+        const enabled = visibleColumns.includes(metric);
+        button.disabled = !enabled;
+        button.classList.toggle("active", metric === state.activeSortColumn || metric === state.metric);
+        button.style.opacity = enabled ? "1" : "0.42";
+        const presetHint = metric === "自瞄命中综合"
+          ? "英雄使用大弹丸命中率；步兵、哨兵、无人机使用小弹丸命中率"
+          : (metric === "火力输出综合"
+            ? "覆盖英雄、步兵、哨兵、无人机；飞镖单独归入飞镖打击"
+            : `切换到：${{metric}}`);
+        button.title = enabled ? presetHint : `当前筛选下没有“${{metric}}”数据`;
+      }});
+    }}
+
+    function renderTacticalBrief(filteredRows, sortedRows, visibleColumns) {{
+      const metric = state.activeSortColumn && !baseColumns.includes(state.activeSortColumn)
+        ? state.activeSortColumn
+        : state.metric;
+      const selectedZones = getSelectedZones();
+      const singleTeam = getSingleTeamCandidate(filteredRows);
+      const metricValues = getMetricValues(filteredRows, metric);
+      const avg = getAverage(metricValues);
+      const topRow = sortedRows.find((row) => typeof row[metric] === "number" && Number.isFinite(row[metric])) || sortedRows[0];
+      const topLabel = topRow ? getTeamLabel(topRow) : "暂无队伍";
+      const topValue = topRow && typeof topRow[metric] === "number" ? formatValue(topRow[metric]) : "-";
+      const zoneRank = metric ? buildZoneAverageRanking(filteredRows, metric) : [];
+      const bestZone = zoneRank[0];
+      const dominantType = getDominantType(filteredRows);
+      const sampleProfile = buildSampleProfile(filteredRows, metric);
+      const chips = [
+        `样本 ${{filteredRows.length}} 条`,
+        `指标 ${{metric || "未选择"}}`,
+        selectedZones.length ? `${{selectedZones.length}} 个赛区` : "全部赛区",
+        state.selectedType !== "全部" ? state.selectedType : "全部兵种",
+        `可信度 ${{sampleProfile.label}}`,
+      ];
+
+      const lines = [];
+      if (!filteredRows.length) {{
+        lines.push("当前筛选没有命中数据，优先检查搜索词、赛区和兵种是否同时卡得太死。");
+      }} else if (singleTeam) {{
+        const radar = buildRadarModel(singleTeam.key, singleTeam.zone);
+        const mvpRadar = buildMvpRadarModel(singleTeam.key, singleTeam.zone);
+        if (radar && radar.axes && radar.axes.length) {{
+          const validAxes = radar.axes.filter((axis) => axis.ratio !== null && Number.isFinite(axis.ratio));
+          const strongest = validAxes.slice().sort((a, b) => b.ratio - a.ratio)[0];
+          const weakest = validAxes.slice().sort((a, b) => a.ratio - b.ratio)[0];
+          if (strongest) lines.push(`该队伍在 <b>${{escapeHtml(strongest.type)}}</b> 轴最突出，约为赛区均值的 <b>${{escapeHtml(formatPercent(strongest.ratio))}}</b>。`);
+          if (weakest && weakest !== strongest) lines.push(`短板更可能出现在 <b>${{escapeHtml(weakest.type)}}</b> 轴，约为赛区均值的 <b>${{escapeHtml(formatPercent(weakest.ratio))}}</b>，适合重点复盘。`);
+        }}
+        if (mvpRadar && mvpRadar.axes) {{
+          const mvpTotal = mvpRadar.axes.reduce((sum, axis) => sum + (typeof axis.teamValue === "number" ? axis.teamValue : 0), 0);
+          if (mvpTotal > 0) lines.push(`MVP 追踪共记录 <b>${{escapeHtml(formatValue(mvpTotal))}}</b> 次，说明这队不只是单项数据亮眼，也有实际对局贡献痕迹。`);
+        }}
+        if (!lines.length) lines.push("该队伍已锁定，但部分雷达/MVP维度缺数据，建议结合原始比赛录像或单兵表继续看。")
+      }} else {{
+        if (topRow) lines.push(`当前排序下首位是 <b>${{escapeHtml(topLabel)}}</b>，${{escapeHtml(metric || "当前指标")}} 为 <b>${{escapeHtml(topValue)}}</b>。`);
+        if (bestZone && zoneRank.length > 1) lines.push(`<b>${{escapeHtml(bestZone.zone)}}</b> 在当前指标均值上领先，均值约 <b>${{escapeHtml(formatValue(bestZone.average))}}</b>，可优先看该赛区头部队伍。`);
+        if (dominantType) lines.push(`当前样本里 <b>${{escapeHtml(dominantType[0])}}</b> 数量最多，共 <b>${{dominantType[1]}}</b> 条；如果想公平比较，建议再锁定单一兵种。`);
+        if (avg !== null) lines.push(`当前指标均值约 <b>${{escapeHtml(formatValue(avg))}}</b>，表格高亮列可以快速看谁明显高于均线。`);
+      }}
+
+      if (sampleProfile.level !== "high") {{
+        const sampleWarning = sampleProfile.warnings.length ? sampleProfile.warnings.join("、") : "有效样本还不算充足";
+        lines.push(`当前筛选可信度为 <b>${{escapeHtml(sampleProfile.label)}}</b>：${{escapeHtml(sampleWarning)}}，结论建议作为排查线索。`);
+      }}
+      if (filteredRows.length > 80) {{
+        lines.push("样本量比较大，建议切到紧凑视图，或者先用赛区/兵种筛选收窄，读表效率会高很多。");
+      }}
+      if (selectedZones.length > 1 && state.selectedType === "全部") {{
+        lines.push("跨赛区 + 全兵种会把不同职责混在一起，看结论时最好把它当总览，不要直接当单兵强弱排名。")
+      }}
+
+      els.tacticalBrief.innerHTML = `
+        <div class="brief-head">
+          <div>
+            <div class="brief-kicker">TACTICAL BRIEF</div>
+            <h3 class="brief-title">当前筛选简要点评</h3>
+          </div>
+          <div class="brief-chips">
+            ${{chips.map((chip) => `<span class="brief-chip">${{escapeHtml(chip)}}</span>`).join("")}}
+          </div>
+        </div>
+        <div class="brief-body">
+          ${{lines.slice(0, 6).map((line, index) => `
+            <div class="brief-line">
+              <span class="brief-icon">${{index + 1}}</span>
+              <span>${{line}}</span>
+            </div>
+          `).join("")}}
+        </div>
+        <div class="brief-disclaimer">判断声明：页面里的“强势、短板、打法画像、总实力”等表述只基于当前公开统计口径和筛选条件，是辅助复盘用的个人数据判断，不代表官方排名，也不用于引战；关键结论仍建议结合录像、赛程强度、阵容变动和临场策略复核。</div>
+      `;
+      renderMetricPresets(visibleColumns);
+    }}
+
+
     function renderZoneComparisonCard(rows) {{
       const selectedZones = getSelectedZones();
       if (selectedZones.length < 2 || !state.metric) return "";
@@ -1911,6 +4973,445 @@ def render_html(title, payload):
         </article>
       `;
     }}
+
+
+
+
+    function normalizeCompareText(value) {{
+      return String(value || "").trim().toLowerCase();
+    }}
+
+    function getCompareSelectionId(zone, key) {{
+      return `${{zone}}@@${{key}}`;
+    }}
+
+    function getCompareCandidateRows() {{
+      const zone = state.compareZone || payload.zones[0] || "";
+      const keyword = normalizeCompareText(state.compareKeyword);
+      const teamMap = new Map();
+      payload.rows.forEach((row) => {{
+        if (zone && row["赛区"] !== zone) return;
+        if (!getAllowedTypesForZone(row["赛区"]).includes(row["兵种"])) return;
+        const key = getTeamKey(row);
+        if (!key.trim()) return;
+        const label = getTeamLabel(row);
+        const searchText = normalizeCompareText(`${{row["学校"] || ""}} ${{row["战队"] || ""}} ${{row["赛区"] || ""}}`);
+        if (keyword && !searchText.includes(keyword)) return;
+        if (!teamMap.has(key)) {{
+          teamMap.set(key, {{
+            key,
+            zone: row["赛区"],
+            label,
+            school: row["学校"] || "",
+            team: row["战队"] || "",
+          }});
+        }}
+      }});
+      return Array.from(teamMap.values()).sort((left, right) => left.label.localeCompare(right.label, "zh-Hans-CN"));
+    }}
+
+    function getCompareTeamModel(selection) {{
+      const radar = buildRadarModel(selection.key, selection.zone);
+      if (!radar || !Array.isArray(radar.axes)) return null;
+      const validAxes = radar.axes.filter((axis) => typeof axis.ratio === "number" && Number.isFinite(axis.ratio));
+      const avgRatio = validAxes.length
+        ? validAxes.reduce((sum, axis) => sum + axis.ratio, 0) / validAxes.length
+        : null;
+      const strongest = validAxes.slice().sort((a, b) => b.ratio - a.ratio)[0] || null;
+      const weakest = validAxes.slice().sort((a, b) => a.ratio - b.ratio)[0] || null;
+      return {{
+        ...selection,
+        radar,
+        validAxes,
+        avgRatio,
+        strongest,
+        weakest,
+      }};
+    }}
+
+    function buildCompareRadarModels() {{
+      return state.compareSelections
+        .map(getCompareTeamModel)
+        .filter(Boolean);
+    }}
+
+    function renderCompareControls() {{
+      if (!els.compareZoneSelect || !els.compareTeamSelect) return;
+      const zones = payload.zones || [];
+      const currentZone = state.compareZone && zones.includes(state.compareZone)
+        ? state.compareZone
+        : (getSelectedZones()[0] || zones[0] || "");
+      state.compareZone = currentZone;
+      els.compareZoneSelect.innerHTML = zones.map((zone) => `
+        <option value="${{escapeHtml(zone)}}" ${{zone === currentZone ? "selected" : ""}}>${{escapeHtml(zone)}}</option>
+      `).join("");
+
+      const candidates = getCompareCandidateRows();
+      els.compareTeamSelect.innerHTML = candidates.length
+        ? candidates.map((item) => {{
+          const id = getCompareSelectionId(item.zone, item.key);
+          const alreadyAdded = state.compareSelections.some((selection) => selection.id === id);
+          return `<option value="${{escapeHtml(id)}}" ${{alreadyAdded ? "disabled" : ""}}>${{escapeHtml(item.label)}}</option>`;
+        }}).join("")
+        : `<option value="">无匹配队伍</option>`;
+
+      if (els.compareSearchInput && els.compareSearchInput.value !== state.compareKeyword) {{
+        els.compareSearchInput.value = state.compareKeyword;
+      }}
+
+      if (els.compareCap) {{
+        els.compareCap.textContent = `${{state.compareSelections.length}}/${{compareMaxTeams}}`;
+      }}
+
+      if (els.compareAddButton) {{
+        els.compareAddButton.disabled = !candidates.length || state.compareSelections.length >= compareMaxTeams;
+        els.compareAddButton.textContent = state.compareSelections.length >= compareMaxTeams ? "已满 8 支" : "加入比拼";
+      }}
+
+      if (els.compareClearButton) {{
+        els.compareClearButton.disabled = state.compareSelections.length === 0;
+      }}
+
+      if (els.compareTray) {{
+        els.compareTray.innerHTML = state.compareSelections.length
+          ? state.compareSelections.map((selection, index) => `
+            <span class="compare-chip" style="--dot:${{comparePalette[index % comparePalette.length]}}" title="${{escapeHtml(selection.zone)}}">
+              <i></i><span>${{escapeHtml(selection.label)}}</span>
+              <button type="button" data-remove-compare="${{escapeHtml(selection.id)}}" aria-label="移除 ${{escapeHtml(selection.label)}}">×</button>
+            </span>
+          `).join("")
+          : `<span class="compare-hint">还没加入队伍。先选赛区，再搜学校/战队，点“加入比拼”。</span>`;
+      }}
+    }}
+
+    function addCurrentCompareTeam() {{
+      if (!els.compareTeamSelect) return;
+      if (state.compareSelections.length >= compareMaxTeams) return;
+      const selectedId = els.compareTeamSelect.value;
+      if (!selectedId) return;
+      if (state.compareSelections.some((selection) => selection.id === selectedId)) return;
+      const candidates = getCompareCandidateRows();
+      const candidate = candidates.find((item) => getCompareSelectionId(item.zone, item.key) === selectedId);
+      if (!candidate) return;
+      state.compareSelections.push({{
+        id: selectedId,
+        key: candidate.key,
+        zone: candidate.zone,
+        label: candidate.label,
+      }});
+      render();
+    }}
+
+    function removeCompareTeam(id) {{
+      state.compareSelections = state.compareSelections.filter((selection) => selection.id !== id);
+      render();
+    }}
+
+    function renderCompareRadarCard() {{
+      const models = buildCompareRadarModels();
+      if (!models.length) return "";
+
+      const axisTypes = radarAxes.map((axis) => axis.type);
+      const axisMeta = new Map(radarAxes.map((axis) => [axis.type, axis]));
+      const size = 460;
+      const center = size / 2;
+      const radius = 158;
+      const axisCount = axisTypes.length;
+      const gridPolygons = radarScaleSteps.map((step) => {{
+        const points = axisTypes.map((_, index) => {{
+          const point = getRadarPoint(index, step, center, radius, axisCount);
+          return `${{point.x.toFixed(2)}},${{point.y.toFixed(2)}}`;
+        }}).join(" ");
+        return {{ step, points }};
+      }});
+      const axisMarkup = axisTypes.map((type, index) => {{
+        const outer = getRadarPoint(index, 3, center, radius, axisCount);
+        const label = getRadarPoint(index, 3.36, center, radius, axisCount);
+        const anchor = label.x < center - 20 ? "end" : (label.x > center + 20 ? "start" : "middle");
+        return `
+          <line x1="${{center}}" y1="${{center}}" x2="${{outer.x}}" y2="${{outer.y}}" stroke="var(--line)" stroke-width="1" />
+          <text x="${{label.x}}" y="${{label.y}}" text-anchor="${{anchor}}" font-size="13" fill="var(--text)">${{escapeHtml(type)}}</text>
+        `;
+      }}).join("");
+      const scaleMarkup = radarScaleSteps.map((step) => {{
+        const y = center - (step / 3) * radius;
+        return `<text x="${{center + 10}}" y="${{y + 4}}" font-size="11" fill="var(--muted)">${{Math.round(step * 100)}}%</text>`;
+      }}).join("");
+      const teamPolygons = models.map((model, index) => {{
+        const axisByType = new Map(model.radar.axes.map((axis) => [axis.type, axis]));
+        const color = comparePalette[index % comparePalette.length];
+        const points = axisTypes.map((type, axisIndex) => {{
+          const axis = axisByType.get(type);
+          const ratio = axis && typeof axis.ratio === "number" && Number.isFinite(axis.ratio)
+            ? Math.max(0, Math.min(axis.ratio, 3))
+            : 0;
+          const point = getRadarPoint(axisIndex, ratio, center, radius, axisCount);
+          return `${{point.x.toFixed(2)}},${{point.y.toFixed(2)}}`;
+        }}).join(" ");
+        const dots = axisTypes.map((type, axisIndex) => {{
+          const axis = axisByType.get(type);
+          const ratio = axis && typeof axis.ratio === "number" && Number.isFinite(axis.ratio)
+            ? Math.max(0, Math.min(axis.ratio, 3))
+            : 0;
+          if (ratio <= 0) return "";
+          const point = getRadarPoint(axisIndex, ratio, center, radius, axisCount);
+          return `<circle cx="${{point.x.toFixed(2)}}" cy="${{point.y.toFixed(2)}}" r="3.4" fill="${{color}}" />`;
+        }}).join("");
+        return `
+          <polygon points="${{points}}" fill="${{color}}" fill-opacity="0.08" stroke="${{color}}" stroke-width="2.6" stroke-opacity="0.92" />
+          ${{dots}}
+        `;
+      }}).join("");
+
+      const sortedModels = models.slice().sort((left, right) => (right.avgRatio || 0) - (left.avgRatio || 0));
+      const topModel = sortedModels[0];
+      const overlapZones = new Set(models.map((model) => model.zone));
+      const summaryLines = [];
+      if (topModel && typeof topModel.avgRatio === "number") {{
+        summaryLines.push(`综合均值最高的是 <b>${{escapeHtml(topModel.label)}}</b>，可用轴平均约 <b>${{escapeHtml(formatPercent(topModel.avgRatio))}}</b>。`);
+      }}
+      const strongLines = sortedModels.slice(0, 3).map((model) => {{
+        if (!model.strongest) return null;
+        return `<b>${{escapeHtml(model.label)}}</b> 的相对突出轴是 <b>${{escapeHtml(model.strongest.type)}}</b>（${{escapeHtml(formatPercent(model.strongest.ratio))}}）。`;
+      }}).filter(Boolean);
+      if (strongLines.length) summaryLines.push(strongLines.join(" "));
+      if (overlapZones.size > 1) {{
+        summaryLines.push("当前属于跨赛区对比，图中每支队伍都按自己所在赛区归一化，更适合看队内结构和相对均值，不适合写成绝对强弱。")
+      }}
+      if (models.length >= compareMaxTeams) {{
+        summaryLines.push("已达到 8 支上限；继续比较建议先移除低关注队伍，避免雷达线过密影响读图。")
+      }}
+
+      return `
+        <article class="chart-card compare-radar-card">
+          <div class="radar-header">
+            <div>
+              <span class="eyebrow">TEAM COMPARE BAY</span>
+              <h3>多队伍内部比拼雷达图</h3>
+              <p>最多叠加 8 支队伍。每条线按“队伍该兵种关键指标 / 所在赛区同兵种均值”计算，100% 表示该赛区平均水平。</p>
+            </div>
+          </div>
+          <div class="compare-radar-layout">
+            <div class="compare-svg-wrap">
+              <svg class="compare-svg" viewBox="0 0 ${{size}} ${{size}}" role="img" aria-label="多队伍内部比拼雷达图">
+                <polygon points="${{gridPolygons[3].points}}" fill="rgba(212,168,74,0.04)" stroke="#c9a227" stroke-width="2.2" />
+                ${{gridPolygons.slice(0, 3).map((grid, index) => `
+                  <polygon
+                    points="${{grid.points}}"
+                    fill="none"
+                    stroke="${{grid.step === 1 ? "#c83f2b" : `rgba(143,59,31,${{index === 1 ? 0.24 : 0.16}})`}}"
+                    stroke-width="${{grid.step === 1 ? 2.5 : 1}}"
+                    stroke-dasharray="${{grid.step === 0.6 ? "4 4" : "none"}}"
+                  />
+                `).join("")}}
+                ${{axisMarkup}}
+                ${{teamPolygons}}
+                ${{scaleMarkup}}
+              </svg>
+            </div>
+            <div>
+              <div class="compare-legend">
+                ${{models.map((model, index) => {{
+                  const color = comparePalette[index % comparePalette.length];
+                  const score = typeof model.avgRatio === "number" ? formatPercent(model.avgRatio) : "-";
+                  return `
+                    <div class="compare-legend-row" title="${{escapeHtml(model.zone)}}">
+                      <i class="compare-color" style="--c:${{color}}"></i>
+                      <span class="compare-name">${{escapeHtml(model.label)}} · ${{escapeHtml(model.zone)}}</span>
+                      <span class="compare-score">${{escapeHtml(score)}}</span>
+                    </div>
+                  `;
+                }}).join("")}}
+              </div>
+              <div class="compare-summary">
+                ${{summaryLines.slice(0, 4).map((line, index) => `
+                  <div class="compare-summary-line"><span class="brief-icon">${{index + 1}}</span><span>${{line}}</span></div>
+                `).join("")}}
+              </div>
+              <div class="compare-disclaimer">免责声明：该比拼只基于当前公开统计口径和筛选条件，且跨赛区时已经按各自赛区均值归一化；它适合做侦察、复盘和选片线索，不代表官方排名，不用于引战。关键判断仍需结合录像、对手强度、赛程阶段、阵容变化和实际战术职责复核。</div>
+            </div>
+          </div>
+        </article>
+      `;
+    }}
+
+    function getCurrentAnalysisMetric() {{
+      return state.activeSortColumn && !baseColumns.includes(state.activeSortColumn)
+        ? state.activeSortColumn
+        : (!baseColumns.includes(state.metric) ? state.metric : "");
+    }}
+
+    function buildSampleProfile(rows, metric) {{
+      const total = rows.length;
+      const numericValues = metric ? getMetricValues(rows, metric) : [];
+      const coverage = total ? numericValues.length / total : 0;
+      const teamCount = new Set(rows.map((row) => getTeamKey(row)).filter((key) => key && key.trim())).size;
+      const zoneCount = new Set(rows.map((row) => row["赛区"]).filter(Boolean)).size;
+      const typeCount = new Set(rows.map((row) => row["兵种"]).filter(Boolean)).size;
+      const metricAverage = getAverage(numericValues);
+      let level = "low";
+      let label = "低可信";
+      if (total >= 40 && numericValues.length >= 18 && coverage >= 0.55) {{
+        level = "high";
+        label = "高可信";
+      }} else if (total >= 12 && numericValues.length >= 6 && coverage >= 0.35) {{
+        level = "mid";
+        label = "中可信";
+      }}
+      const warnings = [];
+      if (total < 12) warnings.push("样本量偏小");
+      if (coverage < 0.35) warnings.push("当前指标缺失较多");
+      if (zoneCount > 1 && state.selectedType === "全部") warnings.push("跨赛区全兵种混排");
+      if (typeCount > 1 && ["自瞄命中综合", "火力输出综合"].includes(metric)) warnings.push("综合指标已做兵种适配，但仍建议锁定兵种复核");
+      return {{
+        total,
+        numericCount: numericValues.length,
+        coverage,
+        teamCount,
+        zoneCount,
+        typeCount,
+        metricAverage,
+        level,
+        label,
+        warnings,
+      }};
+    }}
+
+    function getTeamDisplayLabel(row) {{
+      return [row["学校"], row["战队"]].filter(Boolean).join(" / ") || "未知队伍";
+    }}
+
+    function getMetricOutliers(rows, metric, limit = 5) {{
+      if (!metric) return [];
+      const points = rows
+        .map((row) => ({{ row, value: getFiniteNumber(row, metric) }}))
+        .filter((item) => item.value !== null);
+      if (points.length < 6) return [];
+      const values = points.map((item) => item.value);
+      const avg = getAverage(values);
+      if (avg === null) return [];
+      const variance = values.reduce((sum, value) => sum + Math.pow(value - avg, 2), 0) / values.length;
+      const std = Math.sqrt(variance);
+      if (!Number.isFinite(std) || std <= 1e-9) return [];
+      return points
+        .map((item) => ({{
+          ...item,
+          avg,
+          z: (item.value - avg) / std,
+          delta: item.value - avg,
+        }}))
+        .filter((item) => Math.abs(item.z) >= 1.45)
+        .sort((left, right) => Math.abs(right.z) - Math.abs(left.z))
+        .slice(0, limit);
+    }}
+
+    function renderSampleProfileCard(rows) {{
+      const metric = getCurrentAnalysisMetric();
+      if (!rows.length || !metric) return "";
+      const profile = buildSampleProfile(rows, metric);
+      const warningText = profile.warnings.length
+        ? profile.warnings.join("、")
+        : "当前筛选维度相对干净，适合做快速横向比较。";
+      return `
+        <article class="chart-card diagnostic-card">
+          <h3>筛选可信度</h3>
+          <p class="chart-subtitle">先看样本覆盖，再看排名；避免把缺失多、混排多的视图当成绝对强弱。</p>
+          <div class="diagnostic-grid">
+            <div class="diagnostic-stat">
+              <div class="diagnostic-label">有效指标覆盖</div>
+              <div class="diagnostic-value">${{escapeHtml(formatPercent(profile.coverage))}}</div>
+            </div>
+            <div class="diagnostic-stat">
+              <div class="diagnostic-label">可比队伍</div>
+              <div class="diagnostic-value">${{escapeHtml(formatValue(profile.teamCount))}}</div>
+            </div>
+            <div class="diagnostic-stat">
+              <div class="diagnostic-label">指标均值</div>
+              <div class="diagnostic-value">${{escapeHtml(formatValue(profile.metricAverage))}}</div>
+            </div>
+          </div>
+          <div class="diagnostic-pill-row">
+            <span class="diagnostic-pill" data-level="${{profile.level}}">${{escapeHtml(profile.label)}}</span>
+            <span class="diagnostic-pill">样本 ${{escapeHtml(formatValue(profile.total))}} 条</span>
+            <span class="diagnostic-pill">有效 ${{escapeHtml(formatValue(profile.numericCount))}} 条</span>
+          </div>
+          <p class="diagnostic-note">${{escapeHtml(warningText)}}</p>
+        </article>
+      `;
+    }}
+
+    function renderMetricOutlierCard(rows) {{
+      const metric = getCurrentAnalysisMetric();
+      const outliers = getMetricOutliers(rows, metric);
+      if (!outliers.length) return "";
+      return `
+        <article class="chart-card diagnostic-card">
+          <h3>异常高低值提醒</h3>
+          <p class="chart-subtitle">只标记偏离当前筛选均值较大的记录，用来提示“值得复核”，不是直接判强弱。</p>
+          <div class="outlier-list">
+            ${{outliers.map((item) => {{
+              const row = item.row;
+              const direction = item.z >= 0 ? "高于" : "低于";
+              const reason = `${{row["赛区"] || "未知赛区"}} · ${{row["兵种"] || "未知兵种"}} · ${{direction}}均值 ${{escapeHtml(formatValue(Math.abs(item.delta)))}}`;
+              return `
+                <div class="outlier-item">
+                  <div class="outlier-team" title="${{escapeHtml(getTeamDisplayLabel(row))}}">${{escapeHtml(getTeamDisplayLabel(row))}}</div>
+                  <div class="outlier-score">${{escapeHtml(formatValue(item.value))}}</div>
+                  <div class="outlier-reason" title="${{escapeHtml(reason)}}">${{escapeHtml(reason)}}</div>
+                </div>
+              `;
+            }}).join("")}}
+          </div>
+        </article>
+      `;
+    }}
+
+    function renderRoleCoverageCard(rows) {{
+      const metric = getCurrentAnalysisMetric();
+      if (!rows.length || !metric) return "";
+      const roleMap = new Map();
+      rows.forEach((row) => {{
+        const type = row["兵种"] || "未知";
+        const value = getFiniteNumber(row, metric);
+        if (!roleMap.has(type)) roleMap.set(type, {{ type, count: 0, numeric: 0, sum: 0 }});
+        const item = roleMap.get(type);
+        item.count += 1;
+        if (value !== null) {{
+          item.numeric += 1;
+          item.sum += value;
+        }}
+      }});
+      const roles = Array.from(roleMap.values())
+        .map((item) => ({{
+          ...item,
+          average: item.numeric ? item.sum / item.numeric : null,
+          coverage: item.count ? item.numeric / item.count : 0,
+        }}))
+        .sort((left, right) => right.count - left.count)
+        .slice(0, 7);
+      if (roles.length < 2) return "";
+      const maxCount = Math.max(...roles.map((item) => item.count), 1);
+      return `
+        <article class="chart-card diagnostic-card">
+          <h3>兵种覆盖结构</h3>
+          <p class="chart-subtitle">看当前视图主要由哪些兵种构成，避免样本结构偏一边导致结论歪掉。</p>
+          <div class="role-grid">
+            ${{roles.map((item) => {{
+              const width = Math.max(8, Math.round((item.count / maxCount) * 100));
+              const tail = item.average === null ? "无有效指标" : `均值 ${{formatValue(item.average)}} · 覆盖 ${{formatPercent(item.coverage)}}`;
+              return `
+                <div class="role-row">
+                  <span>${{escapeHtml(item.type)}}</span>
+                  <span class="role-track" title="${{escapeHtml(tail)}}"><i class="role-fill" style="--w:${{width}}%"></i></span>
+                  <span>${{escapeHtml(formatValue(item.count))}} 条</span>
+                </div>
+              `;
+            }}).join("")}}
+          </div>
+        </article>
+      `;
+    }}
+
 
     function rowMatchesKeyword(row) {{
       if (!state.keyword) return true;
@@ -2785,6 +6286,7 @@ def render_html(title, payload):
               <p class="insight-note">${{escapeHtml(mvpNote)}}</p>
             </section>
           </div>
+          <p class="insight-disclaimer">队伍判断声明：该简评是按同赛区同兵种的局均/场均数据做的辅助判断，不等于官方实力排名；“短板/强势/打法”只用于复盘讨论，不能脱离赛程难度、对手强度、阵容配置和临场战术单独下结论。</p>
         </article>
       `;
     }}
@@ -2808,13 +6310,242 @@ def render_html(title, payload):
       }});
     }}
 
+
+    function getCurrentMetricLabel() {{
+      return getCurrentAnalysisMetric() || state.metric || "当前指标";
+    }}
+
+    function getMetricDescriptor(metric) {{
+      const fallback = {{
+        title: metric || "当前指标",
+        desc: "该指标来自原始统计表或派生列。用于排序时只能说明当前筛选口径下的相对表现，不建议脱离兵种职责和赛区环境直接判强弱。",
+        rules: [
+          ["适用范围", "随当前筛选条件变化，建议先锁定赛区和兵种再横向比较。"],
+          ["复核建议", "头部/尾部异常值建议回看录像、对手强度和赛程阶段。"],
+        ],
+        caveat: "通用指标说明：表格统计是复盘线索，不等价于官方实力排名。",
+      }};
+      const descriptors = {{
+        "自瞄命中综合": {{
+          title: "自瞄命中综合",
+          desc: "用于把不同输出兵种的命中表现放到同一个快选入口里看。英雄取大弹丸命中率；步兵、哨兵、无人机取小弹丸命中率；工程、雷达、飞镖不参与这个指标。",
+          rules: [
+            ["英雄", "大弹丸命中率"],
+            ["步兵 / 哨兵 / 无人机", "小弹丸命中率"],
+            ["不参与", "工程、雷达、飞镖"],
+            ["阅读方式", "适合筛自瞄稳定性，不能单独代表输出强度。"],
+          ],
+          caveat: "命中率高不一定输出强，可能和射击距离、目标选择、弹量策略有关。",
+        }},
+        "火力输出综合": {{
+          title: "火力输出综合",
+          desc: "用于把能主动造成进攻收益的兵种放到同一个视图里看。英雄、步兵、哨兵、无人机参与；飞镖独立看飞镖打击，工程和雷达不参与。",
+          rules: [
+            ["英雄", "优先看建筑伤害，缺失时回退到击杀相关字段。"],
+            ["步兵 / 哨兵 / 无人机", "优先看对敌伤害量，缺失时回退到建筑伤害或击杀字段。"],
+            ["归一化", "按同赛区同兵种均值归一化，100 约等于同类平均水平。"],
+            ["排除项", "飞镖、工程、雷达不混进火力输出。"],
+          ],
+          caveat: "综合火力是归一化复盘指标，不是官方定义；跨兵种看趋势，精确判断仍要回到单兵种数据。",
+        }},
+        "MVP次数": {{
+          title: "MVP次数",
+          desc: "用于观察高光归属和稳定贡献痕迹。它适合做佐证，不适合单独当实力排名。",
+          rules: [
+            ["优点", "能体现对局中被系统/规则记录到的突出贡献。"],
+            ["局限", "会受赛程、对手、队伍分工和兵种职责影响。"],
+          ],
+          caveat: "MVP 是证据之一，不是唯一判断依据。",
+        }},
+        "局均雷达分数": {{
+          title: "局均雷达分数",
+          desc: "派生雷达指标，综合双倍易伤时间、雷达反制时长、雷达解算成功次数等收益，用来粗看雷达压制质量。",
+          rules: [
+            ["组成", "双倍易伤时间 + 雷达反制收益 + 解算成功收益。"],
+            ["适用", "只适合雷达兵种筛选下重点比较。"],
+          ],
+          caveat: "雷达收益很依赖队友跟伤、对面反制和战术节奏。",
+        }},
+        "总场次飞镖分数": {{
+          title: "总场次飞镖分数",
+          desc: "派生飞镖指标，把不同靶型命中按权重折算成总分，用来更直观看飞镖打击收益。",
+          rules: [
+            ["固定靶", "按较低权重计入。"],
+            ["移动靶 / 末端", "按较高权重计入。"],
+            ["适用", "只适合飞镖数据横向比较。"],
+          ],
+          caveat: "飞镖收益和赛制阶段、战术选择、发射窗口密切相关。",
+        }},
+      }};
+      return descriptors[metric] || fallback;
+    }}
+
+    function renderMetricGuideCard(rows) {{
+      const metric = getCurrentMetricLabel();
+      if (!metric) return "";
+      const descriptor = getMetricDescriptor(metric);
+      const values = getMetricValues(rows, metric);
+      const avg = getAverage(values);
+      const coverage = rows.length ? values.length / rows.length : 0;
+      return `
+        <article class="chart-card metric-guide-card">
+          <h3>当前指标说明</h3>
+          <span class="metric-name">${{escapeHtml(descriptor.title)}}</span>
+          <p class="metric-desc">${{escapeHtml(descriptor.desc)}}</p>
+          <div class="metric-rule-grid">
+            ${{descriptor.rules.map(([name, detail]) => `
+              <div class="metric-rule">
+                <b>${{escapeHtml(name)}}</b>
+                <span>${{escapeHtml(detail)}}</span>
+              </div>
+            `).join("")}}
+          </div>
+          <div class="review-chip-row">
+            <span class="review-chip">有效 ${{escapeHtml(formatValue(values.length))}} / ${{escapeHtml(formatValue(rows.length))}}</span>
+            <span class="review-chip">覆盖 ${{escapeHtml(formatPercent(coverage))}}</span>
+            <span class="review-chip">均值 ${{escapeHtml(formatValue(avg))}}</span>
+          </div>
+          <p class="diagnostic-note">${{escapeHtml(descriptor.caveat)}}</p>
+        </article>
+      `;
+    }}
+
+    function renderTopSnapshotCard(rows) {{
+      const metric = getCurrentMetricLabel();
+      if (!metric || !rows.length) return "";
+      const numericRows = rows.filter((row) => getFiniteNumber(row, metric) !== null).slice(0, 5);
+      if (!numericRows.length) return "";
+      const values = rows.map((row) => getFiniteNumber(row, metric)).filter((value) => value !== null);
+      const avg = getAverage(values);
+      return `
+        <article class="chart-card snapshot-card">
+          <h3>Top 对比快照</h3>
+          <p class="chart-subtitle">把当前排序前几条压成复盘快照，方便快速看“谁领先、领先多少、属于哪个兵种/赛区”。</p>
+          <div class="snapshot-list">
+            ${{numericRows.map((row, index) => {{
+              const value = getFiniteNumber(row, metric);
+              const ratio = avg && avg !== 0 ? value / avg : null;
+              const ratioLevel = ratio === null ? "mid" : (ratio >= 1.25 ? "high" : (ratio <= 0.75 ? "low" : "mid"));
+              const ratioText = ratio === null ? "-" : `${{Math.round(ratio * 100)}}%均值`;
+              const meta = [row["赛区"], row["兵种"]].filter(Boolean).join(" · ");
+              return `
+                <div class="snapshot-row">
+                  <span class="snapshot-rank">#${{index + 1}}</span>
+                  <span class="snapshot-team" title="${{escapeHtml(getTeamDisplayLabel(row))}}">${{escapeHtml(getTeamDisplayLabel(row))}}</span>
+                  <span class="snapshot-meta" title="${{escapeHtml(meta)}}">${{escapeHtml(meta)}}</span>
+                  <span class="snapshot-value">${{escapeHtml(formatValue(value))}}</span>
+                  <span class="snapshot-ratio" data-level="${{ratioLevel}}">${{escapeHtml(ratioText)}}</span>
+                </div>
+              `;
+            }}).join("")}}
+          </div>
+        </article>
+      `;
+    }}
+
+    function buildReviewActions(rows, sortedRows) {{
+      const metric = getCurrentMetricLabel();
+      const actions = [];
+      const profile = metric ? buildSampleProfile(rows, metric) : null;
+      const selectedZones = getSelectedZones();
+      const singleTeam = getSingleTeamCandidate(rows);
+      if (!rows.length) {{
+        return ["当前筛选没有命中数据，先放宽搜索词或取消部分赛区/兵种限制。"];
+      }}
+      if (singleTeam) {{
+        const radar = buildRadarModel(singleTeam.key, singleTeam.zone);
+        if (radar && radar.axes) {{
+          const validAxes = radar.axes.filter((axis) => axis.ratio !== null && Number.isFinite(axis.ratio));
+          const strongest = validAxes.slice().sort((a, b) => b.ratio - a.ratio)[0];
+          const weakest = validAxes.slice().sort((a, b) => a.ratio - b.ratio)[0];
+          if (strongest) actions.push(`先回看 ${{strongest.type}} 相关对局，确认它的高数据是稳定能力、特定对手收益，还是战术资源倾斜。`);
+          if (weakest && weakest !== strongest) actions.push(`把 ${{weakest.type}} 作为待复盘点：看是数据缺失、职责不同，还是确实影响整体收益。`);
+        }}
+        actions.push("单队伍判断建议至少结合 2~3 场录像：看开局节奏、资源分配、关键团战和死亡原因，不只看总表。")
+      }} else {{
+        const top = sortedRows.find((row) => getFiniteNumber(row, metric) !== null);
+        if (top) actions.push(`优先抽查当前第一名：${{getTeamDisplayLabel(top)}}，确认它在“${{metric}}”上的领先是否来自稳定发挥。`);
+        if (selectedZones.length > 1) actions.push("跨赛区比较时先看趋势，再回到单赛区复核；不同赛区对手强度和赛程阶段会影响数据。")
+        if (state.selectedType === "全部") actions.push("全兵种视图适合看总体结构，但真正比较强弱时建议切到单一兵种。")
+      }}
+      if (profile && profile.level !== "high") actions.push(`当前可信度为${{profile.label}}，建议把结论写成“值得关注/需要复核”，不要写成绝对强弱。`);
+      const outliers = metric ? getMetricOutliers(rows, metric, 3) : [];
+      if (outliers.length) actions.push("异常高低值已经被标出，建议先核对这些记录，避免单条极端数据拉偏判断。")
+      if (!actions.length) actions.push("当前视图比较干净，可以直接看 Top 快照和指标说明，再挑 2~3 支队伍做录像复核。")
+      return actions.slice(0, 5);
+    }}
+
+    function renderReviewActionCard(rows, sortedRows) {{
+      const actions = buildReviewActions(rows, sortedRows);
+      return `
+        <article class="chart-card action-card">
+          <h3>下一步复盘建议</h3>
+          <p class="chart-subtitle">这部分不是判定结论，而是告诉你下一步该看哪里，适合做赛前侦察或赛后复盘入口。</p>
+          <div class="action-list">
+            ${{actions.map((action, index) => `
+              <div class="action-item">
+                <span class="action-index">${{index + 1}}</span>
+                <span>${{escapeHtml(action)}}</span>
+              </div>
+            `).join("")}}
+          </div>
+        </article>
+      `;
+    }}
+
+    function buildCurrentBriefText(rows, sortedRows) {{
+      const metric = getCurrentMetricLabel();
+      const selectedZones = getSelectedZones();
+      const profile = metric ? buildSampleProfile(rows, metric) : null;
+      const top = sortedRows.find((row) => getFiniteNumber(row, metric) !== null) || sortedRows[0];
+      const lines = [];
+      lines.push(`【RM 数据简评】筛选：${{selectedZones.length ? selectedZones.join("、") : "全部赛区"}} / ${{state.selectedType || "全部兵种"}} / 指标：${{metric}}`);
+      lines.push(`样本：${{rows.length}} 条${{profile ? `，有效覆盖 ${{formatPercent(profile.coverage)}}，可信度 ${{profile.label}}` : ""}}。`);
+      if (top) {{
+        const value = getFiniteNumber(top, metric);
+        lines.push(`当前排序首位：${{getTeamDisplayLabel(top)}}（${{[top["赛区"], top["兵种"]].filter(Boolean).join(" · ")}}），${{metric}}=${{formatValue(value)}}。`);
+      }} else {{
+        lines.push("当前筛选暂无可排序队伍。")
+      }}
+      if (profile && profile.warnings.length) lines.push(`复核提醒：${{profile.warnings.join("、")}}。`);
+      lines.push("免责声明：以上只基于当前公开统计口径和筛选条件，是辅助复盘线索，不代表官方排名，也不用于引战；关键判断仍需结合录像、对手强度、赛程阶段和阵容变化。")
+      return lines.join("\\n");
+    }}
+
+    function renderCopyBriefCard(rows, sortedRows) {{
+      const text = buildCurrentBriefText(rows, sortedRows);
+      window.rmCurrentBriefText = text;
+      return `
+        <article class="chart-card copy-brief-card">
+          <h3>一键复制结论</h3>
+          <p class="chart-subtitle">适合直接丢到群里或报告草稿里，再按你实际看录像的情况改。</p>
+          <div class="copy-brief-body">${{escapeHtml(text)}}</div>
+          <button class="copy-brief-button" type="button" data-copy-brief>复制这段简评</button>
+        </article>
+      `;
+    }}
+
     function renderCharts(rows) {{
       const singleTeam = getSingleTeamCandidate(rows);
       if (singleTeam) {{
         const radar = buildRadarModel(singleTeam.key, singleTeam.zone);
         const mvpRadar = buildMvpRadarModel(singleTeam.key, singleTeam.zone);
-        const cards = [renderTeamEvaluationCard(buildTeamEvaluationModel(radar, mvpRadar, singleTeam.key, singleTeam.zone)), renderRadarCard(radar)];
+        const cards = [];
+        const compareCard = renderCompareRadarCard();
+        if (compareCard) cards.push(compareCard);
+        cards.push(renderTeamEvaluationCard(buildTeamEvaluationModel(radar, mvpRadar, singleTeam.key, singleTeam.zone)));
+        cards.push(renderRadarCard(radar));
         if (mvpRadar) cards.push(renderRadarCard(mvpRadar));
+        const metricGuideCard = renderMetricGuideCard(rows);
+        if (metricGuideCard) cards.push(metricGuideCard);
+        const actionCard = renderReviewActionCard(rows, rows);
+        if (actionCard) cards.push(actionCard);
+        const copyCard = renderCopyBriefCard(rows, rows);
+        if (copyCard) cards.push(copyCard);
+        const sampleCard = renderSampleProfileCard(rows);
+        if (sampleCard) cards.push(sampleCard);
+        const roleCard = renderRoleCoverageCard(rows);
+        if (roleCard) cards.push(roleCard);
         els.chartGrid.innerHTML = cards.join("");
         runInsightTypewriter();
         return;
@@ -2827,6 +6558,22 @@ def render_html(title, payload):
       }}
 
       const cards = [];
+      const compareCard = renderCompareRadarCard();
+      if (compareCard) cards.push(compareCard);
+      const metricGuideCard = renderMetricGuideCard(rows);
+      if (metricGuideCard) cards.push(metricGuideCard);
+      const topSnapshotCard = renderTopSnapshotCard(rows);
+      if (topSnapshotCard) cards.push(topSnapshotCard);
+      const actionCard = renderReviewActionCard(rows, rows);
+      if (actionCard) cards.push(actionCard);
+      const copyCard = renderCopyBriefCard(rows, rows);
+      if (copyCard) cards.push(copyCard);
+      const sampleCard = renderSampleProfileCard(rows);
+      if (sampleCard) cards.push(sampleCard);
+      const outlierCard = renderMetricOutlierCard(rows);
+      if (outlierCard) cards.push(outlierCard);
+      const roleCard = renderRoleCoverageCard(rows);
+      if (roleCard) cards.push(roleCard);
       const crossZoneRankingCard = renderCrossZoneRankingCard();
       if (crossZoneRankingCard) cards.push(crossZoneRankingCard);
 
@@ -2882,6 +6629,18 @@ def render_html(title, payload):
       els.chartGrid.innerHTML = cards.join("");
     }}
 
+    function renderBaseCell(row, column) {{
+      const value = row[column];
+      const text = escapeHtml(formatValue(value));
+      if (column === "兵种") {{
+        return `<td><span class="type-badge" data-type="${{text}}">${{text}}</span></td>`;
+      }}
+      if (column === "战队") {{
+        return `<td class="team-name-cell" title="${{text}}">${{text}}</td>`;
+      }}
+      return `<td>${{text}}</td>`;
+    }}
+
     function renderTable(rows, columns) {{
       els.tableHead.innerHTML = `
         <tr>
@@ -2916,15 +6675,25 @@ def render_html(title, payload):
         return;
       }}
 
+      const activeMetricColumn = !baseColumns.includes(state.activeSortColumn)
+        ? state.activeSortColumn
+        : (!baseColumns.includes(state.metric) ? state.metric : "");
+      const heatValues = activeMetricColumn
+        ? rows.map((row) => row[activeMetricColumn]).filter((value) => typeof value === "number" && Number.isFinite(value))
+        : [];
+      const maxHeat = heatValues.length ? Math.max(...heatValues, 0) : 0;
+
       els.emptyState.hidden = true;
       els.tableBody.innerHTML = rows.map((row, index) => `
         <tr>
-          <td class="metric-cell">${{index + 1}}</td>
+          <td class="metric-cell row-rank ${{index < 3 ? "rank-top" : ""}}">#${{index + 1}}</td>
           ${{columns.map((column) => {{
             const value = row[column];
             const isMetric = !baseColumns.includes(column);
-            if (!isMetric) {{
-              return `<td>${{escapeHtml(formatValue(value))}}</td>`;
+            if (!isMetric) return renderBaseCell(row, column);
+            if (column === activeMetricColumn && typeof value === "number" && Number.isFinite(value)) {{
+              const heat = maxHeat > 0 ? Math.max(6, Math.min(100, Math.round((value / maxHeat) * 100))) : 0;
+              return `<td class="metric-cell focus-metric"><span class="metric-value">${{escapeHtml(formatValue(value))}}</span><i class="metric-heat" style="--heat: ${{heat}}%"></i></td>`;
             }}
             return `<td class="metric-cell">${{escapeHtml(formatValue(value))}}</td>`;
           }}).join("")}}
@@ -2970,14 +6739,33 @@ def render_html(title, payload):
       renderFilterSelects();
       const filteredRows = getFilteredRows();
       renderMetricSelect(filteredRows);
+
+      renderCompareControls();
       const visibleColumns = getVisibleColumns(filteredRows);
       const sortedRows = sortRows(filteredRows.slice(), visibleColumns);
       const rows = sortedRows.slice(0, state.limit);
       renderSummary(filteredRows);
       renderMeta(filteredRows);
+      renderTacticalBrief(filteredRows, sortedRows, visibleColumns);
       renderCharts(sortedRows);
       renderTable(rows, visibleColumns);
     }}
+
+
+    document.querySelectorAll("[data-metric-preset]").forEach((button) => {{
+      button.addEventListener("click", () => {{
+        const metric = button.dataset.metricPreset;
+        const filteredRows = getFilteredRows();
+        const visibleColumns = getVisibleColumns(filteredRows);
+        if (!visibleColumns.includes(metric)) return;
+        state.metric = metric;
+        state.activeSortColumn = metric;
+        state.activeSortDirection = "desc";
+        state.direction = "desc";
+        els.sortDirection.value = "desc";
+        render();
+      }});
+    }});
 
     els.searchInput.addEventListener("input", (event) => {{
       state.keyword = event.target.value.trim();
@@ -3002,11 +6790,129 @@ def render_html(title, payload):
       render();
     }});
 
+    const themeLabels = {{
+      day: "☀️ 白昼",
+      night: "🌙 夜间",
+    }};
+    const densityLabels = {{
+      standard: "▤ 紧凑",
+      compact: "▥ 标准",
+    }};
+
+    function getCurrentTheme() {{
+      return document.documentElement.dataset.theme === "night" ? "night" : "day";
+    }}
+
+    function setTheme(theme) {{
+      const nextTheme = theme === "night" ? "night" : "day";
+      document.documentElement.dataset.theme = nextTheme;
+      localStorage.setItem("rm-dashboard-theme", nextTheme);
+      if (els.themeToggle) {{
+        els.themeToggle.textContent = themeLabels[nextTheme];
+        els.themeToggle.setAttribute("aria-label", nextTheme === "night" ? "切换到白昼模式" : "切换到夜间模式");
+      }}
+    }}
+
+    function getCurrentDensity() {{
+      return document.documentElement.dataset.density === "compact" ? "compact" : "standard";
+    }}
+
+    function setDensity(density) {{
+      const nextDensity = density === "compact" ? "compact" : "standard";
+      document.documentElement.dataset.density = nextDensity;
+      localStorage.setItem("rm-dashboard-density", nextDensity);
+      if (els.densityToggle) {{
+        els.densityToggle.textContent = densityLabels[nextDensity];
+        els.densityToggle.setAttribute("aria-label", nextDensity === "compact" ? "切换到标准视图" : "切换到紧凑视图");
+      }}
+    }}
+
     els.rowLimit.addEventListener("change", (event) => {{
       state.limit = Number(event.target.value);
       render();
     }});
 
+
+    if (els.compareZoneSelect) {{
+      els.compareZoneSelect.addEventListener("change", (event) => {{
+        state.compareZone = event.target.value;
+        renderCompareControls();
+      }});
+    }}
+
+    if (els.compareSearchInput) {{
+      els.compareSearchInput.addEventListener("input", (event) => {{
+        state.compareKeyword = event.target.value.trim();
+        renderCompareControls();
+      }});
+    }}
+
+    if (els.compareAddButton) {{
+      els.compareAddButton.addEventListener("click", () => {{
+        addCurrentCompareTeam();
+      }});
+    }}
+
+    if (els.compareClearButton) {{
+      els.compareClearButton.addEventListener("click", () => {{
+        state.compareSelections = [];
+        render();
+      }});
+    }}
+
+    if (els.compareTray) {{
+      els.compareTray.addEventListener("click", (event) => {{
+        const button = event.target.closest("[data-remove-compare]");
+        if (!button) return;
+        removeCompareTeam(button.dataset.removeCompare);
+      }});
+    }}
+
+    if (els.themeToggle) {{
+      setTheme(getCurrentTheme());
+      els.themeToggle.addEventListener("click", () => {{
+        setTheme(getCurrentTheme() === "night" ? "day" : "night");
+      }});
+    }}
+
+    if (els.densityToggle) {{
+      setDensity(getCurrentDensity());
+      els.densityToggle.addEventListener("click", () => {{
+        setDensity(getCurrentDensity() === "compact" ? "standard" : "compact");
+      }});
+    }}
+
+
+    document.addEventListener("click", async (event) => {{
+      const button = event.target.closest("[data-copy-brief]");
+      if (!button) return;
+      const text = window.rmCurrentBriefText || "";
+      if (!text) return;
+      const originalText = button.textContent;
+      try {{
+        if (navigator.clipboard && navigator.clipboard.writeText) {{
+          await navigator.clipboard.writeText(text);
+        }} else {{
+          const textarea = document.createElement("textarea");
+          textarea.value = text;
+          textarea.style.position = "fixed";
+          textarea.style.opacity = "0";
+          document.body.appendChild(textarea);
+          textarea.select();
+          document.execCommand("copy");
+          document.body.removeChild(textarea);
+        }}
+        button.textContent = "已复制";
+      }} catch (error) {{
+        button.textContent = "复制失败，手动选中上方文字";
+      }} finally {{
+        window.setTimeout(() => {{
+          button.textContent = originalText;
+        }}, 1600);
+      }}
+    }});
+
+    initializeVirtualMetrics();
     render();
   </script>
 </body>
