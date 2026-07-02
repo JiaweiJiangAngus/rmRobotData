@@ -1,0 +1,5060 @@
+{
+  "matches": [
+    {
+      "id": "2026-东部赛区-1",
+      "season": "2026",
+      "zone": "东部赛区",
+      "order": "1",
+      "stage": "小组赛",
+      "redSchool": "南京航空航天大学金城学院",
+      "redTeam": "Born of Fire",
+      "blueSchool": "西南交通大学",
+      "blueTeam": "Helios",
+      "redScore": 1,
+      "blueScore": 2,
+      "note": "比分与回放均来自官方数据",
+      "uncertain": false
+    },
+    {
+      "id": "2026-东部赛区-2",
+      "season": "2026",
+      "zone": "东部赛区",
+      "order": "2",
+      "stage": "小组赛",
+      "redSchool": "南京理工大学",
+      "redTeam": "Alliance",
+      "blueSchool": "广西大学",
+      "blueTeam": "ROBOTZ",
+      "redScore": 2,
+      "blueScore": 0,
+      "note": "比分与回放均来自官方数据",
+      "uncertain": false
+    },
+    {
+      "id": "2026-东部赛区-3",
+      "season": "2026",
+      "zone": "东部赛区",
+      "order": "3",
+      "stage": "小组赛",
+      "redSchool": "福建理工大学",
+      "redTeam": "苍侠",
+      "blueSchool": "中国石油大学（华东）",
+      "blueTeam": "RPS",
+      "redScore": 0,
+      "blueScore": 2,
+      "note": "比分与回放均来自官方数据",
+      "uncertain": false
+    },
+    {
+      "id": "2026-东部赛区-4",
+      "season": "2026",
+      "zone": "东部赛区",
+      "order": "4",
+      "stage": "小组赛",
+      "redSchool": "江苏大学",
+      "redTeam": "Aurora",
+      "blueSchool": "中国石油大学（北京）",
+      "blueTeam": "SPR",
+      "redScore": 2,
+      "blueScore": 0,
+      "note": "比分与回放均来自官方数据",
+      "uncertain": false
+    },
+    {
+      "id": "2026-东部赛区-5",
+      "season": "2026",
+      "zone": "东部赛区",
+      "order": "5",
+      "stage": "小组赛",
+      "redSchool": "中国科学技术大学",
+      "redTeam": "RoboWalker",
+      "blueSchool": "青岛大学",
+      "blueTeam": "未来",
+      "redScore": 0,
+      "blueScore": 2,
+      "note": "比分与回放均来自官方数据",
+      "uncertain": false
+    },
+    {
+      "id": "2026-东部赛区-6",
+      "season": "2026",
+      "zone": "东部赛区",
+      "order": "6",
+      "stage": "小组赛",
+      "redSchool": "齐鲁工业大学",
+      "redTeam": "Adam",
+      "blueSchool": "太原科技大学",
+      "blueTeam": "NewMaker",
+      "redScore": 2,
+      "blueScore": 0,
+      "note": "比分与回放均来自官方数据",
+      "uncertain": false
+    },
+    {
+      "id": "2026-东部赛区-7",
+      "season": "2026",
+      "zone": "东部赛区",
+      "order": "7",
+      "stage": "小组赛",
+      "redSchool": "华东理工大学",
+      "redTeam": "起源",
+      "blueSchool": "中国矿业大学",
+      "blueTeam": "CUBOT",
+      "redScore": 2,
+      "blueScore": 0,
+      "note": "比分与回放均来自官方数据",
+      "uncertain": false
+    },
+    {
+      "id": "2026-东部赛区-8",
+      "season": "2026",
+      "zone": "东部赛区",
+      "order": "8",
+      "stage": "小组赛",
+      "redSchool": "上海大学",
+      "redTeam": "SRM",
+      "blueSchool": "首都师范大学",
+      "blueTeam": "PIE",
+      "redScore": 1,
+      "blueScore": 2,
+      "note": "比分与回放均来自官方数据",
+      "uncertain": false
+    },
+    {
+      "id": "2026-东部赛区-9",
+      "season": "2026",
+      "zone": "东部赛区",
+      "order": "9",
+      "stage": "小组赛",
+      "redSchool": "安徽信息工程学院",
+      "redTeam": "Artisans",
+      "blueSchool": "浙江大学",
+      "blueTeam": "Hello World",
+      "redScore": 0,
+      "blueScore": 2,
+      "note": "比分与回放均来自官方数据",
+      "uncertain": false
+    },
+    {
+      "id": "2026-东部赛区-10",
+      "season": "2026",
+      "zone": "东部赛区",
+      "order": "10",
+      "stage": "小组赛",
+      "redSchool": "杭州电子科技大学",
+      "redTeam": "PHOENIX",
+      "blueSchool": "哈尔滨工业大学（深圳）",
+      "blueTeam": "南工骁鹰",
+      "redScore": 0,
+      "blueScore": 2,
+      "note": "比分与回放均来自官方数据",
+      "uncertain": false
+    },
+    {
+      "id": "2026-东部赛区-11",
+      "season": "2026",
+      "zone": "东部赛区",
+      "order": "11",
+      "stage": "小组赛",
+      "redSchool": "山东科技大学",
+      "redTeam": "SmartRobot",
+      "blueSchool": "福建师范大学",
+      "blueTeam": "PKA",
+      "redScore": 2,
+      "blueScore": 0,
+      "note": "比分与回放均来自官方数据",
+      "uncertain": false
+    },
+    {
+      "id": "2026-东部赛区-12",
+      "season": "2026",
+      "zone": "东部赛区",
+      "order": "12",
+      "stage": "小组赛",
+      "redSchool": "合肥工业大学",
+      "redTeam": "苍穹",
+      "blueSchool": "江南大学霞客湾校区",
+      "blueTeam": "SHARK",
+      "redScore": 1,
+      "blueScore": 2,
+      "note": "比分与回放均来自官方数据",
+      "uncertain": false
+    },
+    {
+      "id": "2026-东部赛区-13",
+      "season": "2026",
+      "zone": "东部赛区",
+      "order": "13",
+      "stage": "小组赛",
+      "redSchool": "中北大学",
+      "redTeam": "606",
+      "blueSchool": "南方科技大学",
+      "blueTeam": "ARTINX",
+      "redScore": 1,
+      "blueScore": 2,
+      "note": "比分与回放均来自官方数据",
+      "uncertain": false
+    },
+    {
+      "id": "2026-东部赛区-14",
+      "season": "2026",
+      "zone": "东部赛区",
+      "order": "14",
+      "stage": "小组赛",
+      "redSchool": "南京理工大学",
+      "redTeam": "江阴校区 Combat",
+      "blueSchool": "上海工程技术大学",
+      "blueTeam": "木鸢Birdiebot",
+      "redScore": 0,
+      "blueScore": 2,
+      "note": "比分与回放均来自官方数据",
+      "uncertain": false
+    },
+    {
+      "id": "2026-东部赛区-15",
+      "season": "2026",
+      "zone": "东部赛区",
+      "order": "15",
+      "stage": "小组赛",
+      "redSchool": "东南大学",
+      "redTeam": "3SE",
+      "blueSchool": "成都大学",
+      "blueTeam": "Ultra",
+      "redScore": 2,
+      "blueScore": 0,
+      "note": "比分与回放均来自官方数据",
+      "uncertain": false
+    },
+    {
+      "id": "2026-东部赛区-16",
+      "season": "2026",
+      "zone": "东部赛区",
+      "order": "16",
+      "stage": "小组赛",
+      "redSchool": "北京理工大学（珠海）",
+      "redTeam": "毅恒",
+      "blueSchool": "合肥工业大学（宣城校区）",
+      "blueTeam": "WDR",
+      "redScore": 0,
+      "blueScore": 2,
+      "note": "比分与回放均来自官方数据",
+      "uncertain": false
+    },
+    {
+      "id": "2026-东部赛区-17",
+      "season": "2026",
+      "zone": "东部赛区",
+      "order": "17",
+      "stage": "小组赛",
+      "redSchool": "首都师范大学",
+      "redTeam": "PIE",
+      "blueSchool": "西南交通大学",
+      "blueTeam": "Helios",
+      "redScore": 2,
+      "blueScore": 0,
+      "note": "比分与回放均来自官方数据",
+      "uncertain": false
+    },
+    {
+      "id": "2026-东部赛区-18",
+      "season": "2026",
+      "zone": "东部赛区",
+      "order": "18",
+      "stage": "小组赛",
+      "redSchool": "华东理工大学",
+      "redTeam": "起源",
+      "blueSchool": "中国石油大学（华东）",
+      "blueTeam": "RPS",
+      "redScore": 0,
+      "blueScore": 2,
+      "note": "比分与回放均来自官方数据",
+      "uncertain": false
+    },
+    {
+      "id": "2026-东部赛区-19",
+      "season": "2026",
+      "zone": "东部赛区",
+      "order": "19",
+      "stage": "小组赛",
+      "redSchool": "齐鲁工业大学",
+      "redTeam": "Adam",
+      "blueSchool": "青岛大学",
+      "blueTeam": "未来",
+      "redScore": 0,
+      "blueScore": 2,
+      "note": "比分与回放均来自官方数据",
+      "uncertain": false
+    },
+    {
+      "id": "2026-东部赛区-20",
+      "season": "2026",
+      "zone": "东部赛区",
+      "order": "20",
+      "stage": "小组赛",
+      "redSchool": "南京理工大学",
+      "redTeam": "Alliance",
+      "blueSchool": "江苏大学",
+      "blueTeam": "Aurora",
+      "redScore": 2,
+      "blueScore": 0,
+      "note": "比分与回放均来自官方数据",
+      "uncertain": false
+    },
+    {
+      "id": "2026-东部赛区-21",
+      "season": "2026",
+      "zone": "东部赛区",
+      "order": "21",
+      "stage": "小组赛",
+      "redSchool": "中国科学技术大学",
+      "redTeam": "RoboWalker",
+      "blueSchool": "中国石油大学（北京）",
+      "blueTeam": "SPR",
+      "redScore": 2,
+      "blueScore": 0,
+      "note": "比分与回放均来自官方数据",
+      "uncertain": false
+    },
+    {
+      "id": "2026-东部赛区-22",
+      "season": "2026",
+      "zone": "东部赛区",
+      "order": "22",
+      "stage": "小组赛",
+      "redSchool": "太原科技大学",
+      "redTeam": "NewMaker",
+      "blueSchool": "广西大学",
+      "blueTeam": "ROBOTZ",
+      "redScore": 2,
+      "blueScore": 0,
+      "note": "比分与回放均来自官方数据",
+      "uncertain": false
+    },
+    {
+      "id": "2026-东部赛区-23",
+      "season": "2026",
+      "zone": "东部赛区",
+      "order": "23",
+      "stage": "小组赛",
+      "redSchool": "中国矿业大学",
+      "redTeam": "CUBOT",
+      "blueSchool": "福建理工大学",
+      "blueTeam": "苍侠",
+      "redScore": 2,
+      "blueScore": 0,
+      "note": "比分与回放均来自官方数据",
+      "uncertain": false
+    },
+    {
+      "id": "2026-东部赛区-24",
+      "season": "2026",
+      "zone": "东部赛区",
+      "order": "24",
+      "stage": "小组赛",
+      "redSchool": "上海大学",
+      "redTeam": "SRM",
+      "blueSchool": "南京航空航天大学金城学院",
+      "blueTeam": "Born of Fire",
+      "redScore": 0,
+      "blueScore": 2,
+      "note": "比分与回放均来自官方数据",
+      "uncertain": false
+    },
+    {
+      "id": "2026-东部赛区-25",
+      "season": "2026",
+      "zone": "东部赛区",
+      "order": "25",
+      "stage": "小组赛",
+      "redSchool": "江南大学霞客湾校区",
+      "redTeam": "SHARK",
+      "blueSchool": "南方科技大学",
+      "blueTeam": "ARTINX",
+      "redScore": 2,
+      "blueScore": 0,
+      "note": "比分与回放均来自官方数据",
+      "uncertain": false
+    },
+    {
+      "id": "2026-东部赛区-26",
+      "season": "2026",
+      "zone": "东部赛区",
+      "order": "26",
+      "stage": "小组赛",
+      "redSchool": "山东科技大学",
+      "redTeam": "SmartRobot",
+      "blueSchool": "哈尔滨工业大学（深圳）",
+      "blueTeam": "南工骁鹰",
+      "redScore": 2,
+      "blueScore": 1,
+      "note": "比分与回放均来自官方数据",
+      "uncertain": false
+    },
+    {
+      "id": "2026-东部赛区-27",
+      "season": "2026",
+      "zone": "东部赛区",
+      "order": "27",
+      "stage": "小组赛",
+      "redSchool": "浙江大学",
+      "redTeam": "Hello World",
+      "blueSchool": "东南大学",
+      "blueTeam": "3SE",
+      "redScore": 2,
+      "blueScore": 0,
+      "note": "比分与回放均来自官方数据",
+      "uncertain": false
+    },
+    {
+      "id": "2026-东部赛区-28",
+      "season": "2026",
+      "zone": "东部赛区",
+      "order": "28",
+      "stage": "小组赛",
+      "redSchool": "合肥工业大学（宣城校区）",
+      "redTeam": "WDR",
+      "blueSchool": "上海工程技术大学",
+      "blueTeam": "木鸢Birdiebot",
+      "redScore": 2,
+      "blueScore": 0,
+      "note": "比分与回放均来自官方数据",
+      "uncertain": false
+    },
+    {
+      "id": "2026-东部赛区-29",
+      "season": "2026",
+      "zone": "东部赛区",
+      "order": "29",
+      "stage": "小组赛",
+      "redSchool": "北京理工大学（珠海）",
+      "redTeam": "毅恒",
+      "blueSchool": "南京理工大学",
+      "blueTeam": "江阴校区 Combat",
+      "redScore": 2,
+      "blueScore": 0,
+      "note": "比分与回放均来自官方数据",
+      "uncertain": false
+    },
+    {
+      "id": "2026-东部赛区-30",
+      "season": "2026",
+      "zone": "东部赛区",
+      "order": "30",
+      "stage": "小组赛",
+      "redSchool": "安徽信息工程学院",
+      "redTeam": "Artisans",
+      "blueSchool": "成都大学",
+      "blueTeam": "Ultra",
+      "redScore": 2,
+      "blueScore": 1,
+      "note": "比分与回放均来自官方数据",
+      "uncertain": false
+    },
+    {
+      "id": "2026-东部赛区-31",
+      "season": "2026",
+      "zone": "东部赛区",
+      "order": "31",
+      "stage": "小组赛",
+      "redSchool": "福建师范大学",
+      "redTeam": "PKA",
+      "blueSchool": "杭州电子科技大学",
+      "blueTeam": "PHOENIX",
+      "redScore": 2,
+      "blueScore": 0,
+      "note": "比分与回放均来自官方数据",
+      "uncertain": false
+    },
+    {
+      "id": "2026-东部赛区-32",
+      "season": "2026",
+      "zone": "东部赛区",
+      "order": "32",
+      "stage": "小组赛",
+      "redSchool": "合肥工业大学",
+      "redTeam": "苍穹",
+      "blueSchool": "中北大学",
+      "blueTeam": "606",
+      "redScore": 2,
+      "blueScore": 1,
+      "note": "比分与回放均来自官方数据",
+      "uncertain": false
+    },
+    {
+      "id": "2026-东部赛区-33",
+      "season": "2026",
+      "zone": "东部赛区",
+      "order": "33",
+      "stage": "小组赛",
+      "redSchool": "青岛大学",
+      "redTeam": "未来",
+      "blueSchool": "中国石油大学（华东）",
+      "blueTeam": "RPS",
+      "redScore": 0,
+      "blueScore": 2,
+      "note": "比分与回放均来自官方数据",
+      "uncertain": false
+    },
+    {
+      "id": "2026-东部赛区-34",
+      "season": "2026",
+      "zone": "东部赛区",
+      "order": "34",
+      "stage": "小组赛",
+      "redSchool": "南京理工大学",
+      "redTeam": "Alliance",
+      "blueSchool": "首都师范大学",
+      "blueTeam": "PIE",
+      "redScore": 2,
+      "blueScore": 0,
+      "note": "比分与回放均来自官方数据",
+      "uncertain": false
+    },
+    {
+      "id": "2026-东部赛区-35",
+      "season": "2026",
+      "zone": "东部赛区",
+      "order": "35",
+      "stage": "小组赛",
+      "redSchool": "齐鲁工业大学",
+      "redTeam": "Adam",
+      "blueSchool": "华东理工大学",
+      "blueTeam": "起源",
+      "redScore": 0,
+      "blueScore": 2,
+      "note": "比分与回放均来自官方数据",
+      "uncertain": false
+    },
+    {
+      "id": "2026-东部赛区-36",
+      "season": "2026",
+      "zone": "东部赛区",
+      "order": "36",
+      "stage": "小组赛",
+      "redSchool": "中国科学技术大学",
+      "redTeam": "RoboWalker",
+      "blueSchool": "西南交通大学",
+      "blueTeam": "Helios",
+      "redScore": 2,
+      "blueScore": 0,
+      "note": "比分与回放均来自官方数据",
+      "uncertain": false
+    },
+    {
+      "id": "2026-东部赛区-37",
+      "season": "2026",
+      "zone": "东部赛区",
+      "order": "37",
+      "stage": "小组赛",
+      "redSchool": "江苏大学",
+      "redTeam": "Aurora",
+      "blueSchool": "太原科技大学",
+      "blueTeam": "NewMaker",
+      "redScore": 0,
+      "blueScore": 2,
+      "note": "比分与回放均来自官方数据",
+      "uncertain": false
+    },
+    {
+      "id": "2026-东部赛区-38",
+      "season": "2026",
+      "zone": "东部赛区",
+      "order": "38",
+      "stage": "小组赛",
+      "redSchool": "南京航空航天大学金城学院",
+      "redTeam": "Born of Fire",
+      "blueSchool": "中国矿业大学",
+      "blueTeam": "CUBOT",
+      "redScore": 2,
+      "blueScore": 0,
+      "note": "比分与回放均来自官方数据",
+      "uncertain": false
+    },
+    {
+      "id": "2026-东部赛区-39",
+      "season": "2026",
+      "zone": "东部赛区",
+      "order": "39",
+      "stage": "小组赛",
+      "redSchool": "广西大学",
+      "redTeam": "ROBOTZ",
+      "blueSchool": "上海大学",
+      "blueTeam": "SRM",
+      "redScore": 0,
+      "blueScore": 2,
+      "note": "比分与回放均来自官方数据",
+      "uncertain": false
+    },
+    {
+      "id": "2026-东部赛区-40",
+      "season": "2026",
+      "zone": "东部赛区",
+      "order": "40",
+      "stage": "小组赛",
+      "redSchool": "中国石油大学（北京）",
+      "redTeam": "SPR",
+      "blueSchool": "福建理工大学",
+      "blueTeam": "苍侠",
+      "redScore": 2,
+      "blueScore": 0,
+      "note": "比分与回放均来自官方数据",
+      "uncertain": false
+    },
+    {
+      "id": "2026-东部赛区-41",
+      "season": "2026",
+      "zone": "东部赛区",
+      "order": "41",
+      "stage": "小组赛",
+      "redSchool": "合肥工业大学（宣城校区）",
+      "redTeam": "WDR",
+      "blueSchool": "山东科技大学",
+      "blueTeam": "SmartRobot",
+      "redScore": 0,
+      "blueScore": 2,
+      "note": "比分与回放均来自官方数据",
+      "uncertain": false
+    },
+    {
+      "id": "2026-东部赛区-42",
+      "season": "2026",
+      "zone": "东部赛区",
+      "order": "42",
+      "stage": "小组赛",
+      "redSchool": "江南大学霞客湾校区",
+      "redTeam": "SHARK",
+      "blueSchool": "浙江大学",
+      "blueTeam": "Hello World",
+      "redScore": 0,
+      "blueScore": 2,
+      "note": "比分与回放均来自官方数据",
+      "uncertain": false
+    },
+    {
+      "id": "2026-东部赛区-43",
+      "season": "2026",
+      "zone": "东部赛区",
+      "order": "43",
+      "stage": "小组赛",
+      "redSchool": "南方科技大学",
+      "redTeam": "ARTINX",
+      "blueSchool": "合肥工业大学",
+      "blueTeam": "苍穹",
+      "redScore": 2,
+      "blueScore": 1,
+      "note": "比分与回放均来自官方数据",
+      "uncertain": false
+    },
+    {
+      "id": "2026-东部赛区-44",
+      "season": "2026",
+      "zone": "东部赛区",
+      "order": "44",
+      "stage": "小组赛",
+      "redSchool": "东南大学",
+      "redTeam": "3SE",
+      "blueSchool": "安徽信息工程学院",
+      "blueTeam": "Artisans",
+      "redScore": 1,
+      "blueScore": 2,
+      "note": "比分与回放均来自官方数据",
+      "uncertain": false
+    },
+    {
+      "id": "2026-东部赛区-45",
+      "season": "2026",
+      "zone": "东部赛区",
+      "order": "45",
+      "stage": "小组赛",
+      "redSchool": "上海工程技术大学",
+      "redTeam": "木鸢Birdiebot",
+      "blueSchool": "北京理工大学（珠海）",
+      "blueTeam": "毅恒",
+      "redScore": 0,
+      "blueScore": 2,
+      "note": "比分与回放均来自官方数据",
+      "uncertain": false
+    },
+    {
+      "id": "2026-东部赛区-46",
+      "season": "2026",
+      "zone": "东部赛区",
+      "order": "46",
+      "stage": "小组赛",
+      "redSchool": "福建师范大学",
+      "redTeam": "PKA",
+      "blueSchool": "哈尔滨工业大学（深圳）",
+      "blueTeam": "南工骁鹰",
+      "redScore": 0,
+      "blueScore": 2,
+      "note": "比分与回放均来自官方数据",
+      "uncertain": false
+    },
+    {
+      "id": "2026-东部赛区-47",
+      "season": "2026",
+      "zone": "东部赛区",
+      "order": "47",
+      "stage": "小组赛",
+      "redSchool": "杭州电子科技大学",
+      "redTeam": "PHOENIX",
+      "blueSchool": "南京理工大学",
+      "blueTeam": "江阴校区 Combat",
+      "redScore": 0,
+      "blueScore": 2,
+      "note": "比分与回放均来自官方数据",
+      "uncertain": false
+    },
+    {
+      "id": "2026-东部赛区-48",
+      "season": "2026",
+      "zone": "东部赛区",
+      "order": "48",
+      "stage": "小组赛",
+      "redSchool": "成都大学",
+      "redTeam": "Ultra",
+      "blueSchool": "中北大学",
+      "blueTeam": "606",
+      "redScore": 2,
+      "blueScore": 1,
+      "note": "比分与回放均来自官方数据",
+      "uncertain": false
+    },
+    {
+      "id": "2026-东部赛区-49",
+      "season": "2026",
+      "zone": "东部赛区",
+      "order": "49",
+      "stage": "小组赛",
+      "redSchool": "青岛大学",
+      "redTeam": "未来",
+      "blueSchool": "华东理工大学",
+      "blueTeam": "起源",
+      "redScore": 0,
+      "blueScore": 2,
+      "note": "比分与回放均来自官方数据",
+      "uncertain": false
+    },
+    {
+      "id": "2026-东部赛区-50",
+      "season": "2026",
+      "zone": "东部赛区",
+      "order": "50",
+      "stage": "小组赛",
+      "redSchool": "中国科学技术大学",
+      "redTeam": "RoboWalker",
+      "blueSchool": "首都师范大学",
+      "blueTeam": "PIE",
+      "redScore": 2,
+      "blueScore": 0,
+      "note": "比分与回放均来自官方数据",
+      "uncertain": false
+    },
+    {
+      "id": "2026-东部赛区-51",
+      "season": "2026",
+      "zone": "东部赛区",
+      "order": "51",
+      "stage": "小组赛",
+      "redSchool": "太原科技大学",
+      "redTeam": "NewMaker",
+      "blueSchool": "南京航空航天大学金城学院",
+      "blueTeam": "Born of Fire",
+      "redScore": 1,
+      "blueScore": 2,
+      "note": "比分与回放均来自官方数据",
+      "uncertain": false
+    },
+    {
+      "id": "2026-东部赛区-52",
+      "season": "2026",
+      "zone": "东部赛区",
+      "order": "52",
+      "stage": "小组赛",
+      "redSchool": "齐鲁工业大学",
+      "redTeam": "Adam",
+      "blueSchool": "江苏大学",
+      "blueTeam": "Aurora",
+      "redScore": 0,
+      "blueScore": 2,
+      "note": "比分与回放均来自官方数据",
+      "uncertain": false
+    },
+    {
+      "id": "2026-东部赛区-53",
+      "season": "2026",
+      "zone": "东部赛区",
+      "order": "53",
+      "stage": "小组赛",
+      "redSchool": "西南交通大学",
+      "redTeam": "Helios",
+      "blueSchool": "中国矿业大学",
+      "blueTeam": "CUBOT",
+      "redScore": 1,
+      "blueScore": 2,
+      "note": "比分与回放均来自官方数据",
+      "uncertain": false
+    },
+    {
+      "id": "2026-东部赛区-54",
+      "season": "2026",
+      "zone": "东部赛区",
+      "order": "54",
+      "stage": "小组赛",
+      "redSchool": "中国石油大学（北京）",
+      "redTeam": "SPR",
+      "blueSchool": "上海大学",
+      "blueTeam": "SRM",
+      "redScore": 0,
+      "blueScore": 2,
+      "note": "比分与回放均来自官方数据",
+      "uncertain": false
+    },
+    {
+      "id": "2026-东部赛区-55",
+      "season": "2026",
+      "zone": "东部赛区",
+      "order": "55",
+      "stage": "小组赛",
+      "redSchool": "江南大学霞客湾校区",
+      "redTeam": "SHARK",
+      "blueSchool": "合肥工业大学（宣城校区）",
+      "blueTeam": "WDR",
+      "redScore": 1,
+      "blueScore": 2,
+      "note": "比分与回放均来自官方数据",
+      "uncertain": false
+    },
+    {
+      "id": "2026-东部赛区-56",
+      "season": "2026",
+      "zone": "东部赛区",
+      "order": "56",
+      "stage": "小组赛",
+      "redSchool": "安徽信息工程学院",
+      "redTeam": "Artisans",
+      "blueSchool": "北京理工大学（珠海）",
+      "blueTeam": "毅恒",
+      "redScore": 0,
+      "blueScore": 2,
+      "note": "比分与回放均来自官方数据",
+      "uncertain": false
+    },
+    {
+      "id": "2026-东部赛区-57",
+      "season": "2026",
+      "zone": "东部赛区",
+      "order": "57",
+      "stage": "小组赛",
+      "redSchool": "哈尔滨工业大学（深圳）",
+      "redTeam": "南工骁鹰",
+      "blueSchool": "南方科技大学",
+      "blueTeam": "ARTINX",
+      "redScore": 2,
+      "blueScore": 1,
+      "note": "比分与回放均来自官方数据",
+      "uncertain": false
+    },
+    {
+      "id": "2026-东部赛区-58",
+      "season": "2026",
+      "zone": "东部赛区",
+      "order": "58",
+      "stage": "小组赛",
+      "redSchool": "上海工程技术大学",
+      "redTeam": "木鸢Birdiebot",
+      "blueSchool": "东南大学",
+      "blueTeam": "3SE",
+      "redScore": 0,
+      "blueScore": 2,
+      "note": "比分与回放均来自官方数据",
+      "uncertain": false
+    },
+    {
+      "id": "2026-东部赛区-59",
+      "season": "2026",
+      "zone": "东部赛区",
+      "order": "59",
+      "stage": "小组赛",
+      "redSchool": "合肥工业大学",
+      "redTeam": "苍穹",
+      "blueSchool": "福建师范大学",
+      "blueTeam": "PKA",
+      "redScore": 2,
+      "blueScore": 0,
+      "note": "比分与回放均来自官方数据",
+      "uncertain": false
+    },
+    {
+      "id": "2026-东部赛区-60",
+      "season": "2026",
+      "zone": "东部赛区",
+      "order": "60",
+      "stage": "小组赛",
+      "redSchool": "成都大学",
+      "redTeam": "Ultra",
+      "blueSchool": "南京理工大学",
+      "blueTeam": "江阴校区 Combat",
+      "redScore": 0,
+      "blueScore": 2,
+      "note": "比分与回放均来自官方数据",
+      "uncertain": false
+    },
+    {
+      "id": "2026-东部赛区-61",
+      "season": "2026",
+      "zone": "东部赛区",
+      "order": "61",
+      "stage": "小组赛",
+      "redSchool": "青岛大学",
+      "redTeam": "未来",
+      "blueSchool": "上海大学",
+      "blueTeam": "SRM",
+      "redScore": 2,
+      "blueScore": 0,
+      "note": "比分与回放均来自官方数据",
+      "uncertain": false
+    },
+    {
+      "id": "2026-东部赛区-62",
+      "season": "2026",
+      "zone": "东部赛区",
+      "order": "62",
+      "stage": "小组赛",
+      "redSchool": "太原科技大学",
+      "redTeam": "NewMaker",
+      "blueSchool": "首都师范大学",
+      "blueTeam": "PIE",
+      "redScore": 2,
+      "blueScore": 0,
+      "note": "比分与回放均来自官方数据",
+      "uncertain": false
+    },
+    {
+      "id": "2026-东部赛区-63",
+      "season": "2026",
+      "zone": "东部赛区",
+      "order": "63",
+      "stage": "小组赛",
+      "redSchool": "江苏大学",
+      "redTeam": "Aurora",
+      "blueSchool": "中国矿业大学",
+      "blueTeam": "CUBOT",
+      "redScore": 0,
+      "blueScore": 2,
+      "note": "比分与回放均来自官方数据",
+      "uncertain": false
+    },
+    {
+      "id": "2026-东部赛区-64",
+      "season": "2026",
+      "zone": "东部赛区",
+      "order": "64",
+      "stage": "小组赛",
+      "redSchool": "南京理工大学",
+      "redTeam": "江阴校区 Combat",
+      "blueSchool": "江南大学霞客湾校区",
+      "blueTeam": "SHARK",
+      "redScore": 0,
+      "blueScore": 2,
+      "note": "比分与回放均来自官方数据",
+      "uncertain": false
+    },
+    {
+      "id": "2026-东部赛区-65",
+      "season": "2026",
+      "zone": "东部赛区",
+      "order": "65",
+      "stage": "小组赛",
+      "redSchool": "安徽信息工程学院",
+      "redTeam": "Artisans",
+      "blueSchool": "合肥工业大学",
+      "blueTeam": "苍穹",
+      "redScore": 1,
+      "blueScore": 2,
+      "note": "比分与回放均来自官方数据",
+      "uncertain": false
+    },
+    {
+      "id": "2026-东部赛区-66",
+      "season": "2026",
+      "zone": "东部赛区",
+      "order": "66",
+      "stage": "小组赛",
+      "redSchool": "东南大学",
+      "redTeam": "3SE",
+      "blueSchool": "南方科技大学",
+      "blueTeam": "ARTINX",
+      "redScore": 1,
+      "blueScore": 2,
+      "note": "比分与回放均来自官方数据",
+      "uncertain": false
+    },
+    {
+      "id": "2026-东部赛区-67",
+      "season": "2026",
+      "zone": "东部赛区",
+      "order": "67",
+      "stage": "淘汰赛",
+      "redSchool": "山东科技大学",
+      "redTeam": "SmartRobot",
+      "blueSchool": "太原科技大学",
+      "blueTeam": "NewMaker",
+      "redScore": 2,
+      "blueScore": 0,
+      "note": "比分与回放均来自官方数据",
+      "uncertain": false
+    },
+    {
+      "id": "2026-东部赛区-68",
+      "season": "2026",
+      "zone": "东部赛区",
+      "order": "68",
+      "stage": "淘汰赛",
+      "redSchool": "北京理工大学（珠海）",
+      "redTeam": "毅恒",
+      "blueSchool": "南京航空航天大学金城学院",
+      "blueTeam": "Born of Fire",
+      "redScore": 2,
+      "blueScore": 0,
+      "note": "比分与回放均来自官方数据",
+      "uncertain": false
+    },
+    {
+      "id": "2026-东部赛区-69",
+      "season": "2026",
+      "zone": "东部赛区",
+      "order": "69",
+      "stage": "淘汰赛",
+      "redSchool": "中国矿业大学",
+      "redTeam": "CUBOT",
+      "blueSchool": "浙江大学",
+      "blueTeam": "Hello World",
+      "redScore": 0,
+      "blueScore": 2,
+      "note": "比分与回放均来自官方数据",
+      "uncertain": false
+    },
+    {
+      "id": "2026-东部赛区-70",
+      "season": "2026",
+      "zone": "东部赛区",
+      "order": "70",
+      "stage": "淘汰赛",
+      "redSchool": "华东理工大学",
+      "redTeam": "起源",
+      "blueSchool": "江南大学霞客湾校区",
+      "blueTeam": "SHARK",
+      "redScore": 2,
+      "blueScore": 1,
+      "note": "比分与回放均来自官方数据",
+      "uncertain": false
+    },
+    {
+      "id": "2026-东部赛区-71",
+      "season": "2026",
+      "zone": "东部赛区",
+      "order": "71",
+      "stage": "淘汰赛",
+      "redSchool": "青岛大学",
+      "redTeam": "未来",
+      "blueSchool": "合肥工业大学（宣城校区）",
+      "blueTeam": "WDR",
+      "redScore": 0,
+      "blueScore": 2,
+      "note": "比分与回放均来自官方数据",
+      "uncertain": false
+    },
+    {
+      "id": "2026-东部赛区-72",
+      "season": "2026",
+      "zone": "东部赛区",
+      "order": "72",
+      "stage": "淘汰赛",
+      "redSchool": "南京理工大学",
+      "redTeam": "Alliance",
+      "blueSchool": "南方科技大学",
+      "blueTeam": "ARTINX",
+      "redScore": 2,
+      "blueScore": 0,
+      "note": "比分与回放均来自官方数据",
+      "uncertain": false
+    },
+    {
+      "id": "2026-东部赛区-73",
+      "season": "2026",
+      "zone": "东部赛区",
+      "order": "73",
+      "stage": "淘汰赛",
+      "redSchool": "哈尔滨工业大学（深圳）",
+      "redTeam": "南工骁鹰",
+      "blueSchool": "中国科学技术大学",
+      "blueTeam": "RoboWalker",
+      "redScore": 2,
+      "blueScore": 1,
+      "note": "比分与回放均来自官方数据",
+      "uncertain": false
+    },
+    {
+      "id": "2026-东部赛区-74",
+      "season": "2026",
+      "zone": "东部赛区",
+      "order": "74",
+      "stage": "淘汰赛",
+      "redSchool": "合肥工业大学",
+      "redTeam": "苍穹",
+      "blueSchool": "中国石油大学（华东）",
+      "blueTeam": "RPS",
+      "redScore": 0,
+      "blueScore": 2,
+      "note": "比分与回放均来自官方数据",
+      "uncertain": false
+    },
+    {
+      "id": "2026-东部赛区-75",
+      "season": "2026",
+      "zone": "东部赛区",
+      "order": "75",
+      "stage": "淘汰赛",
+      "redSchool": "山东科技大学",
+      "redTeam": "SmartRobot",
+      "blueSchool": "北京理工大学（珠海）",
+      "blueTeam": "毅恒",
+      "redScore": 2,
+      "blueScore": 0,
+      "note": "比分与回放均来自官方数据",
+      "uncertain": false
+    },
+    {
+      "id": "2026-东部赛区-76",
+      "season": "2026",
+      "zone": "东部赛区",
+      "order": "76",
+      "stage": "淘汰赛",
+      "redSchool": "华东理工大学",
+      "redTeam": "起源",
+      "blueSchool": "浙江大学",
+      "blueTeam": "Hello World",
+      "redScore": 0,
+      "blueScore": 2,
+      "note": "比分与回放均来自官方数据",
+      "uncertain": false
+    },
+    {
+      "id": "2026-东部赛区-77",
+      "season": "2026",
+      "zone": "东部赛区",
+      "order": "77",
+      "stage": "淘汰赛",
+      "redSchool": "合肥工业大学（宣城校区）",
+      "redTeam": "WDR",
+      "blueSchool": "南京理工大学",
+      "blueTeam": "Alliance",
+      "redScore": 2,
+      "blueScore": 1,
+      "note": "比分与回放均来自官方数据",
+      "uncertain": false
+    },
+    {
+      "id": "2026-东部赛区-78",
+      "season": "2026",
+      "zone": "东部赛区",
+      "order": "78",
+      "stage": "淘汰赛",
+      "redSchool": "中国石油大学（华东）",
+      "redTeam": "RPS",
+      "blueSchool": "哈尔滨工业大学（深圳）",
+      "blueTeam": "南工骁鹰",
+      "redScore": 2,
+      "blueScore": 0,
+      "note": "比分与回放均来自官方数据",
+      "uncertain": false
+    },
+    {
+      "id": "2026-东部赛区-79",
+      "season": "2026",
+      "zone": "东部赛区",
+      "order": "79",
+      "stage": "淘汰赛",
+      "redSchool": "太原科技大学",
+      "redTeam": "NewMaker",
+      "blueSchool": "南京航空航天大学金城学院",
+      "blueTeam": "Born of Fire",
+      "redScore": 1,
+      "blueScore": 2,
+      "note": "比分与回放均来自官方数据",
+      "uncertain": false
+    },
+    {
+      "id": "2026-东部赛区-80",
+      "season": "2026",
+      "zone": "东部赛区",
+      "order": "80",
+      "stage": "淘汰赛",
+      "redSchool": "江南大学霞客湾校区",
+      "redTeam": "SHARK",
+      "blueSchool": "中国矿业大学",
+      "blueTeam": "CUBOT",
+      "redScore": 1,
+      "blueScore": 2,
+      "note": "比分与回放均来自官方数据",
+      "uncertain": false
+    },
+    {
+      "id": "2026-东部赛区-81",
+      "season": "2026",
+      "zone": "东部赛区",
+      "order": "81",
+      "stage": "淘汰赛",
+      "redSchool": "青岛大学",
+      "redTeam": "未来",
+      "blueSchool": "南方科技大学",
+      "blueTeam": "ARTINX",
+      "redScore": 1,
+      "blueScore": 2,
+      "note": "比分与回放均来自官方数据",
+      "uncertain": false
+    },
+    {
+      "id": "2026-东部赛区-82",
+      "season": "2026",
+      "zone": "东部赛区",
+      "order": "82",
+      "stage": "淘汰赛",
+      "redSchool": "合肥工业大学",
+      "redTeam": "苍穹",
+      "blueSchool": "中国科学技术大学",
+      "blueTeam": "RoboWalker",
+      "redScore": 0,
+      "blueScore": 2,
+      "note": "比分与回放均来自官方数据",
+      "uncertain": false
+    },
+    {
+      "id": "2026-东部赛区-83",
+      "season": "2026",
+      "zone": "东部赛区",
+      "order": "83",
+      "stage": "淘汰赛",
+      "redSchool": "山东科技大学",
+      "redTeam": "SmartRobot",
+      "blueSchool": "合肥工业大学（宣城校区）",
+      "blueTeam": "WDR",
+      "redScore": 2,
+      "blueScore": 0,
+      "note": "比分与回放均来自官方数据",
+      "uncertain": false
+    },
+    {
+      "id": "2026-东部赛区-84",
+      "season": "2026",
+      "zone": "东部赛区",
+      "order": "84",
+      "stage": "淘汰赛",
+      "redSchool": "浙江大学",
+      "redTeam": "Hello World",
+      "blueSchool": "中国石油大学（华东）",
+      "blueTeam": "RPS",
+      "redScore": 0,
+      "blueScore": 2,
+      "note": "比分与回放均来自官方数据",
+      "uncertain": false
+    },
+    {
+      "id": "2026-东部赛区-85",
+      "season": "2026",
+      "zone": "东部赛区",
+      "order": "85",
+      "stage": "淘汰赛",
+      "redSchool": "太原科技大学",
+      "redTeam": "NewMaker",
+      "blueSchool": "青岛大学",
+      "blueTeam": "未来",
+      "redScore": 2,
+      "blueScore": 0,
+      "note": "比分与回放均来自官方数据",
+      "uncertain": false
+    },
+    {
+      "id": "2026-东部赛区-86",
+      "season": "2026",
+      "zone": "东部赛区",
+      "order": "86",
+      "stage": "淘汰赛",
+      "redSchool": "江南大学霞客湾校区",
+      "redTeam": "SHARK",
+      "blueSchool": "合肥工业大学",
+      "blueTeam": "苍穹",
+      "redScore": 2,
+      "blueScore": 1,
+      "note": "比分与回放均来自官方数据",
+      "uncertain": false
+    },
+    {
+      "id": "2026-东部赛区-87",
+      "season": "2026",
+      "zone": "东部赛区",
+      "order": "87",
+      "stage": "淘汰赛",
+      "redSchool": "合肥工业大学（宣城校区）",
+      "redTeam": "WDR",
+      "blueSchool": "浙江大学",
+      "blueTeam": "Hello World",
+      "redScore": 3,
+      "blueScore": 1,
+      "note": "比分与回放均来自官方数据",
+      "uncertain": false
+    },
+    {
+      "id": "2026-东部赛区-88",
+      "season": "2026",
+      "zone": "东部赛区",
+      "order": "88",
+      "stage": "淘汰赛",
+      "redSchool": "山东科技大学",
+      "redTeam": "SmartRobot",
+      "blueSchool": "中国石油大学（华东）",
+      "blueTeam": "RPS",
+      "redScore": 1,
+      "blueScore": 3,
+      "note": "比分与回放均来自官方数据",
+      "uncertain": false
+    },
+    {
+      "id": "2026-北部赛区-1",
+      "season": "2026",
+      "zone": "北部赛区",
+      "order": "1",
+      "stage": "小组赛",
+      "redSchool": "哈尔滨工业大学（威海）",
+      "redTeam": "HERO",
+      "blueSchool": "常州大学",
+      "blueTeam": "Climber",
+      "redScore": 2,
+      "blueScore": 0,
+      "note": "比分与回放均来自官方数据",
+      "uncertain": false
+    },
+    {
+      "id": "2026-北部赛区-2",
+      "season": "2026",
+      "zone": "北部赛区",
+      "order": "2",
+      "stage": "小组赛",
+      "redSchool": "北方工业大学",
+      "redTeam": "Dream Team",
+      "blueSchool": "华北理工大学",
+      "blueTeam": "Horizon",
+      "redScore": 0,
+      "blueScore": 2,
+      "note": "比分与回放均来自官方数据",
+      "uncertain": false
+    },
+    {
+      "id": "2026-北部赛区-3",
+      "season": "2026",
+      "zone": "北部赛区",
+      "order": "3",
+      "stage": "小组赛",
+      "redSchool": "北京信息科技大学",
+      "redTeam": "星辰",
+      "blueSchool": "哈尔滨工业大学",
+      "blueTeam": "I Hiter",
+      "redScore": 1,
+      "blueScore": 2,
+      "note": "比分与回放均来自官方数据",
+      "uncertain": false
+    },
+    {
+      "id": "2026-北部赛区-4",
+      "season": "2026",
+      "zone": "北部赛区",
+      "order": "4",
+      "stage": "小组赛",
+      "redSchool": "山东理工大学",
+      "redTeam": "齐奇",
+      "blueSchool": "西北工业大学",
+      "blueTeam": "WMJ",
+      "redScore": 1,
+      "blueScore": 2,
+      "note": "比分与回放均来自官方数据",
+      "uncertain": false
+    },
+    {
+      "id": "2026-北部赛区-5",
+      "season": "2026",
+      "zone": "北部赛区",
+      "order": "5",
+      "stage": "小组赛",
+      "redSchool": "西安交通大学",
+      "redTeam": "笃行",
+      "blueSchool": "香港科技大学（广州）",
+      "blueTeam": "PnX",
+      "redScore": 2,
+      "blueScore": 0,
+      "note": "比分与回放均来自官方数据",
+      "uncertain": false
+    },
+    {
+      "id": "2026-北部赛区-6",
+      "season": "2026",
+      "zone": "北部赛区",
+      "order": "6",
+      "stage": "小组赛",
+      "redSchool": "天津大学",
+      "redTeam": "北洋机甲",
+      "blueSchool": "华南师范大学",
+      "blueTeam": "PIONEER",
+      "redScore": 0,
+      "blueScore": 2,
+      "note": "比分与回放均来自官方数据",
+      "uncertain": false
+    },
+    {
+      "id": "2026-北部赛区-7",
+      "season": "2026",
+      "zone": "北部赛区",
+      "order": "7",
+      "stage": "小组赛",
+      "redSchool": "辽宁石油化工大学",
+      "redTeam": "TCN",
+      "blueSchool": "太原工业学院",
+      "blueTeam": "火线",
+      "redScore": 0,
+      "blueScore": 2,
+      "note": "比分与回放均来自官方数据",
+      "uncertain": false
+    },
+    {
+      "id": "2026-北部赛区-8",
+      "season": "2026",
+      "zone": "北部赛区",
+      "order": "8",
+      "stage": "小组赛",
+      "redSchool": "长安大学",
+      "redTeam": "VGD",
+      "blueSchool": "西安电子科技大学",
+      "blueTeam": "IRobot",
+      "redScore": 0,
+      "blueScore": 2,
+      "note": "比分与回放均来自官方数据",
+      "uncertain": false
+    },
+    {
+      "id": "2026-北部赛区-9",
+      "season": "2026",
+      "zone": "北部赛区",
+      "order": "9",
+      "stage": "小组赛",
+      "redSchool": "内蒙古科技大学",
+      "redTeam": "雷霆",
+      "blueSchool": "东北大学",
+      "blueTeam": "TDT",
+      "redScore": 0,
+      "blueScore": 2,
+      "note": "比分与回放均来自官方数据",
+      "uncertain": false
+    },
+    {
+      "id": "2026-北部赛区-10",
+      "season": "2026",
+      "zone": "北部赛区",
+      "order": "10",
+      "stage": "小组赛",
+      "redSchool": "成都信息工程大学",
+      "redTeam": "风信子",
+      "blueSchool": "北京理工大学",
+      "blueTeam": "追梦",
+      "redScore": 0,
+      "blueScore": 2,
+      "note": "比分与回放均来自官方数据",
+      "uncertain": false
+    },
+    {
+      "id": "2026-北部赛区-11",
+      "season": "2026",
+      "zone": "北部赛区",
+      "order": "11",
+      "stage": "小组赛",
+      "redSchool": "大连理工大学",
+      "redTeam": "凌BUG",
+      "blueSchool": "沈阳理工大学",
+      "blueTeam": "Ambition",
+      "redScore": 0,
+      "blueScore": 2,
+      "note": "比分与回放均来自官方数据",
+      "uncertain": false
+    },
+    {
+      "id": "2026-北部赛区-12",
+      "season": "2026",
+      "zone": "北部赛区",
+      "order": "12",
+      "stage": "小组赛",
+      "redSchool": "应急管理大学",
+      "redTeam": "风暴",
+      "blueSchool": "香港科技大学",
+      "blueTeam": "ENTERPRIZE",
+      "redScore": 2,
+      "blueScore": 0,
+      "note": "比分与回放均来自官方数据",
+      "uncertain": false
+    },
+    {
+      "id": "2026-北部赛区-13",
+      "season": "2026",
+      "zone": "北部赛区",
+      "order": "13",
+      "stage": "小组赛",
+      "redSchool": "香港大学",
+      "redTeam": "HerKules",
+      "blueSchool": "哈尔滨工程大学",
+      "blueTeam": "创梦之翼",
+      "redScore": 0,
+      "blueScore": 2,
+      "note": "比分与回放均来自官方数据",
+      "uncertain": false
+    },
+    {
+      "id": "2026-北部赛区-14",
+      "season": "2026",
+      "zone": "北部赛区",
+      "order": "14",
+      "stage": "小组赛",
+      "redSchool": "东北大学秦皇岛分校",
+      "redTeam": "征龙凌沧",
+      "blueSchool": "四川大学",
+      "blueTeam": "火锅",
+      "redScore": 2,
+      "blueScore": 1,
+      "note": "比分与回放均来自官方数据",
+      "uncertain": false
+    },
+    {
+      "id": "2026-北部赛区-15",
+      "season": "2026",
+      "zone": "北部赛区",
+      "order": "15",
+      "stage": "小组赛",
+      "redSchool": "吉林大学",
+      "redTeam": "TARS Go",
+      "blueSchool": "复旦大学",
+      "blueTeam": "星云EGA",
+      "redScore": 2,
+      "blueScore": 0,
+      "note": "比分与回放均来自官方数据",
+      "uncertain": false
+    },
+    {
+      "id": "2026-北部赛区-16",
+      "season": "2026",
+      "zone": "北部赛区",
+      "order": "16",
+      "stage": "小组赛",
+      "redSchool": "同济大学",
+      "redTeam": "SuperPower",
+      "blueSchool": "河北科技大学",
+      "blueTeam": "Actor&Thinker",
+      "redScore": 2,
+      "blueScore": 0,
+      "note": "比分与回放均来自官方数据",
+      "uncertain": false
+    },
+    {
+      "id": "2026-北部赛区-17",
+      "season": "2026",
+      "zone": "北部赛区",
+      "order": "17",
+      "stage": "小组赛",
+      "redSchool": "西北工业大学",
+      "redTeam": "WMJ",
+      "blueSchool": "哈尔滨工业大学",
+      "blueTeam": "I Hiter",
+      "redScore": 2,
+      "blueScore": 0,
+      "note": "比分与回放均来自官方数据",
+      "uncertain": false
+    },
+    {
+      "id": "2026-北部赛区-18",
+      "season": "2026",
+      "zone": "北部赛区",
+      "order": "18",
+      "stage": "小组赛",
+      "redSchool": "西安交通大学",
+      "redTeam": "笃行",
+      "blueSchool": "哈尔滨工业大学（威海）",
+      "blueTeam": "HERO",
+      "redScore": 2,
+      "blueScore": 0,
+      "note": "比分与回放均来自官方数据",
+      "uncertain": false
+    },
+    {
+      "id": "2026-北部赛区-19",
+      "season": "2026",
+      "zone": "北部赛区",
+      "order": "19",
+      "stage": "小组赛",
+      "redSchool": "华南师范大学",
+      "redTeam": "PIONEER",
+      "blueSchool": "太原工业学院",
+      "blueTeam": "火线",
+      "redScore": 0,
+      "blueScore": 2,
+      "note": "比分与回放均来自官方数据",
+      "uncertain": false
+    },
+    {
+      "id": "2026-北部赛区-20",
+      "season": "2026",
+      "zone": "北部赛区",
+      "order": "20",
+      "stage": "小组赛",
+      "redSchool": "西安电子科技大学",
+      "redTeam": "IRobot",
+      "blueSchool": "华北理工大学",
+      "blueTeam": "Horizon",
+      "redScore": 2,
+      "blueScore": 0,
+      "note": "比分与回放均来自官方数据",
+      "uncertain": false
+    },
+    {
+      "id": "2026-北部赛区-21",
+      "season": "2026",
+      "zone": "北部赛区",
+      "order": "21",
+      "stage": "小组赛",
+      "redSchool": "天津大学",
+      "redTeam": "北洋机甲",
+      "blueSchool": "北方工业大学",
+      "blueTeam": "DreamTeam",
+      "redScore": 2,
+      "blueScore": 0,
+      "note": "比分与回放均来自官方数据",
+      "uncertain": false
+    },
+    {
+      "id": "2026-北部赛区-22",
+      "season": "2026",
+      "zone": "北部赛区",
+      "order": "22",
+      "stage": "小组赛",
+      "redSchool": "长安大学",
+      "redTeam": "VGD",
+      "blueSchool": "辽宁石油化工大学",
+      "blueTeam": "TCN",
+      "redScore": 2,
+      "blueScore": 0,
+      "note": "比分与回放均来自官方数据",
+      "uncertain": false
+    },
+    {
+      "id": "2026-北部赛区-23",
+      "season": "2026",
+      "zone": "北部赛区",
+      "order": "23",
+      "stage": "小组赛",
+      "redSchool": "香港科技大学（广州）",
+      "redTeam": "PnX",
+      "blueSchool": "常州大学",
+      "blueTeam": "Climber",
+      "redScore": 2,
+      "blueScore": 1,
+      "note": "比分与回放均来自官方数据",
+      "uncertain": false
+    },
+    {
+      "id": "2026-北部赛区-24",
+      "season": "2026",
+      "zone": "北部赛区",
+      "order": "24",
+      "stage": "小组赛",
+      "redSchool": "山东理工大学",
+      "redTeam": "齐奇",
+      "blueSchool": "北京信息科技大学",
+      "blueTeam": "星辰",
+      "redScore": 2,
+      "blueScore": 0,
+      "note": "比分与回放均来自官方数据",
+      "uncertain": false
+    },
+    {
+      "id": "2026-北部赛区-25",
+      "season": "2026",
+      "zone": "北部赛区",
+      "order": "25",
+      "stage": "小组赛",
+      "redSchool": "东北大学",
+      "redTeam": "TDT",
+      "blueSchool": "东北大学秦皇岛分校",
+      "blueTeam": "征龙凌沧",
+      "redScore": 2,
+      "blueScore": 0,
+      "note": "比分与回放均来自官方数据",
+      "uncertain": false
+    },
+    {
+      "id": "2026-北部赛区-26",
+      "season": "2026",
+      "zone": "北部赛区",
+      "order": "26",
+      "stage": "小组赛",
+      "redSchool": "沈阳理工大学",
+      "redTeam": "Ambition",
+      "blueSchool": "同济大学",
+      "blueTeam": "SuperPower",
+      "redScore": 0,
+      "blueScore": 2,
+      "note": "比分与回放均来自官方数据",
+      "uncertain": false
+    },
+    {
+      "id": "2026-北部赛区-27",
+      "season": "2026",
+      "zone": "北部赛区",
+      "order": "27",
+      "stage": "小组赛",
+      "redSchool": "吉林大学",
+      "redTeam": "TARS Go",
+      "blueSchool": "北京理工大学",
+      "blueTeam": "追梦",
+      "redScore": 1,
+      "blueScore": 2,
+      "note": "比分与回放均来自官方数据",
+      "uncertain": false
+    },
+    {
+      "id": "2026-北部赛区-28",
+      "season": "2026",
+      "zone": "北部赛区",
+      "order": "28",
+      "stage": "小组赛",
+      "redSchool": "哈尔滨工程大学",
+      "redTeam": "创梦之翼",
+      "blueSchool": "应急管理大学",
+      "blueTeam": "风暴",
+      "redScore": 0,
+      "blueScore": 2,
+      "note": "比分与回放均来自官方数据",
+      "uncertain": false
+    },
+    {
+      "id": "2026-北部赛区-29",
+      "season": "2026",
+      "zone": "北部赛区",
+      "order": "29",
+      "stage": "小组赛",
+      "redSchool": "香港大学",
+      "redTeam": "HerKules",
+      "blueSchool": "香港科技大学",
+      "blueTeam": "ENTERPRIZE",
+      "redScore": 0,
+      "blueScore": 2,
+      "note": "比分与回放均来自官方数据",
+      "uncertain": false
+    },
+    {
+      "id": "2026-北部赛区-30",
+      "season": "2026",
+      "zone": "北部赛区",
+      "order": "30",
+      "stage": "小组赛",
+      "redSchool": "复旦大学",
+      "redTeam": "星云 EGA",
+      "blueSchool": "成都信息工程大学",
+      "blueTeam": "风信子",
+      "redScore": 2,
+      "blueScore": 0,
+      "note": "比分与回放均来自官方数据",
+      "uncertain": false
+    },
+    {
+      "id": "2026-北部赛区-31",
+      "season": "2026",
+      "zone": "北部赛区",
+      "order": "31",
+      "stage": "小组赛",
+      "redSchool": "大连理工大学",
+      "redTeam": "凌 BUG",
+      "blueSchool": "河北科技大学",
+      "blueTeam": "Actor&Thinker",
+      "redScore": 2,
+      "blueScore": 0,
+      "note": "比分与回放均来自官方数据",
+      "uncertain": false
+    },
+    {
+      "id": "2026-北部赛区-32",
+      "season": "2026",
+      "zone": "北部赛区",
+      "order": "32",
+      "stage": "小组赛",
+      "redSchool": "内蒙古科技大学",
+      "redTeam": "雷霆",
+      "blueSchool": "四川大学",
+      "blueTeam": "火锅",
+      "redScore": 0,
+      "blueScore": 2,
+      "note": "比分与回放均来自官方数据",
+      "uncertain": false
+    },
+    {
+      "id": "2026-北部赛区-33",
+      "season": "2026",
+      "zone": "北部赛区",
+      "order": "33",
+      "stage": "小组赛",
+      "redSchool": "西北工业大学",
+      "redTeam": "WMJ",
+      "blueSchool": "西安电子科技大学",
+      "blueTeam": "IRobot",
+      "redScore": 0,
+      "blueScore": 2,
+      "note": "比分与回放均来自官方数据",
+      "uncertain": false
+    },
+    {
+      "id": "2026-北部赛区-34",
+      "season": "2026",
+      "zone": "北部赛区",
+      "order": "34",
+      "stage": "小组赛",
+      "redSchool": "西安交通大学",
+      "redTeam": "笃行",
+      "blueSchool": "太原工业学院",
+      "blueTeam": "火线",
+      "redScore": 2,
+      "blueScore": 0,
+      "note": "比分与回放均来自官方数据",
+      "uncertain": false
+    },
+    {
+      "id": "2026-北部赛区-35",
+      "season": "2026",
+      "zone": "北部赛区",
+      "order": "35",
+      "stage": "小组赛",
+      "redSchool": "哈尔滨工业大学（威海）",
+      "redTeam": "HERO",
+      "blueSchool": "华南师范大学",
+      "blueTeam": "PIONEER",
+      "redScore": 2,
+      "blueScore": 0,
+      "note": "比分与回放均来自官方数据",
+      "uncertain": false
+    },
+    {
+      "id": "2026-北部赛区-36",
+      "season": "2026",
+      "zone": "北部赛区",
+      "order": "36",
+      "stage": "小组赛",
+      "redSchool": "长安大学",
+      "redTeam": "VGD",
+      "blueSchool": "香港科技大学（广州）",
+      "blueTeam": "PnX",
+      "redScore": 2,
+      "blueScore": 1,
+      "note": "比分与回放均来自官方数据",
+      "uncertain": false
+    },
+    {
+      "id": "2026-北部赛区-37",
+      "season": "2026",
+      "zone": "北部赛区",
+      "order": "37",
+      "stage": "小组赛",
+      "redSchool": "山东理工大学",
+      "redTeam": "齐奇",
+      "blueSchool": "华北理工大学",
+      "blueTeam": "Horizon",
+      "redScore": 2,
+      "blueScore": 0,
+      "note": "比分与回放均来自官方数据",
+      "uncertain": false
+    },
+    {
+      "id": "2026-北部赛区-38",
+      "season": "2026",
+      "zone": "北部赛区",
+      "order": "38",
+      "stage": "小组赛",
+      "redSchool": "哈尔滨工业大学",
+      "redTeam": "I Hiter",
+      "blueSchool": "天津大学",
+      "blueTeam": "北洋机甲",
+      "redScore": 2,
+      "blueScore": 0,
+      "note": "比分与回放均来自官方数据",
+      "uncertain": false
+    },
+    {
+      "id": "2026-北部赛区-39",
+      "season": "2026",
+      "zone": "北部赛区",
+      "order": "39",
+      "stage": "小组赛",
+      "redSchool": "北京信息科技大学",
+      "redTeam": "星辰",
+      "blueSchool": "辽宁石油化工大学",
+      "blueTeam": "TCN",
+      "redScore": 2,
+      "blueScore": 0,
+      "note": "比分与回放均来自官方数据",
+      "uncertain": false
+    },
+    {
+      "id": "2026-北部赛区-40",
+      "season": "2026",
+      "zone": "北部赛区",
+      "order": "40",
+      "stage": "小组赛",
+      "redSchool": "常州大学",
+      "redTeam": "Climber",
+      "blueSchool": "北方工业大学",
+      "blueTeam": "DreamTeam",
+      "redScore": 2,
+      "blueScore": 0,
+      "note": "比分与回放均来自官方数据",
+      "uncertain": false
+    },
+    {
+      "id": "2026-北部赛区-41",
+      "season": "2026",
+      "zone": "北部赛区",
+      "order": "41",
+      "stage": "小组赛",
+      "redSchool": "北京理工大学",
+      "redTeam": "追梦",
+      "blueSchool": "应急管理大学",
+      "blueTeam": "风暴",
+      "redScore": 2,
+      "blueScore": 0,
+      "note": "比分与回放均来自官方数据",
+      "uncertain": false
+    },
+    {
+      "id": "2026-北部赛区-42",
+      "season": "2026",
+      "zone": "北部赛区",
+      "order": "42",
+      "stage": "小组赛",
+      "redSchool": "东北大学",
+      "redTeam": "TDT",
+      "blueSchool": "同济大学",
+      "blueTeam": "SuperPower",
+      "redScore": 0,
+      "blueScore": 2,
+      "note": "比分与回放均来自官方数据",
+      "uncertain": false
+    },
+    {
+      "id": "2026-北部赛区-43",
+      "season": "2026",
+      "zone": "北部赛区",
+      "order": "43",
+      "stage": "小组赛",
+      "redSchool": "东北大学秦皇岛分校",
+      "redTeam": "征龙凌沧",
+      "blueSchool": "沈阳理工大学",
+      "blueTeam": "Ambition",
+      "redScore": 0,
+      "blueScore": 2,
+      "note": "比分与回放均来自官方数据",
+      "uncertain": false
+    },
+    {
+      "id": "2026-北部赛区-44",
+      "season": "2026",
+      "zone": "北部赛区",
+      "order": "44",
+      "stage": "小组赛",
+      "redSchool": "吉林大学",
+      "redTeam": "TARS Go",
+      "blueSchool": "香港科技大学",
+      "blueTeam": "ENTERPRIZE",
+      "redScore": 1,
+      "blueScore": 2,
+      "note": "比分与回放均来自官方数据",
+      "uncertain": false
+    },
+    {
+      "id": "2026-北部赛区-45",
+      "season": "2026",
+      "zone": "北部赛区",
+      "order": "45",
+      "stage": "小组赛",
+      "redSchool": "复旦大学",
+      "redTeam": "星云 EGA",
+      "blueSchool": "哈尔滨工程大学",
+      "blueTeam": "创梦之翼",
+      "redScore": 2,
+      "blueScore": 1,
+      "note": "比分与回放均来自官方数据",
+      "uncertain": false
+    },
+    {
+      "id": "2026-北部赛区-46",
+      "season": "2026",
+      "zone": "北部赛区",
+      "order": "46",
+      "stage": "小组赛",
+      "redSchool": "四川大学",
+      "redTeam": "火锅",
+      "blueSchool": "大连理工大学",
+      "blueTeam": "凌BUG",
+      "redScore": 0,
+      "blueScore": 2,
+      "note": "比分与回放均来自官方数据",
+      "uncertain": false
+    },
+    {
+      "id": "2026-北部赛区-47",
+      "season": "2026",
+      "zone": "北部赛区",
+      "order": "47",
+      "stage": "小组赛",
+      "redSchool": "内蒙古科技大学",
+      "redTeam": "雷霆",
+      "blueSchool": "河北科技大学",
+      "blueTeam": "Actor&Thinker",
+      "redScore": 0,
+      "blueScore": 2,
+      "note": "比分与回放均来自官方数据",
+      "uncertain": false
+    },
+    {
+      "id": "2026-北部赛区-48",
+      "season": "2026",
+      "zone": "北部赛区",
+      "order": "48",
+      "stage": "小组赛",
+      "redSchool": "成都信息工程大学",
+      "redTeam": "风信子",
+      "blueSchool": "香港大学",
+      "blueTeam": "HerKules",
+      "redScore": 1,
+      "blueScore": 2,
+      "note": "比分与回放均来自官方数据",
+      "uncertain": false
+    },
+    {
+      "id": "2026-北部赛区-49",
+      "season": "2026",
+      "zone": "北部赛区",
+      "order": "49",
+      "stage": "小组赛",
+      "redSchool": "西北工业大学",
+      "redTeam": "WMJ",
+      "blueSchool": "哈尔滨工业大学（威海）",
+      "blueTeam": "HERO",
+      "redScore": 2,
+      "blueScore": 1,
+      "note": "比分与回放均来自官方数据",
+      "uncertain": false
+    },
+    {
+      "id": "2026-北部赛区-50",
+      "season": "2026",
+      "zone": "北部赛区",
+      "order": "50",
+      "stage": "小组赛",
+      "redSchool": "长安大学",
+      "redTeam": "VGD",
+      "blueSchool": "山东理工大学",
+      "blueTeam": "齐奇",
+      "redScore": 1,
+      "blueScore": 2,
+      "note": "比分与回放均来自官方数据",
+      "uncertain": false
+    },
+    {
+      "id": "2026-北部赛区-51",
+      "season": "2026",
+      "zone": "北部赛区",
+      "order": "51",
+      "stage": "小组赛",
+      "redSchool": "太原工业学院",
+      "redTeam": "火线",
+      "blueSchool": "哈尔滨工业大学",
+      "blueTeam": "I Hiter",
+      "redScore": 0,
+      "blueScore": 2,
+      "note": "比分与回放均来自官方数据",
+      "uncertain": false
+    },
+    {
+      "id": "2026-北部赛区-52",
+      "season": "2026",
+      "zone": "北部赛区",
+      "order": "52",
+      "stage": "小组赛",
+      "redSchool": "香港科技大学（广州）",
+      "redTeam": "PnX",
+      "blueSchool": "华北理工大学",
+      "blueTeam": "Horizon",
+      "redScore": 0,
+      "blueScore": 2,
+      "note": "比分与回放均来自官方数据",
+      "uncertain": false
+    },
+    {
+      "id": "2026-北部赛区-53",
+      "season": "2026",
+      "zone": "北部赛区",
+      "order": "53",
+      "stage": "小组赛",
+      "redSchool": "华南师范大学",
+      "redTeam": "PIONEER",
+      "blueSchool": "北京信息科技大学",
+      "blueTeam": "星辰",
+      "redScore": 2,
+      "blueScore": 0,
+      "note": "比分与回放均来自官方数据",
+      "uncertain": false
+    },
+    {
+      "id": "2026-北部赛区-54",
+      "season": "2026",
+      "zone": "北部赛区",
+      "order": "54",
+      "stage": "小组赛",
+      "redSchool": "天津大学",
+      "redTeam": "北洋机甲",
+      "blueSchool": "常州大学",
+      "blueTeam": "Climber",
+      "redScore": 2,
+      "blueScore": 1,
+      "note": "比分与回放均来自官方数据",
+      "uncertain": false
+    },
+    {
+      "id": "2026-北部赛区-55",
+      "season": "2026",
+      "zone": "北部赛区",
+      "order": "55",
+      "stage": "小组赛",
+      "redSchool": "沈阳理工大学",
+      "redTeam": "Ambition",
+      "blueSchool": "应急管理大学",
+      "blueTeam": "风暴",
+      "redScore": 0,
+      "blueScore": 2,
+      "note": "比分与回放均来自官方数据",
+      "uncertain": false
+    },
+    {
+      "id": "2026-北部赛区-56",
+      "season": "2026",
+      "zone": "北部赛区",
+      "order": "56",
+      "stage": "小组赛",
+      "redSchool": "香港科技大学",
+      "redTeam": "ENTERPRIZE",
+      "blueSchool": "大连理工大学",
+      "blueTeam": "凌BUG",
+      "redScore": 2,
+      "blueScore": 0,
+      "note": "比分与回放均来自官方数据",
+      "uncertain": false
+    },
+    {
+      "id": "2026-北部赛区-57",
+      "season": "2026",
+      "zone": "北部赛区",
+      "order": "57",
+      "stage": "小组赛",
+      "redSchool": "东北大学",
+      "redTeam": "TDT",
+      "blueSchool": "复旦大学",
+      "blueTeam": "星云EGA",
+      "redScore": 2,
+      "blueScore": 0,
+      "note": "比分与回放均来自官方数据",
+      "uncertain": false
+    },
+    {
+      "id": "2026-北部赛区-58",
+      "season": "2026",
+      "zone": "北部赛区",
+      "order": "58",
+      "stage": "小组赛",
+      "redSchool": "东北大学秦皇岛分校",
+      "redTeam": "征龙凌沧",
+      "blueSchool": "吉林大学",
+      "blueTeam": "TARS Go",
+      "redScore": 2,
+      "blueScore": 1,
+      "note": "比分与回放均来自官方数据",
+      "uncertain": false
+    },
+    {
+      "id": "2026-北部赛区-59",
+      "season": "2026",
+      "zone": "北部赛区",
+      "order": "59",
+      "stage": "小组赛",
+      "redSchool": "哈尔滨工程大学",
+      "redTeam": "创梦之翼",
+      "blueSchool": "河北科技大学",
+      "blueTeam": "Actor&Thinker",
+      "redScore": 1,
+      "blueScore": 2,
+      "note": "比分与回放均来自官方数据",
+      "uncertain": false
+    },
+    {
+      "id": "2026-北部赛区-60",
+      "season": "2026",
+      "zone": "北部赛区",
+      "order": "60",
+      "stage": "小组赛",
+      "redSchool": "香港大学",
+      "redTeam": "HerKules",
+      "blueSchool": "四川大学",
+      "blueTeam": "火锅",
+      "redScore": 1,
+      "blueScore": 2,
+      "note": "比分与回放均来自官方数据",
+      "uncertain": false
+    },
+    {
+      "id": "2026-北部赛区-61",
+      "season": "2026",
+      "zone": "北部赛区",
+      "order": "61",
+      "stage": "小组赛",
+      "redSchool": "哈尔滨工业大学（威海）",
+      "redTeam": "HERO",
+      "blueSchool": "天津大学",
+      "blueTeam": "北洋机甲",
+      "redScore": 2,
+      "blueScore": 0,
+      "note": "比分与回放均来自官方数据",
+      "uncertain": false
+    },
+    {
+      "id": "2026-北部赛区-62",
+      "season": "2026",
+      "zone": "北部赛区",
+      "order": "62",
+      "stage": "小组赛",
+      "redSchool": "华南师范大学",
+      "redTeam": "PIONEER",
+      "blueSchool": "太原工业学院",
+      "blueTeam": "火线",
+      "redScore": 2,
+      "blueScore": 0,
+      "note": "比分与回放均来自官方数据",
+      "uncertain": false
+    },
+    {
+      "id": "2026-北部赛区-63",
+      "season": "2026",
+      "zone": "北部赛区",
+      "order": "63",
+      "stage": "小组赛",
+      "redSchool": "长安大学",
+      "redTeam": "VGD",
+      "blueSchool": "华北理工大学",
+      "blueTeam": "Horizon",
+      "redScore": 2,
+      "blueScore": 1,
+      "note": "比分与回放均来自官方数据",
+      "uncertain": false
+    },
+    {
+      "id": "2026-北部赛区-64",
+      "season": "2026",
+      "zone": "北部赛区",
+      "order": "64",
+      "stage": "小组赛",
+      "redSchool": "四川大学",
+      "redTeam": "火锅",
+      "blueSchool": "沈阳理工大学",
+      "blueTeam": "Ambition",
+      "redScore": 0,
+      "blueScore": 2,
+      "note": "比分与回放均来自官方数据",
+      "uncertain": false
+    },
+    {
+      "id": "2026-北部赛区-65",
+      "season": "2026",
+      "zone": "北部赛区",
+      "order": "65",
+      "stage": "小组赛",
+      "redSchool": "东北大学秦皇岛分校",
+      "redTeam": "征龙凌沧",
+      "blueSchool": "复旦大学",
+      "blueTeam": "星云 EGA",
+      "redScore": 0,
+      "blueScore": 2,
+      "note": "比分与回放均来自官方数据",
+      "uncertain": false
+    },
+    {
+      "id": "2026-北部赛区-66",
+      "season": "2026",
+      "zone": "北部赛区",
+      "order": "66",
+      "stage": "小组赛",
+      "redSchool": "河北科技大学",
+      "redTeam": "Actor&Thinker",
+      "blueSchool": "大连理工大学",
+      "blueTeam": "凌BUG",
+      "redScore": 0,
+      "blueScore": 2,
+      "note": "比分与回放均来自官方数据",
+      "uncertain": false
+    },
+    {
+      "id": "2026-北部赛区-67",
+      "season": "2026",
+      "zone": "北部赛区",
+      "order": "67",
+      "stage": "淘汰赛",
+      "redSchool": "同济大学",
+      "redTeam": "SuperPower",
+      "blueSchool": "华南师范大学",
+      "blueTeam": "PIONEER",
+      "redScore": 2,
+      "blueScore": 0,
+      "note": "比分与回放均来自官方数据",
+      "uncertain": false
+    },
+    {
+      "id": "2026-北部赛区-68",
+      "season": "2026",
+      "zone": "北部赛区",
+      "order": "68",
+      "stage": "淘汰赛",
+      "redSchool": "东北大学",
+      "redTeam": "TDT",
+      "blueSchool": "山东理工大学",
+      "blueTeam": "齐奇",
+      "redScore": 2,
+      "blueScore": 0,
+      "note": "比分与回放均来自官方数据",
+      "uncertain": false
+    },
+    {
+      "id": "2026-北部赛区-69",
+      "season": "2026",
+      "zone": "北部赛区",
+      "order": "69",
+      "stage": "淘汰赛",
+      "redSchool": "长安大学",
+      "redTeam": "VGD",
+      "blueSchool": "北京理工大学",
+      "blueTeam": "追梦",
+      "redScore": 0,
+      "blueScore": 2,
+      "note": "比分与回放均来自官方数据",
+      "uncertain": false
+    },
+    {
+      "id": "2026-北部赛区-70",
+      "season": "2026",
+      "zone": "北部赛区",
+      "order": "70",
+      "stage": "淘汰赛",
+      "redSchool": "西北工业大学",
+      "redTeam": "WMJ",
+      "blueSchool": "沈阳理工大学",
+      "blueTeam": "Ambition",
+      "redScore": 2,
+      "blueScore": 0,
+      "note": "比分与回放均来自官方数据",
+      "uncertain": false
+    },
+    {
+      "id": "2026-北部赛区-71",
+      "season": "2026",
+      "zone": "北部赛区",
+      "order": "71",
+      "stage": "淘汰赛",
+      "redSchool": "哈尔滨工业大学（威海）",
+      "redTeam": "HERO",
+      "blueSchool": "应急管理大学",
+      "blueTeam": "风暴",
+      "redScore": 2,
+      "blueScore": 0,
+      "note": "比分与回放均来自官方数据",
+      "uncertain": false
+    },
+    {
+      "id": "2026-北部赛区-72",
+      "season": "2026",
+      "zone": "北部赛区",
+      "order": "72",
+      "stage": "淘汰赛",
+      "redSchool": "西安交通大学",
+      "redTeam": "笃行",
+      "blueSchool": "大连理工大学",
+      "blueTeam": "凌BUG",
+      "redScore": 2,
+      "blueScore": 0,
+      "note": "比分与回放均来自官方数据",
+      "uncertain": false
+    },
+    {
+      "id": "2026-北部赛区-73",
+      "season": "2026",
+      "zone": "北部赛区",
+      "order": "73",
+      "stage": "淘汰赛",
+      "redSchool": "香港科技大学",
+      "redTeam": "ENTERPRIZE",
+      "blueSchool": "哈尔滨工业大学",
+      "blueTeam": "I Hiter",
+      "redScore": 0,
+      "blueScore": 2,
+      "note": "比分与回放均来自官方数据",
+      "uncertain": false
+    },
+    {
+      "id": "2026-北部赛区-74",
+      "season": "2026",
+      "zone": "北部赛区",
+      "order": "74",
+      "stage": "淘汰赛",
+      "redSchool": "复旦大学",
+      "redTeam": "星云EGA",
+      "blueSchool": "西安电子科技大学",
+      "blueTeam": "IRobot",
+      "redScore": 2,
+      "blueScore": 1,
+      "note": "比分与回放均来自官方数据",
+      "uncertain": false
+    },
+    {
+      "id": "2026-北部赛区-75",
+      "season": "2026",
+      "zone": "北部赛区",
+      "order": "75",
+      "stage": "淘汰赛",
+      "redSchool": "同济大学",
+      "redTeam": "SuperPower",
+      "blueSchool": "东北大学",
+      "blueTeam": "TDT",
+      "redScore": 0,
+      "blueScore": 2,
+      "note": "比分与回放均来自官方数据",
+      "uncertain": false
+    },
+    {
+      "id": "2026-北部赛区-76",
+      "season": "2026",
+      "zone": "北部赛区",
+      "order": "76",
+      "stage": "淘汰赛",
+      "redSchool": "西北工业大学",
+      "redTeam": "WMJ",
+      "blueSchool": "北京理工大学",
+      "blueTeam": "追梦",
+      "redScore": 2,
+      "blueScore": 1,
+      "note": "比分与回放均来自官方数据",
+      "uncertain": false
+    },
+    {
+      "id": "2026-北部赛区-77",
+      "season": "2026",
+      "zone": "北部赛区",
+      "order": "77",
+      "stage": "淘汰赛",
+      "redSchool": "哈尔滨工业大学（威海）",
+      "redTeam": "HERO",
+      "blueSchool": "西安交通大学",
+      "blueTeam": "笃行",
+      "redScore": 2,
+      "blueScore": 1,
+      "note": "比分与回放均来自官方数据",
+      "uncertain": false
+    },
+    {
+      "id": "2026-北部赛区-78",
+      "season": "2026",
+      "zone": "北部赛区",
+      "order": "78",
+      "stage": "淘汰赛",
+      "redSchool": "复旦大学",
+      "redTeam": "星云EGA",
+      "blueSchool": "哈尔滨工业大学",
+      "blueTeam": "I Hiter",
+      "redScore": 1,
+      "blueScore": 2,
+      "note": "比分与回放均来自官方数据",
+      "uncertain": false
+    },
+    {
+      "id": "2026-北部赛区-79",
+      "season": "2026",
+      "zone": "北部赛区",
+      "order": "79",
+      "stage": "淘汰赛",
+      "redSchool": "华南师范大学",
+      "redTeam": "PIONEER",
+      "blueSchool": "山东理工大学",
+      "blueTeam": "齐奇",
+      "redScore": 1,
+      "blueScore": 2,
+      "note": "比分与回放均来自官方数据",
+      "uncertain": false
+    },
+    {
+      "id": "2026-北部赛区-80",
+      "season": "2026",
+      "zone": "北部赛区",
+      "order": "80",
+      "stage": "淘汰赛",
+      "redSchool": "沈阳理工大学",
+      "redTeam": "Ambition",
+      "blueSchool": "长安大学",
+      "blueTeam": "VGD",
+      "redScore": 1,
+      "blueScore": 2,
+      "note": "比分与回放均来自官方数据",
+      "uncertain": false
+    },
+    {
+      "id": "2026-北部赛区-81",
+      "season": "2026",
+      "zone": "北部赛区",
+      "order": "81",
+      "stage": "淘汰赛",
+      "redSchool": "应急管理大学",
+      "redTeam": "风暴",
+      "blueSchool": "大连理工大学",
+      "blueTeam": "凌BUG",
+      "redScore": 0,
+      "blueScore": 2,
+      "note": "比分与回放均来自官方数据",
+      "uncertain": false
+    },
+    {
+      "id": "2026-北部赛区-82",
+      "season": "2026",
+      "zone": "北部赛区",
+      "order": "82",
+      "stage": "淘汰赛",
+      "redSchool": "西安电子科技大学",
+      "redTeam": "IRobot",
+      "blueSchool": "香港科技大学",
+      "blueTeam": "ENTERPRIZE",
+      "redScore": 2,
+      "blueScore": 0,
+      "note": "比分与回放均来自官方数据",
+      "uncertain": false
+    },
+    {
+      "id": "2026-北部赛区-83",
+      "season": "2026",
+      "zone": "北部赛区",
+      "order": "83",
+      "stage": "淘汰赛",
+      "redSchool": "东北大学",
+      "redTeam": "TDT",
+      "blueSchool": "哈尔滨工业大学（威海）",
+      "blueTeam": "HERO",
+      "redScore": 2,
+      "blueScore": 0,
+      "note": "比分与回放均来自官方数据",
+      "uncertain": false
+    },
+    {
+      "id": "2026-北部赛区-84",
+      "season": "2026",
+      "zone": "北部赛区",
+      "order": "84",
+      "stage": "淘汰赛",
+      "redSchool": "西北工业大学",
+      "redTeam": "WMJ",
+      "blueSchool": "哈尔滨工业大学",
+      "blueTeam": "I Hiter",
+      "redScore": 1,
+      "blueScore": 2,
+      "note": "比分与回放均来自官方数据",
+      "uncertain": false
+    },
+    {
+      "id": "2026-北部赛区-85",
+      "season": "2026",
+      "zone": "北部赛区",
+      "order": "85",
+      "stage": "淘汰赛",
+      "redSchool": "山东理工大学",
+      "redTeam": "齐奇",
+      "blueSchool": "大连理工大学",
+      "blueTeam": "凌BUG",
+      "redScore": 0,
+      "blueScore": 2,
+      "note": "比分与回放均来自官方数据",
+      "uncertain": false
+    },
+    {
+      "id": "2026-北部赛区-86",
+      "season": "2026",
+      "zone": "北部赛区",
+      "order": "86",
+      "stage": "淘汰赛",
+      "redSchool": "长安大学",
+      "redTeam": "VGD",
+      "blueSchool": "西安电子科技大学",
+      "blueTeam": "IRobot",
+      "redScore": 2,
+      "blueScore": 0,
+      "note": "比分与回放均来自官方数据",
+      "uncertain": false
+    },
+    {
+      "id": "2026-北部赛区-87",
+      "season": "2026",
+      "zone": "北部赛区",
+      "order": "87",
+      "stage": "淘汰赛",
+      "redSchool": "华南师范大学",
+      "redTeam": "PIONEER",
+      "blueSchool": "应急管理大学",
+      "blueTeam": "风暴",
+      "redScore": 0,
+      "blueScore": 2,
+      "note": "比分与回放均来自官方数据",
+      "uncertain": false
+    },
+    {
+      "id": "2026-北部赛区-88",
+      "season": "2026",
+      "zone": "北部赛区",
+      "order": "88",
+      "stage": "淘汰赛",
+      "redSchool": "沈阳理工大学",
+      "redTeam": "Ambition",
+      "blueSchool": "香港科技大学",
+      "blueTeam": "ENTERPRIZE",
+      "redScore": 2,
+      "blueScore": 0,
+      "note": "比分与回放均来自官方数据",
+      "uncertain": false
+    },
+    {
+      "id": "2026-北部赛区-89",
+      "season": "2026",
+      "zone": "北部赛区",
+      "order": "89",
+      "stage": "淘汰赛",
+      "redSchool": "哈尔滨工业大学（威海）",
+      "redTeam": "HERO",
+      "blueSchool": "西北工业大学",
+      "blueTeam": "WMJ",
+      "redScore": 3,
+      "blueScore": 0,
+      "note": "比分与回放均来自官方数据",
+      "uncertain": false
+    },
+    {
+      "id": "2026-北部赛区-90",
+      "season": "2026",
+      "zone": "北部赛区",
+      "order": "90",
+      "stage": "淘汰赛",
+      "redSchool": "东北大学",
+      "redTeam": "TDT",
+      "blueSchool": "哈尔滨工业大学",
+      "blueTeam": "I Hiter",
+      "redScore": 3,
+      "blueScore": 1,
+      "note": "比分与回放均来自官方数据",
+      "uncertain": false
+    },
+    {
+      "id": "2026-南部赛区-1",
+      "season": "2026",
+      "zone": "南部赛区",
+      "order": "1",
+      "stage": "小组赛",
+      "redSchool": "华南农业大学",
+      "redTeam": "Taurus",
+      "blueSchool": "重庆理工大学",
+      "blueTeam": "士继 DREAMER",
+      "redScore": 1,
+      "blueScore": 2,
+      "note": "比分与回放均来自官方数据",
+      "uncertain": false
+    },
+    {
+      "id": "2026-南部赛区-2",
+      "season": "2026",
+      "zone": "南部赛区",
+      "order": "2",
+      "stage": "小组赛",
+      "redSchool": "国防科技大学",
+      "redTeam": "军临",
+      "blueSchool": "厦门大学嘉庚学院",
+      "blueTeam": "TCR",
+      "redScore": 0,
+      "blueScore": 2,
+      "note": "比分与回放均来自官方数据",
+      "uncertain": false
+    },
+    {
+      "id": "2026-南部赛区-3",
+      "season": "2026",
+      "zone": "南部赛区",
+      "order": "3",
+      "stage": "小组赛",
+      "redSchool": "仲恺农业工程学院",
+      "redTeam": "奇点",
+      "blueSchool": "华南理工大学",
+      "blueTeam": "华南虎",
+      "redScore": 2,
+      "blueScore": 1,
+      "note": "比分与回放均来自官方数据",
+      "uncertain": false
+    },
+    {
+      "id": "2026-南部赛区-4",
+      "season": "2026",
+      "zone": "南部赛区",
+      "order": "4",
+      "stage": "小组赛",
+      "redSchool": "武汉大学",
+      "redTeam": "珞珈狐",
+      "blueSchool": "桂林信息科技学院",
+      "blueTeam": "GIRT",
+      "redScore": 1,
+      "blueScore": 2,
+      "note": "比分与回放均来自官方数据",
+      "uncertain": false
+    },
+    {
+      "id": "2026-南部赛区-5",
+      "season": "2026",
+      "zone": "南部赛区",
+      "order": "5",
+      "stage": "小组赛",
+      "redSchool": "电子科技大学中山学院",
+      "redTeam": "RoboBraver",
+      "blueSchool": "长沙理工大学",
+      "blueTeam": "云嵌",
+      "redScore": 2,
+      "blueScore": 0,
+      "note": "比分与回放均来自官方数据",
+      "uncertain": false
+    },
+    {
+      "id": "2026-南部赛区-6",
+      "season": "2026",
+      "zone": "南部赛区",
+      "order": "6",
+      "stage": "小组赛",
+      "redSchool": "武汉工程大学",
+      "redTeam": "Nautilus",
+      "blueSchool": "华南师范大学",
+      "blueTeam": "（佛山校区） VANGUARD",
+      "redScore": 0,
+      "blueScore": 2,
+      "note": "比分与回放均来自官方数据",
+      "uncertain": false
+    },
+    {
+      "id": "2026-南部赛区-7",
+      "season": "2026",
+      "zone": "南部赛区",
+      "order": "7",
+      "stage": "小组赛",
+      "redSchool": "广州航海学院",
+      "redTeam": "ICBK破冰船",
+      "blueSchool": "上海交通大学",
+      "blueTeam": "交龙",
+      "redScore": 0,
+      "blueScore": 2,
+      "note": "比分与回放均来自官方数据",
+      "uncertain": false
+    },
+    {
+      "id": "2026-南部赛区-8",
+      "season": "2026",
+      "zone": "南部赛区",
+      "order": "8",
+      "stage": "小组赛",
+      "redSchool": "厦门理工学院",
+      "redTeam": "PFA",
+      "blueSchool": "桂林电子科技大学",
+      "blueTeam": "Evolution",
+      "redScore": 0,
+      "blueScore": 2,
+      "note": "比分与回放均来自官方数据",
+      "uncertain": false
+    },
+    {
+      "id": "2026-南部赛区-9",
+      "season": "2026",
+      "zone": "南部赛区",
+      "order": "9",
+      "stage": "小组赛",
+      "redSchool": "桂林理工大学",
+      "redTeam": "群星",
+      "blueSchool": "太原理工大学",
+      "blueTeam": "TRoMaC",
+      "redScore": 2,
+      "blueScore": 0,
+      "note": "比分与回放均来自官方数据",
+      "uncertain": false
+    },
+    {
+      "id": "2026-南部赛区-10",
+      "season": "2026",
+      "zone": "南部赛区",
+      "order": "10",
+      "stage": "小组赛",
+      "redSchool": "东莞理工学院",
+      "redTeam": "ACE",
+      "blueSchool": "华中科技大学",
+      "blueTeam": "狼牙",
+      "redScore": 2,
+      "blueScore": 0,
+      "note": "比分与回放均来自官方数据",
+      "uncertain": false
+    },
+    {
+      "id": "2026-南部赛区-11",
+      "season": "2026",
+      "zone": "南部赛区",
+      "order": "11",
+      "stage": "小组赛",
+      "redSchool": "五邑大学",
+      "redTeam": "IMCA",
+      "blueSchool": "深圳技术大学",
+      "blueTeam": "悍匠",
+      "redScore": 2,
+      "blueScore": 0,
+      "note": "比分与回放均来自官方数据",
+      "uncertain": false
+    },
+    {
+      "id": "2026-南部赛区-12",
+      "season": "2026",
+      "zone": "南部赛区",
+      "order": "12",
+      "stage": "小组赛",
+      "redSchool": "广州城市理工学院",
+      "redTeam": "野狼",
+      "blueSchool": "湘潭大学",
+      "blueTeam": "逐曦",
+      "redScore": 2,
+      "blueScore": 0,
+      "note": "比分与回放均来自官方数据",
+      "uncertain": false
+    },
+    {
+      "id": "2026-南部赛区-13",
+      "season": "2026",
+      "zone": "南部赛区",
+      "order": "13",
+      "stage": "小组赛",
+      "redSchool": "武汉科技大学",
+      "redTeam": "崇实",
+      "blueSchool": "深圳大学",
+      "blueTeam": "RobotPilots",
+      "redScore": 0,
+      "blueScore": 2,
+      "note": "比分与回放均来自官方数据",
+      "uncertain": false
+    },
+    {
+      "id": "2026-南部赛区-14",
+      "season": "2026",
+      "zone": "南部赛区",
+      "order": "14",
+      "stage": "小组赛",
+      "redSchool": "南华大学",
+      "redTeam": "MA",
+      "blueSchool": "南昌大学",
+      "blueTeam": "Passion",
+      "redScore": 2,
+      "blueScore": 0,
+      "note": "比分与回放均来自官方数据",
+      "uncertain": false
+    },
+    {
+      "id": "2026-南部赛区-15",
+      "season": "2026",
+      "zone": "南部赛区",
+      "order": "15",
+      "stage": "小组赛",
+      "redSchool": "广东工业大学",
+      "redTeam": "DynamicX",
+      "blueSchool": "西交利物浦大学",
+      "blueTeam": "GMaster",
+      "redScore": 2,
+      "blueScore": 0,
+      "note": "比分与回放均来自官方数据",
+      "uncertain": false
+    },
+    {
+      "id": "2026-南部赛区-16",
+      "season": "2026",
+      "zone": "南部赛区",
+      "order": "16",
+      "stage": "小组赛",
+      "redSchool": "中南大学",
+      "redTeam": "FYT",
+      "blueSchool": "厦门大学",
+      "blueTeam": "RCS",
+      "redScore": 2,
+      "blueScore": 1,
+      "note": "比分与回放均来自官方数据",
+      "uncertain": false
+    },
+    {
+      "id": "2026-南部赛区-17",
+      "season": "2026",
+      "zone": "南部赛区",
+      "order": "17",
+      "stage": "小组赛",
+      "redSchool": "仲恺农业工程学院",
+      "redTeam": "奇点",
+      "blueSchool": "桂林信息科技学院",
+      "blueTeam": "GIRT",
+      "redScore": 2,
+      "blueScore": 0,
+      "note": "比分与回放均来自官方数据",
+      "uncertain": false
+    },
+    {
+      "id": "2026-南部赛区-18",
+      "season": "2026",
+      "zone": "南部赛区",
+      "order": "18",
+      "stage": "小组赛",
+      "redSchool": "重庆理工大学",
+      "redTeam": "士继DREAMER",
+      "blueSchool": "电子科技大学中山学院",
+      "blueTeam": "RoboBraver",
+      "redScore": 0,
+      "blueScore": 2,
+      "note": "比分与回放均来自官方数据",
+      "uncertain": false
+    },
+    {
+      "id": "2026-南部赛区-19",
+      "season": "2026",
+      "zone": "南部赛区",
+      "order": "19",
+      "stage": "小组赛",
+      "redSchool": "厦门大学嘉庚学院",
+      "redTeam": "TCR",
+      "blueSchool": "桂林电子科技大学",
+      "blueTeam": "Evolution",
+      "redScore": 2,
+      "blueScore": 1,
+      "note": "比分与回放均来自官方数据",
+      "uncertain": false
+    },
+    {
+      "id": "2026-南部赛区-20",
+      "season": "2026",
+      "zone": "南部赛区",
+      "order": "20",
+      "stage": "小组赛",
+      "redSchool": "上海交通大学",
+      "redTeam": "交龙",
+      "blueSchool": "华南师范大学",
+      "blueTeam": "（佛山校区） VANGUARD",
+      "redScore": 2,
+      "blueScore": 0,
+      "note": "比分与回放均来自官方数据",
+      "uncertain": false
+    },
+    {
+      "id": "2026-南部赛区-21",
+      "season": "2026",
+      "zone": "南部赛区",
+      "order": "21",
+      "stage": "小组赛",
+      "redSchool": "武汉工程大学",
+      "redTeam": "Nautilus",
+      "blueSchool": "广州航海学院",
+      "blueTeam": "ICBK破冰船",
+      "redScore": 2,
+      "blueScore": 1,
+      "note": "比分与回放均来自官方数据",
+      "uncertain": false
+    },
+    {
+      "id": "2026-南部赛区-22",
+      "season": "2026",
+      "zone": "南部赛区",
+      "order": "22",
+      "stage": "小组赛",
+      "redSchool": "国防科技大学",
+      "redTeam": "军临",
+      "blueSchool": "厦门理工学院",
+      "blueTeam": "PFA",
+      "redScore": 0,
+      "blueScore": 2,
+      "note": "比分与回放均来自官方数据",
+      "uncertain": false
+    },
+    {
+      "id": "2026-南部赛区-23",
+      "season": "2026",
+      "zone": "南部赛区",
+      "order": "23",
+      "stage": "小组赛",
+      "redSchool": "华南农业大学",
+      "redTeam": "Taurus",
+      "blueSchool": "长沙理工大学",
+      "blueTeam": "云嵌",
+      "redScore": 2,
+      "blueScore": 0,
+      "note": "比分与回放均来自官方数据",
+      "uncertain": false
+    },
+    {
+      "id": "2026-南部赛区-24",
+      "season": "2026",
+      "zone": "南部赛区",
+      "order": "24",
+      "stage": "小组赛",
+      "redSchool": "华南理工大学",
+      "redTeam": "华南虎",
+      "blueSchool": "武汉大学",
+      "blueTeam": "珞珈狐",
+      "redScore": 2,
+      "blueScore": 0,
+      "note": "比分与回放均来自官方数据",
+      "uncertain": false
+    },
+    {
+      "id": "2026-南部赛区-25",
+      "season": "2026",
+      "zone": "南部赛区",
+      "order": "25",
+      "stage": "小组赛",
+      "redSchool": "五邑大学",
+      "redTeam": "IMCA",
+      "blueSchool": "中南大学",
+      "blueTeam": "FYT",
+      "redScore": 2,
+      "blueScore": 0,
+      "note": "比分与回放均来自官方数据",
+      "uncertain": false
+    },
+    {
+      "id": "2026-南部赛区-26",
+      "season": "2026",
+      "zone": "南部赛区",
+      "order": "26",
+      "stage": "小组赛",
+      "redSchool": "东莞理工学院",
+      "redTeam": "ACE",
+      "blueSchool": "桂林理工大学",
+      "blueTeam": "群星",
+      "redScore": 2,
+      "blueScore": 0,
+      "note": "比分与回放均来自官方数据",
+      "uncertain": false
+    },
+    {
+      "id": "2026-南部赛区-27",
+      "season": "2026",
+      "zone": "南部赛区",
+      "order": "27",
+      "stage": "小组赛",
+      "redSchool": "广东工业大学",
+      "redTeam": "DynamicX",
+      "blueSchool": "广州城市理工学院",
+      "blueTeam": "野狼",
+      "redScore": 1,
+      "blueScore": 2,
+      "note": "比分与回放均来自官方数据",
+      "uncertain": false
+    },
+    {
+      "id": "2026-南部赛区-28",
+      "season": "2026",
+      "zone": "南部赛区",
+      "order": "28",
+      "stage": "小组赛",
+      "redSchool": "深圳大学",
+      "redTeam": "RobotPilots",
+      "blueSchool": "南华大学",
+      "blueTeam": "MA",
+      "redScore": 2,
+      "blueScore": 1,
+      "note": "比分与回放均来自官方数据",
+      "uncertain": false
+    },
+    {
+      "id": "2026-南部赛区-29",
+      "season": "2026",
+      "zone": "南部赛区",
+      "order": "29",
+      "stage": "小组赛",
+      "redSchool": "武汉科技大学",
+      "redTeam": "崇实",
+      "blueSchool": "南昌大学",
+      "blueTeam": "Passion",
+      "redScore": 2,
+      "blueScore": 1,
+      "note": "比分与回放均来自官方数据",
+      "uncertain": false
+    },
+    {
+      "id": "2026-南部赛区-30",
+      "season": "2026",
+      "zone": "南部赛区",
+      "order": "30",
+      "stage": "小组赛",
+      "redSchool": "西交利物浦大学",
+      "redTeam": "GMaster",
+      "blueSchool": "湘潭大学",
+      "blueTeam": "逐曦",
+      "redScore": 2,
+      "blueScore": 1,
+      "note": "比分与回放均来自官方数据",
+      "uncertain": false
+    },
+    {
+      "id": "2026-南部赛区-31",
+      "season": "2026",
+      "zone": "南部赛区",
+      "order": "31",
+      "stage": "小组赛",
+      "redSchool": "华中科技大学",
+      "redTeam": "狼牙",
+      "blueSchool": "太原理工大学",
+      "blueTeam": "TRoMaC",
+      "redScore": 2,
+      "blueScore": 0,
+      "note": "比分与回放均来自官方数据",
+      "uncertain": false
+    },
+    {
+      "id": "2026-南部赛区-32",
+      "season": "2026",
+      "zone": "南部赛区",
+      "order": "32",
+      "stage": "小组赛",
+      "redSchool": "深圳技术大学",
+      "redTeam": "悍匠",
+      "blueSchool": "厦门大学",
+      "blueTeam": "RCS",
+      "redScore": 2,
+      "blueScore": 0,
+      "note": "比分与回放均来自官方数据",
+      "uncertain": false
+    },
+    {
+      "id": "2026-南部赛区-33",
+      "season": "2026",
+      "zone": "南部赛区",
+      "order": "33",
+      "stage": "小组赛",
+      "redSchool": "仲恺农业工程学院",
+      "redTeam": "奇点",
+      "blueSchool": "厦门大学嘉庚学院",
+      "blueTeam": "TCR",
+      "redScore": 2,
+      "blueScore": 0,
+      "note": "比分与回放均来自官方数据",
+      "uncertain": false
+    },
+    {
+      "id": "2026-南部赛区-34",
+      "season": "2026",
+      "zone": "南部赛区",
+      "order": "34",
+      "stage": "小组赛",
+      "redSchool": "上海交通大学",
+      "redTeam": "交龙",
+      "blueSchool": "电子科技大学中山学院",
+      "blueTeam": "RoboBraver",
+      "redScore": 2,
+      "blueScore": 0,
+      "note": "比分与回放均来自官方数据",
+      "uncertain": false
+    },
+    {
+      "id": "2026-南部赛区-35",
+      "season": "2026",
+      "zone": "南部赛区",
+      "order": "35",
+      "stage": "小组赛",
+      "redSchool": "华南师范大学",
+      "redTeam": "（佛山校区）VANGUARD",
+      "blueSchool": "重庆理工大学",
+      "blueTeam": "士继DREAMER",
+      "redScore": 0,
+      "blueScore": 2,
+      "note": "比分与回放均来自官方数据",
+      "uncertain": false
+    },
+    {
+      "id": "2026-南部赛区-36",
+      "season": "2026",
+      "zone": "南部赛区",
+      "order": "36",
+      "stage": "小组赛",
+      "redSchool": "华南理工大学",
+      "redTeam": "华南虎",
+      "blueSchool": "桂林电子科技大学",
+      "blueTeam": "Evolution",
+      "redScore": 1,
+      "blueScore": 2,
+      "note": "比分与回放均来自官方数据",
+      "uncertain": false
+    },
+    {
+      "id": "2026-南部赛区-37",
+      "season": "2026",
+      "zone": "南部赛区",
+      "order": "37",
+      "stage": "小组赛",
+      "redSchool": "桂林信息科技学院",
+      "redTeam": "GIRT",
+      "blueSchool": "武汉工程大学",
+      "blueTeam": "Nautilus",
+      "redScore": 0,
+      "blueScore": 2,
+      "note": "比分与回放均来自官方数据",
+      "uncertain": false
+    },
+    {
+      "id": "2026-南部赛区-38",
+      "season": "2026",
+      "zone": "南部赛区",
+      "order": "38",
+      "stage": "小组赛",
+      "redSchool": "厦门理工学院",
+      "redTeam": "PFA",
+      "blueSchool": "华南农业大学",
+      "blueTeam": "Taurus",
+      "redScore": 0,
+      "blueScore": 2,
+      "note": "比分与回放均来自官方数据",
+      "uncertain": false
+    },
+    {
+      "id": "2026-南部赛区-39",
+      "season": "2026",
+      "zone": "南部赛区",
+      "order": "39",
+      "stage": "小组赛",
+      "redSchool": "广州航海学院",
+      "redTeam": "ICBK破冰船",
+      "blueSchool": "长沙理工大学",
+      "blueTeam": "云嵌",
+      "redScore": 2,
+      "blueScore": 0,
+      "note": "比分与回放均来自官方数据",
+      "uncertain": false
+    },
+    {
+      "id": "2026-南部赛区-40",
+      "season": "2026",
+      "zone": "南部赛区",
+      "order": "40",
+      "stage": "小组赛",
+      "redSchool": "武汉大学",
+      "redTeam": "珞珈狐",
+      "blueSchool": "国防科技大学",
+      "blueTeam": "军临",
+      "redScore": 2,
+      "blueScore": 1,
+      "note": "比分与回放均来自官方数据",
+      "uncertain": false
+    },
+    {
+      "id": "2026-南部赛区-41",
+      "season": "2026",
+      "zone": "南部赛区",
+      "order": "41",
+      "stage": "小组赛",
+      "redSchool": "深圳大学",
+      "redTeam": "RobotPilots",
+      "blueSchool": "东莞理工学院",
+      "blueTeam": "ACE",
+      "redScore": 2,
+      "blueScore": 0,
+      "note": "比分与回放均来自官方数据",
+      "uncertain": false
+    },
+    {
+      "id": "2026-南部赛区-42",
+      "season": "2026",
+      "zone": "南部赛区",
+      "order": "42",
+      "stage": "小组赛",
+      "redSchool": "广州城市理工学院",
+      "redTeam": "野狼",
+      "blueSchool": "五邑大学",
+      "blueTeam": "IMCA",
+      "redScore": 0,
+      "blueScore": 2,
+      "note": "比分与回放均来自官方数据",
+      "uncertain": false
+    },
+    {
+      "id": "2026-南部赛区-43",
+      "season": "2026",
+      "zone": "南部赛区",
+      "order": "43",
+      "stage": "小组赛",
+      "redSchool": "广东工业大学",
+      "redTeam": "DynamicX",
+      "blueSchool": "中南大学",
+      "blueTeam": "FYT",
+      "redScore": 2,
+      "blueScore": 0,
+      "note": "比分与回放均来自官方数据",
+      "uncertain": false
+    },
+    {
+      "id": "2026-南部赛区-44",
+      "season": "2026",
+      "zone": "南部赛区",
+      "order": "44",
+      "stage": "小组赛",
+      "redSchool": "深圳技术大学",
+      "redTeam": "悍匠",
+      "blueSchool": "桂林理工大学",
+      "blueTeam": "群星",
+      "redScore": 2,
+      "blueScore": 1,
+      "note": "比分与回放均来自官方数据",
+      "uncertain": false
+    },
+    {
+      "id": "2026-南部赛区-45",
+      "season": "2026",
+      "zone": "南部赛区",
+      "order": "45",
+      "stage": "小组赛",
+      "redSchool": "南华大学",
+      "redTeam": "MA",
+      "blueSchool": "武汉科技大学",
+      "blueTeam": "崇实",
+      "redScore": 2,
+      "blueScore": 0,
+      "note": "比分与回放均来自官方数据",
+      "uncertain": false
+    },
+    {
+      "id": "2026-南部赛区-46",
+      "season": "2026",
+      "zone": "南部赛区",
+      "order": "46",
+      "stage": "小组赛",
+      "redSchool": "西交利物浦大学",
+      "redTeam": "GMaster",
+      "blueSchool": "华中科技大学",
+      "blueTeam": "狼牙",
+      "redScore": 0,
+      "blueScore": 2,
+      "note": "比分与回放均来自官方数据",
+      "uncertain": false
+    },
+    {
+      "id": "2026-南部赛区-47",
+      "season": "2026",
+      "zone": "南部赛区",
+      "order": "47",
+      "stage": "小组赛",
+      "redSchool": "湘潭大学",
+      "redTeam": "逐曦",
+      "blueSchool": "南昌大学",
+      "blueTeam": "Passion",
+      "redScore": 0,
+      "blueScore": 2,
+      "note": "比分与回放均来自官方数据",
+      "uncertain": false
+    },
+    {
+      "id": "2026-南部赛区-48",
+      "season": "2026",
+      "zone": "南部赛区",
+      "order": "48",
+      "stage": "小组赛",
+      "redSchool": "太原理工大学",
+      "redTeam": "TRoMaC",
+      "blueSchool": "厦门大学",
+      "blueTeam": "RCS",
+      "redScore": 2,
+      "blueScore": 0,
+      "note": "比分与回放均来自官方数据",
+      "uncertain": false
+    },
+    {
+      "id": "2026-南部赛区-49",
+      "season": "2026",
+      "zone": "南部赛区",
+      "order": "49",
+      "stage": "小组赛",
+      "redSchool": "重庆理工大学",
+      "redTeam": "士继DREAMER",
+      "blueSchool": "厦门大学嘉庚学院",
+      "blueTeam": "TCR",
+      "redScore": 0,
+      "blueScore": 2,
+      "note": "比分与回放均来自官方数据",
+      "uncertain": false
+    },
+    {
+      "id": "2026-南部赛区-50",
+      "season": "2026",
+      "zone": "南部赛区",
+      "order": "50",
+      "stage": "小组赛",
+      "redSchool": "桂林电子科技大学",
+      "redTeam": "Evolution",
+      "blueSchool": "电子科技大学中山学院",
+      "blueTeam": "RoboBraver",
+      "redScore": 0,
+      "blueScore": 2,
+      "note": "比分与回放均来自官方数据",
+      "uncertain": false
+    },
+    {
+      "id": "2026-南部赛区-51",
+      "season": "2026",
+      "zone": "南部赛区",
+      "order": "51",
+      "stage": "小组赛",
+      "redSchool": "华南农业大学",
+      "redTeam": "Taurus",
+      "blueSchool": "武汉工程大学",
+      "blueTeam": "Nautilus",
+      "redScore": 2,
+      "blueScore": 1,
+      "note": "比分与回放均来自官方数据",
+      "uncertain": false
+    },
+    {
+      "id": "2026-南部赛区-52",
+      "season": "2026",
+      "zone": "南部赛区",
+      "order": "52",
+      "stage": "小组赛",
+      "redSchool": "华南师范大学",
+      "redTeam": "（佛山校区) VANGUARD",
+      "blueSchool": "华南理工大学",
+      "blueTeam": "华南虎",
+      "redScore": 0,
+      "blueScore": 2,
+      "note": "比分与回放均来自官方数据",
+      "uncertain": false
+    },
+    {
+      "id": "2026-南部赛区-53",
+      "season": "2026",
+      "zone": "南部赛区",
+      "order": "53",
+      "stage": "小组赛",
+      "redSchool": "桂林信息科技学院",
+      "redTeam": "GIRT",
+      "blueSchool": "广州航海学院",
+      "blueTeam": "ICBK破冰船",
+      "redScore": 2,
+      "blueScore": 0,
+      "note": "比分与回放均来自官方数据",
+      "uncertain": false
+    },
+    {
+      "id": "2026-南部赛区-54",
+      "season": "2026",
+      "zone": "南部赛区",
+      "order": "54",
+      "stage": "小组赛",
+      "redSchool": "武汉大学",
+      "redTeam": "珞珈狐",
+      "blueSchool": "厦门理工学院",
+      "blueTeam": "PFA",
+      "redScore": 0,
+      "blueScore": 2,
+      "note": "比分与回放均来自官方数据",
+      "uncertain": false
+    },
+    {
+      "id": "2026-南部赛区-55",
+      "season": "2026",
+      "zone": "南部赛区",
+      "order": "55",
+      "stage": "小组赛",
+      "redSchool": "广州城市理工学院",
+      "redTeam": "野狼",
+      "blueSchool": "东莞理工学院",
+      "blueTeam": "ACE",
+      "redScore": 2,
+      "blueScore": 1,
+      "note": "比分与回放均来自官方数据",
+      "uncertain": false
+    },
+    {
+      "id": "2026-南部赛区-56",
+      "season": "2026",
+      "zone": "南部赛区",
+      "order": "56",
+      "stage": "小组赛",
+      "redSchool": "南华大学",
+      "redTeam": "MA",
+      "blueSchool": "深圳技术大学",
+      "blueTeam": "悍匠",
+      "redScore": 0,
+      "blueScore": 2,
+      "note": "比分与回放均来自官方数据",
+      "uncertain": false
+    },
+    {
+      "id": "2026-南部赛区-57",
+      "season": "2026",
+      "zone": "南部赛区",
+      "order": "57",
+      "stage": "小组赛",
+      "redSchool": "华中科技大学",
+      "redTeam": "狼牙",
+      "blueSchool": "广东工业大学",
+      "blueTeam": "DynamicX",
+      "redScore": 2,
+      "blueScore": 1,
+      "note": "比分与回放均来自官方数据",
+      "uncertain": false
+    },
+    {
+      "id": "2026-南部赛区-58",
+      "season": "2026",
+      "zone": "南部赛区",
+      "order": "58",
+      "stage": "小组赛",
+      "redSchool": "中南大学",
+      "redTeam": "FYT",
+      "blueSchool": "武汉科技大学",
+      "blueTeam": "崇实",
+      "redScore": 2,
+      "blueScore": 0,
+      "note": "比分与回放均来自官方数据",
+      "uncertain": false
+    },
+    {
+      "id": "2026-南部赛区-59",
+      "season": "2026",
+      "zone": "南部赛区",
+      "order": "59",
+      "stage": "小组赛",
+      "redSchool": "西交利物浦大学",
+      "redTeam": "GMaster",
+      "blueSchool": "桂林理工大学",
+      "blueTeam": "群星",
+      "redScore": 2,
+      "blueScore": 0,
+      "note": "比分与回放均来自官方数据",
+      "uncertain": false
+    },
+    {
+      "id": "2026-南部赛区-60",
+      "season": "2026",
+      "zone": "南部赛区",
+      "order": "60",
+      "stage": "小组赛",
+      "redSchool": "太原理工大学",
+      "redTeam": "TRoMaC",
+      "blueSchool": "南昌大学",
+      "blueTeam": "Passion",
+      "redScore": 1,
+      "blueScore": 2,
+      "note": "比分与回放均来自官方数据",
+      "uncertain": false
+    },
+    {
+      "id": "2026-南部赛区-61",
+      "season": "2026",
+      "zone": "南部赛区",
+      "order": "61",
+      "stage": "小组赛",
+      "redSchool": "桂林电子科技大学",
+      "redTeam": "Evolution",
+      "blueSchool": "厦门理工学院",
+      "blueTeam": "PFA",
+      "redScore": 2,
+      "blueScore": 1,
+      "note": "比分与回放均来自官方数据",
+      "uncertain": false
+    },
+    {
+      "id": "2026-南部赛区-62",
+      "season": "2026",
+      "zone": "南部赛区",
+      "order": "62",
+      "stage": "小组赛",
+      "redSchool": "武汉工程大学",
+      "redTeam": "Nautilus",
+      "blueSchool": "重庆理工大学",
+      "blueTeam": "士继DREAMER",
+      "redScore": 2,
+      "blueScore": 0,
+      "note": "比分与回放均来自官方数据",
+      "uncertain": false
+    },
+    {
+      "id": "2026-南部赛区-63",
+      "season": "2026",
+      "zone": "南部赛区",
+      "order": "63",
+      "stage": "小组赛",
+      "redSchool": "桂林信息科技学院",
+      "redTeam": "GIRT",
+      "blueSchool": "华南理工大学",
+      "blueTeam": "华南虎",
+      "redScore": 0,
+      "blueScore": 2,
+      "note": "比分与回放均来自官方数据",
+      "uncertain": false
+    },
+    {
+      "id": "2026-南部赛区-64",
+      "season": "2026",
+      "zone": "南部赛区",
+      "order": "64",
+      "stage": "小组赛",
+      "redSchool": "南昌大学",
+      "redTeam": "Passion",
+      "blueSchool": "东莞理工学院",
+      "blueTeam": "ACE",
+      "redScore": 0,
+      "blueScore": 2,
+      "note": "比分与回放均来自官方数据",
+      "uncertain": false
+    },
+    {
+      "id": "2026-南部赛区-65",
+      "season": "2026",
+      "zone": "南部赛区",
+      "order": "65",
+      "stage": "小组赛",
+      "redSchool": "南华大学",
+      "redTeam": "MA",
+      "blueSchool": "西交利物浦大学",
+      "blueTeam": "GMaster",
+      "redScore": 2,
+      "blueScore": 0,
+      "note": "比分与回放均来自官方数据",
+      "uncertain": false
+    },
+    {
+      "id": "2026-南部赛区-66",
+      "season": "2026",
+      "zone": "南部赛区",
+      "order": "66",
+      "stage": "小组赛",
+      "redSchool": "中南大学",
+      "redTeam": "FYT",
+      "blueSchool": "广东工业大学",
+      "blueTeam": "Dynamicx",
+      "redScore": 1,
+      "blueScore": 2,
+      "note": "比分与回放均来自官方数据",
+      "uncertain": false
+    },
+    {
+      "id": "2026-南部赛区-67",
+      "season": "2026",
+      "zone": "南部赛区",
+      "order": "67",
+      "stage": "淘汰赛",
+      "redSchool": "五邑大学",
+      "redTeam": "IMCA",
+      "blueSchool": "武汉工程大学",
+      "blueTeam": "Nautilus",
+      "redScore": 2,
+      "blueScore": 0,
+      "note": "比分与回放均来自官方数据",
+      "uncertain": false
+    },
+    {
+      "id": "2026-南部赛区-68",
+      "season": "2026",
+      "zone": "南部赛区",
+      "order": "68",
+      "stage": "淘汰赛",
+      "redSchool": "华中科技大学",
+      "redTeam": "狼牙",
+      "blueSchool": "电子科技大学中山学院",
+      "blueTeam": "RoboBraver",
+      "redScore": 1,
+      "blueScore": 2,
+      "note": "比分与回放均来自官方数据",
+      "uncertain": false
+    },
+    {
+      "id": "2026-南部赛区-69",
+      "season": "2026",
+      "zone": "南部赛区",
+      "order": "69",
+      "stage": "淘汰赛",
+      "redSchool": "华南理工大学",
+      "redTeam": "华南虎",
+      "blueSchool": "深圳大学",
+      "blueTeam": "RobotPilots",
+      "redScore": 2,
+      "blueScore": 0,
+      "note": "比分与回放均来自官方数据",
+      "uncertain": false
+    },
+    {
+      "id": "2026-南部赛区-70",
+      "season": "2026",
+      "zone": "南部赛区",
+      "order": "70",
+      "stage": "淘汰赛",
+      "redSchool": "厦门大学嘉庚学院",
+      "redTeam": "TCR",
+      "blueSchool": "东莞理工学院",
+      "blueTeam": "ACE",
+      "redScore": 0,
+      "blueScore": 2,
+      "note": "比分与回放均来自官方数据",
+      "uncertain": false
+    },
+    {
+      "id": "2026-南部赛区-71",
+      "season": "2026",
+      "zone": "南部赛区",
+      "order": "71",
+      "stage": "淘汰赛",
+      "redSchool": "桂林电子科技大学",
+      "redTeam": "Evolution",
+      "blueSchool": "广州城市理工学院",
+      "blueTeam": "野狼",
+      "redScore": 0,
+      "blueScore": 2,
+      "note": "比分与回放均来自官方数据",
+      "uncertain": false
+    },
+    {
+      "id": "2026-南部赛区-72",
+      "season": "2026",
+      "zone": "南部赛区",
+      "order": "72",
+      "stage": "淘汰赛",
+      "redSchool": "上海交通大学",
+      "redTeam": "交龙",
+      "blueSchool": "广东工业大学",
+      "blueTeam": "DynamicX",
+      "redScore": 2,
+      "blueScore": 1,
+      "note": "比分与回放均来自官方数据",
+      "uncertain": false
+    },
+    {
+      "id": "2026-南部赛区-73",
+      "season": "2026",
+      "zone": "南部赛区",
+      "order": "73",
+      "stage": "淘汰赛",
+      "redSchool": "深圳技术大学",
+      "redTeam": "悍匠",
+      "blueSchool": "华南农业大学",
+      "blueTeam": "Taurus",
+      "redScore": 1,
+      "blueScore": 2,
+      "note": "比分与回放均来自官方数据",
+      "uncertain": false
+    },
+    {
+      "id": "2026-南部赛区-74",
+      "season": "2026",
+      "zone": "南部赛区",
+      "order": "74",
+      "stage": "淘汰赛",
+      "redSchool": "南华大学",
+      "redTeam": "MA",
+      "blueSchool": "仲恺农业工程学院",
+      "blueTeam": "奇点",
+      "redScore": 1,
+      "blueScore": 2,
+      "note": "比分与回放均来自官方数据",
+      "uncertain": false
+    },
+    {
+      "id": "2026-南部赛区-75",
+      "season": "2026",
+      "zone": "南部赛区",
+      "order": "75",
+      "stage": "淘汰赛",
+      "redSchool": "五邑大学",
+      "redTeam": "IMCA",
+      "blueSchool": "电子科技大学中山学院",
+      "blueTeam": "RoboBraver",
+      "redScore": 2,
+      "blueScore": 0,
+      "note": "比分与回放均来自官方数据",
+      "uncertain": false
+    },
+    {
+      "id": "2026-南部赛区-76",
+      "season": "2026",
+      "zone": "南部赛区",
+      "order": "76",
+      "stage": "淘汰赛",
+      "redSchool": "东莞理工学院",
+      "redTeam": "ACE",
+      "blueSchool": "华南理工大学",
+      "blueTeam": "华南虎",
+      "redScore": 2,
+      "blueScore": 1,
+      "note": "比分与回放均来自官方数据",
+      "uncertain": false
+    },
+    {
+      "id": "2026-南部赛区-77",
+      "season": "2026",
+      "zone": "南部赛区",
+      "order": "77",
+      "stage": "淘汰赛",
+      "redSchool": "广州城市理工学院",
+      "redTeam": "野狼",
+      "blueSchool": "上海交通大学",
+      "blueTeam": "交龙",
+      "redScore": 2,
+      "blueScore": 0,
+      "note": "比分与回放均来自官方数据",
+      "uncertain": false
+    },
+    {
+      "id": "2026-南部赛区-78",
+      "season": "2026",
+      "zone": "南部赛区",
+      "order": "78",
+      "stage": "淘汰赛",
+      "redSchool": "仲恺农业工程学院",
+      "redTeam": "奇点",
+      "blueSchool": "华南农业大学",
+      "blueTeam": "Taurus",
+      "redScore": 0,
+      "blueScore": 2,
+      "note": "比分与回放均来自官方数据",
+      "uncertain": false
+    },
+    {
+      "id": "2026-南部赛区-79",
+      "season": "2026",
+      "zone": "南部赛区",
+      "order": "79",
+      "stage": "淘汰赛",
+      "redSchool": "武汉工程大学",
+      "redTeam": "Nautilus",
+      "blueSchool": "华中科技大学",
+      "blueTeam": "狼牙",
+      "redScore": 2,
+      "blueScore": 0,
+      "note": "比分与回放均来自官方数据",
+      "uncertain": false
+    },
+    {
+      "id": "2026-南部赛区-80",
+      "season": "2026",
+      "zone": "南部赛区",
+      "order": "80",
+      "stage": "淘汰赛",
+      "redSchool": "厦门大学嘉庚学院",
+      "redTeam": "TCR",
+      "blueSchool": "深圳大学",
+      "blueTeam": "RobotPilots",
+      "redScore": 0,
+      "blueScore": 2,
+      "note": "比分与回放均来自官方数据",
+      "uncertain": false
+    },
+    {
+      "id": "2026-南部赛区-81",
+      "season": "2026",
+      "zone": "南部赛区",
+      "order": "81",
+      "stage": "淘汰赛",
+      "redSchool": "桂林电子科技大学",
+      "redTeam": "Evolution",
+      "blueSchool": "广东工业大学",
+      "blueTeam": "DynamicX",
+      "redScore": 0,
+      "blueScore": 2,
+      "note": "比分与回放均来自官方数据",
+      "uncertain": false
+    },
+    {
+      "id": "2026-南部赛区-82",
+      "season": "2026",
+      "zone": "南部赛区",
+      "order": "82",
+      "stage": "淘汰赛",
+      "redSchool": "南华大学",
+      "redTeam": "MA",
+      "blueSchool": "深圳技术大学",
+      "blueTeam": "悍匠",
+      "redScore": 2,
+      "blueScore": 1,
+      "note": "比分与回放均来自官方数据",
+      "uncertain": false
+    },
+    {
+      "id": "2026-南部赛区-83",
+      "season": "2026",
+      "zone": "南部赛区",
+      "order": "83",
+      "stage": "淘汰赛",
+      "redSchool": "五邑大学",
+      "redTeam": "IMCA",
+      "blueSchool": "广州城市理工学院",
+      "blueTeam": "野狼",
+      "redScore": 2,
+      "blueScore": 0,
+      "note": "比分与回放均来自官方数据",
+      "uncertain": false
+    },
+    {
+      "id": "2026-南部赛区-84",
+      "season": "2026",
+      "zone": "南部赛区",
+      "order": "84",
+      "stage": "淘汰赛",
+      "redSchool": "东莞理工学院",
+      "redTeam": "ACE",
+      "blueSchool": "华南农业大学",
+      "blueTeam": "Taurus",
+      "redScore": 0,
+      "blueScore": 2,
+      "note": "比分与回放均来自官方数据",
+      "uncertain": false
+    },
+    {
+      "id": "2026-南部赛区-85",
+      "season": "2026",
+      "zone": "南部赛区",
+      "order": "85",
+      "stage": "淘汰赛",
+      "redSchool": "武汉工程大学",
+      "redTeam": "Nautilus",
+      "blueSchool": "广东工业大学",
+      "blueTeam": "DynamicX",
+      "redScore": 2,
+      "blueScore": 0,
+      "note": "比分与回放均来自官方数据",
+      "uncertain": false
+    },
+    {
+      "id": "2026-南部赛区-86",
+      "season": "2026",
+      "zone": "南部赛区",
+      "order": "86",
+      "stage": "淘汰赛",
+      "redSchool": "深圳大学",
+      "redTeam": "RobotPilots",
+      "blueSchool": "南华大学",
+      "blueTeam": "MA",
+      "redScore": 2,
+      "blueScore": 0,
+      "note": "比分与回放均来自官方数据",
+      "uncertain": false
+    },
+    {
+      "id": "2026-南部赛区-87",
+      "season": "2026",
+      "zone": "南部赛区",
+      "order": "87",
+      "stage": "淘汰赛",
+      "redSchool": "广州城市理工学院",
+      "redTeam": "野狼",
+      "blueSchool": "东莞理工学院",
+      "blueTeam": "ACE",
+      "redScore": 3,
+      "blueScore": 1,
+      "note": "比分与回放均来自官方数据",
+      "uncertain": false
+    },
+    {
+      "id": "2026-南部赛区-88",
+      "season": "2026",
+      "zone": "南部赛区",
+      "order": "88",
+      "stage": "淘汰赛",
+      "redSchool": "五邑大学",
+      "redTeam": "IMCA",
+      "blueSchool": "华南农业大学",
+      "blueTeam": "Taurus",
+      "redScore": 0,
+      "blueScore": 3,
+      "note": "比分与回放均来自官方数据",
+      "uncertain": false
+    }
+  ],
+  "replayLinks": {
+    "2026|北部赛区|1|2026-北部赛区-1": {
+      "title": "北部赛区 第一场 哈尔滨工业大学（威海） HERO 战队 VS 常州大学 Climber 战队 RoboMaster 2026 超级对抗赛 区域赛",
+      "url": "https://www.bilibili.com/video/BV18RVb6KEg4/"
+    },
+    "2026|北部赛区|2|2026-北部赛区-2": {
+      "title": "北部赛区 第二场 北方工业大学 Dream Team 战队 VS 华北理工大学 Horizon 战队 RoboMaster 2026 超级对抗赛 区域赛",
+      "url": "https://www.bilibili.com/video/BV1bRVb6KEZN/"
+    },
+    "2026|北部赛区|3|2026-北部赛区-3": {
+      "title": "北部赛区 第三场 北京信息科技大学 星辰 战队 VS 哈尔滨工业大学 I Hiter 战队 RoboMaster 2026 超级对抗赛 区域赛",
+      "url": "https://www.bilibili.com/video/BV1kMV86xEiF/"
+    },
+    "2026|北部赛区|4|2026-北部赛区-4": {
+      "title": "北部赛区 第四场 山东理工大学 齐奇 战队 VS 西北工业大学 WMJ 战队 RoboMaster 2026 超级对抗赛 区域赛",
+      "url": "https://www.bilibili.com/video/BV1SXVb6qE9T/"
+    },
+    "2026|北部赛区|5|2026-北部赛区-5": {
+      "title": "北部赛区 第五场 西安交通大学 笃行 战队 VS 香港科技大学（广州）PnX 战队 RoboMaster 2026 超级对抗赛 区域赛",
+      "url": "https://www.bilibili.com/video/BV1RkVb6VEir/"
+    },
+    "2026|北部赛区|6|2026-北部赛区-6": {
+      "title": "北部赛区 第六场 天津大学 北洋机甲 战队 VS 华南师范大学 PIONEER 战队 RoboMaster 2026 超级对抗赛 区域赛",
+      "url": "https://www.bilibili.com/video/BV1X2Vb66EbN/"
+    },
+    "2026|北部赛区|7|2026-北部赛区-7": {
+      "title": "北部赛区 第七场 辽宁石油化工大学 TCN 战队 VS 太原工业学院 火线 战队 RoboMaster 2026 超级对抗赛 区域赛",
+      "url": "https://www.bilibili.com/video/BV1ifVt6CEDq/"
+    },
+    "2026|北部赛区|8|2026-北部赛区-8": {
+      "title": "北部赛区 第八场 长安大学 VGD 战队 VS 西安电子科技大学 IRobot 战队 RoboMaster 2026 超级对抗赛 区域赛",
+      "url": "https://www.bilibili.com/video/BV1oCVh6nEc4/"
+    },
+    "2026|北部赛区|9|2026-北部赛区-9": {
+      "title": "北部赛区 第九场 内蒙古科技大学 雷霆 战队 VS 东北大学 TDT 战队 RoboMaster 2026 超级对抗赛 区域赛",
+      "url": "https://www.bilibili.com/video/BV1BrVh6XEgU/"
+    },
+    "2026|北部赛区|10|2026-北部赛区-10": {
+      "title": "北部赛区 第十场 成都信息工程大学 风信子 战队 VS 北京理工大学 追梦 战队 RoboMaster 2026 超级对抗赛 区域赛",
+      "url": "https://www.bilibili.com/video/BV1VDVh62EAF/"
+    },
+    "2026|北部赛区|11|2026-北部赛区-11": {
+      "title": "北部赛区 第十一场 大连理工大学 凌BUG 战队 VS 沈阳理工大学 Ambition 战队 RoboMaster 2026 超级对抗赛 区域赛",
+      "url": "https://www.bilibili.com/video/BV1ytVh6aEMq/"
+    },
+    "2026|北部赛区|12|2026-北部赛区-12": {
+      "title": "北部赛区 第十二场 应急管理大学 风暴 战队 VS 香港科技大学 ENTERPRIZE 战队 RoboMaster 2026 超级对抗赛 区域赛",
+      "url": "https://www.bilibili.com/video/BV114Vh6AEAt/"
+    },
+    "2026|北部赛区|13|2026-北部赛区-13": {
+      "title": "北部赛区 第十三场 香港大学 HerKules 战队 VS 哈尔滨工程大学 创梦之翼 战队 RoboMaster 2026 超级对抗赛 区域赛",
+      "url": "https://www.bilibili.com/video/BV11sVh6eEyV/"
+    },
+    "2026|北部赛区|14|2026-北部赛区-14": {
+      "title": "北部赛区 第十四场 东北大学秦皇岛分校 征龙凌沧 战队 VS 四川大学 火锅 战队 RoboMaster 2026 超级对抗赛 区域赛",
+      "url": "https://www.bilibili.com/video/BV11bVY6zEE4/"
+    },
+    "2026|北部赛区|15|2026-北部赛区-15": {
+      "title": "北部赛区 第十五场 吉林大学 TARS Go 战队 VS 复旦大学 星云EGA 战队 RoboMaster 2026 超级对抗赛 区域赛",
+      "url": "https://www.bilibili.com/video/BV1NbVY6zEkw/"
+    },
+    "2026|北部赛区|16|2026-北部赛区-16": {
+      "title": "北部赛区 第十六场 同济大学 SuperPower 战队 VS 河北科技大学 Actor&Thinker 战队 RoboMaster 2026 超级对抗赛",
+      "url": "https://www.bilibili.com/video/BV1AeVY6KEjn/"
+    },
+    "2026|北部赛区|17|2026-北部赛区-17": {
+      "title": "北部赛区 第十七场 西北工业大学 WMJ 战队 VS 哈尔滨工业大学 I Hiter 战队 RoboMaster 2026 超级对抗赛 区域赛",
+      "url": "https://www.bilibili.com/video/BV1WDVa6vExk/"
+    },
+    "2026|北部赛区|18|2026-北部赛区-18": {
+      "title": "北部赛区 第十八场 西安交通大学 笃行 战队 VS 哈尔滨工业大学（威海）HERO 战队 RoboMaster 2026 超级对抗赛 区域赛",
+      "url": "https://www.bilibili.com/video/BV1LTVY69EuD/"
+    },
+    "2026|北部赛区|19|2026-北部赛区-19": {
+      "title": "北部赛区 第十九场 华南师范大学 PIONEER 战队 VS 太原工业学院 火线 战队 RoboMaster 2026 超级对抗赛 区域赛",
+      "url": "https://www.bilibili.com/video/BV1ebVa6SEg1/"
+    },
+    "2026|北部赛区|20|2026-北部赛区-20": {
+      "title": "北部赛区 第二十场 西安电子科技大学 IRobot 战队 VS 华北理工大学 Horizon 战队 RoboMaster 2026 超级对抗赛 区域赛",
+      "url": "https://www.bilibili.com/video/BV15tVa6HE9g/"
+    },
+    "2026|北部赛区|21|2026-北部赛区-21": {
+      "title": "北部赛区 第二十一场 天津大学 北洋机甲 战队 VS 北方工业大学 DreamTeam 战队 RoboMaster 2026 超级对抗赛 区域赛",
+      "url": "https://www.bilibili.com/video/BV16BVg6PEo1/"
+    },
+    "2026|北部赛区|22|2026-北部赛区-22": {
+      "title": "北部赛区 第二十二场 长安大学 VGD 战队 VS 辽宁石油化工大学 TCN 战队 RoboMaster 2026 超级对抗赛 区域赛",
+      "url": "https://www.bilibili.com/video/BV16iVg6vEdz/"
+    },
+    "2026|北部赛区|23|2026-北部赛区-23": {
+      "title": "北部赛区 第二十三场 香港科技大学（广州）PnX 战队 VS 常州大学 Climber 战队 RoboMaster 2026 超级对抗赛 区域赛",
+      "url": "https://www.bilibili.com/video/BV1zzVg6YECB/"
+    },
+    "2026|北部赛区|24|2026-北部赛区-24": {
+      "title": "北部赛区 第二十四场 山东理工大学 齐奇 战队 VS 北京信息科技大学 星辰 战队 RoboMaster 2026 超级对抗赛 区域赛",
+      "url": "https://www.bilibili.com/video/BV1X3Vg6QEXL/"
+    },
+    "2026|北部赛区|25|2026-北部赛区-25": {
+      "title": "北部赛区 第二十五场 东北大学 TDT 战队 VS 东北大学秦皇岛分校 征龙凌沧 战队 RoboMaster 2026 超级对抗赛 区域赛",
+      "url": "https://www.bilibili.com/video/BV1jNVg6oE5N/"
+    },
+    "2026|北部赛区|26|2026-北部赛区-26": {
+      "title": "北部赛区 第二十六场 沈阳理工大学 Ambition 战队 VS 同济大学 SuperPower 战队 RoboMaster 2026 超级对抗赛 区域赛",
+      "url": "https://www.bilibili.com/video/BV1mWVg6CE3v/"
+    },
+    "2026|北部赛区|27|2026-北部赛区-27": {
+      "title": "北部赛区 第二十七场 吉林大学 TARS Go 战队 VS 北京理工大学 追梦 战队 RoboMaster 2026 超级对抗赛 区域赛",
+      "url": "https://www.bilibili.com/video/BV1xSV361EVw/"
+    },
+    "2026|北部赛区|28|2026-北部赛区-28": {
+      "title": "北部赛区 第二十八场 哈尔滨工程大学 创梦之翼 战队 VS 应急管理大学 风暴 战队 RoboMaster 2026 超级对抗赛 区域赛",
+      "url": "https://www.bilibili.com/video/BV11SV361E9r/"
+    },
+    "2026|北部赛区|29|2026-北部赛区-29": {
+      "title": "北部赛区 第二十九场 香港大学 HerKules 战队 VS 香港科技大学 ENTERPRIZE 战队 RoboMaster 2026 超级对抗赛 区域赛",
+      "url": "https://www.bilibili.com/video/BV1WRV36GE5C/"
+    },
+    "2026|北部赛区|30|2026-北部赛区-30": {
+      "title": "北部赛区 第三十场 复旦大学 星云 EGA 战队 VS 成都信息工程大学 风信子 战队 RoboMaster 2026 超级对抗赛 区域赛",
+      "url": "https://www.bilibili.com/video/BV1nJV36KEMw/"
+    },
+    "2026|北部赛区|31|2026-北部赛区-31": {
+      "title": "北部赛区 第三十一场 大连理工大学 凌 BUG 战队 VS 河北科技大学 Actor&Thinker 战队 RoboMaster 2026 超级对抗赛 区域赛",
+      "url": "https://www.bilibili.com/video/BV1JnV36vEQe/"
+    },
+    "2026|北部赛区|32|2026-北部赛区-32": {
+      "title": "北部赛区 第三十二场 内蒙古科技大学 雷霆 战队 VS 四川大学 火锅 战队 RoboMaster 2026 超级对抗赛 区域赛",
+      "url": "https://www.bilibili.com/video/BV1BWV36YEMk/"
+    },
+    "2026|北部赛区|33|2026-北部赛区-33": {
+      "title": "北部赛区 第三十三场 西北工业大学 WMJ 战队 VS 西安电子科技大学 IRobot 战队 RoboMaster 2026 超级对抗赛 区域赛",
+      "url": "https://www.bilibili.com/video/BV1g6V36QEwN/"
+    },
+    "2026|北部赛区|34|2026-北部赛区-34": {
+      "title": "北部赛区 第三十四场 西安交通大学 笃行 战队 VS 太原工业学院 火线 战队 RoboMaster 2026 超级对抗赛 区域赛",
+      "url": "https://www.bilibili.com/video/BV1D6V36QEtf/"
+    },
+    "2026|北部赛区|35|2026-北部赛区-35": {
+      "title": "北部赛区 第三十五场 哈尔滨工业大学（威海）HERO 战队 VS 华南师范大学 PIONEER 战队 RoboMaster 2026 超级对抗赛 区域赛",
+      "url": "https://www.bilibili.com/video/BV1XHV56hEKA/"
+    },
+    "2026|北部赛区|36|2026-北部赛区-36": {
+      "title": "北部赛区 第三十六场 长安大学 VGD 战队 VS 香港科技大学（广州）PnX 战队 RoboMaster 2026 超级对抗赛 区域赛",
+      "url": "https://www.bilibili.com/video/BV1cwV56LEQo/"
+    },
+    "2026|北部赛区|37|2026-北部赛区-37": {
+      "title": "北部赛区 第三十七场 山东理工大学 齐奇 战队 VS 华北理工大学 Horizon 战队 RoboMaster 2026 超级对抗赛 区域赛",
+      "url": "https://www.bilibili.com/video/BV1JsVV66E4g/"
+    },
+    "2026|北部赛区|38|2026-北部赛区-38": {
+      "title": "北部赛区 第三十八场 哈尔滨工业大学 I Hiter 战队 VS 天津大学 北洋机甲 战队 RoboMaster 2026 超级对抗赛 区域赛",
+      "url": "https://www.bilibili.com/video/BV1uyVV6oEXU/"
+    },
+    "2026|北部赛区|39|2026-北部赛区-39": {
+      "title": "北部赛区 第三十九场 北京信息科技大学 星辰 战队 VS 辽宁石油化工大学 TCN 战队 RoboMaster 2026 超级对抗赛 区域赛",
+      "url": "https://www.bilibili.com/video/BV1bNVV6WEbt/"
+    },
+    "2026|北部赛区|40|2026-北部赛区-40": {
+      "title": "北部赛区 第四十场 常州大学 Climber 战队 VS 北方工业大学 DreamTeam 战队 RoboMaster 2026 超级对抗赛 区域赛",
+      "url": "https://www.bilibili.com/video/BV1QfVG6tESy/"
+    },
+    "2026|北部赛区|41|2026-北部赛区-41": {
+      "title": "北部赛区 第四十一场 北京理工大学 追梦 战队 VS 应急管理大学 风暴 战队 RoboMaster 2026 超级对抗赛 区域赛",
+      "url": "https://www.bilibili.com/video/BV1dpVE6jEMF/"
+    },
+    "2026|北部赛区|42|2026-北部赛区-42": {
+      "title": "北部赛区 第四十二场 东北大学 TDT 战队 VS 同济大学 SuperPower 战队 RoboMaster 2026 超级对抗赛 区域赛",
+      "url": "https://www.bilibili.com/video/BV1X4VE6CEru/"
+    },
+    "2026|北部赛区|43|2026-北部赛区-43": {
+      "title": "北部赛区 第四十三场 东北大学秦皇岛分校 征龙凌沧 战队 VS 沈阳理工大学 Ambition 战队 RoboMaster 2026 超级对抗赛 区域赛",
+      "url": "https://www.bilibili.com/video/BV19xVE65Edx/"
+    },
+    "2026|北部赛区|44|2026-北部赛区-44": {
+      "title": "北部赛区 第四十四场 吉林大学 TARS Go 战队 VS 香港科技大学 ENTERPRIZE 战队 RoboMaster 2026 超级对抗赛 区域赛",
+      "url": "https://www.bilibili.com/video/BV1mBVE6KE42/"
+    },
+    "2026|北部赛区|45|2026-北部赛区-45": {
+      "title": "北部赛区 第四十五场 复旦大学 星云 EGA 战队 VS 哈尔滨工程大学 创梦之翼 战队 RoboMaster 2026 超级对抗赛 区域赛",
+      "url": "https://www.bilibili.com/video/BV1MoV76NEAM/"
+    },
+    "2026|北部赛区|46|2026-北部赛区-46": {
+      "title": "北部赛区 第四十六场 四川大学 火锅 战队 VS 大连理工大学 凌BUG 战队 RoboMaster 2026 超级对抗赛 区域赛",
+      "url": "https://www.bilibili.com/video/BV1J5VE6XEF6/"
+    },
+    "2026|北部赛区|47|2026-北部赛区-47": {
+      "title": "北部赛区 第四十七场 内蒙古科技大学 雷霆 战队 VS 河北科技大学 Actor&Thinker 战队 RoboMaster 2026 超级对抗赛 区域赛",
+      "url": "https://www.bilibili.com/video/BV1TwVn6zEzd/"
+    },
+    "2026|北部赛区|48|2026-北部赛区-48": {
+      "title": "北部赛区 第四十八场 成都信息工程大学 风信子 战队 VS 香港大学 HerKules 战队 RoboMaster 2026 超级对抗赛 区域赛",
+      "url": "https://www.bilibili.com/video/BV13RVJ65E74/"
+    },
+    "2026|北部赛区|49|2026-北部赛区-49": {
+      "title": "北部赛区 第四十九场 西北工业大学 WMJ 战队 VS 哈尔滨工业大学（威海）HERO 战队 RoboMaster 2026 超级对抗赛 区域赛",
+      "url": "https://www.bilibili.com/video/BV15UVJ6EEgZ/"
+    },
+    "2026|北部赛区|50|2026-北部赛区-50": {
+      "title": "北部赛区 第五十场 长安大学 VGD 战队 VS 山东理工大学 齐奇 战队 RoboMaster 2026 超级对抗赛 区域赛",
+      "url": "https://www.bilibili.com/video/BV1eUVJ6EEgE/"
+    },
+    "2026|北部赛区|51|2026-北部赛区-51": {
+      "title": "北部赛区 第五十一场 太原工业学院 火线 战队 VS 哈尔滨工业大学 I Hiter 战队 RoboMaster 2026 超级对抗赛 区域赛",
+      "url": "https://www.bilibili.com/video/BV1v2VJ6SEPU/"
+    },
+    "2026|北部赛区|52|2026-北部赛区-52": {
+      "title": "北部赛区 第五十二场 香港科技大学（广州）PnX 战队 VS 华北理工大学 Horizon 战队 RoboMaster 2026 超级对抗赛 区域赛",
+      "url": "https://www.bilibili.com/video/BV1e2VJ6SERL/"
+    },
+    "2026|北部赛区|53|2026-北部赛区-53": {
+      "title": "北部赛区 第五十三场 华南师范大学 PIONEER 战队 VS 北京信息科技大学 星辰 战队 RoboMaster 2026 超级对抗赛 区域赛",
+      "url": "https://www.bilibili.com/video/BV1erVS6vEJ9/"
+    },
+    "2026|北部赛区|54|2026-北部赛区-54": {
+      "title": "北部赛区 第五十四场 天津大学 北洋机甲 战队 VS 常州大学 Climber 战队 RoboMaster 2026 超级对抗赛 区域赛",
+      "url": "https://www.bilibili.com/video/BV1BDVU6zEyZ/"
+    },
+    "2026|北部赛区|55|2026-北部赛区-55": {
+      "title": "北部赛区 第五十五场 沈阳理工大学 Ambition 战队 VS 应急管理大学 风暴 战队 RoboMaster 2026 超级对抗赛 区域赛",
+      "url": "https://www.bilibili.com/video/BV1o9VU6qEk3/"
+    },
+    "2026|北部赛区|56|2026-北部赛区-56": {
+      "title": "北部赛区 第五十六场 香港科技大学 ENTERPRIZE 战队 VS 大连理工大学 凌BUG 战队 RoboMaster 2026 超级对抗赛 区域赛",
+      "url": "https://www.bilibili.com/video/BV1nyVU6kEsY/"
+    },
+    "2026|北部赛区|57|2026-北部赛区-57": {
+      "title": "北部赛区 第五十七场 东北大学 TDT 战队 VS 复旦大学 星云EGA 战队 RoboMaster 2026 超级对抗赛 区域赛",
+      "url": "https://www.bilibili.com/video/BV1REVU6hEHL/"
+    },
+    "2026|北部赛区|58|2026-北部赛区-58": {
+      "title": "北部赛区 第五十八场 东北大学秦皇岛分校 征龙凌沧 战队 VS 吉林大学 TARS Go 战队 RoboMaster 2026 超级对抗赛 区域赛",
+      "url": "https://www.bilibili.com/video/BV1UhVU6pEn3/"
+    },
+    "2026|北部赛区|59|2026-北部赛区-59": {
+      "title": "北部赛区 第五十九场 哈尔滨工程大学 创梦之翼 战队 VS 河北科技大学 Actor&Thinker 战队 RoboMaster 2026 超级对抗赛 区域赛",
+      "url": "https://www.bilibili.com/video/BV1hgVQ6eEJj/"
+    },
+    "2026|北部赛区|60|2026-北部赛区-60": {
+      "title": "北部赛区 第六十场 香港大学 HerKules 战队 VS 四川大学 火锅 战队 RoboMaster 2026 超级对抗赛 区域赛",
+      "url": "https://www.bilibili.com/video/BV1pbVQ6HEKU/"
+    },
+    "2026|北部赛区|61|2026-北部赛区-61": {
+      "title": "北部赛区 第六十一场 哈尔滨工业大学（威海）HERO 战队 VS 天津大学 北洋机甲 战队 RoboMaster 2026 超级对抗赛 区域赛",
+      "url": "https://www.bilibili.com/video/BV1b7V96qECM/"
+    },
+    "2026|北部赛区|62|2026-北部赛区-62": {
+      "title": "北部赛区 第六十二场 华南师范大学 PIONEER 战队 VS 太原工业学院 火线 战队 RoboMaster 2026 超级对抗赛 区域赛",
+      "url": "https://www.bilibili.com/video/BV18jV96ME4c/"
+    },
+    "2026|北部赛区|63|2026-北部赛区-63": {
+      "title": "北部赛区 第六十三场 长安大学 VGD 战队 VS 华北理工大学 Horizon 战队 RoboMaster 2026 超级对抗赛 区域赛",
+      "url": "https://www.bilibili.com/video/BV1phV96ZERN/"
+    },
+    "2026|北部赛区|64|2026-北部赛区-64": {
+      "title": "北部赛区 第六十四场 四川大学 火锅 战队 VS 沈阳理工大学 Ambition 战队 RoboMaster 2026 超级对抗赛 区域赛",
+      "url": "https://www.bilibili.com/video/BV1yGVo6BEZt/"
+    },
+    "2026|北部赛区|65|2026-北部赛区-65": {
+      "title": "北部赛区 第六十五场 东北大学秦皇岛分校 征龙凌沧 战队 VS 复旦大学 星云 EGA 战队 RoboMaster 2026 超级对抗赛 区域赛",
+      "url": "https://www.bilibili.com/video/BV1P5Vo6TEtN/"
+    },
+    "2026|北部赛区|66|2026-北部赛区-66": {
+      "title": "北部赛区 第六十六场 河北科技大学 Actor&Thinker 战队 VS 大连理工大学 凌BUG 战队 RoboMaster 2026 超级对抗赛 区域赛",
+      "url": "https://www.bilibili.com/video/BV1fWVo6FEUc/"
+    },
+    "2026|北部赛区|67|2026-北部赛区-67": {
+      "title": "北部赛区 第六十七场 同济大学 SuperPower 战队 VS 华南师范大学 PIONEER 战队 RoboMaster 2026 超级对抗赛 区域赛",
+      "url": "https://www.bilibili.com/video/BV1sQVR6PEVK/"
+    },
+    "2026|北部赛区|68|2026-北部赛区-68": {
+      "title": "北部赛区 第六十八场 东北大学 TDT 战队 VS 山东理工大学 齐奇 战队 RoboMaster 2026 超级对抗赛 区域赛",
+      "url": "https://www.bilibili.com/video/BV1eGVd6UEj7/"
+    },
+    "2026|北部赛区|69|2026-北部赛区-69": {
+      "title": "北部赛区 第六十九场 长安大学 VGD 战队 VS 北京理工大学 追梦 战队 RoboMaster 2026 超级对抗赛 区域赛",
+      "url": "https://www.bilibili.com/video/BV1uKVf6nE62/"
+    },
+    "2026|北部赛区|70|2026-北部赛区-70": {
+      "title": "北部赛区 第七十场 西北工业大学 WMJ 战队 VS 沈阳理工大学 Ambition 战队 RoboMaster 2026 超级对抗赛 区域赛",
+      "url": "https://www.bilibili.com/video/BV1eZVZ6dEnZ/"
+    },
+    "2026|北部赛区|71|2026-北部赛区-71": {
+      "title": "北部赛区 第七十一场 哈尔滨工业大学（威海）HERO 战队 VS 应急管理大学 风暴 战队 RoboMaster 2026 超级对抗赛 区域赛",
+      "url": "https://www.bilibili.com/video/BV1btVZ67Eya/"
+    },
+    "2026|北部赛区|72|2026-北部赛区-72": {
+      "title": "北部赛区 第七十二场 西安交通大学 笃行 战队 VS 大连理工大学 凌BUG 战队 RoboMaster 2026 超级对抗赛 区域赛",
+      "url": "https://www.bilibili.com/video/BV1pBVZ6zEBf/"
+    },
+    "2026|北部赛区|73|2026-北部赛区-73": {
+      "title": "北部赛区 第七十三场 香港科技大学 ENTERPRIZE 战队 VS 哈尔滨工业大学 I Hiter 战队 RoboMaster 2026 超级对抗赛 区域赛",
+      "url": "https://www.bilibili.com/video/BV1cwVZ6NEH7/"
+    },
+    "2026|北部赛区|74|2026-北部赛区-74": {
+      "title": "北部赛区 第七十四场 复旦大学 星云EGA 战队 VS 西安电子科技大学 IRobot 战队 RoboMaster 2026 超级对抗赛 区域赛",
+      "url": "https://www.bilibili.com/video/BV1SyVo61E3u/"
+    },
+    "2026|北部赛区|75|2026-北部赛区-75": {
+      "title": "北部赛区 第七十五场 同济大学 SuperPower 战队 VS 东北大学 TDT 战队 RoboMaster 2026 超级对抗赛 区域赛",
+      "url": "https://www.bilibili.com/video/BV14v5F6JEPf/"
+    },
+    "2026|北部赛区|76|2026-北部赛区-76": {
+      "title": "北部赛区 第七十六场 西北工业大学 WMJ 战队 VS 北京理工大学 追梦 战队 RoboMaster 2026 超级对抗赛 区域赛",
+      "url": "https://www.bilibili.com/video/BV1kA5F63ECE/"
+    },
+    "2026|北部赛区|77|2026-北部赛区-77": {
+      "title": "北部赛区 第七十七场 哈尔滨工业大学（威海）HERO 战队 VS 西安交通大学 笃行 战队 RoboMaster 2026 超级对抗赛 区域赛",
+      "url": "https://www.bilibili.com/video/BV1vE5F6wELq/"
+    },
+    "2026|北部赛区|78|2026-北部赛区-78": {
+      "title": "北部赛区 第七十八场 复旦大学 星云EGA 战队 VS 哈尔滨工业大学 I Hiter 战队 RoboMaster 2026 超级对抗赛 区域赛",
+      "url": "https://www.bilibili.com/video/BV19BVf6tER9/"
+    },
+    "2026|北部赛区|79|2026-北部赛区-79": {
+      "title": "北部赛区 第七十九场 华南师范大学 PIONEER 战队 VS 山东理工大学 齐奇 战队 RoboMaster 2026 超级对抗赛 区域赛",
+      "url": "https://www.bilibili.com/video/BV1VWVz6TES3/"
+    },
+    "2026|北部赛区|80|2026-北部赛区-80": {
+      "title": "北部赛区 第八十场 沈阳理工大学 Ambition 战队 VS 长安大学 VGD 战队 RoboMaster 2026 超级对抗赛 区域赛",
+      "url": "https://www.bilibili.com/video/BV1F2Vq6CEkj/"
+    },
+    "2026|北部赛区|81|2026-北部赛区-81": {
+      "title": "北部赛区 第八十一场 应急管理大学 风暴 战队 VS 大连理工大学 凌BUG 战队 RoboMaster 2026 超级对抗赛 区域赛",
+      "url": "https://www.bilibili.com/video/BV1BgVq6ME5b/"
+    },
+    "2026|北部赛区|82|2026-北部赛区-82": {
+      "title": "北部赛区 第八十二场 西安电子科技大学 IRobot 战队 VS 香港科技大学 ENTERPRIZE 战队 RoboMaster 2026 超级对抗赛 区域",
+      "url": "https://www.bilibili.com/video/BV1cmVz6DE9j/"
+    },
+    "2026|北部赛区|85|2026-北部赛区-85": {
+      "title": "北部赛区 第八十五场 山东理工大学 齐奇 战队 VS 大连理工大学 凌BUG 战队 RoboMaster 2026 超级对抗赛 区域赛",
+      "url": "https://www.bilibili.com/video/BV1Y4Vz6NEPX/"
+    },
+    "2026|北部赛区|86|2026-北部赛区-86": {
+      "title": "北部赛区 第八十六场 长安大学 VGD 战队 VS 西安电子科技大学 IRobot 战队 RoboMaster 2026 超级对抗赛 区域赛",
+      "url": "https://www.bilibili.com/video/BV1VsVz6iEPs/"
+    },
+    "2026|北部赛区|87|2026-北部赛区-87": {
+      "title": "北部赛区 第八十七场 华南师范大学 PIONEER 战队 VS 应急管理大学 风暴 战队 RoboMaster 2026 超级对抗赛 区域赛",
+      "url": "https://www.bilibili.com/video/BV1g8Vz6AESR/"
+    },
+    "2026|北部赛区|88|2026-北部赛区-88": {
+      "title": "北部赛区 第八十八场 沈阳理工大学 Ambition 战队 VS 香港科技大学 ENTERPRIZE 战队 RoboMaster 2026 超级对抗赛 区域赛",
+      "url": "https://www.bilibili.com/video/BV1vnVz6uEhf/"
+    },
+    "2026|北部赛区|83|2026-北部赛区-83": {
+      "title": "北部赛区 第八十三场 东北大学 TDT 战队 VS 哈尔滨工业大学（威海）HERO 战队 RoboMaster 2026 超级对抗赛 区域赛",
+      "url": "https://www.bilibili.com/video/BV1A2Vz6HEVL/"
+    },
+    "2026|北部赛区|84|2026-北部赛区-84": {
+      "title": "北部赛区 第八十四场 西北工业大学 WMJ 战队 VS 哈尔滨工业大学 I Hiter 战队 RoboMaster 2026 超级对抗赛 区域赛",
+      "url": "https://www.bilibili.com/video/BV1dwV66gEAB/"
+    },
+    "2026|北部赛区|89|2026-北部赛区-89": {
+      "title": "北部赛区 第八十九场 哈尔滨工业大学（威海）HERO 战队 VS 西北工业大学 WMJ 战队 RoboMaster 2026 超级对抗赛 区域赛",
+      "url": "https://www.bilibili.com/video/BV1tvVz6fEuV/"
+    },
+    "2026|北部赛区|90|2026-北部赛区-90": {
+      "title": "北部赛区 第九十场 东北大学 TDT 战队 VS 哈尔滨工业大学 I Hiter 战队 RoboMaster 2026 超级对抗赛 区域赛",
+      "url": "https://www.bilibili.com/video/BV1bXVB6bEHz/"
+    },
+    "2026|东部赛区|1|2026-东部赛区-1": {
+      "title": "东部赛区 第一场 南京航空航天大学金城学院 Born of Fire 战队 VS 西南交通大学 Helios 战队 RoboMaster 2026 超级对抗赛",
+      "url": "https://www.bilibili.com/video/BV1V6Lt6CEtn/"
+    },
+    "2026|东部赛区|2|2026-东部赛区-2": {
+      "title": "东部赛区 第二场 南京理工大学 Alliance 战队 VS 广西大学 ROBOTZ 战队 RoboMaster 2026 超级对抗赛 区域赛",
+      "url": "https://www.bilibili.com/video/BV1tgLt6PE9Q/"
+    },
+    "2026|东部赛区|3|2026-东部赛区-3": {
+      "title": "东部赛区 第三场 福建理工大学 苍侠 战队 VS 中国石油大学（华东） RPS 战队 RoboMaster 2026 超级对抗赛 区域赛",
+      "url": "https://www.bilibili.com/video/BV1hwLt6zEZ9/"
+    },
+    "2026|东部赛区|4|2026-东部赛区-4": {
+      "title": "东部赛区 第四场 江苏大学 Aurora 战队 VS  中国石油大学（北京）SPR 战队 RoboMaster 2026 超级对抗赛 区域赛",
+      "url": "https://www.bilibili.com/video/BV1QwLt6zEiu/"
+    },
+    "2026|东部赛区|5|2026-东部赛区-5": {
+      "title": "东部赛区 第五场 中国科学技术大学 RoboWalker 战队 VS 青岛大学 未来 战队 RoboMaster 2026 超级对抗赛 区域赛",
+      "url": "https://www.bilibili.com/video/BV1gNLt6BExY/"
+    },
+    "2026|东部赛区|6|2026-东部赛区-6": {
+      "title": "东部赛区 第六场 齐鲁工业大学 Adam 战队 VS 太原科技大学 NewMaker 战队 RoboMaster 2026 超级对抗赛 区域赛",
+      "url": "https://www.bilibili.com/video/BV18NLt6qE44/"
+    },
+    "2026|东部赛区|7|2026-东部赛区-7": {
+      "title": "东部赛区 第七场 华东理工大学 起源 战队 VS 中国矿业大学 CUBOT 战队 RoboMaster 2026 超级对抗赛 区域赛",
+      "url": "https://www.bilibili.com/video/BV1YfL46rEio/"
+    },
+    "2026|东部赛区|8|2026-东部赛区-8": {
+      "title": "东部赛区 第八场 上海大学 SRM 战队 VS 首都师范大学 PIE 战队 RoboMaster 2026 超级对抗赛 区域赛",
+      "url": "https://www.bilibili.com/video/BV11eL46ZE3x/"
+    },
+    "2026|东部赛区|9|2026-东部赛区-9": {
+      "title": "东部赛区 第九场 安徽信息工程学院 Artisans 战队 VS 浙江大学 Hello World 战队 RoboMaster 2026 超级对抗赛 区域赛",
+      "url": "https://www.bilibili.com/video/BV11YL46bEdN/"
+    },
+    "2026|东部赛区|10|2026-东部赛区-10": {
+      "title": "东部赛区 第十场 杭州电子科技大学 PHOENIX 战队 VS 哈尔滨工业大学（深圳） 南工骁鹰 战队 RoboMaster 2026 超级对抗赛 区域赛",
+      "url": "https://www.bilibili.com/video/BV1gWL46iEnA/"
+    },
+    "2026|东部赛区|11|2026-东部赛区-11": {
+      "title": "东部赛区 第十一场 山东科技大学 SmartRobot 战队 VS 福建师范大学 PKA 战队 RoboMaster 2026 超级对抗赛 区域赛",
+      "url": "https://www.bilibili.com/video/BV1RfLb6JES3/"
+    },
+    "2026|东部赛区|12|2026-东部赛区-12": {
+      "title": "东部赛区 第十二场 合肥工业大学 苍穹 战队 VS 江南大学霞客湾校区 SHARK 战队 RoboMaster 2026 超级对抗赛 区域赛",
+      "url": "https://www.bilibili.com/video/BV1ewL867EkD/"
+    },
+    "2026|东部赛区|13|2026-东部赛区-13": {
+      "title": "东部赛区 第十三场 中北大学 606 战队 VS 南方科技大学 ARTINX 战队 RoboMaster 2026 超级对抗赛 区域赛",
+      "url": "https://www.bilibili.com/video/BV1eFL86UEkn/"
+    },
+    "2026|东部赛区|14|2026-东部赛区-14": {
+      "title": "东部赛区 第十四场 南京理工大学江阴校区 Combat 战队 VS 上海工程技术大学 木鸢Birdiebot 战队 RM 2026 超级对抗赛 区域赛",
+      "url": "https://www.bilibili.com/video/BV1bSLt6qEf2/"
+    },
+    "2026|东部赛区|15|2026-东部赛区-15": {
+      "title": "东部赛区 第十五场 东南大学 3SE 战队 VS 成都大学 Ultra 战队 RoboMaster 2026 超级对抗赛 区域赛",
+      "url": "https://www.bilibili.com/video/BV1MSLt6qE9N/"
+    },
+    "2026|东部赛区|16|2026-东部赛区-16": {
+      "title": "东部赛区 第十六场 北京理工大学（珠海） 毅恒 战队 VS 合肥工业大学（宣城校区） WDR 战队 RoboMaster 2026 超级对抗赛 区域赛",
+      "url": "https://www.bilibili.com/video/BV1bSLt6qEki/"
+    },
+    "2026|东部赛区|17|2026-东部赛区-17": {
+      "title": "东部赛区 第十七场 首都师范大学 PIE 战队 VS 西南交通大学 Helios 战队 RoboMaster 2026 超级对抗赛 区域赛",
+      "url": "https://www.bilibili.com/video/BV1BdLh6FEoK/"
+    },
+    "2026|东部赛区|18|2026-东部赛区-18": {
+      "title": "东部赛区 第十八场 华东理工大学 起源 战队 VS 中国石油大学（华东） RPS 战队 RoboMaster 2026 超级对抗赛 区域赛",
+      "url": "https://www.bilibili.com/video/BV1z9Lh6hECv/"
+    },
+    "2026|东部赛区|19|2026-东部赛区-19": {
+      "title": "东部赛区 第十九场 齐鲁工业大学 Adam 战队 VS 青岛大学 未来 战队 RoboMaster 2026 超级对抗赛 区域赛",
+      "url": "https://www.bilibili.com/video/BV1QtLh6EEox/"
+    },
+    "2026|东部赛区|20|2026-东部赛区-20": {
+      "title": "东部赛区 第二十场 南京理工大学 Alliance 战队 VS 江苏大学 Aurora 战队 RoboMaster 2026 超级对抗赛 区域赛",
+      "url": "https://www.bilibili.com/video/BV1YxLh6DE1Q/"
+    },
+    "2026|东部赛区|21|2026-东部赛区-21": {
+      "title": "东部赛区 第二十一场 中国科学技术大学 RoboWalker 战队 VS 中国石油大学（北京） SPR 战队 RM 2026 超级对抗赛 区域赛",
+      "url": "https://www.bilibili.com/video/BV1B1Li6GEYi/"
+    },
+    "2026|东部赛区|22|2026-东部赛区-22": {
+      "title": "东部赛区 第二十二场 太原科技大学 NewMaker 战队 VS 广西大学 ROBOTZ 战队 RoboMaster 2026 超级对抗赛 区域赛",
+      "url": "https://www.bilibili.com/video/BV1wqLi6UESJ/"
+    },
+    "2026|东部赛区|23|2026-东部赛区-23": {
+      "title": "东部赛区 第二十三场 中国矿业大学 CUBOT 战队 VS 福建理工大学 苍侠 战队 RoboMaster 2026 超级对抗赛 区域赛",
+      "url": "https://www.bilibili.com/video/BV1n6Li61Emi/"
+    },
+    "2026|东部赛区|24|2026-东部赛区-24": {
+      "title": "东部赛区 第二十四场 上海大学 SRM 战队 VS 南京航空航天大学金城学院 Born of Fire 战队 RM 2026 超级对抗赛 区域赛",
+      "url": "https://www.bilibili.com/video/BV1jSLi6zEH5/"
+    },
+    "2026|东部赛区|25|2026-东部赛区-25": {
+      "title": "东部赛区 第二十五场 江南大学霞客湾校区 SHARK 战队 VS 南方科技大学 ARTINX 战队 RoboMaster 2026 超级对抗赛 区域赛",
+      "url": "https://www.bilibili.com/video/BV1ncLi6VEii/"
+    },
+    "2026|东部赛区|26|2026-东部赛区-26": {
+      "title": "东部赛区 第二十六场 山东科技大学 SmartRobot 战队 VS 哈尔滨工业大学（深圳） 南工骁鹰 战队 RoboMaster 2026 超级对抗赛 区域赛",
+      "url": "https://www.bilibili.com/video/BV16bGa6dEY3/"
+    },
+    "2026|东部赛区|27|2026-东部赛区-27": {
+      "title": "东部赛区 第二十七场 浙江大学 Hello World 战队 VS 东南大学 3SE 战队 RoboMaster 2026 超级对抗赛 区域赛",
+      "url": "https://www.bilibili.com/video/BV1ukLv6xE4U/"
+    },
+    "2026|东部赛区|28|2026-东部赛区-28": {
+      "title": "东部赛区 第二十八场 合肥工业大学（宣城校区） WDR 战队 VS 上海工程技术大学 木鸢Birdiebot 战队 RM 2026 超级对抗赛 区域赛",
+      "url": "https://www.bilibili.com/video/BV1UkLv6sEs6/"
+    },
+    "2026|东部赛区|29|2026-东部赛区-29": {
+      "title": "东部赛区 第二十九场 北京理工大学（珠海） 毅恒 战队 VS 南京理工大学江阴校区 Combat 战队 RoboMaster 2026 超级对抗赛 区域赛",
+      "url": "https://www.bilibili.com/video/BV1X7Gb6qEzy/"
+    },
+    "2026|东部赛区|30|2026-东部赛区-30": {
+      "title": "东部赛区 第三十场 安徽信息工程学院 Artisans 战队 VS 成都大学 Ultra 战队 RoboMaster 2026 超级对抗赛 区域赛",
+      "url": "https://www.bilibili.com/video/BV15jGb6MEwU/"
+    },
+    "2026|东部赛区|31|2026-东部赛区-31": {
+      "title": "东部赛区 第三十一场 福建师范大学 PKA 战队 VS 杭州电子科技大学 PHOENIX 战队 RoboMaster 2026 超级对抗赛 区域赛",
+      "url": "https://www.bilibili.com/video/BV1C5Gt6SEye/"
+    },
+    "2026|东部赛区|32|2026-东部赛区-32": {
+      "title": "东部赛区 第三十二场 合肥工业大学 苍穹 战队 VS 中北大学 606 战队 RoboMaster 2026 超级对抗赛 区域赛",
+      "url": "https://www.bilibili.com/video/BV1C5Gt6SEbN/"
+    },
+    "2026|东部赛区|33|2026-东部赛区-33": {
+      "title": "东部赛区 第三十三场 青岛大学 未来 战队 VS 中国石油大学（华东） RPS 战队 RoboMaster 2026 超级对抗赛 区域赛",
+      "url": "https://www.bilibili.com/video/BV1VvGt6TEX3/"
+    },
+    "2026|东部赛区|34|2026-东部赛区-34": {
+      "title": "东部赛区 第三十四场 南京理工大学 Alliance 战队 VS 首都师范大学 PIE 战队 RoboMaster 2026 超级对抗赛 区域赛",
+      "url": "https://www.bilibili.com/video/BV1vYGt6qEMb/"
+    },
+    "2026|东部赛区|35|2026-东部赛区-35": {
+      "title": "东部赛区 第三十五场 齐鲁工业大学 Adam 战队 VS 华东理工大学 起源 战队 RoboMaster 2026 超级对抗赛 区域赛",
+      "url": "https://www.bilibili.com/video/BV1uwGt6fEKr/"
+    },
+    "2026|东部赛区|36|2026-东部赛区-36": {
+      "title": "东部赛区 第三十六场 中国科学技术大学 RoboWalker 战队 VS 西南交通大学 Helios 战队 RoboMaster 2026 超级对抗赛 区域赛",
+      "url": "https://www.bilibili.com/video/BV182G86iE4M/"
+    },
+    "2026|东部赛区|37|2026-东部赛区-37": {
+      "title": "东部赛区 第三十七场 江苏大学 Aurora 战队 VS 太原科技大学 NewMaker 战队 RoboMaster 2026 超级对抗赛 区域赛",
+      "url": "https://www.bilibili.com/video/BV1GfGb6zEmJ/"
+    },
+    "2026|东部赛区|38|2026-东部赛区-38": {
+      "title": "东部赛区 第三十八场 南京航空航天大学金城学院 Born of Fire 战队 VS 中国矿业大学 CUBOT 战队 RM 2026 超级对抗赛 区域赛",
+      "url": "https://www.bilibili.com/video/BV1oQGb6VEAw/"
+    },
+    "2026|东部赛区|39|2026-东部赛区-39": {
+      "title": "东部赛区 第三十九场 广西大学 ROBOTZ 战队 VS 上海大学 SRM 战队 RoboMaster 2026 超级对抗赛 区域赛",
+      "url": "https://www.bilibili.com/video/BV13wG86qE8B/"
+    },
+    "2026|东部赛区|40|2026-东部赛区-40": {
+      "title": "东部赛区 第四十场 中国石油大学（北京） SPR 战队 VS 福建理工大学 苍侠 战队 RoboMaster 2026 超级对抗赛 区域赛",
+      "url": "https://www.bilibili.com/video/BV1E2Gb6mESR/"
+    },
+    "2026|东部赛区|41|2026-东部赛区-41": {
+      "title": "东部赛区 第四十一场 合肥工业大学（宣城校区） WDR 战队 VS 山东科技大学 SmartRobot 战队 RoboMaster 2026 超级对抗赛 区域赛",
+      "url": "https://www.bilibili.com/video/BV1zLGv6AEBL/"
+    },
+    "2026|东部赛区|42|2026-东部赛区-42": {
+      "title": "东部赛区 第四十二场 江南大学霞客湾校区 SHARK 战队 VS 浙江大学 Hello World 战队 RoboMaster 2026 超级对抗赛 区域赛",
+      "url": "https://www.bilibili.com/video/BV17JGv68EVp/"
+    },
+    "2026|东部赛区|43|2026-东部赛区-43": {
+      "title": "东部赛区 第四十三场 南方科技大学 ARTINX 战队 VS 合肥工业大学 苍穹 战队 RoboMaster 2026 超级对抗赛 区域赛",
+      "url": "https://www.bilibili.com/video/BV1RyGe6WEiU/"
+    },
+    "2026|东部赛区|44|2026-东部赛区-44": {
+      "title": "东部赛区 第四十四场 东南大学 3SE 战队 VS 安徽信息工程学院 Artisans 战队 RoboMaster 2026 超级对抗赛 区域赛",
+      "url": "https://www.bilibili.com/video/BV1eyGe6WEem/"
+    },
+    "2026|东部赛区|45|2026-东部赛区-45": {
+      "title": "东部赛区 第四十五场 上海工程技术大学 木鸢Birdiebot 战队 VS 北京理工大学（珠海） 毅恒 战队 RoboMaster 2026 超级对抗赛 区域赛",
+      "url": "https://www.bilibili.com/video/BV1ktGe6NE4y/"
+    },
+    "2026|东部赛区|46|2026-东部赛区-46": {
+      "title": "东部赛区 第四十六场 福建师范大学 PKA 战队 VS 哈尔滨工业大学（深圳） 南工骁鹰 战队 RoboMaster 2026 超级对抗赛 区域赛",
+      "url": "https://www.bilibili.com/video/BV1CxGe6iETf/"
+    },
+    "2026|东部赛区|47|2026-东部赛区-47": {
+      "title": "东部赛区 第四十七场 杭州电子科技大学 PHOENIX 战队 VS 南京理工大学江阴校区 Combat 战队 RoboMaster 2026 超级对抗赛 区域赛",
+      "url": "https://www.bilibili.com/video/BV1RmGi6FE2e/"
+    },
+    "2026|东部赛区|48|2026-东部赛区-48": {
+      "title": "东部赛区 第四十八场 成都大学 Ultra 战队 VS 中北大学 606 战队 RoboMaster 2026 超级对抗赛 区域赛",
+      "url": "https://www.bilibili.com/video/BV1XQGi64EWL/"
+    },
+    "2026|东部赛区|49|2026-东部赛区-49": {
+      "title": "东部赛区 第四十九场 青岛大学 未来 战队 VS 华东理工大学 起源 战队 RoboMaster 2026 超级对抗赛 区域赛",
+      "url": "https://www.bilibili.com/video/BV1KxGi6LEMq/"
+    },
+    "2026|东部赛区|50|2026-东部赛区-50": {
+      "title": "东部赛区 第五十场 中国科学技术大学 RoboWalker 战队 VS 首都师范大学 PIE 战队 RoboMaster 2026 超级对抗赛 区域赛",
+      "url": "https://www.bilibili.com/video/BV1qkGi6YEeG/"
+    },
+    "2026|东部赛区|51|2026-东部赛区-51": {
+      "title": "东部赛区 第五十一场 太原科技大学 NewMaker 战队 VS 南京航空航天大学金城学院 Born of Fire 战队 RoboMaster 2026",
+      "url": "https://www.bilibili.com/video/BV1JBGi6TEHU/"
+    },
+    "2026|东部赛区|52|2026-东部赛区-52": {
+      "title": "东部赛区 第五十二场 齐鲁工业大学 Adam 战队 VS 江苏大学 Aurora 战队 RoboMaster 2026 超级对抗赛 区域赛",
+      "url": "https://www.bilibili.com/video/BV1vNGi6fE92/"
+    },
+    "2026|东部赛区|53|2026-东部赛区-53": {
+      "title": "东部赛区 第五十三场 西南交通大学 Helios 战队 VS 中国矿业大学 CUBOT 战队 RoboMaster 2026 超级对抗赛 区域赛",
+      "url": "https://www.bilibili.com/video/BV124GB6HEYm/"
+    },
+    "2026|东部赛区|54|2026-东部赛区-54": {
+      "title": "东部赛区 第五十四场 中国石油大学（北京） SPR 战队 VS 上海大学 SRM 战队 RoboMaster 2026 超级对抗赛 区域赛",
+      "url": "https://www.bilibili.com/video/BV1msGB6XEqx/"
+    },
+    "2026|东部赛区|55|2026-东部赛区-55": {
+      "title": "东部赛区 第五十五场 江南大学霞客湾校区 SHARK 战队 VS 合肥工业大学（宣城校区） WDR 战队 RoboMaster 2026 超级对抗赛 区域赛",
+      "url": "https://www.bilibili.com/video/BV1iUGB6TE6v/"
+    },
+    "2026|东部赛区|56|2026-东部赛区-56": {
+      "title": "东部赛区 第五十六场 安徽信息工程学院 Artisans 战队 VS 北京理工大学（珠海） 毅恒 战队 RoboMaster 2026 超级对抗赛 区域赛",
+      "url": "https://www.bilibili.com/video/BV1iUGB6TEny/"
+    },
+    "2026|东部赛区|57|2026-东部赛区-57": {
+      "title": "东部赛区 第五十七场 哈尔滨工业大学（深圳） 南工骁鹰 战队 VS 南方科技大学 ARTINX 战队 RoboMaster 2026 超级对抗赛 区域赛",
+      "url": "https://www.bilibili.com/video/BV1gqGq6dER3/"
+    },
+    "2026|东部赛区|58|2026-东部赛区-58": {
+      "title": "东部赛区 第五十八场 上海工程技术大学 木鸢Birdiebot 战队 VS 东南大学 3SE 战队 RoboMaster 2026 超级对抗赛 区域赛",
+      "url": "https://www.bilibili.com/video/BV1aiGq64Eux/"
+    },
+    "2026|东部赛区|59|2026-东部赛区-59": {
+      "title": "东部赛区 第五十九场 合肥工业大学 苍穹 战队 VS 福建师范大学 PKA 战队 RoboMaster 2026 超级对抗赛 区域赛",
+      "url": "https://www.bilibili.com/video/BV1HdGq6CE24/"
+    },
+    "2026|东部赛区|60|2026-东部赛区-60": {
+      "title": "东部赛区 第六十场 成都大学 Ultra 战队 VS 南京理工大学江阴校区 Combat 战队 RoboMaster 2026 超级对抗赛 区域赛",
+      "url": "https://www.bilibili.com/video/BV1PSGq6mEZX/"
+    },
+    "2026|东部赛区|63|2026-东部赛区-63": {
+      "title": "东部赛区 第六十三场 江苏大学 Aurora 战队 VS 中国矿业大学 CUBOT 战队 RoboMaster 2026 超级对抗赛 区域赛",
+      "url": "https://www.bilibili.com/video/BV1imGL6zE5Q/"
+    },
+    "2026|东部赛区|62|2026-东部赛区-62": {
+      "title": "东部赛区 第六十二场 太原科技大学 NewMaker 战队 VS 首都师范大学 PIE 战队 RoboMaster 2026 超级对抗赛 区域赛",
+      "url": "https://www.bilibili.com/video/BV1vSGL6MEoe/"
+    },
+    "2026|东部赛区|61|2026-东部赛区-61": {
+      "title": "东部赛区 第六十一场 青岛大学 未来 战队 VS 上海大学 SRM 战队 RoboMaster 2026 超级对抗赛 区域赛",
+      "url": "https://www.bilibili.com/video/BV1LSGL6MEe6/"
+    },
+    "2026|东部赛区|64|2026-东部赛区-64": {
+      "title": "东部赛区 第六十四场 南京理工大学江阴校区 Combat 战队 VS 江南大学霞客湾校区 SHARK 战队 RoboMaster 2026 超级对抗赛 区域赛",
+      "url": "https://www.bilibili.com/video/BV1ECGL6GEKp/"
+    },
+    "2026|东部赛区|65|2026-东部赛区-65": {
+      "title": "东部赛区 第六十五场 安徽信息工程学院 Artisans 战队 VS 合肥工业大学 苍穹 战队 RoboMaster 2026 超级对抗赛 区域赛",
+      "url": "https://www.bilibili.com/video/BV1KGGE6cEps/"
+    },
+    "2026|东部赛区|66|2026-东部赛区-66": {
+      "title": "东部赛区 第六十六场 东南大学 3SE 战队 VS 南方科技大学 ARTINX 战队 RoboMaster 2026 超级对抗赛 区域赛",
+      "url": "https://www.bilibili.com/video/BV1KGGE6cEHR/"
+    },
+    "2026|东部赛区|67|2026-东部赛区-67": {
+      "title": "东部赛区 第六十七场 山东科技大学 SmartRobot 战队 VS 太原科技大学 NewMaker 战队 RoboMaster 2026 超级对抗赛 区域赛",
+      "url": "https://www.bilibili.com/video/BV1ogG76kE3C/"
+    },
+    "2026|东部赛区|68|2026-东部赛区-68": {
+      "title": "东部赛区 第六十八场 北京理工大学（珠海） 毅恒 战队 VS 南京航空航天大学金城学院 Born of Fire 战队 RM 2026 超级对抗赛 区域赛",
+      "url": "https://www.bilibili.com/video/BV19LG76uEVp/"
+    },
+    "2026|东部赛区|69|2026-东部赛区-69": {
+      "title": "东部赛区 第六十九场 中国矿业大学 CUBOT 战队 VS 浙江大学 Hello World 战队 RoboMaster 2026 超级对抗赛 区域赛",
+      "url": "https://www.bilibili.com/video/BV1eLG76uE53/"
+    },
+    "2026|东部赛区|70|2026-东部赛区-70": {
+      "title": "东部赛区 第七十场 华东理工大学 起源 战队 VS 江南大学霞客湾校区 SHARK 战队 RoboMaster 2026 超级对抗赛 区域赛",
+      "url": "https://www.bilibili.com/video/BV1VcGn6jEM4/"
+    },
+    "2026|东部赛区|71|2026-东部赛区-71": {
+      "title": "东部赛区 第七十一场 青岛大学 未来 战队 VS 合肥工业大学（宣城校区） WDR 战队 RoboMaster 2026 超级对抗赛 区域赛",
+      "url": "https://www.bilibili.com/video/BV1YPGn65EAW/"
+    },
+    "2026|东部赛区|72|2026-东部赛区-72": {
+      "title": "东部赛区 第七十二场 南京理工大学 Alliance 战队 VS 南方科技大学 ARTINX 战队 RoboMaster 2026 超级对抗赛 区域赛",
+      "url": "https://www.bilibili.com/video/BV1aPGn65EbE/"
+    },
+    "2026|东部赛区|73|2026-东部赛区-73": {
+      "title": "东部赛区 第七十三场 哈尔滨工业大学（深圳） 南工骁鹰 战队 VS 中国科学技术大学 RoboWalker 战队 RM 2026 超级对抗赛 区域赛",
+      "url": "https://www.bilibili.com/video/BV16PGJ6sECk/"
+    },
+    "2026|东部赛区|74|2026-东部赛区-74": {
+      "title": "东部赛区 第七十四场 合肥工业大学 苍穹 战队 VS 中国石油大学（华东） RPS 战队 RoboMaster 2026 超级对抗赛 区域赛",
+      "url": "https://www.bilibili.com/video/BV1hWGJ6rE1S/"
+    },
+    "2026|东部赛区|75|2026-东部赛区-75": {
+      "title": "东部赛区 第七十五场 山东科技大学 SmartRobot 战队 VS 北京理工大学（珠海） 毅恒 战队 RoboMaster 2026 超级对抗赛 区域赛",
+      "url": "https://www.bilibili.com/video/BV1MUGE6iECf/"
+    },
+    "2026|东部赛区|76|2026-东部赛区-76": {
+      "title": "东部赛区 第七十六场 华东理工大学 起源 战队 VS 浙江大学 Hello World 战队 RoboMaster 2026 超级对抗赛 区域赛",
+      "url": "https://www.bilibili.com/video/BV1teGH6kEfv/"
+    },
+    "2026|东部赛区|77|2026-东部赛区-77": {
+      "title": "东部赛区 第七十七场 合肥工业大学（宣城校区） WDR 战队 VS 南京理工大学 Alliance 战队 RoboMaster 2026 超级对抗赛 区域赛",
+      "url": "https://www.bilibili.com/video/BV1z3GH6tEzb/"
+    },
+    "2026|东部赛区|78|2026-东部赛区-78": {
+      "title": "东部赛区 第七十八场 中国石油大学（华东） RPS 战队 VS 哈尔滨工业大学（深圳） 南工骁鹰 战队 RoboMaster 2026 超级对抗赛 区域赛",
+      "url": "https://www.bilibili.com/video/BV1J3GH6bEi2/"
+    },
+    "2026|东部赛区|79|2026-东部赛区-79": {
+      "title": "东部赛区 第七十九场 太原科技大学 NewMaker 战队 VS 南京航空航天大学金城学院 Born of Fire 战队 RoboMaster 2026",
+      "url": "https://www.bilibili.com/video/BV1HXGW6MEFi/"
+    },
+    "2026|东部赛区|80|2026-东部赛区-80": {
+      "title": "东部赛区 第八十场 江南大学霞客湾校区 SHARK 战队 VS 中国矿业大学 CUBOT 战队 RoboMaster 2026 超级对抗赛 区域赛",
+      "url": "https://www.bilibili.com/video/BV1xCGW65EhB/"
+    },
+    "2026|东部赛区|81|2026-东部赛区-81": {
+      "title": "东部赛区 第八十一场 青岛大学 未来 战队 VS 南方科技大学 ARTINX 战队 RoboMaster 2026 超级对抗赛 区域赛",
+      "url": "https://www.bilibili.com/video/BV1h7G46fEUb/"
+    },
+    "2026|东部赛区|85|2026-东部赛区-85": {
+      "title": "东部赛区 第八十五场 太原科技大学 NewMaker 战队 VS 青岛大学 未来 战队 RoboMaster 2026 超级对抗赛 区域赛",
+      "url": "https://www.bilibili.com/video/BV1hBGx64E3y/"
+    },
+    "2026|东部赛区|82|2026-东部赛区-82": {
+      "title": "东部赛区 第八十二场 合肥工业大学 苍穹 战队 VS 中国科学技术大学 RoboWalker 战队 RoboMaster 2026 超级对抗赛 区域赛",
+      "url": "https://www.bilibili.com/video/BV1D7G46fEB7/"
+    },
+    "2026|东部赛区|83|2026-东部赛区-83": {
+      "title": "东部赛区 第八十三场 山东科技大学 SmartRobot 战队 VS 合肥工业大学（宣城校区） WDR 战队 RoboMaster 2026 超级对抗赛 区",
+      "url": "https://www.bilibili.com/video/BV1unG46oE4e/"
+    },
+    "2026|东部赛区|84|2026-东部赛区-84": {
+      "title": "东部赛区 第八十四场 浙江大学 Hello World 战队 VS 中国石油大学（华东） RPS 战队 RoboMaster 2026 超级对抗赛 区域赛",
+      "url": "https://www.bilibili.com/video/BV1gJG46tEPh/"
+    },
+    "2026|东部赛区|86|2026-东部赛区-86": {
+      "title": "东部赛区 第八十六场 江南大学霞客湾校区 SHARK 战队 VS 合肥工业大学 苍穹 战队 RoboMaster 2026 超级对抗赛 区域赛",
+      "url": "https://www.bilibili.com/video/BV1AGGx65Ebp/"
+    },
+    "2026|东部赛区|87|2026-东部赛区-87": {
+      "title": "东部赛区 第八十七场 合肥工业大学（宣城校区） WDR 战队 VS 浙江大学 Hello World 战队 RoboMaster 2026 超级对抗赛 区域赛",
+      "url": "https://www.bilibili.com/video/BV1EYGR6pEXH/"
+    },
+    "2026|东部赛区|88|2026-东部赛区-88": {
+      "title": "东部赛区 第八十八场 山东科技大学 SmartRobot 战队 VS 中国石油大学（华东） RPS 战队 RoboMaster 2026 超级对抗赛 区域赛",
+      "url": "https://www.bilibili.com/video/BV1F8GR6sEZb/"
+    },
+    "2026|南部赛区|1|2026-南部赛区-1": {
+      "title": "南部赛区 第一场 华南农业大学 Taurus 战队 VS 重庆理工大学 士继 DREAMER 战队 RoboMaster 2026 超级对抗赛 区域赛",
+      "url": "https://www.bilibili.com/video/BV1SL556bE3R/"
+    },
+    "2026|南部赛区|2|2026-南部赛区-2": {
+      "title": "南部赛区 第二场 国防科技大学 军临 战队 VS 厦门大学嘉庚学院 TCR 战队 RoboMaster 2026 超级对抗赛 区域赛",
+      "url": "https://www.bilibili.com/video/BV1ra556mE38/"
+    },
+    "2026|南部赛区|3|2026-南部赛区-3": {
+      "title": "南部赛区 第三场 仲恺农业工程学院 奇点 战队 VS 华南理工大学 华南虎 战队 RoboMaster 2026 超级对抗赛 区域赛",
+      "url": "https://www.bilibili.com/video/BV1A1516gEN2/"
+    },
+    "2026|南部赛区|4|2026-南部赛区-4": {
+      "title": "南部赛区 第四场 武汉大学 珞珈狐 战队 VS 桂林信息科技学院 GIRT 战队 RoboMaster 2026 超级对抗赛 区域赛",
+      "url": "https://www.bilibili.com/video/BV13t516QE5t/"
+    },
+    "2026|南部赛区|5|2026-南部赛区-5": {
+      "title": "南部赛区 第五场 电子科技大学中山学院 RoboBraver 战队 VS 长沙理工大学 云嵌 战队 RoboMaster 2026 超级对抗赛 区域赛",
+      "url": "https://www.bilibili.com/video/BV15n5164E2Z/"
+    },
+    "2026|南部赛区|6|2026-南部赛区-6": {
+      "title": "南部赛区 第六场 武汉工程大学 Nautilus 战队 VS 华南师范大学（佛山校区） VANGUARD 战队 RM 2026 超级对抗赛 区域赛",
+      "url": "https://www.bilibili.com/video/BV1Yk5y6pEZ8/"
+    },
+    "2026|南部赛区|7|2026-南部赛区-7": {
+      "title": "南部赛区 第七场 广州航海学院 ICBK破冰船 战队 VS 上海交通大学 交龙 战队 RoboMaster 2026 超级对抗赛 区域赛",
+      "url": "https://www.bilibili.com/video/BV1sf5y6rEB3/"
+    },
+    "2026|南部赛区|8|2026-南部赛区-8": {
+      "title": "南部赛区 第八场 厦门理工学院 PFA 战队 VS 桂林电子科技大学 Evolution 战队 RoboMaster 2026 超级对抗赛 区域赛",
+      "url": "https://www.bilibili.com/video/BV1vq5y6dE4s/"
+    },
+    "2026|南部赛区|9|2026-南部赛区-9": {
+      "title": "南部赛区 第九场 桂林理工大学 群星 战队 VS 太原理工大学 TRoMaC 战队 RoboMaster 2026 超级对抗赛 区域赛",
+      "url": "https://www.bilibili.com/video/BV1jn5m6NEve/"
+    },
+    "2026|南部赛区|10|2026-南部赛区-10": {
+      "title": "南部赛区 第十场 东莞理工学院 ACE 战队 VS 华中科技大学 狼牙 战队 RoboMaster 2026 超级对抗赛 区域赛",
+      "url": "https://www.bilibili.com/video/BV1Hu5m6kEiK/"
+    },
+    "2026|南部赛区|11|2026-南部赛区-11": {
+      "title": "南部赛区 第十一场 五邑大学 IMCA 战队 VS 深圳技术大学 悍匠 战队 RoboMaster 2026 超级对抗赛 区域赛",
+      "url": "https://www.bilibili.com/video/BV1nG5m66EWd/"
+    },
+    "2026|南部赛区|12|2026-南部赛区-12": {
+      "title": "南部赛区 第十二场 广州城市理工学院 野狼 战队 VS 湘潭大学 逐曦 战队 RoboMaster 2026 超级对抗赛 区域赛",
+      "url": "https://www.bilibili.com/video/BV13a5m6oE7Z/"
+    },
+    "2026|南部赛区|13|2026-南部赛区-13": {
+      "title": "南部赛区 第十三场 武汉科技大学 崇实 战队 VS 深圳大学 RobotPilots 战队 RoboMaster 2026 超级对抗赛 区域赛",
+      "url": "https://www.bilibili.com/video/BV1ga5m6oEb1/"
+    },
+    "2026|南部赛区|14|2026-南部赛区-14": {
+      "title": "南部赛区 第十四场 南华大学 MA 战队 VS 南昌大学 Passion 战队 RoboMaster 2026 超级对抗赛 区域赛",
+      "url": "https://www.bilibili.com/video/BV18X526WExQ/"
+    },
+    "2026|南部赛区|15|2026-南部赛区-15": {
+      "title": "南部赛区 第十五场 广东工业大学 DynamicX 战队 VS 西交利物浦大学 GMaster 战队 RoboMaster 2026 超级对抗赛 区域赛",
+      "url": "https://www.bilibili.com/video/BV1hD526REGh/"
+    },
+    "2026|南部赛区|16|2026-南部赛区-16": {
+      "title": "南部赛区 第十六场 中南大学 FYT 战队 VS 厦门大学 RCS 战队 RoboMaster 2026 超级对抗赛 区域赛",
+      "url": "https://www.bilibili.com/video/BV1Y2526tEbb/"
+    },
+    "2026|南部赛区|17|2026-南部赛区-17": {
+      "title": "南部赛区 第十七场 仲恺农业工程学院 奇点 战队 VS 桂林信息科技学院 GIRT RoboMaster 2026 超级对抗赛 区域赛",
+      "url": "https://www.bilibili.com/video/BV19y526fEh8/"
+    },
+    "2026|南部赛区|18|2026-南部赛区-18": {
+      "title": "南部赛区 第十八场 重庆理工大学 士继DREAMER 战队 VS 电子科技大学中山学院 RoboBraver 战队 RoboMaster 2026 超级对抗赛",
+      "url": "https://www.bilibili.com/video/BV1hS526xEzE/"
+    },
+    "2026|南部赛区|19|2026-南部赛区-19": {
+      "title": "南部赛区 第十九场 厦门大学嘉庚学院 TCR 战队 VS 桂林电子科技大学 Evolution 战队 RoboMaster 2026 超级对抗赛 区域赛",
+      "url": "https://www.bilibili.com/video/BV1V2526bEwT/"
+    },
+    "2026|南部赛区|20|2026-南部赛区-20": {
+      "title": "南部赛区 第二十场 上海交通大学 交龙战队 vs 华南师范大学（佛山校区） VANGUARD 战队 RoboMaster 2026 超级对抗赛 区域赛",
+      "url": "https://www.bilibili.com/video/BV1bd526HE7C/"
+    },
+    "2026|南部赛区|21|2026-南部赛区-21": {
+      "title": "南部赛区 第二十一场 武汉工程大学 Nautilus 战队 VS 广州航海学院 ICBK破冰船 战队 RoboMaster 2026 超级对抗赛 区域赛",
+      "url": "https://www.bilibili.com/video/BV1Lt5S6MEVT/"
+    },
+    "2026|南部赛区|22|2026-南部赛区-22": {
+      "title": "南部赛区 第二十二场 国防科技大学 军临 战队 VS 厦门理工学院 PFA 战队 RoboMaster 2026 超级对抗赛 区域赛",
+      "url": "https://www.bilibili.com/video/BV1d35X61Eag/"
+    },
+    "2026|南部赛区|23|2026-南部赛区-23": {
+      "title": "南部赛区 第二十三场 华南农业大学 Taurus 战队 VS 长沙理工大学 云嵌 战队 RoboMaster 2026 超级对抗赛 区域赛",
+      "url": "https://www.bilibili.com/video/BV1jg5X67EPw/"
+    },
+    "2026|南部赛区|24|2026-南部赛区-24": {
+      "title": "南部赛区 第二十四场 华南理工大学 华南虎 战队 VS 武汉大学 珞珈狐 战队 RoboMaster 2026 超级对抗赛 区域赛",
+      "url": "https://www.bilibili.com/video/BV1Dn5X6zEYR/"
+    },
+    "2026|南部赛区|25|2026-南部赛区-25": {
+      "title": "南部赛区 第二十五场 五邑大学 IMCA 战队 VS 中南大学 FYT 战队 RoboMaster 2026 超级对抗赛 区域赛",
+      "url": "https://www.bilibili.com/video/BV1t15Q6eEy7/"
+    },
+    "2026|南部赛区|26|2026-南部赛区-26": {
+      "title": "南部赛区 第二十六场 东莞理工学院 ACE 战队 VS 桂林理工大学 群星 战队 RoboMaster 2026 超级对抗赛 区域赛",
+      "url": "https://www.bilibili.com/video/BV1M15Q6eEV1/"
+    },
+    "2026|南部赛区|27|2026-南部赛区-27": {
+      "title": "南部赛区 第二十七场 广东工业大学 DynamicX 战队 VS 广州城市理工学院 野狼 战队 RoboMaster 2026 超级对抗赛 区域赛",
+      "url": "https://www.bilibili.com/video/BV1xg5Q6tEJw/"
+    },
+    "2026|南部赛区|28|2026-南部赛区-28": {
+      "title": "南部赛区 第二十八场 深圳大学 RobotPilots 战队 VS 南华大学 MA 战队 RoboMaster 2026 超级对抗赛 区域赛",
+      "url": "https://www.bilibili.com/video/BV1tP5Q6aEZe/"
+    },
+    "2026|南部赛区|29|2026-南部赛区-29": {
+      "title": "南部赛区 第二十九场 武汉科技大学 崇实 战队 VS 南昌大学 Passion 战队 RoboMaster 2026 超级对抗赛 区域赛",
+      "url": "https://www.bilibili.com/video/BV1kc5R6wEZE/"
+    },
+    "2026|南部赛区|30|2026-南部赛区-30": {
+      "title": "南部赛区 第三十场 西交利物浦大学 GMaster 战队 VS 湘潭大学 逐曦 战队 RoboMaster 2026 超级对抗赛 区域赛",
+      "url": "https://www.bilibili.com/video/BV1rN5R6bENr/"
+    },
+    "2026|南部赛区|31|2026-南部赛区-31": {
+      "title": "南部赛区 第三十一场 华中科技大学 狼牙 战队 VS 太原理工大学 TRoMaC 战队 RoboMaster 2026 超级对抗赛 区域赛",
+      "url": "https://www.bilibili.com/video/BV1Bt5969Erw/"
+    },
+    "2026|南部赛区|32|2026-南部赛区-32": {
+      "title": "南部赛区 第三十二场 深圳技术大学 悍匠 战队 VS 厦门大学 RCS 战队 RoboMaster 2026 超级对抗赛 区域赛",
+      "url": "https://www.bilibili.com/video/BV1Yf5X6CEAL/"
+    },
+    "2026|南部赛区|33|2026-南部赛区-33": {
+      "title": "南部赛区 第三十三场 仲恺农业工程学院 奇点 战队 VS 厦门大学嘉庚学院 TCR 战队 RoboMaster 2026 超级对抗赛 区域赛",
+      "url": "https://www.bilibili.com/video/BV1DP596gEpg/"
+    },
+    "2026|南部赛区|34|2026-南部赛区-34": {
+      "title": "南部赛区 第三十四场 上海交通大学 交龙 战队 VS 电子科技大学中山学院 RoboBraver 战队 RoboMaster 2026 超级对抗赛 区域赛",
+      "url": "https://www.bilibili.com/video/BV14g596KECf/"
+    },
+    "2026|南部赛区|35|2026-南部赛区-35": {
+      "title": "南部赛区 第三十五场 华南师范大学（佛山校区）VANGUARD 战队 VS 重庆理工大学 士继DREAMER 战队 RM 2026 超级对抗赛 区域赛",
+      "url": "https://www.bilibili.com/video/BV1UM596qE5g/"
+    },
+    "2026|南部赛区|36|2026-南部赛区-36": {
+      "title": "南部赛区 第三十六场 华南理工大学 华南虎 战队 VS 桂林电子科技大学 Evolution 战队 RoboMaster 2026 超级对抗赛 区域赛",
+      "url": "https://www.bilibili.com/video/BV16t5d6aEU2/"
+    },
+    "2026|南部赛区|37|2026-南部赛区-37": {
+      "title": "南部赛区 第三十七场 桂林信息科技学院 GIRT 战队 VS 武汉工程大学 Nautilus 战队 RoboMaster 2026 超级对抗赛 区域赛",
+      "url": "https://www.bilibili.com/video/BV1Be5d6tE5V/"
+    },
+    "2026|南部赛区|38|2026-南部赛区-38": {
+      "title": "南部赛区 第三十八场 厦门理工学院 PFA 战队 VS 华南农业大学 Taurus 战队 RoboMaster 2026 超级对抗赛 区域赛",
+      "url": "https://www.bilibili.com/video/BV1jq5d64Ey8/"
+    },
+    "2026|南部赛区|39|2026-南部赛区-39": {
+      "title": "南部赛区 第三十九场 广州航海学院 ICBK破冰船 战队 VS 长沙理工大学 云嵌 战队 RoboMaster 2026 超级对抗赛 区域赛",
+      "url": "https://www.bilibili.com/video/BV1kk5R6AErp/"
+    },
+    "2026|南部赛区|40|2026-南部赛区-40": {
+      "title": "南部赛区 第四十场 武汉大学 珞珈狐 战队 VS 国防科技大学 军临 战队 RoboMaster 2026 超级对抗赛 区域赛",
+      "url": "https://www.bilibili.com/video/BV12e5R6BENg/"
+    },
+    "2026|南部赛区|41|2026-南部赛区-41": {
+      "title": "南部赛区 第四十一场 深圳大学 RobotPilots 战队 VS 东莞理工学院 ACE 战队 RoboMaster 2026 超级对抗赛 区域赛",
+      "url": "https://www.bilibili.com/video/BV1Zt5h6sEms/"
+    },
+    "2026|南部赛区|42|2026-南部赛区-42": {
+      "title": "南部赛区 第四十二场 广州城市理工学院 野狼 战队 VS 五邑大学 IMCA 战队 RoboMaster 2026 超级对抗赛 区域赛",
+      "url": "https://www.bilibili.com/video/BV1oj5e68Enq/"
+    },
+    "2026|南部赛区|43|2026-南部赛区-43": {
+      "title": "南部赛区 第四十三场 广东工业大学 DynamicX 战队 VS 中南大学 FYT 战队 RoboMaster 2026 超级对抗赛 区域赛",
+      "url": "https://www.bilibili.com/video/BV1f55i6zE45/"
+    },
+    "2026|南部赛区|44|2026-南部赛区-44": {
+      "title": "南部赛区 第四十四场 深圳技术大学 悍匠 战队 VS 桂林理工大学 群星 战队 RoboMaster 2026 超级对抗赛 区域赛",
+      "url": "https://www.bilibili.com/video/BV1Yy5Y6pEAk/"
+    },
+    "2026|南部赛区|45|2026-南部赛区-45": {
+      "title": "南部赛区 第四十五场 南华大学 MA 战队 VS 武汉科技大学 崇实 战队 RoboMaster 2026 超级对抗赛 区域赛",
+      "url": "https://www.bilibili.com/video/BV1NZ5Y6CEfg/"
+    },
+    "2026|南部赛区|46|2026-南部赛区-46": {
+      "title": "南部赛区 第四十六场 西交利物浦大学 GMaster 战队 VS 华中科技大学 狼牙 战队 RoboMaster 2026 超级对抗赛 区域赛",
+      "url": "https://www.bilibili.com/video/BV1RB5Y6xE7c/"
+    },
+    "2026|南部赛区|47|2026-南部赛区-47": {
+      "title": "南部赛区 第四十七场 湘潭大学 逐曦 战队 VS 南昌大学 Passion 战队 RoboMaster 2026 超级对抗赛 区域赛",
+      "url": "https://www.bilibili.com/video/BV1FY5v6BENG/"
+    },
+    "2026|南部赛区|48|2026-南部赛区-48": {
+      "title": "南部赛区 第四十八场 太原理工大学 TRoMaC 战队 VS 厦门大学 RCS 战队 RoboMaster 2026 超级对抗赛 区域赛",
+      "url": "https://www.bilibili.com/video/BV1Rc5v68EUr/"
+    },
+    "2026|南部赛区|49|2026-南部赛区-49": {
+      "title": "南部赛区 第四十九场 重庆理工大学 士继DREAMER 战队 VS 厦门大学嘉庚学院 TCR 战队 RoboMaster 2026 超级对抗赛 区域赛",
+      "url": "https://www.bilibili.com/video/BV1BR5e6eEVY/"
+    },
+    "2026|南部赛区|50|2026-南部赛区-50": {
+      "title": "南部赛区 第五十场 桂林电子科技大学 Evolution 战队 VS 电子科技大学中山学院 RoboBraver 战队 RoboMaster 2026 超级对抗",
+      "url": "https://www.bilibili.com/video/BV1ZR5e6eE7d/"
+    },
+    "2026|南部赛区|51|2026-南部赛区-51": {
+      "title": "南部赛区 第五十一场 华南农业大学 Taurus 战队 VS 武汉工程大学 Nautilus 战队 RoboMaster 2026 超级对抗赛 区域赛",
+      "url": "https://www.bilibili.com/video/BV1yr5e6VE5K/"
+    },
+    "2026|南部赛区|52|2026-南部赛区-52": {
+      "title": "南部赛区 第五十二场 华南师范大学（佛山校区) VANGUARD 战队 VS 华南理工大学 华南虎 战队 RoboMaster 2026 超级对抗赛 区域赛",
+      "url": "https://www.bilibili.com/video/BV1H15e66EBC/"
+    },
+    "2026|南部赛区|53|2026-南部赛区-53": {
+      "title": "南部赛区 第五十三场 桂林信息科技学院 GIRT 战队 VS 广州航海学院 ICBK破冰船 战队 RoboMaster 2026 超级对抗赛 区域赛",
+      "url": "https://www.bilibili.com/video/BV1w15e6rEvG/"
+    },
+    "2026|南部赛区|54|2026-南部赛区-54": {
+      "title": "南部赛区 第五十四场 武汉大学 珞珈狐 战队 VS 厦门理工学院 PFA 战队 RoboMaster 2026 超级对抗赛 区域赛",
+      "url": "https://www.bilibili.com/video/BV1py5e63EHF/"
+    },
+    "2026|南部赛区|55|2026-南部赛区-55": {
+      "title": "南部赛区 第五十五场 广州城市理工学院 野狼 战队 VS 东莞理工学院 ACE 战队 RoboMaster 2026 超级对抗赛 区域赛",
+      "url": "https://www.bilibili.com/video/BV1ce5q61ETS/"
+    },
+    "2026|南部赛区|56|2026-南部赛区-56": {
+      "title": "南部赛区 第五十六场 南华大学 MA 战队 VS 深圳技术大学 悍匠 战队 RoboMaster 2026 超级对抗赛 区域赛",
+      "url": "https://www.bilibili.com/video/BV1Fe5q61EzD/"
+    },
+    "2026|南部赛区|57|2026-南部赛区-57": {
+      "title": "南部赛区 第五十七场 华中科技大学 狼牙 战队 VS 广东工业大学 DynamicX 战队 RoboMaster 2026 超级对抗赛 区域赛",
+      "url": "https://www.bilibili.com/video/BV1JR5i6GEvo/"
+    },
+    "2026|南部赛区|58|2026-南部赛区-58": {
+      "title": "南部赛区 第五十八场 中南大学 FYT 战队 VS 武汉科技大学 崇实 战队 RoboMaster 2026 超级对抗赛 区域赛",
+      "url": "https://www.bilibili.com/video/BV1nX5i6CEB1/"
+    },
+    "2026|南部赛区|59|2026-南部赛区-59": {
+      "title": "南部赛区 第五十九场 西交利物浦大学 GMaster 战队 VS 桂林理工大学 群星 战队 RoboMaster 2026 超级对抗赛 区域赛",
+      "url": "https://www.bilibili.com/video/BV1nX5i6CEAZ/"
+    },
+    "2026|南部赛区|60|2026-南部赛区-60": {
+      "title": "南部赛区 第六十场 太原理工大学 TRoMaC 战队 VS 南昌大学 Passion 战队 RoboMaster 2026 超级对抗赛 区域赛",
+      "url": "https://www.bilibili.com/video/BV1zV5i6gE1L/"
+    },
+    "2026|南部赛区|61|2026-南部赛区-61": {
+      "title": "南部赛区 第六十一场 桂林电子科技大学 Evolution 战队 VS 厦门理工学院 PFA 战队 RoboMaster 2026 超级对抗赛 区域赛",
+      "url": "https://www.bilibili.com/video/BV1Tg5k6qEc5/"
+    },
+    "2026|南部赛区|62|2026-南部赛区-62": {
+      "title": "南部赛区 第六十二场 武汉工程大学 Nautilus 战队 VS 重庆理工大学 士继DREAMER 战队 RoboMaster 2026 超级对抗赛 区域赛",
+      "url": "https://www.bilibili.com/video/BV1mu5k6TEAL/"
+    },
+    "2026|南部赛区|63|2026-南部赛区-63": {
+      "title": "南部赛区 第六十三场 桂林信息科技学院 GIRT 战队 VS 华南理工大学 华南虎 战队 RoboMaster 2026 超级对抗赛 区域赛",
+      "url": "https://www.bilibili.com/video/BV1SK5k6uE5J/"
+    },
+    "2026|南部赛区|64|2026-南部赛区-64": {
+      "title": "南部赛区 第六十四场 南昌大学 Passion 战队 VS 东莞理工学院 ACE 战队 RoboMaster 2026 超级对抗赛 区域赛",
+      "url": "https://www.bilibili.com/video/BV1tt5r6KEga/"
+    },
+    "2026|南部赛区|65|2026-南部赛区-65": {
+      "title": "南部赛区 第六十五场 南华大学 MA 战队 VS 西交利物浦大学 GMaster 战队 RoboMaster 2026 超级对抗赛 区域赛",
+      "url": "https://www.bilibili.com/video/BV1ju5r6EEjK/"
+    },
+    "2026|南部赛区|66|2026-南部赛区-66": {
+      "title": "南部赛区 第六十六场 中南大学 FYT 战队 VS 广东工业大学 Dynamicx 战队 RoboMaster 2026 超级对抗赛 区域赛",
+      "url": "https://www.bilibili.com/video/BV16c5r69Epq/"
+    },
+    "2026|南部赛区|67|2026-南部赛区-67": {
+      "title": "南部赛区 第六十七场 五邑大学 IMCA 战队 VS 武汉工程大学 Nautilus 战队 RoboMaster 2026 超级对抗赛 区域赛",
+      "url": "https://www.bilibili.com/video/BV1hYLg6sE9z/"
+    },
+    "2026|南部赛区|68|2026-南部赛区-68": {
+      "title": "南部赛区 第六十八场 华中科技大学 狼牙 战队 VS 电子科技大学中山学院 RoboBraver 战队 RoboMaster 2026 超级对抗赛 区域赛",
+      "url": "https://www.bilibili.com/video/BV1ahLg6dEJr/"
+    },
+    "2026|南部赛区|70|2026-南部赛区-70": {
+      "title": "南部赛区 第七十场 厦门大学嘉庚学院 TCR 战队 VS 东莞理工学院 ACE 战队 RoboMaster 2026 超级对抗赛 区域赛",
+      "url": "https://www.bilibili.com/video/BV1JFLV6yEjg/"
+    },
+    "2026|南部赛区|71|2026-南部赛区-71": {
+      "title": "南部赛区 第七十一场 桂林电子科技大学 Evolution 战队 VS 广州城市理工学院 野狼 战队 RoboMaster 2026 超级对抗赛 区域赛",
+      "url": "https://www.bilibili.com/video/BV1i4LG6TEJs/"
+    },
+    "2026|南部赛区|72|2026-南部赛区-72": {
+      "title": "南部赛区 第七十二场 上海交通大学 交龙 战队 VS 广东工业大学 DynamicX 战队 RoboMaster 2026 超级对抗赛 区域赛",
+      "url": "https://www.bilibili.com/video/BV1i4LG6TEsQ/"
+    },
+    "2026|南部赛区|73|2026-南部赛区-73": {
+      "title": "南部赛区 第七十三场 深圳技术大学 悍匠 战队 VS 华南农业大学 Taurus 战队 RoboMaster 2026 超级对抗赛 区域赛",
+      "url": "https://www.bilibili.com/video/BV1H5LG6jEms/"
+    },
+    "2026|南部赛区|74|2026-南部赛区-74": {
+      "title": "南部赛区 第七十四场 南华大学 MA 战队 VS 仲恺农业工程学院 奇点 战队 RoboMaster 2026 超级对抗赛 区域赛",
+      "url": "https://www.bilibili.com/video/BV11KLG6DEZn/"
+    },
+    "2026|南部赛区|69|2026-南部赛区-69": {
+      "title": "南部赛区 第六十九场 华南理工大学 华南虎 战队 VS 深圳大学 RobotPilots 战队 RoboMaster 2026 超级对抗赛 区域赛",
+      "url": "https://www.bilibili.com/video/BV19eL56gEfV/"
+    },
+    "2026|南部赛区|75|2026-南部赛区-75": {
+      "title": "南部赛区 第七十五场 五邑大学 IMCA 战队 VS 电子科技大学中山学院 RoboBraver 战队 RoboMaster 2026 超级对抗赛 区域赛",
+      "url": "https://www.bilibili.com/video/BV1BsL56jEUB/"
+    },
+    "2026|南部赛区|76|2026-南部赛区-76": {
+      "title": "南部赛区 第七十六场 东莞理工学院 ACE 战队 VS 华南理工大学 华南虎 战队 RoboMaster 2026 超级对抗赛 区域赛",
+      "url": "https://www.bilibili.com/video/BV1a6L56KEj5/"
+    },
+    "2026|南部赛区|77|2026-南部赛区-77": {
+      "title": "南部赛区 第七十七场 广州城市理工学院 野狼 战队 VS 上海交通大学 交龙 战队 RoboMaster 2026 超级对抗赛 区域赛",
+      "url": "https://www.bilibili.com/video/BV1YqL56MEGD/"
+    },
+    "2026|南部赛区|78|2026-南部赛区-78": {
+      "title": "南部赛区 第七十八场 仲恺农业工程学院 奇点 战队 VS 华南农业大学 Taurus 战队 RoboMaster 2026 超级对抗赛 区域赛",
+      "url": "https://www.bilibili.com/video/BV1YqL56MEb4/"
+    },
+    "2026|南部赛区|79|2026-南部赛区-79": {
+      "title": "南部赛区 第七十九场 武汉工程大学 Nautilus 战队 VS  华中科技大学 狼牙 战队 RoboMaster 2026 超级对抗赛 区域赛",
+      "url": "https://www.bilibili.com/video/BV16WLj6RErx/"
+    },
+    "2026|南部赛区|80|2026-南部赛区-80": {
+      "title": "南部赛区 第八十场 厦门大学嘉庚学院 TCR 战队 VS 深圳大学 RobotPilots 战队 RoboMaster 2026 超级对抗赛 区域赛",
+      "url": "https://www.bilibili.com/video/BV1rWLj6REgf/"
+    },
+    "2026|南部赛区|81|2026-南部赛区-81": {
+      "title": "南部赛区 第八十一场 桂林电子科技大学 Evolution 战队 VS 广东工业大学 DynamicX 战队 RoboMaster 2026 超级对抗赛 区域赛",
+      "url": "https://www.bilibili.com/video/BV1wpLj64EGz/"
+    },
+    "2026|南部赛区|82|2026-南部赛区-82": {
+      "title": "南部赛区 第八十二场 南华大学 MA 战队 VS 深圳技术大学 悍匠 战队 RoboMaster 2026 超级对抗赛 区域赛",
+      "url": "https://www.bilibili.com/video/BV1ywLJ6qEaT/"
+    },
+    "2026|南部赛区|85|2026-南部赛区-85": {
+      "title": "南部赛区 第八十五场 武汉工程大学 Nautilus 战队 VS 广东工业大学 DynamicX 战队 RoboMaster 2026 超级对抗赛 区域赛",
+      "url": "https://www.bilibili.com/video/BV1DTLE65E6x/"
+    },
+    "2026|南部赛区|86|2026-南部赛区-86": {
+      "title": "南部赛区 第八十六场 深圳大学 RobotPilots 战队 VS 南华大学 MA 战队 RoboMaster 2026 超级对抗赛 区域赛",
+      "url": "https://www.bilibili.com/video/BV1e6LE6QEDk/"
+    },
+    "2026|南部赛区|83|2026-南部赛区-83": {
+      "title": "南部赛区 第八十三场  五邑大学 IMCA 战队 VS 广州城市理工学院 野狼 战队 RoboMaster 2026 超级对抗赛 区域赛",
+      "url": "https://www.bilibili.com/video/BV1swLJ6qE7h/"
+    },
+    "2026|南部赛区|84|2026-南部赛区-84": {
+      "title": "南部赛区 第八十四场 东莞理工学院 ACE 战队 VS 华南农业大学 Taurus 战队 RoboMaster 2026 超级对抗赛 区域赛",
+      "url": "https://www.bilibili.com/video/BV1kTLJ6PE1v/"
+    },
+    "2026|南部赛区|87|2026-南部赛区-87": {
+      "title": "南部赛区 第八十七场 广州城市理工学院 野狼 战队 VS 东莞理工学院 ACE 战队 RoboMaster 2026 超级对抗赛 区域赛",
+      "url": "https://www.bilibili.com/video/BV1mFLH62EV5/"
+    },
+    "2026|南部赛区|88|2026-南部赛区-88": {
+      "title": "南部赛区 第八十八场 五邑大学 IMCA 战队 VS 华南农业大学 Taurus 战队 RoboMaster 2026 超级对抗赛 区域赛",
+      "url": "https://www.bilibili.com/video/BV18dLn6JEgB/"
+    }
+  }
+}

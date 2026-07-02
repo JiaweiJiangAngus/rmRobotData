@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 """Read and normalize the historical RoboMaster xlsx for the main dashboard."""
 
+import json
 import re
 import zipfile
 from pathlib import Path
@@ -100,4 +101,11 @@ def build_payload(sheets):
                 "rank2025": clean_number(row[5]), "result": row[17] or "待赛",
                 "regionalCount": clean_number(row[18]), "nationalCount": clean_number(row[19]),
             })
+    extra_path = Path("results_2026.json")
+    if extra_path.exists():
+        extra = json.loads(extra_path.read_text(encoding="utf-8"))
+        for item in extra.get("matches", []):
+            if item.get("id") not in positions:
+                positions[item["id"]] = len(matches)
+                matches.append(item)
     return {"matches": matches, "qualifiers": qualifiers}

@@ -29,10 +29,15 @@ def load_schedule_data():
 
 def load_replay_links():
     path = Path(__file__).resolve().parent / "data" / "replay_links.json"
-    if not path.exists():
-        return {}
-    with path.open("r", encoding="utf-8") as handle:
-        return json.load(handle)
+    links = {}
+    if path.exists():
+        with path.open("r", encoding="utf-8") as handle:
+            links.update(json.load(handle))
+    extra_path = Path(__file__).resolve().parent / "results_2026.json"
+    if extra_path.exists():
+        with extra_path.open("r", encoding="utf-8") as handle:
+            links.update(json.load(handle).get("replayLinks", {}))
+    return links
 
 
 def parse_value(raw):
