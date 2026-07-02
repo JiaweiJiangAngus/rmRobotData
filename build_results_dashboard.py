@@ -102,6 +102,36 @@ def build_payload(sheets):
                 "regionalCount": clean_number(row[18]), "nationalCount": clean_number(row[19]),
             })
     rankings = []
+    ranking_sheet = sheets.get("分区赛名单", [])
+    directions = "西南|西北|中南|华北|华东|东北|东部|西部|南部|北部|中部"
+    for year, start in zip(range(2015, 2027), range(0, 48, 4)):
+        current_zone = ""
+        ranking_order = 0
+        remaining = 0
+        for source_row in ranking_sheet:
+            row = source_row + [""] * (start + 3 - len(source_row))
+            school, team, result = row[start:start + 3]
+            heading = re.search(rf"({directions})(?:赛区|分区赛)[^\d]*(\d+)", school)
+            if heading:
+                direction = heading.group(1)
+                if year == 2021:
+                    current_zone = direction[0] + "区"
+                elif year >= 2022 and year != 2023:
+                    current_zone = direction + "赛区"
+                else:
+                    current_zone = direction
+                remaining = int(heading.group(2))
+                ranking_order = 0
+                continue
+            if current_zone and remaining > 0 and school and team:
+                ranking_order += 1
+                remaining -= 1
+                rankings.append({
+                    "season": str(year), "zone": current_zone, "school": school,
+                    "team": team, "result": result or "未列名次", "sortOrder": ranking_order,
+                })
+                if remaining == 0:
+                    current_zone = ""
     extra_path = Path("results_2026.json")
     if extra_path.exists():
         extra = json.loads(extra_path.read_text(encoding="utf-8"))
@@ -109,5 +139,6 @@ def build_payload(sheets):
             if item.get("id") not in positions:
                 positions[item["id"]] = len(matches)
                 matches.append(item)
-        rankings.extend(extra.get("rankings", []))
+        if not rankings:
+            rankings.extend(extra.get("rankings", []))
     return {"matches": matches, "qualifiers": qualifiers, "rankings": rankings}

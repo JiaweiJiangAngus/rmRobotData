@@ -7440,11 +7440,12 @@ def render_html(title, payload):
       const rankings = (scheduleData.rankings || []).filter((item) =>
         (!season || item.season === season) && (!zone || item.zone === zone)
       ).sort((a, b) => String(a.zone).localeCompare(String(b.zone), "zh-CN") ||
-        String(a.group).localeCompare(String(b.group), "zh-CN") || Number(a.rank || 999) - Number(b.rank || 999));
+        Number(a.sortOrder || 999) - Number(b.sortOrder || 999));
       document.getElementById("zoneRankingTitle").textContent = zone ? `${{season || "当前"}} ${{zone}}排名` : `${{season || "当前"}} 各赛区排名`;
-      document.getElementById("qualifierCountLabel").textContent = rankings.length ? `${{rankings.length}} 支队伍` : "暂无排名数据";
+      const rankedCount = rankings.filter((item) => item.result && item.result !== "未列名次").length;
+      document.getElementById("qualifierCountLabel").textContent = rankings.length ? `${{rankings.length}} 支队伍 · ${{rankedCount}} 支已有名次` : "暂无排名数据";
       document.getElementById("qualifierRecap").innerHTML = rankings.length ? rankings.map((item) =>
-        `<article class="recap-card"><b>${{scheduleEscape(item.group)}}组第 ${{scheduleEscape(item.rank)}} 名 · ${{scheduleEscape(item.team)}}</b><span>${{scheduleEscape(item.school)}} · ${{scheduleEscape(item.zone)}}${{item.score == null ? "" : ` · 积分 ${{scheduleEscape(item.score)}}`}}</span></article>`
+        `<article class="recap-card"><b>${{scheduleEscape(item.result || "未列名次")}} · ${{scheduleEscape(item.team)}}</b><span>${{scheduleEscape(item.school)}} · ${{scheduleEscape(item.zone)}}</span></article>`
       ).join("") : '<div class="schedule-empty">当前赛区暂无官方排名数据。</div>';
     }}
 
