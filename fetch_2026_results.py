@@ -64,8 +64,17 @@ def main():
     with urllib.request.urlopen(schedule_request, timeout=30) as response:
         live_schedule = json.load(response)
     official_matches = {}
+    rankings = []
     for zone in live_schedule["data"]["event"]["zones"]["nodes"]:
         zone_name = zone["name"]
+        for group in (zone.get("groups") or {}).get("nodes", []):
+            for player in (group.get("players") or {}).get("nodes", []):
+                team = player.get("team") or {}
+                rankings.append({
+                    "season": "2026", "zone": zone_name, "group": group.get("name", "-"),
+                    "rank": player.get("rank"), "school": team.get("collegeName", "-"),
+                    "team": team.get("name", "-"), "score": player.get("score"),
+                })
         for source, stage in (("groupMatches", "小组赛"), ("knockoutMatches", "淘汰赛")):
             for match in (zone.get(source) or {}).get("nodes", []):
                 official_matches[(zone_name, int(match["orderNumber"]))] = {
@@ -123,8 +132,9 @@ def main():
             }
         print(f"{expected_zone}: {len(archives)} videos")
     rows.sort(key=lambda item: (item["zone"], int(item["order"])))
-    OUTPUT.write_text(json.dumps({"matches": rows, "replayLinks": links}, ensure_ascii=False, indent=2), encoding="utf-8")
-    print(f"saved {len(rows)} matches and {len(links)} links to {OUTPUT}")
+    rankings.sort(key=lambda item: (item["zone"], item["group"], item["rank"] or 999))
+    OUTPUT.write_text(json.dumps({"matches": rows, "rankings": rankings, "replayLinks": links}, ensure_ascii=False, indent=2), encoding="utf-8")
+    print(f"saved {len(rows)} matches, {len(rankings)} rankings and {len(links)} links to {OUTPUT}")
 
 
 if __name__ == "__main__":

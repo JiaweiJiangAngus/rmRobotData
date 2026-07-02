@@ -101,6 +101,7 @@ def build_payload(sheets):
                 "rank2025": clean_number(row[5]), "result": row[17] or "待赛",
                 "regionalCount": clean_number(row[18]), "nationalCount": clean_number(row[19]),
             })
+    rankings = []
     extra_path = Path("results_2026.json")
     if extra_path.exists():
         extra = json.loads(extra_path.read_text(encoding="utf-8"))
@@ -108,4 +109,5 @@ def build_payload(sheets):
             if item.get("id") not in positions:
                 positions[item["id"]] = len(matches)
                 matches.append(item)
-    return {"matches": matches, "qualifiers": qualifiers}
+        rankings.extend(extra.get("rankings", []))
+    return {"matches": matches, "qualifiers": qualifiers, "rankings": rankings}

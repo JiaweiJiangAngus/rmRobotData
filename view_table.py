@@ -4328,7 +4328,7 @@ def render_html(title, payload):
         <div class="season-recap" id="seasonRecap"></div>
       </section>
       <section class="schedule-panel">
-        <div class="schedule-panel-head"><div><span class="eyebrow">2026 NATIONAL</span><h2>2026 全国赛席位归纳</h2></div><span class="schedule-count" id="qualifierCountLabel"></span></div>
+        <div class="schedule-panel-head"><div><span class="eyebrow">ZONE RANKING</span><h2 id="zoneRankingTitle">当前赛区排名</h2></div><span class="schedule-count" id="qualifierCountLabel"></span></div>
         <div class="season-recap" id="qualifierRecap"></div>
         <p class="schedule-source">数据来源：<a href="https://bbs.robomaster.com/article/1883355" target="_blank" rel="noopener">RoboMaster 社区赛果记录</a>　·　回放来源：<a href="https://space.bilibili.com/20554233" target="_blank" rel="noopener">RoboMaster机甲大师 B 站官方空间</a><br>只有通过年份、赛区、场次和双方战队核验的视频才显示“直接看回放”；未确认的场次不显示链接。“待核”数据可能存在比分、红蓝方或赛程顺序不明。</p>
       </section>
@@ -7391,7 +7391,7 @@ def render_html(title, payload):
     }}
 
     function getPreferredFinalZone(values) {{
-      return ["全国赛", "总决赛"].find((value) => values.includes(value)) || "";
+      return ["全国赛", "总决赛"].find((value) => values.includes(value)) || values[0] || "";
     }}
 
     function refreshScheduleZoneOptions(forceFinal = false) {{
@@ -7431,12 +7431,21 @@ def render_html(title, payload):
       }}).join("");
       document.getElementById("seasonRecap").innerHTML = recap;
 
-      const qualifiers = scheduleData.qualifiers || [];
-      const ranked = qualifiers.filter((item) => item.result && item.result !== "待赛");
-      document.getElementById("qualifierCountLabel").textContent = `${{qualifiers.length}} 支队伍 · ${{ranked.length}} 支已有名次`;
-      document.getElementById("qualifierRecap").innerHTML = qualifiers.map((item) =>
-        `<article class="recap-card"><b>${{scheduleEscape(item.result)}} · ${{scheduleEscape(item.team)}}</b><span>${{scheduleEscape(item.school)}} · ${{scheduleEscape(item.zone)}} · ${{scheduleEscape(item.type)}}</span></article>`
-      ).join("");
+      renderZoneRankings();
+    }}
+
+    function renderZoneRankings() {{
+      const season = document.getElementById("scheduleSeason").value;
+      const zone = document.getElementById("scheduleZone").value;
+      const rankings = (scheduleData.rankings || []).filter((item) =>
+        (!season || item.season === season) && (!zone || item.zone === zone)
+      ).sort((a, b) => String(a.zone).localeCompare(String(b.zone), "zh-CN") ||
+        String(a.group).localeCompare(String(b.group), "zh-CN") || Number(a.rank || 999) - Number(b.rank || 999));
+      document.getElementById("zoneRankingTitle").textContent = zone ? `${{season || "当前"}} ${{zone}}排名` : `${{season || "当前"}} 各赛区排名`;
+      document.getElementById("qualifierCountLabel").textContent = rankings.length ? `${{rankings.length}} 支队伍` : "暂无排名数据";
+      document.getElementById("qualifierRecap").innerHTML = rankings.length ? rankings.map((item) =>
+        `<article class="recap-card"><b>${{scheduleEscape(item.group)}}组第 ${{scheduleEscape(item.rank)}} 名 · ${{scheduleEscape(item.team)}}</b><span>${{scheduleEscape(item.school)}} · ${{scheduleEscape(item.zone)}}${{item.score == null ? "" : ` · 积分 ${{scheduleEscape(item.score)}}`}}</span></article>`
+      ).join("") : '<div class="schedule-empty">当前赛区暂无官方排名数据。</div>';
     }}
 
     function getFilteredSchedule() {{
@@ -7468,6 +7477,7 @@ def render_html(title, payload):
     }}
 
     function renderSchedule() {{
+      renderZoneRankings();
       const rows = getFilteredSchedule();
       const pages = Math.max(1, Math.ceil(rows.length / schedulePageSize));
       schedulePage = Math.min(schedulePage, pages);
