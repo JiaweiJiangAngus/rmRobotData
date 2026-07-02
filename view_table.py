@@ -1,10 +1,38 @@
 import csv
 import html
 import json
+import os
 import sys
 from pathlib import Path
 
 from team_eval_rules import get_team_evaluation_config
+
+try:
+    from build_results_dashboard import build_payload as build_schedule_payload
+    from build_results_dashboard import read_workbook as read_results_workbook
+except ImportError:
+    build_schedule_payload = None
+    read_results_workbook = None
+
+
+DEFAULT_RESULTS_XLSX = Path("/home/jwj/Downloads/RoboMaster 2015-2026 赛果记录.xlsx")
+
+
+def load_schedule_data():
+    """Load and normalize the historical match workbook when it is available."""
+    configured = os.environ.get("RM_RESULTS_XLSX")
+    path = Path(configured) if configured else DEFAULT_RESULTS_XLSX
+    if not path.exists() or read_results_workbook is None:
+        return {"matches": [], "qualifiers": []}
+    return build_schedule_payload(read_results_workbook(path))
+
+
+def load_replay_links():
+    path = Path(__file__).resolve().parent / "data" / "replay_links.json"
+    if not path.exists():
+        return {}
+    with path.open("r", encoding="utf-8") as handle:
+        return json.load(handle)
 
 
 def parse_value(raw):
@@ -278,10 +306,13 @@ def render_html(title, payload):
     (() => {{
       const savedTheme = localStorage.getItem("rm-dashboard-theme");
       const savedDensity = localStorage.getItem("rm-dashboard-density") || "standard";
+      const savedBackground = localStorage.getItem("rm-dashboard-background");
       const prefersNight = window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches;
       const theme = savedTheme || (prefersNight ? "night" : "day");
+      const background = savedBackground === "simple" ? "simple" : "fancy";
       document.documentElement.dataset.theme = theme;
       document.documentElement.dataset.density = savedDensity;
+      document.documentElement.dataset.background = background;
     }})();
   </script>
   <style>
@@ -3857,6 +3888,225 @@ def render_html(title, payload):
       }}
     }}
 
+
+    /* ========== Per-role table pages + focused ranking metric ========== */
+    .table-type-pages {{
+      display: flex;
+      flex-wrap: wrap;
+      gap: 9px;
+      margin: 0 0 14px;
+      padding: 10px;
+      border: 1px solid var(--line);
+      background: var(--panel-soft);
+    }}
+
+    .table-type-pages[hidden] {{
+      display: none;
+    }}
+
+    .table-type-page {{
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      min-height: 38px;
+      padding: 8px 12px;
+      border: 1px solid var(--line);
+      background: var(--button-bg);
+      color: var(--muted);
+      font: inherit;
+      font-size: 13px;
+      font-weight: 900;
+      cursor: pointer;
+    }}
+
+    .table-type-page span {{
+      min-width: 22px;
+      padding: 2px 6px;
+      background: rgba(127, 127, 127, 0.12);
+      color: inherit;
+      font-size: 11px;
+      text-align: center;
+    }}
+
+    .table-type-page:hover {{
+      border-color: var(--accent);
+      color: var(--text);
+    }}
+
+    .table-type-page.active {{
+      border-color: var(--accent);
+      background: linear-gradient(135deg, var(--accent), var(--hud-cyan));
+      color: #fff;
+      box-shadow: 0 9px 22px var(--accent-soft);
+    }}
+
+    thead th.active-metric-header {{
+      min-width: 142px;
+      color: var(--accent-deep) !important;
+      background:
+        linear-gradient(90deg, var(--accent-soft), var(--hud-cyan-soft)),
+        var(--panel-strong) !important;
+      box-shadow: inset 3px 0 0 var(--accent), inset 0 -3px 0 var(--accent);
+    }}
+
+    .sort-focus-badge {{
+      display: inline-block;
+      margin-left: 7px;
+      padding: 2px 6px;
+      background: var(--accent);
+      color: #fff;
+      font-size: 10px;
+      line-height: 1.4;
+      letter-spacing: 0;
+      vertical-align: 1px;
+    }}
+
+    td.focus-metric {{
+      background: linear-gradient(90deg, var(--accent-soft), var(--hud-cyan-soft));
+      box-shadow: inset 3px 0 0 var(--accent);
+      color: var(--accent-deep);
+    }}
+
+    td.focus-metric-empty {{
+      color: var(--muted);
+    }}
+
+    .below-table-grid {{
+      margin: 18px 0 0;
+    }}
+
+    .below-table-grid[hidden] {{
+      display: none;
+    }}
+
+
+    /* ========== Background switch: simple / fancy ========== */
+    html[data-background="simple"] body {{
+      background: linear-gradient(180deg, #f4f6f8 0%, #e8edf1 100%);
+    }}
+
+    html[data-background="simple"][data-theme="night"] body {{
+      background: linear-gradient(180deg, #17212d 0%, #0f1722 100%);
+    }}
+
+    html[data-background="simple"] body::before,
+    html[data-background="simple"] body::after,
+    html[data-background="simple"] .animated-backdrop,
+    html[data-background="simple"] .hud-frame,
+    html[data-background="simple"] .cockpit-rail {{
+      display: none;
+    }}
+
+    /* ========== 一级数据板块：机器人数据 / 赛程赛果 ========== */
+    .dataset-nav {{
+      position: sticky;
+      top: 0;
+      z-index: 80;
+      display: flex;
+      gap: 8px;
+      margin: 0 0 18px;
+      padding: 10px;
+      border: 1px solid var(--line);
+      background: color-mix(in srgb, var(--panel-strong) 90%, transparent);
+      backdrop-filter: blur(18px);
+      box-shadow: var(--shadow);
+    }}
+    .dataset-tab {{
+      flex: 1;
+      min-height: 48px;
+      border: 1px solid var(--line);
+      background: var(--button-bg);
+      color: var(--muted);
+      font: inherit;
+      font-weight: 950;
+      cursor: pointer;
+    }}
+    .dataset-tab.active {{
+      border-color: var(--accent);
+      color: #fff;
+      background: linear-gradient(135deg, var(--accent), var(--hud-cyan));
+      box-shadow: 0 0 24px var(--accent-soft);
+    }}
+    .dataset-board[hidden] {{ display: none !important; }}
+    .schedule-board {{ display: grid; gap: 16px; }}
+    .schedule-hero, .schedule-controls, .schedule-panel, .schedule-summary {{
+      border: 1px solid var(--glass-line);
+      background: var(--panel);
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(14px);
+    }}
+    .schedule-hero {{ padding: 28px; }}
+    .schedule-hero h1 {{ margin: 8px 0; font-size: clamp(30px, 5vw, 58px); }}
+    .schedule-hero p {{ max-width: 920px; margin: 0; color: var(--muted); line-height: 1.8; }}
+    .schedule-summary {{ display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px; }}
+    .schedule-stat {{ padding: 20px; background: var(--panel-soft); }}
+    .schedule-stat b {{ display: block; font-size: 29px; color: var(--accent-deep); }}
+    .schedule-stat span {{ color: var(--muted); font-size: 12px; }}
+    .schedule-controls {{ display: grid; grid-template-columns: 150px 190px 210px 1fr auto; gap: 10px; padding: 14px; }}
+    .schedule-controls select, .schedule-controls input {{
+      min-width: 0; height: 42px; border: 1px solid var(--line); background: var(--input-bg);
+      color: var(--text); padding: 0 12px; font: inherit;
+    }}
+    .schedule-check {{ display: flex; align-items: center; gap: 7px; color: var(--muted); font-size: 12px; white-space: nowrap; }}
+    .schedule-panel {{ padding: 18px; }}
+    .schedule-panel-head {{ display: flex; justify-content: space-between; gap: 18px; align-items: end; margin-bottom: 12px; }}
+    .schedule-panel h2 {{ margin: 0; }}
+    .schedule-count {{ color: var(--muted); font-size: 12px; }}
+    .schedule-list {{ display: grid; gap: 8px; }}
+    .schedule-stage-group {{ display: grid; gap: 8px; margin-bottom: 16px; }}
+    .schedule-stage-group:last-child {{ margin-bottom: 0; }}
+    .schedule-stage-heading {{
+      display: flex; align-items: center; justify-content: space-between; gap: 12px;
+      padding: 10px 13px; border-left: 4px solid var(--accent);
+      background: linear-gradient(90deg, var(--accent-soft), transparent); color: var(--text);
+    }}
+    .schedule-stage-heading b {{ font-size: 14px; }}
+    .schedule-stage-heading span {{ color: var(--muted); font-size: 11px; }}
+    .schedule-match {{
+      display: grid; grid-template-columns: 90px minmax(150px,1fr) 110px minmax(150px,1fr) 170px;
+      align-items: center; min-height: 74px; border: 1px solid var(--line); background: var(--panel-strong);
+    }}
+    .schedule-meta, .schedule-tail {{ padding: 10px 13px; color: var(--muted); font-size: 11px; }}
+    .schedule-meta {{ border-right: 1px solid var(--line); }}
+    .schedule-meta b, .schedule-stage {{ display: block; color: var(--text); font-weight: 950; }}
+    .schedule-team {{ padding: 10px 15px; min-width: 0; }}
+    .schedule-team.red {{ text-align: right; }}
+    .schedule-team b, .schedule-team small {{ display: block; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }}
+    .schedule-team small {{ margin-top: 4px; color: var(--muted); }}
+    .schedule-score {{ display: flex; justify-content: center; gap: 9px; font-size: 24px; font-weight: 950; }}
+    .schedule-score .red {{ color: var(--accent); }} .schedule-score .blue {{ color: var(--hud-cyan); }}
+    .schedule-tail {{ border-left: 1px solid var(--line); }}
+    .schedule-flag {{ display: inline-block; margin-top: 4px; padding: 2px 5px; color: #7a5900; background: #ffe59a; }}
+    .schedule-replay {{
+      display: inline-block; margin-top: 6px; padding: 4px 7px; border: 1px solid color-mix(in srgb, var(--hud-cyan), transparent 45%);
+      color: var(--hud-cyan); background: var(--hud-cyan-soft); font-weight: 900; text-decoration: none;
+    }}
+    .schedule-replay:hover {{ border-color: var(--accent); color: var(--accent-deep); }}
+    .schedule-empty {{ padding: 60px 20px; text-align: center; color: var(--muted); }}
+    .schedule-pagination {{ display: flex; justify-content: center; align-items: center; gap: 10px; margin-top: 16px; }}
+    .schedule-pagination button {{ border: 1px solid var(--line); background: var(--button-bg); color: var(--text); padding: 9px 15px; cursor: pointer; }}
+    .schedule-pagination button:disabled {{ opacity: .35; cursor: default; }}
+    .season-recap {{ display: grid; grid-template-columns: repeat(5, 1fr); gap: 8px; }}
+    .recap-card {{ padding: 13px; border: 1px solid var(--line); background: var(--panel-soft); }}
+    .recap-card b {{ display: block; }} .recap-card span {{ color: var(--muted); font-size: 11px; }}
+    .schedule-source {{ margin-top: 14px; color: var(--muted); font-size: 12px; line-height: 1.7; }}
+    .schedule-source a {{ color: var(--accent-deep); font-weight: 900; }}
+    @media (max-width: 900px) {{
+      .schedule-summary {{ grid-template-columns: 1fr 1fr; }}
+      .schedule-controls {{ grid-template-columns: 1fr 1fr; }}
+      .schedule-controls input {{ grid-column: 1 / -1; }}
+      .schedule-match {{ grid-template-columns: 62px minmax(0,1fr) 76px minmax(0,1fr); }}
+      .schedule-tail {{ grid-column: 1 / -1; border-left: 0; border-top: 1px solid var(--line); }}
+      .season-recap {{ grid-template-columns: repeat(2, 1fr); }}
+    }}
+    @media (max-width: 560px) {{
+      .dataset-nav {{ position: relative; }}
+      .schedule-controls {{ grid-template-columns: 1fr; }} .schedule-controls input {{ grid-column: auto; }}
+      .schedule-match {{ grid-template-columns: 48px minmax(0,1fr) 60px minmax(0,1fr); }}
+      .schedule-team {{ padding: 8px; }} .schedule-team b {{ font-size: 12px; }}
+      .season-recap {{ grid-template-columns: 1fr; }}
+    }}
+
   </style>
 </head>
 <body>
@@ -3899,11 +4149,17 @@ def render_html(title, payload):
       <span>BALLISTIC DATA CORE</span>
       <span>TACTICAL VIEW ONLINE</span>
     </div>
+    <nav class="dataset-nav" aria-label="数据板块">
+      <button class="dataset-tab active" type="button" data-dataset-tab="robot">01　机器人数据</button>
+      <button class="dataset-tab" type="button" data-dataset-tab="schedule">02　赛程赛果</button>
+    </nav>
+    <div class="dataset-board" id="robotBoard" data-dataset-board="robot">
     <section class="hero">
       <div class="hero-card">
         <div class="hero-toolbar">
           <span class="eyebrow">RM ARMOR BAY // MECHA DATA CORE</span>
           <div class="toolbar-actions">
+            <button id="backgroundToggle" class="theme-toggle background-toggle" type="button" aria-label="切换到简约背景">✦ 背景：正常</button>
             <button id="densityToggle" class="theme-toggle density-toggle" type="button" aria-label="切换表格密度">▤ 紧凑</button>
             <button id="themeToggle" class="theme-toggle" type="button" aria-label="切换白昼或夜间模式">🌙 夜间</button>
           </div>
@@ -4025,6 +4281,7 @@ def render_html(title, payload):
         </div>
         <section class="tactical-brief" id="tacticalBrief" aria-live="polite"></section>
         <div class="chart-grid" id="chartGrid"></div>
+        <div class="table-type-pages" id="tableTypePages" role="tablist" aria-label="按兵种切换数据页" hidden></div>
         <div class="table-wrap">
           <table>
             <thead id="tableHead"></thead>
@@ -4032,8 +4289,45 @@ def render_html(title, payload):
           </table>
           <div class="empty" id="emptyState" hidden>当前筛选条件下没有结果。</div>
         </div>
+        <div class="chart-grid below-table-grid" id="belowTableGrid" aria-label="数据表下方的综合排名"></div>
       </section>
     </section>
+    </div>
+
+    <div class="dataset-board schedule-board" id="scheduleBoard" data-dataset-board="schedule" hidden>
+      <section class="schedule-hero">
+        <span class="eyebrow">RM MATCH ARCHIVE // 2015—2026</span>
+        <h1>历年赛程与赛果</h1>
+        <p>已将原始工作簿归纳为统一的“赛季—赛区—阶段—红蓝双方—比分”结构。2015—2025 按逐场赛果查询；2026 工作簿目前记录的是全国赛名单与最终席位，因此单独归纳，不计入逐场对阵总数。</p>
+      </section>
+      <section class="schedule-summary" aria-label="赛程数据概览">
+        <div class="schedule-stat"><b id="scheduleMatchCount">0</b><span>有效逐场记录</span></div>
+        <div class="schedule-stat"><b id="scheduleTeamCount">0</b><span>历史战队组合</span></div>
+        <div class="schedule-stat"><b id="scheduleSchoolCount">0</b><span>参赛高校</span></div>
+        <div class="schedule-stat"><b id="scheduleUncertainCount">0</b><span>待核记录</span></div>
+      </section>
+      <section class="schedule-controls" aria-label="赛程筛选">
+        <select id="scheduleSeason"><option value="">全部赛季</option></select>
+        <select id="scheduleZone"><option value="">全部赛区</option></select>
+        <select id="scheduleStage"><option value="">全部比赛阶段</option></select>
+        <input id="scheduleSearch" type="search" placeholder="搜索学校、战队或备注">
+        <label class="schedule-check"><input id="scheduleIncludeUncertain" type="checkbox" checked>包含待核</label>
+      </section>
+      <section class="schedule-panel">
+        <div class="schedule-panel-head"><div><span class="eyebrow">MATCH SCHEDULE</span><h2>逐场赛程</h2></div><span class="schedule-count" id="scheduleCountLabel"></span></div>
+        <div class="schedule-list" id="scheduleList"></div>
+        <div class="schedule-pagination"><button id="schedulePrev" type="button">上一页</button><span class="schedule-count" id="schedulePageLabel"></span><button id="scheduleNext" type="button">下一页</button></div>
+      </section>
+      <section class="schedule-panel">
+        <div class="schedule-panel-head"><div><span class="eyebrow">SEASON RECAP</span><h2>按赛季归纳</h2></div><span class="schedule-count">场次 · 参赛队伍 · 决赛阶段</span></div>
+        <div class="season-recap" id="seasonRecap"></div>
+      </section>
+      <section class="schedule-panel">
+        <div class="schedule-panel-head"><div><span class="eyebrow">2026 NATIONAL</span><h2>2026 全国赛席位归纳</h2></div><span class="schedule-count" id="qualifierCountLabel"></span></div>
+        <div class="season-recap" id="qualifierRecap"></div>
+        <p class="schedule-source">数据来源：<a href="https://bbs.robomaster.com/article/1883355" target="_blank" rel="noopener">RoboMaster 社区赛果记录</a>　·　回放来源：<a href="https://space.bilibili.com/20554233" target="_blank" rel="noopener">RoboMaster机甲大师 B 站官方空间</a><br>只有通过年份、赛区、场次和双方战队核验的视频才显示“直接看回放”；未确认的场次不显示链接。“待核”数据可能存在比分、红蓝方或赛程顺序不明。</p>
+      </section>
+    </div>
   </div>
 
   <script>
@@ -4103,6 +4397,7 @@ def render_html(title, payload):
       limit: 50,
       activeSortColumn: payload.defaultMetric || "",
       activeSortDirection: "desc",
+      tableTypePage: "",
 
       compareSelections: [],
       compareZone: payload.initialZone && payload.initialZone !== "全部" ? payload.initialZone : "",
@@ -4129,8 +4424,11 @@ def render_html(title, payload):
       tableMeta: document.getElementById("tableMeta"),
       chartGrid: document.getElementById("chartGrid"),
       tacticalBrief: document.getElementById("tacticalBrief"),
+      tableTypePages: document.getElementById("tableTypePages"),
+      belowTableGrid: document.getElementById("belowTableGrid"),
       emptyState: document.getElementById("emptyState"),
       themeToggle: document.getElementById("themeToggle"),
+      backgroundToggle: document.getElementById("backgroundToggle"),
       densityToggle: document.getElementById("densityToggle"),
 
       compareZoneSelect: document.getElementById("compareZoneSelect"),
@@ -4638,6 +4936,95 @@ def render_html(title, payload):
         rows.some((row) => hasMetricData(column, row[column]))
       );
       return [...baseColumns, ...metricColumns];
+    }}
+
+    function getCurrentTableMetric() {{
+      if (state.activeSortColumn && !baseColumns.includes(state.activeSortColumn)) {{
+        return state.activeSortColumn;
+      }}
+      return state.metric && !baseColumns.includes(state.metric) ? state.metric : "";
+    }}
+
+    function getTablePageTypes() {{
+      const selectedZones = getSelectedZones();
+      if (selectedZones.length && selectedZones.every((zone) => is3v3LeagueZone(zone))) {{
+        return league3v3Types.slice();
+      }}
+      return radarAxes.map((axis) => axis.type);
+    }}
+
+    function pickTablePageForMetric(rows, metric) {{
+      if (!metric) return "";
+      return getTablePageTypes().find((type) =>
+        rows.some((row) => row["兵种"] === type && hasMetricData(metric, row[metric]))
+      ) || "";
+    }}
+
+    function focusTablePageForMetric(metric) {{
+      if (state.selectedType !== "全部") return;
+      const rows = getFilteredRows();
+      const currentPageHasMetric = rows.some((row) =>
+        row["兵种"] === state.tableTypePage && hasMetricData(metric, row[metric])
+      );
+      if (!currentPageHasMetric) {{
+        state.tableTypePage = pickTablePageForMetric(rows, metric) || state.tableTypePage;
+      }}
+    }}
+
+    function renderTableTypePages(filteredRows) {{
+      if (state.selectedType !== "全部") {{
+        els.tableTypePages.hidden = true;
+        els.tableTypePages.innerHTML = "";
+        return filteredRows;
+      }}
+
+      const pageTypes = getTablePageTypes();
+      if (!pageTypes.includes(state.tableTypePage)) {{
+        state.tableTypePage = pickTablePageForMetric(filteredRows, getCurrentTableMetric()) || pageTypes[0] || "";
+      }}
+
+      els.tableTypePages.hidden = false;
+      els.tableTypePages.innerHTML = pageTypes.map((type) => {{
+        const count = filteredRows.filter((row) => row["兵种"] === type).length;
+        const active = type === state.tableTypePage;
+        return `
+          <button
+            class="table-type-page ${{active ? "active" : ""}}"
+            type="button"
+            role="tab"
+            aria-selected="${{active ? "true" : "false"}}"
+            data-table-type-page="${{escapeHtml(type)}}"
+          >
+            ${{escapeHtml(type)}}页 <span>${{count}}</span>
+          </button>
+        `;
+      }}).join("");
+
+      els.tableTypePages.querySelectorAll("[data-table-type-page]").forEach((button) => {{
+        button.addEventListener("click", () => {{
+          state.tableTypePage = button.dataset.tableTypePage;
+          render();
+        }});
+      }});
+
+      return filteredRows.filter((row) => row["兵种"] === state.tableTypePage);
+    }}
+
+    function getTableVisibleColumns(rows) {{
+      const columns = getVisibleColumns(rows);
+      const activeMetric = getCurrentTableMetric();
+      if (activeMetric && payload.columns.includes(activeMetric) && !columns.includes(activeMetric)) {{
+        columns.push(activeMetric);
+      }}
+      return columns;
+    }}
+
+    function orderTableColumns(columns, activeMetric) {{
+      if (!activeMetric || !columns.includes(activeMetric)) return columns.slice();
+      const ordered = columns.filter((column) => column !== activeMetric);
+      const teamIndex = ordered.indexOf("战队");
+      ordered.splice(teamIndex >= 0 ? teamIndex + 1 : 0, 0, activeMetric);
+      return ordered;
     }}
 
     function pickMetric(metrics) {{
@@ -5577,6 +5964,12 @@ def render_html(title, payload):
           </div>
         </article>
       `;
+    }}
+
+    function renderBelowTableCards() {{
+      const crossZoneRankingCard = renderCrossZoneRankingCard();
+      els.belowTableGrid.innerHTML = crossZoneRankingCard;
+      els.belowTableGrid.hidden = !crossZoneRankingCard;
     }}
 
     function getTeamEvaluationConfig() {{
@@ -6574,8 +6967,6 @@ def render_html(title, payload):
       if (outlierCard) cards.push(outlierCard);
       const roleCard = renderRoleCoverageCard(rows);
       if (roleCard) cards.push(roleCard);
-      const crossZoneRankingCard = renderCrossZoneRankingCard();
-      if (crossZoneRankingCard) cards.push(crossZoneRankingCard);
 
       const comparisonCard = renderZoneComparisonCard(rows);
       if (comparisonCard) cards.push(comparisonCard);
@@ -6642,12 +7033,15 @@ def render_html(title, payload):
     }}
 
     function renderTable(rows, columns) {{
+      const activeMetricColumn = getCurrentTableMetric();
+      const tableColumns = orderTableColumns(columns, activeMetricColumn);
       els.tableHead.innerHTML = `
         <tr>
           <th data-column="__index__">序号</th>
-          ${{columns.map((column) => `
-            <th data-column="${{escapeHtml(column)}}">
+          ${{tableColumns.map((column) => `
+            <th class="${{column === activeMetricColumn ? "active-metric-header" : ""}}" data-column="${{escapeHtml(column)}}">
               ${{escapeHtml(column)}}${{column === state.activeSortColumn ? (state.activeSortDirection === "asc" ? " ↑" : " ↓") : ""}}
+              ${{column === activeMetricColumn ? '<span class="sort-focus-badge">当前专项</span>' : ""}}
             </th>
           `).join("")}}
         </tr>
@@ -6675,9 +7069,6 @@ def render_html(title, payload):
         return;
       }}
 
-      const activeMetricColumn = !baseColumns.includes(state.activeSortColumn)
-        ? state.activeSortColumn
-        : (!baseColumns.includes(state.metric) ? state.metric : "");
       const heatValues = activeMetricColumn
         ? rows.map((row) => row[activeMetricColumn]).filter((value) => typeof value === "number" && Number.isFinite(value))
         : [];
@@ -6687,13 +7078,16 @@ def render_html(title, payload):
       els.tableBody.innerHTML = rows.map((row, index) => `
         <tr>
           <td class="metric-cell row-rank ${{index < 3 ? "rank-top" : ""}}">#${{index + 1}}</td>
-          ${{columns.map((column) => {{
+          ${{tableColumns.map((column) => {{
             const value = row[column];
             const isMetric = !baseColumns.includes(column);
             if (!isMetric) return renderBaseCell(row, column);
-            if (column === activeMetricColumn && typeof value === "number" && Number.isFinite(value)) {{
-              const heat = maxHeat > 0 ? Math.max(6, Math.min(100, Math.round((value / maxHeat) * 100))) : 0;
-              return `<td class="metric-cell focus-metric"><span class="metric-value">${{escapeHtml(formatValue(value))}}</span><i class="metric-heat" style="--heat: ${{heat}}%"></i></td>`;
+            if (column === activeMetricColumn) {{
+              if (typeof value === "number" && Number.isFinite(value)) {{
+                const heat = maxHeat > 0 ? Math.max(6, Math.min(100, Math.round((value / maxHeat) * 100))) : 0;
+                return `<td class="metric-cell focus-metric"><span class="metric-value">${{escapeHtml(formatValue(value))}}</span><i class="metric-heat" style="--heat: ${{heat}}%"></i></td>`;
+              }}
+              return `<td class="metric-cell focus-metric focus-metric-empty">-</td>`;
             }}
             return `<td class="metric-cell">${{escapeHtml(formatValue(value))}}</td>`;
           }}).join("")}}
@@ -6701,19 +7095,25 @@ def render_html(title, payload):
       `).join("");
     }}
 
-    function renderMeta(filteredRows) {{
+    function renderMeta(filteredRows, tableRows) {{
       const metricLabel = state.activeSortColumn || state.metric || "默认";
       const titleParts = [];
       const selectedZones = getSelectedZones();
       if (selectedZones.length) titleParts.push(getSelectedZoneLabel());
       if (state.selectedType !== "全部") titleParts.push(state.selectedType);
 
-      const currentTitle = titleParts.length
+      const baseTableTitle = titleParts.length
         ? `${{titleParts.join(" · ")}} 数据列表`
         : "综合数据列表";
+      const currentTitle = state.selectedType === "全部" && state.tableTypePage
+        ? `${{baseTableTitle}} · ${{state.tableTypePage}}页`
+        : baseTableTitle;
       const heroTitle = titleParts.length
         ? `${{titleParts.join(" · ")}}`
         : payload.title;
+      const pageMeta = state.selectedType === "全部" && state.tableTypePage
+        ? `${{state.tableTypePage}}页 ${{tableRows.length}} 条（全部兵种共 ${{filteredRows.length}} 条）`
+        : `${{filteredRows.length}} 条`;
       const singleTeam = getSingleTeamCandidate(filteredRows);
       const radarLabel = getRadarShapeLabel(singleTeam ? singleTeam.zone : (selectedZones.length === 1 ? selectedZones[0] : "全部"));
       const mvpRadar = singleTeam ? buildMvpRadarModel(singleTeam.key, singleTeam.zone) : null;
@@ -6723,15 +7123,15 @@ def render_html(title, payload):
         ? (singleTeam
           ? `当前已锁定 ${{singleTeam.label}}，${{radarLabel}}会直接显示在表格上方，对比它在 ${{singleTeam.zone}} 赛区里的兵种综合水平。${{mvpRadar ? "检测到该队伍此赛区的 MVP 数据，已同步展示 MVP 雷达图。" : ""}}`
           : (selectedZones.length > 1
-            ? `当前正在比较 ${{selectedZones.length}} 个赛区，图表会先按七边形雷达图规则生成跨赛区战队总榜，再按“${{metricLabel}}”汇总赛区均值。`
+            ? `当前正在比较 ${{selectedZones.length}} 个赛区，主数据表可按兵种分页查看；跨赛区总实力表已经放在数据表下方，并按七边形雷达图规则汇总。`
             : `当前筛选命中 ${{filteredRows.length}} 条记录，你可以继续切赛区、兵种和排序指标，页面会自动收起无数据字段。`))
         : "当前筛选下没有可展示的数据，可以换个赛区、兵种或搜索词再试。";
       els.tableTitle.textContent = currentTitle;
       els.tableMeta.textContent = singleTeam
-        ? `当前显示 ${{filteredRows.length}} 条匹配记录，按“${{metricLabel}}”排序，已在上方展示赛区综合雷达图${{mvpRadar ? "和 MVP 雷达图" : ""}}`
+        ? `当前显示 ${{pageMeta}}，按“${{metricLabel}}”排序，已在上方展示赛区综合雷达图${{mvpRadar ? "和 MVP 雷达图" : ""}}`
         : (selectedZones.length > 1
-          ? `当前显示 ${{filteredRows.length}} 条匹配记录，已选择 ${{selectedZones.length}} 个赛区；上方总榜按 7 个兵种关键数据相对赛区均值排序`
-          : `当前显示 ${{filteredRows.length}} 条匹配记录，按“${{metricLabel}}”排序`);
+          ? `当前显示 ${{pageMeta}}，已选择 ${{selectedZones.length}} 个赛区；下方总实力表按各兵种关键数据相对合并均值排序`
+          : `当前显示 ${{pageMeta}}，按“${{metricLabel}}”排序`);
       document.title = heroTitle;
     }}
 
@@ -6743,12 +7143,15 @@ def render_html(title, payload):
       renderCompareControls();
       const visibleColumns = getVisibleColumns(filteredRows);
       const sortedRows = sortRows(filteredRows.slice(), visibleColumns);
-      const rows = sortedRows.slice(0, state.limit);
+      const tablePageRows = renderTableTypePages(filteredRows);
+      const tableVisibleColumns = getTableVisibleColumns(tablePageRows);
+      const rows = sortRows(tablePageRows.slice(), tableVisibleColumns).slice(0, state.limit);
       renderSummary(filteredRows);
-      renderMeta(filteredRows);
+      renderMeta(filteredRows, tablePageRows);
       renderTacticalBrief(filteredRows, sortedRows, visibleColumns);
       renderCharts(sortedRows);
-      renderTable(rows, visibleColumns);
+      renderTable(rows, tableVisibleColumns);
+      renderBelowTableCards();
     }}
 
 
@@ -6763,6 +7166,7 @@ def render_html(title, payload):
         state.activeSortDirection = "desc";
         state.direction = "desc";
         els.sortDirection.value = "desc";
+        focusTablePageForMetric(metric);
         render();
       }});
     }});
@@ -6781,6 +7185,7 @@ def render_html(title, payload):
       state.metric = event.target.value;
       state.activeSortColumn = event.target.value;
       state.activeSortDirection = els.sortDirection.value;
+      focusTablePageForMetric(event.target.value);
       render();
     }});
 
@@ -6798,6 +7203,10 @@ def render_html(title, payload):
       standard: "▤ 紧凑",
       compact: "▥ 标准",
     }};
+    const backgroundLabels = {{
+      fancy: "✦ 背景：花哨",
+      simple: "▧ 背景：简洁",
+    }};
 
     function getCurrentTheme() {{
       return document.documentElement.dataset.theme === "night" ? "night" : "day";
@@ -6810,6 +7219,24 @@ def render_html(title, payload):
       if (els.themeToggle) {{
         els.themeToggle.textContent = themeLabels[nextTheme];
         els.themeToggle.setAttribute("aria-label", nextTheme === "night" ? "切换到白昼模式" : "切换到夜间模式");
+      }}
+    }}
+
+    function getCurrentBackground() {{
+      return document.documentElement.dataset.background === "simple" ? "simple" : "fancy";
+    }}
+
+    function setBackground(background) {{
+      const nextBackground = background === "simple" ? "simple" : "fancy";
+      document.documentElement.dataset.background = nextBackground;
+      localStorage.setItem("rm-dashboard-background", nextBackground);
+      if (els.backgroundToggle) {{
+        els.backgroundToggle.textContent = backgroundLabels[nextBackground];
+        els.backgroundToggle.setAttribute(
+          "aria-label",
+          nextBackground === "fancy" ? "切换到简洁背景" : "切换到花哨背景"
+        );
+        els.backgroundToggle.setAttribute("aria-pressed", nextBackground === "simple" ? "true" : "false");
       }}
     }}
 
@@ -6875,6 +7302,13 @@ def render_html(title, payload):
       }});
     }}
 
+    if (els.backgroundToggle) {{
+      setBackground(getCurrentBackground());
+      els.backgroundToggle.addEventListener("click", () => {{
+        setBackground(getCurrentBackground() === "fancy" ? "simple" : "fancy");
+      }});
+    }}
+
     if (els.densityToggle) {{
       setDensity(getCurrentDensity());
       els.densityToggle.addEventListener("click", () => {{
@@ -6911,6 +7345,198 @@ def render_html(title, payload):
         }}, 1600);
       }}
     }});
+
+    /* 一级板块切换 + 赛程赛果分页 */
+    const scheduleData = payload.scheduleData || {{ matches: [], qualifiers: [] }};
+    let schedulePage = 1;
+    const schedulePageSize = 30;
+
+    function scheduleEscape(value) {{
+      return String(value ?? "").replace(/[&<>"']/g, (char) => ({{
+        "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;"
+      }})[char]);
+    }}
+
+    function uniqueScheduleValues(key) {{
+      return [...new Set(scheduleData.matches.map((item) => item[key]).filter(Boolean))]
+        .sort((a, b) => key === "season"
+          ? Number(b) - Number(a)
+          : String(a).localeCompare(String(b), "zh-CN", {{ numeric: true }}));
+    }}
+
+    function fillScheduleSelect(id, values, placeholder, preferredValue = "") {{
+      const select = document.getElementById(id);
+      if (!select) return;
+      const previousValue = select.value;
+      select.innerHTML = `<option value="">${{scheduleEscape(placeholder)}}</option>` + values.map((value) =>
+        `<option value="${{scheduleEscape(value)}}">${{scheduleEscape(value)}}</option>`
+      ).join("");
+      const nextValue = values.includes(preferredValue)
+        ? preferredValue
+        : (values.includes(previousValue) ? previousValue : "");
+      select.value = nextValue;
+    }}
+
+    function getScheduleValuesFor(key, season = "", zone = "") {{
+      return [...new Set(scheduleData.matches.filter((item) =>
+        (!season || item.season === season) && (!zone || item.zone === zone)
+      ).map((item) => item[key]).filter(Boolean))].sort((a, b) =>
+        String(a).localeCompare(String(b), "zh-CN", {{ numeric: true }})
+      );
+    }}
+
+    function getPreferredFinalZone(values) {{
+      return ["全国赛", "总决赛"].find((value) => values.includes(value)) || "";
+    }}
+
+    function refreshScheduleZoneOptions(forceFinal = false) {{
+      const season = document.getElementById("scheduleSeason").value;
+      const values = getScheduleValuesFor("zone", season);
+      const preferred = forceFinal ? getPreferredFinalZone(values) : document.getElementById("scheduleZone").value;
+      fillScheduleSelect("scheduleZone", values, "全部赛区", preferred);
+      refreshScheduleStageOptions();
+    }}
+
+    function refreshScheduleStageOptions() {{
+      const season = document.getElementById("scheduleSeason").value;
+      const zone = document.getElementById("scheduleZone").value;
+      fillScheduleSelect("scheduleStage", getScheduleValuesFor("stage", season, zone), "全部比赛阶段");
+    }}
+
+    function renderScheduleSummary() {{
+      const teams = new Set();
+      const schools = new Set();
+      scheduleData.matches.forEach((item) => {{
+        teams.add(`${{item.redSchool}}|${{item.redTeam}}`);
+        teams.add(`${{item.blueSchool}}|${{item.blueTeam}}`);
+        schools.add(item.redSchool);
+        schools.add(item.blueSchool);
+      }});
+      document.getElementById("scheduleMatchCount").textContent = scheduleData.matches.length.toLocaleString();
+      document.getElementById("scheduleTeamCount").textContent = teams.size.toLocaleString();
+      document.getElementById("scheduleSchoolCount").textContent = schools.size.toLocaleString();
+      document.getElementById("scheduleUncertainCount").textContent = scheduleData.matches.filter((item) => item.uncertain).length.toLocaleString();
+
+      const recap = uniqueScheduleValues("season").map((season) => {{
+        const rows = scheduleData.matches.filter((item) => item.season === season);
+        const seasonTeams = new Set();
+        rows.forEach((item) => {{ seasonTeams.add(item.redTeam); seasonTeams.add(item.blueTeam); }});
+        const finals = rows.filter((item) => /决赛|冠军|季军/.test(item.stage || "")).length;
+        return `<article class="recap-card"><b>${{scheduleEscape(season)}} 赛季</b><span>${{rows.length.toLocaleString()}} 场 · ${{seasonTeams.size}} 支队伍 · ${{finals}} 场淘汰/决赛记录</span></article>`;
+      }}).join("");
+      document.getElementById("seasonRecap").innerHTML = recap;
+
+      const qualifiers = scheduleData.qualifiers || [];
+      const ranked = qualifiers.filter((item) => item.result && item.result !== "待赛");
+      document.getElementById("qualifierCountLabel").textContent = `${{qualifiers.length}} 支队伍 · ${{ranked.length}} 支已有名次`;
+      document.getElementById("qualifierRecap").innerHTML = qualifiers.map((item) =>
+        `<article class="recap-card"><b>${{scheduleEscape(item.result)}} · ${{scheduleEscape(item.team)}}</b><span>${{scheduleEscape(item.school)}} · ${{scheduleEscape(item.zone)}} · ${{scheduleEscape(item.type)}}</span></article>`
+      ).join("");
+    }}
+
+    function getFilteredSchedule() {{
+      const season = document.getElementById("scheduleSeason").value;
+      const zone = document.getElementById("scheduleZone").value;
+      const stage = document.getElementById("scheduleStage").value;
+      const keyword = document.getElementById("scheduleSearch").value.trim().toLowerCase();
+      const includeUncertain = document.getElementById("scheduleIncludeUncertain").checked;
+      return scheduleData.matches.filter((item) => {{
+        if (season && item.season !== season) return false;
+        if (zone && item.zone !== zone) return false;
+        if (stage && item.stage !== stage) return false;
+        if (!includeUncertain && item.uncertain) return false;
+        if (!keyword) return true;
+        return [item.redSchool, item.redTeam, item.blueSchool, item.blueTeam, item.note]
+          .join(" ").toLowerCase().includes(keyword);
+      }}).sort((a, b) => {{
+        const seasonDifference = Number(b.season) - Number(a.season);
+        if (seasonDifference) return seasonDifference;
+        const orderDifference = Number(b.order || 0) - Number(a.order || 0);
+        if (orderDifference) return orderDifference;
+        return Number(b.id || 0) - Number(a.id || 0);
+      }});
+    }}
+
+    function getReplayLink(item) {{
+      const key = `${{item.season}}|${{item.zone}}|${{item.order}}|${{item.id}}`;
+      return (payload.replayLinks || {{}})[key] || null;
+    }}
+
+    function renderSchedule() {{
+      const rows = getFilteredSchedule();
+      const pages = Math.max(1, Math.ceil(rows.length / schedulePageSize));
+      schedulePage = Math.min(schedulePage, pages);
+      const visible = rows.slice((schedulePage - 1) * schedulePageSize, schedulePage * schedulePageSize);
+      const stageGroups = [];
+      visible.forEach((item) => {{
+        const stageName = item.stage || "阶段未明";
+        let group = stageGroups.find((entry) => entry.name === stageName);
+        if (!group) {{
+          group = {{ name: stageName, rows: [] }};
+          stageGroups.push(group);
+        }}
+        group.rows.push(item);
+      }});
+      document.getElementById("scheduleList").innerHTML = visible.length ? stageGroups.map((group) => {{
+        const stageTotal = rows.filter((item) => (item.stage || "阶段未明") === group.name).length;
+        const cards = group.rows.map((item) => {{
+        const replay = getReplayLink(item);
+        const replayButton = replay
+          ? `<br><a class="schedule-replay" href="${{scheduleEscape(replay.url)}}" target="_blank" rel="noopener" title="${{scheduleEscape(replay.title)}}">▶ 直接看回放</a>`
+          : "";
+        return `
+        <article class="schedule-match">
+          <div class="schedule-meta"><b>${{scheduleEscape(item.season)}}</b>${{scheduleEscape(item.zone || "未标注")}}</div>
+          <div class="schedule-team red"><b>${{scheduleEscape(item.redTeam)}}</b><small>${{scheduleEscape(item.redSchool)}}</small></div>
+          <div class="schedule-score"><span class="red">${{scheduleEscape(item.redScore)}}</span><span>:</span><span class="blue">${{scheduleEscape(item.blueScore)}}</span></div>
+          <div class="schedule-team"><b>${{scheduleEscape(item.blueTeam)}}</b><small>${{scheduleEscape(item.blueSchool)}}</small></div>
+          <div class="schedule-tail"><span class="schedule-stage">${{scheduleEscape(item.stage || "阶段未明")}}</span>第 ${{scheduleEscape(item.order || "—")}} 场${{item.note ? ` · ${{scheduleEscape(item.note)}}` : ""}}${{item.uncertain ? '<br><span class="schedule-flag">待核记录</span>' : ""}}${{replayButton}}</div>
+        </article>`;
+        }}).join("");
+        return `<section class="schedule-stage-group">
+          <div class="schedule-stage-heading"><b>${{scheduleEscape(group.name)}}</b><span>本页 ${{group.rows.length}} 场 · 共 ${{stageTotal}} 场</span></div>
+          ${{cards}}
+        </section>`;
+      }}).join("") : '<div class="schedule-empty">当前筛选条件下没有赛程记录。</div>';
+      document.getElementById("scheduleCountLabel").textContent = `共 ${{rows.length.toLocaleString()}} 场，当前显示 ${{visible.length}} 场`;
+      document.getElementById("schedulePageLabel").textContent = `第 ${{schedulePage}} / ${{pages}} 页`;
+      document.getElementById("schedulePrev").disabled = schedulePage <= 1;
+      document.getElementById("scheduleNext").disabled = schedulePage >= pages;
+    }}
+
+    document.querySelectorAll("[data-dataset-tab]").forEach((button) => {{
+      button.addEventListener("click", () => {{
+        const target = button.dataset.datasetTab;
+        document.querySelectorAll("[data-dataset-tab]").forEach((tab) => tab.classList.toggle("active", tab === button));
+        document.querySelectorAll("[data-dataset-board]").forEach((board) => board.hidden = board.dataset.datasetBoard !== target);
+        localStorage.setItem("rm-dashboard-board", target);
+        if (target === "schedule") renderSchedule();
+        window.scrollTo({{ top: 0, behavior: "smooth" }});
+      }});
+    }});
+    document.getElementById("scheduleSeason").addEventListener("change", () => {{
+      schedulePage = 1;
+      refreshScheduleZoneOptions(true);
+      renderSchedule();
+    }});
+    document.getElementById("scheduleZone").addEventListener("change", () => {{
+      schedulePage = 1;
+      refreshScheduleStageOptions();
+      renderSchedule();
+    }});
+    ["scheduleStage", "scheduleIncludeUncertain"].forEach((id) =>
+      document.getElementById(id).addEventListener("change", () => {{ schedulePage = 1; renderSchedule(); }})
+    );
+    document.getElementById("scheduleSearch").addEventListener("input", () => {{ schedulePage = 1; renderSchedule(); }});
+    document.getElementById("schedulePrev").addEventListener("click", () => {{ schedulePage -= 1; renderSchedule(); }});
+    document.getElementById("scheduleNext").addEventListener("click", () => {{ schedulePage += 1; renderSchedule(); }});
+    const scheduleSeasons = uniqueScheduleValues("season");
+    fillScheduleSelect("scheduleSeason", scheduleSeasons, "全部赛季", scheduleSeasons[0] || "");
+    refreshScheduleZoneOptions(true);
+    renderScheduleSummary();
+    renderSchedule();
+    const savedBoard = localStorage.getItem("rm-dashboard-board");
+    if (savedBoard === "schedule") document.querySelector('[data-dataset-tab="schedule"]').click();
 
     initializeVirtualMetrics();
     render();
@@ -6953,6 +7579,8 @@ def main(csv_file, title, default_sort=None, initial_zone="全部", initial_type
         "initialZone": initial_zone,
         "initialType": initial_type,
         "initialKeyword": initial_keyword,
+        "scheduleData": load_schedule_data(),
+        "replayLinks": load_replay_links(),
     }
 
     output_path = csv_path.with_name("robot_dashboard.html")

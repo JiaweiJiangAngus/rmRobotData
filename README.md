@@ -9,6 +9,7 @@
 - 指标排序：点击不同数据指标查看排名。
 - 战队对比：筛到单支战队时，页面会显示雷达图，用来观察不同兵种的综合表现。
 - 静态部署：生成的 `docs/index.html` 可以直接放到 GitHub Pages 上作为网页访问。
+- 双板块首页：`docs/index.html` 可在“机器人数据”和“赛程赛果”之间切换，赛程支持筛选与分页。
 
 ## 项目结构
 
@@ -16,7 +17,7 @@
 rmRobotData/
 ├── data/                 # 原始数据文件
 ├── docs/
-│   └── index.html         # GitHub Pages 使用的网页入口
+│   └── index.html         # 机器人数据 + 2015—2026 赛程赛果
 ├── bin/
 │   ├── robot_dashboard.html # 本地查询后生成的网页报告
 │   ├── analyze             # 编译后的分析程序
@@ -92,6 +93,14 @@ python3 -m http.server 8000 -d docs
 ```text
 http://localhost:8000
 ```
+
+页面顶部可切换“机器人数据”和“赛程赛果”。发布时默认从以下文件读取历年赛果：
+
+```bash
+/home/jwj/Downloads/RoboMaster 2015-2026 赛果记录.xlsx
+```
+
+也可以通过 `RM_RESULTS_XLSX` 环境变量指定其他工作簿路径，再运行 `./publish_pages.bash`。
 
 ## 发布到 GitHub Pages
 
