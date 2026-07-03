@@ -2,5 +2,7 @@
 bin/
 data/*
 !data/mvp_*.txt
+!data/schedule_results.json
+!data/rmul_results.json
 __pycache__/
 *.pyc

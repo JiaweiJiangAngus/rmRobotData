@@ -19,12 +19,21 @@ DEFAULT_RESULTS_XLSX = Path("/home/jwj/Downloads/RoboMaster 2015-2026 赛果记�
 
 
 def load_schedule_data():
-    """Load and normalize the historical match workbook when it is available."""
+    """Load the unified repository schedule data; use the workbook as a fallback."""
+    repository_path = Path(__file__).resolve().parent / "data" / "schedule_results.json"
+    if repository_path.exists():
+        with repository_path.open("r", encoding="utf-8") as handle:
+            payload = json.load(handle)
+    else:
+        payload = None
     configured = os.environ.get("RM_RESULTS_XLSX")
     path = Path(configured) if configured else DEFAULT_RESULTS_XLSX
-    if not path.exists() or read_results_workbook is None:
-        return {"matches": [], "qualifiers": []}
-    return build_schedule_payload(read_results_workbook(path))
+    if payload is None:
+        if not path.exists() or read_results_workbook is None:
+            payload = {"matches": [], "qualifiers": [], "rankings": []}
+        else:
+            payload = build_schedule_payload(read_results_workbook(path))
+    return payload
 
 
 def load_replay_links():
@@ -38,6 +47,14 @@ def load_replay_links():
         with extra_path.open("r", encoding="utf-8") as handle:
             links.update(json.load(handle).get("replayLinks", {}))
     return links
+
+
+def load_rmul_data():
+    path = Path(__file__).resolve().parent / "data" / "rmul_results.json"
+    if not path.exists():
+        return {"matches": [], "collections": [], "coverage": []}
+    with path.open("r", encoding="utf-8") as handle:
+        return json.load(handle)
 
 
 def parse_value(raw):
@@ -4033,7 +4050,7 @@ def render_html(title, payload):
       box-shadow: 0 0 24px var(--accent-soft);
     }}
     .dataset-board[hidden] {{ display: none !important; }}
-    .schedule-board {{ display: grid; gap: 16px; }}
+    .schedule-board {{ display: grid; gap: 16px; width: 100%; min-width: 0; max-width: 100%; }}
     .schedule-hero, .schedule-controls, .schedule-panel, .schedule-summary {{
       border: 1px solid var(--glass-line);
       background: var(--panel);
@@ -4094,6 +4111,74 @@ def render_html(title, payload):
     .season-recap {{ display: grid; grid-template-columns: repeat(5, 1fr); gap: 8px; }}
     .recap-card {{ padding: 13px; border: 1px solid var(--line); background: var(--panel-soft); }}
     .recap-card b {{ display: block; }} .recap-card span {{ color: var(--muted); font-size: 11px; }}
+    #qualifierRecap {{ display: block; }}
+    .ranking-group {{ margin-top: 14px; border: 1px solid var(--line); background: var(--panel-soft); }}
+    .ranking-group:first-child {{ margin-top: 0; }}
+    .ranking-group-title {{ padding: 9px 13px; border-bottom: 1px solid var(--line); color: var(--accent); font-weight: 800; }}
+    .ranking-row {{ display: grid; grid-template-columns: minmax(180px, 1fr) minmax(140px, .8fr); gap: 16px; padding: 10px 13px; border-bottom: 1px solid var(--line); }}
+    .ranking-row:last-child {{ border-bottom: 0; }}
+    .ranking-row span {{ color: var(--muted); }}
+    .schedule-panel {{ min-width: 0; max-width: 100%; overflow: hidden; }}
+    .bracket-tree {{ display: block; width: 100%; max-width: 100%; height: min(78vh, 980px); overflow: auto; overscroll-behavior: contain; padding: 12px 4px 22px; scrollbar-gutter: stable both-edges; border: 1px solid var(--line); background: rgba(0,0,0,.025); }}
+    .bracket-tree::-webkit-scrollbar {{ width: 12px; height: 14px; }}
+    .bracket-tree::-webkit-scrollbar-track {{ background: var(--panel-soft); border: 1px solid var(--line); }}
+    .bracket-tree::-webkit-scrollbar-thumb {{ background: linear-gradient(90deg, var(--accent), var(--accent-deep)); border: 3px solid transparent; background-clip: padding-box; border-radius: 999px; }}
+    .bracket-toolbar {{ position: sticky; top: 0; left: 0; z-index: 20; display: flex; gap: 8px; width: max-content; padding: 6px; border: 1px solid var(--line); background: var(--panel-strong); box-shadow: var(--shadow); }}
+    .bracket-toolbar button {{ padding: 7px 11px; border: 1px solid var(--line); background: var(--button-bg); color: var(--text); cursor: pointer; }}
+    .bracket-tree:fullscreen {{ width: 100vw; max-width: none; height: 100vh; max-height: none; padding: 10px; background: var(--bg); overflow: auto; }}
+    .bracket-tree:fullscreen .bracket-graph {{ transform: translateX(var(--tree-offset-x, 0px)) scale(var(--tree-scale, 1)); transform-origin: top left; }}
+    .bracket-tree:fullscreen .topdown-side b {{ font-size:17px; }}
+    .bracket-tree:fullscreen .topdown-side small {{ font-size:13px; }}
+    .bracket-tree:fullscreen .topdown-score {{ font-size:21px; }}
+    .bracket-tree:fullscreen .topdown-round {{ font-size:15px; }}
+    .bracket-tree:fullscreen .topdown-aux-stage,.bracket-tree:fullscreen .topdown-aux-heading {{ font-size:14px; }}
+    .bracket-tree.tree-fullsize:fullscreen {{ overflow: auto; }}
+    .bracket-tree.tree-fullsize:fullscreen .bracket-graph {{ transform: none; }}
+    .schedule-match.tree-target {{ outline: 3px solid var(--accent); box-shadow: 0 0 0 7px var(--accent-soft), var(--shadow); animation: tree-target-pulse 1.2s ease-in-out 2; }}
+    @keyframes tree-target-pulse {{ 50% {{ transform: translateY(-3px); }} }}
+    .bracket-graph {{ position: relative; min-height: 320px; }}
+    .bracket-lines {{ position: absolute; inset: 0; z-index: 0; overflow: visible; }}
+    .bracket-node {{ position: absolute; z-index: 1; width: 230px; box-shadow: 0 8px 20px rgba(0,0,0,.18); }}
+    .bracket-level-label {{ position: absolute; top: 0; width: 230px; color: var(--accent); font-weight: 800; text-align: center; }}
+    .vertical-bracket-node {{ position: absolute; z-index: 2; width: 210px; }}
+    .vertical-bracket-node.compact {{ width: 166px; font-size: 10px; }}
+    .vertical-bracket-node.compact .bracket-side {{ padding: 5px 7px; }}
+    .vertical-round-label {{ position: absolute; left: 12px; z-index: 3; padding: 5px 9px; border: 1px solid var(--line); background: var(--panel); color: var(--accent); font-weight: 800; }}
+    .reference-node {{ position: absolute; z-index: 2; width: 238px; border: 1px solid rgba(40,190,220,.58); background: rgba(7,22,30,.92); box-shadow: 0 8px 22px rgba(0,0,0,.26); }}
+    .reference-match-head {{ padding: 6px 10px; background: linear-gradient(110deg,#087e96,#12a4bd); color: #fff; font-weight: 900; text-align: center; }}
+    .reference-node .bracket-side {{ padding: 6px 8px; color: #f8fafc; }}
+    .reference-node .bracket-side small {{ white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 165px; }}
+    .reference-column-label {{ position: absolute; top: 8px; z-index: 3; width: 238px; padding: 8px; border: 1px solid rgba(40,190,220,.58); background: linear-gradient(110deg,#075d70,#0d8da5); color:#fff; text-align:center; font-weight:900; }}
+    .reference-result {{ position:absolute; z-index:2; width:238px; padding:9px 11px; border:1px solid rgba(255,255,255,.18); }}
+    .reference-result-title {{ font-weight:900; margin-bottom:6px; }}
+    .reference-result-team {{ display:flex; justify-content:space-between; gap:10px; padding:3px 0; border-top:1px solid rgba(255,255,255,.15); font-size:11px; }}
+    .topdown-node {{ position:absolute; z-index:2; width:230px; overflow:hidden; border:1px solid rgba(148,163,184,.35); border-radius:9px; background:#101923; box-shadow:0 8px 18px rgba(0,0,0,.22); }}
+    .topdown-node.auxiliary {{ border-color:rgba(216,170,76,.55); background:#171812; }}
+    .topdown-aux-stage {{ display:block; padding:7px 10px; border-bottom:1px solid rgba(216,170,76,.3); color:#d9b85f; font-size:12px; font-style:normal; font-weight:850; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }}
+    .topdown-aux-heading {{ position:absolute; z-index:3; width:230px; padding:7px 9px; border-bottom:2px solid rgba(216,170,76,.62); color:#d9b85f; font-size:13px; font-weight:900; text-align:center; }}
+    .topdown-side {{ display:grid; grid-template-columns:minmax(0,1fr) 36px; align-items:center; min-height:50px; padding:8px 9px 8px 12px; color:#f8fafc; }}
+    .topdown-side.red {{ background:linear-gradient(90deg,rgba(190,35,48,.38),rgba(23,31,42,.96)); border-left:4px solid #ef4055; border-bottom:1px solid rgba(255,255,255,.11); }}
+    .topdown-side.blue {{ background:linear-gradient(90deg,rgba(27,91,190,.40),rgba(23,31,42,.96)); border-left:4px solid #3292ff; }}
+    .topdown-side b,.topdown-side small {{ display:block; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }}
+    .topdown-side b {{ font-size:15px; }} .topdown-side small {{ color:rgba(255,255,255,.72); font-size:11px; margin-top:3px; }}
+    .topdown-score {{ display:grid; place-items:center; width:34px; height:34px; border-radius:5px; background:rgba(0,0,0,.38); font-size:19px; font-weight:900; }}
+    .topdown-round {{ position:absolute; left:8px; z-index:3; padding:6px 10px; border-left:3px solid var(--accent); color:var(--muted); font-size:13px; font-weight:800; }}
+    .bracket-column {{ position: relative; flex: 0 0 250px; display: grid; gap: 10px; }}
+    .bracket-column:not(:last-child)::after {{ content: ""; position: absolute; right: -25px; top: 34px; bottom: 18px; width: 16px; border-top: 1px solid var(--line); border-right: 1px solid var(--line); border-bottom: 1px solid var(--line); opacity: .8; }}
+    .bracket-column-title {{ position: sticky; top: 0; z-index: 2; padding: 9px 11px; border: 1px solid var(--line); background: var(--panel); color: var(--accent); font-weight: 800; }}
+    .bracket-match {{ border: 1px solid var(--line); background: var(--panel-soft); }}
+    .bracket-side {{ display: grid; grid-template-columns: 1fr auto; gap: 8px; padding: 8px 10px; align-items: center; }}
+    .bracket-side.red {{ background: rgba(190, 44, 56, .16); border-bottom: 1px solid rgba(190, 44, 56, .35); }}
+    .bracket-side.blue {{ background: rgba(45, 99, 190, .16); }}
+    .bracket-side small {{ display: block; color: var(--muted); }}
+    .bracket-rank {{ padding: 10px 12px; border: 1px solid rgba(255,255,255,.13); color: #fff; }}
+    .bracket-rank b {{ display: block; }} .bracket-rank span {{ font-size: 11px; opacity: .85; }}
+    .rank-gold {{ background: linear-gradient(135deg, #9a6c08, #d4af37); color: #171105; }}
+    .rank-silver {{ background: linear-gradient(135deg, #707782, #c0c0c0); color: #111; }}
+    .rank-bronze {{ background: linear-gradient(135deg, #70401f, #cd7f32); }}
+    .rank-rose {{ background: linear-gradient(135deg, #74454d, #b76e79); }}
+    .rank-coffee {{ background: linear-gradient(135deg, #49301f, #6f4e37); }}
+    .rank-gray {{ background: linear-gradient(135deg, #3d424a, #626873); }}
     .schedule-source {{ margin-top: 14px; color: var(--muted); font-size: 12px; line-height: 1.7; }}
     .schedule-source a {{ color: var(--accent-deep); font-weight: 900; }}
     @media (max-width: 900px) {{
@@ -4156,7 +4241,8 @@ def render_html(title, payload):
     </div>
     <nav class="dataset-nav" aria-label="数据板块">
       <button class="dataset-tab active" type="button" data-dataset-tab="robot">01　机器人数据</button>
-      <button class="dataset-tab" type="button" data-dataset-tab="schedule">02　赛程赛果</button>
+      <button class="dataset-tab" type="button" data-dataset-tab="schedule">02　超级对抗赛赛程赛果</button>
+      <button class="dataset-tab" type="button" data-dataset-tab="league">03　高校联盟赛赛程赛果</button>
     </nav>
     <div class="dataset-board" id="robotBoard" data-dataset-board="robot">
     <section class="hero">
@@ -4301,8 +4387,8 @@ def render_html(title, payload):
 
     <div class="dataset-board schedule-board" id="scheduleBoard" data-dataset-board="schedule" hidden>
       <section class="schedule-hero">
-        <span class="eyebrow">RM MATCH ARCHIVE // 2015—2026</span>
-        <h1>历年赛程与赛果</h1>
+        <span class="eyebrow">RMUC MATCH ARCHIVE // 2015—2026</span>
+        <h1>超级对抗赛赛程赛果</h1>
         <p>已将原始工作簿归纳为统一的“赛季—赛区—阶段—红蓝双方—比分”结构。2015—2025 按逐场赛果查询；2026 工作簿目前记录的是全国赛名单与最终席位，因此单独归纳，不计入逐场对阵总数。</p>
       </section>
       <section class="schedule-summary" aria-label="赛程数据概览">
@@ -4331,6 +4417,54 @@ def render_html(title, payload):
         <div class="schedule-panel-head"><div><span class="eyebrow">ZONE RANKING</span><h2 id="zoneRankingTitle">当前赛区排名</h2></div><span class="schedule-count" id="qualifierCountLabel"></span></div>
         <div class="season-recap" id="qualifierRecap"></div>
         <p class="schedule-source">数据来源：<a href="https://bbs.robomaster.com/article/1883355" target="_blank" rel="noopener">RoboMaster 社区赛果记录</a>　·　回放来源：<a href="https://space.bilibili.com/20554233" target="_blank" rel="noopener">RoboMaster机甲大师 B 站官方空间</a><br>只有通过年份、赛区、场次和双方战队核验的视频才显示“直接看回放”；未确认的场次不显示链接。“待核”数据可能存在比分、红蓝方或赛程顺序不明。</p>
+      </section>
+      <section class="schedule-panel">
+        <div class="schedule-panel-head"><div><span class="eyebrow">TOURNAMENT TREE</span><h2 id="bracketTreeTitle">赛程晋级树</h2></div><span class="schedule-count" id="bracketTreeMeta"></span></div>
+        <div class="bracket-tree" id="bracketTree"><div class="bracket-toolbar"><button id="bracketFullscreen" type="button">⛶ 全屏总览</button><button id="bracketScaleToggle" type="button">100% 细节</button></div><div id="bracketCanvas"></div></div>
+      </section>
+    </div>
+
+    <div class="dataset-board schedule-board" id="leagueBoard" data-dataset-board="league" hidden>
+      <section class="schedule-hero">
+        <span class="eyebrow">RMUL MATCH ARCHIVE // 2021 · 2023—2026</span>
+        <h1>高校联盟赛赛程赛果</h1>
+        <p>整理自RoboMaster机甲大师B站官号的高校联盟赛逐场合集。2021为多P视频逐场拆分，2023—2026为官方season合集；2022没有高校联盟赛记录。</p>
+      </section>
+      <section class="schedule-summary" aria-label="高校联盟赛数据概览">
+        <div class="schedule-stat"><b id="rmulMatchCount">0</b><span>逐场回放</span></div>
+        <div class="schedule-stat"><b id="rmulTeamCount">0</b><span>参赛战队</span></div>
+        <div class="schedule-stat"><b id="rmulSchoolCount">0</b><span>参赛高校</span></div>
+        <div class="schedule-stat"><b id="rmulMissingCount">0</b><span>回放编号断档</span></div>
+      </section>
+      <section class="schedule-controls" aria-label="高校联盟赛筛选">
+        <select id="rmulSeason"><option value="">全部赛季</option></select>
+        <select id="rmulZone"><option value="">全部站点</option></select>
+        <select id="rmulStage"><option value="">全部比赛阶段</option></select>
+        <input id="rmulSearch" type="search" placeholder="搜索学校、战队或视频标题">
+      </section>
+      <section class="schedule-panel">
+        <div class="schedule-panel-head"><div><span class="eyebrow">YEAR COVERAGE</span><h2>年份覆盖</h2></div><span class="schedule-count">2021、2023—2026</span></div>
+        <div class="season-recap" id="rmulCoverage"></div>
+      </section>
+      <section class="schedule-panel">
+        <div class="schedule-panel-head"><div><span class="eyebrow">OFFICIAL COLLECTIONS</span><h2>官方回放合集</h2></div><span class="schedule-count" id="rmulCollectionLabel"></span></div>
+        <div class="season-recap" id="rmulCollections"></div>
+      </section>
+      <section class="schedule-panel">
+        <div class="schedule-panel-head"><div><span class="eyebrow">RMUL SCHEDULE</span><h2>逐场赛程与回放</h2></div><span class="schedule-count" id="rmulCountLabel"></span></div>
+        <div class="schedule-list" id="rmulList"></div>
+        <div class="schedule-pagination"><button id="rmulPrev" type="button">上一页</button><span class="schedule-count" id="rmulPageLabel"></span><button id="rmulNext" type="button">下一页</button></div>
+        <div id="rmulMissingBlock" hidden><div class="schedule-stage-heading"><b>官号回放编号断档</b><span id="rmulMissingLabel"></span></div><div class="season-recap" id="rmulMissingList"></div></div>
+        <p class="schedule-source">数据与回放来源：<a href="https://space.bilibili.com/20554233/lists" target="_blank" rel="noopener">RoboMaster机甲大师 B站官方合集</a>。多数RMUL回放标题未提供比分，因此仅展示可核验的年份、站点、场次、双方与直达回放，不推测比分。</p>
+      </section>
+      <section class="schedule-panel">
+        <div class="schedule-panel-head"><div><span class="eyebrow">OFFICIAL RANKING</span><h2 id="rmulRankingTitle">当前站点名次</h2></div><span class="schedule-count" id="rmulRankingLabel"></span></div>
+        <div class="season-recap" id="rmulRanking"></div>
+        <p class="schedule-source">名次来源：<a href="https://www.robomaster.com/zh-CN/resource/announcement/competition" target="_blank" rel="noopener">RoboMaster官网赛事公告</a>。优先展示3V3对抗赛官方获奖名单。</p>
+      </section>
+      <section class="schedule-panel">
+        <div class="schedule-panel-head"><div><span class="eyebrow">TOURNAMENT TREE</span><h2 id="rmulTreeTitle">高校联盟赛淘汰赛树</h2></div><span class="schedule-count" id="rmulTreeLabel"></span></div>
+        <div class="bracket-tree" id="rmulBracketTree"><div id="rmulBracketCanvas"></div></div>
       </section>
     </div>
   </div>
@@ -7353,8 +7487,11 @@ def render_html(title, payload):
 
     /* 一级板块切换 + 赛程赛果分页 */
     const scheduleData = payload.scheduleData || {{ matches: [], qualifiers: [] }};
+    const rmulData = payload.rmulData || {{ matches: [], collections: [], coverage: [] }};
     let schedulePage = 1;
     const schedulePageSize = 30;
+    let rmulPage = 1;
+    const rmulPageSize = 30;
 
     function scheduleEscape(value) {{
       return String(value ?? "").replace(/[&<>"']/g, (char) => ({{
@@ -7411,19 +7548,20 @@ def render_html(title, payload):
     function renderScheduleSummary() {{
       const teams = new Set();
       const schools = new Set();
-      scheduleData.matches.forEach((item) => {{
+      const statisticalMatches = scheduleData.matches.filter((item) => !/全明星/.test(item.stage || ""));
+      statisticalMatches.forEach((item) => {{
         teams.add(`${{item.redSchool}}|${{item.redTeam}}`);
         teams.add(`${{item.blueSchool}}|${{item.blueTeam}}`);
         schools.add(item.redSchool);
         schools.add(item.blueSchool);
       }});
-      document.getElementById("scheduleMatchCount").textContent = scheduleData.matches.length.toLocaleString();
+      document.getElementById("scheduleMatchCount").textContent = statisticalMatches.length.toLocaleString();
       document.getElementById("scheduleTeamCount").textContent = teams.size.toLocaleString();
       document.getElementById("scheduleSchoolCount").textContent = schools.size.toLocaleString();
-      document.getElementById("scheduleUncertainCount").textContent = scheduleData.matches.filter((item) => item.uncertain).length.toLocaleString();
+      document.getElementById("scheduleUncertainCount").textContent = statisticalMatches.filter((item) => item.uncertain).length.toLocaleString();
 
       const recap = uniqueScheduleValues("season").map((season) => {{
-        const rows = scheduleData.matches.filter((item) => item.season === season);
+        const rows = statisticalMatches.filter((item) => item.season === season);
         const seasonTeams = new Set();
         rows.forEach((item) => {{ seasonTeams.add(item.redTeam); seasonTeams.add(item.blueTeam); }});
         const finals = rows.filter((item) => /决赛|冠军|季军/.test(item.stage || "")).length;
@@ -7442,11 +7580,278 @@ def render_html(title, payload):
       ).sort((a, b) => String(a.zone).localeCompare(String(b.zone), "zh-CN") ||
         Number(a.sortOrder || 999) - Number(b.sortOrder || 999));
       document.getElementById("zoneRankingTitle").textContent = zone ? `${{season || "当前"}} ${{zone}}排名` : `${{season || "当前"}} 各赛区排名`;
-      const rankedCount = rankings.filter((item) => item.result && item.result !== "未列名次").length;
+      const rankedCount = rankings.filter((item) => item.result && item.result !== "未出线").length;
       document.getElementById("qualifierCountLabel").textContent = rankings.length ? `${{rankings.length}} 支队伍 · ${{rankedCount}} 支已有名次` : "暂无排名数据";
-      document.getElementById("qualifierRecap").innerHTML = rankings.length ? rankings.map((item) =>
-        `<article class="recap-card"><b>${{scheduleEscape(item.result || "未列名次")}} · ${{scheduleEscape(item.team)}}</b><span>${{scheduleEscape(item.school)}} · ${{scheduleEscape(item.zone)}}</span></article>`
+      const resultOrder = ["冠军", "亚军", "季军", "殿军", "第五", "第六", "六强", "第七", "第八", "八强", "第九", "第十", "十强", "第十一", "第十二", "十二强", "第十三", "第十四", "十四强", "第十五", "第十六", "十六强", "未出线"];
+      const grouped = new Map();
+      rankings.forEach((item) => {{
+        const result = item.result || "未出线";
+        if (!grouped.has(result)) grouped.set(result, []);
+        grouped.get(result).push(item);
+      }});
+      const orderedResults = [...grouped.keys()].sort((a, b) => {{
+        const clean = (value) => value.replace(/（.*?）/g, "");
+        const ai = resultOrder.indexOf(clean(a));
+        const bi = resultOrder.indexOf(clean(b));
+        return (ai < 0 ? 98 : ai) - (bi < 0 ? 98 : bi);
+      }});
+      document.getElementById("qualifierRecap").innerHTML = rankings.length ? orderedResults.map((result) =>
+        `<section class="ranking-group"><div class="ranking-group-title">${{scheduleEscape(result)}} · ${{grouped.get(result).length}} 支</div>${{grouped.get(result).map((item) =>
+          `<div class="ranking-row"><b>${{scheduleEscape(item.school)}}</b><span>${{scheduleEscape(item.team)}}</span></div>`
+        ).join("")}}</section>`
       ).join("") : '<div class="schedule-empty">当前赛区暂无官方排名数据。</div>';
+    }}
+
+    function rankPanelClass(result) {{
+      const value = String(result || "未出线").replace(/（.*?）/g, "");
+      if (value === "冠军") return "rank-gold";
+      if (value === "亚军") return "rank-silver";
+      if (value === "季军") return "rank-bronze";
+      if (value === "殿军") return "rank-rose";
+      if (["第五", "第六", "六强", "第七", "第八", "八强"].includes(value)) return "rank-coffee";
+      return "rank-gray";
+    }}
+
+    function renderBracketTree() {{
+      const season = document.getElementById("scheduleSeason").value;
+      const zone = document.getElementById("scheduleZone").value;
+      const rows = scheduleData.matches.filter((item) =>
+        (!season || item.season === season) && (!zone || item.zone === zone)
+      ).sort((a, b) => Number(a.order || 0) - Number(b.order || 0));
+      const rankings = (scheduleData.rankings || []).filter((item) =>
+        (!season || item.season === season) && (!zone || item.zone === zone)
+      ).sort((a, b) => Number(a.sortOrder || 999) - Number(b.sortOrder || 999));
+      const matches = rows.filter((item) => item.matchId && !/小组/.test(item.stage || ""));
+      const byId = new Map(matches.map((item) => [String(item.matchId), item]));
+      const depthMemo = new Map();
+      const depthOf = (item) => {{
+        if (depthMemo.has(item.matchId)) return depthMemo.get(item.matchId);
+        const sources = [item.redSourceMatch, item.blueSourceMatch].filter((id) => byId.has(String(id)));
+        const depth = sources.length ? 1 + Math.max(...sources.map((id) => depthOf(byId.get(String(id))))) : 0;
+        depthMemo.set(item.matchId, depth);
+        return depth;
+      }};
+      matches.forEach(depthOf);
+      const levels = new Map();
+      matches.forEach((item) => {{
+        const depth = depthMemo.get(item.matchId) || 0;
+        if (!levels.has(depth)) levels.set(depth, []);
+        levels.get(depth).push(item);
+      }});
+      levels.forEach((items) => items.sort((a, b) => Number(a.order) - Number(b.order)));
+      const positions = new Map();
+      const nodeWidth = 230, nodeHeight = 82, xGap = 310, yGap = 104, top = 44;
+      [...levels.keys()].sort((a, b) => a - b).forEach((depth) => {{
+        let lastY = -yGap;
+        levels.get(depth).forEach((item, index) => {{
+          const sourceYs = [item.redSourceMatch, item.blueSourceMatch]
+            .map((id) => positions.get(String(id))).filter(Boolean).map((point) => point.y);
+          const preferred = sourceYs.length ? sourceYs.reduce((sum, y) => sum + y, 0) / sourceYs.length : index * yGap + top;
+          const y = Math.max(preferred, lastY + yGap);
+          positions.set(String(item.matchId), {{ x: depth * xGap + 20, y }});
+          lastY = y;
+        }});
+      }});
+      const maxDepth = Math.max(0, ...levels.keys());
+      const medalRankings = rankings;
+      const rankPositions = [];
+      medalRankings.forEach((item, index) => {{
+        const related = [...matches].reverse().find((match) =>
+          match.redSchool === item.school || match.blueSchool === item.school || match.redTeam === item.team || match.blueTeam === item.team
+        );
+        const source = related ? positions.get(String(related.matchId)) : null;
+        const preferred = source ? source.y : index * yGap + top;
+        const previous = rankPositions[index - 1];
+        rankPositions.push({{ item, source: related, x: (maxDepth + 1) * xGap + 20, y: Math.max(preferred, previous ? previous.y + yGap : top) }});
+      }});
+      const allPoints = [...positions.values(), ...rankPositions];
+      const width = (maxDepth + 2) * xGap + 30;
+      const height = Math.max(340, ...allPoints.map((point) => point.y + nodeHeight + 30));
+      const paths = [];
+      matches.forEach((item) => {{
+        const target = positions.get(String(item.matchId));
+        [item.redSourceMatch, item.blueSourceMatch].forEach((sourceId) => {{
+          const source = positions.get(String(sourceId));
+          if (!source || !target) return;
+          const x1 = source.x + nodeWidth, y1 = source.y + nodeHeight / 2, x2 = target.x, y2 = target.y + nodeHeight / 2;
+          paths.push(`<path d="M ${{x1}} ${{y1}} C ${{(x1+x2)/2}} ${{y1}}, ${{(x1+x2)/2}} ${{y2}}, ${{x2}} ${{y2}}" fill="none" stroke="rgba(148,163,184,.75)" stroke-width="2"/>`);
+        }});
+      }});
+      rankPositions.forEach((point) => {{
+        const source = point.source ? positions.get(String(point.source.matchId)) : null;
+        if (!source) return;
+        const x1 = source.x + nodeWidth, y1 = source.y + nodeHeight / 2, x2 = point.x, y2 = point.y + nodeHeight / 2;
+        paths.push(`<path d="M ${{x1}} ${{y1}} C ${{(x1+x2)/2}} ${{y1}}, ${{(x1+x2)/2}} ${{y2}}, ${{x2}} ${{y2}}" fill="none" stroke="rgba(212,175,55,.75)" stroke-width="2"/>`);
+      }});
+      const labels = [...levels.keys()].sort((a,b)=>a-b).map((depth) => `<div class="bracket-level-label" style="left:${{depth*xGap+20}}px">${{depth === 0 ? "首轮淘汰" : `晋级第 ${{depth+1}} 轮`}}</div>`).join("") + (rankings.length ? `<div class="bracket-level-label" style="left:${{(maxDepth+1)*xGap+20}}px">最终名次</div>` : "");
+      const nodes = matches.map((item) => {{ const point = positions.get(String(item.matchId)); return `<article class="bracket-match bracket-node" style="left:${{point.x}}px;top:${{point.y}}px"><div class="bracket-side red"><span><b>${{scheduleEscape(item.redTeam)}}</b><small>${{scheduleEscape(item.redSchool)}}</small></span><strong>${{scheduleEscape(item.redScore)}}</strong></div><div class="bracket-side blue"><span><b>${{scheduleEscape(item.blueTeam)}}</b><small>${{scheduleEscape(item.blueSchool)}}</small></span><strong>${{scheduleEscape(item.blueScore)}}</strong></div></article>`; }}).join("");
+      const rankNodes = rankPositions.map((point) => `<div class="bracket-rank bracket-node ${{rankPanelClass(point.item.result)}}" style="left:${{point.x}}px;top:${{point.y}}px"><b>${{scheduleEscape(point.item.school)}}</b><span>${{scheduleEscape(point.item.team)}} · ${{scheduleEscape(point.item.result)}}</span></div>`).join("");
+      document.getElementById("bracketTreeTitle").textContent = `${{season || "全部赛季"}} ${{zone || "全部赛区"}}晋级树`;
+      document.getElementById("bracketTreeMeta").textContent = matches.length ? `${{matches.length}} 个淘汰节点 · ${{levels.size}} 层真实连线` : "暂无淘汰关系数据";
+      document.getElementById("bracketCanvas").innerHTML = matches.length ? `<div class="bracket-graph" style="width:${{width}}px;height:${{height}}px"><svg class="bracket-lines" width="${{width}}" height="${{height}}">${{paths.join("")}}</svg>${{labels}}${{nodes}}${{rankNodes}}</div>` : '<div class="schedule-empty">该年份尚无可验证的淘汰赛节点关系，未绘制伪造树线。</div>';
+    }}
+
+    function renderVerticalBracketTree() {{
+      const season = document.getElementById("scheduleSeason").value;
+      const zone = document.getElementById("scheduleZone").value;
+      const rows = scheduleData.matches.filter((item) => (!season || item.season === season) && (!zone || item.zone === zone))
+        .sort((a, b) => Number(a.order || 0) - Number(b.order || 0));
+      const rankings = (scheduleData.rankings || []).filter((item) => (!season || item.season === season) && (!zone || item.zone === zone))
+        .sort((a, b) => Number(a.sortOrder || 999) - Number(b.sortOrder || 999));
+      const groupMatches = rows.filter((item) => /小组/.test(item.stage || ""));
+      const knockout = rows.filter((item) => item.matchId && !/小组/.test(item.stage || ""));
+      if (!knockout.length) {{
+        document.getElementById("bracketCanvas").innerHTML = '<div class="schedule-empty">该年份尚无可验证的淘汰关系，未绘制伪造树。</div>';
+        document.getElementById("bracketTreeMeta").textContent = "暂无官方节点关系";
+        return;
+      }}
+      const width = 3400, matchW = 210, compactW = 166, nodeH = 66;
+      const positions = new Map(), groupPositions = new Map();
+      const byId = new Map(knockout.map((item) => [String(item.matchId), item]));
+      const memo = new Map();
+      const depthOf = (item) => {{
+        if (memo.has(item.matchId)) return memo.get(item.matchId);
+        const sources = [item.redSourceMatch, item.blueSourceMatch].filter((id) => byId.has(String(id)));
+        const depth = sources.length ? 1 + Math.max(...sources.map((id) => depthOf(byId.get(String(id))))) : 0;
+        memo.set(item.matchId, depth); return depth;
+      }};
+      knockout.forEach(depthOf);
+      const levels = new Map();
+      knockout.forEach((item) => {{ const d = memo.get(item.matchId) || 0; if (!levels.has(d)) levels.set(d, []); levels.get(d).push(item); }});
+      levels.forEach((items) => items.sort((a,b)=>Number(a.order)-Number(b.order)));
+      const distribute = (items, itemWidth, y, target) => {{
+        const gap = (width - items.length * itemWidth) / (items.length + 1);
+        items.forEach((item, index) => target.set(String(item.matchId || item.order), {{ x: gap + index * (itemWidth + gap), y }}));
+      }};
+      const maxDepth = Math.max(...levels.keys());
+      [...levels.keys()].sort((a,b)=>b-a).forEach((depth) => distribute(levels.get(depth), matchW, 470 + (maxDepth-depth)*145, positions));
+
+      const rounds = [[], [], [], [], []], used = [new Set(), new Set(), new Set(), new Set(), new Set()];
+      groupMatches.forEach((item) => {{
+        const teams = [`${{item.redSchool}}|${{item.redTeam}}`, `${{item.blueSchool}}|${{item.blueTeam}}`];
+        let index = used.findIndex((set) => teams.every((team) => !set.has(team)));
+        if (index < 0) index = 4;
+        teams.forEach((team) => used[index].add(team)); rounds[index].push(item);
+      }});
+      rounds.forEach((items, index) => distribute(items, compactW, 470 + (maxDepth+1)*145 + (4-index)*104, groupPositions));
+
+      const resultRow = (result) => {{
+        const clean = String(result || "未出线").replace(/（.*?）/g, "");
+        if (clean === "冠军") return 0; if (clean === "亚军") return 1;
+        if (["季军","殿军"].includes(clean)) return 2;
+        if (["第五","第六","六强","第七","第八","八强"].includes(clean)) return 3;
+        return 4;
+      }};
+      const rankRows = [[],[],[],[],[]]; rankings.forEach((item) => rankRows[resultRow(item.result)].push(item));
+      const rankPositions = [];
+      rankRows.forEach((items, row) => {{
+        const w = row === 4 ? 150 : 210, gap = (width - items.length*w)/(items.length+1);
+        items.forEach((item,index) => rankPositions.push({{item,x:gap+index*(w+gap),y:18+row*88,w}}));
+      }});
+      const knockoutTop = 470, groupBottom = 470 + (maxDepth+1)*145 + 4*104 + nodeH;
+      const height = groupBottom + 60, paths = [];
+      const curve = (a,b,color="rgba(148,163,184,.62)") => paths.push(`<path d="M ${{a.x}} ${{a.y}} C ${{a.x}} ${{(a.y+b.y)/2}}, ${{b.x}} ${{(a.y+b.y)/2}}, ${{b.x}} ${{b.y}}" fill="none" stroke="${{color}}" stroke-width="1.6"/>`);
+      knockout.forEach((item) => {{
+        const target = positions.get(String(item.matchId));
+        [item.redSourceMatch,item.blueSourceMatch].forEach((id) => {{ const source=positions.get(String(id)); if(source) curve({{x:source.x+matchW/2,y:source.y}},{{x:target.x+matchW/2,y:target.y+nodeH}}); }});
+      }});
+      for (let round=0; round<4; round++) rounds[round].forEach((item) => {{
+        const source=groupPositions.get(String(item.matchId || item.order));
+        rounds[round+1].forEach((next) => {{
+          if ([item.redSchool,item.blueSchool].some((school)=>school===next.redSchool||school===next.blueSchool)) {{ const target=groupPositions.get(String(next.matchId || next.order)); curve({{x:source.x+compactW/2,y:source.y}},{{x:target.x+compactW/2,y:target.y+nodeH}},"rgba(100,116,139,.24)"); }}
+        }});
+      }});
+      rounds[4].forEach((item) => {{ const source=groupPositions.get(String(item.matchId || item.order)); knockout.filter((match)=>(memo.get(match.matchId)||0)===0).forEach((targetItem)=>{{ if([item.redSchool,item.blueSchool].some((s)=>s===targetItem.redSchool||s===targetItem.blueSchool)){{const target=positions.get(String(targetItem.matchId));curve({{x:source.x+compactW/2,y:source.y}},{{x:target.x+matchW/2,y:target.y+nodeH}},"rgba(212,175,55,.35)");}} }}); }});
+      rankPositions.forEach((point) => {{ const related=[...knockout].reverse().find((m)=>m.redSchool===point.item.school||m.blueSchool===point.item.school); if(related){{const source=positions.get(String(related.matchId));curve({{x:source.x+matchW/2,y:source.y}},{{x:point.x+point.w/2,y:point.y+62}},"rgba(212,175,55,.65)");}} }});
+      const matchNode = (item,point,compact=false) => `<article class="bracket-match vertical-bracket-node${{compact?' compact':''}}" data-tree-match="${{scheduleEscape(`${{item.season}}|${{item.zone}}|${{item.order}}|${{item.id}}`)}}" title="双击跳到逐场赛程" style="left:${{point.x}}px;top:${{point.y}}px"><div class="bracket-side red"><span><b>${{scheduleEscape(item.redTeam)}}</b><small>${{scheduleEscape(item.redSchool)}}</small></span><strong>${{scheduleEscape(item.redScore)}}</strong></div><div class="bracket-side blue"><span><b>${{scheduleEscape(item.blueTeam)}}</b><small>${{scheduleEscape(item.blueSchool)}}</small></span><strong>${{scheduleEscape(item.blueScore)}}</strong></div></article>`;
+      const nodes = knockout.map((item)=>matchNode(item,positions.get(String(item.matchId)))).join("") + groupMatches.map((item)=>matchNode(item,groupPositions.get(String(item.matchId || item.order)),true)).join("");
+      const rankNodes = rankPositions.map((p)=>`<div class="bracket-rank vertical-bracket-node ${{rankPanelClass(p.item.result)}}" style="left:${{p.x}}px;top:${{p.y}}px;width:${{p.w}}px"><b>${{scheduleEscape(p.item.school)}}</b><span>${{scheduleEscape(p.item.team)}} · ${{scheduleEscape(p.item.result)}}</span></div>`).join("");
+      const labels = [...levels.keys()].map((depth)=>`<div class="vertical-round-label" style="top:${{470+(maxDepth-depth)*145+18}}px">淘汰赛第 ${{depth+1}} 轮</div>`).join("") + rounds.map((_,i)=>`<div class="vertical-round-label" style="top:${{470+(maxDepth+1)*145+(4-i)*104+16}}px">小组赛第 ${{i+1}} 轮</div>`).join("");
+      document.getElementById("bracketTreeTitle").textContent = `${{season}} ${{zone}}纵向赛程树`;
+      document.getElementById("bracketTreeMeta").textContent = `冠军置顶 · 5 轮小组赛 · ${{levels.size}} 轮淘汰赛`;
+      document.getElementById("bracketCanvas").innerHTML = `<div class="bracket-graph" style="width:${{width}}px;height:${{height}}px"><svg class="bracket-lines" width="${{width}}" height="${{height}}">${{paths.join("")}}</svg>${{labels}}${{nodes}}${{rankNodes}}</div>`;
+    }}
+
+    function renderReferenceBracketTree() {{
+      const season = document.getElementById("scheduleSeason").value;
+      const zone = document.getElementById("scheduleZone").value;
+      const rows = scheduleData.matches.filter((item) => (!season || item.season === season) && (!zone || item.zone === zone)).sort((a,b)=>Number(a.order)-Number(b.order));
+      const rankings = (scheduleData.rankings || []).filter((item) => (!season || item.season === season) && (!zone || item.zone === zone)).sort((a,b)=>Number(a.sortOrder||999)-Number(b.sortOrder||999));
+      const groupMatches = rows.filter((item)=>/小组/.test(item.stage||""));
+      const knockout = rows.filter((item)=>item.matchId&&!/小组/.test(item.stage||""));
+      if (!knockout.length) {{ document.getElementById("bracketCanvas").innerHTML='<div class="schedule-empty">该年份暂无可验证的签表关系。</div>'; return; }}
+      const rounds=[[],[],[],[],[]], used=[new Set(),new Set(),new Set(),new Set(),new Set()];
+      groupMatches.forEach((item)=>{{const teams=[`${{item.redSchool}}|${{item.redTeam}}`,`${{item.blueSchool}}|${{item.blueTeam}}`];let i=used.findIndex((set)=>teams.every((t)=>!set.has(t)));if(i<0)i=4;teams.forEach((t)=>used[i].add(t));rounds[i].push(item);}});
+      const byId=new Map(knockout.map((item)=>[String(item.matchId),item])), memo=new Map();
+      const depthOf=(item)=>{{if(memo.has(item.matchId))return memo.get(item.matchId);const src=[item.redSourceMatch,item.blueSourceMatch].filter((id)=>byId.has(String(id)));const d=src.length?1+Math.max(...src.map((id)=>depthOf(byId.get(String(id))))):0;memo.set(item.matchId,d);return d;}};
+      knockout.forEach(depthOf); const koLevels=[]; knockout.forEach((item)=>{{const d=memo.get(item.matchId)||0;(koLevels[d]||(koLevels[d]=[])).push(item);}}); koLevels.forEach((items)=>items.sort((a,b)=>Number(a.order)-Number(b.order)));
+      const columns=[...rounds,...koLevels], colW=276, cardW=238, top=58, rowH=82;
+      const resultGroups=new Map(); rankings.forEach((item)=>{{const r=item.result||"未出线";if(!resultGroups.has(r))resultGroups.set(r,[]);resultGroups.get(r).push(item);}});
+      const resultOrder=["冠军","亚军","季军","殿军","第五","第六","六强","第七","第八","八强","第九","第十","十强","第十一","第十二","十二强","第十三","第十四","十四强","第十五","第十六","十六强","未出线"];
+      const orderedResults=[...resultGroups.keys()].sort((a,b)=>{{const clean=(v)=>v.replace(/（.*?）/g,"");const ai=resultOrder.indexOf(clean(a)),bi=resultOrder.indexOf(clean(b));return(ai<0?98:ai)-(bi<0?98:bi);}});
+      const resultHeight=orderedResults.reduce((sum,r)=>sum+38+resultGroups.get(r).length*23,0);
+      const maxItems=Math.max(...columns.map((items)=>items.length),Math.ceil(resultHeight/rowH));
+      const height=Math.max(780,top+maxItems*rowH+40), width=(columns.length+1)*colW+32;
+      const positions=new Map(), groupPositions=new Map();
+      columns.forEach((items,col)=>{{const gap=(height-top-items.length*68)/(items.length+1);items.forEach((item,index)=>{{const point={{x:18+col*colW,y:top+gap+index*(68+gap)}};(col<5?groupPositions:positions).set(String(item.matchId||item.order),point);}});}});
+      const paths=[]; const connect=(a,b,color="rgba(205,226,232,.52)")=>{{const x1=a.x+cardW,y1=a.y+34,x2=b.x,y2=b.y+34,m=(x1+x2)/2;paths.push(`<path d="M ${{x1}} ${{y1}} H ${{m}} V ${{y2}} H ${{x2}}" fill="none" stroke="${{color}}" stroke-width="1.4"/>`);}};
+      for(let r=0;r<4;r++)rounds[r].forEach((item)=>rounds[r+1].forEach((next)=>{{if([item.redSchool,item.blueSchool].some((s)=>s===next.redSchool||s===next.blueSchool))connect(groupPositions.get(String(item.matchId||item.order)),groupPositions.get(String(next.matchId||next.order)),"rgba(70,180,205,.22)");}}));
+      rounds[4].forEach((item)=>koLevels[0].forEach((next)=>{{if([item.redSchool,item.blueSchool].some((s)=>s===next.redSchool||s===next.blueSchool))connect(groupPositions.get(String(item.matchId||item.order)),positions.get(String(next.matchId)),"rgba(242,190,70,.46)");}}));
+      knockout.forEach((item)=>{{const target=positions.get(String(item.matchId));[item.redSourceMatch,item.blueSourceMatch].forEach((id)=>{{const source=positions.get(String(id));if(source)connect(source,target);}});}});
+      const card=(item,point)=>`<article class="reference-node" data-tree-match="${{scheduleEscape(`${{item.season}}|${{item.zone}}|${{item.order}}|${{item.id}}`)}}" title="第 ${{scheduleEscape(item.order)}} 场 · 双击跳到逐场赛程" style="left:${{point.x}}px;top:${{point.y}}px"><div class="bracket-side red"><span><b>${{scheduleEscape(item.redTeam)}}</b><small>${{scheduleEscape(item.redSchool)}}</small></span><strong>${{scheduleEscape(item.redScore)}}</strong></div><div class="bracket-side blue"><span><b>${{scheduleEscape(item.blueTeam)}}</b><small>${{scheduleEscape(item.blueSchool)}}</small></span><strong>${{scheduleEscape(item.blueScore)}}</strong></div></article>`;
+      const matchNodes=columns.flatMap((items,col)=>items.map((item)=>card(item,(col<5?groupPositions:positions).get(String(item.matchId||item.order))))).join("");
+      let resultY=top;const resultNodes=orderedResults.map((result)=>{{const items=resultGroups.get(result),h=32+items.length*23;const html=`<div class="reference-result ${{rankPanelClass(result)}}" style="left:${{18+columns.length*colW}}px;top:${{resultY}}px"><div class="reference-result-title">${{scheduleEscape(result)}} · ${{items.length}} 支</div>${{items.map((item)=>`<div class="reference-result-team"><b>${{scheduleEscape(item.school)}}</b><span>${{scheduleEscape(item.team)}}</span></div>`).join("")}}</div>`;resultY+=h+8;return html;}}).join("");
+      document.getElementById("bracketTreeTitle").textContent=`${{season}} ${{zone}}完整赛程签表`;
+      document.getElementById("bracketTreeMeta").textContent=`5 轮小组赛 · ${{koLevels.length}} 轮淘汰赛 · 双击比赛跳转`;
+      document.getElementById("bracketCanvas").innerHTML=`<div class="bracket-graph" style="width:${{width}}px;height:${{Math.max(height,resultY+30)}}px"><svg class="bracket-lines" width="${{width}}" height="${{Math.max(height,resultY+30)}}">${{paths.join("")}}</svg>${{matchNodes}}${{resultNodes}}</div>`;
+      if(document.fullscreenElement===document.getElementById("bracketTree"))requestAnimationFrame(fitBracketFullscreen);
+    }}
+
+    function renderTopDownBracketTree() {{
+      const season=document.getElementById("scheduleSeason").value,zone=document.getElementById("scheduleZone").value;
+      const rows=scheduleData.matches.filter((item)=>(!season||item.season===season)&&(!zone||item.zone===zone)).sort((a,b)=>Number(a.order)-Number(b.order));
+      const isGroupStage=(stage)=>/小组|[A-ZＡ-Ｚ]组第\s*\d+\s*轮/i.test(stage||"");
+      const groups=rows.filter((item)=>isGroupStage(item.stage)),ko=rows.filter((item)=>!isGroupStage(item.stage)&&!/全明星/.test(item.stage||""));
+      const isAuxiliaryStage=(stage)=>/全国赛名额|复活赛名额|晋级名额|总决赛名额|排位|踢馆资格/.test(stage||"");
+      const auxiliaryKo=ko.filter((item)=>isAuxiliaryStage(item.stage)),mainKo=ko.filter((item)=>!isAuxiliaryStage(item.stage));
+      if(!rows.length){{document.getElementById("bracketCanvas").innerHTML='<div class="schedule-empty">当前赛区暂无赛程。</div>';return;}}
+      const keyOf=(item)=>String(item.matchId||`legacy-${{item.id}}`);
+      const displayStage=(stage)=>String(stage||"淘汰赛").trim();
+      let groupRounds=[];const used=[];
+      groups.forEach((item)=>{{const explicit=String(item.stage||"").match(/[A-ZＡ-Ｚ]组第\s*(\d+)\s*轮/i);if(explicit){{const r=Math.max(0,Number(explicit[1])-1);(groupRounds[r]||(groupRounds[r]=[])).push(item);return;}}const teams=[`${{item.redSchool}}|${{item.redTeam}}`,`${{item.blueSchool}}|${{item.blueTeam}}`];let r=used.findIndex((set)=>teams.every((t)=>!set.has(t)));if(r<0){{used.push(new Set());groupRounds.push([]);r=used.length-1;}}teams.forEach((t)=>used[r].add(t));groupRounds[r].push(item);}});
+      groupRounds=groupRounds.filter((items)=>items&&items.length);
+      let koRounds=[]; const memo=new Map();
+      if(mainKo.length&&mainKo.every((item)=>item.matchId)){{
+        const byId=new Map(mainKo.map((item)=>[String(item.matchId),item]));
+        const depthOf=(item)=>{{if(memo.has(item.matchId))return memo.get(item.matchId);const src=[item.redSourceMatch,item.blueSourceMatch].filter((id)=>byId.has(String(id)));const d=src.length?1+Math.max(...src.map((id)=>depthOf(byId.get(String(id))))):0;memo.set(item.matchId,d);return d;}};
+        mainKo.forEach(depthOf);
+        mainKo.forEach((item)=>{{const d=memo.get(item.matchId)||0;(koRounds[d]||(koRounds[d]=[])).push(item);}});
+      }}else{{
+        const stages=[];
+        mainKo.forEach((item)=>{{const stage=String(item.stage||"淘汰赛").trim();let band=stages.find((entry)=>entry.stage===stage);if(!band){{band={{stage,first:Number(item.order),items:[]}};stages.push(band);}}band.items.push(item);band.first=Math.min(band.first,Number(item.order));}});
+        koRounds=stages.sort((a,b)=>a.first-b.first).map((entry)=>entry.items);
+      }}
+      koRounds.forEach((items)=>items.sort((a,b)=>Number(a.order)-Number(b.order)));
+      const visualBands=[...koRounds.slice().reverse(),...groupRounds.slice().reverse()];
+      const maxCount=Math.max(...visualBands.map((items)=>items.length),8),cardW=230,cardH=102,gapX=22,side=82,auxWidth=auxiliaryKo.length?310:0;
+      const width=Math.max(1500,maxCount*(cardW+gapX)+side*2+auxWidth),bandH=128,top=54,mainWidth=width-auxWidth;
+      const auxRows=auxiliaryKo.slice().sort((a,b)=>Number(b.order)-Number(a.order));
+      const height=Math.max(top+visualBands.length*bandH+60,auxRows.length?top+auxRows.length*136+50:0),positions=new Map(),groupPositions=new Map();
+      visualBands.forEach((items,band)=>{{const total=items.length*cardW+(items.length-1)*gapX,start=(mainWidth-total)/2,y=top+band*bandH;items.forEach((item,i)=>{{const point={{x:start+i*(cardW+gapX),y}};(band<koRounds.length?positions:groupPositions).set(keyOf(item),point);}});}});
+      auxRows.forEach((item,index)=>positions.set(keyOf(item),{{x:width-cardW-28,y:top+38+index*136}}));
+      const paths=[];const up=(from,to,color="rgba(184,205,214,.58)")=>{{const x1=from.x+cardW/2,y1=from.y,x2=to.x+cardW/2,y2=to.y+cardH,m=(y1+y2)/2;paths.push(`<path d="M ${{x1}} ${{y1}} V ${{m}} H ${{x2}} V ${{y2}}" fill="none" stroke="${{color}}" stroke-width="1.5"/>`);}};
+      ko.forEach((item)=>{{const target=positions.get(keyOf(item));if(item.matchId){{[item.redSourceMatch,item.blueSourceMatch].forEach((id)=>{{const source=positions.get(String(id));if(source)up(source,target);}});}}}});
+      if(!mainKo.every((item)=>item.matchId))for(let r=0;r<koRounds.length-1;r++)koRounds[r].forEach((item)=>koRounds[r+1].forEach((next)=>{{if([item.redSchool,item.blueSchool,item.redTeam,item.blueTeam].some((v)=>v===next.redSchool||v===next.blueSchool||v===next.redTeam||v===next.blueTeam))up(positions.get(keyOf(item)),positions.get(keyOf(next)));}}));
+      for(let r=0;r<groupRounds.length-1;r++)groupRounds[r].forEach((item)=>groupRounds[r+1].forEach((next)=>{{if([item.redSchool,item.blueSchool].some((s)=>s===next.redSchool||s===next.blueSchool))up(groupPositions.get(keyOf(item)),groupPositions.get(keyOf(next)),"rgba(85,170,195,.20)");}}));
+      if(groupRounds.length&&koRounds.length)groupRounds[groupRounds.length-1].forEach((item)=>koRounds[0].forEach((next)=>{{if([item.redSchool,item.blueSchool].some((s)=>s===next.redSchool||s===next.blueSchool))up(groupPositions.get(keyOf(item)),positions.get(keyOf(next)),"rgba(218,177,70,.42)");}}));
+      const card=(item,p)=>{{const auxiliary=isAuxiliaryStage(item.stage);return `<article class="topdown-node${{auxiliary?' auxiliary':''}}" data-tree-match="${{scheduleEscape([item.season,item.zone,item.order,item.id].join('|'))}}" title="第 ${{scheduleEscape(item.order)}} 场 · 双击跳转" style="left:${{p.x}}px;top:${{p.y}}px">${{auxiliary?`<em class="topdown-aux-stage">${{scheduleEscape(item.stage)}}</em>`:''}}<div class="topdown-side red"><span><b>${{scheduleEscape(item.redTeam)}}</b><small>${{scheduleEscape(item.redSchool)}}</small></span><strong class="topdown-score">${{scheduleEscape(item.redScore)}}</strong></div><div class="topdown-side blue"><span><b>${{scheduleEscape(item.blueTeam)}}</b><small>${{scheduleEscape(item.blueSchool)}}</small></span><strong class="topdown-score">${{scheduleEscape(item.blueScore)}}</strong></div></article>`;}};
+      const nodes=ko.map((item)=>card(item,positions.get(keyOf(item)))).join("")+groups.map((item)=>card(item,groupPositions.get(keyOf(item)))).join("");
+      const labels=visualBands.map((items,band)=>{{const koBand=band<koRounds.length;let label;if(koBand){{const names=[...new Set(items.map((item)=>displayStage(item.stage)))];label=names.join(" / ");}}else{{label=`小组赛第 ${{groupRounds.length-(band-koRounds.length)}} 轮`;}}return `<div class="topdown-round" style="top:${{top+band*bandH+26}}px">${{scheduleEscape(label)}}</div>`;}}).join("");
+      document.getElementById("bracketTreeTitle").textContent=`${{season}} ${{zone}}纵向赛程树`;
+      document.getElementById("bracketTreeMeta").textContent=`主线 ${{koRounds.length}} 个赛段 · ${{groupRounds.length}} 轮小组赛 · 侧线 ${{auxiliaryKo.length}} 场`;
+      const auxiliaryHeading=auxiliaryKo.length?`<div class="topdown-aux-heading" style="left:${{width-cardW-28}}px;top:${{top}}px">名额争夺 / 排位支线</div>`:'';
+      document.getElementById("bracketCanvas").innerHTML=`<div class="bracket-graph" style="width:${{width}}px;height:${{height}}px"><svg class="bracket-lines" width="${{width}}" height="${{height}}">${{paths.join("")}}</svg>${{labels}}${{auxiliaryHeading}}${{nodes}}</div>`;
+      if(document.fullscreenElement===document.getElementById("bracketTree"))requestAnimationFrame(fitBracketFullscreen);
     }}
 
     function getFilteredSchedule() {{
@@ -7479,6 +7884,7 @@ def render_html(title, payload):
 
     function renderSchedule() {{
       renderZoneRankings();
+      renderTopDownBracketTree();
       const rows = getFilteredSchedule();
       const pages = Math.max(1, Math.ceil(rows.length / schedulePageSize));
       schedulePage = Math.min(schedulePage, pages);
@@ -7501,7 +7907,7 @@ def render_html(title, payload):
           ? `<br><a class="schedule-replay" href="${{scheduleEscape(replay.url)}}" target="_blank" rel="noopener" title="${{scheduleEscape(replay.title)}}">▶ 直接看回放</a>`
           : "";
         return `
-        <article class="schedule-match">
+        <article class="schedule-match" data-schedule-match="${{scheduleEscape(`${{item.season}}|${{item.zone}}|${{item.order}}|${{item.id}}`)}}">
           <div class="schedule-meta"><b>${{scheduleEscape(item.season)}}</b>${{scheduleEscape(item.zone || "未标注")}}</div>
           <div class="schedule-team red"><b>${{scheduleEscape(item.redTeam)}}</b><small>${{scheduleEscape(item.redSchool)}}</small></div>
           <div class="schedule-score"><span class="red">${{scheduleEscape(item.redScore)}}</span><span>:</span><span class="blue">${{scheduleEscape(item.blueScore)}}</span></div>
@@ -7520,6 +7926,159 @@ def render_html(title, payload):
       document.getElementById("scheduleNext").disabled = schedulePage >= pages;
     }}
 
+    function fitBracketFullscreen() {{
+      const tree = document.getElementById("bracketTree");
+      const graph = tree.querySelector(".bracket-graph");
+      if (!graph || document.fullscreenElement !== tree || tree.classList.contains("tree-fullsize")) return;
+      const availableWidth = tree.clientWidth - 28;
+      const availableHeight = tree.clientHeight - 72;
+      const fittedScale = Math.min(availableWidth / graph.offsetWidth, availableHeight / graph.offsetHeight, 1);
+      const scale = Math.max(0.78, fittedScale);
+      const offset = Math.max(0, (availableWidth - graph.offsetWidth * scale) / 2);
+      tree.style.setProperty("--tree-scale", scale.toFixed(4));
+      tree.style.setProperty("--tree-offset-x", `${{offset}}px`);
+    }}
+
+    document.getElementById("bracketFullscreen").addEventListener("click", async () => {{
+      const tree = document.getElementById("bracketTree");
+      if (document.fullscreenElement === tree) await document.exitFullscreen();
+      else {{ tree.classList.remove("tree-fullsize"); await tree.requestFullscreen(); fitBracketFullscreen(); }}
+    }});
+    document.getElementById("bracketScaleToggle").addEventListener("click", () => {{
+      const tree = document.getElementById("bracketTree");
+      tree.classList.toggle("tree-fullsize");
+      document.getElementById("bracketScaleToggle").textContent = tree.classList.contains("tree-fullsize") ? "适应全屏" : "100% 细节";
+      if (!tree.classList.contains("tree-fullsize")) fitBracketFullscreen();
+    }});
+    document.addEventListener("fullscreenchange", () => {{
+      const tree = document.getElementById("bracketTree");
+      document.getElementById("bracketFullscreen").textContent = document.fullscreenElement === tree ? "退出全屏" : "⛶ 全屏总览";
+      if (document.fullscreenElement === tree) requestAnimationFrame(fitBracketFullscreen);
+    }});
+    window.addEventListener("resize", fitBracketFullscreen);
+
+    document.getElementById("bracketTree").addEventListener("dblclick", async (event) => {{
+      const node = event.target.closest("[data-tree-match]");
+      if (!node) return;
+      const key = node.dataset.treeMatch;
+      const item = scheduleData.matches.find((row) => `${{row.season}}|${{row.zone}}|${{row.order}}|${{row.id}}` === key);
+      if (!item) return;
+      if (document.fullscreenElement) await document.exitFullscreen();
+      document.getElementById("scheduleSeason").value = item.season;
+      refreshScheduleZoneOptions(false);
+      document.getElementById("scheduleZone").value = item.zone;
+      refreshScheduleStageOptions();
+      document.getElementById("scheduleStage").value = "";
+      document.getElementById("scheduleSearch").value = "";
+      document.getElementById("scheduleIncludeUncertain").checked = true;
+      const rows = getFilteredSchedule();
+      const index = rows.findIndex((row) => `${{row.season}}|${{row.zone}}|${{row.order}}|${{row.id}}` === key);
+      schedulePage = Math.max(1, Math.floor(Math.max(0, index) / schedulePageSize) + 1);
+      renderSchedule();
+      requestAnimationFrame(() => {{
+        const target = [...document.querySelectorAll("[data-schedule-match]")].find((card) => card.dataset.scheduleMatch === key);
+        if (!target) return;
+        target.classList.add("tree-target");
+        target.scrollIntoView({{ behavior: "smooth", block: "center" }});
+        setTimeout(() => target.classList.remove("tree-target"), 3200);
+      }});
+    }});
+
+    function rmulValues(key, season = "", zone = "") {{
+      return [...new Set(rmulData.matches.filter((item) =>
+        (!season || item.season === season) && (!zone || item.zone === zone)
+      ).map((item) => item[key]).filter(Boolean))].sort((a,b) => String(a).localeCompare(String(b), "zh-CN", {{numeric:true}}));
+    }}
+
+    function refreshRmulOptions() {{
+      const season = document.getElementById("rmulSeason").value;
+      const zones=rmulValues("zone", season);
+      fillScheduleSelect("rmulZone", zones, "全部站点", zones[0]||"");
+      const zone = document.getElementById("rmulZone").value;
+      fillScheduleSelect("rmulStage", rmulValues("stage", season, zone), "全部比赛阶段");
+    }}
+
+    function renderRmulSummary() {{
+      const teams = new Set(), schools = new Set();
+      rmulData.matches.forEach((item) => {{
+        teams.add(`${{item.redSchool}}|${{item.redTeam}}`); teams.add(`${{item.blueSchool}}|${{item.blueTeam}}`);
+        schools.add(item.redSchool); schools.add(item.blueSchool);
+      }});
+      document.getElementById("rmulMatchCount").textContent = rmulData.matches.filter((item)=>item.url).length.toLocaleString();
+      document.getElementById("rmulTeamCount").textContent = teams.size.toLocaleString();
+      document.getElementById("rmulSchoolCount").textContent = schools.size.toLocaleString();
+      document.getElementById("rmulMissingCount").textContent = (rmulData.missingReplays||[]).length.toLocaleString();
+      document.getElementById("rmulCoverage").innerHTML = (rmulData.coverage || []).map((item) =>
+        `<article class="recap-card"><b>${{scheduleEscape(item.season)}} 赛季</b><span>${{scheduleEscape(item.status)}} · ${{Number(item.matchCount||0).toLocaleString()}} 场</span>${{item.url?`<br><a class="schedule-replay" href="${{scheduleEscape(item.url)}}" target="_blank" rel="noopener">查看官方合集</a>`:""}}</article>`
+      ).join("");
+    }}
+
+    function getFilteredRmul() {{
+      const season=document.getElementById("rmulSeason").value,zone=document.getElementById("rmulZone").value;
+      const stage=document.getElementById("rmulStage").value,keyword=document.getElementById("rmulSearch").value.trim().toLowerCase();
+      return rmulData.matches.filter((item)=>(!season||item.season===season)&&(!zone||item.zone===zone)&&(!stage||item.stage===stage)&&
+        (!keyword||[item.redSchool,item.redTeam,item.blueSchool,item.blueTeam,item.title].some((value)=>String(value||"").toLowerCase().includes(keyword))))
+        .sort((a,b)=>Number(b.season)-Number(a.season)||String(a.zone).localeCompare(String(b.zone),"zh-CN")||Number(a.order)-Number(b.order));
+    }}
+
+    function renderRmulRankingAndTree() {{
+      const season=document.getElementById("rmulSeason").value,zone=document.getElementById("rmulZone").value;
+      const rankings=(rmulData.rankings||[]).filter((item)=>(!season||item.season===season)&&(!zone||item.zone===zone));
+      document.getElementById("rmulRankingTitle").textContent=zone?`${{season}} ${{zone}}名次`:`${{season||"当前"}} 高校联盟赛名次`;
+      document.getElementById("rmulRankingLabel").textContent=rankings.length?`${{rankings.length}} 支队伍`:'暂无官网名次';
+      const resultOrder=["冠军","亚军","季军","殿军","八强","十六强","未出线"];
+      document.getElementById("rmulRanking").innerHTML=rankings.length?resultOrder.map((result)=>{{
+        const items=rankings.filter((item)=>item.result===result);if(!items.length)return '';
+        return `<article class="recap-card"><b>${{result}} · ${{items.length}} 支</b>${{items.map((item)=>`<span><strong>${{scheduleEscape(item.school)}}</strong>　${{scheduleEscape(item.team)}}</span>`).join('')}}</article>`;
+      }}).join(''):'<div class="schedule-empty">该年份/站点暂无可核验的3V3官方名次。</div>';
+
+      const eventRows=rmulData.matches.filter((item)=>item.season===season&&item.zone===zone);
+      const stages=[
+        eventRows.filter((item)=>["冠军争夺战","季军争夺战"].includes(item.stage)),
+        eventRows.filter((item)=>item.stage==="半决赛"),
+        eventRows.filter((item)=>item.stage==="8进4淘汰赛"),
+        eventRows.filter((item)=>item.stage==="16进8淘汰赛"),
+      ].filter((items)=>items.length);
+      document.getElementById("rmulTreeTitle").textContent=zone?`${{season}} ${{zone}}淘汰赛树`:'高校联盟赛淘汰赛树';
+      document.getElementById("rmulTreeLabel").textContent=stages.length?`${{stages.reduce((sum,items)=>sum+items.length,0)}} 场淘汰赛回放`:'暂无可核验树节点';
+      if(!stages.length){{document.getElementById("rmulBracketCanvas").innerHTML='<div class="schedule-empty">当前站点暂无可核验的淘汰赛阶段。</div>';return;}}
+      const cardW=230,cardH=102,gap=24,bandH=150,top=52,maxCount=Math.max(...stages.map((items)=>items.length),4);
+      const width=Math.max(1500,maxCount*(cardW+gap)+180),height=top+stages.length*bandH+55,positions=new Map();
+      stages.forEach((items,band)=>{{const total=items.length*cardW+(items.length-1)*gap,start=(width-total)/2,y=top+band*bandH;items.forEach((item,index)=>positions.set(item.id,{{x:start+index*(cardW+gap),y}}));}});
+      const norm=(value)=>String(value||'').toLowerCase().replace(/[^0-9a-z\u4e00-\u9fff]/g,'');
+      const teams=(item)=>[norm(item.redSchool+item.redTeam),norm(item.blueSchool+item.blueTeam)];
+      const paths=[];for(let band=1;band<stages.length;band++)stages[band].forEach((source)=>stages[band-1].forEach((target)=>{{
+        if(!teams(source).some((name)=>name&&teams(target).some((other)=>name.includes(other)||other.includes(name))))return;
+        const a=positions.get(source.id),b=positions.get(target.id),x1=a.x+cardW/2,y1=a.y,x2=b.x+cardW/2,y2=b.y+cardH,m=(y1+y2)/2;
+        paths.push(`<path d="M ${{x1}} ${{y1}} V ${{m}} H ${{x2}} V ${{y2}}" fill="none" stroke="rgba(184,205,214,.62)" stroke-width="1.6"/>`);
+      }}));
+      const nodes=stages.flat().map((item)=>{{const p=positions.get(item.id);return `<article class="topdown-node" data-rmul-replay="${{scheduleEscape(item.url)}}" title="双击打开官方回放" style="left:${{p.x}}px;top:${{p.y}}px"><div class="topdown-side red"><span><b>${{scheduleEscape(item.redTeam)}}</b><small>${{scheduleEscape(item.redSchool)}}</small></span><strong class="topdown-score">—</strong></div><div class="topdown-side blue"><span><b>${{scheduleEscape(item.blueTeam)}}</b><small>${{scheduleEscape(item.blueSchool)}}</small></span><strong class="topdown-score">—</strong></div></article>`;}}).join('');
+      const labels=stages.map((items,band)=>`<div class="topdown-round" style="top:${{top+band*bandH+35}}px">${{scheduleEscape([...new Set(items.map((item)=>item.stage))].join(' / '))}}</div>`).join('');
+      document.getElementById("rmulBracketCanvas").innerHTML=`<div class="bracket-graph" style="width:${{width}}px;height:${{height}}px"><svg class="bracket-lines" width="${{width}}" height="${{height}}">${{paths.join('')}}</svg>${{labels}}${{nodes}}</div>`;
+    }}
+
+    function renderRmul() {{
+      const rows=getFilteredRmul(),pages=Math.max(1,Math.ceil(rows.length/rmulPageSize));rmulPage=Math.min(Math.max(1,rmulPage),pages);
+      const visible=rows.slice((rmulPage-1)*rmulPageSize,rmulPage*rmulPageSize);
+      const selectedSeason=document.getElementById("rmulSeason").value;
+      const collections=(rmulData.collections||[]).filter((item)=>!selectedSeason||item.season===selectedSeason);
+      document.getElementById("rmulCollections").innerHTML=collections.map((item)=>`<article class="recap-card"><b>${{scheduleEscape(item.season)}} · ${{scheduleEscape(item.zone)}}</b><span>${{scheduleEscape(item.title)}} · ${{item.parsedMatches}}/${{item.totalVideos}} 条已解析</span><br><a class="schedule-replay" href="${{scheduleEscape(item.url)}}" target="_blank" rel="noopener">▶ 打开官方合集</a></article>`).join("");
+      document.getElementById("rmulCollectionLabel").textContent=`${{collections.length}} 个合集`;
+      document.getElementById("rmulList").innerHTML=visible.length?visible.map((item)=>{{
+        const redScore=item.redScore==='-'?'—':item.redScore,blueScore=item.blueScore==='-'?'—':item.blueScore;
+        const replay=item.url?`<a class="schedule-replay" href="${{scheduleEscape(item.url)}}" target="_blank" rel="noopener" title="${{scheduleEscape(item.title)}}">▶ 直接看回放</a>`:`<span class="schedule-replay" title="${{scheduleEscape(item.inferenceNote||'')}}">△ 对阵推定 · 回放缺失</span>`;
+        return `<article class="schedule-match"><div class="schedule-meta"><b>${{scheduleEscape(item.season)}}</b>${{scheduleEscape(item.zone)}}</div><div class="schedule-team red"><b>${{scheduleEscape(item.redTeam)}}</b><small>${{scheduleEscape(item.redSchool)}}</small></div><div class="schedule-score"><span class="red">${{scheduleEscape(redScore)}}</span><span>:</span><span class="blue">${{scheduleEscape(blueScore)}}</span></div><div class="schedule-team"><b>${{scheduleEscape(item.blueTeam)}}</b><small>${{scheduleEscape(item.blueSchool)}}</small></div><div class="schedule-tail"><span class="schedule-stage">${{scheduleEscape(item.stage)}}${{item.inferred?' · 推定':''}}</span>第 ${{scheduleEscape(item.order)}} 场<br>${{replay}}</div></article>`;
+      }}).join(""):'<div class="schedule-empty">当前筛选条件下没有高校联盟赛回放。</div>';
+      document.getElementById("rmulCountLabel").textContent=`共 ${{rows.length.toLocaleString()}} 场，当前显示 ${{visible.length}} 场`;
+      document.getElementById("rmulPageLabel").textContent=`第 ${{rmulPage}} / ${{pages}} 页`;
+      document.getElementById("rmulPrev").disabled=rmulPage<=1;document.getElementById("rmulNext").disabled=rmulPage>=pages;
+      const missing=(rmulData.missingReplays||[]).filter((item)=>(!document.getElementById("rmulSeason").value||item.season===document.getElementById("rmulSeason").value)&&(!document.getElementById("rmulZone").value||item.zone===document.getElementById("rmulZone").value));
+      document.getElementById("rmulMissingBlock").hidden=!missing.length;
+      document.getElementById("rmulMissingLabel").textContent=`${{missing.length}} 个场号在官方合集与官号搜索中均未找到`;
+      document.getElementById("rmulMissingList").innerHTML=missing.map((item)=>`<article class="recap-card"><b>${{scheduleEscape(item.season)}} · ${{scheduleEscape(item.zone)}}</b><span>第 ${{scheduleEscape(item.order)}} 场 · 官方回放缺失/未发布</span></article>`).join('');
+      renderRmulRankingAndTree();
+    }}
+
     document.querySelectorAll("[data-dataset-tab]").forEach((button) => {{
       button.addEventListener("click", () => {{
         const target = button.dataset.datasetTab;
@@ -7527,6 +8086,7 @@ def render_html(title, payload):
         document.querySelectorAll("[data-dataset-board]").forEach((board) => board.hidden = board.dataset.datasetBoard !== target);
         localStorage.setItem("rm-dashboard-board", target);
         if (target === "schedule") renderSchedule();
+        if (target === "league") renderRmul();
         window.scrollTo({{ top: 0, behavior: "smooth" }});
       }});
     }});
@@ -7546,13 +8106,31 @@ def render_html(title, payload):
     document.getElementById("scheduleSearch").addEventListener("input", () => {{ schedulePage = 1; renderSchedule(); }});
     document.getElementById("schedulePrev").addEventListener("click", () => {{ schedulePage -= 1; renderSchedule(); }});
     document.getElementById("scheduleNext").addEventListener("click", () => {{ schedulePage += 1; renderSchedule(); }});
+    document.getElementById("rmulSeason").addEventListener("change", () => {{ rmulPage=1;refreshRmulOptions();renderRmul(); }});
+    document.getElementById("rmulZone").addEventListener("change", () => {{
+      rmulPage=1;const season=document.getElementById("rmulSeason").value,zone=document.getElementById("rmulZone").value;
+      fillScheduleSelect("rmulStage",rmulValues("stage",season,zone),"全部比赛阶段");renderRmul();
+    }});
+    document.getElementById("rmulStage").addEventListener("change",()=>{{rmulPage=1;renderRmul();}});
+    document.getElementById("rmulSearch").addEventListener("input",()=>{{rmulPage=1;renderRmul();}});
+    document.getElementById("rmulPrev").addEventListener("click",()=>{{rmulPage-=1;renderRmul();}});
+    document.getElementById("rmulNext").addEventListener("click",()=>{{rmulPage+=1;renderRmul();}});
+    document.getElementById("rmulBracketTree").addEventListener("dblclick",(event)=>{{
+      const node=event.target.closest("[data-rmul-replay]");if(node)window.open(node.dataset.rmulReplay,"_blank","noopener");
+    }});
     const scheduleSeasons = uniqueScheduleValues("season");
     fillScheduleSelect("scheduleSeason", scheduleSeasons, "全部赛季", scheduleSeasons[0] || "");
     refreshScheduleZoneOptions(true);
     renderScheduleSummary();
     renderSchedule();
+    const rmulSeasons=rmulValues("season").sort((a,b)=>Number(b)-Number(a));
+    fillScheduleSelect("rmulSeason",rmulSeasons,"全部赛季",rmulSeasons[0]||"");
+    refreshRmulOptions();
+    renderRmulSummary();
+    renderRmul();
     const savedBoard = localStorage.getItem("rm-dashboard-board");
-    if (savedBoard === "schedule") document.querySelector('[data-dataset-tab="schedule"]').click();
+    const savedBoardTab = document.querySelector(`[data-dataset-tab="${{savedBoard}}"]`);
+    if (savedBoardTab) savedBoardTab.click();
 
     initializeVirtualMetrics();
     render();
@@ -7596,6 +8174,7 @@ def main(csv_file, title, default_sort=None, initial_zone="全部", initial_type
         "initialType": initial_type,
         "initialKeyword": initial_keyword,
         "scheduleData": load_schedule_data(),
+        "rmulData": load_rmul_data(),
         "replayLinks": load_replay_links(),
     }
 

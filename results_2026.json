@@ -5,7 +5,7 @@
       "season": "2026",
       "zone": "东部赛区",
       "order": "1",
-      "stage": "小组赛",
+      "stage": "A组第1轮",
       "redSchool": "南京航空航天大学金城学院",
       "redTeam": "Born of Fire",
       "blueSchool": "西南交通大学",
@@ -13,14 +13,17 @@
       "redScore": 1,
       "blueScore": 2,
       "note": "比分与回放均来自官方数据",
-      "uncertain": false
+      "uncertain": false,
+      "matchId": "30988",
+      "redSourceMatch": "",
+      "blueSourceMatch": ""
     },
     {
       "id": "2026-东部赛区-2",
       "season": "2026",
       "zone": "东部赛区",
       "order": "2",
-      "stage": "小组赛",
+      "stage": "A组第1轮",
       "redSchool": "南京理工大学",
       "redTeam": "Alliance",
       "blueSchool": "广西大学",
@@ -28,14 +31,17 @@
       "redScore": 2,
       "blueScore": 0,
       "note": "比分与回放均来自官方数据",
-      "uncertain": false
+      "uncertain": false,
+      "matchId": "30989",
+      "redSourceMatch": "",
+      "blueSourceMatch": ""
     },
     {
       "id": "2026-东部赛区-3",
       "season": "2026",
       "zone": "东部赛区",
       "order": "3",
-      "stage": "小组赛",
+      "stage": "A组第1轮",
       "redSchool": "福建理工大学",
       "redTeam": "苍侠",
       "blueSchool": "中国石油大学（华东）",
@@ -43,14 +49,17 @@
       "redScore": 0,
       "blueScore": 2,
       "note": "比分与回放均来自官方数据",
-      "uncertain": false
+      "uncertain": false,
+      "matchId": "30990",
+      "redSourceMatch": "",
+      "blueSourceMatch": ""
     },
     {
       "id": "2026-东部赛区-4",
       "season": "2026",
       "zone": "东部赛区",
       "order": "4",
-      "stage": "小组赛",
+      "stage": "A组第1轮",
       "redSchool": "江苏大学",
       "redTeam": "Aurora",
       "blueSchool": "中国石油大学（北京）",
@@ -58,14 +67,17 @@
       "redScore": 2,
       "blueScore": 0,
       "note": "比分与回放均来自官方数据",
-      "uncertain": false
+      "uncertain": false,
+      "matchId": "30991",
+      "redSourceMatch": "",
+      "blueSourceMatch": ""
     },
     {
       "id": "2026-东部赛区-5",
       "season": "2026",
       "zone": "东部赛区",
       "order": "5",
-      "stage": "小组赛",
+      "stage": "A组第1轮",
       "redSchool": "中国科学技术大学",
       "redTeam": "RoboWalker",
       "blueSchool": "青岛大学",
@@ -73,14 +85,17 @@
       "redScore": 0,
       "blueScore": 2,
       "note": "比分与回放均来自官方数据",
-      "uncertain": false
+      "uncertain": false,
+      "matchId": "30992",
+      "redSourceMatch": "",
+      "blueSourceMatch": ""
     },
     {
       "id": "2026-东部赛区-6",
       "season": "2026",
       "zone": "东部赛区",
       "order": "6",
-      "stage": "小组赛",
+      "stage": "A组第1轮",
       "redSchool": "齐鲁工业大学",
       "redTeam": "Adam",
       "blueSchool": "太原科技大学",
@@ -88,14 +103,17 @@
       "redScore": 2,
       "blueScore": 0,
       "note": "比分与回放均来自官方数据",
-      "uncertain": false
+      "uncertain": false,
+      "matchId": "30993",
+      "redSourceMatch": "",
+      "blueSourceMatch": ""
     },
     {
       "id": "2026-东部赛区-7",
       "season": "2026",
       "zone": "东部赛区",
       "order": "7",
-      "stage": "小组赛",
+      "stage": "A组第1轮",
       "redSchool": "华东理工大学",
       "redTeam": "起源",
       "blueSchool": "中国矿业大学",
@@ -103,14 +121,17 @@
       "redScore": 2,
       "blueScore": 0,
       "note": "比分与回放均来自官方数据",
-      "uncertain": false
+      "uncertain": false,
+      "matchId": "30994",
+      "redSourceMatch": "",
+      "blueSourceMatch": ""
     },
     {
       "id": "2026-东部赛区-8",
       "season": "2026",
       "zone": "东部赛区",
       "order": "8",
-      "stage": "小组赛",
+      "stage": "A组第1轮",
       "redSchool": "上海大学",
       "redTeam": "SRM",
       "blueSchool": "首都师范大学",
@@ -118,14 +139,17 @@
       "redScore": 1,
       "blueScore": 2,
       "note": "比分与回放均来自官方数据",
-      "uncertain": false
+      "uncertain": false,
+      "matchId": "30995",
+      "redSourceMatch": "",
+      "blueSourceMatch": ""
     },
     {
       "id": "2026-东部赛区-9",
       "season": "2026",
       "zone": "东部赛区",
       "order": "9",
-      "stage": "小组赛",
+      "stage": "B组第1轮",
       "redSchool": "安徽信息工程学院",
       "redTeam": "Artisans",
       "blueSchool": "浙江大学",
@@ -133,14 +157,17 @@
       "redScore": 0,
       "blueScore": 2,
       "note": "比分与回放均来自官方数据",
-      "uncertain": false
+      "uncertain": false,
+      "matchId": "30996",
+      "redSourceMatch": "",
+      "blueSourceMatch": ""
     },
     {
       "id": "2026-东部赛区-10",
       "season": "2026",
       "zone": "东部赛区",
       "order": "10",
-      "stage": "小组赛",
+      "stage": "B组第1轮",
       "redSchool": "杭州电子科技大学",
       "redTeam": "PHOENIX",
       "blueSchool": "哈尔滨工业大学（深圳）",
@@ -148,14 +175,17 @@
       "redScore": 0,
       "blueScore": 2,
       "note": "比分与回放均来自官方数据",
-      "uncertain": false
+      "uncertain": false,
+      "matchId": "30997",
+      "redSourceMatch": "",
+      "blueSourceMatch": ""
     },
     {
       "id": "2026-东部赛区-11",
       "season": "2026",
       "zone": "东部赛区",
       "order": "11",
-      "stage": "小组赛",
+      "stage": "B组第1轮",
       "redSchool": "山东科技大学",
       "redTeam": "SmartRobot",
       "blueSchool": "福建师范大学",
@@ -163,14 +193,17 @@
       "redScore": 2,
       "blueScore": 0,
       "note": "比分与回放均来自官方数据",
-      "uncertain": false
+      "uncertain": false,
+      "matchId": "30998",
+      "redSourceMatch": "",
+      "blueSourceMatch": ""
     },
     {
       "id": "2026-东部赛区-12",
       "season": "2026",
       "zone": "东部赛区",
       "order": "12",
-      "stage": "小组赛",
+      "stage": "B组第1轮",
       "redSchool": "合肥工业大学",
       "redTeam": "苍穹",
       "blueSchool": "江南大学霞客湾校区",
@@ -178,14 +211,17 @@
       "redScore": 1,
       "blueScore": 2,
       "note": "比分与回放均来自官方数据",
-      "uncertain": false
+      "uncertain": false,
+      "matchId": "30999",
+      "redSourceMatch": "",
+      "blueSourceMatch": ""
     },
     {
       "id": "2026-东部赛区-13",
       "season": "2026",
       "zone": "东部赛区",
       "order": "13",
-      "stage": "小组赛",
+      "stage": "B组第1轮",
       "redSchool": "中北大学",
       "redTeam": "606",
       "blueSchool": "南方科技大学",
@@ -193,14 +229,17 @@
       "redScore": 1,
       "blueScore": 2,
       "note": "比分与回放均来自官方数据",
-      "uncertain": false
+      "uncertain": false,
+      "matchId": "31000",
+      "redSourceMatch": "",
+      "blueSourceMatch": ""
     },
     {
       "id": "2026-东部赛区-14",
       "season": "2026",
       "zone": "东部赛区",
       "order": "14",
-      "stage": "小组赛",
+      "stage": "B组第1轮",
       "redSchool": "南京理工大学",
       "redTeam": "江阴校区 Combat",
       "blueSchool": "上海工程技术大学",
@@ -208,14 +247,17 @@
       "redScore": 0,
       "blueScore": 2,
       "note": "比分与回放均来自官方数据",
-      "uncertain": false
+      "uncertain": false,
+      "matchId": "31001",
+      "redSourceMatch": "",
+      "blueSourceMatch": ""
     },
     {
       "id": "2026-东部赛区-15",
       "season": "2026",
       "zone": "东部赛区",
       "order": "15",
-      "stage": "小组赛",
+      "stage": "B组第1轮",
       "redSchool": "东南大学",
       "redTeam": "3SE",
       "blueSchool": "成都大学",
@@ -223,14 +265,17 @@
       "redScore": 2,
       "blueScore": 0,
       "note": "比分与回放均来自官方数据",
-      "uncertain": false
+      "uncertain": false,
+      "matchId": "31002",
+      "redSourceMatch": "",
+      "blueSourceMatch": ""
     },
     {
       "id": "2026-东部赛区-16",
       "season": "2026",
       "zone": "东部赛区",
       "order": "16",
-      "stage": "小组赛",
+      "stage": "B组第1轮",
       "redSchool": "北京理工大学（珠海）",
       "redTeam": "毅恒",
       "blueSchool": "合肥工业大学（宣城校区）",
@@ -238,14 +283,17 @@
       "redScore": 0,
       "blueScore": 2,
       "note": "比分与回放均来自官方数据",
-      "uncertain": false
+      "uncertain": false,
+      "matchId": "31003",
+      "redSourceMatch": "",
+      "blueSourceMatch": ""
     },
     {
       "id": "2026-东部赛区-17",
       "season": "2026",
       "zone": "东部赛区",
       "order": "17",
-      "stage": "小组赛",
+      "stage": "A组第2轮",
       "redSchool": "首都师范大学",
       "redTeam": "PIE",
       "blueSchool": "西南交通大学",
@@ -253,14 +301,17 @@
       "redScore": 2,
       "blueScore": 0,
       "note": "比分与回放均来自官方数据",
-      "uncertain": false
+      "uncertain": false,
+      "matchId": "31004",
+      "redSourceMatch": "",
+      "blueSourceMatch": ""
     },
     {
       "id": "2026-东部赛区-18",
       "season": "2026",
       "zone": "东部赛区",
       "order": "18",
-      "stage": "小组赛",
+      "stage": "A组第2轮",
       "redSchool": "华东理工大学",
       "redTeam": "起源",
       "blueSchool": "中国石油大学（华东）",
@@ -268,14 +319,17 @@
       "redScore": 0,
       "blueScore": 2,
       "note": "比分与回放均来自官方数据",
-      "uncertain": false
+      "uncertain": false,
+      "matchId": "31005",
+      "redSourceMatch": "",
+      "blueSourceMatch": ""
     },
     {
       "id": "2026-东部赛区-19",
       "season": "2026",
       "zone": "东部赛区",
       "order": "19",
-      "stage": "小组赛",
+      "stage": "A组第2轮",
       "redSchool": "齐鲁工业大学",
       "redTeam": "Adam",
       "blueSchool": "青岛大学",
@@ -283,14 +337,17 @@
       "redScore": 0,
       "blueScore": 2,
       "note": "比分与回放均来自官方数据",
-      "uncertain": false
+      "uncertain": false,
+      "matchId": "31006",
+      "redSourceMatch": "",
+      "blueSourceMatch": ""
     },
     {
       "id": "2026-东部赛区-20",
       "season": "2026",
       "zone": "东部赛区",
       "order": "20",
-      "stage": "小组赛",
+      "stage": "A组第2轮",
       "redSchool": "南京理工大学",
       "redTeam": "Alliance",
       "blueSchool": "江苏大学",
@@ -298,14 +355,17 @@
       "redScore": 2,
       "blueScore": 0,
       "note": "比分与回放均来自官方数据",
-      "uncertain": false
+      "uncertain": false,
+      "matchId": "31007",
+      "redSourceMatch": "",
+      "blueSourceMatch": ""
     },
     {
       "id": "2026-东部赛区-21",
       "season": "2026",
       "zone": "东部赛区",
       "order": "21",
-      "stage": "小组赛",
+      "stage": "A组第2轮",
       "redSchool": "中国科学技术大学",
       "redTeam": "RoboWalker",
       "blueSchool": "中国石油大学（北京）",
@@ -313,14 +373,17 @@
       "redScore": 2,
       "blueScore": 0,
       "note": "比分与回放均来自官方数据",
-      "uncertain": false
+      "uncertain": false,
+      "matchId": "31009",
+      "redSourceMatch": "",
+      "blueSourceMatch": ""
     },
     {
       "id": "2026-东部赛区-22",
       "season": "2026",
       "zone": "东部赛区",
       "order": "22",
-      "stage": "小组赛",
+      "stage": "A组第2轮",
       "redSchool": "太原科技大学",
       "redTeam": "NewMaker",
       "blueSchool": "广西大学",
@@ -328,14 +391,17 @@
       "redScore": 2,
       "blueScore": 0,
       "note": "比分与回放均来自官方数据",
-      "uncertain": false
+      "uncertain": false,
+      "matchId": "31010",
+      "redSourceMatch": "",
+      "blueSourceMatch": ""
     },
     {
       "id": "2026-东部赛区-23",
       "season": "2026",
       "zone": "东部赛区",
       "order": "23",
-      "stage": "小组赛",
+      "stage": "A组第2轮",
       "redSchool": "中国矿业大学",
       "redTeam": "CUBOT",
       "blueSchool": "福建理工大学",
@@ -343,14 +409,17 @@
       "redScore": 2,
       "blueScore": 0,
       "note": "比分与回放均来自官方数据",
-      "uncertain": false
+      "uncertain": false,
+      "matchId": "31011",
+      "redSourceMatch": "",
+      "blueSourceMatch": ""
     },
     {
       "id": "2026-东部赛区-24",
       "season": "2026",
       "zone": "东部赛区",
       "order": "24",
-      "stage": "小组赛",
+      "stage": "A组第2轮",
       "redSchool": "上海大学",
       "redTeam": "SRM",
       "blueSchool": "南京航空航天大学金城学院",
@@ -358,14 +427,17 @@
       "redScore": 0,
       "blueScore": 2,
       "note": "比分与回放均来自官方数据",
-      "uncertain": false
+      "uncertain": false,
+      "matchId": "31012",
+      "redSourceMatch": "",
+      "blueSourceMatch": ""
     },
     {
       "id": "2026-东部赛区-25",
       "season": "2026",
       "zone": "东部赛区",
       "order": "25",
-      "stage": "小组赛",
+      "stage": "B组第2轮",
       "redSchool": "江南大学霞客湾校区",
       "redTeam": "SHARK",
       "blueSchool": "南方科技大学",
@@ -373,14 +445,17 @@
       "redScore": 2,
       "blueScore": 0,
       "note": "比分与回放均来自官方数据",
-      "uncertain": false
+      "uncertain": false,
+      "matchId": "31013",
+      "redSourceMatch": "",
+      "blueSourceMatch": ""
     },
     {
       "id": "2026-东部赛区-26",
       "season": "2026",
       "zone": "东部赛区",
       "order": "26",
-      "stage": "小组赛",
+      "stage": "B组第2轮",
       "redSchool": "山东科技大学",
       "redTeam": "SmartRobot",
       "blueSchool": "哈尔滨工业大学（深圳）",
@@ -388,14 +463,17 @@
       "redScore": 2,
       "blueScore": 1,
       "note": "比分与回放均来自官方数据",
-      "uncertain": false
+      "uncertain": false,
+      "matchId": "31014",
+      "redSourceMatch": "",
+      "blueSourceMatch": ""
     },
     {
       "id": "2026-东部赛区-27",
       "season": "2026",
       "zone": "东部赛区",
       "order": "27",
-      "stage": "小组赛",
+      "stage": "B组第2轮",
       "redSchool": "浙江大学",
       "redTeam": "Hello World",
       "blueSchool": "东南大学",
@@ -403,14 +481,17 @@
       "redScore": 2,
       "blueScore": 0,
       "note": "比分与回放均来自官方数据",
-      "uncertain": false
+      "uncertain": false,
+      "matchId": "31015",
+      "redSourceMatch": "",
+      "blueSourceMatch": ""
     },
     {
       "id": "2026-东部赛区-28",
       "season": "2026",
       "zone": "东部赛区",
       "order": "28",
-      "stage": "小组赛",
+      "stage": "B组第2轮",
       "redSchool": "合肥工业大学（宣城校区）",
       "redTeam": "WDR",
       "blueSchool": "上海工程技术大学",
@@ -418,14 +499,17 @@
       "redScore": 2,
       "blueScore": 0,
       "note": "比分与回放均来自官方数据",
-      "uncertain": false
+      "uncertain": false,
+      "matchId": "31016",
+      "redSourceMatch": "",
+      "blueSourceMatch": ""
     },
     {
       "id": "2026-东部赛区-29",
       "season": "2026",
       "zone": "东部赛区",
       "order": "29",
-      "stage": "小组赛",
+      "stage": "B组第2轮",
       "redSchool": "北京理工大学（珠海）",
       "redTeam": "毅恒",
       "blueSchool": "南京理工大学",
@@ -433,14 +517,17 @@
       "redScore": 2,
       "blueScore": 0,
       "note": "比分与回放均来自官方数据",
-      "uncertain": false
+      "uncertain": false,
+      "matchId": "31017",
+      "redSourceMatch": "",
+      "blueSourceMatch": ""
     },
     {
       "id": "2026-东部赛区-30",
       "season": "2026",
       "zone": "东部赛区",
       "order": "30",
-      "stage": "小组赛",
+      "stage": "B组第2轮",
       "redSchool": "安徽信息工程学院",
       "redTeam": "Artisans",
       "blueSchool": "成都大学",
@@ -448,14 +535,17 @@
       "redScore": 2,
       "blueScore": 1,
       "note": "比分与回放均来自官方数据",
-      "uncertain": false
+      "uncertain": false,
+      "matchId": "31018",
+      "redSourceMatch": "",
+      "blueSourceMatch": ""
     },
     {
       "id": "2026-东部赛区-31",
       "season": "2026",
       "zone": "东部赛区",
       "order": "31",
-      "stage": "小组赛",
+      "stage": "B组第2轮",
       "redSchool": "福建师范大学",
       "redTeam": "PKA",
       "blueSchool": "杭州电子科技大学",
@@ -463,14 +553,17 @@
       "redScore": 2,
       "blueScore": 0,
       "note": "比分与回放均来自官方数据",
-      "uncertain": false
+      "uncertain": false,
+      "matchId": "31019",
+      "redSourceMatch": "",
+      "blueSourceMatch": ""
     },
     {
       "id": "2026-东部赛区-32",
       "season": "2026",
       "zone": "东部赛区",
       "order": "32",
-      "stage": "小组赛",
+      "stage": "B组第2轮",
       "redSchool": "合肥工业大学",
       "redTeam": "苍穹",
       "blueSchool": "中北大学",
@@ -478,14 +571,17 @@
       "redScore": 2,
       "blueScore": 1,
       "note": "比分与回放均来自官方数据",
-      "uncertain": false
+      "uncertain": false,
+      "matchId": "31020",
+      "redSourceMatch": "",
+      "blueSourceMatch": ""
     },
     {
       "id": "2026-东部赛区-33",
       "season": "2026",
       "zone": "东部赛区",
       "order": "33",
-      "stage": "小组赛",
+      "stage": "A组第3轮",
       "redSchool": "青岛大学",
       "redTeam": "未来",
       "blueSchool": "中国石油大学（华东）",
@@ -493,14 +589,17 @@
       "redScore": 0,
       "blueScore": 2,
       "note": "比分与回放均来自官方数据",
-      "uncertain": false
+      "uncertain": false,
+      "matchId": "31021",
+      "redSourceMatch": "",
+      "blueSourceMatch": ""
     },
     {
       "id": "2026-东部赛区-34",
       "season": "2026",
       "zone": "东部赛区",
       "order": "34",
-      "stage": "小组赛",
+      "stage": "A组第3轮",
       "redSchool": "南京理工大学",
       "redTeam": "Alliance",
       "blueSchool": "首都师范大学",
@@ -508,14 +607,17 @@
       "redScore": 2,
       "blueScore": 0,
       "note": "比分与回放均来自官方数据",
-      "uncertain": false
+      "uncertain": false,
+      "matchId": "31022",
+      "redSourceMatch": "",
+      "blueSourceMatch": ""
     },
     {
       "id": "2026-东部赛区-35",
       "season": "2026",
       "zone": "东部赛区",
       "order": "35",
-      "stage": "小组赛",
+      "stage": "A组第3轮",
       "redSchool": "齐鲁工业大学",
       "redTeam": "Adam",
       "blueSchool": "华东理工大学",
@@ -523,14 +625,17 @@
       "redScore": 0,
       "blueScore": 2,
       "note": "比分与回放均来自官方数据",
-      "uncertain": false
+      "uncertain": false,
+      "matchId": "31023",
+      "redSourceMatch": "",
+      "blueSourceMatch": ""
     },
     {
       "id": "2026-东部赛区-36",
       "season": "2026",
       "zone": "东部赛区",
       "order": "36",
-      "stage": "小组赛",
+      "stage": "A组第3轮",
       "redSchool": "中国科学技术大学",
       "redTeam": "RoboWalker",
       "blueSchool": "西南交通大学",
@@ -538,14 +643,17 @@
       "redScore": 2,
       "blueScore": 0,
       "note": "比分与回放均来自官方数据",
-      "uncertain": false
+      "uncertain": false,
+      "matchId": "31024",
+      "redSourceMatch": "",
+      "blueSourceMatch": ""
     },
     {
       "id": "2026-东部赛区-37",
       "season": "2026",
       "zone": "东部赛区",
       "order": "37",
-      "stage": "小组赛",
+      "stage": "A组第3轮",
       "redSchool": "江苏大学",
       "redTeam": "Aurora",
       "blueSchool": "太原科技大学",
@@ -553,14 +661,17 @@
       "redScore": 0,
       "blueScore": 2,
       "note": "比分与回放均来自官方数据",
-      "uncertain": false
+      "uncertain": false,
+      "matchId": "31025",
+      "redSourceMatch": "",
+      "blueSourceMatch": ""
     },
     {
       "id": "2026-东部赛区-38",
       "season": "2026",
       "zone": "东部赛区",
       "order": "38",
-      "stage": "小组赛",
+      "stage": "A组第3轮",
       "redSchool": "南京航空航天大学金城学院",
       "redTeam": "Born of Fire",
       "blueSchool": "中国矿业大学",
@@ -568,14 +679,17 @@
       "redScore": 2,
       "blueScore": 0,
       "note": "比分与回放均来自官方数据",
-      "uncertain": false
+      "uncertain": false,
+      "matchId": "31026",
+      "redSourceMatch": "",
+      "blueSourceMatch": ""
     },
     {
       "id": "2026-东部赛区-39",
       "season": "2026",
       "zone": "东部赛区",
       "order": "39",
-      "stage": "小组赛",
+      "stage": "A组第3轮",
       "redSchool": "广西大学",
       "redTeam": "ROBOTZ",
       "blueSchool": "上海大学",
@@ -583,14 +697,17 @@
       "redScore": 0,
       "blueScore": 2,
       "note": "比分与回放均来自官方数据",
-      "uncertain": false
+      "uncertain": false,
+      "matchId": "31027",
+      "redSourceMatch": "",
+      "blueSourceMatch": ""
     },
     {
       "id": "2026-东部赛区-40",
       "season": "2026",
       "zone": "东部赛区",
       "order": "40",
-      "stage": "小组赛",
+      "stage": "A组第3轮",
       "redSchool": "中国石油大学（北京）",
       "redTeam": "SPR",
       "blueSchool": "福建理工大学",
@@ -598,14 +715,17 @@
       "redScore": 2,
       "blueScore": 0,
       "note": "比分与回放均来自官方数据",
-      "uncertain": false
+      "uncertain": false,
+      "matchId": "31028",
+      "redSourceMatch": "",
+      "blueSourceMatch": ""
     },
     {
       "id": "2026-东部赛区-41",
       "season": "2026",
       "zone": "东部赛区",
       "order": "41",
-      "stage": "小组赛",
+      "stage": "B组第3轮",
       "redSchool": "合肥工业大学（宣城校区）",
       "redTeam": "WDR",
       "blueSchool": "山东科技大学",
@@ -613,14 +733,17 @@
       "redScore": 0,
       "blueScore": 2,
       "note": "比分与回放均来自官方数据",
-      "uncertain": false
+      "uncertain": false,
+      "matchId": "31029",
+      "redSourceMatch": "",
+      "blueSourceMatch": ""
     },
     {
       "id": "2026-东部赛区-42",
       "season": "2026",
       "zone": "东部赛区",
       "order": "42",
-      "stage": "小组赛",
+      "stage": "B组第3轮",
       "redSchool": "江南大学霞客湾校区",
       "redTeam": "SHARK",
       "blueSchool": "浙江大学",
@@ -628,14 +751,17 @@
       "redScore": 0,
       "blueScore": 2,
       "note": "比分与回放均来自官方数据",
-      "uncertain": false
+      "uncertain": false,
+      "matchId": "31030",
+      "redSourceMatch": "",
+      "blueSourceMatch": ""
     },
     {
       "id": "2026-东部赛区-43",
       "season": "2026",
       "zone": "东部赛区",
       "order": "43",
-      "stage": "小组赛",
+      "stage": "B组第3轮",
       "redSchool": "南方科技大学",
       "redTeam": "ARTINX",
       "blueSchool": "合肥工业大学",
@@ -643,14 +769,17 @@
       "redScore": 2,
       "blueScore": 1,
       "note": "比分与回放均来自官方数据",
-      "uncertain": false
+      "uncertain": false,
+      "matchId": "31031",
+      "redSourceMatch": "",
+      "blueSourceMatch": ""
     },
     {
       "id": "2026-东部赛区-44",
       "season": "2026",
       "zone": "东部赛区",
       "order": "44",
-      "stage": "小组赛",
+      "stage": "B组第3轮",
       "redSchool": "东南大学",
       "redTeam": "3SE",
       "blueSchool": "安徽信息工程学院",
@@ -658,14 +787,17 @@
       "redScore": 1,
       "blueScore": 2,
       "note": "比分与回放均来自官方数据",
-      "uncertain": false
+      "uncertain": false,
+      "matchId": "31032",
+      "redSourceMatch": "",
+      "blueSourceMatch": ""
     },
     {
       "id": "2026-东部赛区-45",
       "season": "2026",
       "zone": "东部赛区",
       "order": "45",
-      "stage": "小组赛",
+      "stage": "B组第3轮",
       "redSchool": "上海工程技术大学",
       "redTeam": "木鸢Birdiebot",
       "blueSchool": "北京理工大学（珠海）",
@@ -673,14 +805,17 @@
       "redScore": 0,
       "blueScore": 2,
       "note": "比分与回放均来自官方数据",
-      "uncertain": false
+      "uncertain": false,
+      "matchId": "31033",
+      "redSourceMatch": "",
+      "blueSourceMatch": ""
     },
     {
       "id": "2026-东部赛区-46",
       "season": "2026",
       "zone": "东部赛区",
       "order": "46",
-      "stage": "小组赛",
+      "stage": "B组第3轮",
       "redSchool": "福建师范大学",
       "redTeam": "PKA",
       "blueSchool": "哈尔滨工业大学（深圳）",
@@ -688,14 +823,17 @@
       "redScore": 0,
       "blueScore": 2,
       "note": "比分与回放均来自官方数据",
-      "uncertain": false
+      "uncertain": false,
+      "matchId": "31034",
+      "redSourceMatch": "",
+      "blueSourceMatch": ""
     },
     {
       "id": "2026-东部赛区-47",
       "season": "2026",
       "zone": "东部赛区",
       "order": "47",
-      "stage": "小组赛",
+      "stage": "B组第3轮",
       "redSchool": "杭州电子科技大学",
       "redTeam": "PHOENIX",
       "blueSchool": "南京理工大学",
@@ -703,14 +841,17 @@
       "redScore": 0,
       "blueScore": 2,
       "note": "比分与回放均来自官方数据",
-      "uncertain": false
+      "uncertain": false,
+      "matchId": "31035",
+      "redSourceMatch": "",
+      "blueSourceMatch": ""
     },
     {
       "id": "2026-东部赛区-48",
       "season": "2026",
       "zone": "东部赛区",
       "order": "48",
-      "stage": "小组赛",
+      "stage": "B组第3轮",
       "redSchool": "成都大学",
       "redTeam": "Ultra",
       "blueSchool": "中北大学",
@@ -718,14 +859,17 @@
       "redScore": 2,
       "blueScore": 1,
       "note": "比分与回放均来自官方数据",
-      "uncertain": false
+      "uncertain": false,
+      "matchId": "31036",
+      "redSourceMatch": "",
+      "blueSourceMatch": ""
     },
     {
       "id": "2026-东部赛区-49",
       "season": "2026",
       "zone": "东部赛区",
       "order": "49",
-      "stage": "小组赛",
+      "stage": "A组第4轮",
       "redSchool": "青岛大学",
       "redTeam": "未来",
       "blueSchool": "华东理工大学",
@@ -733,14 +877,17 @@
       "redScore": 0,
       "blueScore": 2,
       "note": "比分与回放均来自官方数据",
-      "uncertain": false
+      "uncertain": false,
+      "matchId": "31037",
+      "redSourceMatch": "",
+      "blueSourceMatch": ""
     },
     {
       "id": "2026-东部赛区-50",
       "season": "2026",
       "zone": "东部赛区",
       "order": "50",
-      "stage": "小组赛",
+      "stage": "A组第4轮",
       "redSchool": "中国科学技术大学",
       "redTeam": "RoboWalker",
       "blueSchool": "首都师范大学",
@@ -748,14 +895,17 @@
       "redScore": 2,
       "blueScore": 0,
       "note": "比分与回放均来自官方数据",
-      "uncertain": false
+      "uncertain": false,
+      "matchId": "31038",
+      "redSourceMatch": "",
+      "blueSourceMatch": ""
     },
     {
       "id": "2026-东部赛区-51",
       "season": "2026",
       "zone": "东部赛区",
       "order": "51",
-      "stage": "小组赛",
+      "stage": "A组第4轮",
       "redSchool": "太原科技大学",
       "redTeam": "NewMaker",
       "blueSchool": "南京航空航天大学金城学院",
@@ -763,14 +913,17 @@
       "redScore": 1,
       "blueScore": 2,
       "note": "比分与回放均来自官方数据",
-      "uncertain": false
+      "uncertain": false,
+      "matchId": "31039",
+      "redSourceMatch": "",
+      "blueSourceMatch": ""
     },
     {
       "id": "2026-东部赛区-52",
       "season": "2026",
       "zone": "东部赛区",
       "order": "52",
-      "stage": "小组赛",
+      "stage": "A组第4轮",
       "redSchool": "齐鲁工业大学",
       "redTeam": "Adam",
       "blueSchool": "江苏大学",
@@ -778,14 +931,17 @@
       "redScore": 0,
       "blueScore": 2,
       "note": "比分与回放均来自官方数据",
-      "uncertain": false
+      "uncertain": false,
+      "matchId": "31040",
+      "redSourceMatch": "",
+      "blueSourceMatch": ""
     },
     {
       "id": "2026-东部赛区-53",
       "season": "2026",
       "zone": "东部赛区",
       "order": "53",
-      "stage": "小组赛",
+      "stage": "A组第4轮",
       "redSchool": "西南交通大学",
       "redTeam": "Helios",
       "blueSchool": "中国矿业大学",
@@ -793,14 +949,17 @@
       "redScore": 1,
       "blueScore": 2,
       "note": "比分与回放均来自官方数据",
-      "uncertain": false
+      "uncertain": false,
+      "matchId": "31041",
+      "redSourceMatch": "",
+      "blueSourceMatch": ""
     },
     {
       "id": "2026-东部赛区-54",
       "season": "2026",
       "zone": "东部赛区",
       "order": "54",
-      "stage": "小组赛",
+      "stage": "A组第4轮",
       "redSchool": "中国石油大学（北京）",
       "redTeam": "SPR",
       "blueSchool": "上海大学",
@@ -808,14 +967,17 @@
       "redScore": 0,
       "blueScore": 2,
       "note": "比分与回放均来自官方数据",
-      "uncertain": false
+      "uncertain": false,
+      "matchId": "31042",
+      "redSourceMatch": "",
+      "blueSourceMatch": ""
     },
     {
       "id": "2026-东部赛区-55",
       "season": "2026",
       "zone": "东部赛区",
       "order": "55",
-      "stage": "小组赛",
+      "stage": "B组第4轮",
       "redSchool": "江南大学霞客湾校区",
       "redTeam": "SHARK",
       "blueSchool": "合肥工业大学（宣城校区）",
@@ -823,14 +985,17 @@
       "redScore": 1,
       "blueScore": 2,
       "note": "比分与回放均来自官方数据",
-      "uncertain": false
+      "uncertain": false,
+      "matchId": "31043",
+      "redSourceMatch": "",
+      "blueSourceMatch": ""
     },
     {
       "id": "2026-东部赛区-56",
       "season": "2026",
       "zone": "东部赛区",
       "order": "56",
-      "stage": "小组赛",
+      "stage": "B组第4轮",
       "redSchool": "安徽信息工程学院",
       "redTeam": "Artisans",
       "blueSchool": "北京理工大学（珠海）",
@@ -838,14 +1003,17 @@
       "redScore": 0,
       "blueScore": 2,
       "note": "比分与回放均来自官方数据",
-      "uncertain": false
+      "uncertain": false,
+      "matchId": "31044",
+      "redSourceMatch": "",
+      "blueSourceMatch": ""
     },
     {
       "id": "2026-东部赛区-57",
       "season": "2026",
       "zone": "东部赛区",
       "order": "57",
-      "stage": "小组赛",
+      "stage": "B组第4轮",
       "redSchool": "哈尔滨工业大学（深圳）",
       "redTeam": "南工骁鹰",
       "blueSchool": "南方科技大学",
@@ -853,14 +1021,17 @@
       "redScore": 2,
       "blueScore": 1,
       "note": "比分与回放均来自官方数据",
-      "uncertain": false
+      "uncertain": false,
+      "matchId": "31045",
+      "redSourceMatch": "",
+      "blueSourceMatch": ""
     },
     {
       "id": "2026-东部赛区-58",
       "season": "2026",
       "zone": "东部赛区",
       "order": "58",
-      "stage": "小组赛",
+      "stage": "B组第4轮",
       "redSchool": "上海工程技术大学",
       "redTeam": "木鸢Birdiebot",
       "blueSchool": "东南大学",
@@ -868,14 +1039,17 @@
       "redScore": 0,
       "blueScore": 2,
       "note": "比分与回放均来自官方数据",
-      "uncertain": false
+      "uncertain": false,
+      "matchId": "31046",
+      "redSourceMatch": "",
+      "blueSourceMatch": ""
     },
     {
       "id": "2026-东部赛区-59",
       "season": "2026",
       "zone": "东部赛区",
       "order": "59",
-      "stage": "小组赛",
+      "stage": "B组第4轮",
       "redSchool": "合肥工业大学",
       "redTeam": "苍穹",
       "blueSchool": "福建师范大学",
@@ -883,14 +1057,17 @@
       "redScore": 2,
       "blueScore": 0,
       "note": "比分与回放均来自官方数据",
-      "uncertain": false
+      "uncertain": false,
+      "matchId": "31047",
+      "redSourceMatch": "",
+      "blueSourceMatch": ""
     },
     {
       "id": "2026-东部赛区-60",
       "season": "2026",
       "zone": "东部赛区",
       "order": "60",
-      "stage": "小组赛",
+      "stage": "B组第4轮",
       "redSchool": "成都大学",
       "redTeam": "Ultra",
       "blueSchool": "南京理工大学",
@@ -898,14 +1075,17 @@
       "redScore": 0,
       "blueScore": 2,
       "note": "比分与回放均来自官方数据",
-      "uncertain": false
+      "uncertain": false,
+      "matchId": "31048",
+      "redSourceMatch": "",
+      "blueSourceMatch": ""
     },
     {
       "id": "2026-东部赛区-61",
       "season": "2026",
       "zone": "东部赛区",
       "order": "61",
-      "stage": "小组赛",
+      "stage": "A组第5轮",
       "redSchool": "青岛大学",
       "redTeam": "未来",
       "blueSchool": "上海大学",
@@ -913,14 +1093,17 @@
       "redScore": 2,
       "blueScore": 0,
       "note": "比分与回放均来自官方数据",
-      "uncertain": false
+      "uncertain": false,
+      "matchId": "31049",
+      "redSourceMatch": "",
+      "blueSourceMatch": ""
     },
     {
       "id": "2026-东部赛区-62",
       "season": "2026",
       "zone": "东部赛区",
       "order": "62",
-      "stage": "小组赛",
+      "stage": "A组第5轮",
       "redSchool": "太原科技大学",
       "redTeam": "NewMaker",
       "blueSchool": "首都师范大学",
@@ -928,14 +1111,17 @@
       "redScore": 2,
       "blueScore": 0,
       "note": "比分与回放均来自官方数据",
-      "uncertain": false
+      "uncertain": false,
+      "matchId": "31050",
+      "redSourceMatch": "",
+      "blueSourceMatch": ""
     },
     {
       "id": "2026-东部赛区-63",
       "season": "2026",
       "zone": "东部赛区",
       "order": "63",
-      "stage": "小组赛",
+      "stage": "A组第5轮",
       "redSchool": "江苏大学",
       "redTeam": "Aurora",
       "blueSchool": "中国矿业大学",
@@ -943,14 +1129,17 @@
       "redScore": 0,
       "blueScore": 2,
       "note": "比分与回放均来自官方数据",
-      "uncertain": false
+      "uncertain": false,
+      "matchId": "31051",
+      "redSourceMatch": "",
+      "blueSourceMatch": ""
     },
     {
       "id": "2026-东部赛区-64",
       "season": "2026",
       "zone": "东部赛区",
       "order": "64",
-      "stage": "小组赛",
+      "stage": "B组第5轮",
       "redSchool": "南京理工大学",
       "redTeam": "江阴校区 Combat",
       "blueSchool": "江南大学霞客湾校区",
@@ -958,14 +1147,17 @@
       "redScore": 0,
       "blueScore": 2,
       "note": "比分与回放均来自官方数据",
-      "uncertain": false
+      "uncertain": false,
+      "matchId": "31052",
+      "redSourceMatch": "",
+      "blueSourceMatch": ""
     },
     {
       "id": "2026-东部赛区-65",
       "season": "2026",
       "zone": "东部赛区",
       "order": "65",
-      "stage": "小组赛",
+      "stage": "B组第5轮",
       "redSchool": "安徽信息工程学院",
       "redTeam": "Artisans",
       "blueSchool": "合肥工业大学",
@@ -973,14 +1165,17 @@
       "redScore": 1,
       "blueScore": 2,
       "note": "比分与回放均来自官方数据",
-      "uncertain": false
+      "uncertain": false,
+      "matchId": "31053",
+      "redSourceMatch": "",
+      "blueSourceMatch": ""
     },
     {
       "id": "2026-东部赛区-66",
       "season": "2026",
       "zone": "东部赛区",
       "order": "66",
-      "stage": "小组赛",
+      "stage": "B组第5轮",
       "redSchool": "东南大学",
       "redTeam": "3SE",
       "blueSchool": "南方科技大学",
@@ -988,14 +1183,17 @@
       "redScore": 1,
       "blueScore": 2,
       "note": "比分与回放均来自官方数据",
-      "uncertain": false
+      "uncertain": false,
+      "matchId": "31054",
+      "redSourceMatch": "",
+      "blueSourceMatch": ""
     },
     {
       "id": "2026-东部赛区-67",
       "season": "2026",
       "zone": "东部赛区",
       "order": "67",
-      "stage": "淘汰赛",
+      "stage": "16进8淘汰赛",
       "redSchool": "山东科技大学",
       "redTeam": "SmartRobot",
       "blueSchool": "太原科技大学",
@@ -1003,14 +1201,17 @@
       "redScore": 2,
       "blueScore": 0,
       "note": "比分与回放均来自官方数据",
-      "uncertain": false
+      "uncertain": false,
+      "matchId": "31055",
+      "redSourceMatch": "",
+      "blueSourceMatch": ""
     },
     {
       "id": "2026-东部赛区-68",
       "season": "2026",
       "zone": "东部赛区",
       "order": "68",
-      "stage": "淘汰赛",
+      "stage": "16进8淘汰赛",
       "redSchool": "北京理工大学（珠海）",
       "redTeam": "毅恒",
       "blueSchool": "南京航空航天大学金城学院",
@@ -1018,14 +1219,17 @@
       "redScore": 2,
       "blueScore": 0,
       "note": "比分与回放均来自官方数据",
-      "uncertain": false
+      "uncertain": false,
+      "matchId": "31056",
+      "redSourceMatch": "",
+      "blueSourceMatch": ""
     },
     {
       "id": "2026-东部赛区-69",
       "season": "2026",
       "zone": "东部赛区",
       "order": "69",
-      "stage": "淘汰赛",
+      "stage": "16进8淘汰赛",
       "redSchool": "中国矿业大学",
       "redTeam": "CUBOT",
       "blueSchool": "浙江大学",
@@ -1033,14 +1237,17 @@
       "redScore": 0,
       "blueScore": 2,
       "note": "比分与回放均来自官方数据",
-      "uncertain": false
+      "uncertain": false,
+      "matchId": "31057",
+      "redSourceMatch": "",
+      "blueSourceMatch": ""
     },
     {
       "id": "2026-东部赛区-70",
       "season": "2026",
       "zone": "东部赛区",
       "order": "70",
-      "stage": "淘汰赛",
+      "stage": "16进8淘汰赛",
       "redSchool": "华东理工大学",
       "redTeam": "起源",
       "blueSchool": "江南大学霞客湾校区",
@@ -1048,14 +1255,17 @@
       "redScore": 2,
       "blueScore": 1,
       "note": "比分与回放均来自官方数据",
-      "uncertain": false
+      "uncertain": false,
+      "matchId": "31058",
+      "redSourceMatch": "",
+      "blueSourceMatch": ""
     },
     {
       "id": "2026-东部赛区-71",
       "season": "2026",
       "zone": "东部赛区",
       "order": "71",
-      "stage": "淘汰赛",
+      "stage": "16进8淘汰赛",
       "redSchool": "青岛大学",
       "redTeam": "未来",
       "blueSchool": "合肥工业大学（宣城校区）",
@@ -1063,14 +1273,17 @@
       "redScore": 0,
       "blueScore": 2,
       "note": "比分与回放均来自官方数据",
-      "uncertain": false
+      "uncertain": false,
+      "matchId": "31059",
+      "redSourceMatch": "",
+      "blueSourceMatch": ""
     },
     {
       "id": "2026-东部赛区-72",
       "season": "2026",
       "zone": "东部赛区",
       "order": "72",
-      "stage": "淘汰赛",
+      "stage": "16进8淘汰赛",
       "redSchool": "南京理工大学",
       "redTeam": "Alliance",
       "blueSchool": "南方科技大学",
@@ -1078,14 +1291,17 @@
       "redScore": 2,
       "blueScore": 0,
       "note": "比分与回放均来自官方数据",
-      "uncertain": false
+      "uncertain": false,
+      "matchId": "31060",
+      "redSourceMatch": "",
+      "blueSourceMatch": ""
     },
     {
       "id": "2026-东部赛区-73",
       "season": "2026",
       "zone": "东部赛区",
       "order": "73",
-      "stage": "淘汰赛",
+      "stage": "16进8淘汰赛",
       "redSchool": "哈尔滨工业大学（深圳）",
       "redTeam": "南工骁鹰",
       "blueSchool": "中国科学技术大学",
@@ -1093,14 +1309,17 @@
       "redScore": 2,
       "blueScore": 1,
       "note": "比分与回放均来自官方数据",
-      "uncertain": false
+      "uncertain": false,
+      "matchId": "31061",
+      "redSourceMatch": "",
+      "blueSourceMatch": ""
     },
     {
       "id": "2026-东部赛区-74",
       "season": "2026",
       "zone": "东部赛区",
       "order": "74",
-      "stage": "淘汰赛",
+      "stage": "16进8淘汰赛",
       "redSchool": "合肥工业大学",
       "redTeam": "苍穹",
       "blueSchool": "中国石油大学（华东）",
@@ -1108,14 +1327,17 @@
       "redScore": 0,
       "blueScore": 2,
       "note": "比分与回放均来自官方数据",
-      "uncertain": false
+      "uncertain": false,
+      "matchId": "31062",
+      "redSourceMatch": "",
+      "blueSourceMatch": ""
     },
     {
       "id": "2026-东部赛区-75",
       "season": "2026",
       "zone": "东部赛区",
       "order": "75",
-      "stage": "淘汰赛",
+      "stage": "8进4淘汰赛",
       "redSchool": "山东科技大学",
       "redTeam": "SmartRobot",
       "blueSchool": "北京理工大学（珠海）",
@@ -1123,14 +1345,17 @@
       "redScore": 2,
       "blueScore": 0,
       "note": "比分与回放均来自官方数据",
-      "uncertain": false
+      "uncertain": false,
+      "matchId": "31063",
+      "redSourceMatch": "31055",
+      "blueSourceMatch": "31056"
     },
     {
       "id": "2026-东部赛区-76",
       "season": "2026",
       "zone": "东部赛区",
       "order": "76",
-      "stage": "淘汰赛",
+      "stage": "8进4淘汰赛",
       "redSchool": "华东理工大学",
       "redTeam": "起源",
       "blueSchool": "浙江大学",
@@ -1138,14 +1363,17 @@
       "redScore": 0,
       "blueScore": 2,
       "note": "比分与回放均来自官方数据",
-      "uncertain": false
+      "uncertain": false,
+      "matchId": "31064",
+      "redSourceMatch": "31058",
+      "blueSourceMatch": "31057"
     },
     {
       "id": "2026-东部赛区-77",
       "season": "2026",
       "zone": "东部赛区",
       "order": "77",
-      "stage": "淘汰赛",
+      "stage": "8进4淘汰赛",
       "redSchool": "合肥工业大学（宣城校区）",
       "redTeam": "WDR",
       "blueSchool": "南京理工大学",
@@ -1153,14 +1381,17 @@
       "redScore": 2,
       "blueScore": 1,
       "note": "比分与回放均来自官方数据",
-      "uncertain": false
+      "uncertain": false,
+      "matchId": "31065",
+      "redSourceMatch": "31059",
+      "blueSourceMatch": "31060"
     },
     {
       "id": "2026-东部赛区-78",
       "season": "2026",
       "zone": "东部赛区",
       "order": "78",
-      "stage": "淘汰赛",
+      "stage": "8进4淘汰赛",
       "redSchool": "中国石油大学（华东）",
       "redTeam": "RPS",
       "blueSchool": "哈尔滨工业大学（深圳）",
@@ -1168,14 +1399,17 @@
       "redScore": 2,
       "blueScore": 0,
       "note": "比分与回放均来自官方数据",
-      "uncertain": false
+      "uncertain": false,
+      "matchId": "31066",
+      "redSourceMatch": "31062",
+      "blueSourceMatch": "31061"
     },
     {
       "id": "2026-东部赛区-79",
       "season": "2026",
       "zone": "东部赛区",
       "order": "79",
-      "stage": "淘汰赛",
+      "stage": "复活赛名额争夺",
       "redSchool": "太原科技大学",
       "redTeam": "NewMaker",
       "blueSchool": "南京航空航天大学金城学院",
@@ -1183,14 +1417,17 @@
       "redScore": 1,
       "blueScore": 2,
       "note": "比分与回放均来自官方数据",
-      "uncertain": false
+      "uncertain": false,
+      "matchId": "31067",
+      "redSourceMatch": "31055",
+      "blueSourceMatch": "31056"
     },
     {
       "id": "2026-东部赛区-80",
       "season": "2026",
       "zone": "东部赛区",
       "order": "80",
-      "stage": "淘汰赛",
+      "stage": "复活赛名额争夺",
       "redSchool": "江南大学霞客湾校区",
       "redTeam": "SHARK",
       "blueSchool": "中国矿业大学",
@@ -1198,14 +1435,17 @@
       "redScore": 1,
       "blueScore": 2,
       "note": "比分与回放均来自官方数据",
-      "uncertain": false
+      "uncertain": false,
+      "matchId": "31068",
+      "redSourceMatch": "31058",
+      "blueSourceMatch": "31057"
     },
     {
       "id": "2026-东部赛区-81",
       "season": "2026",
       "zone": "东部赛区",
       "order": "81",
-      "stage": "淘汰赛",
+      "stage": "复活赛名额争夺",
       "redSchool": "青岛大学",
       "redTeam": "未来",
       "blueSchool": "南方科技大学",
@@ -1213,14 +1453,17 @@
       "redScore": 1,
       "blueScore": 2,
       "note": "比分与回放均来自官方数据",
-      "uncertain": false
+      "uncertain": false,
+      "matchId": "31069",
+      "redSourceMatch": "31059",
+      "blueSourceMatch": "31060"
     },
     {
       "id": "2026-东部赛区-82",
       "season": "2026",
       "zone": "东部赛区",
       "order": "82",
-      "stage": "淘汰赛",
+      "stage": "复活赛名额争夺",
       "redSchool": "合肥工业大学",
       "redTeam": "苍穹",
       "blueSchool": "中国科学技术大学",
@@ -1228,14 +1471,17 @@
       "redScore": 0,
       "blueScore": 2,
       "note": "比分与回放均来自官方数据",
-      "uncertain": false
+      "uncertain": false,
+      "matchId": "31070",
+      "redSourceMatch": "31062",
+      "blueSourceMatch": "31061"
     },
     {
       "id": "2026-东部赛区-83",
       "season": "2026",
       "zone": "东部赛区",
       "order": "83",
-      "stage": "淘汰赛",
+      "stage": "半决赛",
       "redSchool": "山东科技大学",
       "redTeam": "SmartRobot",
       "blueSchool": "合肥工业大学（宣城校区）",
@@ -1243,14 +1489,17 @@
       "redScore": 2,
       "blueScore": 0,
       "note": "比分与回放均来自官方数据",
-      "uncertain": false
+      "uncertain": false,
+      "matchId": "31071",
+      "redSourceMatch": "31063",
+      "blueSourceMatch": "31065"
     },
     {
       "id": "2026-东部赛区-84",
       "season": "2026",
       "zone": "东部赛区",
       "order": "84",
-      "stage": "淘汰赛",
+      "stage": "半决赛",
       "redSchool": "浙江大学",
       "redTeam": "Hello World",
       "blueSchool": "中国石油大学（华东）",
@@ -1258,14 +1507,17 @@
       "redScore": 0,
       "blueScore": 2,
       "note": "比分与回放均来自官方数据",
-      "uncertain": false
+      "uncertain": false,
+      "matchId": "31072",
+      "redSourceMatch": "31064",
+      "blueSourceMatch": "31066"
     },
     {
       "id": "2026-东部赛区-85",
       "season": "2026",
       "zone": "东部赛区",
       "order": "85",
-      "stage": "淘汰赛",
+      "stage": "复活赛名额争夺",
       "redSchool": "太原科技大学",
       "redTeam": "NewMaker",
       "blueSchool": "青岛大学",
@@ -1273,14 +1525,17 @@
       "redScore": 2,
       "blueScore": 0,
       "note": "比分与回放均来自官方数据",
-      "uncertain": false
+      "uncertain": false,
+      "matchId": "31073",
+      "redSourceMatch": "31067",
+      "blueSourceMatch": "31069"
     },
     {
       "id": "2026-东部赛区-86",
       "season": "2026",
       "zone": "东部赛区",
       "order": "86",
-      "stage": "淘汰赛",
+      "stage": "复活赛名额争夺",
       "redSchool": "江南大学霞客湾校区",
       "redTeam": "SHARK",
       "blueSchool": "合肥工业大学",
@@ -1288,14 +1543,17 @@
       "redScore": 2,
       "blueScore": 1,
       "note": "比分与回放均来自官方数据",
-      "uncertain": false
+      "uncertain": false,
+      "matchId": "31074",
+      "redSourceMatch": "31068",
+      "blueSourceMatch": "31070"
     },
     {
       "id": "2026-东部赛区-87",
       "season": "2026",
       "zone": "东部赛区",
       "order": "87",
-      "stage": "淘汰赛",
+      "stage": "季军争夺战",
       "redSchool": "合肥工业大学（宣城校区）",
       "redTeam": "WDR",
       "blueSchool": "浙江大学",
@@ -1303,14 +1561,17 @@
       "redScore": 3,
       "blueScore": 1,
       "note": "比分与回放均来自官方数据",
-      "uncertain": false
+      "uncertain": false,
+      "matchId": "31075",
+      "redSourceMatch": "31071",
+      "blueSourceMatch": "31072"
     },
     {
       "id": "2026-东部赛区-88",
       "season": "2026",
       "zone": "东部赛区",
       "order": "88",
-      "stage": "淘汰赛",
+      "stage": "冠军争夺战",
       "redSchool": "山东科技大学",
       "redTeam": "SmartRobot",
       "blueSchool": "中国石油大学（华东）",
@@ -1318,14 +1579,17 @@
       "redScore": 1,
       "blueScore": 3,
       "note": "比分与回放均来自官方数据",
-      "uncertain": false
+      "uncertain": false,
+      "matchId": "31076",
+      "redSourceMatch": "31071",
+      "blueSourceMatch": "31072"
     },
     {
       "id": "2026-北部赛区-1",
       "season": "2026",
       "zone": "北部赛区",
       "order": "1",
-      "stage": "小组赛",
+      "stage": "A组第1轮",
       "redSchool": "哈尔滨工业大学（威海）",
       "redTeam": "HERO",
       "blueSchool": "常州大学",
@@ -1333,14 +1597,17 @@
       "redScore": 2,
       "blueScore": 0,
       "note": "比分与回放均来自官方数据",
-      "uncertain": false
+      "uncertain": false,
+      "matchId": "31077",
+      "redSourceMatch": "",
+      "blueSourceMatch": ""
     },
     {
       "id": "2026-北部赛区-2",
       "season": "2026",
       "zone": "北部赛区",
       "order": "2",
-      "stage": "小组赛",
+      "stage": "A组第1轮",
       "redSchool": "北方工业大学",
       "redTeam": "Dream Team",
       "blueSchool": "华北理工大学",
@@ -1348,14 +1615,17 @@
       "redScore": 0,
       "blueScore": 2,
       "note": "比分与回放均来自官方数据",
-      "uncertain": false
+      "uncertain": false,
+      "matchId": "31078",
+      "redSourceMatch": "",
+      "blueSourceMatch": ""
     },
     {
       "id": "2026-北部赛区-3",
       "season": "2026",
       "zone": "北部赛区",
       "order": "3",
-      "stage": "小组赛",
+      "stage": "A组第1轮",
       "redSchool": "北京信息科技大学",
       "redTeam": "星辰",
       "blueSchool": "哈尔滨工业大学",
@@ -1363,14 +1633,17 @@
       "redScore": 1,
       "blueScore": 2,
       "note": "比分与回放均来自官方数据",
-      "uncertain": false
+      "uncertain": false,
+      "matchId": "31079",
+      "redSourceMatch": "",
+      "blueSourceMatch": ""
     },
     {
       "id": "2026-北部赛区-4",
       "season": "2026",
       "zone": "北部赛区",
       "order": "4",
-      "stage": "小组赛",
+      "stage": "A组第1轮",
       "redSchool": "山东理工大学",
       "redTeam": "齐奇",
       "blueSchool": "西北工业大学",
@@ -1378,14 +1651,17 @@
       "redScore": 1,
       "blueScore": 2,
       "note": "比分与回放均来自官方数据",
-      "uncertain": false
+      "uncertain": false,
+      "matchId": "31080",
+      "redSourceMatch": "",
+      "blueSourceMatch": ""
     },
     {
       "id": "2026-北部赛区-5",
       "season": "2026",
       "zone": "北部赛区",
       "order": "5",
-      "stage": "小组赛",
+      "stage": "A组第1轮",
       "redSchool": "西安交通大学",
       "redTeam": "笃行",
       "blueSchool": "香港科技大学（广州）",
@@ -1393,14 +1669,17 @@
       "redScore": 2,
       "blueScore": 0,
       "note": "比分与回放均来自官方数据",
-      "uncertain": false
+      "uncertain": false,
+      "matchId": "31081",
+      "redSourceMatch": "",
+      "blueSourceMatch": ""
     },
     {
       "id": "2026-北部赛区-6",
       "season": "2026",
       "zone": "北部赛区",
       "order": "6",
-      "stage": "小组赛",
+      "stage": "A组第1轮",
       "redSchool": "天津大学",
       "redTeam": "北洋机甲",
       "blueSchool": "华南师范大学",
@@ -1408,14 +1687,17 @@
       "redScore": 0,
       "blueScore": 2,
       "note": "比分与回放均来自官方数据",
-      "uncertain": false
+      "uncertain": false,
+      "matchId": "31082",
+      "redSourceMatch": "",
+      "blueSourceMatch": ""
     },
     {
       "id": "2026-北部赛区-7",
       "season": "2026",
       "zone": "北部赛区",
       "order": "7",
-      "stage": "小组赛",
+      "stage": "A组第1轮",
       "redSchool": "辽宁石油化工大学",
       "redTeam": "TCN",
       "blueSchool": "太原工业学院",
@@ -1423,14 +1705,17 @@
       "redScore": 0,
       "blueScore": 2,
       "note": "比分与回放均来自官方数据",
-      "uncertain": false
+      "uncertain": false,
+      "matchId": "31083",
+      "redSourceMatch": "",
+      "blueSourceMatch": ""
     },
     {
       "id": "2026-北部赛区-8",
       "season": "2026",
       "zone": "北部赛区",
       "order": "8",
-      "stage": "小组赛",
+      "stage": "A组第1轮",
       "redSchool": "长安大学",
       "redTeam": "VGD",
       "blueSchool": "西安电子科技大学",
@@ -1438,14 +1723,17 @@
       "redScore": 0,
       "blueScore": 2,
       "note": "比分与回放均来自官方数据",
-      "uncertain": false
+      "uncertain": false,
+      "matchId": "31084",
+      "redSourceMatch": "",
+      "blueSourceMatch": ""
     },
     {
       "id": "2026-北部赛区-9",
       "season": "2026",
       "zone": "北部赛区",
       "order": "9",
-      "stage": "小组赛",
+      "stage": "B组第1轮",
       "redSchool": "内蒙古科技大学",
       "redTeam": "雷霆",
       "blueSchool": "东北大学",
@@ -1453,14 +1741,17 @@
       "redScore": 0,
       "blueScore": 2,
       "note": "比分与回放均来自官方数据",
-      "uncertain": false
+      "uncertain": false,
+      "matchId": "31085",
+      "redSourceMatch": "",
+      "blueSourceMatch": ""
     },
     {
       "id": "2026-北部赛区-10",
       "season": "2026",
       "zone": "北部赛区",
       "order": "10",
-      "stage": "小组赛",
+      "stage": "B组第1轮",
       "redSchool": "成都信息工程大学",
       "redTeam": "风信子",
       "blueSchool": "北京理工大学",
@@ -1468,14 +1759,17 @@
       "redScore": 0,
       "blueScore": 2,
       "note": "比分与回放均来自官方数据",
-      "uncertain": false
+      "uncertain": false,
+      "matchId": "31086",
+      "redSourceMatch": "",
+      "blueSourceMatch": ""
     },
     {
       "id": "2026-北部赛区-11",
       "season": "2026",
       "zone": "北部赛区",
       "order": "11",
-      "stage": "小组赛",
+      "stage": "B组第1轮",
       "redSchool": "大连理工大学",
       "redTeam": "凌BUG",
       "blueSchool": "沈阳理工大学",
@@ -1483,14 +1777,17 @@
       "redScore": 0,
       "blueScore": 2,
       "note": "比分与回放均来自官方数据",
-      "uncertain": false
+      "uncertain": false,
+      "matchId": "31087",
+      "redSourceMatch": "",
+      "blueSourceMatch": ""
     },
     {
       "id": "2026-北部赛区-12",
       "season": "2026",
       "zone": "北部赛区",
       "order": "12",
-      "stage": "小组赛",
+      "stage": "B组第1轮",
       "redSchool": "应急管理大学",
       "redTeam": "风暴",
       "blueSchool": "香港科技大学",
@@ -1498,14 +1795,17 @@
       "redScore": 2,
       "blueScore": 0,
       "note": "比分与回放均来自官方数据",
-      "uncertain": false
+      "uncertain": false,
+      "matchId": "31088",
+      "redSourceMatch": "",
+      "blueSourceMatch": ""
     },
     {
       "id": "2026-北部赛区-13",
       "season": "2026",
       "zone": "北部赛区",
       "order": "13",
-      "stage": "小组赛",
+      "stage": "B组第1轮",
       "redSchool": "香港大学",
       "redTeam": "HerKules",
       "blueSchool": "哈尔滨工程大学",
@@ -1513,14 +1813,17 @@
       "redScore": 0,
       "blueScore": 2,
       "note": "比分与回放均来自官方数据",
-      "uncertain": false
+      "uncertain": false,
+      "matchId": "31089",
+      "redSourceMatch": "",
+      "blueSourceMatch": ""
     },
     {
       "id": "2026-北部赛区-14",
       "season": "2026",
       "zone": "北部赛区",
       "order": "14",
-      "stage": "小组赛",
+      "stage": "B组第1轮",
       "redSchool": "东北大学秦皇岛分校",
       "redTeam": "征龙凌沧",
       "blueSchool": "四川大学",
@@ -1528,14 +1831,17 @@
       "redScore": 2,
       "blueScore": 1,
       "note": "比分与回放均来自官方数据",
-      "uncertain": false
+      "uncertain": false,
+      "matchId": "31090",
+      "redSourceMatch": "",
+      "blueSourceMatch": ""
     },
     {
       "id": "2026-北部赛区-15",
       "season": "2026",
       "zone": "北部赛区",
       "order": "15",
-      "stage": "小组赛",
+      "stage": "B组第1轮",
       "redSchool": "吉林大学",
       "redTeam": "TARS Go",
       "blueSchool": "复旦大学",
@@ -1543,14 +1849,17 @@
       "redScore": 2,
       "blueScore": 0,
       "note": "比分与回放均来自官方数据",
-      "uncertain": false
+      "uncertain": false,
+      "matchId": "31091",
+      "redSourceMatch": "",
+      "blueSourceMatch": ""
     },
     {
       "id": "2026-北部赛区-16",
       "season": "2026",
       "zone": "北部赛区",
       "order": "16",
-      "stage": "小组赛",
+      "stage": "B组第1轮",
       "redSchool": "同济大学",
       "redTeam": "SuperPower",
       "blueSchool": "河北科技大学",
@@ -1558,14 +1867,17 @@
       "redScore": 2,
       "blueScore": 0,
       "note": "比分与回放均来自官方数据",
-      "uncertain": false
+      "uncertain": false,
+      "matchId": "31092",
+      "redSourceMatch": "",
+      "blueSourceMatch": ""
     },
     {
       "id": "2026-北部赛区-17",
       "season": "2026",
       "zone": "北部赛区",
       "order": "17",
-      "stage": "小组赛",
+      "stage": "A组第2轮",
       "redSchool": "西北工业大学",
       "redTeam": "WMJ",
       "blueSchool": "哈尔滨工业大学",
@@ -1573,14 +1885,17 @@
       "redScore": 2,
       "blueScore": 0,
       "note": "比分与回放均来自官方数据",
-      "uncertain": false
+      "uncertain": false,
+      "matchId": "31093",
+      "redSourceMatch": "",
+      "blueSourceMatch": ""
     },
     {
       "id": "2026-北部赛区-18",
       "season": "2026",
       "zone": "北部赛区",
       "order": "18",
-      "stage": "小组赛",
+      "stage": "A组第2轮",
       "redSchool": "西安交通大学",
       "redTeam": "笃行",
       "blueSchool": "哈尔滨工业大学（威海）",
@@ -1588,14 +1903,17 @@
       "redScore": 2,
       "blueScore": 0,
       "note": "比分与回放均来自官方数据",
-      "uncertain": false
+      "uncertain": false,
+      "matchId": "31094",
+      "redSourceMatch": "",
+      "blueSourceMatch": ""
     },
     {
       "id": "2026-北部赛区-19",
       "season": "2026",
       "zone": "北部赛区",
       "order": "19",
-      "stage": "小组赛",
+      "stage": "A组第2轮",
       "redSchool": "华南师范大学",
       "redTeam": "PIONEER",
       "blueSchool": "太原工业学院",
@@ -1603,14 +1921,17 @@
       "redScore": 0,
       "blueScore": 2,
       "note": "比分与回放均来自官方数据",
-      "uncertain": false
+      "uncertain": false,
+      "matchId": "31095",
+      "redSourceMatch": "",
+      "blueSourceMatch": ""
     },
     {
       "id": "2026-北部赛区-20",
       "season": "2026",
       "zone": "北部赛区",
       "order": "20",
-      "stage": "小组赛",
+      "stage": "A组第2轮",
       "redSchool": "西安电子科技大学",
       "redTeam": "IRobot",
       "blueSchool": "华北理工大学",
@@ -1618,14 +1939,17 @@
       "redScore": 2,
       "blueScore": 0,
       "note": "比分与回放均来自官方数据",
-      "uncertain": false
+      "uncertain": false,
+      "matchId": "31096",
+      "redSourceMatch": "",
+      "blueSourceMatch": ""
     },
     {
       "id": "2026-北部赛区-21",
       "season": "2026",
       "zone": "北部赛区",
       "order": "21",
-      "stage": "小组赛",
+      "stage": "A组第2轮",
       "redSchool": "天津大学",
       "redTeam": "北洋机甲",
       "blueSchool": "北方工业大学",
@@ -1633,14 +1957,17 @@
       "redScore": 2,
       "blueScore": 0,
       "note": "比分与回放均来自官方数据",
-      "uncertain": false
+      "uncertain": false,
+      "matchId": "31097",
+      "redSourceMatch": "",
+      "blueSourceMatch": ""
     },
     {
       "id": "2026-北部赛区-22",
       "season": "2026",
       "zone": "北部赛区",
       "order": "22",
-      "stage": "小组赛",
+      "stage": "A组第2轮",
       "redSchool": "长安大学",
       "redTeam": "VGD",
       "blueSchool": "辽宁石油化工大学",
@@ -1648,14 +1975,17 @@
       "redScore": 2,
       "blueScore": 0,
       "note": "比分与回放均来自官方数据",
-      "uncertain": false
+      "uncertain": false,
+      "matchId": "31098",
+      "redSourceMatch": "",
+      "blueSourceMatch": ""
     },
     {
       "id": "2026-北部赛区-23",
       "season": "2026",
       "zone": "北部赛区",
       "order": "23",
-      "stage": "小组赛",
+      "stage": "A组第2轮",
       "redSchool": "香港科技大学（广州）",
       "redTeam": "PnX",
       "blueSchool": "常州大学",
@@ -1663,14 +1993,17 @@
       "redScore": 2,
       "blueScore": 1,
       "note": "比分与回放均来自官方数据",
-      "uncertain": false
+      "uncertain": false,
+      "matchId": "31099",
+      "redSourceMatch": "",
+      "blueSourceMatch": ""
     },
     {
       "id": "2026-北部赛区-24",
       "season": "2026",
       "zone": "北部赛区",
       "order": "24",
-      "stage": "小组赛",
+      "stage": "A组第2轮",
       "redSchool": "山东理工大学",
       "redTeam": "齐奇",
       "blueSchool": "北京信息科技大学",
@@ -1678,14 +2011,17 @@
       "redScore": 2,
       "blueScore": 0,
       "note": "比分与回放均来自官方数据",
-      "uncertain": false
+      "uncertain": false,
+      "matchId": "31100",
+      "redSourceMatch": "",
+      "blueSourceMatch": ""
     },
     {
       "id": "2026-北部赛区-25",
       "season": "2026",
       "zone": "北部赛区",
       "order": "25",
-      "stage": "小组赛",
+      "stage": "B组第2轮",
       "redSchool": "东北大学",
       "redTeam": "TDT",
       "blueSchool": "东北大学秦皇岛分校",
@@ -1693,14 +2029,17 @@
       "redScore": 2,
       "blueScore": 0,
       "note": "比分与回放均来自官方数据",
-      "uncertain": false
+      "uncertain": false,
+      "matchId": "31101",
+      "redSourceMatch": "",
+      "blueSourceMatch": ""
     },
     {
       "id": "2026-北部赛区-26",
       "season": "2026",
       "zone": "北部赛区",
       "order": "26",
-      "stage": "小组赛",
+      "stage": "B组第2轮",
       "redSchool": "沈阳理工大学",
       "redTeam": "Ambition",
       "blueSchool": "同济大学",
@@ -1708,14 +2047,17 @@
       "redScore": 0,
       "blueScore": 2,
       "note": "比分与回放均来自官方数据",
-      "uncertain": false
+      "uncertain": false,
+      "matchId": "31102",
+      "redSourceMatch": "",
+      "blueSourceMatch": ""
     },
     {
       "id": "2026-北部赛区-27",
       "season": "2026",
       "zone": "北部赛区",
       "order": "27",
-      "stage": "小组赛",
+      "stage": "B组第2轮",
       "redSchool": "吉林大学",
       "redTeam": "TARS Go",
       "blueSchool": "北京理工大学",
@@ -1723,14 +2065,17 @@
       "redScore": 1,
       "blueScore": 2,
       "note": "比分与回放均来自官方数据",
-      "uncertain": false
+      "uncertain": false,
+      "matchId": "31103",
+      "redSourceMatch": "",
+      "blueSourceMatch": ""
     },
     {
       "id": "2026-北部赛区-28",
       "season": "2026",
       "zone": "北部赛区",
       "order": "28",
-      "stage": "小组赛",
+      "stage": "B组第2轮",
       "redSchool": "哈尔滨工程大学",
       "redTeam": "创梦之翼",
       "blueSchool": "应急管理大学",
@@ -1738,14 +2083,17 @@
       "redScore": 0,
       "blueScore": 2,
       "note": "比分与回放均来自官方数据",
-      "uncertain": false
+      "uncertain": false,
+      "matchId": "31104",
+      "redSourceMatch": "",
+      "blueSourceMatch": ""
     },
     {
       "id": "2026-北部赛区-29",
       "season": "2026",
       "zone": "北部赛区",
       "order": "29",
-      "stage": "小组赛",
+      "stage": "B组第2轮",
       "redSchool": "香港大学",
       "redTeam": "HerKules",
       "blueSchool": "香港科技大学",
@@ -1753,14 +2101,17 @@
       "redScore": 0,
       "blueScore": 2,
       "note": "比分与回放均来自官方数据",
-      "uncertain": false
+      "uncertain": false,
+      "matchId": "31105",
+      "redSourceMatch": "",
+      "blueSourceMatch": ""
     },
     {
       "id": "2026-北部赛区-30",
       "season": "2026",
       "zone": "北部赛区",
       "order": "30",
-      "stage": "小组赛",
+      "stage": "B组第2轮",
       "redSchool": "复旦大学",
       "redTeam": "星云 EGA",
       "blueSchool": "成都信息工程大学",
@@ -1768,14 +2119,17 @@
       "redScore": 2,
       "blueScore": 0,
       "note": "比分与回放均来自官方数据",
-      "uncertain": false
+      "uncertain": false,
+      "matchId": "31106",
+      "redSourceMatch": "",
+      "blueSourceMatch": ""
     },
     {
       "id": "2026-北部赛区-31",
       "season": "2026",
       "zone": "北部赛区",
       "order": "31",
-      "stage": "小组赛",
+      "stage": "B组第2轮",
       "redSchool": "大连理工大学",
       "redTeam": "凌 BUG",
       "blueSchool": "河北科技大学",
@@ -1783,14 +2137,17 @@
       "redScore": 2,
       "blueScore": 0,
       "note": "比分与回放均来自官方数据",
-      "uncertain": false
+      "uncertain": false,
+      "matchId": "31107",
+      "redSourceMatch": "",
+      "blueSourceMatch": ""
     },
     {
       "id": "2026-北部赛区-32",
       "season": "2026",
       "zone": "北部赛区",
       "order": "32",
-      "stage": "小组赛",
+      "stage": "B组第2轮",
       "redSchool": "内蒙古科技大学",
       "redTeam": "雷霆",
       "blueSchool": "四川大学",
@@ -1798,14 +2155,17 @@
       "redScore": 0,
       "blueScore": 2,
       "note": "比分与回放均来自官方数据",
-      "uncertain": false
+      "uncertain": false,
+      "matchId": "31108",
+      "redSourceMatch": "",
+      "blueSourceMatch": ""
     },
     {
       "id": "2026-北部赛区-33",
       "season": "2026",
       "zone": "北部赛区",
       "order": "33",
-      "stage": "小组赛",
+      "stage": "A组第3轮",
       "redSchool": "西北工业大学",
       "redTeam": "WMJ",
       "blueSchool": "西安电子科技大学",
@@ -1813,14 +2173,17 @@
       "redScore": 0,
       "blueScore": 2,
       "note": "比分与回放均来自官方数据",
-      "uncertain": false
+      "uncertain": false,
+      "matchId": "31109",
+      "redSourceMatch": "",
+      "blueSourceMatch": ""
     },
     {
       "id": "2026-北部赛区-34",
       "season": "2026",
       "zone": "北部赛区",
       "order": "34",
-      "stage": "小组赛",
+      "stage": "A组第3轮",
       "redSchool": "西安交通大学",
       "redTeam": "笃行",
       "blueSchool": "太原工业学院",
@@ -1828,14 +2191,17 @@
       "redScore": 2,
       "blueScore": 0,
       "note": "比分与回放均来自官方数据",
-      "uncertain": false
+      "uncertain": false,
+      "matchId": "31110",
+      "redSourceMatch": "",
+      "blueSourceMatch": ""
     },
     {
       "id": "2026-北部赛区-35",
       "season": "2026",
       "zone": "北部赛区",
       "order": "35",
-      "stage": "小组赛",
+      "stage": "A组第3轮",
       "redSchool": "哈尔滨工业大学（威海）",
       "redTeam": "HERO",
       "blueSchool": "华南师范大学",
@@ -1843,14 +2209,17 @@
       "redScore": 2,
       "blueScore": 0,
       "note": "比分与回放均来自官方数据",
-      "uncertain": false
+      "uncertain": false,
+      "matchId": "31111",
+      "redSourceMatch": "",
+      "blueSourceMatch": ""
     },
     {
       "id": "2026-北部赛区-36",
       "season": "2026",
       "zone": "北部赛区",
       "order": "36",
-      "stage": "小组赛",
+      "stage": "A组第3轮",
       "redSchool": "长安大学",
       "redTeam": "VGD",
       "blueSchool": "香港科技大学（广州）",
@@ -1858,14 +2227,17 @@
       "redScore": 2,
       "blueScore": 1,
       "note": "比分与回放均来自官方数据",
-      "uncertain": false
+      "uncertain": false,
+      "matchId": "31112",
+      "redSourceMatch": "",
+      "blueSourceMatch": ""
     },
     {
       "id": "2026-北部赛区-37",
       "season": "2026",
       "zone": "北部赛区",
       "order": "37",
-      "stage": "小组赛",
+      "stage": "A组第3轮",
       "redSchool": "山东理工大学",
       "redTeam": "齐奇",
       "blueSchool": "华北理工大学",
@@ -1873,14 +2245,17 @@
       "redScore": 2,
       "blueScore": 0,
       "note": "比分与回放均来自官方数据",
-      "uncertain": false
+      "uncertain": false,
+      "matchId": "31113",
+      "redSourceMatch": "",
+      "blueSourceMatch": ""
     },
     {
       "id": "2026-北部赛区-38",
       "season": "2026",
       "zone": "北部赛区",
       "order": "38",
-      "stage": "小组赛",
+      "stage": "A组第3轮",
       "redSchool": "哈尔滨工业大学",
       "redTeam": "I Hiter",
       "blueSchool": "天津大学",
@@ -1888,14 +2263,17 @@
       "redScore": 2,
       "blueScore": 0,
       "note": "比分与回放均来自官方数据",
-      "uncertain": false
+      "uncertain": false,
+      "matchId": "31114",
+      "redSourceMatch": "",
+      "blueSourceMatch": ""
     },
     {
       "id": "2026-北部赛区-39",
       "season": "2026",
       "zone": "北部赛区",
       "order": "39",
-      "stage": "小组赛",
+      "stage": "A组第3轮",
       "redSchool": "北京信息科技大学",
       "redTeam": "星辰",
       "blueSchool": "辽宁石油化工大学",
@@ -1903,14 +2281,17 @@
       "redScore": 2,
       "blueScore": 0,
       "note": "比分与回放均来自官方数据",
-      "uncertain": false
+      "uncertain": false,
+      "matchId": "31115",
+      "redSourceMatch": "",
+      "blueSourceMatch": ""
     },
     {
       "id": "2026-北部赛区-40",
       "season": "2026",
       "zone": "北部赛区",
       "order": "40",
-      "stage": "小组赛",
+      "stage": "A组第3轮",
       "redSchool": "常州大学",
       "redTeam": "Climber",
       "blueSchool": "北方工业大学",
@@ -1918,14 +2299,17 @@
       "redScore": 2,
       "blueScore": 0,
       "note": "比分与回放均来自官方数据",
-      "uncertain": false
+      "uncertain": false,
+      "matchId": "31116",
+      "redSourceMatch": "",
+      "blueSourceMatch": ""
     },
     {
       "id": "2026-北部赛区-41",
       "season": "2026",
       "zone": "北部赛区",
       "order": "41",
-      "stage": "小组赛",
+      "stage": "B组第3轮",
       "redSchool": "北京理工大学",
       "redTeam": "追梦",
       "blueSchool": "应急管理大学",
@@ -1933,14 +2317,17 @@
       "redScore": 2,
       "blueScore": 0,
       "note": "比分与回放均来自官方数据",
-      "uncertain": false
+      "uncertain": false,
+      "matchId": "31117",
+      "redSourceMatch": "",
+      "blueSourceMatch": ""
     },
     {
       "id": "2026-北部赛区-42",
       "season": "2026",
       "zone": "北部赛区",
       "order": "42",
-      "stage": "小组赛",
+      "stage": "B组第3轮",
       "redSchool": "东北大学",
       "redTeam": "TDT",
       "blueSchool": "同济大学",
@@ -1948,14 +2335,17 @@
       "redScore": 0,
       "blueScore": 2,
       "note": "比分与回放均来自官方数据",
-      "uncertain": false
+      "uncertain": false,
+      "matchId": "31118",
+      "redSourceMatch": "",
+      "blueSourceMatch": ""
     },
     {
       "id": "2026-北部赛区-43",
       "season": "2026",
       "zone": "北部赛区",
       "order": "43",
-      "stage": "小组赛",
+      "stage": "B组第3轮",
       "redSchool": "东北大学秦皇岛分校",
       "redTeam": "征龙凌沧",
       "blueSchool": "沈阳理工大学",
@@ -1963,14 +2353,17 @@
       "redScore": 0,
       "blueScore": 2,
       "note": "比分与回放均来自官方数据",
-      "uncertain": false
+      "uncertain": false,
+      "matchId": "31119",
+      "redSourceMatch": "",
+      "blueSourceMatch": ""
     },
     {
       "id": "2026-北部赛区-44",
       "season": "2026",
       "zone": "北部赛区",
       "order": "44",
-      "stage": "小组赛",
+      "stage": "B组第3轮",
       "redSchool": "吉林大学",
       "redTeam": "TARS Go",
       "blueSchool": "香港科技大学",
@@ -1978,14 +2371,17 @@
       "redScore": 1,
       "blueScore": 2,
       "note": "比分与回放均来自官方数据",
-      "uncertain": false
+      "uncertain": false,
+      "matchId": "31120",
+      "redSourceMatch": "",
+      "blueSourceMatch": ""
     },
     {
       "id": "2026-北部赛区-45",
       "season": "2026",
       "zone": "北部赛区",
       "order": "45",
-      "stage": "小组赛",
+      "stage": "B组第3轮",
       "redSchool": "复旦大学",
       "redTeam": "星云 EGA",
       "blueSchool": "哈尔滨工程大学",
@@ -1993,14 +2389,17 @@
       "redScore": 2,
       "blueScore": 1,
       "note": "比分与回放均来自官方数据",
-      "uncertain": false
+      "uncertain": false,
+      "matchId": "31121",
+      "redSourceMatch": "",
+      "blueSourceMatch": ""
     },
     {
       "id": "2026-北部赛区-46",
       "season": "2026",
       "zone": "北部赛区",
       "order": "46",
-      "stage": "小组赛",
+      "stage": "B组第3轮",
       "redSchool": "四川大学",
       "redTeam": "火锅",
       "blueSchool": "大连理工大学",
@@ -2008,14 +2407,17 @@
       "redScore": 0,
       "blueScore": 2,
       "note": "比分与回放均来自官方数据",
-      "uncertain": false
+      "uncertain": false,
+      "matchId": "31122",
+      "redSourceMatch": "",
+      "blueSourceMatch": ""
     },
     {
       "id": "2026-北部赛区-47",
       "season": "2026",
       "zone": "北部赛区",
       "order": "47",
-      "stage": "小组赛",
+      "stage": "B组第3轮",
       "redSchool": "内蒙古科技大学",
       "redTeam": "雷霆",
       "blueSchool": "河北科技大学",
@@ -2023,14 +2425,17 @@
       "redScore": 0,
       "blueScore": 2,
       "note": "比分与回放均来自官方数据",
-      "uncertain": false
+      "uncertain": false,
+      "matchId": "31123",
+      "redSourceMatch": "",
+      "blueSourceMatch": ""
     },
     {
       "id": "2026-北部赛区-48",
       "season": "2026",
       "zone": "北部赛区",
       "order": "48",
-      "stage": "小组赛",
+      "stage": "B组第3轮",
       "redSchool": "成都信息工程大学",
       "redTeam": "风信子",
       "blueSchool": "香港大学",
@@ -2038,14 +2443,17 @@
       "redScore": 1,
       "blueScore": 2,
       "note": "比分与回放均来自官方数据",
-      "uncertain": false
+      "uncertain": false,
+      "matchId": "31124",
+      "redSourceMatch": "",
+      "blueSourceMatch": ""
     },
     {
       "id": "2026-北部赛区-49",
       "season": "2026",
       "zone": "北部赛区",
       "order": "49",
-      "stage": "小组赛",
+      "stage": "A组第4轮",
       "redSchool": "西北工业大学",
       "redTeam": "WMJ",
       "blueSchool": "哈尔滨工业大学（威海）",
@@ -2053,14 +2461,17 @@
       "redScore": 2,
       "blueScore": 1,
       "note": "比分与回放均来自官方数据",
-      "uncertain": false
+      "uncertain": false,
+      "matchId": "31125",
+      "redSourceMatch": "",
+      "blueSourceMatch": ""
     },
     {
       "id": "2026-北部赛区-50",
       "season": "2026",
       "zone": "北部赛区",
       "order": "50",
-      "stage": "小组赛",
+      "stage": "A组第4轮",
       "redSchool": "长安大学",
       "redTeam": "VGD",
       "blueSchool": "山东理工大学",
@@ -2068,14 +2479,17 @@
       "redScore": 1,
       "blueScore": 2,
       "note": "比分与回放均来自官方数据",
-      "uncertain": false
+      "uncertain": false,
+      "matchId": "31126",
+      "redSourceMatch": "",
+      "blueSourceMatch": ""
     },
     {
       "id": "2026-北部赛区-51",
       "season": "2026",
       "zone": "北部赛区",
       "order": "51",
-      "stage": "小组赛",
+      "stage": "A组第4轮",
       "redSchool": "太原工业学院",
       "redTeam": "火线",
       "blueSchool": "哈尔滨工业大学",
@@ -2083,14 +2497,17 @@
       "redScore": 0,
       "blueScore": 2,
       "note": "比分与回放均来自官方数据",
-      "uncertain": false
+      "uncertain": false,
+      "matchId": "31127",
+      "redSourceMatch": "",
+      "blueSourceMatch": ""
     },
     {
       "id": "2026-北部赛区-52",
       "season": "2026",
       "zone": "北部赛区",
       "order": "52",
-      "stage": "小组赛",
+      "stage": "A组第4轮",
       "redSchool": "香港科技大学（广州）",
       "redTeam": "PnX",
       "blueSchool": "华北理工大学",
@@ -2098,14 +2515,17 @@
       "redScore": 0,
       "blueScore": 2,
       "note": "比分与回放均来自官方数据",
-      "uncertain": false
+      "uncertain": false,
+      "matchId": "31128",
+      "redSourceMatch": "",
+      "blueSourceMatch": ""
     },
     {
       "id": "2026-北部赛区-53",
       "season": "2026",
       "zone": "北部赛区",
       "order": "53",
-      "stage": "小组赛",
+      "stage": "A组第4轮",
       "redSchool": "华南师范大学",
       "redTeam": "PIONEER",
       "blueSchool": "北京信息科技大学",
@@ -2113,14 +2533,17 @@
       "redScore": 2,
       "blueScore": 0,
       "note": "比分与回放均来自官方数据",
-      "uncertain": false
+      "uncertain": false,
+      "matchId": "31129",
+      "redSourceMatch": "",
+      "blueSourceMatch": ""
     },
     {
       "id": "2026-北部赛区-54",
       "season": "2026",
       "zone": "北部赛区",
       "order": "54",
-      "stage": "小组赛",
+      "stage": "A组第4轮",
       "redSchool": "天津大学",
       "redTeam": "北洋机甲",
       "blueSchool": "常州大学",
@@ -2128,14 +2551,17 @@
       "redScore": 2,
       "blueScore": 1,
       "note": "比分与回放均来自官方数据",
-      "uncertain": false
+      "uncertain": false,
+      "matchId": "31130",
+      "redSourceMatch": "",
+      "blueSourceMatch": ""
     },
     {
       "id": "2026-北部赛区-55",
       "season": "2026",
       "zone": "北部赛区",
       "order": "55",
-      "stage": "小组赛",
+      "stage": "B组第4轮",
       "redSchool": "沈阳理工大学",
       "redTeam": "Ambition",
       "blueSchool": "应急管理大学",
@@ -2143,14 +2569,17 @@
       "redScore": 0,
       "blueScore": 2,
       "note": "比分与回放均来自官方数据",
-      "uncertain": false
+      "uncertain": false,
+      "matchId": "31131",
+      "redSourceMatch": "",
+      "blueSourceMatch": ""
     },
     {
       "id": "2026-北部赛区-56",
       "season": "2026",
       "zone": "北部赛区",
       "order": "56",
-      "stage": "小组赛",
+      "stage": "B组第4轮",
       "redSchool": "香港科技大学",
       "redTeam": "ENTERPRIZE",
       "blueSchool": "大连理工大学",
@@ -2158,14 +2587,17 @@
       "redScore": 2,
       "blueScore": 0,
       "note": "比分与回放均来自官方数据",
-      "uncertain": false
+      "uncertain": false,
+      "matchId": "31132",
+      "redSourceMatch": "",
+      "blueSourceMatch": ""
     },
     {
       "id": "2026-北部赛区-57",
       "season": "2026",
       "zone": "北部赛区",
       "order": "57",
-      "stage": "小组赛",
+      "stage": "B组第4轮",
       "redSchool": "东北大学",
       "redTeam": "TDT",
       "blueSchool": "复旦大学",
@@ -2173,14 +2605,17 @@
       "redScore": 2,
       "blueScore": 0,
       "note": "比分与回放均来自官方数据",
-      "uncertain": false
+      "uncertain": false,
+      "matchId": "31133",
+      "redSourceMatch": "",
+      "blueSourceMatch": ""
     },
     {
       "id": "2026-北部赛区-58",
       "season": "2026",
       "zone": "北部赛区",
       "order": "58",
-      "stage": "小组赛",
+      "stage": "B组第4轮",
       "redSchool": "东北大学秦皇岛分校",
       "redTeam": "征龙凌沧",
       "blueSchool": "吉林大学",
@@ -2188,14 +2623,17 @@
       "redScore": 2,
       "blueScore": 1,
       "note": "比分与回放均来自官方数据",
-      "uncertain": false
+      "uncertain": false,
+      "matchId": "31134",
+      "redSourceMatch": "",
+      "blueSourceMatch": ""
     },
     {
       "id": "2026-北部赛区-59",
       "season": "2026",
       "zone": "北部赛区",
       "order": "59",
-      "stage": "小组赛",
+      "stage": "B组第4轮",
       "redSchool": "哈尔滨工程大学",
       "redTeam": "创梦之翼",
       "blueSchool": "河北科技大学",
@@ -2203,14 +2641,17 @@
       "redScore": 1,
       "blueScore": 2,
       "note": "比分与回放均来自官方数据",
-      "uncertain": false
+      "uncertain": false,
+      "matchId": "31135",
+      "redSourceMatch": "",
+      "blueSourceMatch": ""
     },
     {
       "id": "2026-北部赛区-60",
       "season": "2026",
       "zone": "北部赛区",
       "order": "60",
-      "stage": "小组赛",
+      "stage": "B组第4轮",
       "redSchool": "香港大学",
       "redTeam": "HerKules",
       "blueSchool": "四川大学",
@@ -2218,14 +2659,17 @@
       "redScore": 1,
       "blueScore": 2,
       "note": "比分与回放均来自官方数据",
-      "uncertain": false
+      "uncertain": false,
+      "matchId": "31136",
+      "redSourceMatch": "",
+      "blueSourceMatch": ""
     },
     {
       "id": "2026-北部赛区-61",
       "season": "2026",
       "zone": "北部赛区",
       "order": "61",
-      "stage": "小组赛",
+      "stage": "A组第5轮",
       "redSchool": "哈尔滨工业大学（威海）",
       "redTeam": "HERO",
       "blueSchool": "天津大学",
@@ -2233,14 +2677,17 @@
       "redScore": 2,
       "blueScore": 0,
       "note": "比分与回放均来自官方数据",
-      "uncertain": false
+      "uncertain": false,
+      "matchId": "31137",
+      "redSourceMatch": "",
+      "blueSourceMatch": ""
     },
     {
       "id": "2026-北部赛区-62",
       "season": "2026",
       "zone": "北部赛区",
       "order": "62",
-      "stage": "小组赛",
+      "stage": "A组第5轮",
       "redSchool": "华南师范大学",
       "redTeam": "PIONEER",
       "blueSchool": "太原工业学院",
@@ -2248,14 +2695,17 @@
       "redScore": 2,
       "blueScore": 0,
       "note": "比分与回放均来自官方数据",
-      "uncertain": false
+      "uncertain": false,
+      "matchId": "31138",
+      "redSourceMatch": "",
+      "blueSourceMatch": ""
     },
     {
       "id": "2026-北部赛区-63",
       "season": "2026",
       "zone": "北部赛区",
       "order": "63",
-      "stage": "小组赛",
+      "stage": "A组第5轮",
       "redSchool": "长安大学",
       "redTeam": "VGD",
       "blueSchool": "华北理工大学",
@@ -2263,14 +2713,17 @@
       "redScore": 2,
       "blueScore": 1,
       "note": "比分与回放均来自官方数据",
-      "uncertain": false
+      "uncertain": false,
+      "matchId": "31139",
+      "redSourceMatch": "",
+      "blueSourceMatch": ""
     },
     {
       "id": "2026-北部赛区-64",
       "season": "2026",
       "zone": "北部赛区",
       "order": "64",
-      "stage": "小组赛",
+      "stage": "B组第5轮",
       "redSchool": "四川大学",
       "redTeam": "火锅",
       "blueSchool": "沈阳理工大学",
@@ -2278,14 +2731,17 @@
       "redScore": 0,
       "blueScore": 2,
       "note": "比分与回放均来自官方数据",
-      "uncertain": false
+      "uncertain": false,
+      "matchId": "31140",
+      "redSourceMatch": "",
+      "blueSourceMatch": ""
     },
     {
       "id": "2026-北部赛区-65",
       "season": "2026",
       "zone": "北部赛区",
       "order": "65",
-      "stage": "小组赛",
+      "stage": "B组第5轮",
       "redSchool": "东北大学秦皇岛分校",
       "redTeam": "征龙凌沧",
       "blueSchool": "复旦大学",
@@ -2293,14 +2749,17 @@
       "redScore": 0,
       "blueScore": 2,
       "note": "比分与回放均来自官方数据",
-      "uncertain": false
+      "uncertain": false,
+      "matchId": "31141",
+      "redSourceMatch": "",
+      "blueSourceMatch": ""
     },
     {
       "id": "2026-北部赛区-66",
       "season": "2026",
       "zone": "北部赛区",
       "order": "66",
-      "stage": "小组赛",
+      "stage": "B组第5轮",
       "redSchool": "河北科技大学",
       "redTeam": "Actor&Thinker",
       "blueSchool": "大连理工大学",
@@ -2308,14 +2767,17 @@
       "redScore": 0,
       "blueScore": 2,
       "note": "比分与回放均来自官方数据",
-      "uncertain": false
+      "uncertain": false,
+      "matchId": "31142",
+      "redSourceMatch": "",
+      "blueSourceMatch": ""
     },
     {
       "id": "2026-北部赛区-67",
       "season": "2026",
       "zone": "北部赛区",
       "order": "67",
-      "stage": "淘汰赛",
+      "stage": "16进8淘汰赛",
       "redSchool": "同济大学",
       "redTeam": "SuperPower",
       "blueSchool": "华南师范大学",
@@ -2323,14 +2785,17 @@
       "redScore": 2,
       "blueScore": 0,
       "note": "比分与回放均来自官方数据",
-      "uncertain": false
+      "uncertain": false,
+      "matchId": "31159",
+      "redSourceMatch": "",
+      "blueSourceMatch": ""
     },
     {
       "id": "2026-北部赛区-68",
       "season": "2026",
       "zone": "北部赛区",
       "order": "68",
-      "stage": "淘汰赛",
+      "stage": "16进8淘汰赛",
       "redSchool": "东北大学",
       "redTeam": "TDT",
       "blueSchool": "山东理工大学",
@@ -2338,14 +2803,17 @@
       "redScore": 2,
       "blueScore": 0,
       "note": "比分与回放均来自官方数据",
-      "uncertain": false
+      "uncertain": false,
+      "matchId": "31160",
+      "redSourceMatch": "",
+      "blueSourceMatch": ""
     },
     {
       "id": "2026-北部赛区-69",
       "season": "2026",
       "zone": "北部赛区",
       "order": "69",
-      "stage": "淘汰赛",
+      "stage": "16进8淘汰赛",
       "redSchool": "长安大学",
       "redTeam": "VGD",
       "blueSchool": "北京理工大学",
@@ -2353,14 +2821,17 @@
       "redScore": 0,
       "blueScore": 2,
       "note": "比分与回放均来自官方数据",
-      "uncertain": false
+      "uncertain": false,
+      "matchId": "31161",
+      "redSourceMatch": "",
+      "blueSourceMatch": ""
     },
     {
       "id": "2026-北部赛区-70",
       "season": "2026",
       "zone": "北部赛区",
       "order": "70",
-      "stage": "淘汰赛",
+      "stage": "16进8淘汰赛",
       "redSchool": "西北工业大学",
       "redTeam": "WMJ",
       "blueSchool": "沈阳理工大学",
@@ -2368,14 +2839,17 @@
       "redScore": 2,
       "blueScore": 0,
       "note": "比分与回放均来自官方数据",
-      "uncertain": false
+      "uncertain": false,
+      "matchId": "31162",
+      "redSourceMatch": "",
+      "blueSourceMatch": ""
     },
     {
       "id": "2026-北部赛区-71",
       "season": "2026",
       "zone": "北部赛区",
       "order": "71",
-      "stage": "淘汰赛",
+      "stage": "16进8淘汰赛",
       "redSchool": "哈尔滨工业大学（威海）",
       "redTeam": "HERO",
       "blueSchool": "应急管理大学",
@@ -2383,14 +2857,17 @@
       "redScore": 2,
       "blueScore": 0,
       "note": "比分与回放均来自官方数据",
-      "uncertain": false
+      "uncertain": false,
+      "matchId": "31163",
+      "redSourceMatch": "",
+      "blueSourceMatch": ""
     },
     {
       "id": "2026-北部赛区-72",
       "season": "2026",
       "zone": "北部赛区",
       "order": "72",
-      "stage": "淘汰赛",
+      "stage": "16进8淘汰赛",
       "redSchool": "西安交通大学",
       "redTeam": "笃行",
       "blueSchool": "大连理工大学",
@@ -2398,14 +2875,17 @@
       "redScore": 2,
       "blueScore": 0,
       "note": "比分与回放均来自官方数据",
-      "uncertain": false
+      "uncertain": false,
+      "matchId": "31164",
+      "redSourceMatch": "",
+      "blueSourceMatch": ""
     },
     {
       "id": "2026-北部赛区-73",
       "season": "2026",
       "zone": "北部赛区",
       "order": "73",
-      "stage": "淘汰赛",
+      "stage": "16进8淘汰赛",
       "redSchool": "香港科技大学",
       "redTeam": "ENTERPRIZE",
       "blueSchool": "哈尔滨工业大学",
@@ -2413,14 +2893,17 @@
       "redScore": 0,
       "blueScore": 2,
       "note": "比分与回放均来自官方数据",
-      "uncertain": false
+      "uncertain": false,
+      "matchId": "31165",
+      "redSourceMatch": "",
+      "blueSourceMatch": ""
     },
     {
       "id": "2026-北部赛区-74",
       "season": "2026",
       "zone": "北部赛区",
       "order": "74",
-      "stage": "淘汰赛",
+      "stage": "16进8淘汰赛",
       "redSchool": "复旦大学",
       "redTeam": "星云EGA",
       "blueSchool": "西安电子科技大学",
@@ -2428,14 +2911,17 @@
       "redScore": 2,
       "blueScore": 1,
       "note": "比分与回放均来自官方数据",
-      "uncertain": false
+      "uncertain": false,
+      "matchId": "31166",
+      "redSourceMatch": "",
+      "blueSourceMatch": ""
     },
     {
       "id": "2026-北部赛区-75",
       "season": "2026",
       "zone": "北部赛区",
       "order": "75",
-      "stage": "淘汰赛",
+      "stage": "8进4淘汰赛",
       "redSchool": "同济大学",
       "redTeam": "SuperPower",
       "blueSchool": "东北大学",
@@ -2443,14 +2929,17 @@
       "redScore": 0,
       "blueScore": 2,
       "note": "比分与回放均来自官方数据",
-      "uncertain": false
+      "uncertain": false,
+      "matchId": "31167",
+      "redSourceMatch": "31159",
+      "blueSourceMatch": "31160"
     },
     {
       "id": "2026-北部赛区-76",
       "season": "2026",
       "zone": "北部赛区",
       "order": "76",
-      "stage": "淘汰赛",
+      "stage": "8进4淘汰赛",
       "redSchool": "西北工业大学",
       "redTeam": "WMJ",
       "blueSchool": "北京理工大学",
@@ -2458,14 +2947,17 @@
       "redScore": 2,
       "blueScore": 1,
       "note": "比分与回放均来自官方数据",
-      "uncertain": false
+      "uncertain": false,
+      "matchId": "31168",
+      "redSourceMatch": "31162",
+      "blueSourceMatch": "31161"
     },
     {
       "id": "2026-北部赛区-77",
       "season": "2026",
       "zone": "北部赛区",
       "order": "77",
-      "stage": "淘汰赛",
+      "stage": "8进4淘汰赛",
       "redSchool": "哈尔滨工业大学（威海）",
       "redTeam": "HERO",
       "blueSchool": "西安交通大学",
@@ -2473,14 +2965,17 @@
       "redScore": 2,
       "blueScore": 1,
       "note": "比分与回放均来自官方数据",
-      "uncertain": false
+      "uncertain": false,
+      "matchId": "31169",
+      "redSourceMatch": "31163",
+      "blueSourceMatch": "31164"
     },
     {
       "id": "2026-北部赛区-78",
       "season": "2026",
       "zone": "北部赛区",
       "order": "78",
-      "stage": "淘汰赛",
+      "stage": "8进4淘汰赛",
       "redSchool": "复旦大学",
       "redTeam": "星云EGA",
       "blueSchool": "哈尔滨工业大学",
@@ -2488,14 +2983,17 @@
       "redScore": 1,
       "blueScore": 2,
       "note": "比分与回放均来自官方数据",
-      "uncertain": false
+      "uncertain": false,
+      "matchId": "31170",
+      "redSourceMatch": "31166",
+      "blueSourceMatch": "31165"
     },
     {
       "id": "2026-北部赛区-79",
       "season": "2026",
       "zone": "北部赛区",
       "order": "79",
-      "stage": "淘汰赛",
+      "stage": "全国赛名额争夺",
       "redSchool": "华南师范大学",
       "redTeam": "PIONEER",
       "blueSchool": "山东理工大学",
@@ -2503,14 +3001,17 @@
       "redScore": 1,
       "blueScore": 2,
       "note": "比分与回放均来自官方数据",
-      "uncertain": false
+      "uncertain": false,
+      "matchId": "31171",
+      "redSourceMatch": "31159",
+      "blueSourceMatch": "31160"
     },
     {
       "id": "2026-北部赛区-80",
       "season": "2026",
       "zone": "北部赛区",
       "order": "80",
-      "stage": "淘汰赛",
+      "stage": "全国赛名额争夺",
       "redSchool": "沈阳理工大学",
       "redTeam": "Ambition",
       "blueSchool": "长安大学",
@@ -2518,14 +3019,17 @@
       "redScore": 1,
       "blueScore": 2,
       "note": "比分与回放均来自官方数据",
-      "uncertain": false
+      "uncertain": false,
+      "matchId": "31172",
+      "redSourceMatch": "31162",
+      "blueSourceMatch": "31161"
     },
     {
       "id": "2026-北部赛区-81",
       "season": "2026",
       "zone": "北部赛区",
       "order": "81",
-      "stage": "淘汰赛",
+      "stage": "全国赛名额争夺",
       "redSchool": "应急管理大学",
       "redTeam": "风暴",
       "blueSchool": "大连理工大学",
@@ -2533,14 +3037,17 @@
       "redScore": 0,
       "blueScore": 2,
       "note": "比分与回放均来自官方数据",
-      "uncertain": false
+      "uncertain": false,
+      "matchId": "31173",
+      "redSourceMatch": "31163",
+      "blueSourceMatch": "31164"
     },
     {
       "id": "2026-北部赛区-82",
       "season": "2026",
       "zone": "北部赛区",
       "order": "82",
-      "stage": "淘汰赛",
+      "stage": "全国赛名额争夺",
       "redSchool": "西安电子科技大学",
       "redTeam": "IRobot",
       "blueSchool": "香港科技大学",
@@ -2548,14 +3055,17 @@
       "redScore": 2,
       "blueScore": 0,
       "note": "比分与回放均来自官方数据",
-      "uncertain": false
+      "uncertain": false,
+      "matchId": "31174",
+      "redSourceMatch": "31166",
+      "blueSourceMatch": "31165"
     },
     {
       "id": "2026-北部赛区-83",
       "season": "2026",
       "zone": "北部赛区",
       "order": "83",
-      "stage": "淘汰赛",
+      "stage": "半决赛",
       "redSchool": "东北大学",
       "redTeam": "TDT",
       "blueSchool": "哈尔滨工业大学（威海）",
@@ -2563,14 +3073,17 @@
       "redScore": 2,
       "blueScore": 0,
       "note": "比分与回放均来自官方数据",
-      "uncertain": false
+      "uncertain": false,
+      "matchId": "31175",
+      "redSourceMatch": "31167",
+      "blueSourceMatch": "31169"
     },
     {
       "id": "2026-北部赛区-84",
       "season": "2026",
       "zone": "北部赛区",
       "order": "84",
-      "stage": "淘汰赛",
+      "stage": "半决赛",
       "redSchool": "西北工业大学",
       "redTeam": "WMJ",
       "blueSchool": "哈尔滨工业大学",
@@ -2578,14 +3091,17 @@
       "redScore": 1,
       "blueScore": 2,
       "note": "比分与回放均来自官方数据",
-      "uncertain": false
+      "uncertain": false,
+      "matchId": "31176",
+      "redSourceMatch": "31168",
+      "blueSourceMatch": "31170"
     },
     {
       "id": "2026-北部赛区-85",
       "season": "2026",
       "zone": "北部赛区",
       "order": "85",
-      "stage": "淘汰赛",
+      "stage": "全国赛名额争夺",
       "redSchool": "山东理工大学",
       "redTeam": "齐奇",
       "blueSchool": "大连理工大学",
@@ -2593,14 +3109,17 @@
       "redScore": 0,
       "blueScore": 2,
       "note": "比分与回放均来自官方数据",
-      "uncertain": false
+      "uncertain": false,
+      "matchId": "31177",
+      "redSourceMatch": "31171",
+      "blueSourceMatch": "31173"
     },
     {
       "id": "2026-北部赛区-86",
       "season": "2026",
       "zone": "北部赛区",
       "order": "86",
-      "stage": "淘汰赛",
+      "stage": "全国赛名额争夺",
       "redSchool": "长安大学",
       "redTeam": "VGD",
       "blueSchool": "西安电子科技大学",
@@ -2608,14 +3127,17 @@
       "redScore": 2,
       "blueScore": 0,
       "note": "比分与回放均来自官方数据",
-      "uncertain": false
+      "uncertain": false,
+      "matchId": "31178",
+      "redSourceMatch": "31172",
+      "blueSourceMatch": "31174"
     },
     {
       "id": "2026-北部赛区-87",
       "season": "2026",
       "zone": "北部赛区",
       "order": "87",
-      "stage": "淘汰赛",
+      "stage": "复活赛名额争夺",
       "redSchool": "华南师范大学",
       "redTeam": "PIONEER",
       "blueSchool": "应急管理大学",
@@ -2623,14 +3145,17 @@
       "redScore": 0,
       "blueScore": 2,
       "note": "比分与回放均来自官方数据",
-      "uncertain": false
+      "uncertain": false,
+      "matchId": "31179",
+      "redSourceMatch": "31171",
+      "blueSourceMatch": "31173"
     },
     {
       "id": "2026-北部赛区-88",
       "season": "2026",
       "zone": "北部赛区",
       "order": "88",
-      "stage": "淘汰赛",
+      "stage": "复活赛名额争夺",
       "redSchool": "沈阳理工大学",
       "redTeam": "Ambition",
       "blueSchool": "香港科技大学",
@@ -2638,14 +3163,17 @@
       "redScore": 2,
       "blueScore": 0,
       "note": "比分与回放均来自官方数据",
-      "uncertain": false
+      "uncertain": false,
+      "matchId": "31180",
+      "redSourceMatch": "31172",
+      "blueSourceMatch": "31174"
     },
     {
       "id": "2026-北部赛区-89",
       "season": "2026",
       "zone": "北部赛区",
       "order": "89",
-      "stage": "淘汰赛",
+      "stage": "季军争夺战",
       "redSchool": "哈尔滨工业大学（威海）",
       "redTeam": "HERO",
       "blueSchool": "西北工业大学",
@@ -2653,14 +3181,17 @@
       "redScore": 3,
       "blueScore": 0,
       "note": "比分与回放均来自官方数据",
-      "uncertain": false
+      "uncertain": false,
+      "matchId": "31181",
+      "redSourceMatch": "31175",
+      "blueSourceMatch": "31176"
     },
     {
       "id": "2026-北部赛区-90",
       "season": "2026",
       "zone": "北部赛区",
       "order": "90",
-      "stage": "淘汰赛",
+      "stage": "冠军争夺战",
       "redSchool": "东北大学",
       "redTeam": "TDT",
       "blueSchool": "哈尔滨工业大学",
@@ -2668,14 +3199,17 @@
       "redScore": 3,
       "blueScore": 1,
       "note": "比分与回放均来自官方数据",
-      "uncertain": false
+      "uncertain": false,
+      "matchId": "31182",
+      "redSourceMatch": "31175",
+      "blueSourceMatch": "31176"
     },
     {
       "id": "2026-南部赛区-1",
       "season": "2026",
       "zone": "南部赛区",
       "order": "1",
-      "stage": "小组赛",
+      "stage": "A组第1轮",
       "redSchool": "华南农业大学",
       "redTeam": "Taurus",
       "blueSchool": "重庆理工大学",
@@ -2683,14 +3217,17 @@
       "redScore": 1,
       "blueScore": 2,
       "note": "比分与回放均来自官方数据",
-      "uncertain": false
+      "uncertain": false,
+      "matchId": "30900",
+      "redSourceMatch": "",
+      "blueSourceMatch": ""
     },
     {
       "id": "2026-南部赛区-2",
       "season": "2026",
       "zone": "南部赛区",
       "order": "2",
-      "stage": "小组赛",
+      "stage": "A组第1轮",
       "redSchool": "国防科技大学",
       "redTeam": "军临",
       "blueSchool": "厦门大学嘉庚学院",
@@ -2698,14 +3235,17 @@
       "redScore": 0,
       "blueScore": 2,
       "note": "比分与回放均来自官方数据",
-      "uncertain": false
+      "uncertain": false,
+      "matchId": "30901",
+      "redSourceMatch": "",
+      "blueSourceMatch": ""
     },
     {
       "id": "2026-南部赛区-3",
       "season": "2026",
       "zone": "南部赛区",
       "order": "3",
-      "stage": "小组赛",
+      "stage": "A组第1轮",
       "redSchool": "仲恺农业工程学院",
       "redTeam": "奇点",
       "blueSchool": "华南理工大学",
@@ -2713,14 +3253,17 @@
       "redScore": 2,
       "blueScore": 1,
       "note": "比分与回放均来自官方数据",
-      "uncertain": false
+      "uncertain": false,
+      "matchId": "30902",
+      "redSourceMatch": "",
+      "blueSourceMatch": ""
     },
     {
       "id": "2026-南部赛区-4",
       "season": "2026",
       "zone": "南部赛区",
       "order": "4",
-      "stage": "小组赛",
+      "stage": "A组第1轮",
       "redSchool": "武汉大学",
       "redTeam": "珞珈狐",
       "blueSchool": "桂林信息科技学院",
@@ -2728,14 +3271,17 @@
       "redScore": 1,
       "blueScore": 2,
       "note": "比分与回放均来自官方数据",
-      "uncertain": false
+      "uncertain": false,
+      "matchId": "30903",
+      "redSourceMatch": "",
+      "blueSourceMatch": ""
     },
     {
       "id": "2026-南部赛区-5",
       "season": "2026",
       "zone": "南部赛区",
       "order": "5",
-      "stage": "小组赛",
+      "stage": "A组第1轮",
       "redSchool": "电子科技大学中山学院",
       "redTeam": "RoboBraver",
       "blueSchool": "长沙理工大学",
@@ -2743,14 +3289,17 @@
       "redScore": 2,
       "blueScore": 0,
       "note": "比分与回放均来自官方数据",
-      "uncertain": false
+      "uncertain": false,
+      "matchId": "30904",
+      "redSourceMatch": "",
+      "blueSourceMatch": ""
     },
     {
       "id": "2026-南部赛区-6",
       "season": "2026",
       "zone": "南部赛区",
       "order": "6",
-      "stage": "小组赛",
+      "stage": "A组第1轮",
       "redSchool": "武汉工程大学",
       "redTeam": "Nautilus",
       "blueSchool": "华南师范大学",
@@ -2758,14 +3307,17 @@
       "redScore": 0,
       "blueScore": 2,
       "note": "比分与回放均来自官方数据",
-      "uncertain": false
+      "uncertain": false,
+      "matchId": "30905",
+      "redSourceMatch": "",
+      "blueSourceMatch": ""
     },
     {
       "id": "2026-南部赛区-7",
       "season": "2026",
       "zone": "南部赛区",
       "order": "7",
-      "stage": "小组赛",
+      "stage": "A组第1轮",
       "redSchool": "广州航海学院",
       "redTeam": "ICBK破冰船",
       "blueSchool": "上海交通大学",
@@ -2773,14 +3325,17 @@
       "redScore": 0,
       "blueScore": 2,
       "note": "比分与回放均来自官方数据",
-      "uncertain": false
+      "uncertain": false,
+      "matchId": "30906",
+      "redSourceMatch": "",
+      "blueSourceMatch": ""
     },
     {
       "id": "2026-南部赛区-8",
       "season": "2026",
       "zone": "南部赛区",
       "order": "8",
-      "stage": "小组赛",
+      "stage": "A组第1轮",
       "redSchool": "厦门理工学院",
       "redTeam": "PFA",
       "blueSchool": "桂林电子科技大学",
@@ -2788,14 +3343,17 @@
       "redScore": 0,
       "blueScore": 2,
       "note": "比分与回放均来自官方数据",
-      "uncertain": false
+      "uncertain": false,
+      "matchId": "30907",
+      "redSourceMatch": "",
+      "blueSourceMatch": ""
     },
     {
       "id": "2026-南部赛区-9",
       "season": "2026",
       "zone": "南部赛区",
       "order": "9",
-      "stage": "小组赛",
+      "stage": "B组第1轮",
       "redSchool": "桂林理工大学",
       "redTeam": "群星",
       "blueSchool": "太原理工大学",
@@ -2803,14 +3361,17 @@
       "redScore": 2,
       "blueScore": 0,
       "note": "比分与回放均来自官方数据",
-      "uncertain": false
+      "uncertain": false,
+      "matchId": "30908",
+      "redSourceMatch": "",
+      "blueSourceMatch": ""
     },
     {
       "id": "2026-南部赛区-10",
       "season": "2026",
       "zone": "南部赛区",
       "order": "10",
-      "stage": "小组赛",
+      "stage": "B组第1轮",
       "redSchool": "东莞理工学院",
       "redTeam": "ACE",
       "blueSchool": "华中科技大学",
@@ -2818,14 +3379,17 @@
       "redScore": 2,
       "blueScore": 0,
       "note": "比分与回放均来自官方数据",
-      "uncertain": false
+      "uncertain": false,
+      "matchId": "30909",
+      "redSourceMatch": "",
+      "blueSourceMatch": ""
     },
     {
       "id": "2026-南部赛区-11",
       "season": "2026",
       "zone": "南部赛区",
       "order": "11",
-      "stage": "小组赛",
+      "stage": "B组第1轮",
       "redSchool": "五邑大学",
       "redTeam": "IMCA",
       "blueSchool": "深圳技术大学",
@@ -2833,14 +3397,17 @@
       "redScore": 2,
       "blueScore": 0,
       "note": "比分与回放均来自官方数据",
-      "uncertain": false
+      "uncertain": false,
+      "matchId": "30910",
+      "redSourceMatch": "",
+      "blueSourceMatch": ""
     },
     {
       "id": "2026-南部赛区-12",
       "season": "2026",
       "zone": "南部赛区",
       "order": "12",
-      "stage": "小组赛",
+      "stage": "B组第1轮",
       "redSchool": "广州城市理工学院",
       "redTeam": "野狼",
       "blueSchool": "湘潭大学",
@@ -2848,14 +3415,17 @@
       "redScore": 2,
       "blueScore": 0,
       "note": "比分与回放均来自官方数据",
-      "uncertain": false
+      "uncertain": false,
+      "matchId": "30911",
+      "redSourceMatch": "",
+      "blueSourceMatch": ""
     },
     {
       "id": "2026-南部赛区-13",
       "season": "2026",
       "zone": "南部赛区",
       "order": "13",
-      "stage": "小组赛",
+      "stage": "B组第1轮",
       "redSchool": "武汉科技大学",
       "redTeam": "崇实",
       "blueSchool": "深圳大学",
@@ -2863,14 +3433,17 @@
       "redScore": 0,
       "blueScore": 2,
       "note": "比分与回放均来自官方数据",
-      "uncertain": false
+      "uncertain": false,
+      "matchId": "30912",
+      "redSourceMatch": "",
+      "blueSourceMatch": ""
     },
     {
       "id": "2026-南部赛区-14",
       "season": "2026",
       "zone": "南部赛区",
       "order": "14",
-      "stage": "小组赛",
+      "stage": "B组第1轮",
       "redSchool": "南华大学",
       "redTeam": "MA",
       "blueSchool": "南昌大学",
@@ -2878,14 +3451,17 @@
       "redScore": 2,
       "blueScore": 0,
       "note": "比分与回放均来自官方数据",
-      "uncertain": false
+      "uncertain": false,
+      "matchId": "30913",
+      "redSourceMatch": "",
+      "blueSourceMatch": ""
     },
     {
       "id": "2026-南部赛区-15",
       "season": "2026",
       "zone": "南部赛区",
       "order": "15",
-      "stage": "小组赛",
+      "stage": "B组第1轮",
       "redSchool": "广东工业大学",
       "redTeam": "DynamicX",
       "blueSchool": "西交利物浦大学",
@@ -2893,14 +3469,17 @@
       "redScore": 2,
       "blueScore": 0,
       "note": "比分与回放均来自官方数据",
-      "uncertain": false
+      "uncertain": false,
+      "matchId": "30914",
+      "redSourceMatch": "",
+      "blueSourceMatch": ""
     },
     {
       "id": "2026-南部赛区-16",
       "season": "2026",
       "zone": "南部赛区",
       "order": "16",
-      "stage": "小组赛",
+      "stage": "B组第1轮",
       "redSchool": "中南大学",
       "redTeam": "FYT",
       "blueSchool": "厦门大学",
@@ -2908,14 +3487,17 @@
       "redScore": 2,
       "blueScore": 1,
       "note": "比分与回放均来自官方数据",
-      "uncertain": false
+      "uncertain": false,
+      "matchId": "30915",
+      "redSourceMatch": "",
+      "blueSourceMatch": ""
     },
     {
       "id": "2026-南部赛区-17",
       "season": "2026",
       "zone": "南部赛区",
       "order": "17",
-      "stage": "小组赛",
+      "stage": "A组第2轮",
       "redSchool": "仲恺农业工程学院",
       "redTeam": "奇点",
       "blueSchool": "桂林信息科技学院",
@@ -2923,14 +3505,17 @@
       "redScore": 2,
       "blueScore": 0,
       "note": "比分与回放均来自官方数据",
-      "uncertain": false
+      "uncertain": false,
+      "matchId": "30916",
+      "redSourceMatch": "",
+      "blueSourceMatch": ""
     },
     {
       "id": "2026-南部赛区-18",
       "season": "2026",
       "zone": "南部赛区",
       "order": "18",
-      "stage": "小组赛",
+      "stage": "A组第2轮",
       "redSchool": "重庆理工大学",
       "redTeam": "士继DREAMER",
       "blueSchool": "电子科技大学中山学院",
@@ -2938,14 +3523,17 @@
       "redScore": 0,
       "blueScore": 2,
       "note": "比分与回放均来自官方数据",
-      "uncertain": false
+      "uncertain": false,
+      "matchId": "30917",
+      "redSourceMatch": "",
+      "blueSourceMatch": ""
     },
     {
       "id": "2026-南部赛区-19",
       "season": "2026",
       "zone": "南部赛区",
       "order": "19",
-      "stage": "小组赛",
+      "stage": "A组第2轮",
       "redSchool": "厦门大学嘉庚学院",
       "redTeam": "TCR",
       "blueSchool": "桂林电子科技大学",
@@ -2953,14 +3541,17 @@
       "redScore": 2,
       "blueScore": 1,
       "note": "比分与回放均来自官方数据",
-      "uncertain": false
+      "uncertain": false,
+      "matchId": "30918",
+      "redSourceMatch": "",
+      "blueSourceMatch": ""
     },
     {
       "id": "2026-南部赛区-20",
       "season": "2026",
       "zone": "南部赛区",
       "order": "20",
-      "stage": "小组赛",
+      "stage": "A组第2轮",
       "redSchool": "上海交通大学",
       "redTeam": "交龙",
       "blueSchool": "华南师范大学",
@@ -2968,14 +3559,17 @@
       "redScore": 2,
       "blueScore": 0,
       "note": "比分与回放均来自官方数据",
-      "uncertain": false
+      "uncertain": false,
+      "matchId": "30919",
+      "redSourceMatch": "",
+      "blueSourceMatch": ""
     },
     {
       "id": "2026-南部赛区-21",
       "season": "2026",
       "zone": "南部赛区",
       "order": "21",
-      "stage": "小组赛",
+      "stage": "A组第2轮",
       "redSchool": "武汉工程大学",
       "redTeam": "Nautilus",
       "blueSchool": "广州航海学院",
@@ -2983,14 +3577,17 @@
       "redScore": 2,
       "blueScore": 1,
       "note": "比分与回放均来自官方数据",
-      "uncertain": false
+      "uncertain": false,
+      "matchId": "30920",
+      "redSourceMatch": "",
+      "blueSourceMatch": ""
     },
     {
       "id": "2026-南部赛区-22",
       "season": "2026",
       "zone": "南部赛区",
       "order": "22",
-      "stage": "小组赛",
+      "stage": "A组第2轮",
       "redSchool": "国防科技大学",
       "redTeam": "军临",
       "blueSchool": "厦门理工学院",
@@ -2998,14 +3595,17 @@
       "redScore": 0,
       "blueScore": 2,
       "note": "比分与回放均来自官方数据",
-      "uncertain": false
+      "uncertain": false,
+      "matchId": "30921",
+      "redSourceMatch": "",
+      "blueSourceMatch": ""
     },
     {
       "id": "2026-南部赛区-23",
       "season": "2026",
       "zone": "南部赛区",
       "order": "23",
-      "stage": "小组赛",
+      "stage": "A组第2轮",
       "redSchool": "华南农业大学",
       "redTeam": "Taurus",
       "blueSchool": "长沙理工大学",
@@ -3013,14 +3613,17 @@
       "redScore": 2,
       "blueScore": 0,
       "note": "比分与回放均来自官方数据",
-      "uncertain": false
+      "uncertain": false,
+      "matchId": "30922",
+      "redSourceMatch": "",
+      "blueSourceMatch": ""
     },
     {
       "id": "2026-南部赛区-24",
       "season": "2026",
       "zone": "南部赛区",
       "order": "24",
-      "stage": "小组赛",
+      "stage": "A组第2轮",
       "redSchool": "华南理工大学",
       "redTeam": "华南虎",
       "blueSchool": "武汉大学",
@@ -3028,14 +3631,17 @@
       "redScore": 2,
       "blueScore": 0,
       "note": "比分与回放均来自官方数据",
-      "uncertain": false
+      "uncertain": false,
+      "matchId": "30923",
+      "redSourceMatch": "",
+      "blueSourceMatch": ""
     },
     {
       "id": "2026-南部赛区-25",
       "season": "2026",
       "zone": "南部赛区",
       "order": "25",
-      "stage": "小组赛",
+      "stage": "B组第2轮",
       "redSchool": "五邑大学",
       "redTeam": "IMCA",
       "blueSchool": "中南大学",
@@ -3043,14 +3649,17 @@
       "redScore": 2,
       "blueScore": 0,
       "note": "比分与回放均来自官方数据",
-      "uncertain": false
+      "uncertain": false,
+      "matchId": "30924",
+      "redSourceMatch": "",
+      "blueSourceMatch": ""
     },
     {
       "id": "2026-南部赛区-26",
       "season": "2026",
       "zone": "南部赛区",
       "order": "26",
-      "stage": "小组赛",
+      "stage": "B组第2轮",
       "redSchool": "东莞理工学院",
       "redTeam": "ACE",
       "blueSchool": "桂林理工大学",
@@ -3058,14 +3667,17 @@
       "redScore": 2,
       "blueScore": 0,
       "note": "比分与回放均来自官方数据",
-      "uncertain": false
+      "uncertain": false,
+      "matchId": "30925",
+      "redSourceMatch": "",
+      "blueSourceMatch": ""
     },
     {
       "id": "2026-南部赛区-27",
       "season": "2026",
       "zone": "南部赛区",
       "order": "27",
-      "stage": "小组赛",
+      "stage": "B组第2轮",
       "redSchool": "广东工业大学",
       "redTeam": "DynamicX",
       "blueSchool": "广州城市理工学院",
@@ -3073,14 +3685,17 @@
       "redScore": 1,
       "blueScore": 2,
       "note": "比分与回放均来自官方数据",
-      "uncertain": false
+      "uncertain": false,
+      "matchId": "30926",
+      "redSourceMatch": "",
+      "blueSourceMatch": ""
     },
     {
       "id": "2026-南部赛区-28",
       "season": "2026",
       "zone": "南部赛区",
       "order": "28",
-      "stage": "小组赛",
+      "stage": "B组第2轮",
       "redSchool": "深圳大学",
       "redTeam": "RobotPilots",
       "blueSchool": "南华大学",
@@ -3088,14 +3703,17 @@
       "redScore": 2,
       "blueScore": 1,
       "note": "比分与回放均来自官方数据",
-      "uncertain": false
+      "uncertain": false,
+      "matchId": "30927",
+      "redSourceMatch": "",
+      "blueSourceMatch": ""
     },
     {
       "id": "2026-南部赛区-29",
       "season": "2026",
       "zone": "南部赛区",
       "order": "29",
-      "stage": "小组赛",
+      "stage": "B组第2轮",
       "redSchool": "武汉科技大学",
       "redTeam": "崇实",
       "blueSchool": "南昌大学",
@@ -3103,14 +3721,17 @@
       "redScore": 2,
       "blueScore": 1,
       "note": "比分与回放均来自官方数据",
-      "uncertain": false
+      "uncertain": false,
+      "matchId": "30928",
+      "redSourceMatch": "",
+      "blueSourceMatch": ""
     },
     {
       "id": "2026-南部赛区-30",
       "season": "2026",
       "zone": "南部赛区",
       "order": "30",
-      "stage": "小组赛",
+      "stage": "B组第2轮",
       "redSchool": "西交利物浦大学",
       "redTeam": "GMaster",
       "blueSchool": "湘潭大学",
@@ -3118,14 +3739,17 @@
       "redScore": 2,
       "blueScore": 1,
       "note": "比分与回放均来自官方数据",
-      "uncertain": false
+      "uncertain": false,
+      "matchId": "30929",
+      "redSourceMatch": "",
+      "blueSourceMatch": ""
     },
     {
       "id": "2026-南部赛区-31",
       "season": "2026",
       "zone": "南部赛区",
       "order": "31",
-      "stage": "小组赛",
+      "stage": "B组第2轮",
       "redSchool": "华中科技大学",
       "redTeam": "狼牙",
       "blueSchool": "太原理工大学",
@@ -3133,14 +3757,17 @@
       "redScore": 2,
       "blueScore": 0,
       "note": "比分与回放均来自官方数据",
-      "uncertain": false
+      "uncertain": false,
+      "matchId": "30930",
+      "redSourceMatch": "",
+      "blueSourceMatch": ""
     },
     {
       "id": "2026-南部赛区-32",
       "season": "2026",
       "zone": "南部赛区",
       "order": "32",
-      "stage": "小组赛",
+      "stage": "B组第2轮",
       "redSchool": "深圳技术大学",
       "redTeam": "悍匠",
       "blueSchool": "厦门大学",
@@ -3148,14 +3775,17 @@
       "redScore": 2,
       "blueScore": 0,
       "note": "比分与回放均来自官方数据",
-      "uncertain": false
+      "uncertain": false,
+      "matchId": "30931",
+      "redSourceMatch": "",
+      "blueSourceMatch": ""
     },
     {
       "id": "2026-南部赛区-33",
       "season": "2026",
       "zone": "南部赛区",
       "order": "33",
-      "stage": "小组赛",
+      "stage": "A组第3轮",
       "redSchool": "仲恺农业工程学院",
       "redTeam": "奇点",
       "blueSchool": "厦门大学嘉庚学院",
@@ -3163,14 +3793,17 @@
       "redScore": 2,
       "blueScore": 0,
       "note": "比分与回放均来自官方数据",
-      "uncertain": false
+      "uncertain": false,
+      "matchId": "30932",
+      "redSourceMatch": "",
+      "blueSourceMatch": ""
     },
     {
       "id": "2026-南部赛区-34",
       "season": "2026",
       "zone": "南部赛区",
       "order": "34",
-      "stage": "小组赛",
+      "stage": "A组第3轮",
       "redSchool": "上海交通大学",
       "redTeam": "交龙",
       "blueSchool": "电子科技大学中山学院",
@@ -3178,14 +3811,17 @@
       "redScore": 2,
       "blueScore": 0,
       "note": "比分与回放均来自官方数据",
-      "uncertain": false
+      "uncertain": false,
+      "matchId": "30933",
+      "redSourceMatch": "",
+      "blueSourceMatch": ""
     },
     {
       "id": "2026-南部赛区-35",
       "season": "2026",
       "zone": "南部赛区",
       "order": "35",
-      "stage": "小组赛",
+      "stage": "A组第3轮",
       "redSchool": "华南师范大学",
       "redTeam": "（佛山校区）VANGUARD",
       "blueSchool": "重庆理工大学",
@@ -3193,14 +3829,17 @@
       "redScore": 0,
       "blueScore": 2,
       "note": "比分与回放均来自官方数据",
-      "uncertain": false
+      "uncertain": false,
+      "matchId": "30934",
+      "redSourceMatch": "",
+      "blueSourceMatch": ""
     },
     {
       "id": "2026-南部赛区-36",
       "season": "2026",
       "zone": "南部赛区",
       "order": "36",
-      "stage": "小组赛",
+      "stage": "A组第3轮",
       "redSchool": "华南理工大学",
       "redTeam": "华南虎",
       "blueSchool": "桂林电子科技大学",
@@ -3208,14 +3847,17 @@
       "redScore": 1,
       "blueScore": 2,
       "note": "比分与回放均来自官方数据",
-      "uncertain": false
+      "uncertain": false,
+      "matchId": "30935",
+      "redSourceMatch": "",
+      "blueSourceMatch": ""
     },
     {
       "id": "2026-南部赛区-37",
       "season": "2026",
       "zone": "南部赛区",
       "order": "37",
-      "stage": "小组赛",
+      "stage": "A组第3轮",
       "redSchool": "桂林信息科技学院",
       "redTeam": "GIRT",
       "blueSchool": "武汉工程大学",
@@ -3223,14 +3865,17 @@
       "redScore": 0,
       "blueScore": 2,
       "note": "比分与回放均来自官方数据",
-      "uncertain": false
+      "uncertain": false,
+      "matchId": "30936",
+      "redSourceMatch": "",
+      "blueSourceMatch": ""
     },
     {
       "id": "2026-南部赛区-38",
       "season": "2026",
       "zone": "南部赛区",
       "order": "38",
-      "stage": "小组赛",
+      "stage": "A组第3轮",
       "redSchool": "厦门理工学院",
       "redTeam": "PFA",
       "blueSchool": "华南农业大学",
@@ -3238,14 +3883,17 @@
       "redScore": 0,
       "blueScore": 2,
       "note": "比分与回放均来自官方数据",
-      "uncertain": false
+      "uncertain": false,
+      "matchId": "30937",
+      "redSourceMatch": "",
+      "blueSourceMatch": ""
     },
     {
       "id": "2026-南部赛区-39",
       "season": "2026",
       "zone": "南部赛区",
       "order": "39",
-      "stage": "小组赛",
+      "stage": "A组第3轮",
       "redSchool": "广州航海学院",
       "redTeam": "ICBK破冰船",
       "blueSchool": "长沙理工大学",
@@ -3253,14 +3901,17 @@
       "redScore": 2,
       "blueScore": 0,
       "note": "比分与回放均来自官方数据",
-      "uncertain": false
+      "uncertain": false,
+      "matchId": "30938",
+      "redSourceMatch": "",
+      "blueSourceMatch": ""
     },
     {
       "id": "2026-南部赛区-40",
       "season": "2026",
       "zone": "南部赛区",
       "order": "40",
-      "stage": "小组赛",
+      "stage": "A组第3轮",
       "redSchool": "武汉大学",
       "redTeam": "珞珈狐",
       "blueSchool": "国防科技大学",
@@ -3268,14 +3919,17 @@
       "redScore": 2,
       "blueScore": 1,
       "note": "比分与回放均来自官方数据",
-      "uncertain": false
+      "uncertain": false,
+      "matchId": "30939",
+      "redSourceMatch": "",
+      "blueSourceMatch": ""
     },
     {
       "id": "2026-南部赛区-41",
       "season": "2026",
       "zone": "南部赛区",
       "order": "41",
-      "stage": "小组赛",
+      "stage": "B组第3轮",
       "redSchool": "深圳大学",
       "redTeam": "RobotPilots",
       "blueSchool": "东莞理工学院",
@@ -3283,14 +3937,17 @@
       "redScore": 2,
       "blueScore": 0,
       "note": "比分与回放均来自官方数据",
-      "uncertain": false
+      "uncertain": false,
+      "matchId": "30940",
+      "redSourceMatch": "",
+      "blueSourceMatch": ""
     },
     {
       "id": "2026-南部赛区-42",
       "season": "2026",
       "zone": "南部赛区",
       "order": "42",
-      "stage": "小组赛",
+      "stage": "B组第3轮",
       "redSchool": "广州城市理工学院",
       "redTeam": "野狼",
       "blueSchool": "五邑大学",
@@ -3298,14 +3955,17 @@
       "redScore": 0,
       "blueScore": 2,
       "note": "比分与回放均来自官方数据",
-      "uncertain": false
+      "uncertain": false,
+      "matchId": "30941",
+      "redSourceMatch": "",
+      "blueSourceMatch": ""
     },
     {
       "id": "2026-南部赛区-43",
       "season": "2026",
       "zone": "南部赛区",
       "order": "43",
-      "stage": "小组赛",
+      "stage": "B组第3轮",
       "redSchool": "广东工业大学",
       "redTeam": "DynamicX",
       "blueSchool": "中南大学",
@@ -3313,14 +3973,17 @@
       "redScore": 2,
       "blueScore": 0,
       "note": "比分与回放均来自官方数据",
-      "uncertain": false
+      "uncertain": false,
+      "matchId": "30942",
+      "redSourceMatch": "",
+      "blueSourceMatch": ""
     },
     {
       "id": "2026-南部赛区-44",
       "season": "2026",
       "zone": "南部赛区",
       "order": "44",
-      "stage": "小组赛",
+      "stage": "B组第3轮",
       "redSchool": "深圳技术大学",
       "redTeam": "悍匠",
       "blueSchool": "桂林理工大学",
@@ -3328,14 +3991,17 @@
       "redScore": 2,
       "blueScore": 1,
       "note": "比分与回放均来自官方数据",
-      "uncertain": false
+      "uncertain": false,
+      "matchId": "30943",
+      "redSourceMatch": "",
+      "blueSourceMatch": ""
     },
     {
       "id": "2026-南部赛区-45",
       "season": "2026",
       "zone": "南部赛区",
       "order": "45",
-      "stage": "小组赛",
+      "stage": "B组第3轮",
       "redSchool": "南华大学",
       "redTeam": "MA",
       "blueSchool": "武汉科技大学",
@@ -3343,14 +4009,17 @@
       "redScore": 2,
       "blueScore": 0,
       "note": "比分与回放均来自官方数据",
-      "uncertain": false
+      "uncertain": false,
+      "matchId": "30944",
+      "redSourceMatch": "",
+      "blueSourceMatch": ""
     },
     {
       "id": "2026-南部赛区-46",
       "season": "2026",
       "zone": "南部赛区",
       "order": "46",
-      "stage": "小组赛",
+      "stage": "B组第3轮",
       "redSchool": "西交利物浦大学",
       "redTeam": "GMaster",
       "blueSchool": "华中科技大学",
@@ -3358,14 +4027,17 @@
       "redScore": 0,
       "blueScore": 2,
       "note": "比分与回放均来自官方数据",
-      "uncertain": false
+      "uncertain": false,
+      "matchId": "30945",
+      "redSourceMatch": "",
+      "blueSourceMatch": ""
     },
     {
       "id": "2026-南部赛区-47",
       "season": "2026",
       "zone": "南部赛区",
       "order": "47",
-      "stage": "小组赛",
+      "stage": "B组第3轮",
       "redSchool": "湘潭大学",
       "redTeam": "逐曦",
       "blueSchool": "南昌大学",
@@ -3373,14 +4045,17 @@
       "redScore": 0,
       "blueScore": 2,
       "note": "比分与回放均来自官方数据",
-      "uncertain": false
+      "uncertain": false,
+      "matchId": "30946",
+      "redSourceMatch": "",
+      "blueSourceMatch": ""
     },
     {
       "id": "2026-南部赛区-48",
       "season": "2026",
       "zone": "南部赛区",
       "order": "48",
-      "stage": "小组赛",
+      "stage": "B组第3轮",
       "redSchool": "太原理工大学",
       "redTeam": "TRoMaC",
       "blueSchool": "厦门大学",
@@ -3388,14 +4063,17 @@
       "redScore": 2,
       "blueScore": 0,
       "note": "比分与回放均来自官方数据",
-      "uncertain": false
+      "uncertain": false,
+      "matchId": "30947",
+      "redSourceMatch": "",
+      "blueSourceMatch": ""
     },
     {
       "id": "2026-南部赛区-49",
       "season": "2026",
       "zone": "南部赛区",
       "order": "49",
-      "stage": "小组赛",
+      "stage": "A组第4轮",
       "redSchool": "重庆理工大学",
       "redTeam": "士继DREAMER",
       "blueSchool": "厦门大学嘉庚学院",
@@ -3403,14 +4081,17 @@
       "redScore": 0,
       "blueScore": 2,
       "note": "比分与回放均来自官方数据",
-      "uncertain": false
+      "uncertain": false,
+      "matchId": "30948",
+      "redSourceMatch": "",
+      "blueSourceMatch": ""
     },
     {
       "id": "2026-南部赛区-50",
       "season": "2026",
       "zone": "南部赛区",
       "order": "50",
-      "stage": "小组赛",
+      "stage": "A组第4轮",
       "redSchool": "桂林电子科技大学",
       "redTeam": "Evolution",
       "blueSchool": "电子科技大学中山学院",
@@ -3418,14 +4099,17 @@
       "redScore": 0,
       "blueScore": 2,
       "note": "比分与回放均来自官方数据",
-      "uncertain": false
+      "uncertain": false,
+      "matchId": "30949",
+      "redSourceMatch": "",
+      "blueSourceMatch": ""
     },
     {
       "id": "2026-南部赛区-51",
       "season": "2026",
       "zone": "南部赛区",
       "order": "51",
-      "stage": "小组赛",
+      "stage": "A组第4轮",
       "redSchool": "华南农业大学",
       "redTeam": "Taurus",
       "blueSchool": "武汉工程大学",
@@ -3433,14 +4117,17 @@
       "redScore": 2,
       "blueScore": 1,
       "note": "比分与回放均来自官方数据",
-      "uncertain": false
+      "uncertain": false,
+      "matchId": "30950",
+      "redSourceMatch": "",
+      "blueSourceMatch": ""
     },
     {
       "id": "2026-南部赛区-52",
       "season": "2026",
       "zone": "南部赛区",
       "order": "52",
-      "stage": "小组赛",
+      "stage": "A组第4轮",
       "redSchool": "华南师范大学",
       "redTeam": "（佛山校区) VANGUARD",
       "blueSchool": "华南理工大学",
@@ -3448,14 +4135,17 @@
       "redScore": 0,
       "blueScore": 2,
       "note": "比分与回放均来自官方数据",
-      "uncertain": false
+      "uncertain": false,
+      "matchId": "30951",
+      "redSourceMatch": "",
+      "blueSourceMatch": ""
     },
     {
       "id": "2026-南部赛区-53",
       "season": "2026",
       "zone": "南部赛区",
       "order": "53",
-      "stage": "小组赛",
+      "stage": "A组第4轮",
       "redSchool": "桂林信息科技学院",
       "redTeam": "GIRT",
       "blueSchool": "广州航海学院",
@@ -3463,14 +4153,17 @@
       "redScore": 2,
       "blueScore": 0,
       "note": "比分与回放均来自官方数据",
-      "uncertain": false
+      "uncertain": false,
+      "matchId": "30952",
+      "redSourceMatch": "",
+      "blueSourceMatch": ""
     },
     {
       "id": "2026-南部赛区-54",
       "season": "2026",
       "zone": "南部赛区",
       "order": "54",
-      "stage": "小组赛",
+      "stage": "A组第4轮",
       "redSchool": "武汉大学",
       "redTeam": "珞珈狐",
       "blueSchool": "厦门理工学院",
@@ -3478,14 +4171,17 @@
       "redScore": 0,
       "blueScore": 2,
       "note": "比分与回放均来自官方数据",
-      "uncertain": false
+      "uncertain": false,
+      "matchId": "30953",
+      "redSourceMatch": "",
+      "blueSourceMatch": ""
     },
     {
       "id": "2026-南部赛区-55",
       "season": "2026",
       "zone": "南部赛区",
       "order": "55",
-      "stage": "小组赛",
+      "stage": "B组第4轮",
       "redSchool": "广州城市理工学院",
       "redTeam": "野狼",
       "blueSchool": "东莞理工学院",
@@ -3493,14 +4189,17 @@
       "redScore": 2,
       "blueScore": 1,
       "note": "比分与回放均来自官方数据",
-      "uncertain": false
+      "uncertain": false,
+      "matchId": "30954",
+      "redSourceMatch": "",
+      "blueSourceMatch": ""
     },
     {
       "id": "2026-南部赛区-56",
       "season": "2026",
       "zone": "南部赛区",
       "order": "56",
-      "stage": "小组赛",
+      "stage": "B组第4轮",
       "redSchool": "南华大学",
       "redTeam": "MA",
       "blueSchool": "深圳技术大学",
@@ -3508,14 +4207,17 @@
       "redScore": 0,
       "blueScore": 2,
       "note": "比分与回放均来自官方数据",
-      "uncertain": false
+      "uncertain": false,
+      "matchId": "30955",
+      "redSourceMatch": "",
+      "blueSourceMatch": ""
     },
     {
       "id": "2026-南部赛区-57",
       "season": "2026",
       "zone": "南部赛区",
       "order": "57",
-      "stage": "小组赛",
+      "stage": "B组第4轮",
       "redSchool": "华中科技大学",
       "redTeam": "狼牙",
       "blueSchool": "广东工业大学",
@@ -3523,14 +4225,17 @@
       "redScore": 2,
       "blueScore": 1,
       "note": "比分与回放均来自官方数据",
-      "uncertain": false
+      "uncertain": false,
+      "matchId": "30956",
+      "redSourceMatch": "",
+      "blueSourceMatch": ""
     },
     {
       "id": "2026-南部赛区-58",
       "season": "2026",
       "zone": "南部赛区",
       "order": "58",
-      "stage": "小组赛",
+      "stage": "B组第4轮",
       "redSchool": "中南大学",
       "redTeam": "FYT",
       "blueSchool": "武汉科技大学",
@@ -3538,14 +4243,17 @@
       "redScore": 2,
       "blueScore": 0,
       "note": "比分与回放均来自官方数据",
-      "uncertain": false
+      "uncertain": false,
+      "matchId": "30957",
+      "redSourceMatch": "",
+      "blueSourceMatch": ""
     },
     {
       "id": "2026-南部赛区-59",
       "season": "2026",
       "zone": "南部赛区",
       "order": "59",
-      "stage": "小组赛",
+      "stage": "B组第4轮",
       "redSchool": "西交利物浦大学",
       "redTeam": "GMaster",
       "blueSchool": "桂林理工大学",
@@ -3553,14 +4261,17 @@
       "redScore": 2,
       "blueScore": 0,
       "note": "比分与回放均来自官方数据",
-      "uncertain": false
+      "uncertain": false,
+      "matchId": "30958",
+      "redSourceMatch": "",
+      "blueSourceMatch": ""
     },
     {
       "id": "2026-南部赛区-60",
       "season": "2026",
       "zone": "南部赛区",
       "order": "60",
-      "stage": "小组赛",
+      "stage": "B组第4轮",
       "redSchool": "太原理工大学",
       "redTeam": "TRoMaC",
       "blueSchool": "南昌大学",
@@ -3568,14 +4279,17 @@
       "redScore": 1,
       "blueScore": 2,
       "note": "比分与回放均来自官方数据",
-      "uncertain": false
+      "uncertain": false,
+      "matchId": "30959",
+      "redSourceMatch": "",
+      "blueSourceMatch": ""
     },
     {
       "id": "2026-南部赛区-61",
       "season": "2026",
       "zone": "南部赛区",
       "order": "61",
-      "stage": "小组赛",
+      "stage": "A组第5轮",
       "redSchool": "桂林电子科技大学",
       "redTeam": "Evolution",
       "blueSchool": "厦门理工学院",
@@ -3583,14 +4297,17 @@
       "redScore": 2,
       "blueScore": 1,
       "note": "比分与回放均来自官方数据",
-      "uncertain": false
+      "uncertain": false,
+      "matchId": "30960",
+      "redSourceMatch": "",
+      "blueSourceMatch": ""
     },
     {
       "id": "2026-南部赛区-62",
       "season": "2026",
       "zone": "南部赛区",
       "order": "62",
-      "stage": "小组赛",
+      "stage": "A组第5轮",
       "redSchool": "武汉工程大学",
       "redTeam": "Nautilus",
       "blueSchool": "重庆理工大学",
@@ -3598,14 +4315,17 @@
       "redScore": 2,
       "blueScore": 0,
       "note": "比分与回放均来自官方数据",
-      "uncertain": false
+      "uncertain": false,
+      "matchId": "30961",
+      "redSourceMatch": "",
+      "blueSourceMatch": ""
     },
     {
       "id": "2026-南部赛区-63",
       "season": "2026",
       "zone": "南部赛区",
       "order": "63",
-      "stage": "小组赛",
+      "stage": "A组第5轮",
       "redSchool": "桂林信息科技学院",
       "redTeam": "GIRT",
       "blueSchool": "华南理工大学",
@@ -3613,14 +4333,17 @@
       "redScore": 0,
       "blueScore": 2,
       "note": "比分与回放均来自官方数据",
-      "uncertain": false
+      "uncertain": false,
+      "matchId": "30962",
+      "redSourceMatch": "",
+      "blueSourceMatch": ""
     },
     {
       "id": "2026-南部赛区-64",
       "season": "2026",
       "zone": "南部赛区",
       "order": "64",
-      "stage": "小组赛",
+      "stage": "B组第5轮",
       "redSchool": "南昌大学",
       "redTeam": "Passion",
       "blueSchool": "东莞理工学院",
@@ -3628,14 +4351,17 @@
       "redScore": 0,
       "blueScore": 2,
       "note": "比分与回放均来自官方数据",
-      "uncertain": false
+      "uncertain": false,
+      "matchId": "30963",
+      "redSourceMatch": "",
+      "blueSourceMatch": ""
     },
     {
       "id": "2026-南部赛区-65",
       "season": "2026",
       "zone": "南部赛区",
       "order": "65",
-      "stage": "小组赛",
+      "stage": "B组第5轮",
       "redSchool": "南华大学",
       "redTeam": "MA",
       "blueSchool": "西交利物浦大学",
@@ -3643,14 +4369,17 @@
       "redScore": 2,
       "blueScore": 0,
       "note": "比分与回放均来自官方数据",
-      "uncertain": false
+      "uncertain": false,
+      "matchId": "30964",
+      "redSourceMatch": "",
+      "blueSourceMatch": ""
     },
     {
       "id": "2026-南部赛区-66",
       "season": "2026",
       "zone": "南部赛区",
       "order": "66",
-      "stage": "小组赛",
+      "stage": "B组第5轮",
       "redSchool": "中南大学",
       "redTeam": "FYT",
       "blueSchool": "广东工业大学",
@@ -3658,14 +4387,17 @@
       "redScore": 1,
       "blueScore": 2,
       "note": "比分与回放均来自官方数据",
-      "uncertain": false
+      "uncertain": false,
+      "matchId": "30965",
+      "redSourceMatch": "",
+      "blueSourceMatch": ""
     },
     {
       "id": "2026-南部赛区-67",
       "season": "2026",
       "zone": "南部赛区",
       "order": "67",
-      "stage": "淘汰赛",
+      "stage": "16进8淘汰赛",
       "redSchool": "五邑大学",
       "redTeam": "IMCA",
       "blueSchool": "武汉工程大学",
@@ -3673,14 +4405,17 @@
       "redScore": 2,
       "blueScore": 0,
       "note": "比分与回放均来自官方数据",
-      "uncertain": false
+      "uncertain": false,
+      "matchId": "30966",
+      "redSourceMatch": "",
+      "blueSourceMatch": ""
     },
     {
       "id": "2026-南部赛区-68",
       "season": "2026",
       "zone": "南部赛区",
       "order": "68",
-      "stage": "淘汰赛",
+      "stage": "16进8淘汰赛",
       "redSchool": "华中科技大学",
       "redTeam": "狼牙",
       "blueSchool": "电子科技大学中山学院",
@@ -3688,14 +4423,17 @@
       "redScore": 1,
       "blueScore": 2,
       "note": "比分与回放均来自官方数据",
-      "uncertain": false
+      "uncertain": false,
+      "matchId": "30967",
+      "redSourceMatch": "",
+      "blueSourceMatch": ""
     },
     {
       "id": "2026-南部赛区-69",
       "season": "2026",
       "zone": "南部赛区",
       "order": "69",
-      "stage": "淘汰赛",
+      "stage": "16进8淘汰赛",
       "redSchool": "华南理工大学",
       "redTeam": "华南虎",
       "blueSchool": "深圳大学",
@@ -3703,14 +4441,17 @@
       "redScore": 2,
       "blueScore": 0,
       "note": "比分与回放均来自官方数据",
-      "uncertain": false
+      "uncertain": false,
+      "matchId": "30968",
+      "redSourceMatch": "",
+      "blueSourceMatch": ""
     },
     {
       "id": "2026-南部赛区-70",
       "season": "2026",
       "zone": "南部赛区",
       "order": "70",
-      "stage": "淘汰赛",
+      "stage": "16进8淘汰赛",
       "redSchool": "厦门大学嘉庚学院",
       "redTeam": "TCR",
       "blueSchool": "东莞理工学院",
@@ -3718,14 +4459,17 @@
       "redScore": 0,
       "blueScore": 2,
       "note": "比分与回放均来自官方数据",
-      "uncertain": false
+      "uncertain": false,
+      "matchId": "30969",
+      "redSourceMatch": "",
+      "blueSourceMatch": ""
     },
     {
       "id": "2026-南部赛区-71",
       "season": "2026",
       "zone": "南部赛区",
       "order": "71",
-      "stage": "淘汰赛",
+      "stage": "16进8淘汰赛",
       "redSchool": "桂林电子科技大学",
       "redTeam": "Evolution",
       "blueSchool": "广州城市理工学院",
@@ -3733,14 +4477,17 @@
       "redScore": 0,
       "blueScore": 2,
       "note": "比分与回放均来自官方数据",
-      "uncertain": false
+      "uncertain": false,
+      "matchId": "30970",
+      "redSourceMatch": "",
+      "blueSourceMatch": ""
     },
     {
       "id": "2026-南部赛区-72",
       "season": "2026",
       "zone": "南部赛区",
       "order": "72",
-      "stage": "淘汰赛",
+      "stage": "16进8淘汰赛",
       "redSchool": "上海交通大学",
       "redTeam": "交龙",
       "blueSchool": "广东工业大学",
@@ -3748,14 +4495,17 @@
       "redScore": 2,
       "blueScore": 1,
       "note": "比分与回放均来自官方数据",
-      "uncertain": false
+      "uncertain": false,
+      "matchId": "30971",
+      "redSourceMatch": "",
+      "blueSourceMatch": ""
     },
     {
       "id": "2026-南部赛区-73",
       "season": "2026",
       "zone": "南部赛区",
       "order": "73",
-      "stage": "淘汰赛",
+      "stage": "16进8淘汰赛",
       "redSchool": "深圳技术大学",
       "redTeam": "悍匠",
       "blueSchool": "华南农业大学",
@@ -3763,14 +4513,17 @@
       "redScore": 1,
       "blueScore": 2,
       "note": "比分与回放均来自官方数据",
-      "uncertain": false
+      "uncertain": false,
+      "matchId": "30972",
+      "redSourceMatch": "",
+      "blueSourceMatch": ""
     },
     {
       "id": "2026-南部赛区-74",
       "season": "2026",
       "zone": "南部赛区",
       "order": "74",
-      "stage": "淘汰赛",
+      "stage": "16进8淘汰赛",
       "redSchool": "南华大学",
       "redTeam": "MA",
       "blueSchool": "仲恺农业工程学院",
@@ -3778,14 +4531,17 @@
       "redScore": 1,
       "blueScore": 2,
       "note": "比分与回放均来自官方数据",
-      "uncertain": false
+      "uncertain": false,
+      "matchId": "30973",
+      "redSourceMatch": "",
+      "blueSourceMatch": ""
     },
     {
       "id": "2026-南部赛区-75",
       "season": "2026",
       "zone": "南部赛区",
       "order": "75",
-      "stage": "淘汰赛",
+      "stage": "8进4淘汰赛",
       "redSchool": "五邑大学",
       "redTeam": "IMCA",
       "blueSchool": "电子科技大学中山学院",
@@ -3793,14 +4549,17 @@
       "redScore": 2,
       "blueScore": 0,
       "note": "比分与回放均来自官方数据",
-      "uncertain": false
+      "uncertain": false,
+      "matchId": "30974",
+      "redSourceMatch": "30966",
+      "blueSourceMatch": "30967"
     },
     {
       "id": "2026-南部赛区-76",
       "season": "2026",
       "zone": "南部赛区",
       "order": "76",
-      "stage": "淘汰赛",
+      "stage": "8进4淘汰赛",
       "redSchool": "东莞理工学院",
       "redTeam": "ACE",
       "blueSchool": "华南理工大学",
@@ -3808,14 +4567,17 @@
       "redScore": 2,
       "blueScore": 1,
       "note": "比分与回放均来自官方数据",
-      "uncertain": false
+      "uncertain": false,
+      "matchId": "30975",
+      "redSourceMatch": "30969",
+      "blueSourceMatch": "30968"
     },
     {
       "id": "2026-南部赛区-77",
       "season": "2026",
       "zone": "南部赛区",
       "order": "77",
-      "stage": "淘汰赛",
+      "stage": "8进4淘汰赛",
       "redSchool": "广州城市理工学院",
       "redTeam": "野狼",
       "blueSchool": "上海交通大学",
@@ -3823,14 +4585,17 @@
       "redScore": 2,
       "blueScore": 0,
       "note": "比分与回放均来自官方数据",
-      "uncertain": false
+      "uncertain": false,
+      "matchId": "30976",
+      "redSourceMatch": "30970",
+      "blueSourceMatch": "30971"
     },
     {
       "id": "2026-南部赛区-78",
       "season": "2026",
       "zone": "南部赛区",
       "order": "78",
-      "stage": "淘汰赛",
+      "stage": "8进4淘汰赛",
       "redSchool": "仲恺农业工程学院",
       "redTeam": "奇点",
       "blueSchool": "华南农业大学",
@@ -3838,14 +4603,17 @@
       "redScore": 0,
       "blueScore": 2,
       "note": "比分与回放均来自官方数据",
-      "uncertain": false
+      "uncertain": false,
+      "matchId": "30977",
+      "redSourceMatch": "30973",
+      "blueSourceMatch": "30972"
     },
     {
       "id": "2026-南部赛区-79",
       "season": "2026",
       "zone": "南部赛区",
       "order": "79",
-      "stage": "淘汰赛",
+      "stage": "全国赛名额争夺",
       "redSchool": "武汉工程大学",
       "redTeam": "Nautilus",
       "blueSchool": "华中科技大学",
@@ -3853,14 +4621,17 @@
       "redScore": 2,
       "blueScore": 0,
       "note": "比分与回放均来自官方数据",
-      "uncertain": false
+      "uncertain": false,
+      "matchId": "30978",
+      "redSourceMatch": "30966",
+      "blueSourceMatch": "30967"
     },
     {
       "id": "2026-南部赛区-80",
       "season": "2026",
       "zone": "南部赛区",
       "order": "80",
-      "stage": "淘汰赛",
+      "stage": "全国赛名额争夺",
       "redSchool": "厦门大学嘉庚学院",
       "redTeam": "TCR",
       "blueSchool": "深圳大学",
@@ -3868,14 +4639,17 @@
       "redScore": 0,
       "blueScore": 2,
       "note": "比分与回放均来自官方数据",
-      "uncertain": false
+      "uncertain": false,
+      "matchId": "30979",
+      "redSourceMatch": "30969",
+      "blueSourceMatch": "30968"
     },
     {
       "id": "2026-南部赛区-81",
       "season": "2026",
       "zone": "南部赛区",
       "order": "81",
-      "stage": "淘汰赛",
+      "stage": "全国赛名额争夺",
       "redSchool": "桂林电子科技大学",
       "redTeam": "Evolution",
       "blueSchool": "广东工业大学",
@@ -3883,14 +4657,17 @@
       "redScore": 0,
       "blueScore": 2,
       "note": "比分与回放均来自官方数据",
-      "uncertain": false
+      "uncertain": false,
+      "matchId": "30980",
+      "redSourceMatch": "30970",
+      "blueSourceMatch": "30971"
     },
     {
       "id": "2026-南部赛区-82",
       "season": "2026",
       "zone": "南部赛区",
       "order": "82",
-      "stage": "淘汰赛",
+      "stage": "全国赛名额争夺",
       "redSchool": "南华大学",
       "redTeam": "MA",
       "blueSchool": "深圳技术大学",
@@ -3898,14 +4675,17 @@
       "redScore": 2,
       "blueScore": 1,
       "note": "比分与回放均来自官方数据",
-      "uncertain": false
+      "uncertain": false,
+      "matchId": "30981",
+      "redSourceMatch": "30973",
+      "blueSourceMatch": "30972"
     },
     {
       "id": "2026-南部赛区-83",
       "season": "2026",
       "zone": "南部赛区",
       "order": "83",
-      "stage": "淘汰赛",
+      "stage": "半决赛",
       "redSchool": "五邑大学",
       "redTeam": "IMCA",
       "blueSchool": "广州城市理工学院",
@@ -3913,14 +4693,17 @@
       "redScore": 2,
       "blueScore": 0,
       "note": "比分与回放均来自官方数据",
-      "uncertain": false
+      "uncertain": false,
+      "matchId": "30982",
+      "redSourceMatch": "30974",
+      "blueSourceMatch": "30976"
     },
     {
       "id": "2026-南部赛区-84",
       "season": "2026",
       "zone": "南部赛区",
       "order": "84",
-      "stage": "淘汰赛",
+      "stage": "半决赛",
       "redSchool": "东莞理工学院",
       "redTeam": "ACE",
       "blueSchool": "华南农业大学",
@@ -3928,14 +4711,17 @@
       "redScore": 0,
       "blueScore": 2,
       "note": "比分与回放均来自官方数据",
-      "uncertain": false
+      "uncertain": false,
+      "matchId": "30983",
+      "redSourceMatch": "30975",
+      "blueSourceMatch": "30977"
     },
     {
       "id": "2026-南部赛区-85",
       "season": "2026",
       "zone": "南部赛区",
       "order": "85",
-      "stage": "淘汰赛",
+      "stage": "全国赛名额争夺",
       "redSchool": "武汉工程大学",
       "redTeam": "Nautilus",
       "blueSchool": "广东工业大学",
@@ -3943,14 +4729,17 @@
       "redScore": 2,
       "blueScore": 0,
       "note": "比分与回放均来自官方数据",
-      "uncertain": false
+      "uncertain": false,
+      "matchId": "30984",
+      "redSourceMatch": "30978",
+      "blueSourceMatch": "30980"
     },
     {
       "id": "2026-南部赛区-86",
       "season": "2026",
       "zone": "南部赛区",
       "order": "86",
-      "stage": "淘汰赛",
+      "stage": "全国赛名额争夺",
       "redSchool": "深圳大学",
       "redTeam": "RobotPilots",
       "blueSchool": "南华大学",
@@ -3958,14 +4747,17 @@
       "redScore": 2,
       "blueScore": 0,
       "note": "比分与回放均来自官方数据",
-      "uncertain": false
+      "uncertain": false,
+      "matchId": "30985",
+      "redSourceMatch": "30979",
+      "blueSourceMatch": "30981"
     },
     {
       "id": "2026-南部赛区-87",
       "season": "2026",
       "zone": "南部赛区",
       "order": "87",
-      "stage": "淘汰赛",
+      "stage": "季军争夺战",
       "redSchool": "广州城市理工学院",
       "redTeam": "野狼",
       "blueSchool": "东莞理工学院",
@@ -3973,14 +4765,17 @@
       "redScore": 3,
       "blueScore": 1,
       "note": "比分与回放均来自官方数据",
-      "uncertain": false
+      "uncertain": false,
+      "matchId": "30986",
+      "redSourceMatch": "30982",
+      "blueSourceMatch": "30983"
     },
     {
       "id": "2026-南部赛区-88",
       "season": "2026",
       "zone": "南部赛区",
       "order": "88",
-      "stage": "淘汰赛",
+      "stage": "冠军争夺战",
       "redSchool": "五邑大学",
       "redTeam": "IMCA",
       "blueSchool": "华南农业大学",
@@ -3988,7 +4783,10 @@
       "redScore": 0,
       "blueScore": 3,
       "note": "比分与回放均来自官方数据",
-      "uncertain": false
+      "uncertain": false,
+      "matchId": "30987",
+      "redSourceMatch": "30982",
+      "blueSourceMatch": "30983"
     }
   ],
   "rankings": [
