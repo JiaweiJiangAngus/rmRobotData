@@ -51,7 +51,7 @@ def download_pdf(url, destination):
 
 def iter_documents(manifest):
     for season, season_rules in manifest.get("rmuc", {}).items():
-        for phase in ("regional", "finals"):
+        for phase in ("default", "regional", "finals"):
             document = season_rules.get(phase)
             if document:
                 yield "rmuc", season, phase, document

@@ -1,5 +1,79 @@
 {
   "rmuc": {
+    "2015": {
+      "default": {
+        "version": "2014.10 初版",
+        "title": "RoboMasters 2015 全国大学生机器人大赛比赛规则",
+        "url": "rules/rmuc-2015-default-2014-10.pdf",
+        "source": "https://www.smee.uestc.edu.cn/__local/7/5E/33/500B8AB3F907ACF51A386190F73_E94F2010_EF3FE.pdf?e=.pdf",
+        "note": "电子科技大学留存的可获取初版；官方 6.12 更新版附件已下线",
+        "remoteUrl": "https://www.smee.uestc.edu.cn/__local/7/5E/33/500B8AB3F907ACF51A386190F73_E94F2010_EF3FE.pdf?e=.pdf"
+      },
+      "source": "https://bbs.robomaster.com/article/900"
+    },
+    "2016": {
+      "default": {
+        "version": "V3.0",
+        "title": "RoboMasters 2016 全国机器人大赛比赛规则",
+        "url": "rules/rmuc-2016-default-v3-0.pdf",
+        "source": "https://bbs.robomaster.com/article/1753",
+        "note": "官方页面确认赛季正式版为 V4.0，但迁移后的 V4.0 附件已丢失；当前保留可下载的官方 V3.0",
+        "remoteUrl": "https://hz-rm-bbs-web-prod.oss-cn-hangzhou.aliyuncs.com/attachment/pre/v1/201512/24/185156g3q6ml66meemom4q.attach/RoboMasters2016%E5%85%A8%E5%9B%BD%E6%9C%BA%E5%99%A8%E4%BA%BA%E5%A4%A7%E8%B5%9B%E6%AF%94%E8%B5%9B%E8%A7%84%E5%88%99V3.0%E6%9C%80%E6%96%B0%E7%89%88.pdf"
+      },
+      "source": "https://bbs.robomaster.com/article/2198"
+    },
+    "2017": {
+      "default": {
+        "version": "V1.9",
+        "title": "RoboMaster 2017 比赛规则手册",
+        "url": "rules/rmuc-2017-default-v1-9.pdf",
+        "remoteUrl": "https://cdn-hz.robomaster.com/robomasters/public/document/%E7%AC%AC%E5%8D%81%E5%85%AD%E5%B1%8A%E5%85%A8%E5%9B%BD%E5%A4%A7%E5%AD%A6%E7%94%9F%E6%9C%BA%E5%99%A8%E4%BA%BA%E5%A4%A7%E8%B5%9BRoboMaster2017%E6%AF%94%E8%B5%9B%E8%A7%84%E5%88%99%E6%89%8B%E5%86%8CV1.9.pdf"
+      },
+      "source": "https://cdn-hz.robomaster.com/robomasters/public/document/%E7%AC%AC%E5%8D%81%E5%85%AD%E5%B1%8A%E5%85%A8%E5%9B%BD%E5%A4%A7%E5%AD%A6%E7%94%9F%E6%9C%BA%E5%99%A8%E4%BA%BA%E5%A4%A7%E8%B5%9BRoboMaster2017%E6%AF%94%E8%B5%9B%E8%A7%84%E5%88%99%E6%89%8B%E5%86%8CV1.9.pdf"
+    },
+    "2018": {
+      "regional": {
+        "version": "V1.0",
+        "title": "RoboMaster 2018 机甲大师赛比赛规则手册",
+        "url": "rules/rmuc-2018-regional-v1-0.pdf",
+        "source": "https://bbs.robomaster.com/article/3535",
+        "note": "区域赛前曾发布 V1.2，但迁移后的附件已失效；当前保留可下载的官方 V1.0",
+        "remoteUrl": "https://hz-rm-bbs-web-prod.oss-cn-hangzhou.aliyuncs.com/attachment/pre/v1/201709/26/224008yydi7y0hd90h0h6d.attach/%E7%AC%AC%E5%8D%81%E4%B8%83%E5%B1%8A%E5%85%A8%E5%9B%BD%E5%A4%A7%E5%AD%A6%E7%94%9F%E6%9C%BA%E5%99%A8%E4%BA%BA%E5%A4%A7%E8%B5%9BRoboMaster2018%E6%9C%BA%E7%94%B2%E5%A4%A7%E5%B8%88%E8%B5%9B%E6%AF%94%E8%B5%9B%E8%A7%84%E5%88%99%E6%89%8B%E5%86%8CV1.0.pdf.pdf"
+      },
+      "finals": {
+        "version": "V2.0",
+        "title": "RoboMaster 2018 机甲大师赛比赛规则手册",
+        "url": "rules/rmuc-2018-finals-v2-0.pdf",
+        "source": "https://bbs.robomaster.com/article/3816",
+        "remoteUrl": "https://cdn-hz.robomaster.com/documents/31b35c4adb8891528974470822502722.pdf"
+      },
+      "source": "https://bbs.robomaster.com/article/3816"
+    },
+    "2019": {
+      "regional": {
+        "version": "V1.2",
+        "title": "RoboMaster 2019 机甲大师赛比赛规则手册",
+        "url": "rules/rmuc-2019-regional-v1-2.pdf",
+        "remoteUrl": "https://hz-rm-bbs-web-prod.oss-cn-hangzhou.aliyuncs.com/attachment/pre/v1/201904/21/155912z7ee08pjx00z8koe.attach/RoboMaster%202019%E6%9C%BA%E7%94%B2%E5%A4%A7%E5%B8%88%E8%B5%9B%E6%AF%94%E8%B5%9B%E8%A7%84%E5%88%99%E6%89%8B%E5%86%8CV1.2%EF%BC%882019.04.19%EF%BC%89.pdf"
+      },
+      "finals": {
+        "version": "V2.0",
+        "title": "RoboMaster 2019 机甲大师赛比赛规则手册",
+        "url": "rules/rmuc-2019-finals-v2-0.pdf",
+        "remoteUrl": "https://hz-rm-bbs-web-prod.oss-cn-hangzhou.aliyuncs.com/attachment/pre/v1/201906/22/225830jotsooo74n1qqtot.attach/RoboMaster%202019%E6%9C%BA%E7%94%B2%E5%A4%A7%E5%B8%88%E8%B5%9B%E6%AF%94%E8%B5%9B%E8%A7%84%E5%88%99%E6%89%8B%E5%86%8CV2.0%EF%BC%8820190621%EF%BC%89.pdf"
+      },
+      "source": "https://bbs.robomaster.com/article/4983"
+    },
+    "2020": {
+      "default": {
+        "version": "V1.2",
+        "title": "RoboMaster 2020 机甲大师对抗赛比赛规则手册",
+        "url": "rules/rmuc-2020-default-v1-2.pdf",
+        "note": "2020 线下对抗赛取消，V1.2 为官网发布的最终规则版本",
+        "remoteUrl": "https://terra-1-g.djicdn.com/b2a076471c6c4b72b574a977334d3e05/RoboMaster%E8%B5%9B%E5%8A%A1%E8%B5%84%E6%96%99%E6%96%87%E4%BB%B6%E5%A4%B9/RM2020%20%E8%B5%9B%E4%BA%8B%E8%A7%84%E5%88%99/%E5%AF%B9%E6%8A%97%E8%B5%9B%E5%8D%95%E9%A1%B9%E8%B5%9B/RoboMaster%202020%20%E6%9C%BA%E7%94%B2%E5%A4%A7%E5%B8%88%E5%AF%B9%E6%8A%97%E8%B5%9B%E6%AF%94%E8%B5%9B%E8%A7%84%E5%88%99%E6%89%8B%E5%86%8C%20%20V1.2%20%2820200527%29.pdf"
+      },
+      "source": "https://www.robomaster.com/zh-CN/resource/pages/announcement/1038"
+    },
     "2021": {
       "regional": {
         "version": "V1.2",

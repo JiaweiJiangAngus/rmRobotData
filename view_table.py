@@ -7703,10 +7703,18 @@ def render_html(title, payload):
       const seasonRules = (ruleDocuments[kind] || {{}})[season];
       if (!seasonRules) return null;
       if (!isRmuc) return {{ ...seasonRules, season, zone, phase: "高校联盟赛" }};
-      const isFinals = /复活赛|全国赛|总决赛|国际预选/.test(zone);
-      const matchedDocument = isFinals ? seasonRules.finals : seasonRules.regional;
+      const isFinals = /复活赛|全国赛|总决赛|踢馆赛/.test(zone);
+      const matchedDocument = isFinals
+        ? (seasonRules.finals || seasonRules.default || seasonRules.regional)
+        : (seasonRules.regional || seasonRules.default || seasonRules.finals);
       if (!matchedDocument) return null;
-      return {{ ...matchedDocument, source: seasonRules.source, season, zone, phase: isFinals ? "复活赛 / 全国赛" : "区域赛" }};
+      return {{
+        ...matchedDocument,
+        source: matchedDocument.source || seasonRules.source,
+        season,
+        zone,
+        phase: isFinals ? "复活赛 / 踢馆赛 / 全国赛" : "区域赛 / 国际赛 / 邀请赛",
+      }};
     }}
 
     function renderRuleDocument(kind) {{
@@ -7718,8 +7726,11 @@ def render_html(title, payload):
         return;
       }}
       const eventName = kind === "rmuc" ? "超级对抗赛" : "高校联盟赛";
-      const title = `RoboMaster ${{ruleDocument.season}} 机甲大师${{eventName}}比赛规则手册 ${{ruleDocument.version}}`;
+      const title = ruleDocument.title
+        ? `${{ruleDocument.title}} ${{ruleDocument.version}}`
+        : `RoboMaster ${{ruleDocument.season}} 机甲大师${{eventName}}比赛规则手册 ${{ruleDocument.version}}`;
       const context = [ruleDocument.zone, ruleDocument.phase].filter(Boolean).join(" · ");
+      const detail = [context, ruleDocument.note || "已匹配当前赛季与赛区可获取规则版本"].filter(Boolean).join(" · ");
       const readButton = ruleDocument.url
         ? `<button class="rule-document-button primary" type="button" data-rule-view="${{scheduleEscape(ruleDocument.url)}}" data-rule-title="${{scheduleEscape(title)}}">▣ 在线阅读</button>`
         : "";
@@ -7729,12 +7740,12 @@ def render_html(title, payload):
       bar.innerHTML = `
         <div class="rule-document-copy">
           <b>${{scheduleEscape(title)}}</b>
-          <span>${{scheduleEscape(context)}} · 已按当前赛季与赛事阶段匹配最高规则版本</span>
+          <span>${{scheduleEscape(detail)}}</span>
         </div>
         <div class="rule-document-actions">
           ${{readButton}}
           ${{fileButton}}
-          <a class="rule-document-button" href="${{scheduleEscape(ruleDocument.source)}}" target="_blank" rel="noopener">官方规范页</a>
+          <a class="rule-document-button" href="${{scheduleEscape(ruleDocument.source)}}" target="_blank" rel="noopener">资料来源</a>
         </div>
       `;
       bar.hidden = false;
