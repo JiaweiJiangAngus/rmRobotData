@@ -2,6 +2,7 @@ import csv
 import html
 import json
 import os
+import shutil
 import sys
 from pathlib import Path
 
@@ -53,6 +54,14 @@ def load_rmul_data():
     path = Path(__file__).resolve().parent / "data" / "rmul_results.json"
     if not path.exists():
         return {"matches": [], "collections": [], "coverage": []}
+    with path.open("r", encoding="utf-8") as handle:
+        return json.load(handle)
+
+
+def load_rule_documents():
+    path = Path(__file__).resolve().parent / "data" / "rule_documents.json"
+    if not path.exists():
+        return {"rmuc": {}, "rmul": {}}
     with path.open("r", encoding="utf-8") as handle:
         return json.load(handle)
 
@@ -330,9 +339,11 @@ def render_html(title, payload):
       const savedDensity = localStorage.getItem("rm-dashboard-density") || "standard";
       const savedBackground = localStorage.getItem("rm-dashboard-background");
       const prefersNight = window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches;
-      const theme = savedTheme || (prefersNight ? "night" : "day");
+      const theme = ["day", "night"].includes(savedTheme) ? savedTheme : (prefersNight ? "night" : "day");
+      const eyeCare = localStorage.getItem("rm-dashboard-eye-care") === "true";
       const background = savedBackground === "simple" ? "simple" : "fancy";
       document.documentElement.dataset.theme = theme;
+      document.documentElement.dataset.eyeCare = eyeCare ? "true" : "false";
       document.documentElement.dataset.density = savedDensity;
       document.documentElement.dataset.background = background;
     }})();
@@ -402,6 +413,43 @@ def render_html(title, payload):
       --aurora-b: rgba(216, 132, 87, 0.17);
       --aurora-c: rgba(93, 234, 218, 0.10);
       --sparkle: rgba(226, 232, 240, 0.36);
+    }}
+
+    html[data-eye-care="true"] {{
+      color-scheme: light;
+      --bg: #e8efe3;
+      --page-bg:
+        radial-gradient(circle at 12% 8%, rgba(111, 151, 102, 0.12), transparent 30%),
+        radial-gradient(circle at 86% 0%, rgba(186, 156, 91, 0.10), transparent 34%),
+        linear-gradient(135deg, #eef4e9 0%, #e3ecde 46%, #edf1e5 100%);
+      --panel: rgba(244, 248, 237, 0.92);
+      --panel-strong: rgba(249, 251, 244, 0.98);
+      --panel-soft: rgba(235, 242, 228, 0.88);
+      --line: rgba(58, 83, 52, 0.17);
+      --glass-line: rgba(255, 255, 255, 0.68);
+      --text: #253325;
+      --muted: #5c6d57;
+      --accent: #607d48;
+      --accent-deep: #3f6438;
+      --accent-soft: rgba(96, 125, 72, 0.14);
+      --hud-cyan: #39776d;
+      --hud-cyan-soft: rgba(57, 119, 109, 0.12);
+      --hud-green: #4f7a42;
+      --hud-warn: #967328;
+      --table-alt: rgba(96, 125, 72, 0.055);
+      --input-bg: rgba(250, 252, 246, 0.94);
+      --button-bg: rgba(242, 247, 237, 0.94);
+      --glow-warm: rgba(184, 155, 91, 0.10);
+      --glow-cool: rgba(91, 132, 102, 0.10);
+      --shadow: 0 18px 46px rgba(47, 70, 42, 0.11);
+      --grid-color: rgba(70, 105, 64, 0.055);
+      --grid-accent: rgba(96, 125, 72, 0.10);
+      --aurora-a: rgba(96, 139, 88, 0.12);
+      --aurora-b: rgba(181, 151, 86, 0.09);
+      --aurora-c: rgba(58, 119, 104, 0.08);
+      --sparkle: rgba(92, 126, 82, 0.26);
+      --armor-edge: rgba(58, 83, 52, 0.16);
+      --scanline: rgba(70, 105, 64, 0.12);
     }}
 
     * {{
@@ -2319,6 +2367,74 @@ def render_html(title, payload):
       color: #f4f8fc;
     }}
 
+    html[data-eye-care="true"] body::before,
+    html[data-eye-care="true"] body::after {{
+      opacity: 0.12;
+      filter: blur(48px);
+    }}
+
+    html[data-eye-care="true"] .animated-backdrop,
+    html[data-eye-care="true"] .hud-frame {{
+      opacity: 0.18;
+    }}
+
+    html[data-eye-care="true"] .hero-card,
+    html[data-eye-care="true"] .summary-card,
+    html[data-eye-care="true"] .control-panel,
+    html[data-eye-care="true"] .table-panel,
+    html[data-eye-care="true"] .chart-card {{
+      background:
+        linear-gradient(135deg, rgba(255,255,255,0.16), transparent 32%),
+        linear-gradient(180deg, var(--panel), var(--panel-strong));
+    }}
+
+    html[data-eye-care="true"] .table-wrap,
+    html[data-eye-care="true"] .strength-table-wrap,
+    html[data-eye-care="true"] .radar-stage,
+    html[data-eye-care="true"] .radar-side {{
+      background: rgba(246, 249, 240, 0.92);
+    }}
+
+    html[data-eye-care="true"] thead th,
+    html[data-eye-care="true"] .strength-table th {{
+      background: linear-gradient(180deg, #e2ebdc, #d8e4d2);
+      color: #345239;
+    }}
+
+    html[data-theme="night"][data-eye-care="true"] {{
+      color-scheme: dark;
+      --bg: #172018;
+      --page-bg: linear-gradient(135deg, #1d291e 0%, #172319 48%, #121b14 100%);
+      --panel: rgba(31, 45, 32, 0.94);
+      --panel-strong: rgba(27, 40, 29, 0.98);
+      --panel-soft: rgba(42, 58, 42, 0.90);
+      --line: rgba(178, 204, 166, 0.19);
+      --text: #e7eee2;
+      --muted: #bac8b3;
+      --accent: #91b276;
+      --accent-deep: #c4dda9;
+      --accent-soft: rgba(145, 178, 118, 0.15);
+      --hud-cyan: #83b6a4;
+      --hud-cyan-soft: rgba(131, 182, 164, 0.12);
+      --input-bg: rgba(29, 43, 31, 0.96);
+      --button-bg: rgba(40, 56, 40, 0.94);
+      --table-alt: rgba(190, 220, 175, 0.045);
+      --shadow: 0 18px 54px rgba(7, 14, 8, 0.32);
+    }}
+
+    html[data-theme="night"][data-eye-care="true"] .table-wrap,
+    html[data-theme="night"][data-eye-care="true"] .strength-table-wrap,
+    html[data-theme="night"][data-eye-care="true"] .radar-stage,
+    html[data-theme="night"][data-eye-care="true"] .radar-side {{
+      background: rgba(27, 40, 29, 0.94);
+    }}
+
+    html[data-theme="night"][data-eye-care="true"] thead th,
+    html[data-theme="night"][data-eye-care="true"] .strength-table th {{
+      background: linear-gradient(180deg, #334734, #293b2b);
+      color: #d9ead0;
+    }}
+
     h1,
     .stat-value,
     .combat-strip b {{
@@ -4033,6 +4149,25 @@ def render_html(title, payload):
       backdrop-filter: blur(18px);
       box-shadow: var(--shadow);
     }}
+    .global-display-controls {{
+      position: sticky;
+      top: 70px;
+      z-index: 79;
+      display: flex;
+      justify-content: flex-end;
+      gap: 8px;
+      margin: -10px 10px 18px;
+      padding: 8px;
+      border: 1px solid var(--line);
+      background: color-mix(in srgb, var(--panel-strong) 92%, transparent);
+      backdrop-filter: blur(18px);
+      box-shadow: var(--shadow);
+    }}
+    .global-display-controls .theme-toggle[aria-pressed="true"] {{
+      border-color: var(--accent);
+      color: #fff;
+      background: linear-gradient(135deg, var(--accent), var(--hud-cyan));
+    }}
     .dataset-tab {{
       flex: 1;
       min-height: 48px;
@@ -4181,6 +4316,20 @@ def render_html(title, payload):
     .rank-gray {{ background: linear-gradient(135deg, #3d424a, #626873); }}
     .schedule-source {{ margin-top: 14px; color: var(--muted); font-size: 12px; line-height: 1.7; }}
     .schedule-source a {{ color: var(--accent-deep); font-weight: 900; }}
+    .rule-document-bar {{ display: grid; grid-template-columns: minmax(0, 1fr) auto; align-items: center; gap: 14px; padding: 14px 16px; border: 1px solid var(--line); border-left: 4px solid var(--hud-cyan); background: linear-gradient(90deg, var(--hud-cyan-soft), var(--panel)); box-shadow: var(--shadow); }}
+    .rule-document-copy {{ min-width: 0; }}
+    .rule-document-copy b {{ display: block; color: var(--text); font-size: 14px; }}
+    .rule-document-copy span {{ display: block; margin-top: 4px; color: var(--muted); font-size: 12px; }}
+    .rule-document-actions {{ display: flex; gap: 8px; flex-wrap: wrap; justify-content: flex-end; }}
+    .rule-document-button {{ min-height: 38px; padding: 8px 12px; border: 1px solid var(--line); background: var(--button-bg); color: var(--text); font: inherit; font-size: 12px; font-weight: 850; text-decoration: none; cursor: pointer; }}
+    .rule-document-button:hover {{ border-color: var(--accent); color: var(--accent-deep); }}
+    .rule-document-button.primary {{ border-color: var(--hud-cyan); background: var(--hud-cyan-soft); }}
+    .rule-document-bar[hidden] {{ display: none; }}
+    .rule-viewer {{ width: min(1180px, 96vw); height: min(900px, 92vh); padding: 0; border: 1px solid var(--line); background: var(--panel-strong); color: var(--text); box-shadow: 0 30px 90px rgba(0,0,0,.38); }}
+    .rule-viewer::backdrop {{ background: rgba(6, 12, 18, .72); backdrop-filter: blur(5px); }}
+    .rule-viewer-head {{ display: flex; align-items: center; gap: 10px; min-height: 54px; padding: 8px 10px 8px 16px; border-bottom: 1px solid var(--line); }}
+    .rule-viewer-title {{ min-width: 0; flex: 1; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-weight: 850; }}
+    .rule-viewer-frame {{ display: block; width: 100%; height: calc(100% - 54px); border: 0; background: #fff; }}
     @media (max-width: 900px) {{
       .schedule-summary {{ grid-template-columns: 1fr 1fr; }}
       .schedule-controls {{ grid-template-columns: 1fr 1fr; }}
@@ -4191,10 +4340,20 @@ def render_html(title, payload):
     }}
     @media (max-width: 560px) {{
       .dataset-nav {{ position: relative; }}
+      .global-display-controls {{
+        position: relative;
+        top: auto;
+        margin: -10px 0 14px;
+        justify-content: flex-start;
+        overflow-x: auto;
+      }}
+      .global-display-controls .theme-toggle {{ flex: 0 0 auto; }}
       .schedule-controls {{ grid-template-columns: 1fr; }} .schedule-controls input {{ grid-column: auto; }}
       .schedule-match {{ grid-template-columns: 48px minmax(0,1fr) 60px minmax(0,1fr); }}
       .schedule-team {{ padding: 8px; }} .schedule-team b {{ font-size: 12px; }}
       .season-recap {{ grid-template-columns: 1fr; }}
+      .rule-document-bar {{ grid-template-columns: 1fr; }}
+      .rule-document-actions {{ justify-content: flex-start; }}
     }}
 
   </style>
@@ -4244,16 +4403,17 @@ def render_html(title, payload):
       <button class="dataset-tab" type="button" data-dataset-tab="schedule">02　超级对抗赛赛程赛果</button>
       <button class="dataset-tab" type="button" data-dataset-tab="league">03　高校联盟赛赛程赛果</button>
     </nav>
+    <div class="global-display-controls" aria-label="显示设置">
+      <button id="backgroundToggle" class="theme-toggle background-toggle" type="button" aria-label="切换到简约背景">✦ 背景：正常</button>
+      <button id="densityToggle" class="theme-toggle density-toggle" type="button" aria-label="切换表格密度">▤ 紧凑</button>
+      <button id="themeToggle" class="theme-toggle" type="button" aria-label="切换到夜间模式">☀️ 白昼</button>
+      <button id="eyeCareToggle" class="theme-toggle" type="button" aria-label="开启护眼模式" aria-pressed="false">🌿 护眼</button>
+    </div>
     <div class="dataset-board" id="robotBoard" data-dataset-board="robot">
     <section class="hero">
       <div class="hero-card">
         <div class="hero-toolbar">
           <span class="eyebrow">RM ARMOR BAY // MECHA DATA CORE</span>
-          <div class="toolbar-actions">
-            <button id="backgroundToggle" class="theme-toggle background-toggle" type="button" aria-label="切换到简约背景">✦ 背景：正常</button>
-            <button id="densityToggle" class="theme-toggle density-toggle" type="button" aria-label="切换表格密度">▤ 紧凑</button>
-            <button id="themeToggle" class="theme-toggle" type="button" aria-label="切换白昼或夜间模式">🌙 夜间</button>
-          </div>
         </div>
         <h1 id="heroTitle">{safe_title}</h1>
         <p id="heroSubtitle">这是按机甲驾驶舱思路重做的 RM 数据分析面板：左侧像武器/传感器控制台，右侧是装甲数据舱。可以按兵种、赛区、关键词筛选，按任意指标排序；筛到单支战队时会生成兵种能力雷达图和 MVP 追踪视图。</p>
@@ -4404,6 +4564,7 @@ def render_html(title, payload):
         <input id="scheduleSearch" type="search" placeholder="搜索学校、战队或备注">
         <label class="schedule-check"><input id="scheduleIncludeUncertain" type="checkbox" checked>包含待核</label>
       </section>
+      <section class="rule-document-bar" id="rmucRuleBar" aria-live="polite" hidden></section>
       <section class="schedule-panel">
         <div class="schedule-panel-head"><div><span class="eyebrow">MATCH SCHEDULE</span><h2>逐场赛程</h2></div><span class="schedule-count" id="scheduleCountLabel"></span></div>
         <div class="schedule-list" id="scheduleList"></div>
@@ -4442,6 +4603,7 @@ def render_html(title, payload):
         <select id="rmulStage"><option value="">全部比赛阶段</option></select>
         <input id="rmulSearch" type="search" placeholder="搜索学校、战队或视频标题">
       </section>
+      <section class="rule-document-bar" id="rmulRuleBar" aria-live="polite" hidden></section>
       <section class="schedule-panel">
         <div class="schedule-panel-head"><div><span class="eyebrow">YEAR COVERAGE</span><h2>年份覆盖</h2></div><span class="schedule-count">2021、2023—2026</span></div>
         <div class="season-recap" id="rmulCoverage"></div>
@@ -4467,7 +4629,17 @@ def render_html(title, payload):
         <div class="bracket-tree" id="rmulBracketTree"><div id="rmulBracketCanvas"></div></div>
       </section>
     </div>
+
   </div>
+
+  <dialog class="rule-viewer" id="ruleViewer">
+    <div class="rule-viewer-head">
+      <span class="rule-viewer-title" id="ruleViewerTitle">比赛规则手册</span>
+      <a class="rule-document-button" id="ruleViewerExternal" href="#" target="_blank" rel="noopener">↗ 新窗口</a>
+      <button class="rule-document-button" id="ruleViewerClose" type="button" aria-label="关闭规则手册">关闭</button>
+    </div>
+    <iframe class="rule-viewer-frame" id="ruleViewerFrame" title="比赛规则手册在线阅读"></iframe>
+  </dialog>
 
   <script>
     const payload = {payload_json};
@@ -4567,6 +4739,7 @@ def render_html(title, payload):
       belowTableGrid: document.getElementById("belowTableGrid"),
       emptyState: document.getElementById("emptyState"),
       themeToggle: document.getElementById("themeToggle"),
+      eyeCareToggle: document.getElementById("eyeCareToggle"),
       backgroundToggle: document.getElementById("backgroundToggle"),
       densityToggle: document.getElementById("densityToggle"),
 
@@ -7348,7 +7521,8 @@ def render_html(title, payload):
     }};
 
     function getCurrentTheme() {{
-      return document.documentElement.dataset.theme === "night" ? "night" : "day";
+      const theme = document.documentElement.dataset.theme;
+      return theme === "night" ? "night" : "day";
     }}
 
     function setTheme(theme) {{
@@ -7358,6 +7532,21 @@ def render_html(title, payload):
       if (els.themeToggle) {{
         els.themeToggle.textContent = themeLabels[nextTheme];
         els.themeToggle.setAttribute("aria-label", nextTheme === "night" ? "切换到白昼模式" : "切换到夜间模式");
+      }}
+    }}
+
+    function getEyeCareEnabled() {{
+      return document.documentElement.dataset.eyeCare === "true";
+    }}
+
+    function setEyeCare(enabled) {{
+      const active = Boolean(enabled);
+      document.documentElement.dataset.eyeCare = active ? "true" : "false";
+      localStorage.setItem("rm-dashboard-eye-care", active ? "true" : "false");
+      if (els.eyeCareToggle) {{
+        els.eyeCareToggle.textContent = active ? "🌿 护眼：开" : "🌿 护眼";
+        els.eyeCareToggle.setAttribute("aria-label", active ? "关闭护眼模式" : "开启护眼模式");
+        els.eyeCareToggle.setAttribute("aria-pressed", active ? "true" : "false");
       }}
     }}
 
@@ -7441,6 +7630,13 @@ def render_html(title, payload):
       }});
     }}
 
+    if (els.eyeCareToggle) {{
+      setEyeCare(getEyeCareEnabled());
+      els.eyeCareToggle.addEventListener("click", () => {{
+        setEyeCare(!getEyeCareEnabled());
+      }});
+    }}
+
     if (els.backgroundToggle) {{
       setBackground(getCurrentBackground());
       els.backgroundToggle.addEventListener("click", () => {{
@@ -7488,6 +7684,7 @@ def render_html(title, payload):
     /* 一级板块切换 + 赛程赛果分页 */
     const scheduleData = payload.scheduleData || {{ matches: [], qualifiers: [] }};
     const rmulData = payload.rmulData || {{ matches: [], collections: [], coverage: [] }};
+    const ruleDocuments = payload.ruleDocuments || {{ rmuc: {{}}, rmul: {{}} }};
     let schedulePage = 1;
     const schedulePageSize = 30;
     let rmulPage = 1;
@@ -7498,6 +7695,66 @@ def render_html(title, payload):
         "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;"
       }})[char]);
     }}
+
+    function getCurrentRuleDocument(kind) {{
+      const isRmuc = kind === "rmuc";
+      const season = document.getElementById(isRmuc ? "scheduleSeason" : "rmulSeason").value;
+      const zone = document.getElementById(isRmuc ? "scheduleZone" : "rmulZone").value;
+      const seasonRules = (ruleDocuments[kind] || {{}})[season];
+      if (!seasonRules) return null;
+      if (!isRmuc) return {{ ...seasonRules, season, zone, phase: "高校联盟赛" }};
+      const isFinals = /复活赛|全国赛|总决赛|国际预选/.test(zone);
+      const matchedDocument = isFinals ? seasonRules.finals : seasonRules.regional;
+      if (!matchedDocument) return null;
+      return {{ ...matchedDocument, source: seasonRules.source, season, zone, phase: isFinals ? "复活赛 / 全国赛" : "区域赛" }};
+    }}
+
+    function renderRuleDocument(kind) {{
+      const bar = document.getElementById(kind === "rmuc" ? "rmucRuleBar" : "rmulRuleBar");
+      const ruleDocument = getCurrentRuleDocument(kind);
+      if (!ruleDocument) {{
+        bar.hidden = true;
+        bar.innerHTML = "";
+        return;
+      }}
+      const eventName = kind === "rmuc" ? "超级对抗赛" : "高校联盟赛";
+      const title = `RoboMaster ${{ruleDocument.season}} 机甲大师${{eventName}}比赛规则手册 ${{ruleDocument.version}}`;
+      const context = [ruleDocument.zone, ruleDocument.phase].filter(Boolean).join(" · ");
+      const readButton = ruleDocument.url
+        ? `<button class="rule-document-button primary" type="button" data-rule-view="${{scheduleEscape(ruleDocument.url)}}" data-rule-title="${{scheduleEscape(title)}}">▣ 在线阅读</button>`
+        : "";
+      const fileButton = ruleDocument.url
+        ? `<a class="rule-document-button" href="${{scheduleEscape(ruleDocument.url)}}" target="_blank" rel="noopener">↗ 打开 PDF</a>`
+        : "";
+      bar.innerHTML = `
+        <div class="rule-document-copy">
+          <b>${{scheduleEscape(title)}}</b>
+          <span>${{scheduleEscape(context)}} · 已按当前赛季与赛事阶段匹配最高规则版本</span>
+        </div>
+        <div class="rule-document-actions">
+          ${{readButton}}
+          ${{fileButton}}
+          <a class="rule-document-button" href="${{scheduleEscape(ruleDocument.source)}}" target="_blank" rel="noopener">官方规范页</a>
+        </div>
+      `;
+      bar.hidden = false;
+    }}
+
+    const ruleViewer = document.getElementById("ruleViewer");
+    const ruleViewerFrame = document.getElementById("ruleViewerFrame");
+    document.addEventListener("click", (event) => {{
+      const button = event.target.closest("[data-rule-view]");
+      if (!button) return;
+      document.getElementById("ruleViewerTitle").textContent = button.dataset.ruleTitle;
+      document.getElementById("ruleViewerExternal").href = button.dataset.ruleView;
+      ruleViewerFrame.src = button.dataset.ruleView;
+      ruleViewer.showModal();
+    }});
+    document.getElementById("ruleViewerClose").addEventListener("click", () => ruleViewer.close());
+    ruleViewer.addEventListener("click", (event) => {{
+      if (event.target === ruleViewer) ruleViewer.close();
+    }});
+    ruleViewer.addEventListener("close", () => {{ ruleViewerFrame.src = "about:blank"; }});
 
     function uniqueScheduleValues(key) {{
       return [...new Set(scheduleData.matches.map((item) => item[key]).filter(Boolean))]
@@ -7883,6 +8140,7 @@ def render_html(title, payload):
     }}
 
     function renderSchedule() {{
+      renderRuleDocument("rmuc");
       renderZoneRankings();
       renderTopDownBracketTree();
       const rows = getFilteredSchedule();
@@ -8058,6 +8316,7 @@ def render_html(title, payload):
     }}
 
     function renderRmul() {{
+      renderRuleDocument("rmul");
       const rows=getFilteredRmul(),pages=Math.max(1,Math.ceil(rows.length/rmulPageSize));rmulPage=Math.min(Math.max(1,rmulPage),pages);
       const visible=rows.slice((rmulPage-1)*rmulPageSize,rmulPage*rmulPageSize);
       const selectedSeason=document.getElementById("rmulSeason").value;
@@ -8090,6 +8349,7 @@ def render_html(title, payload):
         window.scrollTo({{ top: 0, behavior: "smooth" }});
       }});
     }});
+
     document.getElementById("scheduleSeason").addEventListener("change", () => {{
       schedulePage = 1;
       refreshScheduleZoneOptions(true);
@@ -8175,11 +8435,18 @@ def main(csv_file, title, default_sort=None, initial_zone="全部", initial_type
         "initialKeyword": initial_keyword,
         "scheduleData": load_schedule_data(),
         "rmulData": load_rmul_data(),
+        "ruleDocuments": load_rule_documents(),
         "replayLinks": load_replay_links(),
     }
 
     output_path = csv_path.with_name("robot_dashboard.html")
     output_path.write_text(render_html(title, payload), encoding="utf-8")
+    rules_source = Path(__file__).resolve().parent / "data" / "rules"
+    rules_output = output_path.parent / "rules"
+    if rules_source.exists():
+        rules_output.mkdir(parents=True, exist_ok=True)
+        for rule_file in rules_source.glob("*.pdf"):
+            shutil.copy2(rule_file, rules_output / rule_file.name)
     print(f"网页报告已生成: {output_path}")
     return 0
 

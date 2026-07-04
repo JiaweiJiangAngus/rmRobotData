@@ -4,5 +4,8 @@ data/*
 !data/mvp_*.txt
 !data/schedule_results.json
 !data/rmul_results.json
+!data/rule_documents.json
+!data/rules/
+!data/rules/*.pdf
 __pycache__/
 *.pyc

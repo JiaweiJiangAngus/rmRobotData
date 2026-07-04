@@ -1,0 +1,115 @@
+{
+  "rmuc": {
+    "2021": {
+      "regional": {
+        "version": "V1.2",
+        "url": "rules/rmuc-2021-regional-v1-2.pdf",
+        "remoteUrl": "https://rm-static.djicdn.com/tem/13194/RoboMaster%202021%E6%9C%BA%E7%94%B2%E5%A4%A7%E5%B8%88%E8%B6%85%E7%BA%A7%E5%AF%B9%E6%8A%97%E8%B5%9B%E6%AF%94%E8%B5%9B%E8%A7%84%E5%88%99%E6%89%8B%E5%86%8CV1.2%EF%BC%8820210430%EF%BC%89.pdf"
+      },
+      "finals": {
+        "version": "V2.0",
+        "url": "rules/rmuc-2021-finals-v2-0.pdf",
+        "remoteUrl": "https://rm-static.djicdn.com/tem/13194/RoboMaster%202021%E6%9C%BA%E7%94%B2%E5%A4%A7%E5%B8%88%E8%B6%85%E7%BA%A7%E5%AF%B9%E6%8A%97%E8%B5%9B%E6%AF%94%E8%B5%9B%E8%A7%84%E5%88%99%E6%89%8B%E5%86%8CV2.0%EF%BC%8820210628%EF%BC%89.pdf"
+      },
+      "source": "https://www.robomaster.com/zh-CN/resource/pages/announcement/1191"
+    },
+    "2022": {
+      "regional": {
+        "version": "V1.3",
+        "url": "rules/rmuc-2022-regional-v1-3.pdf",
+        "remoteUrl": "https://terra-1-g.djicdn.com/b2a076471c6c4b72b574a977334d3e05/RM2022/RoboMaster%202022%20%E6%9C%BA%E7%94%B2%E5%A4%A7%E5%B8%88%E8%B6%85%E7%BA%A7%E5%AF%B9%E6%8A%97%E8%B5%9B%E6%AF%94%E8%B5%9B%E8%A7%84%E5%88%99%E6%89%8B%E5%86%8C%20V1.3%20%EF%BC%8820220518%EF%BC%89.pdf"
+      },
+      "finals": {
+        "version": "V2.0",
+        "url": "rules/rmuc-2022-finals-v2-0.pdf",
+        "remoteUrl": "https://terra-1-g.djicdn.com/b2a076471c6c4b72b574a977334d3e05/RM2022/RoboMaster%202022%20%E6%9C%BA%E7%94%B2%E5%A4%A7%E5%B8%88%E8%B6%85%E7%BA%A7%E5%AF%B9%E6%8A%97%E8%B5%9B%E6%AF%94%E8%B5%9B%E8%A7%84%E5%88%99%E6%89%8B%E5%86%8C%20V2.0%20%EF%BC%8820220714%EF%BC%89.pdf"
+      },
+      "source": "https://www.robomaster.com/zh-CN/resource/pages/announcement/1370"
+    },
+    "2023": {
+      "regional": {
+        "version": "V1.2",
+        "url": "rules/rmuc-2023-regional-v1-2.pdf",
+        "remoteUrl": "https://terra-1-g.djicdn.com/b2a076471c6c4b72b574a977334d3e05/RM2023/RoboMaster%202023%20%E6%9C%BA%E7%94%B2%E5%A4%A7%E5%B8%88%E8%B6%85%E7%BA%A7%E5%AF%B9%E6%8A%97%E8%B5%9B%E6%AF%94%E8%B5%9B%E8%A7%84%E5%88%99%E6%89%8B%E5%86%8CV1.2%EF%BC%8820230331%EF%BC%89.pdf"
+      },
+      "finals": {
+        "version": "V2.0",
+        "url": "rules/rmuc-2023-finals-v2-0.pdf",
+        "remoteUrl": "https://terra-1-g.djicdn.com/b2a076471c6c4b72b574a977334d3e05/RM2023/RoboMaster%202023%20%E6%9C%BA%E7%94%B2%E5%A4%A7%E5%B8%88%E8%B6%85%E7%BA%A7%E5%AF%B9%E6%8A%97%E8%B5%9B%E6%AF%94%E8%B5%9B%E8%A7%84%E5%88%99%E6%89%8B%E5%86%8CV2.0%EF%BC%8820230704%EF%BC%89.pdf"
+      },
+      "source": "https://www.robomaster.com/zh-CN/resource/pages/announcement/1486"
+    },
+    "2024": {
+      "regional": {
+        "version": "V1.2",
+        "url": "rules/rmuc-2024-regional-v1-2.pdf",
+        "remoteUrl": "https://terra-1-g.djicdn.com/b2a076471c6c4b72b574a977334d3e05/RM2024/RoboMaster%202024%20%E6%9C%BA%E7%94%B2%E5%A4%A7%E5%B8%88%E8%B6%85%E7%BA%A7%E5%AF%B9%E6%8A%97%E8%B5%9B%E6%AF%94%E8%B5%9B%E8%A7%84%E5%88%99%E6%89%8B%E5%86%8CV1.2%EF%BC%8820240411%EF%BC%89.pdf"
+      },
+      "finals": {
+        "version": "V2.1",
+        "url": "rules/rmuc-2024-finals-v2-1.pdf",
+        "remoteUrl": "https://terra-1-g.djicdn.com/b2a076471c6c4b72b574a977334d3e05/RM2024/RoboMaster%202024%20%E6%9C%BA%E7%94%B2%E5%A4%A7%E5%B8%88%E8%B6%85%E7%BA%A7%E5%AF%B9%E6%8A%97%E8%B5%9B%E6%AF%94%E8%B5%9B%E8%A7%84%E5%88%99%E6%89%8B%E5%86%8CV2.1%EF%BC%8820240722%EF%BC%89.pdf"
+      },
+      "source": "https://www.robomaster.com/zh-CN/resource/pages/announcement/1653"
+    },
+    "2025": {
+      "regional": {
+        "version": "V1.2.0",
+        "url": "rules/rmuc-2025-regional-v1-2-0.pdf",
+        "remoteUrl": "https://terra-1-g.djicdn.com/b2a076471c6c4b72b574a977334d3e05/RoboMaster%202025%20%E6%9C%BA%E7%94%B2%E5%A4%A7%E5%B8%88%E8%B6%85%E7%BA%A7%E5%AF%B9%E6%8A%97%E8%B5%9B%E6%AF%94%E8%B5%9B%E8%A7%84%E5%88%99%E6%89%8B%E5%86%8CV1.2.0%EF%BC%8820250526%EF%BC%89.pdf"
+      },
+      "finals": {
+        "version": "V2.1.0",
+        "url": "rules/rmuc-2025-finals-v2-1-0.pdf",
+        "remoteUrl": "https://terra-1-g.djicdn.com/b2a076471c6c4b72b574a977334d3e05/RM2025/RoboMaster%202025%20%E6%9C%BA%E7%94%B2%E5%A4%A7%E5%B8%88%E8%B6%85%E7%BA%A7%E5%AF%B9%E6%8A%97%E8%B5%9B%E6%AF%94%E8%B5%9B%E8%A7%84%E5%88%99%E6%89%8B%E5%86%8CV2.1.0%EF%BC%8820250802%EF%BC%89.pdf"
+      },
+      "source": "https://www.robomaster.com/zh-CN/resource/pages/announcement/1768"
+    },
+    "2026": {
+      "regional": {
+        "version": "V1.4.0",
+        "url": "rules/rmuc-2026-regional-v1-4-0.pdf",
+        "remoteUrl": "https://bbs-web-static.robomaster.com/38afa6d7914345f7bb5d496692fd429b1773977681621/RoboMaster%202026%20%E6%9C%BA%E7%94%B2%E5%A4%A7%E5%B8%88%E8%B6%85%E7%BA%A7%E5%AF%B9%E6%8A%97%E8%B5%9B%E6%AF%94%E8%B5%9B%E8%A7%84%E5%88%99%E6%89%8B%E5%86%8CV1.4.0%EF%BC%8820260320%EF%BC%89.pdf"
+      },
+      "source": "https://bbs.robomaster.com/wiki/20204847/809871"
+    }
+  },
+  "rmul": {
+    "2021": {
+      "version": "V1.2",
+      "url": "rules/rmul-2021-v1-2.pdf",
+      "source": "https://www.robomaster.com/zh-CN/resource/pages/announcement/1191",
+      "remoteUrl": "https://rm-static.djicdn.com/tem/13194/RoboMaster%202021%E6%9C%BA%E7%94%B2%E5%A4%A7%E5%B8%88%E9%AB%98%E6%A0%A1%E8%81%94%E7%9B%9F%E8%B5%9B%E6%AF%94%E8%B5%9B%E8%A7%84%E5%88%99%E6%89%8B%E5%86%8CV1.2%EF%BC%8820210304%EF%BC%89.pdf"
+    },
+    "2022": {
+      "version": "V1.1",
+      "url": "rules/rmul-2022-v1-1.pdf",
+      "source": "https://www.robomaster.com/zh-CN/resource/pages/announcement/1370",
+      "remoteUrl": "https://terra-1-g.djicdn.com/b2a076471c6c4b72b574a977334d3e05/RoboMaster%E8%B5%9B%E5%8A%A1%E8%B5%84%E6%96%99%E6%96%87%E4%BB%B6%E5%A4%B9/RoboMaster%202022%20%E6%9C%BA%E7%94%B2%E5%A4%A7%E5%B8%88%E9%AB%98%E6%A0%A1%E8%81%94%E7%9B%9F%E8%B5%9B%E6%AF%94%E8%B5%9B%E8%A7%84%E5%88%99%E6%89%8B%E5%86%8C%20V1.1%20%EF%BC%8820220111%EF%BC%89.pdf"
+    },
+    "2023": {
+      "version": "V1.2",
+      "url": "rules/rmul-2023-v1-2.pdf",
+      "source": "https://www.robomaster.com/zh-CN/resource/pages/announcement/1486",
+      "remoteUrl": "https://terra-1-g.djicdn.com/b2a076471c6c4b72b574a977334d3e05/RM2023/RoboMaster%202023%20%E6%9C%BA%E7%94%B2%E5%A4%A7%E5%B8%88%E9%AB%98%E6%A0%A1%E8%81%94%E7%9B%9F%E8%B5%9B%E6%AF%94%E8%B5%9B%E8%A7%84%E5%88%99%E6%89%8B%E5%86%8C%20V1.2%EF%BC%8820230329%EF%BC%89.pdf"
+    },
+    "2024": {
+      "version": "V1.1",
+      "url": "rules/rmul-2024-v1-1.pdf",
+      "source": "https://www.robomaster.com/zh-CN/resource/pages/announcement/1653",
+      "remoteUrl": "https://terra-1-g.djicdn.com/b2a076471c6c4b72b574a977334d3e05/RM2024/RoboMaster%202024%20%E6%9C%BA%E7%94%B2%E5%A4%A7%E5%B8%88%E9%AB%98%E6%A0%A1%E8%81%94%E7%9B%9F%E8%B5%9B%E6%AF%94%E8%B5%9B%E8%A7%84%E5%88%99%E6%89%8B%E5%86%8C%20V1.1%EF%BC%8820231228%EF%BC%89.pdf"
+    },
+    "2025": {
+      "version": "V1.1.1",
+      "url": "rules/rmul-2025-v1-1-1.pdf",
+      "source": "https://www.robomaster.com/zh-CN/resource/pages/announcement/1768",
+      "remoteUrl": "https://terra-1-g.djicdn.com/b2a076471c6c4b72b574a977334d3e05/RoboMaster%202025%20%E6%9C%BA%E7%94%B2%E5%A4%A7%E5%B8%88%E9%AB%98%E6%A0%A1%E8%81%94%E7%9B%9F%E8%B5%9B%E6%AF%94%E8%B5%9B%E8%A7%84%E5%88%99%E6%89%8B%E5%86%8C%20V1.1.1%EF%BC%8820250314%EF%BC%89.pdf"
+    },
+    "2026": {
+      "version": "V1.2.0",
+      "url": "rules/rmul-2026-v1-2-0.pdf",
+      "source": "https://bbs.robomaster.com/wiki/20204847/809872",
+      "remoteUrl": "https://bbs-web-static.robomaster.com/b7160ccc6a6c47eb98cac2e10ca375631767932801094/RoboMaster%202026%20%E6%9C%BA%E7%94%B2%E5%A4%A7%E5%B8%88%E9%AB%98%E6%A0%A1%E8%81%94%E7%9B%9F%E8%B5%9B%E6%AF%94%E8%B5%9B%E8%A7%84%E5%88%99%E6%89%8B%E5%86%8C%20V1.2.0%EF%BC%8820260109%EF%BC%89.pdf"
+    }
+  }
+}
