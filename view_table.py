@@ -3441,7 +3441,7 @@ def render_html(title, payload):
 
     .role-fill {{
       position: absolute;
-      inset: 0 auto 0 0;
+      inset: 0 auto 0 -18px;
       width: var(--w);
       border-radius: inherit;
       background: linear-gradient(90deg, var(--accent), rgba(8,126,164,0.72));
@@ -4291,7 +4291,7 @@ def render_html(title, payload):
     .bracket-tree.tree-fullsize:fullscreen .bracket-graph {{ transform: none; }}
     .schedule-match.tree-target {{ outline: 3px solid var(--accent); box-shadow: 0 0 0 7px var(--accent-soft), var(--shadow); animation: tree-target-pulse 1.2s ease-in-out 2; }}
     @keyframes tree-target-pulse {{ 50% {{ transform: translateY(-3px); }} }}
-    .bracket-graph {{ position: relative; min-height: 320px; }}
+    .bracket-graph {{ position: relative; min-height: 320px; margin-inline: auto; isolation: isolate; }}
     .bracket-lines {{ position: absolute; inset: 0; z-index: 0; overflow: visible; }}
     .bracket-node {{ position: absolute; z-index: 1; width: 230px; box-shadow: 0 8px 20px rgba(0,0,0,.18); }}
     .bracket-level-label {{ position: absolute; top: 0; width: 230px; color: var(--accent); font-weight: 800; text-align: center; }}
@@ -4317,7 +4317,35 @@ def render_html(title, payload):
     .topdown-side b,.topdown-side small {{ display:block; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }}
     .topdown-side b {{ font-size:15px; }} .topdown-side small {{ color:rgba(255,255,255,.72); font-size:11px; margin-top:3px; }}
     .topdown-score {{ display:grid; place-items:center; width:34px; height:34px; border-radius:5px; background:rgba(0,0,0,.38); font-size:19px; font-weight:900; }}
-    .topdown-round {{ position:absolute; left:8px; z-index:3; padding:6px 10px; border-left:3px solid var(--accent); color:var(--muted); font-size:13px; font-weight:800; }}
+    .topdown-round {{
+      position: absolute;
+      left: 18px;
+      z-index: 4;
+      width: 158px;
+      min-height: 40px;
+      padding: 7px 10px;
+      border: 1px solid var(--line);
+      border-left: 4px solid var(--accent);
+      background: var(--panel-strong);
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 800;
+      line-height: 1.35;
+      overflow-wrap: anywhere;
+      box-shadow: 0 5px 14px rgba(0,0,0,.08);
+      transform: translateX(var(--tree-scroll-x, 0px));
+    }}
+    .bracket-stage-rail {{
+      position: absolute;
+      inset: 0 auto 0 0;
+      z-index: 3;
+      width: 212px;
+      border-right: 1px solid var(--line);
+      background: var(--bg);
+      box-shadow: 10px 0 20px rgba(0,0,0,.06);
+      transform: translateX(var(--tree-scroll-x, 0px));
+      pointer-events: none;
+    }}
     .bracket-column {{ position: relative; flex: 0 0 250px; display: grid; gap: 10px; }}
     .bracket-column:not(:last-child)::after {{ content: ""; position: absolute; right: -25px; top: 34px; bottom: 18px; width: 16px; border-top: 1px solid var(--line); border-right: 1px solid var(--line); border-bottom: 1px solid var(--line); opacity: .8; }}
     .bracket-column-title {{ position: sticky; top: 0; z-index: 2; padding: 9px 11px; border: 1px solid var(--line); background: var(--panel); color: var(--accent); font-weight: 800; }}
@@ -4644,6 +4672,14 @@ def render_html(title, payload):
         font-size: 11px;
         line-height: 1.25;
         white-space: normal;
+      }}
+      .bracket-stage-rail {{ width: 142px; }}
+      .topdown-round {{
+        left: 10px;
+        width: 104px;
+        min-height: 36px;
+        padding: 6px 7px;
+        font-size: 10px;
       }}
       .global-display-controls {{
         display: grid;
@@ -8597,11 +8633,14 @@ def render_html(title, payload):
       }}
       koRounds.forEach((items)=>items.sort((a,b)=>Number(a.order)-Number(b.order)));
       const visualBands=[...koRounds.slice().reverse(),...groupRounds.slice().reverse()];
-      const maxCount=Math.max(...visualBands.map((items)=>items.length),8),cardW=230,cardH=102,gapX=22,side=82,auxWidth=auxiliaryKo.length?310:0;
-      const width=Math.max(1500,maxCount*(cardW+gapX)+side*2+auxWidth),bandH=128,top=54,mainWidth=width-auxWidth;
+      const maxCount=Math.max(...visualBands.map((items)=>items.length),1),cardW=230,cardH=102,gapX=22;
+      const labelGutter=194,edgeGutter=26,auxWidth=auxiliaryKo.length?310:0;
+      const widestBand=maxCount*cardW+Math.max(0,maxCount-1)*gapX;
+      const width=Math.max(960,labelGutter+widestBand+edgeGutter+auxWidth),bandH=148,top=62;
+      const mainRight=width-auxWidth-edgeGutter,mainAvailable=mainRight-labelGutter;
       const auxRows=auxiliaryKo.slice().sort((a,b)=>Number(b.order)-Number(a.order));
       const height=Math.max(top+visualBands.length*bandH+60,auxRows.length?top+auxRows.length*136+50:0),positions=new Map(),groupPositions=new Map();
-      visualBands.forEach((items,band)=>{{const total=items.length*cardW+(items.length-1)*gapX,start=(mainWidth-total)/2,y=top+band*bandH;items.forEach((item,i)=>{{const point={{x:start+i*(cardW+gapX),y}};(band<koRounds.length?positions:groupPositions).set(keyOf(item),point);}});}});
+      visualBands.forEach((items,band)=>{{const total=items.length*cardW+Math.max(0,items.length-1)*gapX,start=labelGutter+Math.max(0,(mainAvailable-total)/2),y=top+band*bandH;items.forEach((item,i)=>{{const point={{x:start+i*(cardW+gapX),y}};(band<koRounds.length?positions:groupPositions).set(keyOf(item),point);}});}});
       auxRows.forEach((item,index)=>positions.set(keyOf(item),{{x:width-cardW-28,y:top+38+index*136}}));
       const paths=[];const up=(from,to,color="rgba(184,205,214,.58)")=>{{const x1=from.x+cardW/2,y1=from.y,x2=to.x+cardW/2,y2=to.y+cardH,m=(y1+y2)/2;paths.push(`<path d="M ${{x1}} ${{y1}} V ${{m}} H ${{x2}} V ${{y2}}" fill="none" stroke="${{color}}" stroke-width="1.5"/>`);}};
       ko.forEach((item)=>{{const target=positions.get(keyOf(item));if(item.matchId){{[item.redSourceMatch,item.blueSourceMatch].forEach((id)=>{{const source=positions.get(String(id));if(source)up(source,target);}});}}}});
@@ -8610,11 +8649,13 @@ def render_html(title, payload):
       if(groupRounds.length&&koRounds.length)groupRounds[groupRounds.length-1].forEach((item)=>koRounds[0].forEach((next)=>{{if([item.redSchool,item.blueSchool].some((s)=>s===next.redSchool||s===next.blueSchool))up(groupPositions.get(keyOf(item)),positions.get(keyOf(next)),"rgba(218,177,70,.42)");}}));
       const card=(item,p)=>{{const auxiliary=isAuxiliaryStage(item.stage);return `<article class="topdown-node${{auxiliary?' auxiliary':''}}" data-tree-match="${{scheduleEscape([item.season,item.zone,item.order,item.id].join('|'))}}" title="第 ${{scheduleEscape(item.order)}} 场 · 双击跳转" style="left:${{p.x}}px;top:${{p.y}}px">${{auxiliary?`<em class="topdown-aux-stage">${{scheduleEscape(item.stage)}}</em>`:''}}<div class="topdown-side red"><span><b>${{scheduleEscape(item.redTeam)}}</b><small>${{scheduleEscape(item.redSchool)}}</small></span><strong class="topdown-score">${{scheduleEscape(item.redScore)}}</strong></div><div class="topdown-side blue"><span><b>${{scheduleEscape(item.blueTeam)}}</b><small>${{scheduleEscape(item.blueSchool)}}</small></span><strong class="topdown-score">${{scheduleEscape(item.blueScore)}}</strong></div></article>`;}};
       const nodes=ko.map((item)=>card(item,positions.get(keyOf(item)))).join("")+groups.map((item)=>card(item,groupPositions.get(keyOf(item)))).join("");
-      const labels=visualBands.map((items,band)=>{{const koBand=band<koRounds.length;let label;if(koBand){{const names=[...new Set(items.map((item)=>displayStage(item.stage)))];label=names.join(" / ");}}else{{label=`小组赛第 ${{groupRounds.length-(band-koRounds.length)}} 轮`;}}return `<div class="topdown-round" style="top:${{top+band*bandH+26}}px">${{scheduleEscape(label)}}</div>`;}}).join("");
+      const labels=visualBands.map((items,band)=>{{const koBand=band<koRounds.length;let label;if(koBand){{const names=[...new Set(items.map((item)=>displayStage(item.stage)))];label=names.join(" / ");}}else{{label=`小组赛第 ${{groupRounds.length-(band-koRounds.length)}} 轮`;}}return `<div class="topdown-round" style="top:${{top+band*bandH+30}}px">${{scheduleEscape(label)}}</div>`;}}).join("");
       document.getElementById("bracketTreeTitle").textContent=`${{season}} ${{zone}}纵向赛程树`;
       document.getElementById("bracketTreeMeta").textContent=`主线 ${{koRounds.length}} 个赛段 · ${{groupRounds.length}} 轮小组赛 · 侧线 ${{auxiliaryKo.length}} 场`;
       const auxiliaryHeading=auxiliaryKo.length?`<div class="topdown-aux-heading" style="left:${{width-cardW-28}}px;top:${{top}}px">名额争夺 / 排位支线</div>`:'';
-      document.getElementById("bracketCanvas").innerHTML=`<div class="bracket-graph" style="width:${{width}}px;height:${{height}}px"><svg class="bracket-lines" width="${{width}}" height="${{height}}">${{paths.join("")}}</svg>${{labels}}${{auxiliaryHeading}}${{nodes}}</div>`;
+      document.getElementById("bracketCanvas").innerHTML=`<div class="bracket-graph" style="width:${{width}}px;height:${{height}}px"><svg class="bracket-lines" width="${{width}}" height="${{height}}">${{paths.join("")}}</svg><div class="bracket-stage-rail" aria-hidden="true"></div>${{labels}}${{auxiliaryHeading}}${{nodes}}</div>`;
+      const tree=document.getElementById("bracketTree");
+      if(!tree.closest("[hidden]"))requestAnimationFrame(()=>centerBracketViewport(tree));
       if(document.fullscreenElement===document.getElementById("bracketTree"))requestAnimationFrame(fitBracketFullscreen);
     }}
 
@@ -8691,6 +8732,18 @@ def render_html(title, payload):
       document.getElementById("scheduleNext").disabled = schedulePage >= pages;
     }}
 
+    function syncBracketStageLabels(tree) {{
+      tree.style.setProperty("--tree-scroll-x", `${{tree.scrollLeft}}px`);
+    }}
+
+    function centerBracketViewport(tree) {{
+      const graph = tree.querySelector(".bracket-graph");
+      if (!graph || tree.clientWidth <= 0) return;
+      const maxScroll = Math.max(0, tree.scrollWidth - tree.clientWidth);
+      tree.scrollLeft = maxScroll / 2;
+      syncBracketStageLabels(tree);
+    }}
+
     function fitBracketFullscreen() {{
       const tree = document.getElementById("bracketTree");
       const graph = tree.querySelector(".bracket-graph");
@@ -8721,6 +8774,9 @@ def render_html(title, payload):
       if (document.fullscreenElement === tree) requestAnimationFrame(fitBracketFullscreen);
     }});
     window.addEventListener("resize", fitBracketFullscreen);
+    [document.getElementById("bracketTree"), document.getElementById("rmulBracketTree")].forEach((tree) => {{
+      tree.addEventListener("scroll", () => syncBracketStageLabels(tree), {{ passive: true }});
+    }});
 
     document.getElementById("bracketTree").addEventListener("dblclick", async (event) => {{
       const node = event.target.closest("[data-tree-match]");
@@ -8807,9 +8863,11 @@ def render_html(title, payload):
       document.getElementById("rmulTreeTitle").textContent=zone?`${{season}} ${{zone}}淘汰赛树`:'高校联盟赛淘汰赛树';
       document.getElementById("rmulTreeLabel").textContent=stages.length?`${{stages.reduce((sum,items)=>sum+items.length,0)}} 场淘汰赛回放`:'暂无可核验树节点';
       if(!stages.length){{document.getElementById("rmulBracketCanvas").innerHTML='<div class="schedule-empty">当前站点暂无可核验的淘汰赛阶段。</div>';return;}}
-      const cardW=230,cardH=102,gap=24,bandH=150,top=52,maxCount=Math.max(...stages.map((items)=>items.length),4);
-      const width=Math.max(1500,maxCount*(cardW+gap)+180),height=top+stages.length*bandH+55,positions=new Map();
-      stages.forEach((items,band)=>{{const total=items.length*cardW+(items.length-1)*gap,start=(width-total)/2,y=top+band*bandH;items.forEach((item,index)=>positions.set(item.id,{{x:start+index*(cardW+gap),y}}));}});
+      const cardW=230,cardH=102,gap=24,bandH=152,top=62,labelGutter=194,edgeGutter=26;
+      const maxCount=Math.max(...stages.map((items)=>items.length),1),widestBand=maxCount*cardW+Math.max(0,maxCount-1)*gap;
+      const width=Math.max(960,labelGutter+widestBand+edgeGutter),height=top+stages.length*bandH+55,positions=new Map();
+      const available=width-labelGutter-edgeGutter;
+      stages.forEach((items,band)=>{{const total=items.length*cardW+Math.max(0,items.length-1)*gap,start=labelGutter+Math.max(0,(available-total)/2),y=top+band*bandH;items.forEach((item,index)=>positions.set(item.id,{{x:start+index*(cardW+gap),y}}));}});
       const norm=(value)=>String(value||'').toLowerCase().replace(/[^0-9a-z\u4e00-\u9fff]/g,'');
       const teams=(item)=>[norm(item.redSchool+item.redTeam),norm(item.blueSchool+item.blueTeam)];
       const paths=[];for(let band=1;band<stages.length;band++)stages[band].forEach((source)=>stages[band-1].forEach((target)=>{{
@@ -8818,8 +8876,10 @@ def render_html(title, payload):
         paths.push(`<path d="M ${{x1}} ${{y1}} V ${{m}} H ${{x2}} V ${{y2}}" fill="none" stroke="rgba(184,205,214,.62)" stroke-width="1.6"/>`);
       }}));
       const nodes=stages.flat().map((item)=>{{const p=positions.get(item.id);return `<article class="topdown-node" data-rmul-replay="${{scheduleEscape(item.url)}}" title="双击打开官方回放" style="left:${{p.x}}px;top:${{p.y}}px"><div class="topdown-side red"><span><b>${{scheduleEscape(item.redTeam)}}</b><small>${{scheduleEscape(item.redSchool)}}</small></span><strong class="topdown-score">—</strong></div><div class="topdown-side blue"><span><b>${{scheduleEscape(item.blueTeam)}}</b><small>${{scheduleEscape(item.blueSchool)}}</small></span><strong class="topdown-score">—</strong></div></article>`;}}).join('');
-      const labels=stages.map((items,band)=>`<div class="topdown-round" style="top:${{top+band*bandH+35}}px">${{scheduleEscape([...new Set(items.map((item)=>item.stage))].join(' / '))}}</div>`).join('');
-      document.getElementById("rmulBracketCanvas").innerHTML=`<div class="bracket-graph" style="width:${{width}}px;height:${{height}}px"><svg class="bracket-lines" width="${{width}}" height="${{height}}">${{paths.join('')}}</svg>${{labels}}${{nodes}}</div>`;
+      const labels=stages.map((items,band)=>`<div class="topdown-round" style="top:${{top+band*bandH+30}}px">${{scheduleEscape([...new Set(items.map((item)=>item.stage))].join(' / '))}}</div>`).join('');
+      document.getElementById("rmulBracketCanvas").innerHTML=`<div class="bracket-graph" style="width:${{width}}px;height:${{height}}px"><svg class="bracket-lines" width="${{width}}" height="${{height}}">${{paths.join('')}}</svg><div class="bracket-stage-rail" aria-hidden="true"></div>${{labels}}${{nodes}}</div>`;
+      const tree=document.getElementById("rmulBracketTree");
+      if(!tree.closest("[hidden]"))requestAnimationFrame(()=>centerBracketViewport(tree));
     }}
 
     function renderRmul() {{
@@ -8865,6 +8925,10 @@ def render_html(title, payload):
         page.setAttribute("aria-hidden", selected ? "false" : "true");
       }});
       if (persist) localStorage.setItem(`rm-dashboard-content-page-${{key}}`, validTarget);
+      if (validTarget === "tree") {{
+        const tree = document.getElementById(key === "league" ? "rmulBracketTree" : "bracketTree");
+        if (tree) requestAnimationFrame(() => centerBracketViewport(tree));
+      }}
     }}
 
     function focusContentPager(key) {{
