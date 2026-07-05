@@ -341,7 +341,7 @@ def render_html(title, payload):
       const prefersNight = window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches;
       const theme = ["day", "night"].includes(savedTheme) ? savedTheme : (prefersNight ? "night" : "day");
       const eyeCare = localStorage.getItem("rm-dashboard-eye-care") === "true";
-      const background = savedBackground === "simple" ? "simple" : "fancy";
+      const background = savedBackground === "fancy" ? "fancy" : "simple";
       document.documentElement.dataset.theme = theme;
       document.documentElement.dataset.eyeCare = eyeCare ? "true" : "false";
       document.documentElement.dataset.density = savedDensity;
@@ -4356,9 +4356,322 @@ def render_html(title, payload):
       .rule-document-actions {{ justify-content: flex-start; }}
     }}
 
+    /* ========== Comfort viewing layer ========== */
+    html {{
+      overflow-x: clip;
+      scroll-behavior: smooth;
+      scroll-padding-top: 76px;
+    }}
+    body {{
+      overflow-x: clip;
+      line-height: 1.55;
+    }}
+    button, input, select, a {{
+      -webkit-tap-highlight-color: transparent;
+    }}
+    button:focus-visible, input:focus-visible, select:focus-visible, a:focus-visible {{
+      outline: 3px solid color-mix(in srgb, var(--hud-cyan), white 22%);
+      outline-offset: 2px;
+    }}
+    .scroll-progress {{
+      position: fixed;
+      inset: 0 0 auto;
+      z-index: 200;
+      height: 3px;
+      pointer-events: none;
+      background: transparent;
+    }}
+    .scroll-progress span {{
+      display: block;
+      width: 100%;
+      height: 100%;
+      transform: scaleX(0);
+      transform-origin: left center;
+      background: linear-gradient(90deg, var(--accent), var(--hud-cyan));
+    }}
+    .back-to-top {{
+      position: fixed;
+      right: max(16px, env(safe-area-inset-right));
+      bottom: max(16px, env(safe-area-inset-bottom));
+      z-index: 120;
+      display: grid;
+      place-items: center;
+      width: 46px;
+      height: 46px;
+      padding: 0;
+      border: 1px solid var(--line);
+      background: var(--panel-strong);
+      color: var(--text);
+      font: 900 22px/1 var(--font-sans);
+      box-shadow: var(--shadow);
+      cursor: pointer;
+      transition: opacity .18s ease, transform .18s ease;
+    }}
+    .back-to-top[hidden] {{ display: none; }}
+    .back-to-top:hover {{ transform: translateY(-2px); border-color: var(--accent); }}
+
+    .page {{
+      width: min(100%, 1540px);
+      max-width: none;
+      padding: 16px 18px 44px;
+    }}
+    .cockpit-rail {{ display: none; }}
+    .dataset-nav {{
+      gap: 6px;
+      margin: 0 0 8px;
+      padding: 6px;
+      box-shadow: 0 8px 26px rgba(0, 0, 0, .10);
+    }}
+    .dataset-tab {{
+      min-width: 0;
+      min-height: 46px;
+      padding: 7px 12px;
+      line-height: 1.25;
+      letter-spacing: 0;
+    }}
+    .dataset-tab-index {{
+      margin-right: 7px;
+      opacity: .68;
+      font-size: 11px;
+    }}
+    .global-display-controls {{
+      position: relative;
+      top: auto;
+      width: max-content;
+      max-width: 100%;
+      margin: 0 0 14px auto;
+      padding: 6px;
+      box-shadow: none;
+    }}
+    .global-display-controls .theme-toggle {{
+      min-height: 40px;
+      padding: 7px 11px;
+      letter-spacing: 0;
+      box-shadow: none;
+    }}
+    .global-display-controls .theme-toggle[aria-pressed="true"] {{
+      border-color: var(--accent) !important;
+      background: var(--accent-soft) !important;
+      color: var(--accent-deep);
+    }}
+
+    h1,
+    .hero-card h1,
+    .schedule-hero h1 {{
+      letter-spacing: 0;
+      text-transform: none;
+    }}
+    .hero {{
+      grid-template-columns: minmax(0, 1fr) minmax(460px, 540px);
+      gap: 12px;
+      margin-bottom: 14px;
+    }}
+    .hero-card {{ padding: 20px 22px; }}
+    .hero-card h1 {{
+      margin: 8px 0 10px;
+      font-size: 36px;
+      line-height: 1.18;
+    }}
+    .hero p {{ font-size: 14px; line-height: 1.65; }}
+    .hero-toolbar {{ margin-bottom: 8px; padding-bottom: 8px; }}
+    .combat-strip {{ display: none; }}
+    .eyebrow {{
+      padding: 5px 8px;
+      font-size: 10px;
+      line-height: 1.35;
+      letter-spacing: 0;
+    }}
+    .summary-card {{ padding: 16px; gap: 10px; }}
+    .summary-title,
+    .panel-title,
+    .table-topbar h2,
+    .chart-card h3,
+    .radar-header h3,
+    .insight-header h3 {{ letter-spacing: 0; }}
+    .summary-grid {{ grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 8px; }}
+    .stat {{ padding: 13px; }}
+    .stat-label {{ margin-bottom: 4px; font-size: 12px; }}
+    .stat-value {{ font-size: 25px; letter-spacing: 0; }}
+    .main-grid {{ gap: 14px; }}
+    .control-panel {{ top: 76px; padding: 18px; }}
+    .table-panel {{ min-width: 0; overflow: hidden; }}
+
+    .schedule-board {{ gap: 12px; }}
+    .schedule-hero {{ padding: 20px 22px; }}
+    .schedule-hero h1 {{
+      margin: 6px 0 8px;
+      font-size: 36px;
+      line-height: 1.2;
+    }}
+    .schedule-hero p {{ line-height: 1.65; font-size: 14px; }}
+    .schedule-stat {{ padding: 14px 18px; }}
+    .schedule-stat b {{ font-size: 25px; }}
+    .schedule-controls {{ padding: 10px; }}
+    .schedule-panel {{ padding: 15px; }}
+    .schedule-panel-head {{ align-items: center; margin-bottom: 10px; }}
+    .schedule-panel-head h2 {{ font-size: 20px; letter-spacing: 0; }}
+    .schedule-match {{ min-width: 0; }}
+    .rule-document-bar {{ padding: 11px 13px; }}
+    .rule-viewer {{
+      max-width: calc(100vw - 24px);
+      max-height: calc(100dvh - 24px);
+    }}
+
+    @media (max-width: 900px) {{
+      .page {{ width: 100%; padding-inline: 12px; }}
+      .hero {{ grid-template-columns: 1fr; }}
+      .main-grid {{ grid-template-columns: 1fr; }}
+      .control-panel {{ position: static; }}
+      .schedule-controls {{ grid-template-columns: 1fr 1fr; }}
+      .schedule-controls input {{ grid-column: 1 / -1; }}
+      .schedule-controls .schedule-check {{ grid-column: 2; grid-row: 2; }}
+    }}
+
+    @media (max-width: 560px) {{
+      html {{ scroll-padding-top: 66px; }}
+      .page {{ padding: 6px 8px 28px; }}
+      .dataset-nav {{
+        position: sticky;
+        top: 0;
+        z-index: 100;
+        gap: 3px;
+        margin: 0 0 6px;
+        padding: 4px;
+        overflow: hidden;
+      }}
+      .dataset-tab {{
+        flex: 1 1 0;
+        min-width: 0;
+        min-height: 52px;
+        padding: 5px 3px;
+        font-size: 11px;
+        white-space: normal;
+        overflow-wrap: anywhere;
+      }}
+      .dataset-tab-index {{
+        display: block;
+        margin: 0 0 2px;
+        font-size: 9px;
+      }}
+      .dataset-tab-label {{ display: block; }}
+      .global-display-controls {{
+        display: grid;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        width: 100%;
+        gap: 3px;
+        margin: 0 0 8px;
+        padding: 4px;
+        overflow: visible;
+      }}
+      .global-display-controls .theme-toggle {{
+        min-width: 0;
+        width: 100%;
+        min-height: 42px;
+        padding: 5px 2px;
+        font-size: 10px;
+        line-height: 1.2;
+        white-space: normal;
+      }}
+      .hero {{ gap: 8px; margin-bottom: 8px; }}
+      .hero-card {{ padding: 16px; }}
+      .hero-card h1 {{ font-size: 27px; line-height: 1.22; }}
+      .hero p {{ font-size: 13px; line-height: 1.6; }}
+      .hero-toolbar {{ border-bottom: 0; padding-bottom: 0; }}
+      .summary-card {{ padding: 12px; }}
+      .summary-grid,
+      .schedule-summary {{ grid-template-columns: repeat(2, minmax(0, 1fr)); }}
+      .stat,
+      .schedule-stat {{ min-width: 0; padding: 11px; }}
+      .stat-value,
+      .schedule-stat b {{ font-size: 22px; }}
+      .main-grid {{ gap: 8px; }}
+      .control-panel,
+      .table-panel {{ padding: 12px; }}
+      .schedule-board {{ gap: 8px; }}
+      .schedule-hero {{ padding: 15px; }}
+      .schedule-hero h1 {{ font-size: 27px; line-height: 1.24; }}
+      .schedule-hero p {{ font-size: 13px; line-height: 1.6; }}
+      .schedule-controls {{
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 7px;
+        padding: 8px;
+      }}
+      .schedule-controls input {{ grid-column: 1 / -1; }}
+      .schedule-controls select,
+      .schedule-controls input {{ width: 100%; height: 44px; padding-inline: 8px; }}
+      .schedule-check {{
+        justify-content: flex-start;
+        min-height: 44px;
+        padding-inline: 8px;
+        white-space: normal;
+      }}
+      .schedule-controls .schedule-check input {{
+        grid-column: auto;
+        width: 20px;
+        height: 20px;
+        min-height: 0;
+        padding: 0;
+        clip-path: none;
+        accent-color: var(--accent);
+        flex: 0 0 20px;
+      }}
+      .schedule-panel {{ padding: 11px; }}
+      .schedule-panel-head {{
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 5px;
+      }}
+      .schedule-panel-head h2 {{ font-size: 18px; }}
+      .schedule-match {{
+        grid-template-columns: minmax(0, 1fr) 58px minmax(0, 1fr);
+        min-height: 0;
+      }}
+      .schedule-meta {{
+        grid-column: 1 / -1;
+        display: flex;
+        justify-content: space-between;
+        gap: 8px;
+        padding: 7px 9px;
+        border-right: 0;
+        border-bottom: 1px solid var(--line);
+      }}
+      .schedule-meta b {{ display: inline; }}
+      .schedule-team {{ padding: 10px 7px; }}
+      .schedule-team b {{ font-size: 12px; }}
+      .schedule-team small {{ font-size: 10px; }}
+      .schedule-score {{ gap: 4px; font-size: 18px; }}
+      .schedule-tail {{
+        grid-column: 1 / -1;
+        padding: 8px 9px;
+        border-left: 0;
+        border-top: 1px solid var(--line);
+      }}
+      .schedule-pagination {{ gap: 6px; }}
+      .schedule-pagination button {{ min-height: 42px; padding: 8px 12px; }}
+      .season-recap {{ grid-template-columns: 1fr; }}
+      .rule-document-bar {{ grid-template-columns: 1fr; padding: 10px; }}
+      .rule-document-actions {{ display: grid; grid-template-columns: 1fr 1fr; }}
+      .rule-document-button {{ text-align: center; }}
+      .rule-viewer {{
+        width: calc(100vw - 12px);
+        height: calc(100dvh - 12px);
+        max-width: none;
+        max-height: none;
+      }}
+      .rule-viewer-head {{ min-height: 50px; padding-left: 10px; }}
+      .rule-viewer-frame {{ height: calc(100% - 50px); }}
+      .back-to-top {{ right: 10px; bottom: 10px; width: 44px; height: 44px; }}
+    }}
+
+    @media (prefers-reduced-motion: reduce) {{
+      html {{ scroll-behavior: auto; }}
+      .back-to-top {{ transition: none; }}
+    }}
+
   </style>
 </head>
 <body>
+  <div class="scroll-progress" aria-hidden="true"><span id="scrollProgressBar"></span></div>
   <div class="animated-backdrop" aria-hidden="true">
     <div class="aurora"></div>
     <div class="grid"></div>
@@ -4398,18 +4711,18 @@ def render_html(title, payload):
       <span>BALLISTIC DATA CORE</span>
       <span>TACTICAL VIEW ONLINE</span>
     </div>
-    <nav class="dataset-nav" aria-label="数据板块">
-      <button class="dataset-tab active" type="button" data-dataset-tab="robot">01　机器人数据</button>
-      <button class="dataset-tab" type="button" data-dataset-tab="schedule">02　超级对抗赛赛程赛果</button>
-      <button class="dataset-tab" type="button" data-dataset-tab="league">03　高校联盟赛赛程赛果</button>
+    <nav class="dataset-nav" aria-label="数据板块" role="tablist">
+      <button class="dataset-tab active" type="button" role="tab" aria-selected="true" data-dataset-tab="robot"><span class="dataset-tab-index">01</span><span class="dataset-tab-label">机器人数据</span></button>
+      <button class="dataset-tab" type="button" role="tab" aria-selected="false" data-dataset-tab="schedule"><span class="dataset-tab-index">02</span><span class="dataset-tab-label">超级对抗赛赛程赛果</span></button>
+      <button class="dataset-tab" type="button" role="tab" aria-selected="false" data-dataset-tab="league"><span class="dataset-tab-index">03</span><span class="dataset-tab-label">高校联盟赛赛程赛果</span></button>
     </nav>
     <div class="global-display-controls" aria-label="显示设置">
-      <button id="backgroundToggle" class="theme-toggle background-toggle" type="button" aria-label="切换到简约背景">✦ 背景：正常</button>
+      <button id="backgroundToggle" class="theme-toggle background-toggle" type="button" aria-label="切换背景风格">▧ 简约背景</button>
       <button id="densityToggle" class="theme-toggle density-toggle" type="button" aria-label="切换表格密度">▤ 紧凑</button>
-      <button id="themeToggle" class="theme-toggle" type="button" aria-label="切换到夜间模式">☀️ 白昼</button>
-      <button id="eyeCareToggle" class="theme-toggle" type="button" aria-label="开启护眼模式" aria-pressed="false">🌿 护眼</button>
+      <button id="themeToggle" class="theme-toggle" type="button" aria-label="切换到黑夜模式">☀ 白昼</button>
+      <button id="eyeCareToggle" class="theme-toggle" type="button" aria-label="开启护眼模式" aria-pressed="false">◉ 护眼</button>
     </div>
-    <div class="dataset-board" id="robotBoard" data-dataset-board="robot">
+    <div class="dataset-board" id="robotBoard" role="tabpanel" data-dataset-board="robot">
     <section class="hero">
       <div class="hero-card">
         <div class="hero-toolbar">
@@ -4545,7 +4858,7 @@ def render_html(title, payload):
     </section>
     </div>
 
-    <div class="dataset-board schedule-board" id="scheduleBoard" data-dataset-board="schedule" hidden>
+    <div class="dataset-board schedule-board" id="scheduleBoard" role="tabpanel" data-dataset-board="schedule" hidden>
       <section class="schedule-hero">
         <span class="eyebrow">RMUC MATCH ARCHIVE // 2015—2026</span>
         <h1>超级对抗赛赛程赛果</h1>
@@ -4585,7 +4898,7 @@ def render_html(title, payload):
       </section>
     </div>
 
-    <div class="dataset-board schedule-board" id="leagueBoard" data-dataset-board="league" hidden>
+    <div class="dataset-board schedule-board" id="leagueBoard" role="tabpanel" data-dataset-board="league" hidden>
       <section class="schedule-hero">
         <span class="eyebrow">RMUL MATCH ARCHIVE // 2021 · 2023—2026</span>
         <h1>高校联盟赛赛程赛果</h1>
@@ -4640,6 +4953,7 @@ def render_html(title, payload):
     </div>
     <iframe class="rule-viewer-frame" id="ruleViewerFrame" title="比赛规则手册在线阅读"></iframe>
   </dialog>
+  <button class="back-to-top" id="backToTop" type="button" aria-label="返回页面顶部" title="返回顶部" hidden>↑</button>
 
   <script>
     const payload = {payload_json};
@@ -7508,16 +7822,16 @@ def render_html(title, payload):
     }});
 
     const themeLabels = {{
-      day: "☀️ 白昼",
-      night: "🌙 夜间",
+      day: "☀ 白昼",
+      night: "☾ 黑夜",
     }};
     const densityLabels = {{
       standard: "▤ 紧凑",
       compact: "▥ 标准",
     }};
     const backgroundLabels = {{
-      fancy: "✦ 背景：花哨",
-      simple: "▧ 背景：简洁",
+      fancy: "✦ 花哨背景",
+      simple: "▧ 简约背景",
     }};
 
     function getCurrentTheme() {{
@@ -7531,7 +7845,8 @@ def render_html(title, payload):
       localStorage.setItem("rm-dashboard-theme", nextTheme);
       if (els.themeToggle) {{
         els.themeToggle.textContent = themeLabels[nextTheme];
-        els.themeToggle.setAttribute("aria-label", nextTheme === "night" ? "切换到白昼模式" : "切换到夜间模式");
+        els.themeToggle.setAttribute("aria-label", nextTheme === "night" ? "切换到白昼模式" : "切换到黑夜模式");
+        els.themeToggle.title = els.themeToggle.getAttribute("aria-label");
       }}
     }}
 
@@ -7544,9 +7859,10 @@ def render_html(title, payload):
       document.documentElement.dataset.eyeCare = active ? "true" : "false";
       localStorage.setItem("rm-dashboard-eye-care", active ? "true" : "false");
       if (els.eyeCareToggle) {{
-        els.eyeCareToggle.textContent = active ? "🌿 护眼：开" : "🌿 护眼";
+        els.eyeCareToggle.textContent = active ? "◉ 护眼开启" : "◉ 护眼";
         els.eyeCareToggle.setAttribute("aria-label", active ? "关闭护眼模式" : "开启护眼模式");
         els.eyeCareToggle.setAttribute("aria-pressed", active ? "true" : "false");
+        els.eyeCareToggle.title = els.eyeCareToggle.getAttribute("aria-label");
       }}
     }}
 
@@ -7562,9 +7878,10 @@ def render_html(title, payload):
         els.backgroundToggle.textContent = backgroundLabels[nextBackground];
         els.backgroundToggle.setAttribute(
           "aria-label",
-          nextBackground === "fancy" ? "切换到简洁背景" : "切换到花哨背景"
+          nextBackground === "fancy" ? "切换到简约背景" : "切换到花哨背景"
         );
         els.backgroundToggle.setAttribute("aria-pressed", nextBackground === "simple" ? "true" : "false");
+        els.backgroundToggle.title = els.backgroundToggle.getAttribute("aria-label");
       }}
     }}
 
@@ -7579,6 +7896,7 @@ def render_html(title, payload):
       if (els.densityToggle) {{
         els.densityToggle.textContent = densityLabels[nextDensity];
         els.densityToggle.setAttribute("aria-label", nextDensity === "compact" ? "切换到标准视图" : "切换到紧凑视图");
+        els.densityToggle.title = els.densityToggle.getAttribute("aria-label");
       }}
     }}
 
@@ -8349,17 +8667,57 @@ def render_html(title, payload):
       renderRmulRankingAndTree();
     }}
 
+    const prefersReducedMotion = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const boardScrollPositions = {{}};
+    let activeDataset = document.querySelector("[data-dataset-tab].active")?.dataset.datasetTab || "robot";
+
     document.querySelectorAll("[data-dataset-tab]").forEach((button) => {{
       button.addEventListener("click", () => {{
         const target = button.dataset.datasetTab;
-        document.querySelectorAll("[data-dataset-tab]").forEach((tab) => tab.classList.toggle("active", tab === button));
-        document.querySelectorAll("[data-dataset-board]").forEach((board) => board.hidden = board.dataset.datasetBoard !== target);
+        if (target === activeDataset) return;
+        boardScrollPositions[activeDataset] = window.scrollY;
+        document.querySelectorAll("[data-dataset-tab]").forEach((tab) => {{
+          const selected = tab === button;
+          tab.classList.toggle("active", selected);
+          tab.setAttribute("aria-selected", selected ? "true" : "false");
+        }});
+        document.querySelectorAll("[data-dataset-board]").forEach((board) => {{
+          const selected = board.dataset.datasetBoard === target;
+          board.hidden = !selected;
+          board.setAttribute("aria-hidden", selected ? "false" : "true");
+        }});
         localStorage.setItem("rm-dashboard-board", target);
         if (target === "schedule") renderSchedule();
         if (target === "league") renderRmul();
-        window.scrollTo({{ top: 0, behavior: "smooth" }});
+        activeDataset = target;
+        requestAnimationFrame(() => requestAnimationFrame(() => {{
+          window.scrollTo({{
+            top: boardScrollPositions[target] || 0,
+            behavior: prefersReducedMotion ? "auto" : "smooth",
+          }});
+        }}));
       }});
     }});
+
+    const scrollProgressBar = document.getElementById("scrollProgressBar");
+    const backToTop = document.getElementById("backToTop");
+    let scrollAidFrame = 0;
+    function updateScrollAids() {{
+      scrollAidFrame = 0;
+      const top = Math.max(window.scrollY, document.documentElement.scrollTop || 0);
+      const scrollable = Math.max(1, document.documentElement.scrollHeight - window.innerHeight);
+      scrollProgressBar.style.transform = `scaleX(${{Math.min(1, top / scrollable)}})`;
+      backToTop.hidden = top < 560;
+    }}
+    function queueScrollAidUpdate() {{
+      if (!scrollAidFrame) scrollAidFrame = requestAnimationFrame(updateScrollAids);
+    }}
+    window.addEventListener("scroll", queueScrollAidUpdate, {{ passive: true }});
+    window.addEventListener("resize", queueScrollAidUpdate, {{ passive: true }});
+    backToTop.addEventListener("click", () => {{
+      window.scrollTo({{ top: 0, behavior: prefersReducedMotion ? "auto" : "smooth" }});
+    }});
+    updateScrollAids();
 
     document.getElementById("scheduleSeason").addEventListener("change", () => {{
       schedulePage = 1;
