@@ -4224,12 +4224,24 @@ def render_html(title, payload):
     .schedule-stat {{ padding: 20px; background: var(--panel-soft); }}
     .schedule-stat b {{ display: block; font-size: 29px; color: var(--accent-deep); }}
     .schedule-stat span {{ color: var(--muted); font-size: 12px; }}
-    .schedule-controls {{ display: grid; grid-template-columns: 150px 190px 210px 1fr auto; gap: 10px; padding: 14px; }}
+    .schedule-controls {{ display: grid; grid-template-columns: 150px 190px 210px minmax(220px, 1fr) auto auto; gap: 10px; padding: 14px; }}
     .schedule-controls select, .schedule-controls input {{
       min-width: 0; height: 42px; border: 1px solid var(--line); background: var(--input-bg);
       color: var(--text); padding: 0 12px; font: inherit;
     }}
     .schedule-check {{ display: flex; align-items: center; gap: 7px; color: var(--muted); font-size: 12px; white-space: nowrap; }}
+    .schedule-reset {{
+      min-height: 42px;
+      padding: 8px 12px;
+      border: 1px solid var(--line);
+      background: var(--button-bg);
+      color: var(--muted);
+      font: inherit;
+      font-size: 12px;
+      font-weight: 850;
+      cursor: pointer;
+    }}
+    .schedule-reset:hover {{ border-color: var(--accent); color: var(--accent-deep); }}
     .schedule-panel {{ padding: 18px; }}
     .schedule-panel-head {{ display: flex; justify-content: space-between; gap: 18px; align-items: end; margin-bottom: 12px; }}
     .schedule-panel h2 {{ margin: 0; }}
@@ -4657,6 +4669,7 @@ def render_html(title, payload):
       .schedule-controls {{ grid-template-columns: 1fr 1fr; }}
       .schedule-controls input {{ grid-column: 1 / -1; }}
       .schedule-controls .schedule-check {{ grid-column: 2; grid-row: 2; }}
+      .schedule-controls .schedule-reset {{ grid-column: 1 / -1; }}
     }}
 
     @media (max-width: 560px) {{
@@ -5041,11 +5054,12 @@ def render_html(title, payload):
         <div class="schedule-stat"><b id="scheduleUncertainCount">0</b><span>待核记录</span></div>
       </section>
       <section class="schedule-controls" aria-label="赛程筛选">
-        <select id="scheduleSeason"><option value="">全部赛季</option></select>
-        <select id="scheduleZone"><option value="">全部赛区</option></select>
-        <select id="scheduleStage"><option value="">全部比赛阶段</option></select>
-        <input id="scheduleSearch" type="search" placeholder="搜索学校、战队或备注">
+        <select id="scheduleSeason" aria-label="超级对抗赛赛季"><option value="">全部赛季</option></select>
+        <select id="scheduleZone" aria-label="超级对抗赛赛区"><option value="">全部赛区</option></select>
+        <select id="scheduleStage" aria-label="超级对抗赛比赛阶段"><option value="">全部比赛阶段</option></select>
+        <input id="scheduleSearch" type="search" aria-label="搜索超级对抗赛学校、战队或备注" placeholder="搜索学校、战队或备注">
         <label class="schedule-check"><input id="scheduleIncludeUncertain" type="checkbox" checked>包含待核</label>
+        <button class="schedule-reset" id="scheduleReset" type="button" aria-label="重置超级对抗赛筛选" title="重置筛选">↺ 重置</button>
       </section>
       <nav class="content-pager" data-content-pager="schedule" aria-label="超级对抗赛内容分页" role="tablist" style="--content-page-count:4">
         <button class="active" type="button" role="tab" aria-selected="true" data-content-target="matches">逐场赛程</button>
@@ -5095,10 +5109,11 @@ def render_html(title, payload):
         <div class="schedule-stat"><b id="rmulMissingCount">0</b><span>回放编号断档</span></div>
       </section>
       <section class="schedule-controls" aria-label="高校联盟赛筛选">
-        <select id="rmulSeason"><option value="">全部赛季</option></select>
-        <select id="rmulZone"><option value="">全部站点</option></select>
-        <select id="rmulStage"><option value="">全部比赛阶段</option></select>
-        <input id="rmulSearch" type="search" placeholder="搜索学校、战队或视频标题">
+        <select id="rmulSeason" aria-label="高校联盟赛赛季"><option value="">全部赛季</option></select>
+        <select id="rmulZone" aria-label="高校联盟赛站点"><option value="">全部站点</option></select>
+        <select id="rmulStage" aria-label="高校联盟赛比赛阶段"><option value="">全部比赛阶段</option></select>
+        <input id="rmulSearch" type="search" aria-label="搜索高校联盟赛学校、战队或视频标题" placeholder="搜索学校、战队或视频标题">
+        <button class="schedule-reset" id="rmulReset" type="button" aria-label="重置高校联盟赛筛选" title="重置筛选">↺ 重置</button>
       </section>
       <nav class="content-pager" data-content-pager="league" aria-label="高校联盟赛内容分页" role="tablist" style="--content-page-count:4">
         <button class="active" type="button" role="tab" aria-selected="true" data-content-target="matches">逐场赛程</button>
@@ -5837,6 +5852,7 @@ def render_html(title, payload):
             type="button"
             role="tab"
             aria-selected="${{active ? "true" : "false"}}"
+            tabindex="${{active ? "0" : "-1"}}"
             data-table-type-page="${{escapeHtml(type)}}"
           >
             ${{escapeHtml(type)}}页 <span>${{count}}</span>
@@ -8960,6 +8976,7 @@ def render_html(title, payload):
         const selected = button.dataset.contentTarget === validTarget;
         button.classList.toggle("active", selected);
         button.setAttribute("aria-selected", selected ? "true" : "false");
+        button.tabIndex = selected ? 0 : -1;
       }});
       document.querySelectorAll(`[data-content-page^="${{key}}:"]`).forEach((page) => {{
         const selected = page.dataset.contentPage === `${{key}}:${{validTarget}}`;
@@ -8999,6 +9016,7 @@ def render_html(title, payload):
     let activeDataset = document.querySelector("[data-dataset-tab].active")?.dataset.datasetTab || "robot";
 
     document.querySelectorAll("[data-dataset-tab]").forEach((button) => {{
+      button.tabIndex = button.classList.contains("active") ? 0 : -1;
       button.addEventListener("click", () => {{
         const target = button.dataset.datasetTab;
         if (target === activeDataset) return;
@@ -9007,6 +9025,7 @@ def render_html(title, payload):
           const selected = tab === button;
           tab.classList.toggle("active", selected);
           tab.setAttribute("aria-selected", selected ? "true" : "false");
+          tab.tabIndex = selected ? 0 : -1;
         }});
         document.querySelectorAll("[data-dataset-board]").forEach((board) => {{
           const selected = board.dataset.datasetBoard === target;
@@ -9023,6 +9042,34 @@ def render_html(title, payload):
             behavior: prefersReducedMotion ? "auto" : "smooth",
           }});
         }}));
+      }});
+    }});
+
+    document.addEventListener("keydown", (event) => {{
+      const current = event.target.closest('[role="tab"]');
+      if (!current) return;
+      const tabList = current.closest('[role="tablist"]');
+      if (!tabList) return;
+      const tabs = [...tabList.querySelectorAll('[role="tab"]')].filter((tab) =>
+        tab.closest('[role="tablist"]') === tabList && !tab.disabled
+      );
+      const currentIndex = tabs.indexOf(current);
+      if (currentIndex < 0) return;
+      let nextIndex = null;
+      if (event.key === "ArrowRight" || event.key === "ArrowDown") nextIndex = (currentIndex + 1) % tabs.length;
+      if (event.key === "ArrowLeft" || event.key === "ArrowUp") nextIndex = (currentIndex - 1 + tabs.length) % tabs.length;
+      if (event.key === "Home") nextIndex = 0;
+      if (event.key === "End") nextIndex = tabs.length - 1;
+      if (nextIndex === null) return;
+      event.preventDefault();
+      const tabListLabel = tabList.getAttribute("aria-label");
+      tabs[nextIndex].click();
+      requestAnimationFrame(() => {{
+        const liveTabList = tabList.isConnected
+          ? tabList
+          : [...document.querySelectorAll('[role="tablist"]')].find((list) => list.getAttribute("aria-label") === tabListLabel);
+        const active = liveTabList && [...liveTabList.querySelectorAll('[role="tab"]')].find((tab) => tab.getAttribute("aria-selected") === "true");
+        active?.focus();
       }});
     }});
 
@@ -9046,6 +9093,16 @@ def render_html(title, payload):
     }});
     updateScrollAids();
 
+    document.getElementById("scheduleReset").addEventListener("click", () => {{
+      const seasons = uniqueScheduleValues("season");
+      document.getElementById("scheduleSeason").value = seasons[0] || "";
+      refreshScheduleZoneOptions(true);
+      document.getElementById("scheduleStage").value = "";
+      document.getElementById("scheduleSearch").value = "";
+      document.getElementById("scheduleIncludeUncertain").checked = true;
+      schedulePage = 1;
+      renderSchedule();
+    }});
     document.getElementById("scheduleSeason").addEventListener("change", () => {{
       schedulePage = 1;
       refreshScheduleZoneOptions(true);
@@ -9062,6 +9119,15 @@ def render_html(title, payload):
     document.getElementById("scheduleSearch").addEventListener("input", () => {{ schedulePage = 1; renderSchedule(); }});
     document.getElementById("schedulePrev").addEventListener("click", () => {{ schedulePage -= 1; renderSchedule(); focusContentPager("schedule"); }});
     document.getElementById("scheduleNext").addEventListener("click", () => {{ schedulePage += 1; renderSchedule(); focusContentPager("schedule"); }});
+    document.getElementById("rmulReset").addEventListener("click", () => {{
+      const seasons = rmulValues("season").sort((a,b)=>Number(b)-Number(a));
+      document.getElementById("rmulSeason").value = seasons[0] || "";
+      refreshRmulOptions();
+      document.getElementById("rmulStage").value = "";
+      document.getElementById("rmulSearch").value = "";
+      rmulPage = 1;
+      renderRmul();
+    }});
     document.getElementById("rmulSeason").addEventListener("change", () => {{ rmulPage=1;refreshRmulOptions();renderRmul(); }});
     document.getElementById("rmulZone").addEventListener("change", () => {{
       rmulPage=1;const season=document.getElementById("rmulSeason").value,zone=document.getElementById("rmulZone").value;
