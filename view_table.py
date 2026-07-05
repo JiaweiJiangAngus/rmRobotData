@@ -3441,7 +3441,7 @@ def render_html(title, payload):
 
     .role-fill {{
       position: absolute;
-      inset: 0 auto 0 -18px;
+      inset: 0 auto 0 -54px;
       width: var(--w);
       border-radius: inherit;
       background: linear-gradient(90deg, var(--accent), rgba(8,126,164,0.72));
@@ -3866,6 +3866,27 @@ def render_html(title, payload):
       grid-column: 1 / -1;
     }}
 
+    .compare-radar-card .radar-header h3 {{
+      margin: 5px 0 7px;
+      font-size: 26px;
+      line-height: 1.25;
+    }}
+
+    .compare-result {{
+      display: grid;
+      gap: 12px;
+      min-width: 0;
+    }}
+
+    .compare-result-empty {{
+      min-height: 150px;
+      display: grid;
+      place-items: center;
+      padding: 24px;
+      border: 1px dashed var(--line);
+      background: var(--panel-soft);
+    }}
+
     .compare-radar-layout {{
       display: grid;
       grid-template-columns: minmax(320px, 520px) minmax(260px, 1fr);
@@ -4008,6 +4029,10 @@ def render_html(title, payload):
       .compare-radar-layout {{
         grid-template-columns: 1fr;
       }}
+    }}
+
+    @media (max-width: 560px) {{
+      .compare-radar-card .radar-header h3 {{ font-size: 21px; }}
     }}
 
     @media (max-width: 980px) {{
@@ -4339,7 +4364,7 @@ def render_html(title, payload):
       position: absolute;
       inset: 0 auto 0 0;
       z-index: 3;
-      width: 212px;
+      width: 248px;
       border-right: 1px solid var(--line);
       background: var(--bg);
       box-shadow: 10px 0 20px rgba(0,0,0,.06);
@@ -4586,7 +4611,7 @@ def render_html(title, payload):
       top: 62px;
       z-index: 72;
       display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
+      grid-template-columns: repeat(var(--content-page-count, 3), minmax(0, 1fr));
       gap: 5px;
       padding: 6px;
       border: 1px solid var(--line);
@@ -4673,7 +4698,9 @@ def render_html(title, payload):
         line-height: 1.25;
         white-space: normal;
       }}
-      .bracket-stage-rail {{ width: 142px; }}
+      .bracket-stage-rail {{ width: 178px; }}
+      .topdown-node,
+      .topdown-aux-heading {{ width: 198px; }}
       .topdown-round {{
         left: 10px;
         width: 104px;
@@ -4949,7 +4976,7 @@ def render_html(title, payload):
           <div class="compare-head">
             <div>
               <h3>队伍比拼台</h3>
-              <div class="view-hint">最多 8 支队伍，适合做跨赛区/同赛区内部比拼；右侧会叠加七边形雷达图。</div>
+              <div class="view-hint">最多 8 支队伍，适合做跨赛区/同赛区内部比拼；结果图会直接显示在比拼台下方。</div>
             </div>
             <span class="compare-cap" id="compareCap">0/8</span>
           </div>
@@ -4974,6 +5001,7 @@ def render_html(title, payload):
           <div class="compare-tray" id="compareTray"></div>
           <div class="compare-hint">口径：每支队伍按它所在赛区的同兵种均值归一化，100% 表示该赛区该兵种平均水平；只作复盘参考，不代表官方排名。</div>
         </section>
+        <div class="compare-result" id="compareResult" aria-live="polite"></div>
         </div>
         <div class="content-page" data-content-page="robot:ranking" role="tabpanel">
         <div class="table-topbar">
@@ -4982,7 +5010,6 @@ def render_html(title, payload):
             <div class="table-meta" id="tableMeta">准备中...</div>
           </div>
         </div>
-        <section class="tactical-brief" id="tacticalBrief" aria-live="polite"></section>
         <div class="table-type-pages" id="tableTypePages" role="tablist" aria-label="按兵种切换数据页" hidden></div>
         <div class="table-wrap">
           <table>
@@ -4993,8 +5020,9 @@ def render_html(title, payload):
         </div>
         </div>
         <div class="content-page" data-content-page="robot:analysis" role="tabpanel" hidden>
+        <section class="tactical-brief" id="tacticalBrief" aria-live="polite"></section>
         <div class="chart-grid" id="chartGrid"></div>
-        <div class="chart-grid below-table-grid" id="belowTableGrid" aria-label="数据表下方的综合排名"></div>
+        <div class="chart-grid below-table-grid" id="belowTableGrid" aria-label="图表分析页的综合排名"></div>
         </div>
       </section>
     </section>
@@ -5019,9 +5047,10 @@ def render_html(title, payload):
         <input id="scheduleSearch" type="search" placeholder="搜索学校、战队或备注">
         <label class="schedule-check"><input id="scheduleIncludeUncertain" type="checkbox" checked>包含待核</label>
       </section>
-      <nav class="content-pager" data-content-pager="schedule" aria-label="超级对抗赛内容分页" role="tablist">
+      <nav class="content-pager" data-content-pager="schedule" aria-label="超级对抗赛内容分页" role="tablist" style="--content-page-count:4">
         <button class="active" type="button" role="tab" aria-selected="true" data-content-target="matches">逐场赛程</button>
-        <button type="button" role="tab" aria-selected="false" data-content-target="recap">赛季与排名</button>
+        <button type="button" role="tab" aria-selected="false" data-content-target="season">赛季归纳</button>
+        <button type="button" role="tab" aria-selected="false" data-content-target="ranking">赛区排名</button>
         <button type="button" role="tab" aria-selected="false" data-content-target="tree">晋级树</button>
       </nav>
       <section class="rule-document-bar" id="rmucRuleBar" aria-live="polite" hidden></section>
@@ -5032,11 +5061,13 @@ def render_html(title, payload):
         <div class="schedule-pagination"><button id="schedulePrev" type="button">上一页</button><span class="schedule-count" id="schedulePageLabel"></span><button id="scheduleNext" type="button">下一页</button></div>
       </section>
       </div>
-      <div class="content-page" data-content-page="schedule:recap" role="tabpanel" hidden>
+      <div class="content-page" data-content-page="schedule:season" role="tabpanel" hidden>
       <section class="schedule-panel">
         <div class="schedule-panel-head"><div><span class="eyebrow">SEASON RECAP</span><h2>按赛季归纳</h2></div><span class="schedule-count">场次 · 参赛队伍 · 决赛阶段</span></div>
         <div class="season-recap" id="seasonRecap"></div>
       </section>
+      </div>
+      <div class="content-page" data-content-page="schedule:ranking" role="tabpanel" hidden>
       <section class="schedule-panel">
         <div class="schedule-panel-head"><div><span class="eyebrow">ZONE RANKING</span><h2 id="zoneRankingTitle">当前赛区排名</h2></div><span class="schedule-count" id="qualifierCountLabel"></span></div>
         <div class="season-recap" id="qualifierRecap"></div>
@@ -5069,8 +5100,9 @@ def render_html(title, payload):
         <select id="rmulStage"><option value="">全部比赛阶段</option></select>
         <input id="rmulSearch" type="search" placeholder="搜索学校、战队或视频标题">
       </section>
-      <nav class="content-pager" data-content-pager="league" aria-label="高校联盟赛内容分页" role="tablist">
-        <button class="active" type="button" role="tab" aria-selected="true" data-content-target="matches">赛程与回放</button>
+      <nav class="content-pager" data-content-pager="league" aria-label="高校联盟赛内容分页" role="tablist" style="--content-page-count:4">
+        <button class="active" type="button" role="tab" aria-selected="true" data-content-target="matches">逐场赛程</button>
+        <button type="button" role="tab" aria-selected="false" data-content-target="collections">回放合集</button>
         <button type="button" role="tab" aria-selected="false" data-content-target="recap">年份与名次</button>
         <button type="button" role="tab" aria-selected="false" data-content-target="tree">淘汰赛树</button>
       </nav>
@@ -5086,11 +5118,13 @@ def render_html(title, payload):
         <p class="schedule-source">名次来源：<a href="https://www.robomaster.com/zh-CN/resource/announcement/competition" target="_blank" rel="noopener">RoboMaster官网赛事公告</a>。优先展示3V3对抗赛官方获奖名单。</p>
       </section>
       </div>
-      <div class="content-page" data-content-page="league:matches" role="tabpanel">
+      <div class="content-page" data-content-page="league:collections" role="tabpanel" hidden>
       <section class="schedule-panel">
         <div class="schedule-panel-head"><div><span class="eyebrow">OFFICIAL COLLECTIONS</span><h2>官方回放合集</h2></div><span class="schedule-count" id="rmulCollectionLabel"></span></div>
         <div class="season-recap" id="rmulCollections"></div>
       </section>
+      </div>
+      <div class="content-page" data-content-page="league:matches" role="tabpanel">
       <section class="schedule-panel">
         <div class="schedule-panel-head"><div><span class="eyebrow">RMUL SCHEDULE</span><h2>逐场赛程与回放</h2></div><span class="schedule-count" id="rmulCountLabel"></span></div>
         <div class="schedule-list" id="rmulList"></div>
@@ -5230,6 +5264,7 @@ def render_html(title, payload):
       compareClearButton: document.getElementById("compareClearButton"),
       compareTray: document.getElementById("compareTray"),
       compareCap: document.getElementById("compareCap"),
+      compareResult: document.getElementById("compareResult"),
     }};
 
     els.searchInput.value = state.keyword;
@@ -6277,6 +6312,13 @@ def render_html(title, payload):
             </span>
           `).join("")
           : `<span class="compare-hint">还没加入队伍。先选赛区，再搜学校/战队，点“加入比拼”。</span>`;
+      }}
+
+      if (els.compareResult) {{
+        const resultCard = renderCompareRadarCard();
+        els.compareResult.innerHTML = resultCard || `
+          <div class="schedule-empty compare-result-empty">加入队伍后，对比雷达图与结论会显示在这里。</div>
+        `;
       }}
     }}
 
@@ -7764,8 +7806,6 @@ def render_html(title, payload):
         const radar = buildRadarModel(singleTeam.key, singleTeam.zone);
         const mvpRadar = buildMvpRadarModel(singleTeam.key, singleTeam.zone);
         const cards = [];
-        const compareCard = renderCompareRadarCard();
-        if (compareCard) cards.push(compareCard);
         cards.push(renderTeamEvaluationCard(buildTeamEvaluationModel(radar, mvpRadar, singleTeam.key, singleTeam.zone)));
         cards.push(renderRadarCard(radar));
         if (mvpRadar) cards.push(renderRadarCard(mvpRadar));
@@ -7791,8 +7831,6 @@ def render_html(title, payload):
       }}
 
       const cards = [];
-      const compareCard = renderCompareRadarCard();
-      if (compareCard) cards.push(compareCard);
       const metricGuideCard = renderMetricGuideCard(rows);
       if (metricGuideCard) cards.push(metricGuideCard);
       const topSnapshotCard = renderTopSnapshotCard(rows);
@@ -7961,16 +7999,16 @@ def render_html(title, payload):
       els.heroTitle.textContent = heroTitle;
       els.heroSubtitle.textContent = filteredRows.length
         ? (singleTeam
-          ? `当前已锁定 ${{singleTeam.label}}，${{radarLabel}}会直接显示在表格上方，对比它在 ${{singleTeam.zone}} 赛区里的兵种综合水平。${{mvpRadar ? "检测到该队伍此赛区的 MVP 数据，已同步展示 MVP 雷达图。" : ""}}`
+          ? `当前已锁定 ${{singleTeam.label}}，${{radarLabel}}会显示在“图表分析”页，对比它在 ${{singleTeam.zone}} 赛区里的兵种综合水平。${{mvpRadar ? "检测到该队伍此赛区的 MVP 数据，已同步展示 MVP 雷达图。" : ""}}`
           : (selectedZones.length > 1
-            ? `当前正在比较 ${{selectedZones.length}} 个赛区，主数据表可按兵种分页查看；跨赛区总实力表已经放在数据表下方，并按七边形雷达图规则汇总。`
+            ? `当前正在比较 ${{selectedZones.length}} 个赛区，主数据表可按兵种分页查看；跨赛区总实力表位于“图表分析”页，并按七边形雷达图规则汇总。`
             : `当前筛选命中 ${{filteredRows.length}} 条记录，你可以继续切赛区、兵种和排序指标，页面会自动收起无数据字段。`))
         : "当前筛选下没有可展示的数据，可以换个赛区、兵种或搜索词再试。";
       els.tableTitle.textContent = currentTitle;
       els.tableMeta.textContent = singleTeam
-        ? `当前显示 ${{pageMeta}}，按“${{metricLabel}}”排序，已在上方展示赛区综合雷达图${{mvpRadar ? "和 MVP 雷达图" : ""}}`
+        ? `当前显示 ${{pageMeta}}，按“${{metricLabel}}”排序；赛区综合雷达图${{mvpRadar ? "和 MVP 雷达图" : ""}}位于“图表分析”页`
         : (selectedZones.length > 1
-          ? `当前显示 ${{pageMeta}}，已选择 ${{selectedZones.length}} 个赛区；下方总实力表按各兵种关键数据相对合并均值排序`
+          ? `当前显示 ${{pageMeta}}，已选择 ${{selectedZones.length}} 个赛区；“图表分析”页的总实力表按各兵种关键数据相对合并均值排序`
           : `当前显示 ${{pageMeta}}，按“${{metricLabel}}”排序`);
       document.title = heroTitle;
     }}
@@ -8633,7 +8671,8 @@ def render_html(title, payload):
       }}
       koRounds.forEach((items)=>items.sort((a,b)=>Number(a.order)-Number(b.order)));
       const visualBands=[...koRounds.slice().reverse(),...groupRounds.slice().reverse()];
-      const maxCount=Math.max(...visualBands.map((items)=>items.length),1),cardW=230,cardH=102,gapX=22;
+      const compactTree=window.matchMedia&&window.matchMedia("(max-width: 560px)").matches;
+      const maxCount=Math.max(...visualBands.map((items)=>items.length),1),cardW=compactTree?198:230,cardH=102,gapX=compactTree?16:22;
       const labelGutter=194,edgeGutter=26,auxWidth=auxiliaryKo.length?310:0;
       const widestBand=maxCount*cardW+Math.max(0,maxCount-1)*gapX;
       const width=Math.max(960,labelGutter+widestBand+edgeGutter+auxWidth),bandH=148,top=62;
@@ -8740,7 +8779,9 @@ def render_html(title, payload):
       const graph = tree.querySelector(".bracket-graph");
       if (!graph || tree.clientWidth <= 0) return;
       const maxScroll = Math.max(0, tree.scrollWidth - tree.clientWidth);
-      tree.scrollLeft = maxScroll / 2;
+      const frozenRail = tree.querySelector(".bracket-stage-rail");
+      const railOffset = frozenRail ? Math.min(frozenRail.offsetWidth / 2, tree.clientWidth * .12) : 0;
+      tree.scrollLeft = Math.max(0, maxScroll / 2 - railOffset);
       syncBracketStageLabels(tree);
     }}
 
@@ -8863,7 +8904,8 @@ def render_html(title, payload):
       document.getElementById("rmulTreeTitle").textContent=zone?`${{season}} ${{zone}}淘汰赛树`:'高校联盟赛淘汰赛树';
       document.getElementById("rmulTreeLabel").textContent=stages.length?`${{stages.reduce((sum,items)=>sum+items.length,0)}} 场淘汰赛回放`:'暂无可核验树节点';
       if(!stages.length){{document.getElementById("rmulBracketCanvas").innerHTML='<div class="schedule-empty">当前站点暂无可核验的淘汰赛阶段。</div>';return;}}
-      const cardW=230,cardH=102,gap=24,bandH=152,top=62,labelGutter=194,edgeGutter=26;
+      const compactTree=window.matchMedia&&window.matchMedia("(max-width: 560px)").matches;
+      const cardW=compactTree?198:230,cardH=102,gap=compactTree?16:24,bandH=152,top=62,labelGutter=194,edgeGutter=26;
       const maxCount=Math.max(...stages.map((items)=>items.length),1),widestBand=maxCount*cardW+Math.max(0,maxCount-1)*gap;
       const width=Math.max(960,labelGutter+widestBand+edgeGutter),height=top+stages.length*bandH+55,positions=new Map();
       const available=width-labelGutter-edgeGutter;
