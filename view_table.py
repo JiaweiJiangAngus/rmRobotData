@@ -4243,6 +4243,26 @@ def render_html(title, payload):
     .schedule-pagination {{ display: flex; justify-content: center; align-items: center; gap: 10px; margin-top: 16px; }}
     .schedule-pagination button {{ border: 1px solid var(--line); background: var(--button-bg); color: var(--text); padding: 9px 15px; cursor: pointer; }}
     .schedule-pagination button:disabled {{ opacity: .35; cursor: default; }}
+    .chart-pagination {{
+      grid-column: 1 / -1;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 10px;
+      padding-top: 4px;
+    }}
+    .chart-pagination button {{
+      min-height: 40px;
+      padding: 8px 14px;
+      border: 1px solid var(--line);
+      background: var(--button-bg);
+      color: var(--text);
+      font: inherit;
+      cursor: pointer;
+    }}
+    .chart-pagination button:disabled {{ opacity: .35; cursor: default; }}
+    .chart-pagination span {{ color: var(--muted); font-size: 12px; }}
+    .chart-grid > .chart-card[hidden] {{ display: none !important; }}
     .season-recap {{ display: grid; grid-template-columns: repeat(5, 1fr); gap: 8px; }}
     .recap-card {{ padding: 13px; border: 1px solid var(--line); background: var(--panel-soft); }}
     .recap-card b {{ display: block; }} .recap-card span {{ color: var(--muted); font-size: 11px; }}
@@ -4494,6 +4514,27 @@ def render_html(title, payload):
     .stat-value {{ font-size: 25px; letter-spacing: 0; }}
     .main-grid {{ gap: 14px; }}
     .control-panel {{ top: 76px; padding: 18px; }}
+    .panel-title-row {{
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      margin-bottom: 16px;
+    }}
+    .panel-title-row .panel-title {{ margin: 0; }}
+    .panel-collapse-toggle {{
+      min-height: 36px;
+      padding: 6px 10px;
+      border: 1px solid var(--line);
+      background: var(--button-bg);
+      color: var(--muted);
+      font: inherit;
+      font-size: 12px;
+      font-weight: 800;
+      cursor: pointer;
+    }}
+    .control-panel.is-collapsed .field {{ display: none; }}
+    .control-panel.is-collapsed .panel-title-row {{ margin-bottom: 0; }}
     .table-panel {{ min-width: 0; overflow: hidden; }}
 
     .schedule-board {{ gap: 12px; }}
@@ -4512,6 +4553,44 @@ def render_html(title, payload):
     .schedule-panel-head h2 {{ font-size: 20px; letter-spacing: 0; }}
     .schedule-match {{ min-width: 0; }}
     .rule-document-bar {{ padding: 11px 13px; }}
+    .content-pager {{
+      position: sticky;
+      top: 62px;
+      z-index: 72;
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 5px;
+      padding: 6px;
+      border: 1px solid var(--line);
+      background: color-mix(in srgb, var(--panel-strong) 94%, transparent);
+      box-shadow: 0 8px 24px rgba(0, 0, 0, .09);
+      backdrop-filter: blur(16px);
+    }}
+    .content-pager button {{
+      min-width: 0;
+      min-height: 42px;
+      padding: 7px 10px;
+      border: 1px solid var(--line);
+      background: var(--button-bg);
+      color: var(--muted);
+      font: inherit;
+      font-size: 13px;
+      font-weight: 850;
+      letter-spacing: 0;
+      cursor: pointer;
+    }}
+    .content-pager button.active {{
+      border-color: var(--accent);
+      background: var(--accent-soft);
+      color: var(--accent-deep);
+    }}
+    .content-page {{
+      display: grid;
+      gap: 12px;
+      min-width: 0;
+    }}
+    .content-page[hidden] {{ display: none !important; }}
+    .table-panel > .content-pager {{ margin-bottom: 12px; }}
     .rule-viewer {{
       max-width: calc(100vw - 24px);
       max-height: calc(100dvh - 24px);
@@ -4554,6 +4633,18 @@ def render_html(title, payload):
         font-size: 9px;
       }}
       .dataset-tab-label {{ display: block; }}
+      .content-pager {{
+        top: 64px;
+        gap: 3px;
+        padding: 4px;
+      }}
+      .content-pager button {{
+        min-height: 44px;
+        padding: 5px 3px;
+        font-size: 11px;
+        line-height: 1.25;
+        white-space: normal;
+      }}
       .global-display-controls {{
         display: grid;
         grid-template-columns: repeat(4, minmax(0, 1fr));
@@ -4587,6 +4678,7 @@ def render_html(title, payload):
       .main-grid {{ gap: 8px; }}
       .control-panel,
       .table-panel {{ padding: 12px; }}
+      .panel-collapse-toggle {{ min-height: 42px; }}
       .schedule-board {{ gap: 8px; }}
       .schedule-hero {{ padding: 15px; }}
       .schedule-hero h1 {{ font-size: 27px; line-height: 1.24; }}
@@ -4761,8 +4853,11 @@ def render_html(title, payload):
     </section>
 
     <section class="main-grid">
-      <aside class="control-panel">
-        <h2 class="panel-title">筛选与排序</h2>
+      <aside class="control-panel" id="robotFilterPanel">
+        <div class="panel-title-row">
+          <h2 class="panel-title">筛选与排序</h2>
+          <button class="panel-collapse-toggle" id="robotFilterToggle" type="button" aria-expanded="true">收起</button>
+        </div>
         <div class="field">
           <label for="searchInput">搜索学校 / 战队 / 赛区</label>
           <input id="searchInput" type="text" placeholder="例如 tdt / 北部 / 无人机">
@@ -4808,6 +4903,12 @@ def render_html(title, payload):
       </aside>
 
       <section class="table-panel">
+        <nav class="content-pager" data-content-pager="robot" aria-label="机器人数据分页" role="tablist">
+          <button class="active" type="button" role="tab" aria-selected="true" data-content-target="ranking">数据排行</button>
+          <button type="button" role="tab" aria-selected="false" data-content-target="compare">队伍比拼</button>
+          <button type="button" role="tab" aria-selected="false" data-content-target="analysis">图表分析</button>
+        </nav>
+        <div class="content-page" data-content-page="robot:compare" role="tabpanel" hidden>
         <section class="compare-panel compare-wide" aria-label="队伍比拼台">
           <div class="compare-head">
             <div>
@@ -4837,6 +4938,8 @@ def render_html(title, payload):
           <div class="compare-tray" id="compareTray"></div>
           <div class="compare-hint">口径：每支队伍按它所在赛区的同兵种均值归一化，100% 表示该赛区该兵种平均水平；只作复盘参考，不代表官方排名。</div>
         </section>
+        </div>
+        <div class="content-page" data-content-page="robot:ranking" role="tabpanel">
         <div class="table-topbar">
           <div>
             <h2 id="tableTitle">数据列表</h2>
@@ -4844,7 +4947,6 @@ def render_html(title, payload):
           </div>
         </div>
         <section class="tactical-brief" id="tacticalBrief" aria-live="polite"></section>
-        <div class="chart-grid" id="chartGrid"></div>
         <div class="table-type-pages" id="tableTypePages" role="tablist" aria-label="按兵种切换数据页" hidden></div>
         <div class="table-wrap">
           <table>
@@ -4853,7 +4955,11 @@ def render_html(title, payload):
           </table>
           <div class="empty" id="emptyState" hidden>当前筛选条件下没有结果。</div>
         </div>
+        </div>
+        <div class="content-page" data-content-page="robot:analysis" role="tabpanel" hidden>
+        <div class="chart-grid" id="chartGrid"></div>
         <div class="chart-grid below-table-grid" id="belowTableGrid" aria-label="数据表下方的综合排名"></div>
+        </div>
       </section>
     </section>
     </div>
@@ -4877,12 +4983,20 @@ def render_html(title, payload):
         <input id="scheduleSearch" type="search" placeholder="搜索学校、战队或备注">
         <label class="schedule-check"><input id="scheduleIncludeUncertain" type="checkbox" checked>包含待核</label>
       </section>
+      <nav class="content-pager" data-content-pager="schedule" aria-label="超级对抗赛内容分页" role="tablist">
+        <button class="active" type="button" role="tab" aria-selected="true" data-content-target="matches">逐场赛程</button>
+        <button type="button" role="tab" aria-selected="false" data-content-target="recap">赛季与排名</button>
+        <button type="button" role="tab" aria-selected="false" data-content-target="tree">晋级树</button>
+      </nav>
       <section class="rule-document-bar" id="rmucRuleBar" aria-live="polite" hidden></section>
+      <div class="content-page" data-content-page="schedule:matches" role="tabpanel">
       <section class="schedule-panel">
         <div class="schedule-panel-head"><div><span class="eyebrow">MATCH SCHEDULE</span><h2>逐场赛程</h2></div><span class="schedule-count" id="scheduleCountLabel"></span></div>
         <div class="schedule-list" id="scheduleList"></div>
         <div class="schedule-pagination"><button id="schedulePrev" type="button">上一页</button><span class="schedule-count" id="schedulePageLabel"></span><button id="scheduleNext" type="button">下一页</button></div>
       </section>
+      </div>
+      <div class="content-page" data-content-page="schedule:recap" role="tabpanel" hidden>
       <section class="schedule-panel">
         <div class="schedule-panel-head"><div><span class="eyebrow">SEASON RECAP</span><h2>按赛季归纳</h2></div><span class="schedule-count">场次 · 参赛队伍 · 决赛阶段</span></div>
         <div class="season-recap" id="seasonRecap"></div>
@@ -4892,10 +5006,13 @@ def render_html(title, payload):
         <div class="season-recap" id="qualifierRecap"></div>
         <p class="schedule-source">数据来源：<a href="https://bbs.robomaster.com/article/1883355" target="_blank" rel="noopener">RoboMaster 社区赛果记录</a>　·　回放来源：<a href="https://space.bilibili.com/20554233" target="_blank" rel="noopener">RoboMaster机甲大师 B 站官方空间</a><br>只有通过年份、赛区、场次和双方战队核验的视频才显示“直接看回放”；未确认的场次不显示链接。“待核”数据可能存在比分、红蓝方或赛程顺序不明。</p>
       </section>
+      </div>
+      <div class="content-page" data-content-page="schedule:tree" role="tabpanel" hidden>
       <section class="schedule-panel">
         <div class="schedule-panel-head"><div><span class="eyebrow">TOURNAMENT TREE</span><h2 id="bracketTreeTitle">赛程晋级树</h2></div><span class="schedule-count" id="bracketTreeMeta"></span></div>
         <div class="bracket-tree" id="bracketTree"><div class="bracket-toolbar"><button id="bracketFullscreen" type="button">⛶ 全屏总览</button><button id="bracketScaleToggle" type="button">100% 细节</button></div><div id="bracketCanvas"></div></div>
       </section>
+      </div>
     </div>
 
     <div class="dataset-board schedule-board" id="leagueBoard" role="tabpanel" data-dataset-board="league" hidden>
@@ -4916,11 +5033,24 @@ def render_html(title, payload):
         <select id="rmulStage"><option value="">全部比赛阶段</option></select>
         <input id="rmulSearch" type="search" placeholder="搜索学校、战队或视频标题">
       </section>
+      <nav class="content-pager" data-content-pager="league" aria-label="高校联盟赛内容分页" role="tablist">
+        <button class="active" type="button" role="tab" aria-selected="true" data-content-target="matches">赛程与回放</button>
+        <button type="button" role="tab" aria-selected="false" data-content-target="recap">年份与名次</button>
+        <button type="button" role="tab" aria-selected="false" data-content-target="tree">淘汰赛树</button>
+      </nav>
       <section class="rule-document-bar" id="rmulRuleBar" aria-live="polite" hidden></section>
+      <div class="content-page" data-content-page="league:recap" role="tabpanel" hidden>
       <section class="schedule-panel">
         <div class="schedule-panel-head"><div><span class="eyebrow">YEAR COVERAGE</span><h2>年份覆盖</h2></div><span class="schedule-count">2021、2023—2026</span></div>
         <div class="season-recap" id="rmulCoverage"></div>
       </section>
+      <section class="schedule-panel">
+        <div class="schedule-panel-head"><div><span class="eyebrow">OFFICIAL RANKING</span><h2 id="rmulRankingTitle">当前站点名次</h2></div><span class="schedule-count" id="rmulRankingLabel"></span></div>
+        <div class="season-recap" id="rmulRanking"></div>
+        <p class="schedule-source">名次来源：<a href="https://www.robomaster.com/zh-CN/resource/announcement/competition" target="_blank" rel="noopener">RoboMaster官网赛事公告</a>。优先展示3V3对抗赛官方获奖名单。</p>
+      </section>
+      </div>
+      <div class="content-page" data-content-page="league:matches" role="tabpanel">
       <section class="schedule-panel">
         <div class="schedule-panel-head"><div><span class="eyebrow">OFFICIAL COLLECTIONS</span><h2>官方回放合集</h2></div><span class="schedule-count" id="rmulCollectionLabel"></span></div>
         <div class="season-recap" id="rmulCollections"></div>
@@ -4932,15 +5062,13 @@ def render_html(title, payload):
         <div id="rmulMissingBlock" hidden><div class="schedule-stage-heading"><b>官号回放编号断档</b><span id="rmulMissingLabel"></span></div><div class="season-recap" id="rmulMissingList"></div></div>
         <p class="schedule-source">数据与回放来源：<a href="https://space.bilibili.com/20554233/lists" target="_blank" rel="noopener">RoboMaster机甲大师 B站官方合集</a>。多数RMUL回放标题未提供比分，因此仅展示可核验的年份、站点、场次、双方与直达回放，不推测比分。</p>
       </section>
-      <section class="schedule-panel">
-        <div class="schedule-panel-head"><div><span class="eyebrow">OFFICIAL RANKING</span><h2 id="rmulRankingTitle">当前站点名次</h2></div><span class="schedule-count" id="rmulRankingLabel"></span></div>
-        <div class="season-recap" id="rmulRanking"></div>
-        <p class="schedule-source">名次来源：<a href="https://www.robomaster.com/zh-CN/resource/announcement/competition" target="_blank" rel="noopener">RoboMaster官网赛事公告</a>。优先展示3V3对抗赛官方获奖名单。</p>
-      </section>
+      </div>
+      <div class="content-page" data-content-page="league:tree" role="tabpanel" hidden>
       <section class="schedule-panel">
         <div class="schedule-panel-head"><div><span class="eyebrow">TOURNAMENT TREE</span><h2 id="rmulTreeTitle">高校联盟赛淘汰赛树</h2></div><span class="schedule-count" id="rmulTreeLabel"></span></div>
         <div class="bracket-tree" id="rmulBracketTree"><div id="rmulBracketCanvas"></div></div>
       </section>
+      </div>
     </div>
 
   </div>
@@ -5056,6 +5184,8 @@ def render_html(title, payload):
       eyeCareToggle: document.getElementById("eyeCareToggle"),
       backgroundToggle: document.getElementById("backgroundToggle"),
       densityToggle: document.getElementById("densityToggle"),
+      robotFilterPanel: document.getElementById("robotFilterPanel"),
+      robotFilterToggle: document.getElementById("robotFilterToggle"),
 
       compareZoneSelect: document.getElementById("compareZoneSelect"),
       compareSearchInput: document.getElementById("compareSearchInput"),
@@ -5067,6 +5197,23 @@ def render_html(title, payload):
     }};
 
     els.searchInput.value = state.keyword;
+
+    function setRobotFilterCollapsed(collapsed, persist = true) {{
+      if (!els.robotFilterPanel || !els.robotFilterToggle) return;
+      els.robotFilterPanel.classList.toggle("is-collapsed", collapsed);
+      els.robotFilterToggle.textContent = collapsed ? "展开筛选" : "收起筛选";
+      els.robotFilterToggle.setAttribute("aria-expanded", collapsed ? "false" : "true");
+      if (persist) localStorage.setItem("rm-dashboard-filter-panel", collapsed ? "collapsed" : "expanded");
+    }}
+
+    if (els.robotFilterToggle) {{
+      const savedFilterPanel = localStorage.getItem("rm-dashboard-filter-panel");
+      const collapseByDefault = window.matchMedia && window.matchMedia("(max-width: 900px)").matches;
+      setRobotFilterCollapsed(savedFilterPanel ? savedFilterPanel === "collapsed" : collapseByDefault, false);
+      els.robotFilterToggle.addEventListener("click", () => {{
+        setRobotFilterCollapsed(!els.robotFilterPanel.classList.contains("is-collapsed"));
+      }});
+    }}
 
     function formatValue(value) {{
       if (value === null || value === undefined || value === "") return "-";
@@ -7544,6 +7691,37 @@ def render_html(title, payload):
       `;
     }}
 
+    function renderPaginatedChartCards(cards) {{
+      const pageSize = 3;
+      let page = 1;
+      els.chartGrid.innerHTML = cards.join("");
+      const chartCards = [...els.chartGrid.children].filter((element) => element.classList.contains("chart-card"));
+      const pageCount = Math.max(1, Math.ceil(chartCards.length / pageSize));
+      if (pageCount <= 1) return;
+
+      const pagination = document.createElement("div");
+      pagination.className = "chart-pagination";
+      pagination.innerHTML = '<button type="button" data-chart-page="prev">上一页</button><span></span><button type="button" data-chart-page="next">下一页</button>';
+      els.chartGrid.appendChild(pagination);
+      const label = pagination.querySelector("span");
+      const previous = pagination.querySelector('[data-chart-page="prev"]');
+      const next = pagination.querySelector('[data-chart-page="next"]');
+
+      function showPage(targetPage, scroll = false) {{
+        page = Math.min(pageCount, Math.max(1, targetPage));
+        chartCards.forEach((card, index) => {{
+          card.hidden = Math.floor(index / pageSize) + 1 !== page;
+        }});
+        label.textContent = `分析第 ${{page}} / ${{pageCount}} 页`;
+        previous.disabled = page === 1;
+        next.disabled = page === pageCount;
+        if (scroll) focusContentPager("robot");
+      }}
+      previous.addEventListener("click", () => showPage(page - 1, true));
+      next.addEventListener("click", () => showPage(page + 1, true));
+      showPage(1);
+    }}
+
     function renderCharts(rows) {{
       const singleTeam = getSingleTeamCandidate(rows);
       if (singleTeam) {{
@@ -7565,7 +7743,7 @@ def render_html(title, payload):
         if (sampleCard) cards.push(sampleCard);
         const roleCard = renderRoleCoverageCard(rows);
         if (roleCard) cards.push(roleCard);
-        els.chartGrid.innerHTML = cards.join("");
+        renderPaginatedChartCards(cards);
         runInsightTypewriter();
         return;
       }}
@@ -7603,7 +7781,7 @@ def render_html(title, payload):
 
       if (!chartRows.length) {{
         insightTypewriterRun += 1;
-        els.chartGrid.innerHTML = cards.join("");
+        renderPaginatedChartCards(cards);
         return;
       }}
 
@@ -7643,7 +7821,7 @@ def render_html(title, payload):
         </article>
       `);
       insightTypewriterRun += 1;
-      els.chartGrid.innerHTML = cards.join("");
+      renderPaginatedChartCards(cards);
     }}
 
     function renderBaseCell(row, column) {{
@@ -8004,9 +8182,9 @@ def render_html(title, payload):
     const rmulData = payload.rmulData || {{ matches: [], collections: [], coverage: [] }};
     const ruleDocuments = payload.ruleDocuments || {{ rmuc: {{}}, rmul: {{}} }};
     let schedulePage = 1;
-    const schedulePageSize = 30;
+    const schedulePageSize = 12;
     let rmulPage = 1;
-    const rmulPageSize = 30;
+    const rmulPageSize = 12;
 
     function scheduleEscape(value) {{
       return String(value ?? "").replace(/[&<>"']/g, (char) => ({{
@@ -8668,6 +8846,49 @@ def render_html(title, payload):
     }}
 
     const prefersReducedMotion = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+    function activateContentPage(pager, target, persist = true) {{
+      const key = pager.dataset.contentPager;
+      const buttons = [...pager.querySelectorAll("[data-content-target]")];
+      const validTarget = buttons.some((button) => button.dataset.contentTarget === target)
+        ? target
+        : buttons[0]?.dataset.contentTarget;
+      if (!validTarget) return;
+      buttons.forEach((button) => {{
+        const selected = button.dataset.contentTarget === validTarget;
+        button.classList.toggle("active", selected);
+        button.setAttribute("aria-selected", selected ? "true" : "false");
+      }});
+      document.querySelectorAll(`[data-content-page^="${{key}}:"]`).forEach((page) => {{
+        const selected = page.dataset.contentPage === `${{key}}:${{validTarget}}`;
+        page.hidden = !selected;
+        page.setAttribute("aria-hidden", selected ? "false" : "true");
+      }});
+      if (persist) localStorage.setItem(`rm-dashboard-content-page-${{key}}`, validTarget);
+    }}
+
+    function focusContentPager(key) {{
+      const pager = document.querySelector(`[data-content-pager="${{key}}"]`);
+      if (!pager) return;
+      requestAnimationFrame(() => pager.scrollIntoView({{
+        block: "start",
+        behavior: prefersReducedMotion ? "auto" : "smooth",
+      }}));
+    }}
+
+    document.querySelectorAll("[data-content-pager]").forEach((pager) => {{
+      const key = pager.dataset.contentPager;
+      const savedTarget = localStorage.getItem(`rm-dashboard-content-page-${{key}}`);
+      const defaultTarget = pager.querySelector("[data-content-target].active")?.dataset.contentTarget;
+      activateContentPage(pager, savedTarget || defaultTarget, false);
+      pager.addEventListener("click", (event) => {{
+        const button = event.target.closest("[data-content-target]");
+        if (!button) return;
+        activateContentPage(pager, button.dataset.contentTarget);
+        focusContentPager(key);
+      }});
+    }});
+
     const boardScrollPositions = {{}};
     let activeDataset = document.querySelector("[data-dataset-tab].active")?.dataset.datasetTab || "robot";
 
@@ -8733,8 +8954,8 @@ def render_html(title, payload):
       document.getElementById(id).addEventListener("change", () => {{ schedulePage = 1; renderSchedule(); }})
     );
     document.getElementById("scheduleSearch").addEventListener("input", () => {{ schedulePage = 1; renderSchedule(); }});
-    document.getElementById("schedulePrev").addEventListener("click", () => {{ schedulePage -= 1; renderSchedule(); }});
-    document.getElementById("scheduleNext").addEventListener("click", () => {{ schedulePage += 1; renderSchedule(); }});
+    document.getElementById("schedulePrev").addEventListener("click", () => {{ schedulePage -= 1; renderSchedule(); focusContentPager("schedule"); }});
+    document.getElementById("scheduleNext").addEventListener("click", () => {{ schedulePage += 1; renderSchedule(); focusContentPager("schedule"); }});
     document.getElementById("rmulSeason").addEventListener("change", () => {{ rmulPage=1;refreshRmulOptions();renderRmul(); }});
     document.getElementById("rmulZone").addEventListener("change", () => {{
       rmulPage=1;const season=document.getElementById("rmulSeason").value,zone=document.getElementById("rmulZone").value;
@@ -8742,8 +8963,8 @@ def render_html(title, payload):
     }});
     document.getElementById("rmulStage").addEventListener("change",()=>{{rmulPage=1;renderRmul();}});
     document.getElementById("rmulSearch").addEventListener("input",()=>{{rmulPage=1;renderRmul();}});
-    document.getElementById("rmulPrev").addEventListener("click",()=>{{rmulPage-=1;renderRmul();}});
-    document.getElementById("rmulNext").addEventListener("click",()=>{{rmulPage+=1;renderRmul();}});
+    document.getElementById("rmulPrev").addEventListener("click",()=>{{rmulPage-=1;renderRmul();focusContentPager("league");}});
+    document.getElementById("rmulNext").addEventListener("click",()=>{{rmulPage+=1;renderRmul();focusContentPager("league");}});
     document.getElementById("rmulBracketTree").addEventListener("dblclick",(event)=>{{
       const node=event.target.closest("[data-rmul-replay]");if(node)window.open(node.dataset.rmulReplay,"_blank","noopener");
     }});
