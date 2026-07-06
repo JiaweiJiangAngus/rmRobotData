@@ -5170,6 +5170,19 @@ def render_html(title, payload):
 
   <script>
     const payload = {payload_json};
+    function readStoredState(key) {{
+      try {{
+        const value = JSON.parse(localStorage.getItem(key) || "null");
+        return value && typeof value === "object" ? value : {{}};
+      }} catch (error) {{
+        return {{}};
+      }}
+    }}
+
+    function writeStoredState(key, value) {{
+      try {{ localStorage.setItem(key, JSON.stringify(value)); }} catch (error) {{}}
+    }}
+
     const baseColumns = ["赛区", "学校", "战队", "兵种"];
     const metricPriority = [
       "自瞄命中综合",
@@ -5226,16 +5239,21 @@ def render_html(title, payload):
       "#a78bfa", "#f472b6", "#60a5fa", "#f97316"
     ];
 
+    const storedRobotFilters = readStoredState("rm-dashboard-robot-filters");
+    const storedLimit = Number(storedRobotFilters.limit);
+    const storedDirection = storedRobotFilters.direction === "asc" ? "asc" : "desc";
     let state = {{
-      selectedZones: payload.initialZone && payload.initialZone !== "全部" ? [payload.initialZone] : [],
-      selectedType: payload.initialType || "全部",
-      metric: payload.defaultMetric || "",
-      direction: "desc",
-      keyword: payload.initialKeyword || "",
-      limit: 50,
-      activeSortColumn: payload.defaultMetric || "",
-      activeSortDirection: "desc",
-      tableTypePage: "",
+      selectedZones: Array.isArray(storedRobotFilters.selectedZones)
+        ? storedRobotFilters.selectedZones
+        : (payload.initialZone && payload.initialZone !== "全部" ? [payload.initialZone] : []),
+      selectedType: typeof storedRobotFilters.selectedType === "string" ? storedRobotFilters.selectedType : (payload.initialType || "全部"),
+      metric: typeof storedRobotFilters.metric === "string" ? storedRobotFilters.metric : (payload.defaultMetric || ""),
+      direction: storedDirection,
+      keyword: typeof storedRobotFilters.keyword === "string" ? storedRobotFilters.keyword : (payload.initialKeyword || ""),
+      limit: [20, 50, 100, 9999].includes(storedLimit) ? storedLimit : 50,
+      activeSortColumn: typeof storedRobotFilters.activeSortColumn === "string" ? storedRobotFilters.activeSortColumn : (payload.defaultMetric || ""),
+      activeSortDirection: storedRobotFilters.activeSortDirection === "asc" ? "asc" : "desc",
+      tableTypePage: typeof storedRobotFilters.tableTypePage === "string" ? storedRobotFilters.tableTypePage : "",
 
       compareSelections: [],
       compareZone: payload.initialZone && payload.initialZone !== "全部" ? payload.initialZone : "",
@@ -5283,6 +5301,8 @@ def render_html(title, payload):
     }};
 
     els.searchInput.value = state.keyword;
+    els.sortDirection.value = state.direction;
+    els.rowLimit.value = String(state.limit);
 
     function setRobotFilterCollapsed(collapsed, persist = true) {{
       if (!els.robotFilterPanel || !els.robotFilterToggle) return;
@@ -8046,6 +8066,17 @@ def render_html(title, payload):
       renderCharts(sortedRows);
       renderTable(rows, tableVisibleColumns);
       renderBelowTableCards();
+      writeStoredState("rm-dashboard-robot-filters", {{
+        selectedZones: getSelectedZones(),
+        selectedType: state.selectedType,
+        metric: state.metric,
+        direction: state.direction,
+        keyword: state.keyword,
+        limit: state.limit,
+        activeSortColumn: state.activeSortColumn,
+        activeSortDirection: state.activeSortDirection,
+        tableTypePage: state.tableTypePage,
+      }});
     }}
 
 
@@ -8271,6 +8302,8 @@ def render_html(title, payload):
     const scheduleData = payload.scheduleData || {{ matches: [], qualifiers: [] }};
     const rmulData = payload.rmulData || {{ matches: [], collections: [], coverage: [] }};
     const ruleDocuments = payload.ruleDocuments || {{ rmuc: {{}}, rmul: {{}} }};
+    const storedScheduleFilters = readStoredState("rm-dashboard-schedule-filters");
+    const storedRmulFilters = readStoredState("rm-dashboard-rmul-filters");
     let schedulePage = 1;
     const schedulePageSize = 12;
     let rmulPage = 1;
@@ -8785,6 +8818,13 @@ def render_html(title, payload):
       document.getElementById("schedulePageLabel").textContent = `第 ${{schedulePage}} / ${{pages}} 页`;
       document.getElementById("schedulePrev").disabled = schedulePage <= 1;
       document.getElementById("scheduleNext").disabled = schedulePage >= pages;
+      writeStoredState("rm-dashboard-schedule-filters", {{
+        season: document.getElementById("scheduleSeason").value,
+        zone: document.getElementById("scheduleZone").value,
+        stage: document.getElementById("scheduleStage").value,
+        search: document.getElementById("scheduleSearch").value,
+        includeUncertain: document.getElementById("scheduleIncludeUncertain").checked,
+      }});
     }}
 
     function syncBracketStageLabels(tree) {{
@@ -8961,6 +9001,12 @@ def render_html(title, payload):
       document.getElementById("rmulMissingLabel").textContent=`${{missing.length}} 个场号在官方合集与官号搜索中均未找到`;
       document.getElementById("rmulMissingList").innerHTML=missing.map((item)=>`<article class="recap-card"><b>${{scheduleEscape(item.season)}} · ${{scheduleEscape(item.zone)}}</b><span>第 ${{scheduleEscape(item.order)}} 场 · 官方回放缺失/未发布</span></article>`).join('');
       renderRmulRankingAndTree();
+      writeStoredState("rm-dashboard-rmul-filters", {{
+        season: document.getElementById("rmulSeason").value,
+        zone: document.getElementById("rmulZone").value,
+        stage: document.getElementById("rmulStage").value,
+        search: document.getElementById("rmulSearch").value,
+      }});
     }}
 
     const prefersReducedMotion = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
@@ -9141,13 +9187,37 @@ def render_html(title, payload):
       const node=event.target.closest("[data-rmul-replay]");if(node)window.open(node.dataset.rmulReplay,"_blank","noopener");
     }});
     const scheduleSeasons = uniqueScheduleValues("season");
-    fillScheduleSelect("scheduleSeason", scheduleSeasons, "全部赛季", scheduleSeasons[0] || "");
-    refreshScheduleZoneOptions(true);
+    const restoredScheduleSeason = scheduleSeasons.includes(storedScheduleFilters.season)
+      ? storedScheduleFilters.season
+      : (scheduleSeasons[0] || "");
+    fillScheduleSelect("scheduleSeason", scheduleSeasons, "全部赛季", restoredScheduleSeason);
+    const scheduleZones = getScheduleValuesFor("zone", restoredScheduleSeason);
+    const restoredScheduleZone = scheduleZones.includes(storedScheduleFilters.zone)
+      ? storedScheduleFilters.zone
+      : getPreferredFinalZone(scheduleZones);
+    fillScheduleSelect("scheduleZone", scheduleZones, "全部赛区", restoredScheduleZone);
+    const scheduleStages = getScheduleValuesFor("stage", restoredScheduleSeason, restoredScheduleZone);
+    fillScheduleSelect(
+      "scheduleStage",
+      scheduleStages,
+      "全部比赛阶段",
+      scheduleStages.includes(storedScheduleFilters.stage) ? storedScheduleFilters.stage : ""
+    );
+    document.getElementById("scheduleSearch").value = typeof storedScheduleFilters.search === "string" ? storedScheduleFilters.search : "";
+    document.getElementById("scheduleIncludeUncertain").checked = typeof storedScheduleFilters.includeUncertain === "boolean"
+      ? storedScheduleFilters.includeUncertain
+      : true;
     renderScheduleSummary();
     renderSchedule();
     const rmulSeasons=rmulValues("season").sort((a,b)=>Number(b)-Number(a));
-    fillScheduleSelect("rmulSeason",rmulSeasons,"全部赛季",rmulSeasons[0]||"");
-    refreshRmulOptions();
+    const restoredRmulSeason=rmulSeasons.includes(storedRmulFilters.season)?storedRmulFilters.season:(rmulSeasons[0]||"");
+    fillScheduleSelect("rmulSeason",rmulSeasons,"全部赛季",restoredRmulSeason);
+    const rmulZones=rmulValues("zone",restoredRmulSeason);
+    const restoredRmulZone=rmulZones.includes(storedRmulFilters.zone)?storedRmulFilters.zone:(rmulZones[0]||"");
+    fillScheduleSelect("rmulZone",rmulZones,"全部站点",restoredRmulZone);
+    const rmulStages=rmulValues("stage",restoredRmulSeason,restoredRmulZone);
+    fillScheduleSelect("rmulStage",rmulStages,"全部比赛阶段",rmulStages.includes(storedRmulFilters.stage)?storedRmulFilters.stage:"");
+    document.getElementById("rmulSearch").value=typeof storedRmulFilters.search==="string"?storedRmulFilters.search:"";
     renderRmulSummary();
     renderRmul();
     const savedBoard = localStorage.getItem("rm-dashboard-board");
