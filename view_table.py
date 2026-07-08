@@ -4409,7 +4409,79 @@ def render_html(title, payload):
     }}
     .live-stage.live-theater .live-video-wrap,
     .live-stage:fullscreen .live-video-wrap {{ height: min(70dvh, 56.25vw); aspect-ratio: auto; }}
-    .live-stage:fullscreen {{ width: 100%; height: 100%; max-width: none; overflow-y: auto; background: #05090d; }}
+    .live-stage:fullscreen,
+    .live-stage.live-theater {{
+      display: block;
+      width: 100vw;
+      height: 100dvh;
+      overflow: hidden;
+      background: #000;
+    }}
+    .live-stage:fullscreen > :not(.live-video-wrap),
+    .live-stage.live-theater > :not(.live-video-wrap) {{ display: none !important; }}
+    .live-stage:fullscreen .live-video-wrap,
+    .live-stage.live-theater .live-video-wrap {{
+      width: 100%;
+      height: 100%;
+      aspect-ratio: auto;
+      border: 0;
+      background: #000;
+    }}
+    .live-stage:fullscreen .live-video,
+    .live-stage.live-theater .live-video {{ object-fit: contain; }}
+    .live-stage:fullscreen .live-player-chrome,
+    .live-stage.live-theater .live-player-chrome {{
+      opacity: 0;
+      pointer-events: none;
+      transform: translateY(8px);
+      justify-content: flex-end;
+      padding-inline: max(12px, env(safe-area-inset-left)) max(12px, env(safe-area-inset-right));
+      padding-bottom: max(9px, env(safe-area-inset-bottom));
+    }}
+    .live-stage:fullscreen .live-video-wrap.controls-visible .live-player-chrome,
+    .live-stage:fullscreen .live-video-wrap:focus-within .live-player-chrome,
+    .live-stage.live-theater .live-video-wrap.controls-visible .live-player-chrome,
+    .live-stage.live-theater .live-video-wrap:focus-within .live-player-chrome {{
+      opacity: 1;
+      pointer-events: auto;
+      transform: none;
+    }}
+    .live-stage:fullscreen .live-player-left,
+    .live-stage:fullscreen #liveChatToggle,
+    .live-stage:fullscreen #liveExpandButton,
+    .live-stage:fullscreen #liveTheaterButton,
+    .live-stage.live-theater .live-player-left,
+    .live-stage.live-theater #liveChatToggle,
+    .live-stage.live-theater #liveExpandButton,
+    .live-stage.live-theater #liveFullscreenButton {{ display: none !important; }}
+    .live-stage:fullscreen .live-player-right,
+    .live-stage.live-theater .live-player-right {{ margin-left: auto; gap: 8px; }}
+    .live-stage:fullscreen .live-volume-control,
+    .live-stage.live-theater .live-volume-control {{ display: flex; align-items: center; }}
+    .live-stage:fullscreen .live-volume-popover,
+    .live-stage.live-theater .live-volume-popover {{
+      position: static;
+      width: 104px;
+      height: 34px;
+      padding: 0;
+      transform: none;
+      border: 0;
+      background: transparent;
+      opacity: 1;
+      visibility: visible;
+    }}
+    .live-stage:fullscreen .live-volume,
+    .live-stage.live-theater .live-volume {{ flex-direction: row; height: 34px; }}
+    .live-stage:fullscreen .live-volume input,
+    .live-stage.live-theater .live-volume input {{
+      width: 88px;
+      height: auto;
+      writing-mode: horizontal-tb;
+      direction: ltr;
+      appearance: auto;
+    }}
+    .live-stage:fullscreen .live-volume output,
+    .live-stage.live-theater .live-volume output {{ display: none; }}
     .live-meta {{
       display: flex;
       justify-content: space-between;
@@ -9469,6 +9541,7 @@ def render_html(title, payload):
     const LEANCLOUD_APP_ID = "UqaoAgYDPakCHxtDiMXVy2Sw-gzGzoHsz";
     const LEANCLOUD_APP_KEY = "xYO2wtjhri9dJR7Vor8kDFl4";
     const liveStage = document.querySelector(".live-stage");
+    const liveVideoWrap = document.querySelector(".live-video-wrap");
     const liveVideo = document.getElementById("liveVideo");
     const livePlayButton = document.getElementById("livePlayButton");
     const liveCenterPlay = document.getElementById("liveCenterPlay");
@@ -9514,6 +9587,7 @@ def render_html(title, payload):
     let liveChatRoomId = "";
     let liveDanmakuEnabled = true;
     let liveDanmakuLane = 0;
+    let liveControlsTimer = null;
 
     function syncLivePlaybackControls() {{
       const unavailable = !liveVideo.currentSrc && !liveHls;
@@ -9545,6 +9619,21 @@ def render_html(title, payload):
       liveStage.classList.toggle("live-theater", enabled);
       document.body.classList.toggle("live-theater-open", enabled);
       document.getElementById("liveTheaterButton").textContent = enabled ? "退出网页" : "网页";
+      if (enabled) revealLiveControls();
+      else {{
+        if (liveControlsTimer) clearTimeout(liveControlsTimer);
+        liveControlsTimer = null;
+        liveVideoWrap.classList.remove("controls-visible");
+      }}
+    }}
+
+    function revealLiveControls() {{
+      liveVideoWrap.classList.add("controls-visible");
+      if (liveControlsTimer) clearTimeout(liveControlsTimer);
+      liveControlsTimer = null;
+      if (getFullscreenElement() === liveStage || liveStage.classList.contains("live-theater")) {{
+        liveControlsTimer = setTimeout(() => liveVideoWrap.classList.remove("controls-visible"), 2600);
+      }}
     }}
 
     function setLiveRecorderCollapsed(collapsed) {{
@@ -10195,14 +10284,32 @@ def render_html(title, payload):
     document.getElementById("liveChatToggle").addEventListener("click", () => setLiveChatVisible(liveChatPanel.hidden));
     document.getElementById("liveChatClose").addEventListener("click", () => setLiveChatVisible(false));
     liveRecorderFloatToggle.addEventListener("click", () => setLiveRecorderCollapsed(!liveRecorder.classList.contains("recorder-collapsed")));
+    function getFullscreenElement() {{
+      return document.fullscreenElement || document.webkitFullscreenElement || null;
+    }}
+
+    async function exitLiveFullscreen() {{
+      if (document.exitFullscreen) await document.exitFullscreen();
+      else if (document.webkitExitFullscreen) document.webkitExitFullscreen();
+    }}
+
+    async function requestLiveFullscreen() {{
+      const mobileFullscreen = window.matchMedia?.("(pointer: coarse)").matches || window.innerWidth <= 900;
+      liveStage.classList.toggle("mobile-native-fullscreen", mobileFullscreen);
+      if (liveStage.requestFullscreen) await liveStage.requestFullscreen();
+      else if (liveStage.webkitRequestFullscreen) liveStage.webkitRequestFullscreen();
+      else throw new Error("Fullscreen API unavailable");
+      if (mobileFullscreen && screen.orientation?.lock) await screen.orientation.lock("landscape").catch(() => {{}});
+    }}
+
     document.getElementById("liveFullscreenButton").addEventListener("click", async () => {{
       try {{
-        if (document.fullscreenElement) await document.exitFullscreen();
-        else {{ setLiveTheaterMode(false); await liveStage.requestFullscreen(); }}
+        if (getFullscreenElement()) await exitLiveFullscreen();
+        else {{ setLiveTheaterMode(false); await requestLiveFullscreen(); }}
       }} catch (error) {{ liveStatus.textContent = "当前浏览器未允许全屏"; }}
     }});
     document.getElementById("liveTheaterButton").addEventListener("click", async () => {{
-      if (document.fullscreenElement) await document.exitFullscreen().catch(() => {{}});
+      if (getFullscreenElement()) await exitLiveFullscreen().catch(() => {{}});
       setLiveTheaterMode(!liveStage.classList.contains("live-theater"));
     }});
     document.getElementById("liveExpandButton").addEventListener("click", () => {{
@@ -10229,15 +10336,28 @@ def render_html(title, payload):
       syncLiveVolumeControls();
     }});
     liveVideo.addEventListener("volumechange", syncLiveVolumeControls);
+    liveVideoWrap.addEventListener("pointermove", revealLiveControls);
+    liveVideoWrap.addEventListener("pointerdown", revealLiveControls);
     livePlayButton.addEventListener("click", toggleLivePlayback);
     liveCenterPlay.addEventListener("click", toggleLivePlayback);
     liveVideo.addEventListener("click", toggleLivePlayback);
     liveVideo.addEventListener("play", syncLivePlaybackControls);
     liveVideo.addEventListener("pause", syncLivePlaybackControls);
-    document.addEventListener("fullscreenchange", () => {{
-      document.getElementById("liveFullscreenButton").textContent = document.fullscreenElement === liveStage ? "退出全屏" : "全屏";
-      if (!document.fullscreenElement && !liveStage.classList.contains("live-theater")) setLiveRecorderCollapsed(false);
-    }});
+    function syncLiveFullscreenState() {{
+      const active = getFullscreenElement() === liveStage;
+      document.getElementById("liveFullscreenButton").textContent = active ? "退出全屏" : "全屏";
+      if (active) revealLiveControls();
+      if (!active) {{
+        liveStage.classList.remove("mobile-native-fullscreen");
+        screen.orientation?.unlock?.();
+        if (liveControlsTimer) clearTimeout(liveControlsTimer);
+        liveControlsTimer = null;
+        liveVideoWrap.classList.remove("controls-visible");
+        if (!liveStage.classList.contains("live-theater")) setLiveRecorderCollapsed(false);
+      }}
+    }}
+    document.addEventListener("fullscreenchange", syncLiveFullscreenState);
+    document.addEventListener("webkitfullscreenchange", syncLiveFullscreenState);
     document.addEventListener("keydown", (event) => {{
       if (event.key === "Escape" && liveStage.classList.contains("live-theater")) setLiveTheaterMode(false);
     }});
