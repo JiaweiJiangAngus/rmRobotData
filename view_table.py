@@ -4211,6 +4211,308 @@ def render_html(title, payload):
     }}
     .dataset-board[hidden] {{ display: none !important; }}
     .schedule-board {{ display: grid; gap: 16px; width: 100%; min-width: 0; max-width: 100%; }}
+    .live-board {{ display: grid; gap: 16px; width: 100%; min-width: 0; }}
+    .live-stage {{
+      width: min(1050px, 100%);
+      min-width: 0;
+      max-width: 100%;
+      justify-self: center;
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) 320px;
+      grid-template-areas:
+        "match chat"
+        "video chat"
+        "toolbar chat"
+        "recorder chat"
+        "meta chat";
+      overflow: hidden;
+      border: 1px solid var(--glass-line);
+      background: #05090d;
+      box-shadow: var(--shadow);
+    }}
+    .live-stage.chat-hidden {{ grid-template-columns: minmax(0, 1fr); grid-template-areas: "match" "video" "toolbar" "recorder" "meta"; }}
+    .live-match-banner {{ grid-area: match; }}
+    .live-video-wrap {{ grid-area: video; }}
+    .live-toolbar {{ grid-area: toolbar; }}
+    .live-recorder {{ grid-area: recorder; }}
+    .live-meta {{ grid-area: meta; }}
+    .live-video-wrap {{ position: relative; aspect-ratio: 16 / 9; background: #020406; overflow: hidden; }}
+    .live-match-banner {{
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      min-height: 50px;
+      padding: 10px 14px;
+      border-bottom: 1px solid rgba(255,255,255,.12);
+      background: #0c141b;
+      color: #eef4f7;
+    }}
+    .live-match-banner b {{ min-width: 0; font-size: 15px; }}
+    .live-match-banner span {{ flex: 0 0 auto; color: #aebbc4; font-size: 12px; }}
+    .live-video {{ display: block; width: 100%; min-width: 0; height: 100%; object-fit: contain; background: #020406; cursor: pointer; }}
+    .live-placeholder {{
+      position: absolute;
+      inset: 0;
+      display: grid;
+      place-items: center;
+      padding: 24px;
+      color: #c8d2d9;
+      text-align: center;
+      background: #070d12;
+      z-index: 2;
+    }}
+    .live-placeholder[hidden] {{ display: none; }}
+    .live-danmaku-layer {{ position: absolute; inset: 8px 0 64px; z-index: 3; overflow: hidden; pointer-events: none; }}
+    .live-danmaku-item {{
+      position: absolute;
+      left: 100%;
+      width: max-content;
+      max-width: 75%;
+      color: #fff;
+      font-size: 15px;
+      font-weight: 750;
+      line-height: 1.5;
+      text-shadow: 0 1px 3px #000, 1px 0 2px #000, -1px 0 2px #000;
+      white-space: nowrap;
+      animation: live-danmaku-move var(--danmaku-duration, 10s) linear forwards;
+    }}
+    @keyframes live-danmaku-move {{ to {{ transform: translateX(calc(-100vw - 100%)); }} }}
+    .live-toolbar {{
+      min-width: 0;
+      display: grid;
+      grid-template-columns: minmax(150px, 1fr) auto auto;
+      gap: 8px;
+      align-items: center;
+      padding: 10px;
+      border-top: 1px solid rgba(255,255,255,.12);
+      background: #0c141b;
+    }}
+    .live-toolbar select,
+    .live-toolbar button {{
+      min-width: 0;
+      min-height: 42px;
+      border: 1px solid rgba(255,255,255,.16);
+      background: #131f29;
+      color: #eef4f7;
+      padding: 8px 11px;
+      font: inherit;
+    }}
+    .live-toolbar button {{ cursor: pointer; font-weight: 850; }}
+    .live-toolbar button:disabled,
+    .live-toolbar select:disabled {{ opacity: .45; cursor: default; }}
+    .live-center-play {{
+      position: absolute;
+      inset: 50% auto auto 50%;
+      z-index: 4;
+      width: 64px;
+      height: 64px;
+      transform: translate(-50%, -50%);
+      border: 1px solid rgba(255,255,255,.5);
+      border-radius: 50%;
+      background: rgba(7, 13, 18, .72);
+      color: #fff;
+      font: inherit;
+      font-size: 24px;
+      cursor: pointer;
+      backdrop-filter: blur(8px);
+    }}
+    .live-center-play:disabled {{ display: none; }}
+    .live-player-chrome {{
+      position: absolute;
+      inset: auto 0 0;
+      z-index: 5;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      min-height: 62px;
+      padding: 18px 14px 9px;
+      color: #fff;
+      background: linear-gradient(transparent, rgba(2, 4, 6, .92));
+      opacity: 0;
+      transform: translateY(8px);
+      transition: opacity .18s ease, transform .18s ease;
+    }}
+    .live-player-chrome::before {{
+      content: "";
+      position: absolute;
+      inset: 8px 14px auto;
+      height: 3px;
+      background: var(--hud-cyan);
+      box-shadow: 0 0 8px color-mix(in srgb, var(--hud-cyan) 55%, transparent);
+    }}
+    .live-video-wrap:hover .live-player-chrome,
+    .live-video-wrap:focus-within .live-player-chrome,
+    .live-video-wrap.controls-visible .live-player-chrome {{ opacity: 1; transform: translateY(0); }}
+    .live-player-left,
+    .live-player-right {{ display: flex; align-items: center; gap: 8px; min-width: 0; }}
+    .live-player-chrome button {{
+      min-width: 0;
+      min-height: 36px;
+      padding: 6px 8px;
+      border: 0;
+      background: transparent;
+      color: #eef4f7;
+      font: inherit;
+      font-weight: 850;
+      cursor: pointer;
+    }}
+    .live-player-chrome button:hover {{ color: #fff; background: rgba(255,255,255,.12); }}
+    .live-player-chrome button:disabled {{ opacity: .45; cursor: default; background: transparent; }}
+    .live-player-chrome select {{
+      min-height: 34px;
+      max-width: 92px;
+      border: 0;
+      background: transparent;
+      color: #eef4f7;
+      font: inherit;
+      font-size: 12px;
+      font-weight: 850;
+      cursor: pointer;
+    }}
+    .live-player-chrome select option {{ background: #131f29; color: #eef4f7; }}
+    .live-player-chrome select:disabled {{ opacity: .45; }}
+    .live-live-badge {{ padding: 3px 7px; border-radius: 3px; background: #d94747; color: #fff; font-size: 11px; font-weight: 900; }}
+    .live-volume-control {{ position: relative; }}
+    .live-volume-popover {{
+      position: absolute;
+      left: 50%;
+      bottom: 38px;
+      z-index: 8;
+      width: 48px;
+      height: 148px;
+      padding: 10px 7px;
+      transform: translate(-50%, 8px);
+      border: 1px solid rgba(255,255,255,.14);
+      background: rgba(9, 16, 23, .96);
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity .15s ease, transform .15s ease;
+    }}
+    .live-volume-control:hover .live-volume-popover,
+    .live-volume-control:focus-within .live-volume-popover,
+    .live-volume-control.volume-open .live-volume-popover {{ opacity: 1; visibility: visible; transform: translate(-50%, 0); }}
+    .live-volume {{ display: flex; height: 100%; align-items: center; justify-content: center; gap: 7px; color: #e1e7ea; font-size: 11px; }}
+    .live-volume input {{ width: 20px; height: 100px; writing-mode: vertical-lr; direction: rtl; appearance: slider-vertical; accent-color: var(--hud-cyan); }}
+    .live-volume output {{ position: absolute; top: 5px; left: 0; width: 100%; text-align: center; }}
+    .live-stage.live-expanded {{ width: 100%; }}
+    body.live-theater-open {{ overflow: hidden; }}
+    .live-stage.live-theater {{
+      position: fixed;
+      inset: 0;
+      z-index: 400;
+      width: 100%;
+      max-width: none;
+      height: 100dvh;
+      overflow-y: auto;
+    }}
+    .live-stage.live-theater .live-video-wrap,
+    .live-stage:fullscreen .live-video-wrap {{ height: min(70dvh, 56.25vw); aspect-ratio: auto; }}
+    .live-stage:fullscreen {{ width: 100%; height: 100%; max-width: none; overflow-y: auto; background: #05090d; }}
+    .live-meta {{
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 10px 12px;
+      color: #aebbc4;
+      font-size: 12px;
+      background: #091017;
+    }}
+    .live-meta strong {{ color: #f1f5f7; }}
+    .live-chat-panel {{
+      grid-area: chat;
+      display: grid;
+      grid-template-rows: auto minmax(0, 1fr);
+      min-width: 0;
+      min-height: 0;
+      border-left: 1px solid rgba(255,255,255,.12);
+      background: #0b1218;
+      color: #eef4f7;
+    }}
+    .live-chat-panel[hidden] {{ display: none; }}
+    .live-chat-head {{ display: flex; align-items: center; justify-content: space-between; gap: 10px; padding: 10px 12px; border-bottom: 1px solid rgba(255,255,255,.1); }}
+    .live-chat-title {{ display: flex; align-items: baseline; gap: 9px; min-width: 0; }}
+    .live-chat-state {{ color: #95a5af; font-size: 11px; }}
+    .live-chat-close {{ min-height: 32px; padding: 5px 9px; border: 1px solid rgba(255,255,255,.14); background: #131f29; color: #eef4f7; font: inherit; cursor: pointer; }}
+    .live-chat-list {{ overflow-y: auto; overscroll-behavior: contain; padding: 6px 12px 10px; }}
+    .live-chat-message {{ display: grid; grid-template-columns: minmax(72px, auto) 1fr; gap: 9px; padding: 7px 0; border-bottom: 1px solid rgba(255,255,255,.06); font-size: 12px; line-height: 1.5; }}
+    .live-chat-message b {{ max-width: 160px; overflow: hidden; color: #55c2df; text-overflow: ellipsis; white-space: nowrap; }}
+    .live-chat-message span {{ min-width: 0; overflow-wrap: anywhere; color: #d9e1e5; }}
+    .live-chat-empty {{ padding: 28px 12px; color: #95a5af; text-align: center; }}
+    .live-recorder {{
+      display: grid;
+      gap: 10px;
+      padding: 12px;
+      border-top: 1px solid rgba(255,255,255,.12);
+      background: #0b1218;
+      color: #eef4f7;
+    }}
+    .live-recorder-head {{ display: flex; align-items: center; justify-content: space-between; gap: 12px; }}
+    .live-recorder-head-main {{ display: flex; align-items: center; gap: 10px; min-width: 0; }}
+    .live-recorder-float-toggle {{
+      display: none;
+      min-height: 32px;
+      padding: 5px 9px;
+      border: 1px solid rgba(255,255,255,.16);
+      background: #131f29;
+      color: #eef4f7;
+      font: inherit;
+      font-size: 12px;
+      cursor: pointer;
+    }}
+    .live-stage.live-theater .live-recorder,
+    .live-stage:fullscreen .live-recorder {{
+      position: fixed;
+      inset: 66px 16px auto auto;
+      z-index: 12;
+      width: min(380px, calc(100vw - 32px));
+      max-height: min(62dvh, 620px);
+      overflow: auto;
+      border: 1px solid rgba(255,255,255,.18);
+      box-shadow: 0 18px 55px rgba(0,0,0,.48);
+      background: rgba(9, 16, 23, .96);
+      backdrop-filter: blur(14px);
+    }}
+    .live-stage.live-theater:not(.chat-hidden) .live-recorder,
+    .live-stage:fullscreen:not(.chat-hidden) .live-recorder {{ right: 336px; }}
+    .live-stage.live-theater .live-recorder-float-toggle,
+    .live-stage:fullscreen .live-recorder-float-toggle {{ display: inline-flex; align-items: center; }}
+    .live-stage.live-theater .live-record-controls,
+    .live-stage:fullscreen .live-record-controls {{ grid-template-columns: 1fr 1fr; }}
+    .live-stage.live-theater .live-record-views,
+    .live-stage:fullscreen .live-record-views {{ grid-template-columns: 1fr; }}
+    .live-recorder.recorder-collapsed > :not(.live-recorder-head) {{ display: none; }}
+    .live-recorder-status {{ color: #aebbc4; font-size: 12px; }}
+    .live-recorder-status.recording {{ color: #ff7b72; font-weight: 850; }}
+    .live-record-controls {{ display: grid; grid-template-columns: minmax(120px, 180px) minmax(110px, 160px) auto auto auto; gap: 8px; }}
+    .live-record-controls select,
+    .live-record-controls button {{
+      min-width: 0;
+      min-height: 40px;
+      padding: 7px 10px;
+      border: 1px solid rgba(255,255,255,.16);
+      background: #131f29;
+      color: #eef4f7;
+      font: inherit;
+    }}
+    .live-record-controls button {{ cursor: pointer; font-weight: 850; }}
+    .live-record-controls button:disabled,
+    .live-record-controls select:disabled {{ opacity: .45; cursor: default; }}
+    .live-record-views {{ display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 6px; }}
+    .live-record-view {{
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      min-width: 0;
+      padding: 8px 10px;
+      border: 1px solid rgba(255,255,255,.1);
+      color: #c8d2d9;
+      font-size: 12px;
+    }}
+    .live-record-view input {{ width: 18px; height: 18px; margin: 0; accent-color: var(--accent); }}
+    .live-record-view span {{ min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }}
+    .live-recording-pool {{ position: fixed; width: 1px; height: 1px; overflow: hidden; pointer-events: none; opacity: .001; }}
     .schedule-hero, .schedule-controls, .schedule-panel, .schedule-summary {{
       border: 1px solid var(--glass-line);
       background: var(--panel);
@@ -4439,6 +4741,24 @@ def render_html(title, payload):
       .season-recap {{ grid-template-columns: 1fr; }}
       .rule-document-bar {{ grid-template-columns: 1fr; }}
       .rule-document-actions {{ justify-content: flex-start; }}
+      .live-toolbar {{ grid-template-columns: 1fr 1fr; }}
+      .live-toolbar > * {{ width: 100%; min-width: 0; overflow: hidden; }}
+      .live-player-chrome {{ min-height: 56px; padding: 14px 7px 5px; opacity: 1; transform: none; }}
+      .live-player-left, .live-player-right {{ gap: 2px; }}
+      .live-player-chrome button {{ min-height: 34px; padding: 5px 6px; font-size: 11px; }}
+      .live-player-chrome select {{ max-width: 58px; font-size: 11px; }}
+      .live-volume-control {{ display: flex; align-items: center; }}
+      .live-volume-popover {{ position: static; width: 76px; height: 34px; padding: 0; transform: none; border: 0; background: transparent; opacity: 1; visibility: visible; }}
+      .live-volume {{ flex-direction: row; height: 34px; }}
+      .live-volume input {{ width: 58px; height: auto; writing-mode: horizontal-tb; direction: ltr; appearance: auto; }}
+      .live-volume output {{ display: none; }}
+      .live-center-play {{ width: 54px; height: 54px; }}
+      .live-meta {{ align-items: flex-start; flex-direction: column; gap: 4px; }}
+      .live-match-banner {{ align-items: flex-start; flex-direction: column; gap: 3px; }}
+      .live-record-controls {{ grid-template-columns: 1fr 1fr; }}
+      .live-record-views {{ grid-template-columns: 1fr; }}
+      .live-stage.live-theater .live-recorder,
+      .live-stage:fullscreen .live-recorder {{ inset: 58px 8px auto auto; width: min(330px, calc(100vw - 16px)); max-height: 52dvh; }}
     }}
 
     /* ========== Comfort viewing layer ========== */
@@ -4619,9 +4939,9 @@ def render_html(title, payload):
     .schedule-match {{ min-width: 0; }}
     .rule-document-bar {{ padding: 11px 13px; }}
     .content-pager {{
-      position: sticky;
-      top: 62px;
-      z-index: 72;
+      position: relative;
+      top: auto;
+      z-index: 2;
       display: grid;
       grid-template-columns: repeat(var(--content-page-count, 3), minmax(0, 1fr));
       gap: 5px;
@@ -4670,6 +4990,14 @@ def render_html(title, payload):
       .schedule-controls input {{ grid-column: 1 / -1; }}
       .schedule-controls .schedule-check {{ grid-column: 2; grid-row: 2; }}
       .schedule-controls .schedule-reset {{ grid-column: 1 / -1; }}
+      .live-stage,
+      .live-stage.chat-hidden {{
+        grid-template-columns: minmax(0, 1fr);
+        grid-template-areas: "match" "video" "toolbar" "chat" "recorder" "meta";
+      }}
+      .live-chat-panel {{ grid-template-rows: auto minmax(0, 1fr); height: 240px; border-top: 1px solid rgba(255,255,255,.12); border-left: 0; }}
+      .live-stage.live-theater:not(.chat-hidden) .live-recorder,
+      .live-stage:fullscreen:not(.chat-hidden) .live-recorder {{ right: 16px; }}
     }}
 
     @media (max-width: 560px) {{
@@ -4679,15 +5007,16 @@ def render_html(title, payload):
         position: sticky;
         top: 0;
         z-index: 100;
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
         gap: 3px;
         margin: 0 0 6px;
         padding: 4px;
         overflow: hidden;
       }}
       .dataset-tab {{
-        flex: 1 1 0;
         min-width: 0;
-        min-height: 52px;
+        min-height: 48px;
         padding: 5px 3px;
         font-size: 11px;
         white-space: normal;
@@ -4700,7 +5029,7 @@ def render_html(title, payload):
       }}
       .dataset-tab-label {{ display: block; }}
       .content-pager {{
-        top: 64px;
+        top: auto;
         gap: 3px;
         padding: 4px;
       }}
@@ -4712,6 +5041,8 @@ def render_html(title, payload):
         white-space: normal;
       }}
       .bracket-stage-rail {{ width: 178px; }}
+      .bracket-stage-rail,
+      .topdown-round {{ transform: none; }}
       .topdown-node,
       .topdown-aux-heading {{ width: 198px; }}
       .topdown-round {{
@@ -4883,6 +5214,7 @@ def render_html(title, payload):
       <button class="dataset-tab active" type="button" role="tab" aria-selected="true" data-dataset-tab="robot"><span class="dataset-tab-index">01</span><span class="dataset-tab-label">机器人数据</span></button>
       <button class="dataset-tab" type="button" role="tab" aria-selected="false" data-dataset-tab="schedule"><span class="dataset-tab-index">02</span><span class="dataset-tab-label">超级对抗赛赛程赛果</span></button>
       <button class="dataset-tab" type="button" role="tab" aria-selected="false" data-dataset-tab="league"><span class="dataset-tab-index">03</span><span class="dataset-tab-label">高校联盟赛赛程赛果</span></button>
+      <button class="dataset-tab" type="button" role="tab" aria-selected="false" data-dataset-tab="live"><span class="dataset-tab-index">04</span><span class="dataset-tab-label">赛事直播</span></button>
     </nav>
     <div class="global-display-controls" aria-label="显示设置">
       <button id="backgroundToggle" class="theme-toggle background-toggle" type="button" aria-label="切换背景风格">▧ 简约背景</button>
@@ -5154,6 +5486,72 @@ def render_html(title, payload):
         <div class="bracket-tree" id="rmulBracketTree"><div id="rmulBracketCanvas"></div></div>
       </section>
       </div>
+    </div>
+
+    <div class="dataset-board live-board" id="liveBoard" role="tabpanel" data-dataset-board="live" hidden>
+      <section class="schedule-hero">
+        <span class="eyebrow">ROBOMASTER LIVE // OFFICIAL HLS</span>
+        <h1>赛事直播</h1>
+        <p id="liveEventName">正在检查 RoboMaster 官方直播状态...</p>
+      </section>
+      <section class="live-stage" aria-label="RoboMaster 赛事直播播放器">
+        <div class="live-match-banner">
+          <b id="liveMatchTitle">当前对阵待获取</b>
+          <span id="liveMatchStage">官方赛事信号</span>
+        </div>
+        <div class="live-video-wrap">
+          <video class="live-video" id="liveVideo" playsinline muted preload="none"></video>
+          <div class="live-placeholder" id="livePlaceholder" aria-live="polite">切换到直播板块后自动获取当前赛事。</div>
+          <div class="live-danmaku-layer" id="liveDanmakuLayer" aria-hidden="true"></div>
+          <button class="live-center-play" id="liveCenterPlay" type="button" aria-label="播放直播" disabled>▶</button>
+          <div class="live-player-chrome" aria-label="直播播放控制">
+            <div class="live-player-left">
+              <button id="livePlayButton" type="button" aria-label="播放" disabled>▶</button>
+              <span class="live-live-badge">LIVE</span>
+            </div>
+            <div class="live-player-right">
+              <div class="live-volume-control">
+                <button id="liveMuteButton" type="button" aria-pressed="true" title="音量">静音</button>
+                <div class="live-volume-popover"><label class="live-volume" for="liveVolume"><input id="liveVolume" type="range" min="0" max="100" value="0" aria-label="直播音量"><output id="liveVolumeValue">0%</output></label></div>
+              </div>
+              <select id="liveQualitySelect" aria-label="直播清晰度" disabled><option value="high">1080p</option></select>
+              <button id="liveDanmakuToggle" type="button" aria-pressed="true">弹幕</button>
+              <button id="liveChatToggle" type="button" aria-pressed="true">聊天</button>
+              <button id="liveExpandButton" type="button" title="放大播放器">宽屏</button>
+              <button id="liveTheaterButton" type="button" title="网页内全屏">网页</button>
+              <button id="liveFullscreenButton" type="button" title="浏览器全屏">全屏</button>
+            </div>
+          </div>
+        </div>
+        <div class="live-toolbar">
+          <select id="liveSourceSelect" aria-label="直播视角" disabled><option>主视角</option></select>
+          <button id="liveEdgeButton" type="button" disabled>追上直播</button>
+          <button id="liveRefreshButton" type="button">刷新直播</button>
+        </div>
+        <section class="live-chat-panel" id="liveChatPanel" aria-label="官方直播只读聊天室">
+          <div class="live-chat-head"><div class="live-chat-title"><strong>直播聊天室</strong><span class="live-chat-state" id="liveChatState">未连接</span></div><button class="live-chat-close" id="liveChatClose" type="button">收起</button></div>
+          <div class="live-chat-list" id="liveChatList" aria-live="polite"><div class="live-chat-empty">直播开始后显示官方聊天室消息</div></div>
+        </section>
+        <div class="live-recorder">
+          <div class="live-recorder-head">
+            <div class="live-recorder-head-main"><strong>直播录制</strong><span class="live-recorder-status" id="liveRecorderStatus">待机</span></div>
+            <button class="live-recorder-float-toggle" id="liveRecorderFloatToggle" type="button" aria-expanded="true">收起</button>
+          </div>
+          <div class="live-record-controls">
+            <select id="liveRecordQuality" aria-label="录制清晰度" disabled><option value="high">录制 1080p</option></select>
+            <select id="liveRecordFormat" aria-label="录制文件格式" disabled><option value="">检测格式...</option></select>
+            <button id="liveRecordAll" type="button" disabled>全选视角</button>
+            <button id="liveRecordStart" type="button" disabled>开始录制</button>
+            <button id="liveRecordStop" type="button" disabled>停止录制</button>
+          </div>
+          <div class="live-record-views" id="liveRecordViews" aria-label="选择录制视角"></div>
+          <div class="live-recording-pool" id="liveRecordingPool" aria-hidden="true"></div>
+        </div>
+        <div class="live-meta">
+          <strong id="liveStatus">未加载</strong>
+          <span id="livePlaybackStats">播放器仅在本板块打开时工作</span>
+        </div>
+      </section>
     </div>
 
   </div>
@@ -8728,7 +9126,7 @@ def render_html(title, payload):
       const mainRight=width-auxWidth-edgeGutter,mainAvailable=mainRight-labelGutter;
       const auxRows=auxiliaryKo.slice().sort((a,b)=>Number(b.order)-Number(a.order));
       const height=Math.max(top+visualBands.length*bandH+60,auxRows.length?top+auxRows.length*136+50:0),positions=new Map(),groupPositions=new Map();
-      visualBands.forEach((items,band)=>{{const total=items.length*cardW+Math.max(0,items.length-1)*gapX,start=labelGutter+Math.max(0,(mainAvailable-total)/2),y=top+band*bandH;items.forEach((item,i)=>{{const point={{x:start+i*(cardW+gapX),y}};(band<koRounds.length?positions:groupPositions).set(keyOf(item),point);}});}});
+      visualBands.forEach((items,band)=>{{const total=items.length*cardW+Math.max(0,items.length-1)*gapX,start=compactTree?labelGutter:labelGutter+Math.max(0,(mainAvailable-total)/2),y=top+band*bandH;items.forEach((item,i)=>{{const point={{x:start+i*(cardW+gapX),y}};(band<koRounds.length?positions:groupPositions).set(keyOf(item),point);}});}});
       auxRows.forEach((item,index)=>positions.set(keyOf(item),{{x:width-cardW-28,y:top+38+index*136}}));
       const paths=[];const up=(from,to,color="rgba(184,205,214,.58)")=>{{const x1=from.x+cardW/2,y1=from.y,x2=to.x+cardW/2,y2=to.y+cardH,m=(y1+y2)/2;paths.push(`<path d="M ${{x1}} ${{y1}} V ${{m}} H ${{x2}} V ${{y2}}" fill="none" stroke="${{color}}" stroke-width="1.5"/>`);}};
       ko.forEach((item)=>{{const target=positions.get(keyOf(item));if(item.matchId){{[item.redSourceMatch,item.blueSourceMatch].forEach((id)=>{{const source=positions.get(String(id));if(source)up(source,target);}});}}}});
@@ -8834,6 +9232,11 @@ def render_html(title, payload):
     function centerBracketViewport(tree) {{
       const graph = tree.querySelector(".bracket-graph");
       if (!graph || tree.clientWidth <= 0) return;
+      if (window.matchMedia?.("(max-width: 560px)").matches) {{
+        tree.scrollLeft = 0;
+        syncBracketStageLabels(tree);
+        return;
+      }}
       const maxScroll = Math.max(0, tree.scrollWidth - tree.clientWidth);
       const frozenRail = tree.querySelector(".bracket-stage-rail");
       const railOffset = frozenRail ? Math.min(frozenRail.offsetWidth / 2, tree.clientWidth * .12) : 0;
@@ -8965,7 +9368,7 @@ def render_html(title, payload):
       const maxCount=Math.max(...stages.map((items)=>items.length),1),widestBand=maxCount*cardW+Math.max(0,maxCount-1)*gap;
       const width=Math.max(960,labelGutter+widestBand+edgeGutter),height=top+stages.length*bandH+55,positions=new Map();
       const available=width-labelGutter-edgeGutter;
-      stages.forEach((items,band)=>{{const total=items.length*cardW+Math.max(0,items.length-1)*gap,start=labelGutter+Math.max(0,(available-total)/2),y=top+band*bandH;items.forEach((item,index)=>positions.set(item.id,{{x:start+index*(cardW+gap),y}}));}});
+      stages.forEach((items,band)=>{{const total=items.length*cardW+Math.max(0,items.length-1)*gap,start=compactTree?labelGutter:labelGutter+Math.max(0,(available-total)/2),y=top+band*bandH;items.forEach((item,index)=>positions.set(item.id,{{x:start+index*(cardW+gap),y}}));}});
       const norm=(value)=>String(value||'').toLowerCase().replace(/[^0-9a-z\u4e00-\u9fff]/g,'');
       const teams=(item)=>[norm(item.redSchool+item.redTeam),norm(item.blueSchool+item.blueTeam)];
       const paths=[];for(let band=1;band<stages.length;band++)stages[band].forEach((source)=>stages[band-1].forEach((target)=>{{
@@ -9058,6 +9461,799 @@ def render_html(title, payload):
       }});
     }});
 
+    const LIVE_GAME_INFO_URL = "https://rm-static.djicdn.com/live_json/live_game_info.json";
+    const LIVE_STATE_URL = "https://rm-static.djicdn.com/live_json/live_state.json";
+    const LIVE_MATCH_URL = "https://rm-static.djicdn.com/live_json/current_and_next_matches.json";
+    const HLS_LIBRARY_URL = "https://cdn.jsdelivr.net/npm/hls.js@1.6.16/dist/hls.min.js";
+    const LEANCLOUD_LIBRARY_URL = "https://cdn.jsdelivr.net/npm/leancloud-realtime@4.3.1/dist/realtime.browser.min.js";
+    const LEANCLOUD_APP_ID = "UqaoAgYDPakCHxtDiMXVy2Sw-gzGzoHsz";
+    const LEANCLOUD_APP_KEY = "xYO2wtjhri9dJR7Vor8kDFl4";
+    const liveStage = document.querySelector(".live-stage");
+    const liveVideo = document.getElementById("liveVideo");
+    const livePlayButton = document.getElementById("livePlayButton");
+    const liveCenterPlay = document.getElementById("liveCenterPlay");
+    const liveSourceSelect = document.getElementById("liveSourceSelect");
+    const liveQualitySelect = document.getElementById("liveQualitySelect");
+    const livePlaceholder = document.getElementById("livePlaceholder");
+    const liveStatus = document.getElementById("liveStatus");
+    const livePlaybackStats = document.getElementById("livePlaybackStats");
+    const liveEdgeButton = document.getElementById("liveEdgeButton");
+    const liveRecordQuality = document.getElementById("liveRecordQuality");
+    const liveRecordFormat = document.getElementById("liveRecordFormat");
+    const liveRecordStart = document.getElementById("liveRecordStart");
+    const liveRecordStop = document.getElementById("liveRecordStop");
+    const liveRecorderStatus = document.getElementById("liveRecorderStatus");
+    const liveRecorder = document.querySelector(".live-recorder");
+    const liveRecorderFloatToggle = document.getElementById("liveRecorderFloatToggle");
+    const liveVolumeControl = document.querySelector(".live-volume-control");
+    const liveChatPanel = document.getElementById("liveChatPanel");
+    const liveChatList = document.getElementById("liveChatList");
+    const liveChatState = document.getElementById("liveChatState");
+    const liveDanmakuLayer = document.getElementById("liveDanmakuLayer");
+    let liveZones = [];
+    let liveMatchMap = new Map();
+    let liveHls = null;
+    let liveStatsTimer = null;
+    let liveRequestId = 0;
+    let liveHlsLoader = null;
+    let liveRecoveryCount = 0;
+    let liveRecordingSessions = [];
+    let liveRecordingTimer = null;
+    let liveRecordingStartedAt = 0;
+    let liveRecordingMatchName = "";
+    let liveRecordingIntent = false;
+    let liveRecordingTransition = false;
+    let liveBroadcastMonitor = null;
+    let liveLastVolume = 0.7;
+    let liveChatLoader = null;
+    let liveChatRealtime = null;
+    let liveChatClient = null;
+    let liveChatConversation = null;
+    let liveChatMessageHandler = null;
+    let liveChatRequestId = 0;
+    let liveChatRoomId = "";
+    let liveDanmakuEnabled = true;
+    let liveDanmakuLane = 0;
+
+    function syncLivePlaybackControls() {{
+      const unavailable = !liveVideo.currentSrc && !liveHls;
+      livePlayButton.disabled = unavailable;
+      liveCenterPlay.disabled = unavailable;
+      livePlayButton.textContent = liveVideo.paused ? "▶" : "❚❚";
+      livePlayButton.setAttribute("aria-label", liveVideo.paused ? "播放" : "暂停");
+      liveCenterPlay.hidden = !liveVideo.paused || unavailable;
+      liveCenterPlay.textContent = "▶";
+    }}
+
+    function toggleLivePlayback() {{
+      if (livePlayButton.disabled) return;
+      if (liveVideo.paused) liveVideo.play().catch(() => {{ liveStatus.textContent = "点击播放以继续"; }});
+      else liveVideo.pause();
+    }}
+
+    function syncLiveVolumeControls() {{
+      const effectiveVolume = liveVideo.muted ? 0 : liveVideo.volume;
+      document.getElementById("liveVolume").value = String(Math.round(effectiveVolume * 100));
+      document.getElementById("liveVolumeValue").value = `${{Math.round(effectiveVolume * 100)}}%`;
+      const muteButton = document.getElementById("liveMuteButton");
+      muteButton.textContent = liveVideo.muted || !liveVideo.volume ? "静音" : "声音";
+      muteButton.setAttribute("aria-pressed", liveVideo.muted || !liveVideo.volume ? "true" : "false");
+      muteButton.title = liveVideo.muted || !liveVideo.volume ? "取消静音" : "静音";
+    }}
+
+    function setLiveTheaterMode(enabled) {{
+      liveStage.classList.toggle("live-theater", enabled);
+      document.body.classList.toggle("live-theater-open", enabled);
+      document.getElementById("liveTheaterButton").textContent = enabled ? "退出网页" : "网页";
+    }}
+
+    function setLiveRecorderCollapsed(collapsed) {{
+      liveRecorder.classList.toggle("recorder-collapsed", collapsed);
+      liveRecorderFloatToggle.textContent = collapsed ? "展开" : "收起";
+      liveRecorderFloatToggle.setAttribute("aria-expanded", collapsed ? "false" : "true");
+    }}
+
+    function resetLiveDisplayMode() {{
+      setLiveTheaterMode(false);
+      setLiveRecorderCollapsed(false);
+      liveStage.classList.remove("live-expanded");
+      document.getElementById("liveExpandButton").textContent = "宽屏";
+      if (document.fullscreenElement && liveStage.contains(document.fullscreenElement)) document.exitFullscreen().catch(() => {{}});
+    }}
+
+    function loadHlsLibrary() {{
+      if (window.Hls) return Promise.resolve(window.Hls);
+      if (liveHlsLoader) return liveHlsLoader;
+      liveHlsLoader = new Promise((resolve, reject) => {{
+        const script = document.createElement("script");
+        script.src = HLS_LIBRARY_URL;
+        script.async = true;
+        script.onload = () => window.Hls ? resolve(window.Hls) : reject(new Error("HLS.js 未正确加载"));
+        script.onerror = () => reject(new Error("播放器组件加载失败"));
+        document.head.appendChild(script);
+      }}).catch((error) => {{ liveHlsLoader = null; throw error; }});
+      return liveHlsLoader;
+    }}
+
+    function loadLiveChatLibrary() {{
+      if (window.AV?.Realtime) return Promise.resolve(window.AV);
+      if (liveChatLoader) return liveChatLoader;
+      liveChatLoader = new Promise((resolve, reject) => {{
+        const script = document.createElement("script");
+        script.src = LEANCLOUD_LIBRARY_URL;
+        script.async = true;
+        script.onload = () => window.AV?.Realtime ? resolve(window.AV) : reject(new Error("聊天室组件加载失败"));
+        script.onerror = () => reject(new Error("聊天室组件加载失败"));
+        document.head.appendChild(script);
+      }}).catch((error) => {{ liveChatLoader = null; throw error; }});
+      return liveChatLoader;
+    }}
+
+    function parseLiveChatMessage(message) {{
+      const content = message?.content || {{}};
+      const attrs = content._lcattrs || {{}};
+      const text = String(content._lctext || content.text || "").trim();
+      if (!text) return null;
+      return {{
+        id: String(message.id || `${{message.from || "chat"}}-${{message.timestamp || Date.now()}}`),
+        text,
+        name: String(attrs.nickname || attrs.schoolName || attrs.username || "匿名观众"),
+      }};
+    }}
+
+    function appendLiveChatMessage(item, showDanmaku = false) {{
+      if (!item || liveChatList.querySelector(`[data-chat-id="${{CSS.escape(item.id)}}"]`)) return;
+      liveChatList.querySelector(".live-chat-empty")?.remove();
+      const row = document.createElement("div");
+      row.className = "live-chat-message";
+      row.dataset.chatId = item.id;
+      const name = document.createElement("b");
+      name.textContent = item.name;
+      const text = document.createElement("span");
+      text.textContent = item.text;
+      row.append(name, text);
+      liveChatList.appendChild(row);
+      while (liveChatList.children.length > 100) liveChatList.firstElementChild?.remove();
+      liveChatList.scrollTop = liveChatList.scrollHeight;
+      if (showDanmaku) pushLiveDanmaku(item.text);
+    }}
+
+    function pushLiveDanmaku(text) {{
+      if (!liveDanmakuEnabled || activeDataset !== "live" || !text) return;
+      const bullet = document.createElement("div");
+      bullet.className = "live-danmaku-item";
+      bullet.textContent = text;
+      bullet.style.top = `${{8 + (liveDanmakuLane++ % 6) * 15}}%`;
+      bullet.style.setProperty("--danmaku-duration", `${{Math.min(16, 9 + String(text).length * 0.08)}}s`);
+      bullet.addEventListener("animationend", () => bullet.remove(), {{ once: true }});
+      liveDanmakuLayer.appendChild(bullet);
+    }}
+
+    function disconnectLiveChat(reset = false) {{
+      liveChatRequestId += 1;
+      try {{
+        if (liveChatConversation && liveChatMessageHandler && window.AV?.Event) liveChatConversation.off(window.AV.Event.MESSAGE, liveChatMessageHandler);
+      }} catch (error) {{}}
+      try {{ liveChatClient?.close?.(); }} catch (error) {{}}
+      liveChatRealtime = null;
+      liveChatClient = null;
+      liveChatConversation = null;
+      liveChatMessageHandler = null;
+      liveChatRoomId = "";
+      liveChatState.textContent = reset ? "未连接" : "已断开";
+      liveDanmakuLayer.replaceChildren();
+      if (reset) liveChatList.innerHTML = '<div class="live-chat-empty">直播开始后显示官方聊天室消息</div>';
+    }}
+
+    async function connectLiveChatForZone(zone) {{
+      const roomId = String(zone?.chatRoomId || "");
+      if (roomId && roomId === liveChatRoomId && liveChatClient) return;
+      disconnectLiveChat(false);
+      const requestId = liveChatRequestId;
+      liveChatList.innerHTML = '<div class="live-chat-empty">正在连接官方聊天室...</div>';
+      if (!roomId) {{
+        liveChatState.textContent = "暂未开放";
+        liveChatList.innerHTML = '<div class="live-chat-empty">当前赛区聊天室暂未开放</div>';
+        return;
+      }}
+      liveChatState.textContent = "连接中";
+      try {{
+        const AV = await loadLiveChatLibrary();
+        if (requestId !== liveChatRequestId || activeDataset !== "live") return;
+        const realtime = new AV.Realtime({{ appId: LEANCLOUD_APP_ID, appKey: LEANCLOUD_APP_KEY }});
+        const clientId = `rm-viewer-${{Date.now().toString(36)}}-${{Math.random().toString(36).slice(2, 8)}}`;
+        const client = await realtime.createIMClient(clientId);
+        const conversation = await client.getConversation(roomId);
+        if (!conversation) throw new Error("聊天室不存在或已关闭");
+        await conversation.join();
+        if (requestId !== liveChatRequestId || activeDataset !== "live") {{ client.close(); return; }}
+        liveChatRealtime = realtime;
+        liveChatClient = client;
+        liveChatConversation = conversation;
+        liveChatRoomId = roomId;
+        liveChatList.replaceChildren();
+        const history = await conversation.queryMessages({{ limit: 100 }});
+        history.map(parseLiveChatMessage).filter(Boolean).forEach((item) => appendLiveChatMessage(item, false));
+        if (!liveChatList.children.length) liveChatList.innerHTML = '<div class="live-chat-empty">聊天室暂无消息</div>';
+        liveChatMessageHandler = (message) => appendLiveChatMessage(parseLiveChatMessage(message), true);
+        conversation.on(AV.Event.MESSAGE, liveChatMessageHandler);
+        liveChatState.textContent = "实时连接";
+      }} catch (error) {{
+        if (requestId !== liveChatRequestId) return;
+        liveChatState.textContent = "连接失败";
+        liveChatList.innerHTML = `<div class="live-chat-empty">${{scheduleEscape(error.message || "无法连接官方聊天室")}}</div>`;
+      }}
+    }}
+
+    function setLiveChatVisible(visible) {{
+      liveChatPanel.hidden = !visible;
+      liveStage.classList.toggle("chat-hidden", !visible);
+      const button = document.getElementById("liveChatToggle");
+      button.setAttribute("aria-pressed", visible ? "true" : "false");
+      button.textContent = visible ? "聊天" : "开聊天";
+    }}
+
+    function setLiveMessage(message, status = message) {{
+      livePlaceholder.textContent = message;
+      livePlaceholder.hidden = false;
+      liveStatus.textContent = status;
+    }}
+
+    function getLiveViewByKey(key) {{
+      for (const zone of liveZones) {{
+        const view = getLiveViews(zone).find((item) => item.key === key);
+        if (view) return view;
+      }}
+      return null;
+    }}
+
+    function formatLiveSide(side, fallback) {{
+      const player = side?.player || side;
+      const team = player?.team || {{}};
+      const school = team.collegeName || player?.collegeName || "";
+      const name = team.name || player?.name || side?.name || "";
+      if (school && name && !name.includes(school)) return `${{school}} ${{name}}`;
+      return name || school || fallback;
+    }}
+
+    function updateLiveMatchTitle() {{
+      const zone = getSelectedLiveZone();
+      const match = zone ? liveMatchMap.get(String(zone.zoneId)) : null;
+      const title = document.getElementById("liveMatchTitle");
+      const stage = document.getElementById("liveMatchStage");
+      if (!match) {{
+        title.textContent = zone ? `${{zone.zoneName}} · 当前对阵待官方更新` : "当前对阵待获取";
+        stage.textContent = zone?.zoneName || "官方赛事信号";
+        return "";
+      }}
+      title.textContent = `${{formatLiveSide(match.redSide, "红方待定")}} VS ${{formatLiveSide(match.blueSide, "蓝方待定")}}`;
+      stage.textContent = [zone?.zoneName, match.matchType, match.orderNumber ? `第 ${{match.orderNumber}} 场` : ""].filter(Boolean).join(" · ");
+      return title.textContent;
+    }}
+
+    function populateLiveRecordingViews(views) {{
+      const container = document.getElementById("liveRecordViews");
+      container.innerHTML = views.map((view, index) =>
+        `<label class="live-record-view"><input type="checkbox" value="${{scheduleEscape(view.key)}}" ${{index === 0 ? "checked" : ""}}><span>${{scheduleEscape(view.name)}}</span></label>`
+      ).join("");
+      const qualitySources = views[0]?.sources || [];
+      liveRecordQuality.innerHTML = qualitySources.filter((source) => source.src).map((source) =>
+        `<option value="${{scheduleEscape(source.res || source.label)}}">录制 ${{scheduleEscape(source.label || source.res)}}</option>`
+      ).join("");
+      liveRecordQuality.value = qualitySources.some((source) => source.res === "high") ? "high" : (qualitySources[0]?.res || "");
+      liveRecordQuality.disabled = !qualitySources.length;
+      const recordingFormats = populateRecordingFormats();
+      document.getElementById("liveRecordAll").disabled = !views.length;
+      liveRecordStart.disabled = !views.length || !recordingFormats.some((format) => format.mimeType);
+    }}
+
+    function detectRecordingFormats() {{
+      if (!window.MediaRecorder?.isTypeSupported) return [];
+      const formats = [
+        {{ key: "mp4", label: "MP4 · H.264/AAC", extension: "mp4", candidates: [
+          "video/mp4;codecs=avc1.42E01E,mp4a.40.2",
+          "video/mp4;codecs=avc1,mp4a.40.2",
+          "video/mp4",
+        ] }},
+        {{ key: "webm", label: "WebM", extension: "webm", candidates: [
+          "video/webm;codecs=vp9,opus",
+          "video/webm;codecs=vp8,opus",
+          "video/webm",
+        ] }},
+      ];
+      return formats.map((format) => ({{
+        ...format,
+        mimeType: format.candidates.find((type) => MediaRecorder.isTypeSupported(type)) || "",
+      }}));
+    }}
+
+    function populateRecordingFormats() {{
+      const formats = detectRecordingFormats();
+      liveRecordFormat.innerHTML = formats.map((format) =>
+        `<option value="${{format.key}}" ${{format.mimeType ? "" : "disabled"}}>${{format.label}}${{format.mimeType ? "" : "（不支持）"}}</option>`
+      ).join("");
+      const preferred = formats.find((format) => format.key === "mp4" && format.mimeType) || formats.find((format) => format.mimeType);
+      liveRecordFormat.value = preferred?.key || "";
+      liveRecordFormat.disabled = !preferred;
+      return formats;
+    }}
+
+    function getSelectedRecordingFormat() {{
+      return detectRecordingFormats().find((format) => format.key === liveRecordFormat.value && format.mimeType) || null;
+    }}
+
+    function safeRecordingName(value) {{
+      return String(value || "RoboMaster直播").replace(/[\\/:*?"<>|]+/g, "_").replace(/\s+/g, " ").trim().slice(0, 90);
+    }}
+
+    function downloadLiveRecording(session) {{
+      if (!session.chunks.length) return;
+      const blob = new Blob(session.chunks, {{ type: session.mimeType }});
+      const url = URL.createObjectURL(blob);
+      const link = document.createElement("a");
+      link.href = url;
+      const viewSuffix = session.includeViewName ? `_${{safeRecordingName(session.view.name)}}` : "";
+      link.download = `${{safeRecordingName(session.matchName)}}${{viewSuffix}}.${{session.extension}}`;
+      document.body.appendChild(link);
+      link.click();
+      link.remove();
+      setTimeout(() => URL.revokeObjectURL(url), 60000);
+    }}
+
+    function waitForRecordingVideo(video, timeout = 12000) {{
+      if (video.readyState >= 2) return Promise.resolve();
+      return new Promise((resolve, reject) => {{
+        const timer = setTimeout(() => reject(new Error("等待直播画面超时")), timeout);
+        video.addEventListener("loadeddata", () => {{ clearTimeout(timer); resolve(); }}, {{ once: true }});
+        video.addEventListener("error", () => {{ clearTimeout(timer); reject(new Error("录制视角加载失败")); }}, {{ once: true }});
+      }});
+    }}
+
+    async function createLiveRecordingSession(view, quality, format, matchName, startedAt, includeViewName) {{
+      const source = view.sources.find((item) => (item.res || item.label) === quality) || view.sources[0];
+      if (!source?.src) throw new Error(`${{view.name}} 没有可用流`);
+      let video = liveVideo;
+      let hls = null;
+      const usesVisiblePlayer = view.key === liveSourceSelect.value &&
+        (liveQualitySelect.value === (source.res || source.label)) && liveVideo.readyState >= 2;
+      if (!usesVisiblePlayer) {{
+        video = document.createElement("video");
+        video.muted = true;
+        video.playsInline = true;
+        video.preload = "auto";
+        document.getElementById("liveRecordingPool").appendChild(video);
+        if (video.canPlayType("application/vnd.apple.mpegurl")) {{
+          video.src = source.src;
+        }} else {{
+          const Hls = await loadHlsLibrary();
+          if (!Hls.isSupported()) throw new Error("当前浏览器不支持多视角 HLS 录制");
+          hls = new Hls({{
+            enableWorker: true,
+            lowLatencyMode: true,
+            backBufferLength: 5,
+            maxBufferLength: 8,
+            liveSyncDurationCount: 2,
+            liveMaxLatencyDurationCount: 5,
+          }});
+          hls.loadSource(source.src);
+          hls.attachMedia(video);
+        }}
+        await video.play().catch(() => {{}});
+        await waitForRecordingVideo(video);
+      }}
+      const captureStream = video.captureStream || video.mozCaptureStream;
+      if (!captureStream) {{
+        if (hls) hls.destroy();
+        if (!usesVisiblePlayer) video.remove();
+        throw new Error("当前浏览器不支持视频流录制");
+      }}
+      const stream = captureStream.call(video);
+      if (!stream.getVideoTracks().length) throw new Error(`${{view.name}} 尚未产生可录制画面`);
+      const recorder = new MediaRecorder(stream, {{ mimeType: format.mimeType }});
+      let resolveStopped;
+      const stopped = new Promise((resolve) => {{ resolveStopped = resolve; }});
+      const session = {{ view, video, hls, stream, recorder, chunks: [], mimeType: format.mimeType, extension: format.extension, usesVisiblePlayer, matchName, startedAt, includeViewName, stopped }};
+      recorder.addEventListener("dataavailable", (event) => {{ if (event.data.size) session.chunks.push(event.data); }});
+      recorder.addEventListener("stop", () => {{
+        downloadLiveRecording(session);
+        stream.getTracks().forEach((track) => track.stop());
+        if (hls) hls.destroy();
+        if (!usesVisiblePlayer) {{ video.pause(); video.removeAttribute("src"); video.load(); video.remove(); }}
+        resolveStopped();
+      }}, {{ once: true }});
+      recorder.start(1000);
+      return session;
+    }}
+
+    async function startLiveRecording(automatic = false) {{
+      if (liveRecordingSessions.length || (liveRecordingTransition && !automatic)) return;
+      if (!automatic) liveRecordingIntent = true;
+      const selectedKeys = [...document.querySelectorAll("#liveRecordViews input:checked")].map((input) => input.value);
+      const views = selectedKeys.map(getLiveViewByKey).filter(Boolean);
+      if (!views.length) {{ liveRecorderStatus.textContent = "请至少选择一个视角"; return; }}
+      const recordingFormat = getSelectedRecordingFormat();
+      if (!recordingFormat) {{ liveRecorderStatus.textContent = "当前浏览器没有可用录制格式"; return; }}
+      liveRecordStart.disabled = true;
+      liveRecordQuality.disabled = true;
+      liveRecordFormat.disabled = true;
+      document.getElementById("liveRecordAll").disabled = true;
+      document.getElementById("liveRefreshButton").disabled = true;
+      document.querySelectorAll("#liveRecordViews input").forEach((input) => {{ input.disabled = true; }});
+      liveSourceSelect.disabled = true;
+      liveQualitySelect.disabled = true;
+      liveRecordingStartedAt = Date.now();
+      liveRecordingMatchName = updateLiveMatchTitle() || document.getElementById("liveMatchTitle").textContent || "RoboMaster直播";
+      liveRecorderStatus.textContent = "正在准备录制流...";
+      try {{
+        const results = await Promise.allSettled(views.map((view) => createLiveRecordingSession(view, liveRecordQuality.value, recordingFormat, liveRecordingMatchName, liveRecordingStartedAt, views.length > 1)));
+        liveRecordingSessions = results.filter((result) => result.status === "fulfilled").map((result) => result.value);
+        if (!liveRecordingSessions.length) throw results.find((result) => result.status === "rejected")?.reason || new Error("录制启动失败");
+        liveRecordStop.disabled = false;
+        liveRecorderStatus.classList.add("recording");
+        const refreshStatus = () => {{
+          const seconds = Math.floor((Date.now() - liveRecordingStartedAt) / 1000);
+          liveRecorderStatus.textContent = `录制中 · ${{liveRecordingSessions.length}} 路 · ${{String(Math.floor(seconds / 60)).padStart(2, "0")}}:${{String(seconds % 60).padStart(2, "0")}}`;
+        }};
+        refreshStatus();
+        liveRecordingTimer = setInterval(refreshStatus, 1000);
+      }} catch (error) {{
+        const message = error.message || "录制启动失败";
+        liveRecordingIntent = false;
+        stopLiveRecording(false);
+        liveRecorderStatus.textContent = message;
+      }}
+    }}
+
+    async function stopLiveRecording(leavingBoard = false, preserveIntent = false) {{
+      if (!preserveIntent) liveRecordingIntent = false;
+      if (liveRecordingTimer) clearInterval(liveRecordingTimer);
+      liveRecordingTimer = null;
+      const sessions = liveRecordingSessions.splice(0);
+      sessions.forEach((session) => {{ if (session.recorder.state !== "inactive") session.recorder.stop(); }});
+      await Promise.all(sessions.map((session) => session.stopped));
+      liveRecorderStatus.classList.remove("recording");
+      liveRecorderStatus.textContent = sessions.length ? "录制结束，正在保存文件" : (leavingBoard ? "已停止" : "待机");
+      liveRecordStop.disabled = true;
+      document.getElementById("liveRefreshButton").disabled = false;
+      document.querySelectorAll("#liveRecordViews input").forEach((input) => {{ input.disabled = false; }});
+      if (!leavingBoard && !preserveIntent && liveZones.length) {{
+        liveRecordStart.disabled = false;
+        liveRecordQuality.disabled = false;
+        liveRecordFormat.disabled = false;
+        document.getElementById("liveRecordAll").disabled = false;
+        liveSourceSelect.disabled = liveZones.flatMap(getLiveViews).length < 2;
+        liveQualitySelect.disabled = (getSelectedLiveView()?.sources || []).length < 2;
+      }}
+    }}
+
+    async function rotateLiveRecording(nextMatchName) {{
+      if (!liveRecordingIntent || liveRecordingTransition || !liveRecordingSessions.length || !nextMatchName || nextMatchName === liveRecordingMatchName) return;
+      liveRecordingTransition = true;
+      liveRecorderStatus.textContent = "对局已切换，正在保存并开始下一段...";
+      try {{
+        await stopLiveRecording(false, true);
+        if (liveRecordingIntent && activeDataset === "live" && liveZones.length) await startLiveRecording(true);
+      }} finally {{
+        liveRecordingTransition = false;
+      }}
+    }}
+
+    function destroyLivePlayer(resetInterface = false) {{
+      stopLiveRecording(true);
+      if (liveBroadcastMonitor) clearInterval(liveBroadcastMonitor);
+      liveBroadcastMonitor = null;
+      disconnectLiveChat(resetInterface);
+      resetLiveDisplayMode();
+      liveRequestId += 1;
+      if (liveStatsTimer) clearInterval(liveStatsTimer);
+      liveStatsTimer = null;
+      if (liveHls) liveHls.destroy();
+      liveHls = null;
+      liveRecoveryCount = 0;
+      liveVideo.pause();
+      liveVideo.removeAttribute("src");
+      liveVideo.load();
+      syncLivePlaybackControls();
+      if (resetInterface) {{
+        liveZones = [];
+        liveMatchMap.clear();
+        liveSourceSelect.disabled = true;
+        liveQualitySelect.disabled = true;
+        liveEdgeButton.disabled = true;
+        liveRecordQuality.disabled = true;
+        liveRecordFormat.disabled = true;
+        liveRecordStart.disabled = true;
+        liveRecordStop.disabled = true;
+        document.getElementById("liveRecordAll").disabled = true;
+        document.getElementById("liveRecordViews").innerHTML = "";
+        document.getElementById("liveMatchTitle").textContent = "当前对阵待获取";
+        document.getElementById("liveMatchStage").textContent = "官方赛事信号";
+        livePlaybackStats.textContent = "播放器仅在本板块打开时工作";
+        setLiveMessage("切换到直播板块后自动获取当前赛事。", "已停止");
+      }}
+    }}
+
+    function getSelectedLiveZone() {{
+      return liveZones.find((zone) => String(zone.zoneId) === liveSourceSelect.value.split(":", 1)[0]) || liveZones[0];
+    }}
+
+    function getLiveViews(zone) {{
+      if (!zone) return [];
+      return [
+        {{ key: `${{zone.zoneId}}:main`, name: `${{zone.zoneName}} · 主视角`, sources: zone.zoneLiveString || [] }},
+        ...(zone.fpvData || []).map((view, index) => ({{
+          key: `${{zone.zoneId}}:fpv:${{index}}`,
+          name: `${{zone.zoneName}} · ${{view.role || `FPV ${{index + 1}}`}}`,
+          sources: view.sources || [],
+        }})),
+      ].filter((view) => view.sources.some((source) => source.src));
+    }}
+
+    function getSelectedLiveView() {{
+      for (const zone of liveZones) {{
+        const view = getLiveViews(zone).find((item) => item.key === liveSourceSelect.value);
+        if (view) return view;
+      }}
+      return getLiveViews(liveZones[0])[0];
+    }}
+
+    function refreshLiveQualityOptions(view, preferred = "high") {{
+      const sources = (view?.sources || []).filter((source) => source.src);
+      liveQualitySelect.innerHTML = sources.map((source) =>
+        `<option value="${{scheduleEscape(source.res || source.label)}}">${{scheduleEscape(source.label || source.res)}}</option>`
+      ).join("");
+      const preferredSource = sources.find((source) => source.res === preferred) || sources[0];
+      liveQualitySelect.value = preferredSource?.res || preferredSource?.label || "";
+      liveQualitySelect.disabled = sources.length < 2;
+      return preferredSource;
+    }}
+
+    function updateLivePlaybackStats() {{
+      if (liveVideo.paused || !liveVideo.getVideoPlaybackQuality) return;
+      const quality = liveVideo.getVideoPlaybackQuality();
+      const end = liveVideo.seekable.length ? liveVideo.seekable.end(liveVideo.seekable.length - 1) : 0;
+      const latency = end ? Math.max(0, end - liveVideo.currentTime) : 0;
+      livePlaybackStats.textContent = `延迟 ${{latency.toFixed(1)}} 秒 · 丢帧 ${{quality.droppedVideoFrames}} / ${{quality.totalVideoFrames}}`;
+    }}
+
+    async function playSelectedLiveSource(keepQuality = true) {{
+      const requestId = ++liveRequestId;
+      const view = getSelectedLiveView();
+      const preferred = keepQuality ? liveQualitySelect.value || "high" : "high";
+      const source = refreshLiveQualityOptions(view, preferred);
+      if (!source?.src) return setLiveMessage("当前视角没有可用直播流。", "无可用流");
+      if (liveHls) liveHls.destroy();
+      liveHls = null;
+      liveVideo.pause();
+      liveVideo.removeAttribute("src");
+      liveVideo.load();
+      livePlaceholder.hidden = true;
+      liveStatus.textContent = `${{view.name}} · ${{source.label || "自动画质"}}`;
+      updateLiveMatchTitle();
+      liveEdgeButton.disabled = false;
+      liveRecoveryCount = 0;
+      try {{
+        if (liveVideo.canPlayType("application/vnd.apple.mpegurl")) {{
+          liveVideo.src = source.src;
+        }} else {{
+          const Hls = await loadHlsLibrary();
+          if (requestId !== liveRequestId || activeDataset !== "live") return;
+          if (!Hls.isSupported()) throw new Error("当前浏览器不支持 HLS 直播");
+          liveHls = new Hls({{
+            enableWorker: true,
+            lowLatencyMode: true,
+            backBufferLength: 20,
+            maxBufferLength: 12,
+            maxMaxBufferLength: 24,
+            liveSyncDurationCount: 2,
+            liveMaxLatencyDurationCount: 5,
+            capLevelToPlayerSize: false,
+          }});
+          liveHls.loadSource(source.src);
+          liveHls.attachMedia(liveVideo);
+          liveHls.on(Hls.Events.ERROR, (_event, data) => {{
+            if (!data.fatal || activeDataset !== "live") return;
+            if (data.type === Hls.ErrorTypes.NETWORK_ERROR && liveRecoveryCount < 2) {{
+              liveRecoveryCount += 1;
+              liveStatus.textContent = `网络重连 ${{liveRecoveryCount}} / 2`;
+              liveHls.startLoad();
+            }} else if (data.type === Hls.ErrorTypes.MEDIA_ERROR && liveRecoveryCount < 2) {{
+              liveRecoveryCount += 1;
+              liveHls.recoverMediaError();
+            }} else {{
+              setLiveMessage("直播流暂时不可用，请刷新直播或切换清晰度。", "播放中断");
+            }}
+          }});
+        }}
+        syncLivePlaybackControls();
+        await liveVideo.play().catch(() => {{ liveStatus.textContent += " · 点击播放"; }});
+        if (liveStatsTimer) clearInterval(liveStatsTimer);
+        liveStatsTimer = setInterval(updateLivePlaybackStats, 2000);
+      }} catch (error) {{
+        if (requestId === liveRequestId) setLiveMessage(error.message || "直播加载失败。", "加载失败");
+      }}
+    }}
+
+    async function monitorLiveBroadcast() {{
+      if (activeDataset !== "live") return;
+      try {{
+        const cacheBust = `?t=${{Date.now()}}`;
+        const [stateResponse, matchResponse] = await Promise.all([
+          fetch(LIVE_STATE_URL + cacheBust, {{ cache: "no-store" }}),
+          fetch(LIVE_MATCH_URL + cacheBust, {{ cache: "no-store" }}),
+        ]);
+        if (!stateResponse.ok) return;
+        const state = await stateResponse.json();
+        if (Number(state.live_state) !== 1) {{
+          if (liveRecordingIntent || liveRecordingSessions.length) {{
+            await stopLiveRecording(false);
+            liveRecorderStatus.textContent = "直播已结束，录制已自动停止";
+          }}
+          if (liveBroadcastMonitor) clearInterval(liveBroadcastMonitor);
+          liveBroadcastMonitor = null;
+          return;
+        }}
+        if (!matchResponse.ok) return;
+        const matches = await matchResponse.json();
+        liveMatchMap = new Map((Array.isArray(matches) ? matches : []).map((item) => {{
+          const match = item.currentMatch || null;
+          return [String(match?.zone?.id || ""), match];
+        }}).filter(([zoneId, match]) => zoneId && match));
+        const nextMatchName = updateLiveMatchTitle();
+        await rotateLiveRecording(nextMatchName);
+      }} catch (error) {{
+        // A transient status request failure must not interrupt an active recording.
+      }}
+    }}
+
+    function startLiveBroadcastMonitor() {{
+      if (liveBroadcastMonitor) clearInterval(liveBroadcastMonitor);
+      liveBroadcastMonitor = setInterval(monitorLiveBroadcast, 8000);
+    }}
+
+    async function initializeLiveBoard() {{
+      const requestId = ++liveRequestId;
+      populateRecordingFormats();
+      setLiveMessage("正在获取官方直播流...", "正在连接");
+      document.getElementById("liveEventName").textContent = "正在检查 RoboMaster 官方直播状态...";
+      liveSourceSelect.disabled = true;
+      liveQualitySelect.disabled = true;
+      liveEdgeButton.disabled = true;
+      liveRecordStart.disabled = true;
+      try {{
+        const cacheBust = `?t=${{Date.now()}}`;
+        const [gameResponse, stateResponse, matchResponse] = await Promise.all([
+          fetch(LIVE_GAME_INFO_URL + cacheBust, {{ cache: "no-store" }}),
+          fetch(LIVE_STATE_URL + cacheBust, {{ cache: "no-store" }}),
+          fetch(LIVE_MATCH_URL + cacheBust, {{ cache: "no-store" }}).catch(() => null),
+        ]);
+        if (!gameResponse.ok || !stateResponse.ok) throw new Error("官方直播接口暂时不可用");
+        const [game, state, matches] = await Promise.all([
+          gameResponse.json(),
+          stateResponse.json(),
+          matchResponse?.ok ? matchResponse.json() : Promise.resolve([]),
+        ]);
+        if (requestId !== liveRequestId || activeDataset !== "live") return;
+        document.getElementById("liveEventName").textContent = game.eventName || "RoboMaster 官方赛事直播";
+        liveZones = (game.eventData || []).filter((zone) =>
+          Number(zone.liveState) === 1 && Number(zone.matchState) === 1 && getLiveViews(zone).length
+        );
+        liveMatchMap = new Map((Array.isArray(matches) ? matches : []).map((item) => {{
+          const match = item.currentMatch || null;
+          return [String(match?.zone?.id || ""), match];
+        }}).filter(([zoneId, match]) => zoneId && match));
+        if (Number(state.live_state) !== 1 || !liveZones.length) {{
+          if (liveRecordingIntent || liveRecordingSessions.length) {{
+            await stopLiveRecording(false);
+            liveRecorderStatus.textContent = "直播已结束，录制已自动停止";
+          }}
+          if (liveBroadcastMonitor) clearInterval(liveBroadcastMonitor);
+          liveBroadcastMonitor = null;
+          disconnectLiveChat(true);
+          setLiveMessage("当前没有正在进行的官方直播。", "暂无直播");
+          livePlaybackStats.textContent = "官方流将在赛事开始后出现在这里";
+          return;
+        }}
+        const views = liveZones.flatMap(getLiveViews);
+        liveSourceSelect.innerHTML = views.map((view) =>
+          `<option value="${{scheduleEscape(view.key)}}">${{scheduleEscape(view.name)}}</option>`
+        ).join("");
+        liveSourceSelect.disabled = views.length < 2;
+        liveSourceSelect.value = views[0].key;
+        refreshLiveQualityOptions(views[0], "high");
+        populateLiveRecordingViews(views);
+        updateLiveMatchTitle();
+        startLiveBroadcastMonitor();
+        connectLiveChatForZone(liveZones[0]);
+        await playSelectedLiveSource(false);
+      }} catch (error) {{
+        if (requestId === liveRequestId) setLiveMessage(error.message || "无法获取官方直播流。", "连接失败");
+      }}
+    }}
+
+    liveSourceSelect.addEventListener("change", () => {{
+      updateLiveMatchTitle();
+      connectLiveChatForZone(getSelectedLiveZone());
+      playSelectedLiveSource(false);
+    }});
+    liveQualitySelect.addEventListener("change", () => playSelectedLiveSource(true));
+    document.getElementById("liveRefreshButton").addEventListener("click", initializeLiveBoard);
+    document.getElementById("liveRecordAll").addEventListener("click", () => {{
+      const inputs = [...document.querySelectorAll("#liveRecordViews input")];
+      const selectAll = inputs.some((input) => !input.checked);
+      inputs.forEach((input) => {{ input.checked = selectAll; }});
+      document.getElementById("liveRecordAll").textContent = selectAll ? "取消全选" : "全选视角";
+    }});
+    liveRecordStart.addEventListener("click", () => startLiveRecording(false));
+    liveRecordStop.addEventListener("click", () => stopLiveRecording(false));
+    document.getElementById("liveDanmakuToggle").addEventListener("click", (event) => {{
+      liveDanmakuEnabled = !liveDanmakuEnabled;
+      event.currentTarget.setAttribute("aria-pressed", liveDanmakuEnabled ? "true" : "false");
+      event.currentTarget.textContent = liveDanmakuEnabled ? "弹幕" : "开弹幕";
+      if (!liveDanmakuEnabled) liveDanmakuLayer.replaceChildren();
+    }});
+    document.getElementById("liveChatToggle").addEventListener("click", () => setLiveChatVisible(liveChatPanel.hidden));
+    document.getElementById("liveChatClose").addEventListener("click", () => setLiveChatVisible(false));
+    liveRecorderFloatToggle.addEventListener("click", () => setLiveRecorderCollapsed(!liveRecorder.classList.contains("recorder-collapsed")));
+    document.getElementById("liveFullscreenButton").addEventListener("click", async () => {{
+      try {{
+        if (document.fullscreenElement) await document.exitFullscreen();
+        else {{ setLiveTheaterMode(false); await liveStage.requestFullscreen(); }}
+      }} catch (error) {{ liveStatus.textContent = "当前浏览器未允许全屏"; }}
+    }});
+    document.getElementById("liveTheaterButton").addEventListener("click", async () => {{
+      if (document.fullscreenElement) await document.exitFullscreen().catch(() => {{}});
+      setLiveTheaterMode(!liveStage.classList.contains("live-theater"));
+    }});
+    document.getElementById("liveExpandButton").addEventListener("click", () => {{
+      const expanded = liveStage.classList.toggle("live-expanded");
+      document.getElementById("liveExpandButton").textContent = expanded ? "退出宽屏" : "宽屏";
+    }});
+    document.getElementById("liveMuteButton").addEventListener("click", () => {{
+      if (liveVideo.muted || !liveVideo.volume) {{
+        liveVideo.volume = liveLastVolume || 0.7;
+        liveVideo.muted = false;
+      }} else {{
+        liveLastVolume = liveVideo.volume;
+        liveVideo.muted = true;
+      }}
+      syncLiveVolumeControls();
+    }});
+    liveVolumeControl.addEventListener("pointerenter", () => liveVolumeControl.classList.add("volume-open"));
+    liveVolumeControl.addEventListener("pointerleave", () => liveVolumeControl.classList.remove("volume-open"));
+    document.getElementById("liveVolume").addEventListener("input", (event) => {{
+      const volume = Number(event.target.value) / 100;
+      liveVideo.volume = volume;
+      liveVideo.muted = volume === 0;
+      if (volume > 0) liveLastVolume = volume;
+      syncLiveVolumeControls();
+    }});
+    liveVideo.addEventListener("volumechange", syncLiveVolumeControls);
+    livePlayButton.addEventListener("click", toggleLivePlayback);
+    liveCenterPlay.addEventListener("click", toggleLivePlayback);
+    liveVideo.addEventListener("click", toggleLivePlayback);
+    liveVideo.addEventListener("play", syncLivePlaybackControls);
+    liveVideo.addEventListener("pause", syncLivePlaybackControls);
+    document.addEventListener("fullscreenchange", () => {{
+      document.getElementById("liveFullscreenButton").textContent = document.fullscreenElement === liveStage ? "退出全屏" : "全屏";
+      if (!document.fullscreenElement && !liveStage.classList.contains("live-theater")) setLiveRecorderCollapsed(false);
+    }});
+    document.addEventListener("keydown", (event) => {{
+      if (event.key === "Escape" && liveStage.classList.contains("live-theater")) setLiveTheaterMode(false);
+    }});
+    liveEdgeButton.addEventListener("click", () => {{
+      if (!liveVideo.seekable.length) return;
+      liveVideo.currentTime = Math.max(0, liveVideo.seekable.end(liveVideo.seekable.length - 1) - 0.5);
+      liveVideo.play().catch(() => {{}});
+    }});
+    liveVideo.addEventListener("playing", () => {{ livePlaceholder.hidden = true; syncLivePlaybackControls(); }});
+    liveVideo.addEventListener("waiting", () => {{ liveStatus.textContent = "正在缓冲..."; }});
+    liveVideo.addEventListener("ended", async () => {{
+      if (!liveRecordingIntent && !liveRecordingSessions.length) return;
+      await stopLiveRecording(false);
+      liveRecorderStatus.textContent = "直播流已结束，录制已自动停止";
+    }});
+
     const boardScrollPositions = {{}};
     let activeDataset = document.querySelector("[data-dataset-tab].active")?.dataset.datasetTab || "robot";
 
@@ -9067,6 +10263,7 @@ def render_html(title, payload):
         const target = button.dataset.datasetTab;
         if (target === activeDataset) return;
         boardScrollPositions[activeDataset] = window.scrollY;
+        if (activeDataset === "live") destroyLivePlayer(true);
         document.querySelectorAll("[data-dataset-tab]").forEach((tab) => {{
           const selected = tab === button;
           tab.classList.toggle("active", selected);
@@ -9082,6 +10279,7 @@ def render_html(title, payload):
         if (target === "schedule") renderSchedule();
         if (target === "league") renderRmul();
         activeDataset = target;
+        if (target === "live") initializeLiveBoard();
         requestAnimationFrame(() => requestAnimationFrame(() => {{
           window.scrollTo({{
             top: boardScrollPositions[target] || 0,
