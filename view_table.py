@@ -4213,10 +4213,9 @@ def render_html(title, payload):
     .schedule-board {{ display: grid; gap: 16px; width: 100%; min-width: 0; max-width: 100%; }}
     .live-board {{ display: grid; gap: 16px; width: 100%; min-width: 0; }}
     .live-stage {{
-      width: min(1050px, 100%);
+      width: 100%;
       min-width: 0;
       max-width: 100%;
-      justify-self: center;
       display: grid;
       grid-template-columns: minmax(0, 1fr) 320px;
       grid-template-areas:
@@ -4396,7 +4395,6 @@ def render_html(title, payload):
     .live-volume {{ display: flex; height: 100%; align-items: center; justify-content: center; gap: 7px; color: #e1e7ea; font-size: 11px; }}
     .live-volume input {{ width: 20px; height: 100px; writing-mode: vertical-lr; direction: rtl; appearance: slider-vertical; accent-color: var(--hud-cyan); }}
     .live-volume output {{ position: absolute; top: 5px; left: 0; width: 100%; text-align: center; }}
-    .live-stage.live-expanded {{ width: 100%; }}
     body.live-theater-open {{ overflow: hidden; }}
     .live-stage.live-theater {{
       position: fixed;
@@ -4448,11 +4446,9 @@ def render_html(title, payload):
     }}
     .live-stage:fullscreen .live-player-left,
     .live-stage:fullscreen #liveChatToggle,
-    .live-stage:fullscreen #liveExpandButton,
     .live-stage:fullscreen #liveTheaterButton,
     .live-stage.live-theater .live-player-left,
     .live-stage.live-theater #liveChatToggle,
-    .live-stage.live-theater #liveExpandButton,
     .live-stage.live-theater #liveFullscreenButton {{ display: none !important; }}
     .live-stage:fullscreen .live-player-right,
     .live-stage.live-theater .live-player-right {{ margin-left: auto; gap: 8px; }}
@@ -5589,7 +5585,6 @@ def render_html(title, payload):
               <select id="liveQualitySelect" aria-label="直播清晰度" disabled><option value="high">1080p</option></select>
               <button id="liveDanmakuToggle" type="button" aria-pressed="true">弹幕</button>
               <button id="liveChatToggle" type="button" aria-pressed="true">聊天</button>
-              <button id="liveExpandButton" type="button" title="放大播放器">宽屏</button>
               <button id="liveTheaterButton" type="button" title="网页内全屏">网页</button>
               <button id="liveFullscreenButton" type="button" title="浏览器全屏">全屏</button>
             </div>
@@ -9645,8 +9640,6 @@ def render_html(title, payload):
     function resetLiveDisplayMode() {{
       setLiveTheaterMode(false);
       setLiveRecorderCollapsed(false);
-      liveStage.classList.remove("live-expanded");
-      document.getElementById("liveExpandButton").textContent = "宽屏";
       if (document.fullscreenElement && liveStage.contains(document.fullscreenElement)) document.exitFullscreen().catch(() => {{}});
     }}
 
@@ -10311,10 +10304,6 @@ def render_html(title, payload):
     document.getElementById("liveTheaterButton").addEventListener("click", async () => {{
       if (getFullscreenElement()) await exitLiveFullscreen().catch(() => {{}});
       setLiveTheaterMode(!liveStage.classList.contains("live-theater"));
-    }});
-    document.getElementById("liveExpandButton").addEventListener("click", () => {{
-      const expanded = liveStage.classList.toggle("live-expanded");
-      document.getElementById("liveExpandButton").textContent = expanded ? "退出宽屏" : "宽屏";
     }});
     document.getElementById("liveMuteButton").addEventListener("click", () => {{
       if (liveVideo.muted || !liveVideo.volume) {{
