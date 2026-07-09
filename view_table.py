@@ -4478,6 +4478,23 @@ def render_html(title, payload):
     }}
     .live-stage:fullscreen .live-volume output,
     .live-stage.live-theater .live-volume output {{ display: none; }}
+    @media (max-width: 900px) and (orientation: portrait) {{
+      .live-stage.mobile-native-fullscreen:fullscreen .live-video-wrap,
+      .live-stage.mobile-native-fullscreen.live-theater .live-video-wrap {{
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 100dvh;
+        height: 100dvw;
+        transform: translate(-50%, -50%) rotate(90deg);
+        transform-origin: center center;
+      }}
+      .live-stage.mobile-native-fullscreen:fullscreen .live-player-chrome,
+      .live-stage.mobile-native-fullscreen.live-theater .live-player-chrome {{
+        padding-inline: max(10px, env(safe-area-inset-top)) max(10px, env(safe-area-inset-bottom));
+        padding-bottom: max(8px, env(safe-area-inset-left));
+      }}
+    }}
     .live-meta {{
       display: flex;
       justify-content: space-between;
@@ -4553,7 +4570,7 @@ def render_html(title, payload):
     .live-recorder.recorder-collapsed > :not(.live-recorder-head) {{ display: none; }}
     .live-recorder-status {{ color: #aebbc4; font-size: 12px; }}
     .live-recorder-status.recording {{ color: #ff7b72; font-weight: 850; }}
-    .live-record-controls {{ display: grid; grid-template-columns: minmax(120px, 180px) minmax(110px, 160px) auto auto auto; gap: 8px; }}
+    .live-record-controls {{ display: grid; grid-template-columns: minmax(130px, 190px) minmax(150px, 190px) repeat(4, minmax(110px, 1fr)); gap: 8px; }}
     .live-record-controls select,
     .live-record-controls button {{
       min-width: 0;
@@ -5594,6 +5611,7 @@ def render_html(title, payload):
           <select id="liveSourceSelect" aria-label="直播视角" disabled><option>主视角</option></select>
           <button id="liveEdgeButton" type="button" disabled>追上直播</button>
           <button id="liveRefreshButton" type="button">刷新直播</button>
+          <button id="liveBiliTestButton" type="button">B站测试源</button>
         </div>
         <section class="live-chat-panel" id="liveChatPanel" aria-label="官方直播只读聊天室">
           <div class="live-chat-head"><div class="live-chat-title"><strong>直播聊天室</strong><span class="live-chat-state" id="liveChatState">未连接</span></div><button class="live-chat-close" id="liveChatClose" type="button">收起</button></div>
@@ -5607,6 +5625,7 @@ def render_html(title, payload):
           <div class="live-record-controls">
             <select id="liveRecordQuality" aria-label="录制清晰度" disabled><option value="high">录制 1080p</option></select>
             <select id="liveRecordFormat" aria-label="录制文件格式" disabled><option value="">检测格式...</option></select>
+            <button id="liveRecordDirectory" type="button">选择目录</button>
             <button id="liveRecordAll" type="button" disabled>全选视角</button>
             <button id="liveRecordStart" type="button" disabled>开始录制</button>
             <button id="liveRecordStop" type="button" disabled>停止录制</button>
@@ -9531,6 +9550,9 @@ def render_html(title, payload):
     const LIVE_GAME_INFO_URL = "https://rm-static.djicdn.com/live_json/live_game_info.json";
     const LIVE_STATE_URL = "https://rm-static.djicdn.com/live_json/live_state.json";
     const LIVE_MATCH_URL = "https://rm-static.djicdn.com/live_json/current_and_next_matches.json";
+    const BILI_TEST_DEFAULT_ROOM_ID = "82357";
+    const BILI_LOCAL_PROXY_ORIGIN = location.hostname === "127.0.0.1" && location.port === "8765" ? "" : "http://127.0.0.1:8765";
+    const BILI_TEST_STREAM_PROXY = `${{BILI_LOCAL_PROXY_ORIGIN}}/bili/proxy?url=`;
     const HLS_LIBRARY_URL = "https://cdn.jsdelivr.net/npm/hls.js@1.6.16/dist/hls.min.js";
     const LEANCLOUD_LIBRARY_URL = "https://cdn.jsdelivr.net/npm/leancloud-realtime@4.3.1/dist/realtime.browser.min.js";
     const LEANCLOUD_APP_ID = "UqaoAgYDPakCHxtDiMXVy2Sw-gzGzoHsz";
@@ -9548,6 +9570,7 @@ def render_html(title, payload):
     const liveEdgeButton = document.getElementById("liveEdgeButton");
     const liveRecordQuality = document.getElementById("liveRecordQuality");
     const liveRecordFormat = document.getElementById("liveRecordFormat");
+    const liveRecordDirectory = document.getElementById("liveRecordDirectory");
     const liveRecordStart = document.getElementById("liveRecordStart");
     const liveRecordStop = document.getElementById("liveRecordStop");
     const liveRecorderStatus = document.getElementById("liveRecorderStatus");
@@ -9566,6 +9589,7 @@ def render_html(title, payload):
     let liveHlsLoader = null;
     let liveRecoveryCount = 0;
     let liveRecordingSessions = [];
+    let liveRecordingDirectoryHandle = null;
     let liveRecordingTimer = null;
     let liveRecordingStartedAt = 0;
     let liveRecordingMatchName = "";
@@ -9583,6 +9607,7 @@ def render_html(title, payload):
     let liveDanmakuEnabled = true;
     let liveDanmakuLane = 0;
     let liveControlsTimer = null;
+    let liveControlsWereHiddenOnPointerDown = false;
 
     function syncLivePlaybackControls() {{
       const unavailable = !liveVideo.currentSrc && !liveHls;
@@ -9613,13 +9638,12 @@ def render_html(title, payload):
     function setLiveTheaterMode(enabled) {{
       liveStage.classList.toggle("live-theater", enabled);
       document.body.classList.toggle("live-theater-open", enabled);
+      const mobileTheater = enabled && (window.matchMedia?.("(pointer: coarse)").matches || window.innerWidth <= 900);
+      liveStage.classList.toggle("mobile-native-fullscreen", mobileTheater || getFullscreenElement() === liveStage);
       document.getElementById("liveTheaterButton").textContent = enabled ? "退出网页" : "网页";
-      if (enabled) revealLiveControls();
-      else {{
-        if (liveControlsTimer) clearTimeout(liveControlsTimer);
-        liveControlsTimer = null;
-        liveVideoWrap.classList.remove("controls-visible");
-      }}
+      if (liveControlsTimer) clearTimeout(liveControlsTimer);
+      liveControlsTimer = null;
+      liveVideoWrap.classList.remove("controls-visible");
     }}
 
     function revealLiveControls() {{
@@ -9629,6 +9653,15 @@ def render_html(title, payload):
       if (getFullscreenElement() === liveStage || liveStage.classList.contains("live-theater")) {{
         liveControlsTimer = setTimeout(() => liveVideoWrap.classList.remove("controls-visible"), 2600);
       }}
+    }}
+
+    function isLiveImmersiveMode() {{
+      return getFullscreenElement() === liveStage || liveStage.classList.contains("live-theater");
+    }}
+
+    function handleLivePointerDown() {{
+      liveControlsWereHiddenOnPointerDown = isLiveImmersiveMode() && !liveVideoWrap.classList.contains("controls-visible");
+      revealLiveControls();
     }}
 
     function setLiveRecorderCollapsed(collapsed) {{
@@ -9803,6 +9836,11 @@ def render_html(title, payload):
       const match = zone ? liveMatchMap.get(String(zone.zoneId)) : null;
       const title = document.getElementById("liveMatchTitle");
       const stage = document.getElementById("liveMatchStage");
+      if (zone?.testTitle) {{
+        title.textContent = zone.testTitle;
+        stage.textContent = zone.zoneName || "B站直播测试源";
+        return title.textContent;
+      }}
       if (!match) {{
         title.textContent = zone ? `${{zone.zoneName}} · 当前对阵待官方更新` : "当前对阵待获取";
         stage.textContent = zone?.zoneName || "官方赛事信号";
@@ -9857,6 +9895,7 @@ def render_html(title, payload):
       const preferred = formats.find((format) => format.key === "mp4" && format.mimeType) || formats.find((format) => format.mimeType);
       liveRecordFormat.value = preferred?.key || "";
       liveRecordFormat.disabled = !preferred;
+      syncLiveRecordingDirectoryControl();
       return formats;
     }}
 
@@ -9868,18 +9907,101 @@ def render_html(title, payload):
       return String(value || "RoboMaster直播").replace(/[\\/:*?"<>|]+/g, "_").replace(/\s+/g, " ").trim().slice(0, 90);
     }}
 
-    function downloadLiveRecording(session) {{
-      if (!session.chunks.length) return;
-      const blob = new Blob(session.chunks, {{ type: session.mimeType }});
+    function getLiveRecordingFileName(session) {{
+      const viewSuffix = session.includeViewName ? `_${{safeRecordingName(session.view.name)}}` : "";
+      return `${{safeRecordingName(session.matchName)}}${{viewSuffix}}.${{session.extension}}`;
+    }}
+
+    function downloadBlob(blob, filename) {{
       const url = URL.createObjectURL(blob);
       const link = document.createElement("a");
       link.href = url;
-      const viewSuffix = session.includeViewName ? `_${{safeRecordingName(session.view.name)}}` : "";
-      link.download = `${{safeRecordingName(session.matchName)}}${{viewSuffix}}.${{session.extension}}`;
+      link.download = filename;
       document.body.appendChild(link);
       link.click();
       link.remove();
       setTimeout(() => URL.revokeObjectURL(url), 60000);
+    }}
+
+    async function hasLiveRecordingDirectoryPermission() {{
+      if (!liveRecordingDirectoryHandle) return false;
+      const options = {{ mode: "readwrite" }};
+      if ((await liveRecordingDirectoryHandle.queryPermission(options)) === "granted") return true;
+      return (await liveRecordingDirectoryHandle.requestPermission(options)) === "granted";
+    }}
+
+    async function getUniqueLiveRecordingFileHandle(filename) {{
+      const dotIndex = filename.lastIndexOf(".");
+      const baseName = dotIndex > 0 ? filename.slice(0, dotIndex) : filename;
+      const extension = dotIndex > 0 ? filename.slice(dotIndex) : "";
+      for (let index = 0; index < 1000; index += 1) {{
+        const candidate = index ? `${{baseName}}_${{index + 1}}${{extension}}` : filename;
+        try {{
+          await liveRecordingDirectoryHandle.getFileHandle(candidate);
+        }} catch (error) {{
+          if (error.name === "NotFoundError") {{
+            return {{ handle: await liveRecordingDirectoryHandle.getFileHandle(candidate, {{ create: true }}), filename: candidate }};
+          }}
+          throw error;
+        }}
+      }}
+      const fallback = `${{baseName}}_${{Date.now()}}${{extension}}`;
+      return {{ handle: await liveRecordingDirectoryHandle.getFileHandle(fallback, {{ create: true }}), filename: fallback }};
+    }}
+
+    async function saveLiveRecordingBlob(blob, filename) {{
+      if (!liveRecordingDirectoryHandle) return false;
+      if (!(await hasLiveRecordingDirectoryPermission())) throw new Error("没有保存目录写入权限");
+      const {{ handle: fileHandle, filename: savedFilename }} = await getUniqueLiveRecordingFileHandle(filename);
+      const writable = await fileHandle.createWritable();
+      await writable.write(blob);
+      await writable.close();
+      return savedFilename;
+    }}
+
+    async function downloadLiveRecording(session) {{
+      if (!session.chunks.length) return;
+      const blob = new Blob(session.chunks, {{ type: session.mimeType }});
+      const filename = getLiveRecordingFileName(session);
+      try {{
+        const savedFilename = await saveLiveRecordingBlob(blob, filename);
+        if (savedFilename) {{
+          liveRecorderStatus.textContent = `已保存到所选目录：${{savedFilename}}`;
+          return;
+        }}
+      }} catch (error) {{
+        liveRecorderStatus.textContent = "目录保存失败，已改用浏览器下载";
+      }}
+      downloadBlob(blob, filename);
+    }}
+
+    function syncLiveRecordingDirectoryControl() {{
+      const supported = "showDirectoryPicker" in window;
+      liveRecordDirectory.disabled = !supported || !!liveRecordingSessions.length || liveRecordingTransition;
+      if (!supported) {{
+        liveRecordDirectory.textContent = "目录不可用";
+        liveRecordDirectory.title = "当前浏览器不支持选择保存目录，将使用浏览器下载";
+      }} else {{
+        liveRecordDirectory.textContent = liveRecordingDirectoryHandle ? "目录已选" : "选择目录";
+        liveRecordDirectory.title = liveRecordingDirectoryHandle ? "录制文件将保存到所选目录" : "选择录制文件保存目录";
+      }}
+    }}
+
+    async function chooseLiveRecordingDirectory() {{
+      if (!("showDirectoryPicker" in window)) {{
+        liveRecorderStatus.textContent = "当前浏览器不支持选择保存目录";
+        syncLiveRecordingDirectoryControl();
+        return;
+      }}
+      try {{
+        const handle = await window.showDirectoryPicker({{ mode: "readwrite" }});
+        liveRecordingDirectoryHandle = handle;
+        await hasLiveRecordingDirectoryPermission();
+        liveRecorderStatus.textContent = "已选择录制保存目录";
+      }} catch (error) {{
+        liveRecorderStatus.textContent = liveRecordingDirectoryHandle ? "继续使用已选目录" : "未选择保存目录，将使用浏览器下载";
+      }}
+      syncLiveRecordingDirectoryControl();
     }}
 
     function waitForRecordingVideo(video, timeout = 12000) {{
@@ -9936,12 +10058,15 @@ def render_html(title, payload):
       const stopped = new Promise((resolve) => {{ resolveStopped = resolve; }});
       const session = {{ view, video, hls, stream, recorder, chunks: [], mimeType: format.mimeType, extension: format.extension, usesVisiblePlayer, matchName, startedAt, includeViewName, stopped }};
       recorder.addEventListener("dataavailable", (event) => {{ if (event.data.size) session.chunks.push(event.data); }});
-      recorder.addEventListener("stop", () => {{
-        downloadLiveRecording(session);
-        stream.getTracks().forEach((track) => track.stop());
-        if (hls) hls.destroy();
-        if (!usesVisiblePlayer) {{ video.pause(); video.removeAttribute("src"); video.load(); video.remove(); }}
-        resolveStopped();
+      recorder.addEventListener("stop", async () => {{
+        try {{
+          await downloadLiveRecording(session);
+        }} finally {{
+          stream.getTracks().forEach((track) => track.stop());
+          if (hls) hls.destroy();
+          if (!usesVisiblePlayer) {{ video.pause(); video.removeAttribute("src"); video.load(); video.remove(); }}
+          resolveStopped();
+        }}
       }}, {{ once: true }});
       recorder.start(1000);
       return session;
@@ -9958,6 +10083,7 @@ def render_html(title, payload):
       liveRecordStart.disabled = true;
       liveRecordQuality.disabled = true;
       liveRecordFormat.disabled = true;
+      liveRecordDirectory.disabled = true;
       document.getElementById("liveRecordAll").disabled = true;
       document.getElementById("liveRefreshButton").disabled = true;
       document.querySelectorAll("#liveRecordViews input").forEach((input) => {{ input.disabled = true; }});
@@ -9970,6 +10096,7 @@ def render_html(title, payload):
         const results = await Promise.allSettled(views.map((view) => createLiveRecordingSession(view, liveRecordQuality.value, recordingFormat, liveRecordingMatchName, liveRecordingStartedAt, views.length > 1)));
         liveRecordingSessions = results.filter((result) => result.status === "fulfilled").map((result) => result.value);
         if (!liveRecordingSessions.length) throw results.find((result) => result.status === "rejected")?.reason || new Error("录制启动失败");
+        syncLiveRecordingDirectoryControl();
         liveRecordStop.disabled = false;
         liveRecorderStatus.classList.add("recording");
         const refreshStatus = () => {{
@@ -9998,6 +10125,7 @@ def render_html(title, payload):
       liveRecordStop.disabled = true;
       document.getElementById("liveRefreshButton").disabled = false;
       document.querySelectorAll("#liveRecordViews input").forEach((input) => {{ input.disabled = false; }});
+      syncLiveRecordingDirectoryControl();
       if (!leavingBoard && !preserveIntent && liveZones.length) {{
         liveRecordStart.disabled = false;
         liveRecordQuality.disabled = false;
@@ -10193,6 +10321,145 @@ def render_html(title, payload):
       liveBroadcastMonitor = setInterval(monitorLiveBroadcast, 8000);
     }}
 
+    function getBiliQualityLabel(qn, descMap, codecName) {{
+      const label = descMap.get(Number(qn)) || `${{qn}}P`;
+      return codecName === "hevc" ? `${{label}} · HEVC` : label;
+    }}
+
+    function proxifyBiliStreamUrl(url, viaProxy) {{
+      return viaProxy ? `${{BILI_TEST_STREAM_PROXY}}${{encodeURIComponent(url)}}` : url;
+    }}
+
+    function normalizeBiliRoomId(value) {{
+      return String(value || "").trim().replace(/[^\w-]/g, "");
+    }}
+
+    function requestBiliRoomId() {{
+      const savedRoomId = localStorage.getItem("rm-dashboard-bili-room") || BILI_TEST_DEFAULT_ROOM_ID;
+      const roomId = normalizeBiliRoomId(window.prompt("输入 B站直播房间号", savedRoomId));
+      if (!roomId) return "";
+      localStorage.setItem("rm-dashboard-bili-room", roomId);
+      return roomId;
+    }}
+
+    function getBiliPlayUrl(roomId) {{
+      return `https://api.live.bilibili.com/xlive/web-room/v2/index/getRoomPlayInfo?room_id=${{encodeURIComponent(roomId)}}&protocol=0,1&format=0,1,2&codec=0,1&qn=10000&platform=web&ptype=8`;
+    }}
+
+    function getBiliRoomInfoUrl(roomId) {{
+      return `https://api.live.bilibili.com/room/v1/Room/get_info?room_id=${{encodeURIComponent(roomId)}}`;
+    }}
+
+    function getBiliProxyUrl(roomId) {{
+      return `${{BILI_LOCAL_PROXY_ORIGIN}}/bili/live?room_id=${{encodeURIComponent(roomId)}}`;
+    }}
+
+    function collectBiliHlsSources(playData, viaProxy = false) {{
+      const playurl = playData?.data?.playurl_info?.playurl;
+      const descMap = new Map((playurl?.g_qn_desc || []).map((item) => [Number(item.qn), item.desc || item.media_base_desc?.brief_desc?.desc]).filter(([, label]) => label));
+      const sources = [];
+      const seen = new Set();
+      const streams = playurl?.stream || [];
+      const hlsStreams = streams
+        .filter((stream) => stream.protocol_name === "http_hls")
+        .sort((a, b) => Number(b.format?.[0]?.format_name === "fmp4") - Number(a.format?.[0]?.format_name === "fmp4"));
+      for (const stream of hlsStreams) {{
+        const formats = [...(stream.format || [])].sort((a, b) => Number(b.format_name === "fmp4") - Number(a.format_name === "fmp4"));
+        for (const format of formats) {{
+          const codecs = [...(format.codec || [])].sort((a, b) => Number(a.codec_name !== "avc") - Number(b.codec_name !== "avc"));
+          for (const codec of codecs) {{
+            const qn = codec.current_qn || codec.accept_qn?.[0] || "live";
+            const urlInfo = codec.url_info?.[0];
+            if (!codec.base_url || !urlInfo?.host) continue;
+            const key = `${{format.format_name}}:${{codec.codec_name}}:${{qn}}`;
+            if (seen.has(key)) continue;
+            seen.add(key);
+            sources.push({{
+              res: key,
+              label: getBiliQualityLabel(qn, descMap, codec.codec_name),
+              src: proxifyBiliStreamUrl(`${{urlInfo.host}}${{codec.base_url}}${{urlInfo.extra}}`, viaProxy),
+            }});
+          }}
+        }}
+      }}
+      return sources;
+    }}
+
+    async function fetchBiliTestPayload(roomId, cacheBust) {{
+      try {{
+        const [playResponse, roomResponse] = await Promise.all([
+          fetch(getBiliPlayUrl(roomId) + cacheBust, {{ cache: "no-store" }}),
+          fetch(getBiliRoomInfoUrl(roomId) + `&_=${{Date.now()}}`, {{ cache: "no-store" }}).catch(() => null),
+        ]);
+        if (!playResponse.ok) throw new Error(`B站接口返回 ${{playResponse.status}}`);
+        return {{
+          playData: await playResponse.json(),
+          roomData: roomResponse?.ok ? await roomResponse.json() : null,
+          viaProxy: false,
+        }};
+      }} catch (error) {{
+        try {{
+          const proxyResponse = await fetch(getBiliProxyUrl(roomId) + `&_=${{Date.now()}}`, {{ cache: "no-store" }});
+          if (!proxyResponse.ok) throw new Error(`本地代理返回 ${{proxyResponse.status}}`);
+          const payload = await proxyResponse.json();
+          return {{ ...payload, viaProxy: !payload.proxiedStreams }};
+        }} catch (proxyError) {{
+          throw new Error("B站接口被浏览器拦截。请先运行 python3 bili_live_proxy.py，再在当前页面点 B站测试源");
+        }}
+      }}
+    }}
+
+    async function initializeBiliTestLive(roomId = "") {{
+      roomId = normalizeBiliRoomId(roomId) || requestBiliRoomId();
+      if (!roomId) return;
+      const requestId = ++liveRequestId;
+      populateRecordingFormats();
+      if (liveBroadcastMonitor) clearInterval(liveBroadcastMonitor);
+      liveBroadcastMonitor = null;
+      disconnectLiveChat(true);
+      setLiveChatVisible(false);
+      liveChatState.textContent = "未接入";
+      liveChatList.innerHTML = '<div class="live-chat-empty">B站测试源仅接入视频流，不接入弹幕与聊天室。</div>';
+      liveDanmakuLayer.replaceChildren();
+      setLiveMessage("正在获取 B站测试直播流...", "正在连接");
+      document.getElementById("liveEventName").textContent = `B站直播测试源 · 房间 ${{roomId}}`;
+      liveSourceSelect.disabled = true;
+      liveQualitySelect.disabled = true;
+      liveEdgeButton.disabled = true;
+      liveRecordStart.disabled = true;
+      try {{
+        const cacheBust = `&_=${{Date.now()}}`;
+        const {{ playData, roomData, viaProxy }} = await fetchBiliTestPayload(roomId, cacheBust);
+        if (requestId !== liveRequestId || activeDataset !== "live") return;
+        if (playData.code !== 0) throw new Error(playData.message || "B站播放接口拒绝请求");
+        if (Number(playData.data?.live_status) !== 1) throw new Error("B站测试房间当前未开播");
+        const sources = collectBiliHlsSources(playData, viaProxy);
+        if (!sources.length) throw new Error("没有解析到可播放的 B站 HLS 流");
+        const roomTitle = roomData?.data?.title || "B站直播测试源";
+        liveZones = [{{
+          zoneId: `bili-${{roomId}}`,
+          zoneName: "B站直播测试源",
+          zoneLiveString: sources,
+          fpvData: [],
+          testTitle: roomTitle,
+        }}];
+        liveMatchMap.clear();
+        const views = liveZones.flatMap(getLiveViews);
+        liveSourceSelect.innerHTML = views.map((view) =>
+          `<option value="${{scheduleEscape(view.key)}}">${{scheduleEscape(view.name)}}</option>`
+        ).join("");
+        liveSourceSelect.disabled = true;
+        liveSourceSelect.value = views[0].key;
+        refreshLiveQualityOptions(views[0], sources[0].res);
+        populateLiveRecordingViews(views);
+        updateLiveMatchTitle();
+        await playSelectedLiveSource(false);
+        liveStatus.textContent = `${{roomTitle}} · B站测试流${{viaProxy ? " · 本地代理" : ""}}`;
+      }} catch (error) {{
+        if (requestId === liveRequestId) setLiveMessage(error.message || "无法获取 B站测试直播流。", "连接失败");
+      }}
+    }}
+
     async function initializeLiveBoard() {{
       const requestId = ++liveRequestId;
       populateRecordingFormats();
@@ -10260,6 +10527,7 @@ def render_html(title, payload):
     }});
     liveQualitySelect.addEventListener("change", () => playSelectedLiveSource(true));
     document.getElementById("liveRefreshButton").addEventListener("click", initializeLiveBoard);
+    document.getElementById("liveBiliTestButton").addEventListener("click", () => initializeBiliTestLive());
     document.getElementById("liveRecordAll").addEventListener("click", () => {{
       const inputs = [...document.querySelectorAll("#liveRecordViews input")];
       const selectAll = inputs.some((input) => !input.checked);
@@ -10268,6 +10536,7 @@ def render_html(title, payload):
     }});
     liveRecordStart.addEventListener("click", () => startLiveRecording(false));
     liveRecordStop.addEventListener("click", () => stopLiveRecording(false));
+    liveRecordDirectory.addEventListener("click", chooseLiveRecordingDirectory);
     document.getElementById("liveDanmakuToggle").addEventListener("click", (event) => {{
       liveDanmakuEnabled = !liveDanmakuEnabled;
       event.currentTarget.setAttribute("aria-pressed", liveDanmakuEnabled ? "true" : "false");
@@ -10289,10 +10558,17 @@ def render_html(title, payload):
     async function requestLiveFullscreen() {{
       const mobileFullscreen = window.matchMedia?.("(pointer: coarse)").matches || window.innerWidth <= 900;
       liveStage.classList.toggle("mobile-native-fullscreen", mobileFullscreen);
+      if (mobileFullscreen && screen.orientation?.lock) screen.orientation.lock("landscape").catch(() => {{}});
       if (liveStage.requestFullscreen) await liveStage.requestFullscreen();
       else if (liveStage.webkitRequestFullscreen) liveStage.webkitRequestFullscreen();
-      else throw new Error("Fullscreen API unavailable");
-      if (mobileFullscreen && screen.orientation?.lock) await screen.orientation.lock("landscape").catch(() => {{}});
+      else {{
+        if (mobileFullscreen) {{
+          setLiveTheaterMode(true);
+          return;
+        }}
+        throw new Error("Fullscreen API unavailable");
+      }}
+      if (mobileFullscreen && screen.orientation?.lock) screen.orientation.lock("landscape").catch(() => {{}});
     }}
 
     document.getElementById("liveFullscreenButton").addEventListener("click", async () => {{
@@ -10326,16 +10602,22 @@ def render_html(title, payload):
     }});
     liveVideo.addEventListener("volumechange", syncLiveVolumeControls);
     liveVideoWrap.addEventListener("pointermove", revealLiveControls);
-    liveVideoWrap.addEventListener("pointerdown", revealLiveControls);
+    liveVideoWrap.addEventListener("pointerdown", handleLivePointerDown);
     livePlayButton.addEventListener("click", toggleLivePlayback);
     liveCenterPlay.addEventListener("click", toggleLivePlayback);
-    liveVideo.addEventListener("click", toggleLivePlayback);
+    liveVideo.addEventListener("click", () => {{
+      if (liveControlsWereHiddenOnPointerDown) {{
+        liveControlsWereHiddenOnPointerDown = false;
+        return;
+      }}
+      toggleLivePlayback();
+    }});
     liveVideo.addEventListener("play", syncLivePlaybackControls);
     liveVideo.addEventListener("pause", syncLivePlaybackControls);
     function syncLiveFullscreenState() {{
       const active = getFullscreenElement() === liveStage;
       document.getElementById("liveFullscreenButton").textContent = active ? "退出全屏" : "全屏";
-      if (active) revealLiveControls();
+      if (active) liveVideoWrap.classList.remove("controls-visible");
       if (!active) {{
         liveStage.classList.remove("mobile-native-fullscreen");
         screen.orientation?.unlock?.();
@@ -10530,6 +10812,12 @@ def render_html(title, payload):
     const savedBoard = localStorage.getItem("rm-dashboard-board");
     const savedBoardTab = document.querySelector(`[data-dataset-tab="${{savedBoard}}"]`);
     if (savedBoardTab) savedBoardTab.click();
+    const biliTestParams = new URLSearchParams(location.search);
+    const autoBiliRoomId = normalizeBiliRoomId(biliTestParams.get("bili_room") || biliTestParams.get("bili_test"));
+    if (autoBiliRoomId) {{
+      document.querySelector('[data-dataset-tab="live"]')?.click();
+      setTimeout(() => initializeBiliTestLive(autoBiliRoomId === "1" ? BILI_TEST_DEFAULT_ROOM_ID : autoBiliRoomId), 250);
+    }}
 
     initializeVirtualMetrics();
     render();
