@@ -4645,8 +4645,74 @@ def render_html(title, payload):
     .schedule-stage-heading span {{ color: var(--muted); font-size: 11px; }}
     .schedule-match {{
       display: grid; grid-template-columns: 90px minmax(150px,1fr) 110px minmax(150px,1fr) 170px;
+      position: relative; isolation: isolate; overflow: hidden;
       align-items: center; min-height: 74px; border: 1px solid var(--line); background: var(--panel-strong);
     }}
+    .schedule-match::before,
+    .schedule-match::after {{
+      content: "";
+      position: absolute;
+      inset: 0;
+      z-index: -1;
+      pointer-events: none;
+    }}
+    .schedule-match::after {{
+      opacity: .42;
+      background-image:
+        linear-gradient(115deg, transparent 0 42%, rgba(255,255,255,.26) 48%, transparent 55%),
+        repeating-linear-gradient(90deg, rgba(255,255,255,.10) 0 1px, transparent 1px 18px);
+      mix-blend-mode: screen;
+    }}
+    .schedule-match.result-red {{
+      border-color: color-mix(in srgb, #f2635d, var(--line) 34%);
+      box-shadow: inset 3px 0 0 rgba(242,99,93,.86), 0 0 0 1px rgba(242,99,93,.08);
+    }}
+    .schedule-match.result-red::before {{
+      background:
+        radial-gradient(circle at 30% 50%, rgba(255,255,255,.62), transparent 32%),
+        linear-gradient(90deg, rgba(255,246,246,.92) 0%, rgba(255,203,200,.54) 31%, rgba(242,99,93,.20) 50%, transparent 70%);
+    }}
+    .schedule-match.result-blue {{
+      border-color: color-mix(in srgb, #55c2df, var(--line) 34%);
+      box-shadow: inset -3px 0 0 rgba(85,194,223,.86), 0 0 0 1px rgba(85,194,223,.08);
+    }}
+    .schedule-match.result-blue::before {{
+      background:
+        radial-gradient(circle at 70% 50%, rgba(255,255,255,.58), transparent 32%),
+        linear-gradient(90deg, transparent 30%, rgba(85,194,223,.18) 50%, rgba(196,240,255,.54) 69%, rgba(245,252,255,.92) 100%);
+    }}
+    .schedule-match.result-neutral {{
+      border-color: color-mix(in srgb, #9f8de8, var(--line) 38%);
+      box-shadow: inset 3px 0 0 rgba(210,126,156,.62), inset -3px 0 0 rgba(119,160,230,.62), 0 0 0 1px rgba(159,141,232,.08);
+    }}
+    .schedule-match.result-neutral::before {{
+      background:
+        linear-gradient(90deg, rgba(255,247,252,.92) 0%, rgba(221,190,232,.42) 48%, rgba(196,202,244,.44) 52%, rgba(246,249,255,.92) 100%),
+        radial-gradient(circle at 34% 50%, rgba(255,120,148,.18), transparent 32%),
+        radial-gradient(circle at 66% 50%, rgba(78,178,236,.18), transparent 32%);
+    }}
+    html[data-theme="night"] .schedule-match.result-red::before {{
+      background:
+        radial-gradient(circle at 30% 50%, rgba(255,220,220,.16), transparent 35%),
+        linear-gradient(90deg, rgba(80,24,28,.72) 0%, rgba(132,39,43,.42) 33%, rgba(242,99,93,.20) 52%, transparent 74%);
+    }}
+    html[data-theme="night"] .schedule-match.result-blue::before {{
+      background:
+        radial-gradient(circle at 70% 50%, rgba(205,244,255,.16), transparent 35%),
+        linear-gradient(90deg, transparent 26%, rgba(85,194,223,.18) 50%, rgba(40,94,122,.42) 68%, rgba(16,49,70,.74) 100%);
+    }}
+    html[data-theme="night"] .schedule-match.result-neutral::before {{
+      background:
+        linear-gradient(90deg, rgba(65,36,62,.72) 0%, rgba(91,55,98,.36) 48%, rgba(58,67,118,.38) 52%, rgba(31,45,78,.72) 100%),
+        radial-gradient(circle at 34% 50%, rgba(255,120,148,.18), transparent 35%),
+        radial-gradient(circle at 66% 50%, rgba(78,178,236,.18), transparent 35%);
+    }}
+    .schedule-match.result-red .schedule-team.red,
+    .schedule-match.result-blue .schedule-team:not(.red) {{ color: var(--text); }}
+    .schedule-match.result-red .schedule-team.red b {{ color: #9e1f26; text-shadow: 0 0 12px rgba(255,255,255,.42); }}
+    .schedule-match.result-blue .schedule-team:not(.red) b {{ color: #087699; text-shadow: 0 0 12px rgba(255,255,255,.40); }}
+    html[data-theme="night"] .schedule-match.result-red .schedule-team.red b {{ color: #ffd5d2; }}
+    html[data-theme="night"] .schedule-match.result-blue .schedule-team:not(.red) b {{ color: #c8f4ff; }}
     .schedule-meta, .schedule-tail {{ padding: 10px 13px; color: var(--muted); font-size: 11px; }}
     .schedule-meta {{ border-right: 1px solid var(--line); }}
     .schedule-meta b, .schedule-stage {{ display: block; color: var(--text); font-weight: 950; }}
@@ -8789,9 +8855,9 @@ def render_html(title, payload):
     const storedScheduleFilters = readStoredState("rm-dashboard-schedule-filters");
     const storedRmulFilters = readStoredState("rm-dashboard-rmul-filters");
     let schedulePage = 1;
-    const schedulePageSize = 12;
+    const schedulePageSize = 20;
     let rmulPage = 1;
-    const rmulPageSize = 12;
+    const rmulPageSize = 20;
 
     function scheduleEscape(value) {{
       return String(value ?? "").replace(/[&<>"']/g, (char) => ({{
@@ -9259,6 +9325,22 @@ def render_html(title, payload):
       return (payload.replayLinks || {{}})[key] || null;
     }}
 
+    function parseScheduleScore(value) {{
+      const text = String(value ?? "").trim();
+      if (!text || text === "-" || text === "—") return null;
+      const match = text.match(/-?\d+(?:\.\d+)?/);
+      if (!match) return null;
+      const number = Number(match[0]);
+      return Number.isFinite(number) ? number : null;
+    }}
+
+    function getScheduleResultClass(item) {{
+      const red = parseScheduleScore(item.redScore);
+      const blue = parseScheduleScore(item.blueScore);
+      if (red === null || blue === null || red === blue) return "result-neutral";
+      return red > blue ? "result-red" : "result-blue";
+    }}
+
     function renderSchedule() {{
       renderRuleDocument("rmuc");
       renderZoneRankings();
@@ -9284,8 +9366,9 @@ def render_html(title, payload):
         const replayButton = replay
           ? `<br><a class="schedule-replay" href="${{scheduleEscape(replay.url)}}" target="_blank" rel="noopener" title="${{scheduleEscape(replay.title)}}">▶ 直接看回放</a>`
           : "";
+        const resultClass = getScheduleResultClass(item);
         return `
-        <article class="schedule-match" data-schedule-match="${{scheduleEscape(`${{item.season}}|${{item.zone}}|${{item.order}}|${{item.id}}`)}}">
+        <article class="schedule-match ${{resultClass}}" data-schedule-match="${{scheduleEscape(`${{item.season}}|${{item.zone}}|${{item.order}}|${{item.id}}`)}}">
           <div class="schedule-meta"><b>${{scheduleEscape(item.season)}}</b>${{scheduleEscape(item.zone || "未标注")}}</div>
           <div class="schedule-team red"><b>${{scheduleEscape(item.redTeam)}}</b><small>${{scheduleEscape(item.redSchool)}}</small></div>
           <div class="schedule-score"><span class="red">${{scheduleEscape(item.redScore)}}</span><span>:</span><span class="blue">${{scheduleEscape(item.blueScore)}}</span></div>
@@ -9391,10 +9474,38 @@ def render_html(title, payload):
       }});
     }});
 
+    function rmulOrderValue(item) {{
+      const value = Number(item?.order);
+      return Number.isFinite(value) ? value : 0;
+    }}
+
+    function compareRmulLatestFirst(a, b) {{
+      return Number(b.season) - Number(a.season) ||
+        String(a.zone || "").localeCompare(String(b.zone || ""), "zh-CN", {{ numeric: true }}) ||
+        rmulOrderValue(b) - rmulOrderValue(a) ||
+        String(a.stage || "").localeCompare(String(b.stage || ""), "zh-CN", {{ numeric: true }});
+    }}
+
     function rmulValues(key, season = "", zone = "") {{
-      return [...new Set(rmulData.matches.filter((item) =>
-        (!season || item.season === season) && (!zone || item.zone === zone)
-      ).map((item) => item[key]).filter(Boolean))].sort((a,b) => String(a).localeCompare(String(b), "zh-CN", {{numeric:true}}));
+      const rows = rmulData.matches.filter((item) => (!season || item.season === season) && (!zone || item.zone === zone));
+      if (key === "stage") {{
+        const stageMeta = new Map();
+        rows.forEach((item) => {{
+          const stage = item.stage || "";
+          if (!stage) return;
+          const current = stageMeta.get(stage) || {{ latestSeason: 0, latestOrder: 0 }};
+          stageMeta.set(stage, {{
+            latestSeason: Math.max(current.latestSeason, Number(item.season) || 0),
+            latestOrder: Math.max(current.latestOrder, rmulOrderValue(item)),
+          }});
+        }});
+        return [...stageMeta.entries()].sort((a, b) =>
+          b[1].latestSeason - a[1].latestSeason ||
+          b[1].latestOrder - a[1].latestOrder ||
+          String(a[0]).localeCompare(String(b[0]), "zh-CN", {{ numeric: true }})
+        ).map(([stage]) => stage);
+      }}
+      return [...new Set(rows.map((item) => item[key]).filter(Boolean))].sort((a,b) => String(a).localeCompare(String(b), "zh-CN", {{numeric:true}}));
     }}
 
     function refreshRmulOptions() {{
@@ -9425,7 +9536,7 @@ def render_html(title, payload):
       const stage=document.getElementById("rmulStage").value,keyword=document.getElementById("rmulSearch").value.trim().toLowerCase();
       return rmulData.matches.filter((item)=>(!season||item.season===season)&&(!zone||item.zone===zone)&&(!stage||item.stage===stage)&&
         (!keyword||[item.redSchool,item.redTeam,item.blueSchool,item.blueTeam,item.title].some((value)=>String(value||"").toLowerCase().includes(keyword))))
-        .sort((a,b)=>Number(b.season)-Number(a.season)||String(a.zone).localeCompare(String(b.zone),"zh-CN")||Number(a.order)-Number(b.order));
+        .sort(compareRmulLatestFirst);
     }}
 
     function renderRmulRankingAndTree() {{
@@ -9469,23 +9580,52 @@ def render_html(title, payload):
       if(!tree.closest("[hidden]"))requestAnimationFrame(()=>centerBracketViewport(tree));
     }}
 
+    function getRmulGroupKey(item) {{
+      return [item.season || "", item.zone || "", item.stage || "阶段未明"].join("|");
+    }}
+
+    function getRmulGroupTitle(group, selectedSeason, selectedZone) {{
+      const parts = [];
+      if (!selectedSeason) parts.push(group.season || "赛季未明");
+      if (!selectedZone) parts.push(group.zone || "赛区未明");
+      parts.push(group.stage || "阶段未明");
+      return parts.join(" · ");
+    }}
+
+    function renderRmulMatchCard(item) {{
+      const redScore=item.redScore==='-'?'—':item.redScore,blueScore=item.blueScore==='-'?'—':item.blueScore;
+      const replay=item.url?`<a class="schedule-replay" href="${{scheduleEscape(item.url)}}" target="_blank" rel="noopener" title="${{scheduleEscape(item.title)}}">▶ 直接看回放</a>`:`<span class="schedule-replay" title="${{scheduleEscape(item.inferenceNote||'')}}">△ 对阵推定 · 回放缺失</span>`;
+      const resultClass=getScheduleResultClass(item);
+      return `<article class="schedule-match ${{resultClass}}"><div class="schedule-meta"><b>${{scheduleEscape(item.season)}}</b>${{scheduleEscape(item.zone)}}</div><div class="schedule-team red"><b>${{scheduleEscape(item.redTeam)}}</b><small>${{scheduleEscape(item.redSchool)}}</small></div><div class="schedule-score"><span class="red">${{scheduleEscape(redScore)}}</span><span>:</span><span class="blue">${{scheduleEscape(blueScore)}}</span></div><div class="schedule-team"><b>${{scheduleEscape(item.blueTeam)}}</b><small>${{scheduleEscape(item.blueSchool)}}</small></div><div class="schedule-tail"><span class="schedule-stage">${{scheduleEscape(item.stage)}}${{item.inferred?' · 推定':''}}</span>第 ${{scheduleEscape(item.order)}} 场<br>${{replay}}</div></article>`;
+    }}
+
     function renderRmul() {{
       renderRuleDocument("rmul");
       const rows=getFilteredRmul(),pages=Math.max(1,Math.ceil(rows.length/rmulPageSize));rmulPage=Math.min(Math.max(1,rmulPage),pages);
       const visible=rows.slice((rmulPage-1)*rmulPageSize,rmulPage*rmulPageSize);
       const selectedSeason=document.getElementById("rmulSeason").value;
+      const selectedZone=document.getElementById("rmulZone").value;
       const collections=(rmulData.collections||[]).filter((item)=>!selectedSeason||item.season===selectedSeason);
       document.getElementById("rmulCollections").innerHTML=collections.map((item)=>`<article class="recap-card"><b>${{scheduleEscape(item.season)}} · ${{scheduleEscape(item.zone)}}</b><span>${{scheduleEscape(item.title)}} · ${{item.parsedMatches}}/${{item.totalVideos}} 条已解析</span><br><a class="schedule-replay" href="${{scheduleEscape(item.url)}}" target="_blank" rel="noopener">▶ 打开官方合集</a></article>`).join("");
       document.getElementById("rmulCollectionLabel").textContent=`${{collections.length}} 个合集`;
-      document.getElementById("rmulList").innerHTML=visible.length?visible.map((item)=>{{
-        const redScore=item.redScore==='-'?'—':item.redScore,blueScore=item.blueScore==='-'?'—':item.blueScore;
-        const replay=item.url?`<a class="schedule-replay" href="${{scheduleEscape(item.url)}}" target="_blank" rel="noopener" title="${{scheduleEscape(item.title)}}">▶ 直接看回放</a>`:`<span class="schedule-replay" title="${{scheduleEscape(item.inferenceNote||'')}}">△ 对阵推定 · 回放缺失</span>`;
-        return `<article class="schedule-match"><div class="schedule-meta"><b>${{scheduleEscape(item.season)}}</b>${{scheduleEscape(item.zone)}}</div><div class="schedule-team red"><b>${{scheduleEscape(item.redTeam)}}</b><small>${{scheduleEscape(item.redSchool)}}</small></div><div class="schedule-score"><span class="red">${{scheduleEscape(redScore)}}</span><span>:</span><span class="blue">${{scheduleEscape(blueScore)}}</span></div><div class="schedule-team"><b>${{scheduleEscape(item.blueTeam)}}</b><small>${{scheduleEscape(item.blueSchool)}}</small></div><div class="schedule-tail"><span class="schedule-stage">${{scheduleEscape(item.stage)}}${{item.inferred?' · 推定':''}}</span>第 ${{scheduleEscape(item.order)}} 场<br>${{replay}}</div></article>`;
+      const groups=[];
+      visible.forEach((item)=>{{
+        const key=getRmulGroupKey(item);
+        let group=groups.find((entry)=>entry.key===key);
+        if(!group){{group={{key,season:item.season,zone:item.zone,stage:item.stage||"阶段未明",rows:[]}};groups.push(group);}}
+        group.rows.push(item);
+      }});
+      document.getElementById("rmulList").innerHTML=visible.length?groups.map((group)=>{{
+        const stageTotal=rows.filter((item)=>getRmulGroupKey(item)===group.key).length;
+        return `<section class="schedule-stage-group">
+          <div class="schedule-stage-heading"><b>${{scheduleEscape(getRmulGroupTitle(group, selectedSeason, selectedZone))}}</b><span>本页 ${{group.rows.length}} 场 · 共 ${{stageTotal}} 场 · 从后往前</span></div>
+          ${{group.rows.map(renderRmulMatchCard).join("")}}
+        </section>`;
       }}).join(""):'<div class="schedule-empty">当前筛选条件下没有高校联盟赛回放。</div>';
       document.getElementById("rmulCountLabel").textContent=`共 ${{rows.length.toLocaleString()}} 场，当前显示 ${{visible.length}} 场`;
       document.getElementById("rmulPageLabel").textContent=`第 ${{rmulPage}} / ${{pages}} 页`;
       document.getElementById("rmulPrev").disabled=rmulPage<=1;document.getElementById("rmulNext").disabled=rmulPage>=pages;
-      const missing=(rmulData.missingReplays||[]).filter((item)=>(!document.getElementById("rmulSeason").value||item.season===document.getElementById("rmulSeason").value)&&(!document.getElementById("rmulZone").value||item.zone===document.getElementById("rmulZone").value));
+      const missing=(rmulData.missingReplays||[]).filter((item)=>(!document.getElementById("rmulSeason").value||item.season===document.getElementById("rmulSeason").value)&&(!document.getElementById("rmulZone").value||item.zone===document.getElementById("rmulZone").value)).sort(compareRmulLatestFirst);
       document.getElementById("rmulMissingBlock").hidden=!missing.length;
       document.getElementById("rmulMissingLabel").textContent=`${{missing.length}} 个场号在官方合集与官号搜索中均未找到`;
       document.getElementById("rmulMissingList").innerHTML=missing.map((item)=>`<article class="recap-card"><b>${{scheduleEscape(item.season)}} · ${{scheduleEscape(item.zone)}}</b><span>第 ${{scheduleEscape(item.order)}} 场 · 官方回放缺失/未发布</span></article>`).join('');
