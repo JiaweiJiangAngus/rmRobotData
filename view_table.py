@@ -336,7 +336,6 @@ def render_html(title, payload):
   <script>
     (() => {{
       const savedTheme = localStorage.getItem("rm-dashboard-theme");
-      const savedDensity = localStorage.getItem("rm-dashboard-density") || "standard";
       const savedBackground = localStorage.getItem("rm-dashboard-background");
       const prefersNight = window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches;
       const theme = ["day", "night"].includes(savedTheme) ? savedTheme : (prefersNight ? "night" : "day");
@@ -344,7 +343,6 @@ def render_html(title, payload):
       const background = savedBackground === "fancy" ? "fancy" : "simple";
       document.documentElement.dataset.theme = theme;
       document.documentElement.dataset.eyeCare = eyeCare ? "true" : "false";
-      document.documentElement.dataset.density = savedDensity;
       document.documentElement.dataset.background = background;
     }})();
   </script>
@@ -4713,6 +4711,46 @@ def render_html(title, payload):
     .schedule-match.result-blue .schedule-team:not(.red) b {{ color: #087699; text-shadow: 0 0 12px rgba(255,255,255,.40); }}
     html[data-theme="night"] .schedule-match.result-red .schedule-team.red b {{ color: #ffd5d2; }}
     html[data-theme="night"] .schedule-match.result-blue .schedule-team:not(.red) b {{ color: #c8f4ff; }}
+    html[data-theme] .schedule-match.championship-final {{ border-color:color-mix(in srgb,#d4af37,var(--line) 34%); box-shadow:inset 3px 0 0 #d4af37,inset -3px 0 0 #aeb8c3,0 0 0 1px rgba(212,175,55,.08); }}
+    html[data-theme] .schedule-match.championship-final.final-blue-winner {{ box-shadow:inset 3px 0 0 #aeb8c3,inset -3px 0 0 #d4af37,0 0 0 1px rgba(212,175,55,.08); }}
+    html[data-theme] .schedule-match.championship-final.final-red-winner::before {{ background:linear-gradient(90deg,rgba(239,214,125,.42) 0%,rgba(239,214,125,.18) 24%,transparent 43%,transparent 57%,rgba(220,225,231,.18) 76%,rgba(220,225,231,.42) 100%); }}
+    html[data-theme] .schedule-match.championship-final.final-blue-winner::before {{ background:linear-gradient(90deg,rgba(220,225,231,.42) 0%,rgba(220,225,231,.18) 24%,transparent 43%,transparent 57%,rgba(239,214,125,.18) 76%,rgba(239,214,125,.42) 100%); }}
+    html[data-theme] .schedule-match.third-place-final {{ border-color:color-mix(in srgb,#b76e79,var(--line) 34%); box-shadow:inset 3px 0 0 #b76e79,inset -3px 0 0 #6f4e37,0 0 0 1px rgba(183,110,121,.11); }}
+    html[data-theme] .schedule-match.third-place-final.final-blue-winner {{ box-shadow:inset 3px 0 0 #6f4e37,inset -3px 0 0 #b76e79,0 0 0 1px rgba(183,110,121,.11); }}
+    html[data-theme] .schedule-match.third-place-final.final-red-winner::before {{ background:linear-gradient(90deg,rgba(124,52,71,.18) 0%,rgba(183,110,121,.32) 10%,rgba(224,157,139,.22) 18%,rgba(183,110,121,.13) 30%,transparent 43%,transparent 57%,rgba(111,78,55,.16) 76%,rgba(111,78,55,.36) 100%); }}
+    html[data-theme] .schedule-match.third-place-final.final-blue-winner::before {{ background:linear-gradient(90deg,rgba(111,78,55,.36) 0%,rgba(111,78,55,.16) 24%,transparent 43%,transparent 57%,rgba(183,110,121,.13) 70%,rgba(224,157,139,.22) 82%,rgba(183,110,121,.32) 90%,rgba(124,52,71,.18) 100%); }}
+    html[data-theme] .schedule-match.championship-final.final-red-winner .schedule-team.red b,
+    html[data-theme] .schedule-match.championship-final.final-blue-winner .schedule-team:not(.red) b {{ color:#8b6508; text-shadow:none; }}
+    html[data-theme] .schedule-match.championship-final.final-red-winner .schedule-team:not(.red) b,
+    html[data-theme] .schedule-match.championship-final.final-blue-winner .schedule-team.red b {{ color:#626b76; text-shadow:none; }}
+    html[data-theme] .schedule-match.third-place-final.final-red-winner .schedule-team.red b,
+    html[data-theme] .schedule-match.third-place-final.final-blue-winner .schedule-team:not(.red) b {{ color:#7c3447; text-shadow:none; }}
+    html[data-theme] .schedule-match.third-place-final.final-red-winner .schedule-team:not(.red) b,
+    html[data-theme] .schedule-match.third-place-final.final-blue-winner .schedule-team.red b {{ color:#6f4e37; text-shadow:none; }}
+    html[data-theme] .schedule-match.championship-final.final-red-winner .schedule-score .red,
+    html[data-theme] .schedule-match.championship-final.final-blue-winner .schedule-score .blue {{ color:#a77c0b; }}
+    html[data-theme] .schedule-match.championship-final.final-red-winner .schedule-score .blue,
+    html[data-theme] .schedule-match.championship-final.final-blue-winner .schedule-score .red {{ color:#737d88; }}
+    html[data-theme] .schedule-match.third-place-final.final-red-winner .schedule-score .red,
+    html[data-theme] .schedule-match.third-place-final.final-blue-winner .schedule-score .blue {{ color:#9b4a5f; }}
+    html[data-theme] .schedule-match.third-place-final.final-red-winner .schedule-score .blue,
+    html[data-theme] .schedule-match.third-place-final.final-blue-winner .schedule-score .red {{ color:#6f4e37; }}
+    html[data-theme="night"] .schedule-match.championship-final.final-red-winner .schedule-team.red b,
+    html[data-theme="night"] .schedule-match.championship-final.final-blue-winner .schedule-team:not(.red) b,
+    html[data-theme="night"] .schedule-match.championship-final.final-red-winner .schedule-score .red,
+    html[data-theme="night"] .schedule-match.championship-final.final-blue-winner .schedule-score .blue {{ color:#f4d46f; }}
+    html[data-theme="night"] .schedule-match.championship-final.final-red-winner .schedule-team:not(.red) b,
+    html[data-theme="night"] .schedule-match.championship-final.final-blue-winner .schedule-team.red b,
+    html[data-theme="night"] .schedule-match.championship-final.final-red-winner .schedule-score .blue,
+    html[data-theme="night"] .schedule-match.championship-final.final-blue-winner .schedule-score .red {{ color:#d9e0e8; }}
+    html[data-theme="night"] .schedule-match.third-place-final.final-red-winner .schedule-team.red b,
+    html[data-theme="night"] .schedule-match.third-place-final.final-blue-winner .schedule-team:not(.red) b,
+    html[data-theme="night"] .schedule-match.third-place-final.final-red-winner .schedule-score .red,
+    html[data-theme="night"] .schedule-match.third-place-final.final-blue-winner .schedule-score .blue {{ color:#ffb3bd; }}
+    html[data-theme="night"] .schedule-match.third-place-final.final-red-winner .schedule-team:not(.red) b,
+    html[data-theme="night"] .schedule-match.third-place-final.final-blue-winner .schedule-team.red b,
+    html[data-theme="night"] .schedule-match.third-place-final.final-red-winner .schedule-score .blue,
+    html[data-theme="night"] .schedule-match.third-place-final.final-blue-winner .schedule-score .red {{ color:#c7a287; }}
     .schedule-meta, .schedule-tail {{ padding: 10px 13px; color: var(--muted); font-size: 11px; }}
     .schedule-meta {{ border-right: 1px solid var(--line); }}
     .schedule-meta b, .schedule-stage {{ display: block; color: var(--text); font-weight: 950; }}
@@ -4768,7 +4806,7 @@ def render_html(title, payload):
     .bracket-tree::-webkit-scrollbar {{ width: 12px; height: 14px; }}
     .bracket-tree::-webkit-scrollbar-track {{ background: var(--panel-soft); border: 1px solid var(--line); }}
     .bracket-tree::-webkit-scrollbar-thumb {{ background: linear-gradient(90deg, var(--accent), var(--accent-deep)); border: 3px solid transparent; background-clip: padding-box; border-radius: 999px; }}
-    .bracket-toolbar {{ position: sticky; top: 0; left: 0; z-index: 20; display: flex; gap: 8px; width: max-content; padding: 6px; border: 1px solid var(--line); background: var(--panel-strong); box-shadow: var(--shadow); }}
+    .bracket-toolbar {{ position: sticky; left: 0; z-index: 20; display: flex; gap: 8px; width: max-content; margin: 0 0 10px; padding: 6px; border: 1px solid var(--line); background: var(--panel-strong); box-shadow: var(--shadow); }}
     .bracket-toolbar button {{ padding: 7px 11px; border: 1px solid var(--line); background: var(--button-bg); color: var(--text); cursor: pointer; }}
     .bracket-tree:fullscreen {{ width: 100vw; max-width: none; height: 100vh; max-height: none; padding: 10px; background: var(--bg); overflow: auto; }}
     .bracket-tree:fullscreen .bracket-graph {{ transform: translateX(var(--tree-offset-x, 0px)) scale(var(--tree-scale, 1)); transform-origin: top left; }}
@@ -4777,6 +4815,8 @@ def render_html(title, payload):
     .bracket-tree:fullscreen .topdown-score {{ font-size:21px; }}
     .bracket-tree:fullscreen .topdown-round {{ font-size:15px; }}
     .bracket-tree:fullscreen .topdown-aux-stage,.bracket-tree:fullscreen .topdown-aux-heading {{ font-size:14px; }}
+    .bracket-tree:fullscreen .bracket-stage-rail {{ display: none; }}
+    .bracket-tree:fullscreen .topdown-round {{ transform: none; }}
     .bracket-tree.tree-fullsize:fullscreen {{ overflow: auto; }}
     .bracket-tree.tree-fullsize:fullscreen .bracket-graph {{ transform: none; }}
     .schedule-match.tree-target {{ outline: 3px solid var(--accent); box-shadow: 0 0 0 7px var(--accent-soft), var(--shadow); animation: tree-target-pulse 1.2s ease-in-out 2; }}
@@ -4804,6 +4844,16 @@ def render_html(title, payload):
     .topdown-side {{ display:grid; grid-template-columns:minmax(0,1fr) 36px; align-items:center; min-height:50px; padding:8px 9px 8px 12px; color:#f8fafc; }}
     .topdown-side.red {{ background:linear-gradient(90deg,rgba(190,35,48,.38),rgba(23,31,42,.96)); border-left:4px solid #ef4055; border-bottom:1px solid rgba(255,255,255,.11); }}
     .topdown-side.blue {{ background:linear-gradient(90deg,rgba(27,91,190,.40),rgba(23,31,42,.96)); border-left:4px solid #3292ff; }}
+    .topdown-node.championship-final {{ border-color: rgba(212,175,55,.75); box-shadow: 0 0 0 1px rgba(212,175,55,.18), 0 10px 26px rgba(0,0,0,.26); }}
+    .topdown-node.championship-final .topdown-side.winner {{ background:#d4af37; border-left-color:#d4af37; color:#16130a; }}
+    .topdown-node.championship-final .topdown-side.loser {{ background:#aeb8c3; border-left-color:#aeb8c3; color:#14181d; }}
+    .topdown-node.third-place-final {{ border-color: rgba(183,110,121,.78); box-shadow: 0 0 0 1px rgba(183,110,121,.2), 0 10px 26px rgba(0,0,0,.26); }}
+    .topdown-node.third-place-final .topdown-side.winner {{ background:linear-gradient(105deg,#743047 0%,#b76e79 44%,#e0a090 54%,#8c4654 100%); border-left-color:#d89a90; color:#fff8f1; }}
+    .topdown-node.third-place-final .topdown-side.loser {{ background:#6f4e37; border-left-color:#6f4e37; color:#fff8f1; }}
+    .topdown-node.championship-final .topdown-side small,
+    .topdown-node.third-place-final .topdown-side small {{ color: currentColor; opacity: .76; }}
+    .topdown-node.championship-final .topdown-score,
+    .topdown-node.third-place-final .topdown-score {{ background: rgba(255,255,255,.28); color: inherit; }}
     .topdown-side b,.topdown-side small {{ display:block; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }}
     .topdown-side b {{ font-size:15px; }} .topdown-side small {{ color:rgba(255,255,255,.72); font-size:11px; margin-top:3px; }}
     .topdown-score {{ display:grid; place-items:center; width:34px; height:34px; border-radius:5px; background:rgba(0,0,0,.38); font-size:19px; font-weight:900; }}
@@ -5205,7 +5255,7 @@ def render_html(title, payload):
       }}
       .global-display-controls {{
         display: grid;
-        grid-template-columns: repeat(4, minmax(0, 1fr));
+        grid-template-columns: repeat(3, minmax(0, 1fr));
         width: 100%;
         gap: 3px;
         margin: 0 0 8px;
@@ -5369,7 +5419,6 @@ def render_html(title, payload):
     </nav>
     <div class="global-display-controls" aria-label="显示设置">
       <button id="backgroundToggle" class="theme-toggle background-toggle" type="button" aria-label="切换背景风格">▧ 简约背景</button>
-      <button id="densityToggle" class="theme-toggle density-toggle" type="button" aria-label="切换表格密度">▤ 紧凑</button>
       <button id="themeToggle" class="theme-toggle" type="button" aria-label="切换到黑夜模式">☀ 白昼</button>
       <button id="eyeCareToggle" class="theme-toggle" type="button" aria-label="开启护眼模式" aria-pressed="false">◉ 护眼</button>
     </div>
@@ -5634,7 +5683,7 @@ def render_html(title, payload):
       <div class="content-page" data-content-page="league:tree" role="tabpanel" hidden>
       <section class="schedule-panel">
         <div class="schedule-panel-head"><div><span class="eyebrow">TOURNAMENT TREE</span><h2 id="rmulTreeTitle">高校联盟赛淘汰赛树</h2></div><span class="schedule-count" id="rmulTreeLabel"></span></div>
-        <div class="bracket-tree" id="rmulBracketTree"><div id="rmulBracketCanvas"></div></div>
+        <div class="bracket-tree" id="rmulBracketTree"><div class="bracket-toolbar"><button id="rmulBracketFullscreen" type="button">⛶ 全屏总览</button><button id="rmulBracketScaleToggle" type="button">100% 细节</button></div><div id="rmulBracketCanvas"></div></div>
       </section>
       </div>
     </div>
@@ -5836,7 +5885,6 @@ def render_html(title, payload):
       themeToggle: document.getElementById("themeToggle"),
       eyeCareToggle: document.getElementById("eyeCareToggle"),
       backgroundToggle: document.getElementById("backgroundToggle"),
-      densityToggle: document.getElementById("densityToggle"),
       robotFilterPanel: document.getElementById("robotFilterPanel"),
       robotFilterToggle: document.getElementById("robotFilterToggle"),
 
@@ -8674,10 +8722,6 @@ def render_html(title, payload):
       day: "☀ 白昼",
       night: "☾ 黑夜",
     }};
-    const densityLabels = {{
-      standard: "▤ 紧凑",
-      compact: "▥ 标准",
-    }};
     const backgroundLabels = {{
       fancy: "✦ 花哨背景",
       simple: "▧ 简约背景",
@@ -8731,21 +8775,6 @@ def render_html(title, payload):
         );
         els.backgroundToggle.setAttribute("aria-pressed", nextBackground === "simple" ? "true" : "false");
         els.backgroundToggle.title = els.backgroundToggle.getAttribute("aria-label");
-      }}
-    }}
-
-    function getCurrentDensity() {{
-      return document.documentElement.dataset.density === "compact" ? "compact" : "standard";
-    }}
-
-    function setDensity(density) {{
-      const nextDensity = density === "compact" ? "compact" : "standard";
-      document.documentElement.dataset.density = nextDensity;
-      localStorage.setItem("rm-dashboard-density", nextDensity);
-      if (els.densityToggle) {{
-        els.densityToggle.textContent = densityLabels[nextDensity];
-        els.densityToggle.setAttribute("aria-label", nextDensity === "compact" ? "切换到标准视图" : "切换到紧凑视图");
-        els.densityToggle.title = els.densityToggle.getAttribute("aria-label");
       }}
     }}
 
@@ -8808,13 +8837,6 @@ def render_html(title, payload):
       setBackground(getCurrentBackground());
       els.backgroundToggle.addEventListener("click", () => {{
         setBackground(getCurrentBackground() === "fancy" ? "simple" : "fancy");
-      }});
-    }}
-
-    if (els.densityToggle) {{
-      setDensity(getCurrentDensity());
-      els.densityToggle.addEventListener("click", () => {{
-        setDensity(getCurrentDensity() === "compact" ? "standard" : "compact");
       }});
     }}
 
@@ -9241,7 +9263,7 @@ def render_html(title, payload):
       document.getElementById("bracketTreeTitle").textContent=`${{season}} ${{zone}}完整赛程签表`;
       document.getElementById("bracketTreeMeta").textContent=`5 轮小组赛 · ${{koLevels.length}} 轮淘汰赛 · 双击比赛跳转`;
       document.getElementById("bracketCanvas").innerHTML=`<div class="bracket-graph" style="width:${{width}}px;height:${{Math.max(height,resultY+30)}}px"><svg class="bracket-lines" width="${{width}}" height="${{Math.max(height,resultY+30)}}">${{paths.join("")}}</svg>${{matchNodes}}${{resultNodes}}</div>`;
-      if(document.fullscreenElement===document.getElementById("bracketTree"))requestAnimationFrame(fitBracketFullscreen);
+      if(document.fullscreenElement===document.getElementById("bracketTree"))requestAnimationFrame(()=>fitBracketFullscreen(document.getElementById("bracketTree")));
     }}
 
     function renderTopDownBracketTree() {{
@@ -9285,7 +9307,7 @@ def render_html(title, payload):
       if(!mainKo.every((item)=>item.matchId))for(let r=0;r<koRounds.length-1;r++)koRounds[r].forEach((item)=>koRounds[r+1].forEach((next)=>{{if([item.redSchool,item.blueSchool,item.redTeam,item.blueTeam].some((v)=>v===next.redSchool||v===next.blueSchool||v===next.redTeam||v===next.blueTeam))up(positions.get(keyOf(item)),positions.get(keyOf(next)));}}));
       for(let r=0;r<groupRounds.length-1;r++)groupRounds[r].forEach((item)=>groupRounds[r+1].forEach((next)=>{{if([item.redSchool,item.blueSchool].some((s)=>s===next.redSchool||s===next.blueSchool))up(groupPositions.get(keyOf(item)),groupPositions.get(keyOf(next)),"rgba(85,170,195,.20)");}}));
       if(groupRounds.length&&koRounds.length)groupRounds[groupRounds.length-1].forEach((item)=>koRounds[0].forEach((next)=>{{if([item.redSchool,item.blueSchool].some((s)=>s===next.redSchool||s===next.blueSchool))up(groupPositions.get(keyOf(item)),positions.get(keyOf(next)),"rgba(218,177,70,.42)");}}));
-      const card=(item,p)=>{{const auxiliary=isAuxiliaryStage(item.stage);return `<article class="topdown-node${{auxiliary?' auxiliary':''}}" data-tree-match="${{scheduleEscape([item.season,item.zone,item.order,item.id].join('|'))}}" title="第 ${{scheduleEscape(item.order)}} 场 · 双击跳转" style="left:${{p.x}}px;top:${{p.y}}px">${{auxiliary?`<em class="topdown-aux-stage">${{scheduleEscape(item.stage)}}</em>`:''}}<div class="topdown-side red"><span><b>${{scheduleEscape(item.redTeam)}}</b><small>${{scheduleEscape(item.redSchool)}}</small></span><strong class="topdown-score">${{scheduleEscape(item.redScore)}}</strong></div><div class="topdown-side blue"><span><b>${{scheduleEscape(item.blueTeam)}}</b><small>${{scheduleEscape(item.blueSchool)}}</small></span><strong class="topdown-score">${{scheduleEscape(item.blueScore)}}</strong></div></article>`;}};
+      const card=(item,p)=>{{const auxiliary=isAuxiliaryStage(item.stage),presentation=getBracketFinalPresentation(item);return `<article class="topdown-node${{auxiliary?' auxiliary':''}} ${{presentation.nodeClass}}" data-tree-match="${{scheduleEscape([item.season,item.zone,item.order,item.id].join('|'))}}" title="第 ${{scheduleEscape(item.order)}} 场 · 双击跳转" style="left:${{p.x}}px;top:${{p.y}}px">${{auxiliary?`<em class="topdown-aux-stage">${{scheduleEscape(item.stage)}}</em>`:''}}<div class="topdown-side red ${{presentation.redClass}}"><span><b>${{scheduleEscape(item.redTeam)}}</b><small>${{scheduleEscape(item.redSchool)}}</small></span><strong class="topdown-score">${{scheduleEscape(formatBracketScore(item.redScore))}}</strong></div><div class="topdown-side blue ${{presentation.blueClass}}"><span><b>${{scheduleEscape(item.blueTeam)}}</b><small>${{scheduleEscape(item.blueSchool)}}</small></span><strong class="topdown-score">${{scheduleEscape(formatBracketScore(item.blueScore))}}</strong></div></article>`;}};
       const nodes=ko.map((item)=>card(item,positions.get(keyOf(item)))).join("")+groups.map((item)=>card(item,groupPositions.get(keyOf(item)))).join("");
       const labels=visualBands.map((items,band)=>{{const koBand=band<koRounds.length;let label;if(koBand){{const names=[...new Set(items.map((item)=>displayStage(item.stage)))];label=names.join(" / ");}}else{{label=`小组赛第 ${{groupRounds.length-(band-koRounds.length)}} 轮`;}}return `<div class="topdown-round" style="top:${{top+band*bandH+30}}px">${{scheduleEscape(label)}}</div>`;}}).join("");
       document.getElementById("bracketTreeTitle").textContent=`${{season}} ${{zone}}纵向赛程树`;
@@ -9294,7 +9316,7 @@ def render_html(title, payload):
       document.getElementById("bracketCanvas").innerHTML=`<div class="bracket-graph" style="width:${{width}}px;height:${{height}}px"><svg class="bracket-lines" width="${{width}}" height="${{height}}">${{paths.join("")}}</svg><div class="bracket-stage-rail" aria-hidden="true"></div>${{labels}}${{auxiliaryHeading}}${{nodes}}</div>`;
       const tree=document.getElementById("bracketTree");
       if(!tree.closest("[hidden]"))requestAnimationFrame(()=>centerBracketViewport(tree));
-      if(document.fullscreenElement===document.getElementById("bracketTree"))requestAnimationFrame(fitBracketFullscreen);
+      if(document.fullscreenElement===document.getElementById("bracketTree"))requestAnimationFrame(()=>fitBracketFullscreen(document.getElementById("bracketTree")));
     }}
 
     function getFilteredSchedule() {{
@@ -9334,11 +9356,37 @@ def render_html(title, payload):
       return Number.isFinite(number) ? number : null;
     }}
 
+    function formatBracketScore(value) {{
+      return parseScheduleScore(value) === null ? "—" : String(value).trim();
+    }}
+
+    function getBracketFinalPresentation(item) {{
+      const stage = `${{item.stage || ""}} ${{item.title || ""}}`;
+      const red = parseScheduleScore(item.redScore);
+      const blue = parseScheduleScore(item.blueScore);
+      const isChampionship = /冠军争夺|冠亚军|冠军赛/.test(stage) || /(^|[\\s【】\\-—])(?:总决赛|决赛)(?:$|[\\s【】\\-—])/.test(stage.trim());
+      const isThirdPlace = /季军争夺|三四名决赛|季军赛/.test(stage);
+      if ((!isChampionship && !isThirdPlace) || red === null || blue === null || red === blue) {{
+        return {{ nodeClass: "", redClass: "", blueClass: "" }};
+      }}
+      return {{
+        nodeClass: isChampionship ? "championship-final" : "third-place-final",
+        redClass: red > blue ? "winner" : "loser",
+        blueClass: blue > red ? "winner" : "loser",
+      }};
+    }}
+
     function getScheduleResultClass(item) {{
       const red = parseScheduleScore(item.redScore);
       const blue = parseScheduleScore(item.blueScore);
       if (red === null || blue === null || red === blue) return "result-neutral";
       return red > blue ? "result-red" : "result-blue";
+    }}
+
+    function getScheduleFinalClass(item) {{
+      const presentation = getBracketFinalPresentation(item);
+      if (!presentation.nodeClass) return "";
+      return `${{presentation.nodeClass}} ${{presentation.redClass === "winner" ? "final-red-winner" : "final-blue-winner"}}`;
     }}
 
     function renderSchedule() {{
@@ -9366,7 +9414,7 @@ def render_html(title, payload):
         const replayButton = replay
           ? `<br><a class="schedule-replay" href="${{scheduleEscape(replay.url)}}" target="_blank" rel="noopener" title="${{scheduleEscape(replay.title)}}">▶ 直接看回放</a>`
           : "";
-        const resultClass = getScheduleResultClass(item);
+        const resultClass = `${{getScheduleResultClass(item)}} ${{getScheduleFinalClass(item)}}`;
         return `
         <article class="schedule-match ${{resultClass}}" data-schedule-match="${{scheduleEscape(`${{item.season}}|${{item.zone}}|${{item.order}}|${{item.id}}`)}}">
           <div class="schedule-meta"><b>${{scheduleEscape(item.season)}}</b>${{scheduleEscape(item.zone || "未标注")}}</div>
@@ -9413,8 +9461,8 @@ def render_html(title, payload):
       syncBracketStageLabels(tree);
     }}
 
-    function fitBracketFullscreen() {{
-      const tree = document.getElementById("bracketTree");
+    function fitBracketFullscreen(tree) {{
+      if (!tree) return;
       const graph = tree.querySelector(".bracket-graph");
       if (!graph || document.fullscreenElement !== tree || tree.classList.contains("tree-fullsize")) return;
       const availableWidth = tree.clientWidth - 28;
@@ -9426,23 +9474,30 @@ def render_html(title, payload):
       tree.style.setProperty("--tree-offset-x", `${{offset}}px`);
     }}
 
-    document.getElementById("bracketFullscreen").addEventListener("click", async () => {{
-      const tree = document.getElementById("bracketTree");
-      if (document.fullscreenElement === tree) await document.exitFullscreen();
-      else {{ tree.classList.remove("tree-fullsize"); await tree.requestFullscreen(); fitBracketFullscreen(); }}
-    }});
-    document.getElementById("bracketScaleToggle").addEventListener("click", () => {{
-      const tree = document.getElementById("bracketTree");
-      tree.classList.toggle("tree-fullsize");
-      document.getElementById("bracketScaleToggle").textContent = tree.classList.contains("tree-fullsize") ? "适应全屏" : "100% 细节";
-      if (!tree.classList.contains("tree-fullsize")) fitBracketFullscreen();
-    }});
+    function bindBracketFullscreen(treeId, fullscreenButtonId, scaleButtonId) {{
+      const tree = document.getElementById(treeId);
+      const fullscreenButton = document.getElementById(fullscreenButtonId);
+      const scaleButton = document.getElementById(scaleButtonId);
+      fullscreenButton.addEventListener("click", async () => {{
+        if (document.fullscreenElement === tree) await document.exitFullscreen();
+        else {{ tree.classList.remove("tree-fullsize"); await tree.requestFullscreen(); fitBracketFullscreen(tree); }}
+      }});
+      scaleButton.addEventListener("click", () => {{
+        tree.classList.toggle("tree-fullsize");
+        scaleButton.textContent = tree.classList.contains("tree-fullsize") ? "适应全屏" : "100% 细节";
+        if (!tree.classList.contains("tree-fullsize")) fitBracketFullscreen(tree);
+      }});
+    }}
+    bindBracketFullscreen("bracketTree", "bracketFullscreen", "bracketScaleToggle");
+    bindBracketFullscreen("rmulBracketTree", "rmulBracketFullscreen", "rmulBracketScaleToggle");
     document.addEventListener("fullscreenchange", () => {{
-      const tree = document.getElementById("bracketTree");
-      document.getElementById("bracketFullscreen").textContent = document.fullscreenElement === tree ? "退出全屏" : "⛶ 全屏总览";
-      if (document.fullscreenElement === tree) requestAnimationFrame(fitBracketFullscreen);
+      [["bracketTree","bracketFullscreen"],["rmulBracketTree","rmulBracketFullscreen"]].forEach(([treeId,buttonId]) => {{
+        const tree = document.getElementById(treeId);
+        document.getElementById(buttonId).textContent = document.fullscreenElement === tree ? "退出全屏" : "⛶ 全屏总览";
+        if (document.fullscreenElement === tree) requestAnimationFrame(()=>fitBracketFullscreen(tree));
+      }});
     }});
-    window.addEventListener("resize", fitBracketFullscreen);
+    window.addEventListener("resize", () => fitBracketFullscreen(document.fullscreenElement));
     [document.getElementById("bracketTree"), document.getElementById("rmulBracketTree")].forEach((tree) => {{
       tree.addEventListener("scroll", () => syncBracketStageLabels(tree), {{ passive: true }});
     }});
@@ -9573,11 +9628,12 @@ def render_html(title, payload):
         const a=positions.get(source.id),b=positions.get(target.id),x1=a.x+cardW/2,y1=a.y,x2=b.x+cardW/2,y2=b.y+cardH,m=(y1+y2)/2;
         paths.push(`<path d="M ${{x1}} ${{y1}} V ${{m}} H ${{x2}} V ${{y2}}" fill="none" stroke="rgba(184,205,214,.62)" stroke-width="1.6"/>`);
       }}));
-      const nodes=stages.flat().map((item)=>{{const p=positions.get(item.id);return `<article class="topdown-node" data-rmul-replay="${{scheduleEscape(item.url)}}" title="双击打开官方回放" style="left:${{p.x}}px;top:${{p.y}}px"><div class="topdown-side red"><span><b>${{scheduleEscape(item.redTeam)}}</b><small>${{scheduleEscape(item.redSchool)}}</small></span><strong class="topdown-score">—</strong></div><div class="topdown-side blue"><span><b>${{scheduleEscape(item.blueTeam)}}</b><small>${{scheduleEscape(item.blueSchool)}}</small></span><strong class="topdown-score">—</strong></div></article>`;}}).join('');
+      const nodes=stages.flat().map((item)=>{{const p=positions.get(item.id),presentation=getBracketFinalPresentation(item);return `<article class="topdown-node ${{presentation.nodeClass}}" data-rmul-replay="${{scheduleEscape(item.url)}}" title="双击打开官方回放" style="left:${{p.x}}px;top:${{p.y}}px"><div class="topdown-side red ${{presentation.redClass}}"><span><b>${{scheduleEscape(item.redTeam)}}</b><small>${{scheduleEscape(item.redSchool)}}</small></span><strong class="topdown-score">${{scheduleEscape(formatBracketScore(item.redScore))}}</strong></div><div class="topdown-side blue ${{presentation.blueClass}}"><span><b>${{scheduleEscape(item.blueTeam)}}</b><small>${{scheduleEscape(item.blueSchool)}}</small></span><strong class="topdown-score">${{scheduleEscape(formatBracketScore(item.blueScore))}}</strong></div></article>`;}}).join('');
       const labels=stages.map((items,band)=>`<div class="topdown-round" style="top:${{top+band*bandH+30}}px">${{scheduleEscape([...new Set(items.map((item)=>item.stage))].join(' / '))}}</div>`).join('');
       document.getElementById("rmulBracketCanvas").innerHTML=`<div class="bracket-graph" style="width:${{width}}px;height:${{height}}px"><svg class="bracket-lines" width="${{width}}" height="${{height}}">${{paths.join('')}}</svg><div class="bracket-stage-rail" aria-hidden="true"></div>${{labels}}${{nodes}}</div>`;
       const tree=document.getElementById("rmulBracketTree");
       if(!tree.closest("[hidden]"))requestAnimationFrame(()=>centerBracketViewport(tree));
+      if(document.fullscreenElement===tree)requestAnimationFrame(()=>fitBracketFullscreen(tree));
     }}
 
     function getRmulGroupKey(item) {{
@@ -9595,7 +9651,7 @@ def render_html(title, payload):
     function renderRmulMatchCard(item) {{
       const redScore=item.redScore==='-'?'—':item.redScore,blueScore=item.blueScore==='-'?'—':item.blueScore;
       const replay=item.url?`<a class="schedule-replay" href="${{scheduleEscape(item.url)}}" target="_blank" rel="noopener" title="${{scheduleEscape(item.title)}}">▶ 直接看回放</a>`:`<span class="schedule-replay" title="${{scheduleEscape(item.inferenceNote||'')}}">△ 对阵推定 · 回放缺失</span>`;
-      const resultClass=getScheduleResultClass(item);
+      const resultClass=`${{getScheduleResultClass(item)}} ${{getScheduleFinalClass(item)}}`;
       return `<article class="schedule-match ${{resultClass}}"><div class="schedule-meta"><b>${{scheduleEscape(item.season)}}</b>${{scheduleEscape(item.zone)}}</div><div class="schedule-team red"><b>${{scheduleEscape(item.redTeam)}}</b><small>${{scheduleEscape(item.redSchool)}}</small></div><div class="schedule-score"><span class="red">${{scheduleEscape(redScore)}}</span><span>:</span><span class="blue">${{scheduleEscape(blueScore)}}</span></div><div class="schedule-team"><b>${{scheduleEscape(item.blueTeam)}}</b><small>${{scheduleEscape(item.blueSchool)}}</small></div><div class="schedule-tail"><span class="schedule-stage">${{scheduleEscape(item.stage)}}${{item.inferred?' · 推定':''}}</span>第 ${{scheduleEscape(item.order)}} 场<br>${{replay}}</div></article>`;
     }}
 

@@ -20366,12 +20366,12 @@
       "zone": "辽宁站",
       "order": "55",
       "stage": "半决赛",
-      "redSchool": "—半决赛 东北大学",
+      "redSchool": "东北大学",
       "redTeam": "TDT",
       "blueSchool": "东北林业大学",
       "blueTeam": "Ares",
-      "redScore": "-",
-      "blueScore": "-",
+      "redScore": 2,
+      "blueScore": 0,
       "title": "RoboMaster 高校联盟赛 2024 辽宁站 第55场—半决赛 东北大学 TDT战队 vs 东北林业大学 Ares战队",
       "url": "https://www.bilibili.com/video/BV1jZ421t716/",
       "uncertain": true
@@ -20382,12 +20382,12 @@
       "zone": "辽宁站",
       "order": "56",
       "stage": "半决赛",
-      "redSchool": "—半决赛 沈阳理工大学",
+      "redSchool": "沈阳理工大学",
       "redTeam": "Ambition",
       "blueSchool": "哈尔滨工业大学",
       "blueTeam": "I Hiter",
-      "redScore": "-",
-      "blueScore": "-",
+      "redScore": 0,
+      "blueScore": 2,
       "title": "RoboMaster 高校联盟赛 2024 辽宁站 第56场—半决赛 沈阳理工大学 Ambition战队 vs 哈尔滨工业大学 I Hiter战队",
       "url": "https://www.bilibili.com/video/BV1w1421X7Kq/",
       "uncertain": true
@@ -20398,12 +20398,12 @@
       "zone": "辽宁站",
       "order": "57",
       "stage": "季军争夺战",
-      "redSchool": "—季军争夺战 东北大学",
+      "redSchool": "东北大学",
       "redTeam": "TDT",
       "blueSchool": "沈阳理工大学",
       "blueTeam": "Ambition",
-      "redScore": "-",
-      "blueScore": "-",
+      "redScore": 2,
+      "blueScore": 0,
       "title": "RoboMaster 高校联盟赛 2024 辽宁站 第57场—季军争夺战 东北大学 TDT战队 vs 沈阳理工大学 Ambition战队",
       "url": "https://www.bilibili.com/video/BV1tf421Z7vN/",
       "uncertain": true
@@ -20414,12 +20414,12 @@
       "zone": "辽宁站",
       "order": "58",
       "stage": "冠军争夺战",
-      "redSchool": "—冠军争夺战 东北林业大学",
+      "redSchool": "东北林业大学",
       "redTeam": "Ares",
       "blueSchool": "哈尔滨工业大学",
       "blueTeam": "I Hiter",
-      "redScore": "-",
-      "blueScore": "-",
+      "redScore": 2,
+      "blueScore": 0,
       "title": "RoboMaster 高校联盟赛 2024 辽宁站 第58场—冠军争夺战 东北林业大学 Ares战队 vs 哈尔滨工业大学 I Hiter战队",
       "url": "https://www.bilibili.com/video/BV1zz421Z7BN/",
       "uncertain": true
@@ -20434,11 +20434,11 @@
       "redTeam": "木鸢Birdiebot",
       "blueSchool": "苏州大学应用技术学院",
       "blueTeam": "苏鸾",
-      "redScore": "-",
-      "blueScore": "-",
+      "redScore": "2",
+      "blueScore": "0",
       "title": "上海站 第1场 上海工程技术大学 木鸢Birdiebot战队 vs 苏州大学应用技术学院 苏鸾战队 | RoboMaster 2025 高校联盟赛",
       "url": "https://www.bilibili.com/video/BV1QGo9YXEfC/",
-      "uncertain": true
+      "uncertain": false
     },
     {
       "id": "RMUL-2025-上海站-2-BV1QGo9YXEtg",
@@ -20450,11 +20450,11 @@
       "redTeam": "灵晔",
       "blueSchool": "南京邮电大学",
       "blueTeam": "Potential",
-      "redScore": "-",
-      "blueScore": "-",
+      "redScore": "2",
+      "blueScore": "0",
       "title": "上海站 第2场 上海电力大学 灵晔战队 vs 南京邮电大学 Potential战队 | RoboMaster 2025 高校联盟赛",
       "url": "https://www.bilibili.com/video/BV1QGo9YXEtg/",
-      "uncertain": true
+      "uncertain": false
     },
     {
       "id": "RMUL-2025-上海站-3-BV1CMoXYqEzn",
@@ -20466,11 +20466,11 @@
       "redTeam": "SuperPower",
       "blueSchool": "华东理工大学",
       "blueTeam": "起源",
-      "redScore": "-",
-      "blueScore": "-",
+      "redScore": "2",
+      "blueScore": "0",
       "title": "上海站 第3场 同济大学 SuperPower战队 vs 华东理工大学 起源战队 | RoboMaster 2025 高校联盟赛",
       "url": "https://www.bilibili.com/video/BV1CMoXYqEzn/",
-      "uncertain": true
+      "uncertain": false
     },
     {
       "id": "RMUL-2025-上海站-4-BV1nVoXYPEAE",
@@ -20482,11 +20482,11 @@
       "redTeam": "NSE",
       "blueSchool": "东南大学",
       "blueTeam": "3SE",
-      "redScore": "-",
-      "blueScore": "-",
+      "redScore": "0",
+      "blueScore": "2",
       "title": "上海站 第4场 南通大学 NSE战队 vs 东南大学 3SE战队 | RoboMaster 2025 高校联盟赛",
       "url": "https://www.bilibili.com/video/BV1nVoXYPEAE/",
-      "uncertain": true
+      "uncertain": false
     },
     {
       "id": "RMUL-2025-上海站-5-BV1broRYXEKE",
@@ -20498,11 +20498,11 @@
       "redTeam": "New Legends",
       "blueSchool": "常州工学院",
       "blueTeam": "FA",
-      "redScore": "-",
-      "blueScore": "-",
+      "redScore": "0",
+      "blueScore": "2",
       "title": "上海站 第5场 宁波工程学院 New Legends战队 vs 常州工学院 FA战队 | RoboMaster 2025 高校联盟赛",
       "url": "https://www.bilibili.com/video/BV1broRYXEKE/",
-      "uncertain": true
+      "uncertain": false
     },
     {
       "id": "RMUL-2025-上海站-6-BV1MroRYXEDW",
@@ -20514,11 +20514,11 @@
       "redTeam": "SHARK",
       "blueSchool": "上海理工大学",
       "blueTeam": "RoboVigor",
-      "redScore": "-",
-      "blueScore": "-",
+      "redScore": "2",
+      "blueScore": "0",
       "title": "上海站 第6场 江南大学霞客湾校区 SHARK战队 vs 上海理工大学 RoboVigor战队 | RoboMaster 2025 高校联盟赛",
       "url": "https://www.bilibili.com/video/BV1MroRYXEDW/",
-      "uncertain": true
+      "uncertain": false
     },
     {
       "id": "RMUL-2025-上海站-7-BV1uroRYXEME",
@@ -20530,11 +20530,11 @@
       "redTeam": "交龙",
       "blueSchool": "浙江工业大学",
       "blueTeam": "Deus",
-      "redScore": "-",
-      "blueScore": "-",
+      "redScore": "2",
+      "blueScore": "0",
       "title": "上海站 第7场 上海交通大学 交龙战队 vs 浙江工业大学 Deus战队 | RoboMaster 2025 高校联盟赛",
       "url": "https://www.bilibili.com/video/BV1uroRYXEME/",
-      "uncertain": true
+      "uncertain": false
     },
     {
       "id": "RMUL-2025-上海站-8-BV1K2oRYJEQW",
@@ -20546,11 +20546,11 @@
       "redTeam": "过岗龙",
       "blueSchool": "安徽大学",
       "blueTeam": "Supremacy",
-      "redScore": "-",
-      "blueScore": "-",
+      "redScore": "1",
+      "blueScore": "1",
       "title": "上海站 第8场 香港中文大学（深圳） 过岗龙战队 vs 安徽大学 Supremacy战队 | RoboMaster 2025 高校联盟赛",
       "url": "https://www.bilibili.com/video/BV1K2oRYJEQW/",
-      "uncertain": true
+      "uncertain": false
     },
     {
       "id": "RMUL-2025-上海站-9-BV13voRYoEVN",
@@ -20562,11 +20562,11 @@
       "redTeam": "Magician",
       "blueSchool": "南京航空航天大学",
       "blueTeam": "长空御风",
-      "redScore": "-",
-      "blueScore": "-",
+      "redScore": "0",
+      "blueScore": "2",
       "title": "上海站 第9场 上海科技大学 Magician战队 vs 南京航空航天大学 长空御风战队 | RoboMaster 2025 高校联盟赛",
       "url": "https://www.bilibili.com/video/BV13voRYoEVN/",
-      "uncertain": true
+      "uncertain": false
     },
     {
       "id": "RMUL-2025-上海站-10-BV1xmoRYUExh",
@@ -20578,11 +20578,11 @@
       "redTeam": "Born of Fire",
       "blueSchool": "常州大学",
       "blueTeam": "Climber",
-      "redScore": "-",
-      "blueScore": "-",
+      "redScore": "2",
+      "blueScore": "0",
       "title": "上海站 第10场 南京航空航天大学金城学院 Born of Fire战队 vs 常州大学 Climber战队 | RoboMaster 2025 高校联盟赛",
       "url": "https://www.bilibili.com/video/BV1xmoRYUExh/",
-      "uncertain": true
+      "uncertain": false
     },
     {
       "id": "RMUL-2025-上海站-11-BV1CXoRYLEJp",
@@ -20594,11 +20594,11 @@
       "redTeam": "SRM",
       "blueSchool": "三江学院",
       "blueTeam": "破浪",
-      "redScore": "-",
-      "blueScore": "-",
+      "redScore": "2",
+      "blueScore": "0",
       "title": "上海站 第11场 上海大学 SRM战队 vs 三江学院 破浪战队 | RoboMaster 2025 高校联盟赛",
       "url": "https://www.bilibili.com/video/BV1CXoRYLEJp/",
-      "uncertain": true
+      "uncertain": false
     },
     {
       "id": "RMUL-2025-上海站-12-BV1H5oRY3EmB",
@@ -20610,11 +20610,11 @@
       "redTeam": "Combat",
       "blueSchool": "江苏航空职业技术学院",
       "blueTeam": "飞凡创新",
-      "redScore": "-",
-      "blueScore": "-",
+      "redScore": "2",
+      "blueScore": "0",
       "title": "上海站 第12场 南京理工大学江阴校区 Combat战队 vs 江苏航空职业技术学院 飞凡创新战队 | RoboMaster 2025 高校联盟赛",
       "url": "https://www.bilibili.com/video/BV1H5oRY3EmB/",
-      "uncertain": true
+      "uncertain": false
     },
     {
       "id": "RMUL-2025-上海站-13-BV1H5oRY3Ehh",
@@ -20626,11 +20626,11 @@
       "redTeam": "DIODE",
       "blueSchool": "同济大学浙江学院",
       "blueTeam": "天禄",
-      "redScore": "-",
-      "blueScore": "-",
+      "redScore": "2",
+      "blueScore": "0",
       "title": "上海站 第13场 东华大学 DIODE战队 vs 同济大学浙江学院 天禄战队 | RoboMaster 2025 高校联盟赛",
       "url": "https://www.bilibili.com/video/BV1H5oRY3Ehh/",
-      "uncertain": true
+      "uncertain": false
     },
     {
       "id": "RMUL-2025-上海站-14-BV17WoRYNECs",
@@ -20642,11 +20642,11 @@
       "redTeam": "EGA",
       "blueSchool": "常熟理工学院",
       "blueTeam": "R&A",
-      "redScore": "-",
-      "blueScore": "-",
+      "redScore": "2",
+      "blueScore": "0",
       "title": "上海站 第14场 复旦大学 EGA战队 vs 常熟理工学院 R&A战队 | RoboMaster 2025 高校联盟赛",
       "url": "https://www.bilibili.com/video/BV17WoRYNECs/",
-      "uncertain": true
+      "uncertain": false
     },
     {
       "id": "RMUL-2025-上海站-15-BV1qWoRYNE4X",
@@ -20658,11 +20658,11 @@
       "redTeam": "Alliance",
       "blueSchool": "江苏开放大学",
       "blueTeam": "开拓者",
-      "redScore": "-",
-      "blueScore": "-",
+      "redScore": "2",
+      "blueScore": "0",
       "title": "上海站 第15场 南京理工大学 Alliance战队 vs 江苏开放大学 开拓者战队 | RoboMaster 2025 高校联盟赛",
       "url": "https://www.bilibili.com/video/BV1qWoRYNE4X/",
-      "uncertain": true
+      "uncertain": false
     },
     {
       "id": "RMUL-2025-上海站-16-BV17WoRYNEGu",
@@ -20674,11 +20674,11 @@
       "redTeam": "GMaster",
       "blueSchool": "南通理工学院",
       "blueTeam": "紫琅",
-      "redScore": "-",
-      "blueScore": "-",
+      "redScore": "1",
+      "blueScore": "1",
       "title": "上海站 第16场 西交利物浦大学 GMaster战队 vs 南通理工学院 紫琅战队 | RoboMaster 2025 高校联盟赛",
       "url": "https://www.bilibili.com/video/BV17WoRYNEGu/",
-      "uncertain": true
+      "uncertain": false
     },
     {
       "id": "RMUL-2025-上海站-17-BV1D4ZFYqE1j",
@@ -20690,11 +20690,11 @@
       "redTeam": "长空御风",
       "blueSchool": "上海工程技术大学",
       "blueTeam": "木鸢Birdiebot",
-      "redScore": "-",
-      "blueScore": "-",
+      "redScore": "0",
+      "blueScore": "2",
       "title": "上海站 第17场 南京航空航天大学 长空御风战队 vs 上海工程技术大学 木鸢Birdiebot战队 | RMUL 2025 高校联盟赛",
       "url": "https://www.bilibili.com/video/BV1D4ZFYqE1j/",
-      "uncertain": true
+      "uncertain": false
     },
     {
       "id": "RMUL-2025-上海站-18-BV1D4ZFYqEpL",
@@ -20706,11 +20706,11 @@
       "redTeam": "Climber",
       "blueSchool": "上海电力大学",
       "blueTeam": "灵晔",
-      "redScore": "-",
-      "blueScore": "-",
+      "redScore": "1",
+      "blueScore": "1",
       "title": "上海站 第18场 常州大学 Climber战队 vs 上海电力大学 灵晔战队 | RoboMaster 2025 高校联盟赛",
       "url": "https://www.bilibili.com/video/BV1D4ZFYqEpL/",
-      "uncertain": true
+      "uncertain": false
     },
     {
       "id": "RMUL-2025-上海站-19-BV15JZFYVE8J",
@@ -20722,11 +20722,11 @@
       "redTeam": "破浪",
       "blueSchool": "同济大学",
       "blueTeam": "SuperPower",
-      "redScore": "-",
-      "blueScore": "-",
+      "redScore": "0",
+      "blueScore": "2",
       "title": "上海站 第19场 三江学院 破浪战队 vs 同济大学 SuperPower战队 | RoboMaster 2025 高校联盟赛",
       "url": "https://www.bilibili.com/video/BV15JZFYVE8J/",
-      "uncertain": true
+      "uncertain": false
     },
     {
       "id": "RMUL-2025-上海站-20-BV19JZFYGEvA",
@@ -20738,11 +20738,11 @@
       "redTeam": "飞凡创新",
       "blueSchool": "南通大学",
       "blueTeam": "NSE",
-      "redScore": "-",
-      "blueScore": "-",
+      "redScore": "2",
+      "blueScore": "0",
       "title": "上海站 第20场 江苏航空职业技术学院 飞凡创新战队 vs 南通大学 NSE战队 | RoboMaster 2025 高校联盟赛",
       "url": "https://www.bilibili.com/video/BV19JZFYGEvA/",
-      "uncertain": true
+      "uncertain": false
     },
     {
       "id": "RMUL-2025-上海站-21-BV19JZFYGEva",
@@ -20754,11 +20754,11 @@
       "redTeam": "天禄",
       "blueSchool": "宁波工程学院",
       "blueTeam": "New Legends",
-      "redScore": "-",
-      "blueScore": "-",
+      "redScore": "2",
+      "blueScore": "0",
       "title": "上海站 第21场 同济大学浙江学院 天禄战队 vs 宁波工程学院 New Legends战队 | RMUL 2025 高校联盟赛",
       "url": "https://www.bilibili.com/video/BV19JZFYGEva/",
-      "uncertain": true
+      "uncertain": false
     },
     {
       "id": "RMUL-2025-上海站-22-BV19JZFYGEUY",
@@ -20770,11 +20770,11 @@
       "redTeam": "R&A",
       "blueSchool": "江南大学霞客湾校区",
       "blueTeam": "SHARK",
-      "redScore": "-",
-      "blueScore": "-",
+      "redScore": "0",
+      "blueScore": "2",
       "title": "上海站 第22场 常熟理工学院 R&A战队 vs 江南大学霞客湾校区 SHARK战队 | RoboMaster 2025 高校联盟赛",
       "url": "https://www.bilibili.com/video/BV19JZFYGEUY/",
-      "uncertain": true
+      "uncertain": false
     },
     {
       "id": "RMUL-2025-上海站-23-BV19nZFYrE4D",
@@ -20786,11 +20786,11 @@
       "redTeam": "开拓者",
       "blueSchool": "上海交通大学",
       "blueTeam": "交龙",
-      "redScore": "-",
-      "blueScore": "-",
+      "redScore": "0",
+      "blueScore": "2",
       "title": "上海站 第23场 江苏开放大学 开拓者战队 vs 上海交通大学 交龙战队 | RoboMaster 2025 高校联盟赛",
       "url": "https://www.bilibili.com/video/BV19nZFYrE4D/",
-      "uncertain": true
+      "uncertain": false
     },
     {
       "id": "RMUL-2025-上海站-24-BV13yofYTENk",
@@ -20802,11 +20802,11 @@
       "redTeam": "紫琅",
       "blueSchool": "香港中文大学（深圳）",
       "blueTeam": "过岗龙",
-      "redScore": "-",
-      "blueScore": "-",
+      "redScore": "1",
+      "blueScore": "1",
       "title": "上海站 第24场 南通理工学院 紫琅战队 vs 香港中文大学（深圳）过岗龙战队 | RMUL 2025 高校联盟赛",
       "url": "https://www.bilibili.com/video/BV13yofYTENk/",
-      "uncertain": true
+      "uncertain": false
     },
     {
       "id": "RMUL-2025-上海站-25-BV13yofYTEEh",
@@ -20818,11 +20818,11 @@
       "redTeam": "Magician",
       "blueSchool": "苏州大学应用技术学院",
       "blueTeam": "苏鸾",
-      "redScore": "-",
-      "blueScore": "-",
+      "redScore": "2",
+      "blueScore": "0",
       "title": "上海站 第25场 上海科技大学Magician战队 vs 苏州大学应用技术学院 苏鸾战队 | RMUL 2025 高校联盟赛",
       "url": "https://www.bilibili.com/video/BV13yofYTEEh/",
-      "uncertain": true
+      "uncertain": false
     },
     {
       "id": "RMUL-2025-上海站-26-BV13yofYTE6g",
@@ -20834,11 +20834,11 @@
       "redTeam": "Born of Fire",
       "blueSchool": "南京邮电大学",
       "blueTeam": "Potential",
-      "redScore": "-",
-      "blueScore": "-",
+      "redScore": "2",
+      "blueScore": "0",
       "title": "上海站 第26场 南京航空航天大学金城学院 Born of Fire战队 vs 南京邮电大学 Potential战队 | RMUL 2025 高校联盟赛",
       "url": "https://www.bilibili.com/video/BV13yofYTE6g/",
-      "uncertain": true
+      "uncertain": false
     },
     {
       "id": "RMUL-2025-上海站-27-BV1SYZwY3EMe",
@@ -20850,11 +20850,11 @@
       "redTeam": "SRM",
       "blueSchool": "华东理工大学",
       "blueTeam": "起源",
-      "redScore": "-",
-      "blueScore": "-",
+      "redScore": "0",
+      "blueScore": "2",
       "title": "上海站 第27场 上海大学 SRM战队 vs 华东理工大学 起源战队 | RoboMaster 2025 高校联盟赛",
       "url": "https://www.bilibili.com/video/BV1SYZwY3EMe/",
-      "uncertain": true
+      "uncertain": false
     },
     {
       "id": "RMUL-2025-上海站-28-BV1SYZwY3Ebg",
@@ -20866,11 +20866,11 @@
       "redTeam": "Combat",
       "blueSchool": "东南大学",
       "blueTeam": "3SE",
-      "redScore": "-",
-      "blueScore": "-",
+      "redScore": "2",
+      "blueScore": "0",
       "title": "上海站 第28场 南京理工大学江阴校区 Combat战队 vs 东南大学 3SE战队 | RoboMaster 2025 高校联盟赛",
       "url": "https://www.bilibili.com/video/BV1SYZwY3Ebg/",
-      "uncertain": true
+      "uncertain": false
     },
     {
       "id": "RMUL-2025-上海站-29-BV1D8ZwYVErx",
@@ -20882,11 +20882,11 @@
       "redTeam": "DIODE",
       "blueSchool": "常州工学院",
       "blueTeam": "FA",
-      "redScore": "-",
-      "blueScore": "-",
+      "redScore": "1",
+      "blueScore": "1",
       "title": "上海站 第29场 东华大学 DIODE战队 vs 常州工学院 FA战队 | RoboMaster 2025 高校联盟赛",
       "url": "https://www.bilibili.com/video/BV1D8ZwYVErx/",
-      "uncertain": true
+      "uncertain": false
     },
     {
       "id": "RMUL-2025-上海站-30-BV1RHZwYUEWd",
@@ -20898,11 +20898,11 @@
       "redTeam": "EGA",
       "blueSchool": "上海理工大学",
       "blueTeam": "RoboVigor",
-      "redScore": "-",
-      "blueScore": "-",
+      "redScore": "2",
+      "blueScore": "0",
       "title": "上海站 第30场 复旦大学 EGA战队 vs 上海理工大学 RoboVigor战队 | RoboMaster 2025 高校联盟赛",
       "url": "https://www.bilibili.com/video/BV1RHZwYUEWd/",
-      "uncertain": true
+      "uncertain": false
     },
     {
       "id": "RMUL-2025-上海站-31-BV1LHZwYSEGs",
@@ -20914,11 +20914,11 @@
       "redTeam": "Alliance",
       "blueSchool": "浙江工业大学",
       "blueTeam": "Deus",
-      "redScore": "-",
-      "blueScore": "-",
+      "redScore": "2",
+      "blueScore": "0",
       "title": "上海站 第31场 南京理工大学 Alliance战队 vs 浙江工业大学 Deus战队 | RoboMaster 2025 高校联盟赛",
       "url": "https://www.bilibili.com/video/BV1LHZwYSEGs/",
-      "uncertain": true
+      "uncertain": false
     },
     {
       "id": "RMUL-2025-上海站-32-BV1G2ZcYCE42",
@@ -20930,11 +20930,11 @@
       "redTeam": "GMaster",
       "blueSchool": "安徽大学",
       "blueTeam": "Supremacy",
-      "redScore": "-",
-      "blueScore": "-",
+      "redScore": "2",
+      "blueScore": "0",
       "title": "上海站 第32场 西交利物浦大学 GMaster战队 vs 安徽大学 Supremacy战队 | RoboMaster 2025 高校联盟赛",
       "url": "https://www.bilibili.com/video/BV1G2ZcYCE42/",
-      "uncertain": true
+      "uncertain": false
     },
     {
       "id": "RMUL-2025-上海站-33-BV1G2ZcYCEPR",
@@ -20946,11 +20946,11 @@
       "redTeam": "木鸢Birdiebot",
       "blueSchool": "上海科技大学",
       "blueTeam": "Magician",
-      "redScore": "-",
-      "blueScore": "-",
+      "redScore": "2",
+      "blueScore": "0",
       "title": "上海站 第33场 上海工程技术大学木鸢Birdiebot战队 vs 上海科技大学Magician战队 | RMUL 2025 高校联盟赛",
       "url": "https://www.bilibili.com/video/BV1G2ZcYCEPR/",
-      "uncertain": true
+      "uncertain": false
     },
     {
       "id": "RMUL-2025-上海站-34-BV1LzZcYEEcU",
@@ -20962,11 +20962,11 @@
       "redTeam": "灵晔",
       "blueSchool": "南京航空航天大学金城学院",
       "blueTeam": "Born of Fire",
-      "redScore": "-",
-      "blueScore": "-",
+      "redScore": "0",
+      "blueScore": "2",
       "title": "上海站 第34场 上海电力大学 灵晔战队 vs 南京航空航天大学金城学院 Born of Fire战队 | RMUL 2025 高校联盟赛",
       "url": "https://www.bilibili.com/video/BV1LzZcYEEcU/",
-      "uncertain": true
+      "uncertain": false
     },
     {
       "id": "RMUL-2025-上海站-35-BV1LzZcYEEWR",
@@ -20978,11 +20978,11 @@
       "redTeam": "SuperPower",
       "blueSchool": "上海大学",
       "blueTeam": "SRM",
-      "redScore": "-",
-      "blueScore": "-",
+      "redScore": "2",
+      "blueScore": "0",
       "title": "上海站 第35场 同济大学 SuperPower战队 vs 上海大学 SRM战队 | RoboMaster 2025 高校联盟赛",
       "url": "https://www.bilibili.com/video/BV1LzZcYEEWR/",
-      "uncertain": true
+      "uncertain": false
     },
     {
       "id": "RMUL-2025-上海站-36-BV1LzZcYEE29",
@@ -20994,11 +20994,11 @@
       "redTeam": "NSE",
       "blueSchool": "南京理工大学江阴校区",
       "blueTeam": "Combat",
-      "redScore": "-",
-      "blueScore": "-",
+      "redScore": "0",
+      "blueScore": "2",
       "title": "上海站 第36场 南通大学 NSE战队 vs 南京理工大学江阴校区 Combat战队 | RoboMaster 2025 高校联盟赛",
       "url": "https://www.bilibili.com/video/BV1LzZcYEE29/",
-      "uncertain": true
+      "uncertain": false
     },
     {
       "id": "RMUL-2025-上海站-37-BV1jzZcYEEcE",
@@ -21010,11 +21010,11 @@
       "redTeam": "New Legends",
       "blueSchool": "东华大学",
       "blueTeam": "DIODE",
-      "redScore": "-",
-      "blueScore": "-",
+      "redScore": "1",
+      "blueScore": "1",
       "title": "上海站 第37场 宁波工程学院 New Legends战队 vs 东华大学 DIODE战队 | RoboMaster 2025 高校联盟赛",
       "url": "https://www.bilibili.com/video/BV1jzZcYEEcE/",
-      "uncertain": true
+      "uncertain": false
     },
     {
       "id": "RMUL-2025-上海站-38-BV1JLZPYaE9o",
@@ -21026,11 +21026,11 @@
       "redTeam": "SHARK",
       "blueSchool": "复旦大学",
       "blueTeam": "EGA",
-      "redScore": "-",
-      "blueScore": "-",
+      "redScore": "1",
+      "blueScore": "1",
       "title": "上海站 第38场 江南大学霞客湾校区 SHARK战队 vs 复旦大学 EGA战队 | RoboMaster 2025 高校联盟赛",
       "url": "https://www.bilibili.com/video/BV1JLZPYaE9o/",
-      "uncertain": true
+      "uncertain": false
     },
     {
       "id": "RMUL-2025-上海站-39-BV1FLZPYaEAT",
@@ -21042,11 +21042,11 @@
       "redTeam": "交龙",
       "blueSchool": "南京理工大学",
       "blueTeam": "Alliance",
-      "redScore": "-",
-      "blueScore": "-",
+      "redScore": "2",
+      "blueScore": "0",
       "title": "上海站 第39场 上海交通大学 交龙战队 vs 南京理工大学 Alliance战队 | RoboMaster 2025 高校联盟赛",
       "url": "https://www.bilibili.com/video/BV1FLZPYaEAT/",
-      "uncertain": true
+      "uncertain": false
     },
     {
       "id": "RMUL-2025-上海站-40-BV1FLZPYaEed",
@@ -21058,11 +21058,11 @@
       "redTeam": "过岗龙",
       "blueSchool": "西交利物浦大学",
       "blueTeam": "GMaster",
-      "redScore": "-",
-      "blueScore": "-",
+      "redScore": "1",
+      "blueScore": "1",
       "title": "上海站 第40场 香港中文大学（深圳）过岗龙战队 vs 西交利物浦大学 GMaster战队 | RMUL 2025 高校联盟赛",
       "url": "https://www.bilibili.com/video/BV1FLZPYaEed/",
-      "uncertain": true
+      "uncertain": false
     },
     {
       "id": "RMUL-2025-上海站-41-BV1FLZPYaEUG",
@@ -21074,11 +21074,11 @@
       "redTeam": "苏鸾",
       "blueSchool": "南京航空航天大学",
       "blueTeam": "长空御风",
-      "redScore": "-",
-      "blueScore": "-",
+      "redScore": "0",
+      "blueScore": "2",
       "title": "上海站 第41场 苏州大学应用技术学院 苏鸾战队 vs 南京航空航天大学 长空御风战队 | RMUL 2025 高校联盟赛",
       "url": "https://www.bilibili.com/video/BV1FLZPYaEUG/",
-      "uncertain": true
+      "uncertain": false
     },
     {
       "id": "RMUL-2025-上海站-42-BV1GaZPYDEFz",
@@ -21090,11 +21090,11 @@
       "redTeam": "Potential",
       "blueSchool": "常州大学",
       "blueTeam": "Climber",
-      "redScore": "-",
-      "blueScore": "-",
+      "redScore": "0",
+      "blueScore": "2",
       "title": "上海站 第42场 南京邮电大学 Potential战队 vs 常州大学 Climber战队 | RoboMaster 2025 高校联盟赛",
       "url": "https://www.bilibili.com/video/BV1GaZPYDEFz/",
-      "uncertain": true
+      "uncertain": false
     },
     {
       "id": "RMUL-2025-上海站-43-BV1LrZAYREfk",
@@ -21106,11 +21106,11 @@
       "redTeam": "起源",
       "blueSchool": "三江学院",
       "blueTeam": "破浪",
-      "redScore": "-",
-      "blueScore": "-",
+      "redScore": "2",
+      "blueScore": "0",
       "title": "上海站 第43场 华东理工大学 起源战队 vs 三江学院 破浪战队 | RoboMaster 2025 高校联盟赛",
       "url": "https://www.bilibili.com/video/BV1LrZAYREfk/",
-      "uncertain": true
+      "uncertain": false
     },
     {
       "id": "RMUL-2025-上海站-44-BV1irZAYRESr",
@@ -21122,11 +21122,11 @@
       "redTeam": "3SE",
       "blueSchool": "江苏航空职业技术学院",
       "blueTeam": "飞凡创新",
-      "redScore": "-",
-      "blueScore": "-",
+      "redScore": "2",
+      "blueScore": "0",
       "title": "上海站 第44场 东南大学 3SE战队 vs 江苏航空职业技术学院 飞凡创新战队 | RoboMaster 2025 高校联盟赛",
       "url": "https://www.bilibili.com/video/BV1irZAYRESr/",
-      "uncertain": true
+      "uncertain": false
     },
     {
       "id": "RMUL-2025-上海站-45-BV1EBZAYoEck",
@@ -21138,11 +21138,11 @@
       "redTeam": "FA",
       "blueSchool": "同济大学浙江学院",
       "blueTeam": "天禄",
-      "redScore": "-",
-      "blueScore": "-",
+      "redScore": "1",
+      "blueScore": "1",
       "title": "上海站 第45场 常州工学院 FA战队 vs 同济大学浙江学院 天禄战队 | RoboMaster 2025 高校联盟赛",
       "url": "https://www.bilibili.com/video/BV1EBZAYoEck/",
-      "uncertain": true
+      "uncertain": false
     },
     {
       "id": "RMUL-2025-上海站-46-BV14nZAYuEza",
@@ -21154,11 +21154,11 @@
       "redTeam": "RoboVigor",
       "blueSchool": "常熟理工学院",
       "blueTeam": "R&A",
-      "redScore": "-",
-      "blueScore": "-",
+      "redScore": "1",
+      "blueScore": "1",
       "title": "上海站 第46场 上海理工大学 RoboVigor战队 vs 常熟理工学院 R&A战队 | RoboMaster 2025 高校联盟赛",
       "url": "https://www.bilibili.com/video/BV14nZAYuEza/",
-      "uncertain": true
+      "uncertain": false
     },
     {
       "id": "RMUL-2025-上海站-47-BV14EZAY6EyM",
@@ -21170,11 +21170,11 @@
       "redTeam": "Deus",
       "blueSchool": "江苏开放大学",
       "blueTeam": "开拓者",
-      "redScore": "-",
-      "blueScore": "-",
+      "redScore": "0",
+      "blueScore": "2",
       "title": "上海站 第47场 浙江工业大学 Deus战队 vs 江苏开放大学 开拓者战队 | RoboMaster 2025 高校联盟赛",
       "url": "https://www.bilibili.com/video/BV14EZAY6EyM/",
-      "uncertain": true
+      "uncertain": false
     },
     {
       "id": "RMUL-2025-上海站-48-BV14EZAY6EZ7",
@@ -21186,11 +21186,11 @@
       "redTeam": "Supremacy",
       "blueSchool": "南通理工学院",
       "blueTeam": "紫琅",
-      "redScore": "-",
-      "blueScore": "-",
+      "redScore": "0",
+      "blueScore": "2",
       "title": "上海站 第48场 安徽大学 Supremacy战队 vs 南通理工学院 紫琅战队 | RoboMaster 2025 高校联盟赛",
       "url": "https://www.bilibili.com/video/BV14EZAY6EZ7/",
-      "uncertain": true
+      "uncertain": false
     },
     {
       "id": "RMUL-2025-上海站-49-BV1FLZBY8E1r",
@@ -21202,11 +21202,11 @@
       "redTeam": "木鸢Birdiebot",
       "blueSchool": "上海电力大学",
       "blueTeam": "灵晔",
-      "redScore": "-",
-      "blueScore": "-",
+      "redScore": "2",
+      "blueScore": "0",
       "title": "上海站 第49场 上海工程技术大学 木鸢Birdiebot战队 vs 上海电力大学 灵晔战队 | RoboMaster 2025 高校联盟赛",
       "url": "https://www.bilibili.com/video/BV1FLZBY8E1r/",
-      "uncertain": true
+      "uncertain": false
     },
     {
       "id": "RMUL-2025-上海站-50-BV1FLZBY8EDM",
@@ -21218,11 +21218,11 @@
       "redTeam": "3SE",
       "blueSchool": "同济大学",
       "blueTeam": "SuperPower",
-      "redScore": "-",
-      "blueScore": "-",
+      "redScore": "0",
+      "blueScore": "2",
       "title": "上海站 第50场 东南大学 3SE战队 vs 同济大学 SuperPower战队 | RoboMaster 2025 高校联盟赛",
       "url": "https://www.bilibili.com/video/BV1FLZBY8EDM/",
-      "uncertain": true
+      "uncertain": false
     },
     {
       "id": "RMUL-2025-上海站-51-BV1nLZBY8EaY",
@@ -21234,11 +21234,11 @@
       "redTeam": "DIODE",
       "blueSchool": "复旦大学",
       "blueTeam": "EGA",
-      "redScore": "-",
-      "blueScore": "-",
+      "redScore": "0",
+      "blueScore": "2",
       "title": "上海站 第51场 东华大学 DIODE战队 vs 复旦大学 EGA战队 | RoboMaster 2025 高校联盟赛",
       "url": "https://www.bilibili.com/video/BV1nLZBY8EaY/",
-      "uncertain": true
+      "uncertain": false
     },
     {
       "id": "RMUL-2025-上海站-52-BV1cLZBY8EHg",
@@ -21250,11 +21250,11 @@
       "redTeam": "GMaster",
       "blueSchool": "上海交通大学",
       "blueTeam": "交龙",
-      "redScore": 0,
-      "blueScore": 2,
+      "redScore": "0",
+      "blueScore": "2",
       "title": "上海站 第52场 西交利物浦大学 GMaster战队 vs 上海交通大学 交龙战队 | RoboMaster 2025 高校联盟赛",
       "url": "https://www.bilibili.com/video/BV1cLZBY8EHg/",
-      "uncertain": true
+      "uncertain": false
     },
     {
       "id": "RMUL-2025-上海站-53-BV1nLZBY8Ea8",
@@ -21266,11 +21266,11 @@
       "redTeam": "长空御风",
       "blueSchool": "南京航空航天大学金城学院",
       "blueTeam": "Born of Fire",
-      "redScore": "-",
-      "blueScore": "-",
+      "redScore": "0",
+      "blueScore": "2",
       "title": "上海站 第53场 南京航空航天大学 长空御风战队 vs 南京航空航天大学金城学院 Born of Fire战队 | RoboMaster 2025 高校联盟赛",
       "url": "https://www.bilibili.com/video/BV1nLZBY8Ea8/",
-      "uncertain": true
+      "uncertain": false
     },
     {
       "id": "RMUL-2025-上海站-54-BV1nLZBY8EtL",
@@ -21282,11 +21282,11 @@
       "redTeam": "Combat",
       "blueSchool": "华东理工大学",
       "blueTeam": "起源",
-      "redScore": "-",
-      "blueScore": "-",
+      "redScore": "0",
+      "blueScore": "2",
       "title": "上海站 第54场 南京理工大学江阴校区 Combat战队 vs 华东理工大学 起源战队 | RoboMaster 2025 高校联盟赛",
       "url": "https://www.bilibili.com/video/BV1nLZBY8EtL/",
-      "uncertain": true
+      "uncertain": false
     },
     {
       "id": "RMUL-2025-上海站-55-BV1cLZBY8EA2",
@@ -21298,11 +21298,11 @@
       "redTeam": "FA",
       "blueSchool": "江南大学霞客湾校区",
       "blueTeam": "SHARK",
-      "redScore": "-",
-      "blueScore": "-",
+      "redScore": "0",
+      "blueScore": "2",
       "title": "上海站 第55场 常州工学院 FA战队 vs 江南大学霞客湾校区 SHARK战队 | RoboMaster 2025 高校联盟赛",
       "url": "https://www.bilibili.com/video/BV1cLZBY8EA2/",
-      "uncertain": true
+      "uncertain": false
     },
     {
       "id": "RMUL-2025-上海站-56-BV1nLZBY8EVo",
@@ -21314,11 +21314,11 @@
       "redTeam": "紫琅",
       "blueSchool": "南京理工大学",
       "blueTeam": "Alliance",
-      "redScore": "-",
-      "blueScore": "-",
+      "redScore": "0",
+      "blueScore": "2",
       "title": "上海站 第56场 南通理工学院 紫琅战队 vs 南京理工大学 Alliance战队 | RoboMaster 2025 高校联盟赛",
       "url": "https://www.bilibili.com/video/BV1nLZBY8EVo/",
-      "uncertain": true
+      "uncertain": false
     },
     {
       "id": "RMUL-2025-上海站-57-BV14nZqYTEzX",
@@ -21330,11 +21330,11 @@
       "redTeam": "木鸢Birdiebot",
       "blueSchool": "同济大学",
       "blueTeam": "SuperPower",
-      "redScore": "-",
-      "blueScore": "-",
+      "redScore": "0",
+      "blueScore": "2",
       "title": "上海站 第57场 上海工程技术大学 木鸢Birdiebot战队 vs 同济大学 SuperPower战队 | RoboMaster 2025 高校联盟赛",
       "url": "https://www.bilibili.com/video/BV14nZqYTEzX/",
-      "uncertain": true
+      "uncertain": false
     },
     {
       "id": "RMUL-2025-上海站-58-BV12nZqYTERh",
@@ -21346,11 +21346,11 @@
       "redTeam": "EGA",
       "blueSchool": "上海交通大学",
       "blueTeam": "交龙",
-      "redScore": "-",
-      "blueScore": "-",
+      "redScore": "0",
+      "blueScore": "2",
       "title": "上海站 第58场 复旦大学 EGA战队 vs 上海交通大学 交龙战队 | RoboMaster 2025 高校联盟赛",
       "url": "https://www.bilibili.com/video/BV12nZqYTERh/",
-      "uncertain": true
+      "uncertain": false
     },
     {
       "id": "RMUL-2025-上海站-59-BV1tnZqYTE3a",
@@ -21362,11 +21362,11 @@
       "redTeam": "Born of Fire",
       "blueSchool": "华东理工大学",
       "blueTeam": "起源",
-      "redScore": "-",
-      "blueScore": "-",
+      "redScore": "2",
+      "blueScore": "0",
       "title": "上海站 第59场 南京航空航天大学金城学院 Born of Fire战队 vs 华东理工大学 起源战队 | RoboMaster 2025 高校联盟赛",
       "url": "https://www.bilibili.com/video/BV1tnZqYTE3a/",
-      "uncertain": true
+      "uncertain": false
     },
     {
       "id": "RMUL-2025-上海站-60-BV1tnZqYTE3B",
@@ -21378,11 +21378,11 @@
       "redTeam": "SHARK",
       "blueSchool": "南京理工大学",
       "blueTeam": "Alliance",
-      "redScore": "-",
-      "blueScore": "-",
+      "redScore": "0",
+      "blueScore": "2",
       "title": "上海站 第60场 江南大学霞客湾校区 SHARK战队 vs 南京理工大学 Alliance战队 | RoboMaster 2025 高校联盟赛",
       "url": "https://www.bilibili.com/video/BV1tnZqYTE3B/",
-      "uncertain": true
+      "uncertain": false
     },
     {
       "id": "RMUL-2025-上海站-61-BV1zrZzYhEcB",
@@ -21394,11 +21394,11 @@
       "redTeam": "SuperPower",
       "blueSchool": "上海交通大学",
       "blueTeam": "交龙",
-      "redScore": "-",
-      "blueScore": "-",
+      "redScore": "0",
+      "blueScore": "2",
       "title": "上海站 第61场 同济大学 SuperPower战队 vs 上海交通大学 交龙战队 | RoboMaster 2025 高校联盟赛",
       "url": "https://www.bilibili.com/video/BV1zrZzYhEcB/",
-      "uncertain": true
+      "uncertain": false
     },
     {
       "id": "RMUL-2025-上海站-62-BV1peZzYKEyP",
@@ -21410,11 +21410,11 @@
       "redTeam": "Born of Fire",
       "blueSchool": "南京理工大学",
       "blueTeam": "Alliance",
-      "redScore": "-",
-      "blueScore": "-",
+      "redScore": "1",
+      "blueScore": "2",
       "title": "上海站 第62场 南京航空航天大学金城学院 Born of Fire战队 vs 南京理工大学 Alliance战队 | RoboMaster 2025 高校联盟",
       "url": "https://www.bilibili.com/video/BV1peZzYKEyP/",
-      "uncertain": true
+      "uncertain": false
     },
     {
       "id": "RMUL-2025-上海站-63-BV1VgZzYXEZx",
@@ -21426,11 +21426,11 @@
       "redTeam": "SuperPower",
       "blueSchool": "南京航空航天大学金城学院",
       "blueTeam": "Born of Fire",
-      "redScore": "-",
-      "blueScore": "-",
+      "redScore": "2",
+      "blueScore": "0",
       "title": "上海站 第63场 同济大学 SuperPower战队 vs 南京航空航天大学金城学院Born of Fire战队 | RoboMaster 2025高校联盟赛",
       "url": "https://www.bilibili.com/video/BV1VgZzYXEZx/",
-      "uncertain": true
+      "uncertain": false
     },
     {
       "id": "RMUL-2025-上海站-64-BV19gZzYQE6f",
@@ -21442,8 +21442,8 @@
       "redTeam": "交龙",
       "blueSchool": "南京理工大学",
       "blueTeam": "Alliance",
-      "redScore": "-",
-      "blueScore": "-",
+      "redScore": 0,
+      "blueScore": 2,
       "title": "上海站 第64场 上海交通大学 交龙战队 vs 南京理工大学 Alliance战队 | RoboMaster 2025 高校联盟赛",
       "url": "https://www.bilibili.com/video/BV19gZzYQE6f/",
       "uncertain": true
@@ -21458,11 +21458,11 @@
       "redTeam": "HERO",
       "blueSchool": "新乡学院",
       "blueTeam": "电创",
-      "redScore": "-",
-      "blueScore": "-",
+      "redScore": "2",
+      "blueScore": "0",
       "title": "山东站 第1场 哈尔滨工业大学（威海） HERO战队 vs 新乡学院 电创战队｜RoboMaster 2025 高校联盟赛",
       "url": "https://www.bilibili.com/video/BV1A3XzYWEWR/",
-      "uncertain": true
+      "uncertain": false
     },
     {
       "id": "RMUL-2025-山东站-2-BV1wGXzYXEwg",
@@ -21474,11 +21474,11 @@
       "redTeam": "Artisans",
       "blueSchool": "陆军装甲兵学院",
       "blueTeam": "铁甲战车",
-      "redScore": "-",
-      "blueScore": "-",
+      "redScore": "2",
+      "blueScore": "0",
       "title": "山东站 第2场 安徽信息工程学院 Artisans战队 vs 陆军装甲兵学院 铁甲战车战队｜RoboMaster 2025 高校联盟赛",
       "url": "https://www.bilibili.com/video/BV1wGXzYXEwg/",
-      "uncertain": true
+      "uncertain": false
     },
     {
       "id": "RMUL-2025-山东站-3-BV15tXzYkECR",
@@ -21490,11 +21490,29 @@
       "redTeam": "星辰",
       "blueSchool": "枣庄学院",
       "blueTeam": "Summit",
-      "redScore": "-",
-      "blueScore": "-",
+      "redScore": "2",
+      "blueScore": "0",
       "title": "山东站 第3场 北京信息科技大学 星辰战队 vs 枣庄学院 Summit战队｜RoboMaster 2025 高校联盟赛",
       "url": "https://www.bilibili.com/video/BV15tXzYkECR/",
-      "uncertain": true
+      "uncertain": false
+    },
+    {
+      "id": "RMUL-INFERRED-2025-山东站-4",
+      "stage": "小组赛",
+      "redScore": 2,
+      "blueScore": 0,
+      "title": "",
+      "url": "",
+      "uncertain": true,
+      "inferred": true,
+      "inferenceNote": "轮空",
+      "season": "2025",
+      "zone": "山东站",
+      "order": "4",
+      "redSchool": "",
+      "redTeam": "",
+      "blueSchool": "",
+      "blueTeam": ""
     },
     {
       "id": "RMUL-2025-山东站-5-BV1wGXzYXEnk",
@@ -21506,11 +21524,11 @@
       "redTeam": "SmartRobot",
       "blueSchool": "中国石油大学（华东）",
       "blueTeam": "RPS",
-      "redScore": "-",
-      "blueScore": "-",
+      "redScore": "0",
+      "blueScore": "2",
       "title": "山东站 第5场 山东科技大学 SmartRobot战队 vs 中国石油大学（华东） RPS战队｜RoboMaster 2025 高校联盟赛",
       "url": "https://www.bilibili.com/video/BV1wGXzYXEnk/",
-      "uncertain": true
+      "uncertain": false
     },
     {
       "id": "RMUL-2025-山东站-6-BV198XzYgETz",
@@ -21522,11 +21540,11 @@
       "redTeam": "南航（天目湖校区） 巡天御风",
       "blueSchool": "山东理工大学",
       "blueTeam": "齐奇",
-      "redScore": "-",
-      "blueScore": "-",
+      "redScore": "0",
+      "blueScore": "2",
       "title": "山东站 第6场 南航（天目湖校区） 巡天御风战队 vs 山东理工大学 齐奇战队｜RoboMaster 2025 高校联盟赛 频",
       "url": "https://www.bilibili.com/video/BV198XzYgETz/",
-      "uncertain": true
+      "uncertain": false
     },
     {
       "id": "RMUL-2025-山东站-7-BV198XzYgEEs",
@@ -21538,11 +21556,11 @@
       "redTeam": "AIC",
       "blueSchool": "青岛大学",
       "blueTeam": "未来",
-      "redScore": "-",
-      "blueScore": "-",
+      "redScore": "0",
+      "blueScore": "2",
       "title": "山东站 第7场 潍坊科技学院 AIC战队 vs 青岛大学 未来战队｜RoboMaster 2025 高校联盟赛",
       "url": "https://www.bilibili.com/video/BV198XzYgEEs/",
-      "uncertain": true
+      "uncertain": false
     },
     {
       "id": "RMUL-2025-山东站-8-BV1ZHXzY1EAM",
@@ -21554,11 +21572,11 @@
       "redTeam": "山海",
       "blueSchool": "安徽理工大学",
       "blueTeam": "鸿烈",
-      "redScore": "-",
-      "blueScore": "-",
+      "redScore": "0",
+      "blueScore": "2",
       "title": "山东站 第8场 山东大学（威海）山海战队 vs 安徽理工大学 鸿烈战队｜RoboMaster 2025 高校联盟赛",
       "url": "https://www.bilibili.com/video/BV1ZHXzY1EAM/",
-      "uncertain": true
+      "uncertain": false
     },
     {
       "id": "RMUL-2025-山东站-9-BV1KNXzYtENS",
@@ -21570,11 +21588,11 @@
       "redTeam": "燕鹰",
       "blueSchool": "山东石油化工学院",
       "blueTeam": "FR",
-      "redScore": "-",
-      "blueScore": "-",
+      "redScore": "2",
+      "blueScore": "0",
       "title": "山东站 第9场 燕山大学 燕鹰战队 vs 山东石油化工学院 FR战队｜RoboMaster 2025 高校联盟赛",
       "url": "https://www.bilibili.com/video/BV1KNXzYtENS/",
-      "uncertain": true
+      "uncertain": false
     },
     {
       "id": "RMUL-2025-山东站-10-BV1urXrYrESK",
@@ -21586,11 +21604,11 @@
       "redTeam": "风暴",
       "blueSchool": "中国科学技术大学",
       "blueTeam": "RoboWalker",
-      "redScore": "-",
-      "blueScore": "-",
+      "redScore": "0",
+      "blueScore": "2",
       "title": "山东站 第10场 华北科技学院 风暴战队 vs 中国科学技术大学 RoboWalker战队｜RoboMaster 2025 高校联盟赛",
       "url": "https://www.bilibili.com/video/BV1urXrYrESK/",
-      "uncertain": true
+      "uncertain": false
     },
     {
       "id": "RMUL-2025-山东站-11-BV1kZXrYfEPS",
@@ -21602,11 +21620,11 @@
       "redTeam": "凌BUG",
       "blueSchool": "齐鲁工业大学",
       "blueTeam": "Adam",
-      "redScore": "-",
-      "blueScore": "-",
+      "redScore": "2",
+      "blueScore": "0",
       "title": "山东站 第11场 大连理工大学 凌BUG战队 vs 齐鲁工业大学 Adam战队｜RoboMaster 2025 高校联盟赛",
       "url": "https://www.bilibili.com/video/BV1kZXrYfEPS/",
-      "uncertain": true
+      "uncertain": false
     },
     {
       "id": "RMUL-2025-山东站-12-BV1KDXrYvEGx",
@@ -21618,11 +21636,11 @@
       "redTeam": "北洋机甲",
       "blueSchool": "北京林业大学",
       "blueTeam": "森林狼",
-      "redScore": "-",
-      "blueScore": "-",
+      "redScore": "2",
+      "blueScore": "0",
       "title": "山东站 第12场 天津大学 北洋机甲战队 vs 北京林业大学 森林狼战队｜RoboMaster 2025 高校联盟赛",
       "url": "https://www.bilibili.com/video/BV1KDXrYvEGx/",
-      "uncertain": true
+      "uncertain": false
     },
     {
       "id": "RMUL-2025-山东站-13-BV11DXrYeEkL",
@@ -21634,11 +21652,11 @@
       "redTeam": "山海机甲",
       "blueSchool": "北京科技大学",
       "blueTeam": "Reborn",
-      "redScore": "-",
-      "blueScore": "-",
+      "redScore": "0",
+      "blueScore": "2",
       "title": "山东站 第13场 河北工业大学 山海机甲战队 vs 北京科技大学 Reborn战队｜RoboMaster 2025 高校联盟赛",
       "url": "https://www.bilibili.com/video/BV11DXrYeEkL/",
-      "uncertain": true
+      "uncertain": false
     },
     {
       "id": "RMUL-2025-山东站-14-BV1P5XrYFEu9",
@@ -21650,11 +21668,11 @@
       "redTeam": "直隶机甲",
       "blueSchool": "济宁学院",
       "blueTeam": "凌云",
-      "redScore": "-",
-      "blueScore": "-",
+      "redScore": "1",
+      "blueScore": "1",
       "title": "山东站 第14场 河北大学 直隶机甲战队 vs 济宁学院 凌云战队｜RoboMaster 2025 高校联盟赛",
       "url": "https://www.bilibili.com/video/BV1P5XrYFEu9/",
-      "uncertain": true
+      "uncertain": false
     },
     {
       "id": "RMUL-2025-山东站-15-BV13oX6YrEgn",
@@ -21666,11 +21684,11 @@
       "redTeam": "因特雷",
       "blueSchool": "济南大学",
       "blueTeam": "TFT",
-      "redScore": "-",
-      "blueScore": "-",
+      "redScore": "1",
+      "blueScore": "1",
       "title": "山东站 第15场 中国民航大学 因特雷战队 vs 济南大学 TFT战队｜RoboMaster 2025 高校联盟赛",
       "url": "https://www.bilibili.com/video/BV13oX6YrEgn/",
-      "uncertain": true
+      "uncertain": false
     },
     {
       "id": "RMUL-2025-山东站-16-BV1GdX6YGEsF",
@@ -21682,11 +21700,11 @@
       "redTeam": "鸿烈",
       "blueSchool": "哈尔滨工业大学（威海）",
       "blueTeam": "HERO",
-      "redScore": "-",
-      "blueScore": "-",
+      "redScore": "0",
+      "blueScore": "2",
       "title": "山东站 第16场 安徽理工大学 鸿烈战队 vs 哈尔滨工业大学（威海） HERO战队｜RoboMaster 2025 高校联盟赛",
       "url": "https://www.bilibili.com/video/BV1GdX6YGEsF/",
-      "uncertain": true
+      "uncertain": false
     },
     {
       "id": "RMUL-2025-山东站-17-BV1GdX6YGEE6",
@@ -21698,11 +21716,11 @@
       "redTeam": "FR",
       "blueSchool": "安徽信息工程学院",
       "blueTeam": "Artisans",
-      "redScore": "-",
-      "blueScore": "-",
+      "redScore": "0",
+      "blueScore": "2",
       "title": "山东站 第17场 山东石油化工学院 FR 战队 vs 安徽信息工程学院 Artisans战队｜RoboMaster 2025 高校联盟赛",
       "url": "https://www.bilibili.com/video/BV1GdX6YGEE6/",
-      "uncertain": true
+      "uncertain": false
     },
     {
       "id": "RMUL-2025-山东站-18-BV1G9X6YCEva",
@@ -21714,11 +21732,11 @@
       "redTeam": "RoboWalker",
       "blueSchool": "北京信息科技大学",
       "blueTeam": "星辰",
-      "redScore": "-",
-      "blueScore": "-",
+      "redScore": "2",
+      "blueScore": "0",
       "title": "山东站 第18场 中国科学技术大学 RoboWalker战队 vs 北京信息科技大学 星辰战队｜RoboMaster 2025 高校联盟赛",
       "url": "https://www.bilibili.com/video/BV1G9X6YCEva/",
-      "uncertain": true
+      "uncertain": false
     },
     {
       "id": "RMUL-2025-山东站-19-BV1vDX6Y1E4g",
@@ -21730,11 +21748,11 @@
       "redTeam": "Adam",
       "blueSchool": "天津工业大学",
       "blueTeam": "304",
-      "redScore": "-",
-      "blueScore": "-",
+      "redScore": "2",
+      "blueScore": "0",
       "title": "山东站 第19场 齐鲁工业大学 Adam战队 vs 天津工业大学 304战队｜RoboMaster 2025 高校联盟赛",
       "url": "https://www.bilibili.com/video/BV1vDX6Y1E4g/",
-      "uncertain": true
+      "uncertain": false
     },
     {
       "id": "RMUL-2025-山东站-20-BV1xuXrYYEao",
@@ -21746,11 +21764,11 @@
       "redTeam": "森林狼",
       "blueSchool": "山东科技大学",
       "blueTeam": "SmartRobot",
-      "redScore": "-",
-      "blueScore": "-",
+      "redScore": "0",
+      "blueScore": "2",
       "title": "山东站 第20场 北京林业大学 森林狼战队 vs 山东科技大学 SmartRobot战队｜RoboMaster 2025 高校联盟赛",
       "url": "https://www.bilibili.com/video/BV1xuXrYYEao/",
-      "uncertain": true
+      "uncertain": false
     },
     {
       "id": "RMUL-2025-山东站-21-BV1gFXrYzEH6",
@@ -21762,11 +21780,11 @@
       "redTeam": "Reborn",
       "blueSchool": "南航（天目湖校区） 巡天御风",
       "blueTeam": "南航（天目湖校区） 巡天御风",
-      "redScore": "-",
-      "blueScore": "-",
+      "redScore": "2",
+      "blueScore": "0",
       "title": "山东站 第21场 北京科技大学 Reborn战队 vs 南航（天目湖校区） 巡天御风战队｜RoboMaster 2025 高校联盟赛",
       "url": "https://www.bilibili.com/video/BV1gFXrYzEH6/",
-      "uncertain": true
+      "uncertain": false
     },
     {
       "id": "RMUL-2025-山东站-22-BV1ErX6YQEvV",
@@ -21778,11 +21796,11 @@
       "redTeam": "凌云",
       "blueSchool": "潍坊科技学院",
       "blueTeam": "AIC",
-      "redScore": "-",
-      "blueScore": "-",
+      "redScore": "2",
+      "blueScore": "0",
       "title": "山东站 第22场 济宁学院 凌云战队 vs 潍坊科技学院 AIC战队｜RoboMaster 2025 高校联盟赛",
       "url": "https://www.bilibili.com/video/BV1ErX6YQEvV/",
-      "uncertain": true
+      "uncertain": false
     },
     {
       "id": "RMUL-2025-山东站-23-BV1YFXCY7EKw",
@@ -21794,11 +21812,11 @@
       "redTeam": "TFT",
       "blueSchool": "青岛理工大学",
       "blueTeam": "MOVE",
-      "redScore": "-",
-      "blueScore": "-",
+      "redScore": "0",
+      "blueScore": "2",
       "title": "山东站 第23场 济南大学 TFT战队 vs 青岛理工大学 MOVE战队｜RoboMaster 2025 高校联盟赛",
       "url": "https://www.bilibili.com/video/BV1YFXCY7EKw/",
-      "uncertain": true
+      "uncertain": false
     },
     {
       "id": "RMUL-2025-山东站-24-BV1XFXCY7Ego",
@@ -21810,11 +21828,11 @@
       "redTeam": "山海",
       "blueSchool": "新乡学院",
       "blueTeam": "电创",
-      "redScore": "-",
-      "blueScore": "-",
+      "redScore": "2",
+      "blueScore": "0",
       "title": "山东站 第24场 山东大学（威海） 山海战队 vs 新乡学院 电创战队｜RoboMaster 2025 高校联盟赛",
       "url": "https://www.bilibili.com/video/BV1XFXCY7Ego/",
-      "uncertain": true
+      "uncertain": false
     },
     {
       "id": "RMUL-2025-山东站-25-BV1GFXCY7Eeo",
@@ -21826,11 +21844,11 @@
       "redTeam": "燕鹰",
       "blueSchool": "陆军装甲兵学院",
       "blueTeam": "铁甲战车",
-      "redScore": "-",
-      "blueScore": "-",
+      "redScore": "2",
+      "blueScore": "0",
       "title": "山东站 第25场 燕山大学 燕鹰战队 vs 陆军装甲兵学院 铁甲战车战队｜RoboMaster 2025 高校联盟赛",
       "url": "https://www.bilibili.com/video/BV1GFXCY7Eeo/",
-      "uncertain": true
+      "uncertain": false
     },
     {
       "id": "RMUL-2025-山东站-26-BV1LQXkYXE2J",
@@ -21842,11 +21860,29 @@
       "redTeam": "风暴",
       "blueSchool": "枣庄学院",
       "blueTeam": "Summit",
-      "redScore": "-",
-      "blueScore": "-",
+      "redScore": "2",
+      "blueScore": "0",
       "title": "山东站 第26场 华北科技学院 风暴战队 vs 枣庄学院 Summit战队｜RoboMaster 2025 高校联盟赛",
       "url": "https://www.bilibili.com/video/BV1LQXkYXE2J/",
-      "uncertain": true
+      "uncertain": false
+    },
+    {
+      "id": "RMUL-INFERRED-2025-山东站-27",
+      "stage": "小组赛",
+      "redScore": 0,
+      "blueScore": 0,
+      "title": "",
+      "url": "",
+      "uncertain": true,
+      "inferred": true,
+      "inferenceNote": "轮空",
+      "season": "2025",
+      "zone": "山东站",
+      "order": "27",
+      "redSchool": "",
+      "redTeam": "",
+      "blueSchool": "",
+      "blueTeam": ""
     },
     {
       "id": "RMUL-2025-山东站-28-BV1k7XnYiEz5",
@@ -21858,11 +21894,11 @@
       "redTeam": "北洋机甲",
       "blueSchool": "中国石油大学（华东）",
       "blueTeam": "RPS",
-      "redScore": "-",
-      "blueScore": "-",
+      "redScore": "0",
+      "blueScore": "2",
       "title": "山东站 第28场 天津大学 北洋机甲战队 vs 中国石油大学（华东） RPS战队｜RoboMaster 2025 高校联盟赛",
       "url": "https://www.bilibili.com/video/BV1k7XnYiEz5/",
-      "uncertain": true
+      "uncertain": false
     },
     {
       "id": "RMUL-2025-山东站-29-BV1txXkY6ECP",
@@ -21874,11 +21910,11 @@
       "redTeam": "山海机甲",
       "blueSchool": "山东理工大学",
       "blueTeam": "齐奇",
-      "redScore": "-",
-      "blueScore": "-",
+      "redScore": "0",
+      "blueScore": "2",
       "title": "山东站 第29场 河北工业大学 山海机甲战队 vs 山东理工大学 齐奇战队｜RoboMaster 2025 高校联盟赛",
       "url": "https://www.bilibili.com/video/BV1txXkY6ECP/",
-      "uncertain": true
+      "uncertain": false
     },
     {
       "id": "RMUL-2025-山东站-30-BV1zxXnYcEyG",
@@ -21890,11 +21926,11 @@
       "redTeam": "直隶机甲",
       "blueSchool": "青岛大学",
       "blueTeam": "未来",
-      "redScore": "-",
-      "blueScore": "-",
+      "redScore": "1",
+      "blueScore": "1",
       "title": "山东站 第30场 河北大学 直隶机甲战队 vs 青岛大学 未来战队｜RoboMaster 2025 高校联盟赛",
       "url": "https://www.bilibili.com/video/BV1zxXnYcEyG/",
-      "uncertain": true
+      "uncertain": false
     },
     {
       "id": "RMUL-2025-山东站-31-BV1fxXnYcEf8",
@@ -21906,11 +21942,11 @@
       "redTeam": "HERO",
       "blueSchool": "山东大学（威海）",
       "blueTeam": "山海",
-      "redScore": "-",
-      "blueScore": "-",
+      "redScore": "2",
+      "blueScore": "0",
       "title": "山东站 第31场 哈尔滨工业大学（威海） HERO战队 vs 山东大学（威海） 山海战队｜RoboMaster 2025 高校联盟赛",
       "url": "https://www.bilibili.com/video/BV1fxXnYcEf8/",
-      "uncertain": true
+      "uncertain": false
     },
     {
       "id": "RMUL-2025-山东站-32-BV1BxXnYcEfx",
@@ -21922,11 +21958,11 @@
       "redTeam": "Artisans",
       "blueSchool": "燕山大学",
       "blueTeam": "燕鹰",
-      "redScore": "-",
-      "blueScore": "-",
+      "redScore": "2",
+      "blueScore": "0",
       "title": "山东站 第32场 安徽信息工程学院 Artisans战队 vs 燕山大学 燕鹰战队｜RoboMaster 2025 高校联盟赛",
       "url": "https://www.bilibili.com/video/BV1BxXnYcEfx/",
-      "uncertain": true
+      "uncertain": false
     },
     {
       "id": "RMUL-2025-山东站-33-BV1LXXJY9ET9",
@@ -21938,11 +21974,11 @@
       "redTeam": "星辰",
       "blueSchool": "华北科技学院",
       "blueTeam": "风暴",
-      "redScore": "-",
-      "blueScore": "-",
+      "redScore": "0",
+      "blueScore": "2",
       "title": "山东站 第33场 北京信息科技大学 星辰战队 vs 华北科技学院 风暴战队｜RoboMaster 2025 高校联盟赛",
       "url": "https://www.bilibili.com/video/BV1LXXJY9ET9/",
-      "uncertain": true
+      "uncertain": false
     },
     {
       "id": "RMUL-2025-山东站-34-BV15XXJY9ERn",
@@ -21954,11 +21990,11 @@
       "redTeam": "304",
       "blueSchool": "大连理工大学",
       "blueTeam": "凌BUG",
-      "redScore": "-",
-      "blueScore": "-",
+      "redScore": "0",
+      "blueScore": "2",
       "title": "山东站 第34场 天津工业大学 304战队 vs 大连理工大学 凌BUG战队｜RoboMaster 2025 高校联盟赛",
       "url": "https://www.bilibili.com/video/BV15XXJY9ERn/",
-      "uncertain": true
+      "uncertain": false
     },
     {
       "id": "RMUL-2025-山东站-35-BV1vzXpYFEPq",
@@ -21970,11 +22006,11 @@
       "redTeam": "SmartRobot",
       "blueSchool": "天津大学",
       "blueTeam": "北洋机甲",
-      "redScore": "-",
-      "blueScore": "-",
+      "redScore": "2",
+      "blueScore": "0",
       "title": "山东站 第35场 山东科技大学 SmartRobot战队 vs 天津大学 北洋机甲战队｜RoboMaster 2025 高校联盟赛",
       "url": "https://www.bilibili.com/video/BV1vzXpYFEPq/",
-      "uncertain": true
+      "uncertain": false
     },
     {
       "id": "RMUL-2025-山东站-36-BV1RzXpYFEFM",
@@ -21986,11 +22022,11 @@
       "redTeam": "南航（天目湖校区） 巡天御风",
       "blueSchool": "河北工业大学",
       "blueTeam": "山海机甲",
-      "redScore": "-",
-      "blueScore": "-",
+      "redScore": "0",
+      "blueScore": "2",
       "title": "山东站 第36场 南航（天目湖校区） 巡天御风战队 vs 河北工业大学 山海机甲战队｜RoboMaster 2025 高校联盟赛",
       "url": "https://www.bilibili.com/video/BV1RzXpYFEFM/",
-      "uncertain": true
+      "uncertain": false
     },
     {
       "id": "RMUL-2025-山东站-37-BV1vzXpYFEwC",
@@ -22002,11 +22038,11 @@
       "redTeam": "AIC",
       "blueSchool": "河北大学",
       "blueTeam": "直隶机甲",
-      "redScore": "-",
-      "blueScore": "-",
+      "redScore": "0",
+      "blueScore": "2",
       "title": "山东站 第37场 潍坊科技学院 AIC战队 vs 河北大学 直隶机甲战队｜RoboMaster 2025 高校联盟赛",
       "url": "https://www.bilibili.com/video/BV1vzXpYFEwC/",
-      "uncertain": true
+      "uncertain": false
     },
     {
       "id": "RMUL-2025-山东站-38-BV1ezXpYFEHr",
@@ -22018,11 +22054,11 @@
       "redTeam": "MOVE",
       "blueSchool": "中国民航大学",
       "blueTeam": "因特雷",
-      "redScore": "-",
-      "blueScore": "-",
+      "redScore": "2",
+      "blueScore": "0",
       "title": "山东站 第38场 青岛理工大学 MOVE战队 vs 中国民航大学 因特雷战队｜RoboMaster 2025 高校联盟赛",
       "url": "https://www.bilibili.com/video/BV1ezXpYFEHr/",
-      "uncertain": true
+      "uncertain": false
     },
     {
       "id": "RMUL-2025-山东站-39-BV1c4XpYuEwA",
@@ -22034,11 +22070,11 @@
       "redTeam": "电创",
       "blueSchool": "安徽理工大学",
       "blueTeam": "鸿烈",
-      "redScore": "-",
-      "blueScore": "-",
+      "redScore": "0",
+      "blueScore": "2",
       "title": "山东站 第39场 新乡学院 电创战队 vs 安徽理工大学 鸿烈战队｜RoboMaster 2025 高校联盟赛",
       "url": "https://www.bilibili.com/video/BV1c4XpYuEwA/",
-      "uncertain": true
+      "uncertain": false
     },
     {
       "id": "RMUL-2025-山东站-40-BV1csXpY6Eb9",
@@ -22050,11 +22086,11 @@
       "redTeam": "铁甲战车",
       "blueSchool": "山东石油化工学院",
       "blueTeam": "FR",
-      "redScore": "-",
-      "blueScore": "-",
+      "redScore": "1",
+      "blueScore": "1",
       "title": "山东站 第40场 陆军装甲兵学院 铁甲战车战队 vs 山东石油化工学院 FR战队｜RoboMaster 2025 高校联盟赛",
       "url": "https://www.bilibili.com/video/BV1csXpY6Eb9/",
-      "uncertain": true
+      "uncertain": false
     },
     {
       "id": "RMUL-2025-山东站-41-BV1rsXpYzEKT",
@@ -22066,11 +22102,29 @@
       "redTeam": "Summit",
       "blueSchool": "中国科学技术大学",
       "blueTeam": "RoboWalker",
-      "redScore": "-",
-      "blueScore": "-",
+      "redScore": "0",
+      "blueScore": "2",
       "title": "山东站 第41场 枣庄学院 Summit战队 vs 中国科学技术大学 RoboWalker战队｜RoboMaster 2025 高校联盟赛",
       "url": "https://www.bilibili.com/video/BV1rsXpYzEKT/",
-      "uncertain": true
+      "uncertain": false
+    },
+    {
+      "id": "RMUL-INFERRED-2025-山东站-42",
+      "stage": "小组赛",
+      "redScore": 0,
+      "blueScore": 0,
+      "title": "",
+      "url": "",
+      "uncertain": true,
+      "inferred": true,
+      "inferenceNote": "轮空",
+      "season": "2025",
+      "zone": "山东站",
+      "order": "42",
+      "redSchool": "",
+      "redTeam": "",
+      "blueSchool": "",
+      "blueTeam": ""
     },
     {
       "id": "RMUL-2025-山东站-43-BV1VFXpYoEhZ",
@@ -22082,11 +22136,11 @@
       "redTeam": "RPS",
       "blueSchool": "北京林业大学",
       "blueTeam": "森林狼",
-      "redScore": "-",
-      "blueScore": "-",
+      "redScore": "2",
+      "blueScore": "0",
       "title": "山东站 第43场 中国石油大学（华东） RPS战队 vs 北京林业大学 森林狼战队｜RoboMaster 2025 高校联盟赛",
       "url": "https://www.bilibili.com/video/BV1VFXpYoEhZ/",
-      "uncertain": true
+      "uncertain": false
     },
     {
       "id": "RMUL-2025-山东站-44-BV1XFXpYdEeK",
@@ -22098,11 +22152,11 @@
       "redTeam": "齐奇",
       "blueSchool": "北京科技大学",
       "blueTeam": "Reborn",
-      "redScore": "-",
-      "blueScore": "-",
+      "redScore": "1",
+      "blueScore": "1",
       "title": "山东站 第44场 山东理工大学 齐奇战队 vs 北京科技大学 Reborn战队｜RoboMaster 2025 高校联盟赛",
       "url": "https://www.bilibili.com/video/BV1XFXpYdEeK/",
-      "uncertain": true
+      "uncertain": false
     },
     {
       "id": "RMUL-2025-山东站-45-BV1VFXpYoEjQ",
@@ -22114,11 +22168,11 @@
       "redTeam": "未来",
       "blueSchool": "济宁学院",
       "blueTeam": "凌云",
-      "redScore": "-",
-      "blueScore": "-",
+      "redScore": "2",
+      "blueScore": "0",
       "title": "山东站 第45场 青岛大学 未来战队 vs 济宁学院 凌云战队｜RoboMaster 2025 高校联盟赛",
       "url": "https://www.bilibili.com/video/BV1VFXpYoEjQ/",
-      "uncertain": true
+      "uncertain": false
     },
     {
       "id": "RMUL-2025-山东站-46-BV1ewXsYPECn",
@@ -22130,11 +22184,11 @@
       "redTeam": "HERO",
       "blueSchool": "燕山大学",
       "blueTeam": "燕鹰",
-      "redScore": "-",
-      "blueScore": "-",
+      "redScore": "2",
+      "blueScore": "0",
       "title": "山东站 第46场 哈尔滨工业大学（威海） HERO战队 vs 燕山大学 燕鹰战队｜RoboMaster 2025 高校联盟赛",
       "url": "https://www.bilibili.com/video/BV1ewXsYPECn/",
-      "uncertain": true
+      "uncertain": false
     },
     {
       "id": "RMUL-2025-山东站-47-BV1Z9XWYBEQw",
@@ -22146,11 +22200,11 @@
       "redTeam": "Adam",
       "blueSchool": "中国科学技术大学",
       "blueTeam": "RoboWalker",
-      "redScore": "-",
-      "blueScore": "-",
+      "redScore": "0",
+      "blueScore": "2",
       "title": "山东站 第47场 齐鲁工业大学 Adam战队 vs 中国科学技术大学 RoboWalker战队｜RoboMaster 2025 高校联盟赛",
       "url": "https://www.bilibili.com/video/BV1Z9XWYBEQw/",
-      "uncertain": true
+      "uncertain": false
     },
     {
       "id": "RMUL-2025-山东站-48-BV1E9XWYzEYm",
@@ -22162,11 +22216,11 @@
       "redTeam": "RPS",
       "blueSchool": "北京科技大学",
       "blueTeam": "Reborn",
-      "redScore": "-",
-      "blueScore": "-",
+      "redScore": "2",
+      "blueScore": "0",
       "title": "山东站 第48场 中国石油大学（华东） RPS战队 vs 北京科技大学 Reborn战队｜RoboMaster 2025 高校联盟赛",
       "url": "https://www.bilibili.com/video/BV1E9XWYzEYm/",
-      "uncertain": true
+      "uncertain": false
     },
     {
       "id": "RMUL-2025-山东站-49-BV1pCXWYjErf",
@@ -22178,11 +22232,11 @@
       "redTeam": "因特雷",
       "blueSchool": "青岛大学",
       "blueTeam": "未来",
-      "redScore": "-",
-      "blueScore": "-",
+      "redScore": "0",
+      "blueScore": "2",
       "title": "山东站 第49场 中国民航大学 因特雷战队 vs 青岛大学 未来战队｜RoboMaster 2025 高校联盟赛",
       "url": "https://www.bilibili.com/video/BV1pCXWYjErf/",
-      "uncertain": true
+      "uncertain": false
     },
     {
       "id": "RMUL-2025-山东站-50-BV1ACXWYjEBF",
@@ -22194,11 +22248,11 @@
       "redTeam": "鸿烈",
       "blueSchool": "安徽信息工程学院",
       "blueTeam": "Artisans",
-      "redScore": "-",
-      "blueScore": "-",
+      "redScore": "0",
+      "blueScore": "2",
       "title": "山东站 第50场 安徽理工大学 鸿烈战队 vs 安徽信息工程学院 Artisans战队｜RoboMaster 2025 高校联盟赛",
       "url": "https://www.bilibili.com/video/BV1ACXWYjEBF/",
-      "uncertain": true
+      "uncertain": false
     },
     {
       "id": "RMUL-2025-山东站-51-BV1PrXWYmEbH",
@@ -22210,11 +22264,11 @@
       "redTeam": "凌BUG",
       "blueSchool": "华北科技学院",
       "blueTeam": "风暴",
-      "redScore": "-",
-      "blueScore": "-",
+      "redScore": "2",
+      "blueScore": "1",
       "title": "山东站 第51场 大连理工大学 凌BUG战队 vs 华北科技学院 风暴战队｜RoboMaster 2025 高校联盟赛",
       "url": "https://www.bilibili.com/video/BV1PrXWYmEbH/",
-      "uncertain": true
+      "uncertain": false
     },
     {
       "id": "RMUL-2025-山东站-52-BV1HNXWYGESW",
@@ -22226,11 +22280,11 @@
       "redTeam": "SmartRobot",
       "blueSchool": "山东理工大学",
       "blueTeam": "齐奇",
-      "redScore": "-",
-      "blueScore": "-",
+      "redScore": "2",
+      "blueScore": "1",
       "title": "山东站 第52场 山东科技大学 SmartRobot战队 vs 山东理工大学 齐奇战队｜RoboMaster 2025 高校联盟赛",
       "url": "https://www.bilibili.com/video/BV1HNXWYGESW/",
-      "uncertain": true
+      "uncertain": false
     },
     {
       "id": "RMUL-2025-山东站-53-BV1VHXWYhEy1",
@@ -22242,11 +22296,11 @@
       "redTeam": "MOVE",
       "blueSchool": "河北大学",
       "blueTeam": "直隶机甲",
-      "redScore": "-",
-      "blueScore": "-",
+      "redScore": "2",
+      "blueScore": "0",
       "title": "山东站 第53场 青岛理工大学 MOVE战队 vs 河北大学 直隶机甲战队｜RoboMaster 2025 高校联盟赛",
       "url": "https://www.bilibili.com/video/BV1VHXWYhEy1/",
-      "uncertain": true
+      "uncertain": false
     },
     {
       "id": "RMUL-2025-山东站-54-BV1UJXbYTEZH",
@@ -22258,11 +22312,11 @@
       "redTeam": "HERO",
       "blueSchool": "中国科学技术大学",
       "blueTeam": "RoboWalker",
-      "redScore": "-",
-      "blueScore": "-",
+      "redScore": "0",
+      "blueScore": "2",
       "title": "山东站 第54场 哈尔滨工业大学（威海） HERO战队 vs 中国科学技术大学 RoboWalker战队｜RoboMaster 2025 高校联盟赛",
       "url": "https://www.bilibili.com/video/BV1UJXbYTEZH/",
-      "uncertain": true
+      "uncertain": false
     },
     {
       "id": "RMUL-2025-山东站-55-BV1uJXbYMEer",
@@ -22274,11 +22328,11 @@
       "redTeam": "RPS",
       "blueSchool": "青岛大学",
       "blueTeam": "未来",
-      "redScore": "-",
-      "blueScore": "-",
+      "redScore": "2",
+      "blueScore": "0",
       "title": "山东站 第55场 中国石油大学（华东） RPS战队 vs 青岛大学 未来战队｜RoboMaster 2025 高校联盟赛",
       "url": "https://www.bilibili.com/video/BV1uJXbYMEer/",
-      "uncertain": true
+      "uncertain": false
     },
     {
       "id": "RMUL-2025-山东站-56-BV1UJXbYTEoq",
@@ -22290,11 +22344,11 @@
       "redTeam": "Artisans",
       "blueSchool": "大连理工大学",
       "blueTeam": "凌BUG",
-      "redScore": "-",
-      "blueScore": "-",
+      "redScore": "0",
+      "blueScore": "2",
       "title": "山东站 第56场 安徽信息工程学院 Artisans战队 vs 大连理工大学 凌BUG战队｜RoboMaster 2025 高校联盟赛",
       "url": "https://www.bilibili.com/video/BV1UJXbYTEoq/",
-      "uncertain": true
+      "uncertain": false
     },
     {
       "id": "RMUL-2025-山东站-57-BV1SJXbYTEqo",
@@ -22306,11 +22360,11 @@
       "redTeam": "SmartRobot",
       "blueSchool": "青岛理工大学",
       "blueTeam": "MOVE",
-      "redScore": "-",
-      "blueScore": "-",
+      "redScore": "1",
+      "blueScore": "2",
       "title": "山东站 第57场 山东科技大学 SmartRobot战队 vs 青岛理工大学 MOVE战队｜RoboMaster 2025 高校联盟赛",
       "url": "https://www.bilibili.com/video/BV1SJXbYTEqo/",
-      "uncertain": true
+      "uncertain": false
     },
     {
       "id": "RMUL-2025-山东站-58-BV1yYXhYKEbg",
@@ -22322,11 +22376,11 @@
       "redTeam": "RoboWalker",
       "blueSchool": "中国石油大学（华东）",
       "blueTeam": "RPS",
-      "redScore": "-",
-      "blueScore": "-",
+      "redScore": "2",
+      "blueScore": "0",
       "title": "山东站 第58场 中国科学技术大学 RoboWalker战队 vs 中国石油大学（华东） RPS战队｜RoboMaster 2025 高校联盟赛",
       "url": "https://www.bilibili.com/video/BV1yYXhYKEbg/",
-      "uncertain": true
+      "uncertain": false
     },
     {
       "id": "RMUL-2025-山东站-59-BV1GEXhY2ENd",
@@ -22338,11 +22392,11 @@
       "redTeam": "凌BUG",
       "blueSchool": "青岛理工大学",
       "blueTeam": "MOVE",
-      "redScore": "-",
-      "blueScore": "-",
+      "redScore": "2",
+      "blueScore": "0",
       "title": "山东站 第59场 大连理工大学 凌BUG战队 vs 青岛理工大学 MOVE战队｜RoboMaster 2025 高校联盟赛",
       "url": "https://www.bilibili.com/video/BV1GEXhY2ENd/",
-      "uncertain": true
+      "uncertain": false
     },
     {
       "id": "RMUL-2025-山东站-60-BV11QX8YNEkf",
@@ -22354,11 +22408,11 @@
       "redTeam": "RPS",
       "blueSchool": "青岛理工大学",
       "blueTeam": "MOVE",
-      "redScore": "-",
-      "blueScore": "-",
+      "redScore": "2",
+      "blueScore": "0",
       "title": "山东站 第60场 中国石油大学（华东） RPS战队 vs 青岛理工大学 MOVE战队｜RoboMaster 2025 高校联盟赛",
       "url": "https://www.bilibili.com/video/BV11QX8YNEkf/",
-      "uncertain": true
+      "uncertain": false
     },
     {
       "id": "RMUL-2025-山东站-61-BV1PQX8YNESC",
@@ -22370,11 +22424,11 @@
       "redTeam": "RoboWalker",
       "blueSchool": "大连理工大学",
       "blueTeam": "凌BUG",
-      "redScore": "-",
-      "blueScore": "-",
+      "redScore": "2",
+      "blueScore": "0",
       "title": "山东站 第61场 中国科学技术大学 RoboWalker战队 vs 大连理工大学 凌BUG战队｜RoboMaster 2025 高校联盟赛",
       "url": "https://www.bilibili.com/video/BV1PQX8YNESC/",
-      "uncertain": true
+      "uncertain": false
     },
     {
       "id": "RMUL-2025-广西站-1-BV1pGXzYXEp2",
@@ -22386,8 +22440,8 @@
       "redTeam": "GIRT",
       "blueSchool": "南昌理工学院",
       "blueTeam": "新跃",
-      "redScore": "-",
-      "blueScore": "-",
+      "redScore": 2,
+      "blueScore": 0,
       "title": "广西站 第1场 桂林信息科技学院GIRT战队 vs 南昌理工学院新跃战队 | RoboMaster 2025 高校联盟赛",
       "url": "https://www.bilibili.com/video/BV1pGXzYXEp2/",
       "uncertain": true
@@ -22395,8 +22449,8 @@
     {
       "id": "RMUL-INFERRED-2025-广西站-2",
       "stage": "小组赛",
-      "redScore": "-",
-      "blueScore": "-",
+      "redScore": 0,
+      "blueScore": 2,
       "title": "",
       "url": "",
       "uncertain": true,
@@ -22420,8 +22474,8 @@
       "redTeam": "DynamicX",
       "blueSchool": "昆明理工大学",
       "blueTeam": "津桥学院",
-      "redScore": "-",
-      "blueScore": "-",
+      "redScore": 2,
+      "blueScore": 0,
       "title": "广西站 第3场 广东工业大学DynamicX战队 vs 昆明理工大学津桥学院 | RMUL 2025 高校联盟赛",
       "url": "https://www.bilibili.com/video/BV198XzYgENR/",
       "uncertain": true
@@ -22436,8 +22490,8 @@
       "redTeam": "Evolution",
       "blueSchool": "广东轻工职业技术大学",
       "blueTeam": "Inventor",
-      "redScore": "-",
-      "blueScore": "-",
+      "redScore": 2,
+      "blueScore": 0,
       "title": "广西站 第4场 桂林电子科技大学Evolution战队vs 广东轻工职业技术大学Inventor战队|RMUL2025高校联盟赛",
       "url": "https://www.bilibili.com/video/BV158XzY3ENz/",
       "uncertain": true
@@ -22452,8 +22506,8 @@
       "redTeam": "Taurus",
       "blueSchool": "南方科技大学",
       "blueTeam": "ARTINX",
-      "redScore": "-",
-      "blueScore": "-",
+      "redScore": 2,
+      "blueScore": 0,
       "title": "广西站 第5场 华南农业大学 Taurus战队 vs 南方科技大学 ARTINX战队 | RoboMaster 2025 高校联盟赛",
       "url": "https://www.bilibili.com/video/BV198XzYgE24/",
       "uncertain": true
@@ -22468,8 +22522,8 @@
       "redTeam": "虎师",
       "blueSchool": "武汉华夏理工学院",
       "blueTeam": "京喜",
-      "redScore": "-",
-      "blueScore": "-",
+      "redScore": 0,
+      "blueScore": 2,
       "title": "广西站 第6场 广西师范大学 虎师战队 vs 武汉华夏理工学院 京喜战队 | RoboMaster 2025 高校联盟赛",
       "url": "https://www.bilibili.com/video/BV1V8XzY3ERD/",
       "uncertain": true
@@ -22484,8 +22538,8 @@
       "redTeam": "RoboBraver",
       "blueSchool": "华南理工大学",
       "blueTeam": "华南虎",
-      "redScore": "-",
-      "blueScore": "-",
+      "redScore": 1,
+      "blueScore": 1,
       "title": "广西站 第7场 电子科技大学中山学院 RoboBraver战队 vs 华南理工大学华南虎战队 | RMUL2025高校联盟赛",
       "url": "https://www.bilibili.com/video/BV158XzY3EFS/",
       "uncertain": true
@@ -22500,8 +22554,8 @@
       "redTeam": "ICBK破冰船",
       "blueSchool": "武汉理工大学",
       "blueTeam": "PRIME",
-      "redScore": "-",
-      "blueScore": "-",
+      "redScore": 0,
+      "blueScore": 2,
       "title": "广西站 第8场 广州航海学院 ICBK破冰船战队 vs 武汉理工大学 PRIME战队 | RoboMaster 2025 高校联盟赛",
       "url": "https://www.bilibili.com/video/BV1xNXzYtEZ3/",
       "uncertain": true
@@ -22516,8 +22570,8 @@
       "redTeam": "野狼",
       "blueSchool": "广西大学",
       "blueTeam": "ROBOTZ",
-      "redScore": "-",
-      "blueScore": "-",
+      "redScore": 1,
+      "blueScore": 1,
       "title": "广西站 第9场 广州城市理工学院 野狼战队 vs 广西大学 ROBOTZ战队 | RoboMaster 2025 高校联盟赛",
       "url": "https://www.bilibili.com/video/BV1rFXkYtE3z/",
       "uncertain": true
@@ -22532,8 +22586,8 @@
       "redTeam": "MA",
       "blueSchool": "桂林理工大学",
       "blueTeam": "群星",
-      "redScore": "-",
-      "blueScore": "-",
+      "redScore": 0,
+      "blueScore": 2,
       "title": "广西站 第10场 南华大学MA战队 vs 桂林理工大学群星战队 | RoboMaster 2025 高校联盟赛",
       "url": "https://www.bilibili.com/video/BV1cFXkYbEQL/",
       "uncertain": true
@@ -22548,8 +22602,8 @@
       "redTeam": "RobotPilots",
       "blueSchool": "桂电北海 破浪笃行",
       "blueTeam": "桂电北海 破浪笃行",
-      "redScore": "-",
-      "blueScore": "-",
+      "redScore": 2,
+      "blueScore": 0,
       "title": "广西站 第11场 深圳大学RobotPilots战队 vs 桂电北海 破浪笃行战队 | RMUL 2025 高校联盟赛",
       "url": "https://www.bilibili.com/video/BV1fHXrYWEUE/",
       "uncertain": true
@@ -22564,8 +22618,8 @@
       "redTeam": "军临",
       "blueSchool": "香港科技大学（广州）",
       "blueTeam": "PnX",
-      "redScore": "-",
-      "blueScore": "-",
+      "redScore": 2,
+      "blueScore": 0,
       "title": "广西站 第12场 国防科技大学 军临战队 vs 香港科技大学（广州）PnX战队 | RoboMaster 2025 高校联盟赛",
       "url": "https://www.bilibili.com/video/BV1XeXrYLEoM/",
       "uncertain": true
@@ -22576,12 +22630,12 @@
       "zone": "广西站",
       "order": "13",
       "stage": "小组赛",
-      "redSchool": "广西站 第13站 华南师范大学",
+      "redSchool": "华南师范大学",
       "redTeam": "PIONEER",
       "blueSchool": "深圳职业技术大学",
       "blueTeam": "RCIA",
-      "redScore": "-",
-      "blueScore": "-",
+      "redScore": 1,
+      "blueScore": 1,
       "title": "广西站 第13站 华南师范大学PIONEER战队 vs 深圳职业技术大学 RCIA战队 | RoboMaster 2025 高校联盟赛",
       "url": "https://www.bilibili.com/video/BV19eXrYLEBq/",
       "uncertain": true
@@ -22594,10 +22648,10 @@
       "stage": "小组赛",
       "redSchool": "闽江学院",
       "redTeam": "赤源机甲",
-      "blueSchool": "哈工深 南工骁鹰",
-      "blueTeam": "哈工深 南工骁鹰",
-      "redScore": "-",
-      "blueScore": "-",
+      "blueSchool": "哈尔滨工业大学（深圳）",
+      "blueTeam": "南工骁鹰",
+      "redScore": 0,
+      "blueScore": 2,
       "title": "广西站 第14场 闽江学院赤源机甲战队 vs 哈工深 南工骁鹰战队 | RMUL 2025 高校联盟赛",
       "url": "https://www.bilibili.com/video/BV113XrYwEH1/",
       "uncertain": true
@@ -22612,8 +22666,8 @@
       "redTeam": "IMCA",
       "blueSchool": "北部湾大学",
       "blueTeam": "飞虎",
-      "redScore": "-",
-      "blueScore": "-",
+      "redScore": 2,
+      "blueScore": 0,
       "title": "广西站 第15场 五邑大学 IMCA战队 vs 北部湾大学 飞虎战队 | RoboMaster 2025 高校联盟赛",
       "url": "https://www.bilibili.com/video/BV113XrYwEMw/",
       "uncertain": true
@@ -22628,8 +22682,8 @@
       "redTeam": "PRIME",
       "blueSchool": "桂林信息科技学院",
       "blueTeam": "GIRT",
-      "redScore": "-",
-      "blueScore": "-",
+      "redScore": 0,
+      "blueScore": 2,
       "title": "广西站 第16场 武汉理工大学 PRIME战队 vs 桂林信息科技学院 GIRT战队 | RoboMaster 2025 高校联盟赛",
       "url": "https://www.bilibili.com/video/BV1N3XrYwEgD/",
       "uncertain": true
@@ -22644,8 +22698,8 @@
       "redTeam": "ROBOTZ",
       "blueSchool": "广东交通职业技术学院",
       "blueTeam": "擎天",
-      "redScore": "-",
-      "blueScore": "-",
+      "redScore": 2,
+      "blueScore": 0,
       "title": "广西站 第17场 广西大学ROBOTZ战队 vs 广东交通职业技术学院擎天战队 | RoboMaster 2025 高校联盟赛",
       "url": "https://www.bilibili.com/video/BV1MNXrYKETF/",
       "uncertain": true
@@ -22660,8 +22714,8 @@
       "redTeam": "群星",
       "blueSchool": "广东工业大学",
       "blueTeam": "DynamicX",
-      "redScore": "-",
-      "blueScore": "-",
+      "redScore": 1,
+      "blueScore": 1,
       "title": "广西站 第18场 桂林理工大学 群星战队 vs 广东工业大学 DynamicX战队 | RoboMaster 2025 高校联盟赛",
       "url": "https://www.bilibili.com/video/BV1MNXrYKEK9/",
       "uncertain": true
@@ -22672,12 +22726,12 @@
       "zone": "广西站",
       "order": "19",
       "stage": "小组赛",
-      "redSchool": "桂电北海 破浪笃行",
-      "redTeam": "桂电北海 破浪笃行",
+      "redSchool": "桂电北海",
+      "redTeam": "破浪笃行",
       "blueSchool": "桂林电子科技大学",
       "blueTeam": "Evolution",
-      "redScore": "-",
-      "blueScore": "-",
+      "redScore": 0,
+      "blueScore": 2,
       "title": "广西站 第19场 桂电北海 破浪笃行战队 vs 桂林电子科技大学 Evolution战队 | RMUL 2025 高校联盟赛",
       "url": "https://www.bilibili.com/video/BV1keX6Y4E1y/",
       "uncertain": true
@@ -22692,8 +22746,8 @@
       "redTeam": "PnX",
       "blueSchool": "华南农业大学",
       "blueTeam": "Taurus",
-      "redScore": "-",
-      "blueScore": "-",
+      "redScore": 0,
+      "blueScore": 2,
       "title": "广西站 第20场 香港科技大学（广州）PnX战队 vs 华南农业大学 Taurus战队 | RoboMaster 2025 高校联盟赛",
       "url": "https://www.bilibili.com/video/BV1ErX6YQEY1/",
       "uncertain": true
@@ -22701,8 +22755,8 @@
     {
       "id": "RMUL-INFERRED-2025-广西站-21",
       "stage": "小组赛",
-      "redScore": "-",
-      "blueScore": "-",
+      "redScore": 2,
+      "blueScore": 0,
       "title": "",
       "url": "",
       "uncertain": true,
@@ -22726,8 +22780,8 @@
       "redTeam": "南工骁鹰",
       "blueSchool": "电子科技大学中山学院",
       "blueTeam": "RoboBraver",
-      "redScore": "-",
-      "blueScore": "-",
+      "redScore": 0,
+      "blueScore": 2,
       "title": "广西站 第22场 哈尔滨工业大学（深圳） 南工骁鹰战队 vs 电子科技大学中山学院 RoboBraver战队 | RoboMaster 2025 高校联盟赛",
       "url": "https://www.bilibili.com/video/BV1uPXCYyEmx/",
       "uncertain": true
@@ -22742,8 +22796,8 @@
       "redTeam": "飞虎",
       "blueSchool": "深圳北理莫斯科大学",
       "blueTeam": "北极熊",
-      "redScore": "-",
-      "blueScore": "-",
+      "redScore": 2,
+      "blueScore": 0,
       "title": "广西站 第23场 北部湾大学 飞虎战队 vs 深圳北理莫斯科大学 北极熊战队 | RoboMaster 2025 高校联盟赛",
       "url": "https://www.bilibili.com/video/BV1mtXkYuE1R/",
       "uncertain": true
@@ -22758,8 +22812,8 @@
       "redTeam": "ICBK破冰船",
       "blueSchool": "南昌理工学院",
       "blueTeam": "新跃",
-      "redScore": "-",
-      "blueScore": "-",
+      "redScore": 1,
+      "blueScore": 1,
       "title": "广西站 第24场 广州航海学院 ICBK破冰船战队 vs 南昌理工学院 新跃战队 | RoboMaster 2025 高校联盟赛",
       "url": "https://www.bilibili.com/video/BV1ouXkYHETG/",
       "uncertain": true
@@ -22774,8 +22828,8 @@
       "redTeam": "野狼",
       "blueSchool": "湖南大学",
       "blueTeam": "跃鹿",
-      "redScore": "-",
-      "blueScore": "-",
+      "redScore": 0,
+      "blueScore": 2,
       "title": "广西站 第25场 广州城市理工学院 野狼战队 vs 湖南大学 跃鹿战队 | RoboMaster 2025 高校联盟赛",
       "url": "https://www.bilibili.com/video/BV17bXnYFE1x/",
       "uncertain": true
@@ -22790,8 +22844,8 @@
       "redTeam": "MA",
       "blueSchool": "昆明理工大学津桥学院",
       "blueTeam": "Courage",
-      "redScore": "-",
-      "blueScore": "-",
+      "redScore": 2,
+      "blueScore": 0,
       "title": "广西站 第26场 南华大学 MA战队 vs 昆明理工大学津桥学院 Courage战队 | RoboMaster 2025 高校联盟赛",
       "url": "https://www.bilibili.com/video/BV1otXnYfEXK/",
       "uncertain": true
@@ -22806,8 +22860,8 @@
       "redTeam": "RobotPilots",
       "blueSchool": "广东轻工职业技术大学",
       "blueTeam": "Inventor",
-      "redScore": "-",
-      "blueScore": "-",
+      "redScore": 2,
+      "blueScore": 0,
       "title": "广西站 第27场 深圳大学 RobotPilots战队 vs 广东轻工职业技术大学 Inventor战队 | RMUL 2025 高校联盟赛",
       "url": "https://www.bilibili.com/video/BV1vYXnYxE6o/",
       "uncertain": true
@@ -22822,8 +22876,8 @@
       "redTeam": "军临",
       "blueSchool": "南方科技大学",
       "blueTeam": "ARTINX",
-      "redScore": "-",
-      "blueScore": "-",
+      "redScore": 0,
+      "blueScore": 2,
       "title": "广西站 第28场 国防科技大学 军临战队 vs 南方科技大学 ARTINX战队 | RoboMaster 2025 高校联盟赛",
       "url": "https://www.bilibili.com/video/BV1cpXnYPEuA/",
       "uncertain": true
@@ -22838,8 +22892,8 @@
       "redTeam": "PIONEER",
       "blueSchool": "武汉华夏理工学院",
       "blueTeam": "京喜",
-      "redScore": "-",
-      "blueScore": "-",
+      "redScore": 2,
+      "blueScore": 0,
       "title": "广西站 第29场 华南师范大学 PIONEER战队 vs 武汉华夏理工学院 京喜战队 | RoboMaster 2025 高校联盟赛",
       "url": "https://www.bilibili.com/video/BV1h2XpYsErD/",
       "uncertain": true
@@ -22854,8 +22908,8 @@
       "redTeam": "赤源机甲",
       "blueSchool": "华南理工大学",
       "blueTeam": "华南虎",
-      "redScore": "-",
-      "blueScore": "-",
+      "redScore": 0,
+      "blueScore": 2,
       "title": "广西站 第30场 闽江学院 赤源机甲战队 vs 华南理工大学 华南虎战队 | RoboMaster 2025 高校联盟赛",
       "url": "https://www.bilibili.com/video/BV1h2XpYsEkw/",
       "uncertain": true
@@ -22870,8 +22924,8 @@
       "redTeam": "GIRT",
       "blueSchool": "广州航海学院",
       "blueTeam": "ICBK破冰船",
-      "redScore": "-",
-      "blueScore": "-",
+      "redScore": 2,
+      "blueScore": 0,
       "title": "广西站 第31场 桂林信息科技学院 GIRT战队 vs 广州航海学院 ICBK破冰船战队 | RMUL 2025 高校联盟赛",
       "url": "https://www.bilibili.com/video/BV1wWXpY3EWc/",
       "uncertain": true
@@ -22886,8 +22940,8 @@
       "redTeam": "擎天",
       "blueSchool": "广州城市理工学院",
       "blueTeam": "野狼",
-      "redScore": "-",
-      "blueScore": "-",
+      "redScore": 1,
+      "blueScore": 1,
       "title": "广西站 第32场 广东交通职业技术学院 擎天战队 vs 广州城市理工学院野狼战队 | RMUL2025高校联盟赛",
       "url": "https://www.bilibili.com/video/BV1wHXpYkEdb/",
       "uncertain": true
@@ -22902,8 +22956,8 @@
       "redTeam": "DynamicX",
       "blueSchool": "南华大学",
       "blueTeam": "MA",
-      "redScore": "-",
-      "blueScore": "-",
+      "redScore": 2,
+      "blueScore": 0,
       "title": "广西站 第33场 广东工业大学 DynamicX战队 vs 南华大学 MA战队 | RoboMaster 2025 高校联盟赛",
       "url": "https://www.bilibili.com/video/BV1xLXpY2EYH/",
       "uncertain": true
@@ -22918,8 +22972,8 @@
       "redTeam": "Evolution",
       "blueSchool": "深圳大学",
       "blueTeam": "RobotPilots",
-      "redScore": "-",
-      "blueScore": "-",
+      "redScore": 2,
+      "blueScore": 0,
       "title": "广西站 第34场 桂林电子科技大学 Evolution战队 vs 深圳大学 RobotPilots战队 | RoboMaster 2025 高校联盟赛",
       "url": "https://www.bilibili.com/video/BV19fXHY4EC1/",
       "uncertain": true
@@ -22934,8 +22988,8 @@
       "redTeam": "Taurus",
       "blueSchool": "国防科技大学",
       "blueTeam": "军临",
-      "redScore": "-",
-      "blueScore": "-",
+      "redScore": 2,
+      "blueScore": 0,
       "title": "广西站 第35场 华南农业大学 Taurus战队 vs 国防科技大学 军临战队 | RoboMaster 2025 高校联盟赛",
       "url": "https://www.bilibili.com/video/BV1VfXHYtE6S/",
       "uncertain": true
@@ -22950,8 +23004,8 @@
       "redTeam": "虎师",
       "blueSchool": "华南师范大学",
       "blueTeam": "PIONEER",
-      "redScore": "-",
-      "blueScore": "-",
+      "redScore": 0,
+      "blueScore": 2,
       "title": "广西站 第36场 广西师范大学 虎师战队 vs 华南师范大学 PIONEER战队 | RoboMaster 2025 高校联盟赛",
       "url": "https://www.bilibili.com/video/BV1XFXpYdECX/",
       "uncertain": true
@@ -22966,8 +23020,8 @@
       "redTeam": "RoboBraver",
       "blueSchool": "闽江学院",
       "blueTeam": "赤源机甲",
-      "redScore": "-",
-      "blueScore": "-",
+      "redScore": 2,
+      "blueScore": 0,
       "title": "广西站 第37场 电子科技大学中山学院 RoboBraver战队 vs 闽江学院赤源机甲战队 | RMUL 2025 高校联盟赛",
       "url": "https://www.bilibili.com/video/BV1XFXpYdEUb/",
       "uncertain": true
@@ -22982,8 +23036,8 @@
       "redTeam": "北极熊",
       "blueSchool": "五邑大学",
       "blueTeam": "IMCA",
-      "redScore": "-",
-      "blueScore": "-",
+      "redScore": 1,
+      "blueScore": 1,
       "title": "广西站 第38场 深圳北理莫斯科大学 北极熊战队 vs 五邑大学 IMCA战队 | RoboMaster 2025 高校联盟赛",
       "url": "https://www.bilibili.com/video/BV1rCXHYBE4M/",
       "uncertain": true
@@ -22998,8 +23052,8 @@
       "redTeam": "新跃",
       "blueSchool": "武汉理工大学",
       "blueTeam": "PRIME",
-      "redScore": "-",
-      "blueScore": "-",
+      "redScore": 0,
+      "blueScore": 2,
       "title": "广西站 第39场 南昌理工学院 新跃战队 vs 武汉理工大学 PRIME战队 | RoboMaster 2025 高校联盟赛",
       "url": "https://www.bilibili.com/video/BV1cCXHYBE4j/",
       "uncertain": true
@@ -23014,8 +23068,8 @@
       "redTeam": "跃鹿",
       "blueSchool": "广西大学",
       "blueTeam": "ROBOTZ",
-      "redScore": "-",
-      "blueScore": "-",
+      "redScore": 0,
+      "blueScore": 2,
       "title": "广西站 第40场 湖南大学 跃鹿战队 vs 广西大学 ROBOTZ战队 | RoboMaster 2025 高校联盟赛",
       "url": "https://www.bilibili.com/video/BV1cCXHYBEVK/",
       "uncertain": true
@@ -23030,8 +23084,8 @@
       "redTeam": "Courage",
       "blueSchool": "桂林理工大学",
       "blueTeam": "群星",
-      "redScore": "-",
-      "blueScore": "-",
+      "redScore": 0,
+      "blueScore": 2,
       "title": "广西站 第41场 昆明理工大学津桥学院 Courage战队 vs 桂林理工大学 群星战队 | RMUL 2025 高校联盟赛",
       "url": "https://www.bilibili.com/video/BV1PiXHYVEUy/",
       "uncertain": true
@@ -23044,10 +23098,10 @@
       "stage": "小组赛",
       "redSchool": "广东轻工职业技术大学",
       "redTeam": "Inventor",
-      "blueSchool": "桂电北海 破浪笃行",
-      "blueTeam": "桂电北海 破浪笃行",
-      "redScore": "-",
-      "blueScore": "-",
+      "blueSchool": "桂电北海",
+      "blueTeam": "破浪笃行",
+      "redScore": 2,
+      "blueScore": 0,
       "title": "广西站 第42场 广东轻工职业技术大学 Inventor战队 vs 桂电北海 破浪笃行战队 | RMUL 2025 高校联盟赛",
       "url": "https://www.bilibili.com/video/BV12jXsYXEB7/",
       "uncertain": true
@@ -23062,8 +23116,8 @@
       "redTeam": "ARTINX",
       "blueSchool": "香港科技大学（广州）",
       "blueTeam": "PnX",
-      "redScore": "-",
-      "blueScore": "-",
+      "redScore": 2,
+      "blueScore": 0,
       "title": "广西站 第43场 南方科技大学 ARTINX战队 vs 香港科技大学（广州）PnX战队 | RMUL 2025 高校联盟赛",
       "url": "https://www.bilibili.com/video/BV1RFXsYeEmH/",
       "uncertain": true
@@ -23078,8 +23132,8 @@
       "redTeam": "京喜",
       "blueSchool": "深圳职业技术大学",
       "blueTeam": "RCIA",
-      "redScore": "-",
-      "blueScore": "-",
+      "redScore": 0,
+      "blueScore": 2,
       "title": "广西站 第44场 武汉华夏理工学院 京喜战队 vs 深圳职业技术大学 RCIA战队 | RMUL 2025 高校联盟赛",
       "url": "https://www.bilibili.com/video/BV1dFXsYvEFo/",
       "uncertain": true
@@ -23092,10 +23146,10 @@
       "stage": "小组赛",
       "redSchool": "华南理工大学",
       "redTeam": "华南虎",
-      "blueSchool": "哈工深 南工骁鹰",
-      "blueTeam": "哈工深 南工骁鹰",
-      "redScore": "-",
-      "blueScore": "-",
+      "blueSchool": "哈尔滨工业大学（深圳）",
+      "blueTeam": "南工骁鹰",
+      "redScore": 2,
+      "blueScore": 0,
       "title": "广西站 第45场 华南理工大学 华南虎战队vs哈工深 南工骁鹰战队 | RMUL 2025 高校联盟赛",
       "url": "https://www.bilibili.com/video/BV1RFXsYeEkX/",
       "uncertain": true
@@ -23110,8 +23164,8 @@
       "redTeam": "GIRT",
       "blueSchool": "湖南大学",
       "blueTeam": "跃鹿",
-      "redScore": "-",
-      "blueScore": "-",
+      "redScore": 2,
+      "blueScore": 0,
       "title": "广西站 第46场 桂林信息科技学院 GIRT战队 vs 湖南大学 跃鹿战队 | RoboMaster 2025 高校联盟赛",
       "url": "https://www.bilibili.com/video/BV1nKXWYrEzS/",
       "uncertain": true
@@ -23126,8 +23180,8 @@
       "redTeam": "RobotPilots",
       "blueSchool": "广东工业大学",
       "blueTeam": "DynamicX",
-      "redScore": "-",
-      "blueScore": "-",
+      "redScore": 0,
+      "blueScore": 2,
       "title": "广西站 第47场 深圳大学 RobotPilots战队 vs 广东工业大学 DynamicX战队 | RoboMaster 2025 高校联盟赛",
       "url": "https://www.bilibili.com/video/BV1HKXWYrEKD/",
       "uncertain": true
@@ -23142,8 +23196,8 @@
       "redTeam": "Taurus",
       "blueSchool": "深圳职业技术大学",
       "blueTeam": "RCIA",
-      "redScore": "-",
-      "blueScore": "-",
+      "redScore": 2,
+      "blueScore": 0,
       "title": "广西站 第48场 华南农业大学Taurus战队 vs 深圳职业技术大学 RCIA战队 | RoboMaster 2025 高校联盟赛",
       "url": "https://www.bilibili.com/video/BV1HKXWYrEJT/",
       "uncertain": true
@@ -23158,8 +23212,8 @@
       "redTeam": "飞虎",
       "blueSchool": "华南理工大学",
       "blueTeam": "华南虎",
-      "redScore": "-",
-      "blueScore": "-",
+      "redScore": 0,
+      "blueScore": 2,
       "title": "广西站 第49场 北部湾大学 飞虎战队 vs 华南理工大学 华南虎战队 | RoboMaster 2025 高校联盟赛",
       "url": "https://www.bilibili.com/video/BV1jLXWYvEni/",
       "uncertain": true
@@ -23174,8 +23228,8 @@
       "redTeam": "PRIME",
       "blueSchool": "广西大学",
       "blueTeam": "ROBOTZ",
-      "redScore": "-",
-      "blueScore": "-",
+      "redScore": 0,
+      "blueScore": 2,
       "title": "广西站 第50场 武汉理工大学 PRIME战队 vs 广西大学 ROBOTZ战队 | RoboMaster 2025 高校联盟赛",
       "url": "https://www.bilibili.com/video/BV1iSXhYsE9S/",
       "uncertain": true
@@ -23190,8 +23244,8 @@
       "redTeam": "Evolution",
       "blueSchool": "桂林理工大学",
       "blueTeam": "群星",
-      "redScore": "-",
-      "blueScore": "-",
+      "redScore": 1,
+      "blueScore": 2,
       "title": "广西站 第51场 桂林电子科技大学 Evolution战队 vs 桂林理工大学 群星战队 | RoboMaster 2025 高校联盟赛",
       "url": "https://www.bilibili.com/video/BV1hwXaYjE5i/",
       "uncertain": true
@@ -23206,8 +23260,8 @@
       "redTeam": "ARTINX",
       "blueSchool": "华南师范大学",
       "blueTeam": "PIONEER",
-      "redScore": "-",
-      "blueScore": "-",
+      "redScore": 2,
+      "blueScore": 0,
       "title": "广西站 第52场 南方科技大学 ARTINX战队 vs 华南师范大学 PIONEER战队 | RoboMaster 2025 高校联盟赛",
       "url": "https://www.bilibili.com/video/BV18wXaYjERd/",
       "uncertain": true
@@ -23222,8 +23276,8 @@
       "redTeam": "IMCA",
       "blueSchool": "电子科技大学中山学院",
       "blueTeam": "RoboBraver",
-      "redScore": "-",
-      "blueScore": "-",
+      "redScore": 0,
+      "blueScore": 2,
       "title": "广西站 第53场 五邑大学 IMCA战队 vs 电子科技大学中山学院 RoboBraver战队 | RoboMaster 2025 高校联盟赛",
       "url": "https://www.bilibili.com/video/BV13nXhYLEe7/",
       "uncertain": true
@@ -23238,8 +23292,8 @@
       "redTeam": "GIRT",
       "blueSchool": "广东工业大学",
       "blueTeam": "DynamicX",
-      "redScore": "-",
-      "blueScore": "-",
+      "redScore": 0,
+      "blueScore": 2,
       "title": "广西站 第54场 桂林信息科技学院 GIRT战队 vs 广东工业大学 DynamicX战队 | RoboMaster 2025 高校联盟赛",
       "url": "https://www.bilibili.com/video/BV13qX8YyEUh/",
       "uncertain": true
@@ -23254,8 +23308,8 @@
       "redTeam": "Taurus",
       "blueSchool": "华南理工大学",
       "blueTeam": "华南虎",
-      "redScore": "-",
-      "blueScore": "-",
+      "redScore": 0,
+      "blueScore": 2,
       "title": "广西站 第55场 华南农业大学 Taurus战队 vs 华南理工大学 华南虎战队 | RoboMaster 2025 高校联盟赛",
       "url": "https://www.bilibili.com/video/BV1CRX8YAERD/",
       "uncertain": true
@@ -23270,8 +23324,8 @@
       "redTeam": "ROBOTZ",
       "blueSchool": "桂林理工大学",
       "blueTeam": "群星",
-      "redScore": "-",
-      "blueScore": "-",
+      "redScore": 0,
+      "blueScore": 2,
       "title": "广西站 第56场 广西大学 ROBOTZ战队 vs 桂林理工大学 群星战队 | RoboMaster 2025 高校联盟赛",
       "url": "https://www.bilibili.com/video/BV1yqXYY3E18/",
       "uncertain": true
@@ -23286,8 +23340,8 @@
       "redTeam": "ARTINX",
       "blueSchool": "电子科技大学中山学院",
       "blueTeam": "RoboBraver",
-      "redScore": "-",
-      "blueScore": "-",
+      "redScore": 0,
+      "blueScore": 2,
       "title": "广西站 第57场 南方科技大学 ARTINX战队 vs 电子科技大学中山学院 RoboBraver战队 | RoboMaster 2025 高校联盟赛",
       "url": "https://www.bilibili.com/video/BV11vXYYkEY3/",
       "uncertain": true
@@ -23302,8 +23356,8 @@
       "redTeam": "DynamicX",
       "blueSchool": "华南理工大学",
       "blueTeam": "华南虎",
-      "redScore": "-",
-      "blueScore": "-",
+      "redScore": 2,
+      "blueScore": 1,
       "title": "广西站 第58场 广东工业大学 DynamicX战队 vs 华南理工大学 华南虎战队 | RoboMaster 2025 高校联盟赛",
       "url": "https://www.bilibili.com/video/BV1ZuXYY8E4M/",
       "uncertain": true
@@ -23318,8 +23372,8 @@
       "redTeam": "群星",
       "blueSchool": "电子科技大学中山学院",
       "blueTeam": "RoboBraver",
-      "redScore": "-",
-      "blueScore": "-",
+      "redScore": 0,
+      "blueScore": 2,
       "title": "广西站 第59场 桂林理工大学 群星战队 vs 电子科技大学中山学院 RoboBraver战队 | RoboMaster 2025 高校联盟赛",
       "url": "https://www.bilibili.com/video/BV1ZuXYY8EYs/",
       "uncertain": true
@@ -23334,8 +23388,8 @@
       "redTeam": "华南虎",
       "blueSchool": "桂林理工大学",
       "blueTeam": "群星",
-      "redScore": "-",
-      "blueScore": "-",
+      "redScore": 2,
+      "blueScore": 1,
       "title": "广西站 第60场 华南理工大学 华南虎战队 vs 桂林理工大学 群星战队 | RoboMaster 2025 高校联盟赛",
       "url": "https://www.bilibili.com/video/BV1fMXYYcEu4/",
       "uncertain": true
@@ -23350,27 +23404,63 @@
       "redTeam": "DynamicX",
       "blueSchool": "电子科技大学中山学院",
       "blueTeam": "RoboBraver",
-      "redScore": "-",
-      "blueScore": "-",
+      "redScore": 0,
+      "blueScore": 2,
       "title": "广西站 第61场 广东工业大学 DynamicX战队 vs 电子科技大学中山学院 RoboBraver战队 | RoboMaster 2025 高校联盟赛",
       "url": "https://www.bilibili.com/video/BV1ogXYYfEq6/",
       "uncertain": true
+    },
+    {
+      "id": "RMUL-INFERRED-2025-浙江站-1",
+      "stage": "小组赛",
+      "redScore": 2,
+      "blueScore": 0,
+      "title": "",
+      "url": "",
+      "uncertain": true,
+      "inferred": true,
+      "inferenceNote": "查表得知",
+      "season": "2025",
+      "zone": "浙江站",
+      "order": "1",
+      "redSchool": "湖北科技学院",
+      "redTeam": "机械之心",
+      "blueSchool": "华东交通大学",
+      "blueTeam": "RealSteel"
     },
     {
       "id": "RMUL-2025-浙江站-2-BV1VsQ6Y6Etv",
       "season": "2025",
       "zone": "浙江站",
       "order": "2",
-      "stage": "16进8淘汰赛",
+      "stage": "小组赛",
       "redSchool": "浙江纺织服装职业技术学院",
       "redTeam": "RoboFuture",
       "blueSchool": "香港大学",
       "blueTeam": "HerKules",
-      "redScore": "-",
-      "blueScore": "-",
+      "redScore": 0,
+      "blueScore": 2,
       "title": "浙江站 第2场 浙江纺织服装职业技术学院RoboFuture战队 vs 香港大学HerKules战队 | RMUL 2025 高校联盟赛",
       "url": "https://www.bilibili.com/video/BV1VsQ6Y6Etv/",
       "uncertain": true
+    },
+    {
+      "id": "RMUL-INFERRED-2025-浙江站-3",
+      "stage": "小组赛",
+      "redScore": 2,
+      "blueScore": 0,
+      "title": "",
+      "url": "",
+      "uncertain": true,
+      "inferred": true,
+      "inferenceNote": "查表得知",
+      "season": "2025",
+      "zone": "浙江站",
+      "order": "3",
+      "redSchool": "盐城师范学院",
+      "redTeam": "盐鹤",
+      "blueSchool": "浙江大学ZJUI",
+      "blueTeam": "Meta"
     },
     {
       "id": "RMUL-2025-浙江站-4-BV1jfQ6YjE8n",
@@ -23382,8 +23472,8 @@
       "redTeam": "OmniX",
       "blueSchool": "香港科技大学",
       "blueTeam": "ENTERPRIZE",
-      "redScore": "-",
-      "blueScore": "-",
+      "redScore": 0,
+      "blueScore": 2,
       "title": "浙江站 第4场 西浦创业家学院（太仓）OmniX战队 vs 香港科技大学ENTERPRIZE战队 | RoboMaster 2025 高校联盟赛",
       "url": "https://www.bilibili.com/video/BV1jfQ6YjE8n/",
       "uncertain": true
@@ -23398,8 +23488,8 @@
       "redTeam": "PHOENIX",
       "blueSchool": "江苏海洋大学",
       "blueTeam": "JTop",
-      "redScore": "-",
-      "blueScore": "-",
+      "redScore": 2,
+      "blueScore": 0,
       "title": "浙江站 第5场 杭州电子科技大学PHOENIX战队 vs 江苏海洋大学JTop战队 | RoboMaster 2025 高校联盟赛",
       "url": "https://www.bilibili.com/video/BV1qfQ6YjEVA/",
       "uncertain": true
@@ -23414,8 +23504,8 @@
       "redTeam": "合工大宣城WDR",
       "blueSchool": "浙江理工大学",
       "blueTeam": "钱塘蛟",
-      "redScore": "-",
-      "blueScore": "-",
+      "redScore": 2,
+      "blueScore": 0,
       "title": "浙江站 第6场 合工大宣城WDR战队 vs 浙江理工大学钱塘蛟战队 |RoboMaster 2025 高校联盟赛",
       "url": "https://www.bilibili.com/video/BV1jfQ6YjEj6/",
       "uncertain": true
@@ -23430,8 +23520,8 @@
       "redTeam": "力创RM",
       "blueSchool": "浙江大学",
       "blueTeam": "Hello World",
-      "redScore": "-",
-      "blueScore": "-",
+      "redScore": 0,
+      "blueScore": 2,
       "title": "浙江站 第7站 湖北工业大学力创RM战队 vs 浙江大学Hello World战队 | RoboMaster 2025 高校联盟赛",
       "url": "https://www.bilibili.com/video/BV1ifQ6YjEa7/",
       "uncertain": true
@@ -23446,8 +23536,8 @@
       "redTeam": "RoboWisdom",
       "blueSchool": "宁波诺丁汉大学",
       "blueTeam": "AIM",
-      "redScore": "-",
-      "blueScore": "-",
+      "redScore": 0,
+      "blueScore": 2,
       "title": "浙江站 第8场 浙大城市学院RoboWisdom战队 vs 宁波诺丁汉大学AIM战队 |RoboMaster 2025 高校联盟赛",
       "url": "https://www.bilibili.com/video/BV1jEQ6YyEYx/",
       "uncertain": true
@@ -23462,8 +23552,8 @@
       "redTeam": "CUBOT",
       "blueSchool": "武汉大学",
       "blueTeam": "珞珈狐",
-      "redScore": "-",
-      "blueScore": "-",
+      "redScore": 2,
+      "blueScore": 0,
       "title": "浙江站 第9场 中国矿业大学CUBOT战队 vs 武汉大学珞珈狐战队 |RoboMaster 2025 高校联盟赛",
       "url": "https://www.bilibili.com/video/BV1jfQ6YjEyG/",
       "uncertain": true
@@ -23478,8 +23568,8 @@
       "redTeam": "苍穹",
       "blueSchool": "台州学院",
       "blueTeam": "星驰",
-      "redScore": "-",
-      "blueScore": "-",
+      "redScore": 2,
+      "blueScore": 0,
       "title": "浙江站 第10场 合肥工业大学苍穹战队 vs 台州学院星驰战队 | RoboMaster 2025 高校联盟赛",
       "url": "https://www.bilibili.com/video/BV1vHQ6YrEgu/",
       "uncertain": true
@@ -23494,8 +23584,8 @@
       "redTeam": "FYT",
       "blueSchool": "浙江师范大学",
       "blueTeam": "浙狮",
-      "redScore": "-",
-      "blueScore": "-",
+      "redScore": 1,
+      "blueScore": 1,
       "title": "浙江站 第11场 中南大学FYT战队 vs 浙江师范大学浙狮战队 | RoboMaster 2025 高校联盟赛",
       "url": "https://www.bilibili.com/video/BV1ywQ6YsEMp/",
       "uncertain": true
@@ -23510,8 +23600,8 @@
       "redTeam": "HelloWorld",
       "blueSchool": "湖北科技学院",
       "blueTeam": "机械之心",
-      "redScore": "-",
-      "blueScore": "-",
+      "redScore": 2,
+      "blueScore": 0,
       "title": "浙江站 第12场 浙江大学HelloWorld战队 vs 湖北科技学院机械之心战队 | RoboMaster 2025 高校联盟赛",
       "url": "https://www.bilibili.com/video/BV12dQzYbEqL/",
       "uncertain": true
@@ -23525,9 +23615,9 @@
       "redSchool": "宁波诺丁汉大学",
       "redTeam": "AIM",
       "blueSchool": "浙江纺织服装职业技术学院",
-      "blueTeam": "浙江纺织服装职业技术学院",
-      "redScore": "-",
-      "blueScore": "-",
+      "blueTeam": "RoboFuture",
+      "redScore": 0,
+      "blueScore": 2,
       "title": "浙江站 第13场 宁波诺丁汉大学AIM战队 vs 浙江纺织服装职业技术学院 | RoboMaster 2025 高校联盟赛",
       "url": "https://www.bilibili.com/video/BV1tRQzYcEDu/",
       "uncertain": true
@@ -23542,11 +23632,29 @@
       "redTeam": "珞珈狐",
       "blueSchool": "盐城师范学院",
       "blueTeam": "盐鹤",
-      "redScore": "-",
-      "blueScore": "-",
+      "redScore": 2,
+      "blueScore": 0,
       "title": "浙江站 第14场 武汉大学珞珈狐战队 vs 盐城师范学院盐鹤战队 | RoboMaster 2025 高校联盟赛",
       "url": "https://www.bilibili.com/video/BV1i7Q6Y5Edu/",
       "uncertain": true
+    },
+    {
+      "id": "RMUL-INFERRED-2025-浙江站-15",
+      "stage": "小组赛",
+      "redScore": 1,
+      "blueScore": 1,
+      "title": "",
+      "url": "",
+      "uncertain": true,
+      "inferred": true,
+      "inferenceNote": "查表得知",
+      "season": "2025",
+      "zone": "浙江站",
+      "order": "15",
+      "redSchool": "台州学院",
+      "redTeam": "星驰",
+      "blueSchool": "西浦创业家学院（太仓）",
+      "blueTeam": "OmniX"
     },
     {
       "id": "RMUL-2025-浙江站-16-BV1NaQ1YgEAe",
@@ -23558,8 +23666,8 @@
       "redTeam": "浙狮",
       "blueSchool": "杭州电子科技大学",
       "blueTeam": "PHOENIX",
-      "redScore": "-",
-      "blueScore": "-",
+      "redScore": 2,
+      "blueScore": 0,
       "title": "浙江站 第16场 浙江师范大学浙狮战队 vs 杭州电子科技大学PHOENIX战队 | RoboMaster 2025 高校联盟赛",
       "url": "https://www.bilibili.com/video/BV1NaQ1YgEAe/",
       "uncertain": true
@@ -23574,8 +23682,8 @@
       "redTeam": "钱塘蛟",
       "blueSchool": "江苏大学",
       "blueTeam": "Aurora",
-      "redScore": "-",
-      "blueScore": "-",
+      "redScore": 0,
+      "blueScore": 2,
       "title": "浙江站 第17场 浙江理工大学钱塘蛟战队 vs 江苏大学 Aurora战队 | RoboMaster 2025 高校联盟赛",
       "url": "https://www.bilibili.com/video/BV1wiQ1YqEZF/",
       "uncertain": true
@@ -23590,8 +23698,8 @@
       "redTeam": "力创RM",
       "blueSchool": "华东交通大学",
       "blueTeam": "RealSteel",
-      "redScore": "-",
-      "blueScore": "-",
+      "redScore": 2,
+      "blueScore": 0,
       "title": "浙江站 第18场 湖北工业大学力创RM战队 vs 华东交通大学RealSteel战队 | RoboMaster 2025 高校联盟赛",
       "url": "https://www.bilibili.com/video/BV1p9QyYKELK/",
       "uncertain": true
@@ -23606,11 +23714,29 @@
       "redTeam": "RoboWisdom",
       "blueSchool": "香港大学",
       "blueTeam": "HerKules",
-      "redScore": "-",
-      "blueScore": "-",
+      "redScore": 0,
+      "blueScore": 2,
       "title": "浙江站 第19场 浙大城市学院RoboWisdom战队 vs 香港大学HerKules战队 |RoboMaster 2025 高校联盟赛",
       "url": "https://www.bilibili.com/video/BV1p9QyYKEBA/",
       "uncertain": true
+    },
+    {
+      "id": "RMUL-INFERRED-2025-浙江站-20",
+      "stage": "小组赛",
+      "redScore": 2,
+      "blueScore": 0,
+      "title": "",
+      "url": "",
+      "uncertain": true,
+      "inferred": true,
+      "inferenceNote": "查表得知",
+      "season": "2025",
+      "zone": "浙江站",
+      "order": "20",
+      "redSchool": "中国矿业大学",
+      "redTeam": "CUBOT",
+      "blueSchool": "浙江大学ZJUI",
+      "blueTeam": "Meta"
     },
     {
       "id": "RMUL-2025-浙江站-21-BV1WQQyYqECq",
@@ -23622,8 +23748,8 @@
       "redTeam": "苍穹",
       "blueSchool": "香港科技大学",
       "blueTeam": "ENTERPRIZE",
-      "redScore": "-",
-      "blueScore": "-",
+      "redScore": 0,
+      "blueScore": 2,
       "title": "浙江站 第21场 合肥工业大学苍穹战队 vs 香港科技大学ENTERPRIZE战队 | RoboMaster 2025 高校联盟赛",
       "url": "https://www.bilibili.com/video/BV1WQQyYqECq/",
       "uncertain": true
@@ -23638,8 +23764,8 @@
       "redTeam": "FYT",
       "blueSchool": "江苏海洋大学",
       "blueTeam": "JTop",
-      "redScore": "-",
-      "blueScore": "-",
+      "redScore": 2,
+      "blueScore": 0,
       "title": "浙江站 第22场 中南大学FYT 战队 vs 江苏海洋大学JTop战队 | RoboMaster 2025 高校联盟赛",
       "url": "https://www.bilibili.com/video/BV1YaQyYnEzK/",
       "uncertain": true
@@ -23654,8 +23780,8 @@
       "redTeam": "机械之心",
       "blueSchool": "湖北工业大学",
       "blueTeam": "力创RM",
-      "redScore": "-",
-      "blueScore": "-",
+      "redScore": 0,
+      "blueScore": 2,
       "title": "浙江站 第23场 湖北科技学院机械之心战队 vs 湖北工业大学力创RM战队 | RoboMaster 2025 高校联盟赛",
       "url": "https://www.bilibili.com/video/BV1ixQyYsEfD/",
       "uncertain": true
@@ -23670,8 +23796,8 @@
       "redTeam": "RoboFuture",
       "blueSchool": "浙大城市学院",
       "blueTeam": "RoboWisdom",
-      "redScore": "-",
-      "blueScore": "-",
+      "redScore": 2,
+      "blueScore": 0,
       "title": "浙江站 第24场 浙江纺织服装职业技术学院RoboFuture战队 vs 浙大城市学院RoboWisdom战队 | RMUL2025高校联盟赛",
       "url": "https://www.bilibili.com/video/BV1mkQyYCEzs/",
       "uncertain": true
@@ -23686,8 +23812,8 @@
       "redTeam": "盐鹤",
       "blueSchool": "中国矿业大学",
       "blueTeam": "CUBOT",
-      "redScore": "-",
-      "blueScore": "-",
+      "redScore": 0,
+      "blueScore": 2,
       "title": "浙江站 第25场 盐城师范学院盐鹤战队 vs 中国矿业大学CUBOT战队 | RoboMaster 2025 高校联盟赛",
       "url": "https://www.bilibili.com/video/BV15VQmYcERE/",
       "uncertain": true
@@ -23702,8 +23828,8 @@
       "redTeam": "OmniX",
       "blueSchool": "合肥工业大学",
       "blueTeam": "苍穹",
-      "redScore": "-",
-      "blueScore": "-",
+      "redScore": 0,
+      "blueScore": 2,
       "title": "浙江站 第26场 西浦创业家学院（太仓）OmniX战队 vs 合肥工业大学苍穹战队 | RMUL 2025 高校联盟赛",
       "url": "https://www.bilibili.com/video/BV1aqQ2YRELZ/",
       "uncertain": true
@@ -23718,8 +23844,8 @@
       "redTeam": "PHOENIX",
       "blueSchool": "中南大学",
       "blueTeam": "FYT",
-      "redScore": "-",
-      "blueScore": "-",
+      "redScore": 0,
+      "blueScore": 2,
       "title": "浙江站 第27场 杭州电子科技大学PHOENIX战队 vs 中南大学FYT战队 | RoboMaster 2025 高校联盟赛",
       "url": "https://www.bilibili.com/video/BV1YiQ2YxECj/",
       "uncertain": true
@@ -23729,16 +23855,34 @@
       "season": "2025",
       "zone": "浙江站",
       "order": "28",
-      "stage": "16进8淘汰赛",
+      "stage": "小组赛",
       "redSchool": "江苏大学",
       "redTeam": "Aurora",
       "blueSchool": "合肥工业大学（宣城校区）",
       "blueTeam": "WDR",
-      "redScore": "-",
-      "blueScore": "-",
+      "redScore": 1,
+      "blueScore": 1,
       "title": "浙江站 第28场 江苏大学Aurora战队 vs 合肥工业大学（宣城校区）WDR战队 | RoboMaster 2025 高校联盟赛",
       "url": "https://www.bilibili.com/video/BV1vhQ2YfEeW/",
       "uncertain": true
+    },
+    {
+      "id": "RMUL-INFERRED-2025-浙江站-29",
+      "stage": "小组赛",
+      "redScore": 0,
+      "blueScore": 2,
+      "title": "",
+      "url": "",
+      "uncertain": true,
+      "inferred": true,
+      "inferenceNote": "查表得知",
+      "season": "2025",
+      "zone": "浙江站",
+      "order": "29",
+      "redSchool": "华东交通大学",
+      "redTeam": "RealSteel",
+      "blueSchool": "浙江大学",
+      "blueTeam": "Hello World"
     },
     {
       "id": "RMUL-2025-浙江站-30-BV1uCQ2YQE1r",
@@ -23750,8 +23894,8 @@
       "redTeam": "HerKules",
       "blueSchool": "宁波诺丁汉大学",
       "blueTeam": "AIM",
-      "redScore": "-",
-      "blueScore": "-",
+      "redScore": 2,
+      "blueScore": 0,
       "title": "浙江站 第30场 香港大学HerKules战队 vs 宁波诺丁汉大学AIM战队 | RoboMaster 2025 高校联盟赛",
       "url": "https://www.bilibili.com/video/BV1uCQ2YQE1r/",
       "uncertain": true
@@ -23766,11 +23910,29 @@
       "redTeam": "Meta",
       "blueSchool": "武汉大学",
       "blueTeam": "珞珈狐",
-      "redScore": "-",
-      "blueScore": "-",
+      "redScore": 0,
+      "blueScore": 2,
       "title": "浙江站 第31场 浙大ZJUIMeta战队 vs 武汉大学珞珈狐战队 |RoboMaster 2025 高校联盟赛",
       "url": "https://www.bilibili.com/video/BV1bCQ2YDEqL/",
       "uncertain": true
+    },
+    {
+      "id": "RMUL-INFERRED-2025-浙江站-32",
+      "stage": "小组赛",
+      "redScore": 2,
+      "blueScore": 0,
+      "title": "",
+      "url": "",
+      "uncertain": true,
+      "inferred": true,
+      "inferenceNote": "查表得知",
+      "season": "2025",
+      "zone": "浙江站",
+      "order": "32",
+      "redSchool": "香港科技大学",
+      "redTeam": "ENTERPRIZE",
+      "blueSchool": "台州学院",
+      "blueTeam": "星驰"
     },
     {
       "id": "RMUL-2025-浙江站-33-BV1UPQ2Y7E1D",
@@ -23782,8 +23944,8 @@
       "redTeam": "JTop",
       "blueSchool": "浙江师范大学",
       "blueTeam": "浙狮",
-      "redScore": "-",
-      "blueScore": "-",
+      "redScore": 0,
+      "blueScore": 2,
       "title": "浙江站 第33场 江苏海洋大学JTop战队 vs 浙江师范大学浙狮战队 | RoboMaster 2025 高校联盟赛",
       "url": "https://www.bilibili.com/video/BV1UPQ2Y7E1D/",
       "uncertain": true
@@ -23798,8 +23960,8 @@
       "redTeam": "Aurora",
       "blueSchool": "湖北工业大学",
       "blueTeam": "力创RM",
-      "redScore": "-",
-      "blueScore": "-",
+      "redScore": 1,
+      "blueScore": 1,
       "title": "浙江站 第34场 江苏大学Aurora战队 vs 湖北工业大学力创RM战队 | RoboMaster 2025 高校联盟赛",
       "url": "https://www.bilibili.com/video/BV1ztQUYzE7p/",
       "uncertain": true
@@ -23814,8 +23976,8 @@
       "redTeam": "浙狮",
       "blueSchool": "浙江大学",
       "blueTeam": "HelloWorld",
-      "redScore": "-",
-      "blueScore": "-",
+      "redScore": 0,
+      "blueScore": 2,
       "title": "浙江站 第35场 浙江师范大学浙狮战队 vs 浙江大学HelloWorld战队 | RoboMaster 2025 高校联盟赛",
       "url": "https://www.bilibili.com/video/BV1ztQUYzE8y/",
       "uncertain": true
@@ -23830,8 +23992,8 @@
       "redTeam": "珞珈狐",
       "blueSchool": "香港大学",
       "blueTeam": "HerKules",
-      "redScore": "-",
-      "blueScore": "-",
+      "redScore": 0,
+      "blueScore": 2,
       "title": "浙江站 第36场 武汉大学珞珈狐战队 vs 香港大学HerKules战队 | RoboMaster 2025 高校联盟赛",
       "url": "https://www.bilibili.com/video/BV1CEQUY1E58/",
       "uncertain": true
@@ -23846,8 +24008,8 @@
       "redTeam": "ENTERPRIZE",
       "blueSchool": "中国矿业大学",
       "blueTeam": "CUBOT",
-      "redScore": "-",
-      "blueScore": "-",
+      "redScore": 2,
+      "blueScore": 0,
       "title": "浙江站 第37场 香港科技大学ENTERPRIZE战队 vs 中国矿业大学CUBOT战队 | RoboMaster 2025 高校联盟赛",
       "url": "https://www.bilibili.com/video/BV1CEQUY1EsA/",
       "uncertain": true
@@ -23862,8 +24024,8 @@
       "redTeam": "力创RM",
       "blueSchool": "浙江纺织服装职业技术学院",
       "blueTeam": "RoboFuture",
-      "redScore": "-",
-      "blueScore": "-",
+      "redScore": 0,
+      "blueScore": 2,
       "title": "浙江站 第38场 湖北工业大学力创RM战队 vs 浙江纺织服装职业技术学院RoboFuture战队 | RoboMaster 2025 高校联盟赛",
       "url": "https://www.bilibili.com/video/BV1HkQmY3EKB/",
       "uncertain": true
@@ -23878,8 +24040,8 @@
       "redTeam": "HelloWorld",
       "blueSchool": "中南大学",
       "blueTeam": "FYT",
-      "redScore": "-",
-      "blueScore": "-",
+      "redScore": 2,
+      "blueScore": 0,
       "title": "浙江站 第39场 浙江大学HelloWorld战队 vs 中南大学FYT战队 | RoboMaster 2025 高校联盟赛",
       "url": "https://www.bilibili.com/video/BV1HkQmY3EaG/",
       "uncertain": true
@@ -23894,8 +24056,8 @@
       "redTeam": "HerKules",
       "blueSchool": "合肥工业大学（宣城校区）",
       "blueTeam": "WDR",
-      "redScore": "-",
-      "blueScore": "-",
+      "redScore": 1,
+      "blueScore": 1,
       "title": "浙江站 第40场 香港大学HerKules战队 vs 合肥工业大学（宣城校区）WDR战队 | RoboMaster 2025 高校联盟赛",
       "url": "https://www.bilibili.com/video/BV1GfQmY8Eom/",
       "uncertain": true
@@ -23910,8 +24072,8 @@
       "redTeam": "CUBOT",
       "blueSchool": "合肥工业大学",
       "blueTeam": "苍穹",
-      "redScore": "-",
-      "blueScore": "-",
+      "redScore": 0,
+      "blueScore": 2,
       "title": "浙江站 第41场 中国矿业大学CUBOT战队 vs 合肥工业大学苍穹战队 | RoboMaster 2025 高校联盟赛",
       "url": "https://www.bilibili.com/video/BV1DAQUYdEmW/",
       "uncertain": true
@@ -23926,8 +24088,8 @@
       "redTeam": "RoboFuture",
       "blueSchool": "江苏大学",
       "blueTeam": "Aurora",
-      "redScore": "-",
-      "blueScore": "-",
+      "redScore": 0,
+      "blueScore": 2,
       "title": "浙江站 第42场 浙江纺织服装职业技术学院RoboFuture战队 vs 江苏大学Aurora战队 | RoboMaster 2025 高校联盟赛",
       "url": "https://www.bilibili.com/video/BV1u1QxYfEUv/",
       "uncertain": true
@@ -23942,8 +24104,8 @@
       "redTeam": "FYT",
       "blueSchool": "浙江师范大学",
       "blueTeam": "浙狮",
-      "redScore": "-",
-      "blueScore": "-",
+      "redScore": 0,
+      "blueScore": 2,
       "title": "浙江站 第43场 中南大学FYT战队 vs 浙江师范大学浙狮战队 | RoboMaster 2025 高校联盟赛",
       "url": "https://www.bilibili.com/video/BV1u1QxYfEvV/",
       "uncertain": true
@@ -23958,8 +24120,8 @@
       "redTeam": "WDR",
       "blueSchool": "武汉大学",
       "blueTeam": "珞珈狐",
-      "redScore": "-",
-      "blueScore": "-",
+      "redScore": 2,
+      "blueScore": 0,
       "title": "浙江站 第44场 合肥工业大学（宣城校区）WDR战队 vs 武汉大学珞珈狐战队 | RMUL 2025 高校联盟赛",
       "url": "https://www.bilibili.com/video/BV1g1QxYfEwi/",
       "uncertain": true
@@ -23969,13 +24131,13 @@
       "season": "2025",
       "zone": "浙江站",
       "order": "45",
-      "stage": "16进8淘汰赛",
+      "stage": "小组赛",
       "redSchool": "合肥工业大学",
       "redTeam": "苍穹",
       "blueSchool": "香港科技大学",
       "blueTeam": "ENTERPRIZE",
-      "redScore": "-",
-      "blueScore": "-",
+      "redScore": 2,
+      "blueScore": 0,
       "title": "浙江站 第45场 合肥工业大学苍穹战队 vs 香港科技大学ENTERPRIZE战队 | RoboMaster 2025 高校联盟赛",
       "url": "https://www.bilibili.com/video/BV1g1QxYfEA8/",
       "uncertain": true
@@ -23990,8 +24152,8 @@
       "redTeam": "Aurora",
       "blueSchool": "浙江师范大学",
       "blueTeam": "浙狮",
-      "redScore": "-",
-      "blueScore": "-",
+      "redScore": 0,
+      "blueScore": 2,
       "title": "浙江站 第46场 江苏大学Aurora战队 vs 浙江师范大学浙狮战队 | RoboMaster 2025 高校联盟赛",
       "url": "https://www.bilibili.com/video/BV14BQbYwEGo/",
       "uncertain": true
@@ -24004,10 +24166,10 @@
       "stage": "8进4淘汰赛",
       "redSchool": "香港科技大学",
       "redTeam": "ENTERPRIZE",
-      "blueSchool": "合工大宣城WDR",
-      "blueTeam": "合工大宣城WDR",
-      "redScore": "-",
-      "blueScore": "-",
+      "blueSchool": "合工大宣城",
+      "blueTeam": "WDR",
+      "redScore": 2,
+      "blueScore": 0,
       "title": "浙江站 第47场 香港科技大学ENTERPRIZE战队 vs 合工大宣城WDR战队 | RMUL 2025 高校联盟赛",
       "url": "https://www.bilibili.com/video/BV1S8QbYiEfF/",
       "uncertain": true
@@ -24019,11 +24181,11 @@
       "order": "48",
       "stage": "8进4淘汰赛",
       "redSchool": "浙江大学",
-      "redTeam": "HelloWorld",
+      "redTeam": "Hello World",
       "blueSchool": "浙江纺织服装职业技术学院",
       "blueTeam": "RoboFuture",
-      "redScore": "-",
-      "blueScore": "-",
+      "redScore": 2,
+      "blueScore": 0,
       "title": "浙江站 第48场 浙江大学HelloWorld战队 vs 浙江纺织服装职业技术学院RoboFuture战队 | RMUL 2025 高校联盟赛",
       "url": "https://www.bilibili.com/video/BV1MYQbYvE9c/",
       "uncertain": true
@@ -24038,8 +24200,8 @@
       "redTeam": "HerKules",
       "blueSchool": "合肥工业大学",
       "blueTeam": "苍穹",
-      "redScore": "-",
-      "blueScore": "-",
+      "redScore": 2,
+      "blueScore": 1,
       "title": "浙江站 第49场 香港大学HerKules战队 vs 合肥工业大学苍穹战队 | RoboMaster 2025 高校联盟赛",
       "url": "https://www.bilibili.com/video/BV1gmQtYKEyE/",
       "uncertain": true
@@ -24054,8 +24216,8 @@
       "redTeam": "浙狮",
       "blueSchool": "香港科技大学",
       "blueTeam": "ENTERPRIZE",
-      "redScore": "-",
-      "blueScore": "-",
+      "redScore": 0,
+      "blueScore": 2,
       "title": "浙江站 第50场 浙江师范大学浙狮战队 vs 香港科技大学ENTERPRIZE战队 | RoboMaster 2025 高校联盟赛",
       "url": "https://www.bilibili.com/video/BV14VQtYbEaF/",
       "uncertain": true
@@ -24070,8 +24232,8 @@
       "redTeam": "HelloWorld",
       "blueSchool": "香港大学",
       "blueTeam": "HerKules",
-      "redScore": "-",
-      "blueScore": "-",
+      "redScore": 2,
+      "blueScore": 1,
       "title": "浙江站 第51场 浙江大学HelloWorld战队 vs 香港大学HerKules战队 | RoboMaster 2025 高校联盟赛",
       "url": "https://www.bilibili.com/video/BV1tGQtYFEY9/",
       "uncertain": true
@@ -24086,8 +24248,8 @@
       "redTeam": "浙狮",
       "blueSchool": "香港大学",
       "blueTeam": "HerKules",
-      "redScore": "-",
-      "blueScore": "-",
+      "redScore": 2,
+      "blueScore": 1,
       "title": "浙江站 第52场 浙江师范大学浙狮战队 vs 香港大学HerKules战队 | RoboMaster 2025 高校联盟赛",
       "url": "https://www.bilibili.com/video/BV1cuQhYfEfh/",
       "uncertain": true
@@ -24102,8 +24264,8 @@
       "redTeam": "ENTERPRIZE",
       "blueSchool": "浙江大学",
       "blueTeam": "HelloWorld",
-      "redScore": "-",
-      "blueScore": "-",
+      "redScore": 2,
+      "blueScore": 0,
       "title": "浙江站 第53场 香港科技大学ENTERPRIZE战队 vs 浙江大学HelloWorld战队 | RoboMaster 2025 高校联盟赛",
       "url": "https://www.bilibili.com/video/BV1EiQ8YHEaW/",
       "uncertain": true
@@ -24113,13 +24275,13 @@
       "season": "2025",
       "zone": "浙江站",
       "order": "57",
-      "stage": "小组赛",
-      "redSchool": "浙江站 表演赛 浙江师范大学",
+      "stage": "表演赛",
+      "redSchool": "浙江师范大学",
       "redTeam": "浙狮",
       "blueSchool": "浙江纺织服装职业技术学院",
       "blueTeam": "RoboFuture",
-      "redScore": "-",
-      "blueScore": "-",
+      "redScore": 1,
+      "blueScore": 1,
       "title": "浙江站 表演赛 浙江师范大学浙狮战队 vs 浙江纺织服装职业技术学院RoboFuture战队 |RoboMaster 2025 高校联盟赛",
       "url": "https://www.bilibili.com/video/BV1VKQrYrEE4/",
       "uncertain": true
@@ -24134,11 +24296,11 @@
       "redTeam": "天启",
       "blueSchool": "厦门理工学院",
       "blueTeam": "PFA",
-      "redScore": "-",
-      "blueScore": "-",
+      "redScore": "0",
+      "blueScore": "2",
       "title": "福建站 第1场 江西工程学院 天启战队 vs 厦门理工学院 PFA战队 | RoboMaster2025高校联盟赛",
       "url": "https://www.bilibili.com/video/BV1XeXrYLEot/",
-      "uncertain": true
+      "uncertain": false
     },
     {
       "id": "RMUL-2025-福建站-2-BV1N3XrYwEVk",
@@ -24150,11 +24312,11 @@
       "redTeam": "苍侠",
       "blueSchool": "福建师范大学",
       "blueTeam": "Pikachu",
-      "redScore": "-",
-      "blueScore": "-",
+      "redScore": "1",
+      "blueScore": "1",
       "title": "福建站 第2场 福建理工大学 苍侠战队 vs 福建师范大学 Pikachu战队 | RoboMaster 2025 高校联盟赛",
       "url": "https://www.bilibili.com/video/BV1N3XrYwEVk/",
-      "uncertain": true
+      "uncertain": false
     },
     {
       "id": "RMUL-2025-福建站-3-BV1P3XrYwEdS",
@@ -24166,11 +24328,11 @@
       "redTeam": "乘风",
       "blueSchool": "东莞理工学院",
       "blueTeam": "ACE",
-      "redScore": "-",
-      "blueScore": "-",
+      "redScore": "0",
+      "blueScore": "2",
       "title": "福建站 第3场 江西理工大学 乘风战队 vs 东莞理工学院 ACE战队 | RoboMaster 2025 高校联盟赛",
       "url": "https://www.bilibili.com/video/BV1P3XrYwEdS/",
-      "uncertain": true
+      "uncertain": false
     },
     {
       "id": "RMUL-2025-福建站-4-BV1TNXrYKEvw",
@@ -24182,11 +24344,11 @@
       "redTeam": "District 46",
       "blueSchool": "南昌航空大学",
       "blueTeam": "洪鹰",
-      "redScore": "-",
-      "blueScore": "-",
+      "redScore": "1",
+      "blueScore": "1",
       "title": "福建站 第4场 惠州学院 District 46战队 vs 南昌航空大学 洪鹰战队 | RoboMaster 2025 高校联盟赛",
       "url": "https://www.bilibili.com/video/BV1TNXrYKEvw/",
-      "uncertain": true
+      "uncertain": false
     },
     {
       "id": "RMUL-2025-福建站-5-BV1tNXrYKE7W",
@@ -24198,11 +24360,11 @@
       "redTeam": "科来",
       "blueSchool": "广州工商学院",
       "blueTeam": "Alice",
-      "redScore": "-",
-      "blueScore": "-",
+      "redScore": "2",
+      "blueScore": "0",
       "title": "福建站 第5场 集美大学 科来战队 vs 广州工商学院 Alice战队 | RoboMaster 2025 高校联盟赛",
       "url": "https://www.bilibili.com/video/BV1tNXrYKE7W/",
-      "uncertain": true
+      "uncertain": false
     },
     {
       "id": "RMUL-2025-福建站-6-BV1peX6Y4Ejk",
@@ -24214,11 +24376,11 @@
       "redTeam": "浪潮",
       "blueSchool": "深圳信息职业技术学院",
       "blueTeam": "撼龙",
-      "redScore": "-",
-      "blueScore": "-",
+      "redScore": "0",
+      "blueScore": "2",
       "title": "福建站 第6场 广东海洋大学 浪潮战队 vs 深圳信息职业技术学院 撼龙战队 | RoboMaster 2025 高校联盟赛",
       "url": "https://www.bilibili.com/video/BV1peX6Y4Ejk/",
-      "uncertain": true
+      "uncertain": false
     },
     {
       "id": "RMUL-2025-福建站-7-BV1xtX6YhEkL",
@@ -24230,11 +24392,11 @@
       "redTeam": "醒狮",
       "blueSchool": "广州铁路职业技术学院",
       "blueTeam": "IRONR",
-      "redScore": "-",
-      "blueScore": "-",
+      "redScore": "2",
+      "blueScore": "0",
       "title": "福建站 第7场 佛山大学 醒狮战队 vs 广州铁路职业技术学院 IRONR战队 | RoboMaster 2025 高校联盟赛",
       "url": "https://www.bilibili.com/video/BV1xtX6YhEkL/",
-      "uncertain": true
+      "uncertain": false
     },
     {
       "id": "RMUL-2025-福建站-8-BV1x4X6YwEXy",
@@ -24246,11 +24408,11 @@
       "redTeam": "崇实",
       "blueSchool": "武汉工程大学",
       "blueTeam": "Nautilus",
-      "redScore": "-",
-      "blueScore": "-",
+      "redScore": "0",
+      "blueScore": "2",
       "title": "福建站 第8场 武汉科技大学 崇实战队 vs 武汉工程大学 Nautilus战队 | RoboMaster 2025 高校联盟赛",
       "url": "https://www.bilibili.com/video/BV1x4X6YwEXy/",
-      "uncertain": true
+      "uncertain": false
     },
     {
       "id": "RMUL-2025-福建站-9-BV1iQXkYXECw",
@@ -24262,11 +24424,11 @@
       "redTeam": "南海鲨",
       "blueSchool": "厦门大学嘉庚学院",
       "blueTeam": "TCR",
-      "redScore": "-",
-      "blueScore": "-",
+      "redScore": "2",
+      "blueScore": "0",
       "title": "福建站 第9场 海南大学 南海鲨战队 vs 厦门大学嘉庚学院 TCR战队 | RoboMaster 2025 高校联盟赛",
       "url": "https://www.bilibili.com/video/BV1iQXkYXECw/",
-      "uncertain": true
+      "uncertain": false
     },
     {
       "id": "RMUL-2025-福建站-10-BV1GFXCY7ETX",
@@ -24278,11 +24440,11 @@
       "redTeam": "悍匠",
       "blueSchool": "北京理工大学珠海学院",
       "blueTeam": "毅恒",
-      "redScore": "-",
-      "blueScore": "-",
+      "redScore": "2",
+      "blueScore": "0",
       "title": "福建站 第10场 深圳技术大学 悍匠战队 vs 北京理工大学珠海学院 毅恒战队 | RoboMaster 2025 高校联盟赛",
       "url": "https://www.bilibili.com/video/BV1GFXCY7ETX/",
-      "uncertain": true
+      "uncertain": false
     },
     {
       "id": "RMUL-2025-福建站-11-BV13FXCY7E9M",
@@ -24294,11 +24456,11 @@
       "redTeam": "浮舟湿地",
       "blueSchool": "湖南工学院",
       "blueTeam": "Seeker",
-      "redScore": "-",
-      "blueScore": "-",
+      "redScore": "0",
+      "blueScore": "2",
       "title": "福建站 第11场 福州大学 浮舟湿地战队 vs 湖南工学院 Seeker战队 | RoboMaster 2025 高校联盟赛",
       "url": "https://www.bilibili.com/video/BV13FXCY7E9M/",
-      "uncertain": true
+      "uncertain": false
     },
     {
       "id": "RMUL-2025-福建站-12-BV1B1XkYoEXr",
@@ -24310,11 +24472,11 @@
       "redTeam": "RCS",
       "blueSchool": "福建农林大学",
       "blueTeam": "零七一",
-      "redScore": "-",
-      "blueScore": "-",
+      "redScore": "0",
+      "blueScore": "2",
       "title": "福建站 第12场 厦门大学 RCS战队 vs 福建农林大学 零七一战队 | RoboMaster 2025 高校联盟赛",
       "url": "https://www.bilibili.com/video/BV1B1XkYoEXr/",
-      "uncertain": true
+      "uncertain": false
     },
     {
       "id": "RMUL-2025-福建站-13-BV1E1XkYoEaK",
@@ -24326,11 +24488,11 @@
       "redTeam": "Duang One",
       "blueSchool": "南京工业大学",
       "blueTeam": "BlueSpace",
-      "redScore": "-",
-      "blueScore": "-",
+      "redScore": "0",
+      "blueScore": "2",
       "title": "福建站 第13场 湖北第二师范学院 Duang One战队 vs 南京工业大学 BlueSpace战队 | RoboMaster 2025 高校联盟赛",
       "url": "https://www.bilibili.com/video/BV1E1XkYoEaK/",
-      "uncertain": true
+      "uncertain": false
     },
     {
       "id": "RMUL-2025-福建站-14-BV1E1XkYoEuQ",
@@ -24342,11 +24504,11 @@
       "redTeam": "VGD",
       "blueSchool": "广州南方学院",
       "blueTeam": "南風",
-      "redScore": "-",
-      "blueScore": "-",
+      "redScore": "2",
+      "blueScore": "0",
       "title": "福建站 第14场 长安大学 VGD战队 vs 广州南方学院 南風战队 | RoboMaster 2025 高校联盟赛",
       "url": "https://www.bilibili.com/video/BV1E1XkYoEuQ/",
-      "uncertain": true
+      "uncertain": false
     },
     {
       "id": "RMUL-2025-福建站-15-BV17mXkYxEBD",
@@ -24358,11 +24520,11 @@
       "redTeam": "征途",
       "blueSchool": "集美大学诚毅学院",
       "blueTeam": "潜渊",
-      "redScore": "-",
-      "blueScore": "-",
+      "redScore": "1",
+      "blueScore": "1",
       "title": "福建站 第15场 珠海科技学院 征途战队 vs 集美大学诚毅学院 潜渊战队 | RoboMaster 2025 高校联盟赛",
       "url": "https://www.bilibili.com/video/BV17mXkYxEBD/",
-      "uncertain": true
+      "uncertain": false
     },
     {
       "id": "RMUL-2025-福建站-16-BV1RRXJYHEM9",
@@ -24374,11 +24536,11 @@
       "redTeam": "Nautilus",
       "blueSchool": "文华学院",
       "blueTeam": "MSE STAR",
-      "redScore": "-",
-      "blueScore": "-",
+      "redScore": "2",
+      "blueScore": "0",
       "title": "福建站 第16场 武汉工程大学 Nautilus战队 vs 文华学院 MSE STAR战队 | RoboMaster 2025 高校联盟赛",
       "url": "https://www.bilibili.com/video/BV1RRXJYHEM9/",
-      "uncertain": true
+      "uncertain": false
     },
     {
       "id": "RMUL-2025-福建站-17-BV15RXJYpEPp",
@@ -24390,11 +24552,11 @@
       "redTeam": "TCR",
       "blueSchool": "江西工程学院",
       "blueTeam": "天启",
-      "redScore": "-",
-      "blueScore": "-",
+      "redScore": "2",
+      "blueScore": "0",
       "title": "福建站 第17场 厦门大学嘉庚学院 TCR战队 vs 江西工程学院 天启战队 | RoboMaster 2025 高校联盟赛",
       "url": "https://www.bilibili.com/video/BV15RXJYpEPp/",
-      "uncertain": true
+      "uncertain": false
     },
     {
       "id": "RMUL-2025-福建站-18-BV15RXJYpEPZ",
@@ -24406,11 +24568,11 @@
       "redTeam": "毅恒",
       "blueSchool": "福建理工大学",
       "blueTeam": "苍侠",
-      "redScore": "-",
-      "blueScore": "-",
+      "redScore": "0",
+      "blueScore": "2",
       "title": "福建站 第18场 北京理工大学珠海学院 毅恒战队 vs 福建理工大学 苍侠战队 | RoboMaster 2025 高校联盟赛",
       "url": "https://www.bilibili.com/video/BV15RXJYpEPZ/",
-      "uncertain": true
+      "uncertain": false
     },
     {
       "id": "RMUL-2025-福建站-19-BV1QwXpYsEyA",
@@ -24422,11 +24584,11 @@
       "redTeam": "Seeker",
       "blueSchool": "江西理工大学",
       "blueTeam": "乘风",
-      "redScore": "-",
-      "blueScore": "-",
+      "redScore": "2",
+      "blueScore": "0",
       "title": "福建站 第19场 湖南工学院 Seeker战队 vs 江西理工大学 乘风战队 | RoboMaster 2025 高校联盟赛",
       "url": "https://www.bilibili.com/video/BV1QwXpYsEyA/",
-      "uncertain": true
+      "uncertain": false
     },
     {
       "id": "RMUL-2025-福建站-20-BV1SmXpY9EkG",
@@ -24438,11 +24600,11 @@
       "redTeam": "零七一",
       "blueSchool": "惠州学院",
       "blueTeam": "District 46",
-      "redScore": "-",
-      "blueScore": "-",
+      "redScore": "2",
+      "blueScore": "0",
       "title": "福建站 第20场 福建农林大学 零七一战队 vs 惠州学院 District 46战队 | RoboMaster 2025 高校联盟赛",
       "url": "https://www.bilibili.com/video/BV1SmXpY9EkG/",
-      "uncertain": true
+      "uncertain": false
     },
     {
       "id": "RMUL-2025-福建站-21-BV1h2XpYsEM3",
@@ -24454,43 +24616,27 @@
       "redTeam": "BlueSpace",
       "blueSchool": "集美大学",
       "blueTeam": "科来",
-      "redScore": "-",
-      "blueScore": "-",
+      "redScore": "2",
+      "blueScore": "0",
       "title": "福建站 第21场 南京工业大学 BlueSpace战队 vs 集美大学 科来战队 | RoboMaster 2025 高校联盟赛",
       "url": "https://www.bilibili.com/video/BV1h2XpYsEM3/",
-      "uncertain": true
+      "uncertain": false
     },
     {
-      "id": "RMUL-2025-福建站-21-BV18mXpY9EAj",
+      "id": "RMUL-2025-福建站-22-BV18mXpY9EAj",
       "season": "2025",
       "zone": "福建站",
-      "order": "21",
+      "order": "22",
       "stage": "小组赛",
       "redSchool": "集美大学诚毅学院",
       "redTeam": "潜渊",
       "blueSchool": "佛山大学",
       "blueTeam": "醒狮",
-      "redScore": "-",
-      "blueScore": "-",
+      "redScore": "0",
+      "blueScore": "2",
       "title": "福建站 第21场 集美大学诚毅学院 潜渊战队 vs 佛山大学 醒狮战队 | RoboMaster 2025 高校联盟赛",
       "url": "https://www.bilibili.com/video/BV18mXpY9EAj/",
-      "uncertain": true
-    },
-    {
-      "id": "RMUL-2025-福建站-22-BV18mXpY9EhM",
-      "season": "2025",
-      "zone": "福建站",
-      "order": "22",
-      "stage": "小组赛",
-      "redSchool": "文华学院",
-      "redTeam": "MSE STAR",
-      "blueSchool": "武汉科技大学",
-      "blueTeam": "崇实",
-      "redScore": "-",
-      "blueScore": "-",
-      "title": "福建站 第22场 文华学院 MSE STAR战队 vs 武汉科技大学 崇实战队 | RoboMaster 2025 高校联盟赛",
-      "url": "https://www.bilibili.com/video/BV18mXpY9EhM/",
-      "uncertain": true
+      "uncertain": false
     },
     {
       "id": "RMUL-INFERRED-2025-福建站-23",
@@ -24505,10 +24651,26 @@
       "season": "2025",
       "zone": "福建站",
       "order": "23",
-      "redSchool": "广东海洋大学",
-      "redTeam": "浪潮",
-      "blueSchool": "广州南方学院",
-      "blueTeam": "南風"
+      "redSchool": "广州南方学院",
+      "redTeam": "南風",
+      "blueSchool": "广东海洋大学",
+      "blueTeam": "浪潮"
+    },
+    {
+      "id": "RMUL-2025-福建站-24-BV18mXpY9EhM",
+      "season": "2025",
+      "zone": "福建站",
+      "order": "24",
+      "stage": "小组赛",
+      "redSchool": "文华学院",
+      "redTeam": "MSE STAR",
+      "blueSchool": "武汉科技大学",
+      "blueTeam": "崇实",
+      "redScore": "1",
+      "blueScore": "1",
+      "title": "福建站 第22场 文华学院 MSE STAR战队 vs 武汉科技大学 崇实战队 | RoboMaster 2025 高校联盟赛",
+      "url": "https://www.bilibili.com/video/BV18mXpY9EhM/",
+      "uncertain": false
     },
     {
       "id": "RMUL-2025-福建站-25-BV18mXpY9EoN",
@@ -24520,11 +24682,11 @@
       "redTeam": "南海鲨",
       "blueSchool": "厦门理工学院",
       "blueTeam": "PFA",
-      "redScore": "-",
-      "blueScore": "-",
+      "redScore": "2",
+      "blueScore": "0",
       "title": "福建站 第25场 海南大学 南海鲨战队 vs 厦门理工学院 PFA战队 | RoboMaster 2025 高校联盟赛",
       "url": "https://www.bilibili.com/video/BV18mXpY9EoN/",
-      "uncertain": true
+      "uncertain": false
     },
     {
       "id": "RMUL-2025-福建站-26-BV11LXpY1EuG",
@@ -24536,11 +24698,11 @@
       "redTeam": "悍匠",
       "blueSchool": "福建师范大学",
       "blueTeam": "Pikachu",
-      "redScore": "-",
-      "blueScore": "-",
+      "redScore": "0",
+      "blueScore": "2",
       "title": "福建站 第26场 深圳技术大学悍匠战队 vs 福建师范大学 Pikachu战队 | RoboMaster 2025 高校联盟赛",
       "url": "https://www.bilibili.com/video/BV11LXpY1EuG/",
-      "uncertain": true
+      "uncertain": false
     },
     {
       "id": "RMUL-2025-福建站-27-BV19fXHY4EPA",
@@ -24552,11 +24714,11 @@
       "redTeam": "浮舟湿地",
       "blueSchool": "东莞理工学院",
       "blueTeam": "ACE",
-      "redScore": "-",
-      "blueScore": "-",
+      "redScore": "0",
+      "blueScore": "2",
       "title": "福建站 第27场 福州大学 浮舟湿地战队 vs 东莞理工学院 ACE战队 | RoboMaster 2025 高校联盟赛",
       "url": "https://www.bilibili.com/video/BV19fXHY4EPA/",
-      "uncertain": true
+      "uncertain": false
     },
     {
       "id": "RMUL-2025-福建站-28-BV19fXHY4EAT",
@@ -24568,11 +24730,11 @@
       "redTeam": "RCS",
       "blueSchool": "南昌航空大学",
       "blueTeam": "洪鹰",
-      "redScore": "-",
-      "blueScore": "-",
+      "redScore": "1",
+      "blueScore": "1",
       "title": "福建站 第28场 厦门大学RCS战队 vs 南昌航空大学 洪鹰战队 | RoboMaster 2025 高校联盟赛",
       "url": "https://www.bilibili.com/video/BV19fXHY4EAT/",
-      "uncertain": true
+      "uncertain": false
     },
     {
       "id": "RMUL-2025-福建站-29-BV1VFXpYoEye",
@@ -24584,11 +24746,11 @@
       "redTeam": "Duang One",
       "blueSchool": "广州工商学院",
       "blueTeam": "Alice",
-      "redScore": "-",
-      "blueScore": "-",
+      "redScore": "2",
+      "blueScore": "0",
       "title": "福建站 第29场 湖北第二师范学院 Duang One战队 vs 广州工商学院 Alice战队 | RMUL 2025 高校联盟赛",
       "url": "https://www.bilibili.com/video/BV1VFXpYoEye/",
-      "uncertain": true
+      "uncertain": false
     },
     {
       "id": "RMUL-2025-福建站-30-BV1VFXpYoEhh",
@@ -24600,11 +24762,11 @@
       "redTeam": "VGD",
       "blueSchool": "深圳信息职业技术学院",
       "blueTeam": "撼龙",
-      "redScore": "-",
-      "blueScore": "-",
+      "redScore": "0",
+      "blueScore": "2",
       "title": "福建站 第30场 长安大学 VGD战队 vs 深圳信息职业技术学院 撼龙战队 | RoboMaster 2025 高校联盟赛",
       "url": "https://www.bilibili.com/video/BV1VFXpYoEhh/",
-      "uncertain": true
+      "uncertain": false
     },
     {
       "id": "RMUL-2025-福建站-31-BV1cCXHYBE5s",
@@ -24616,11 +24778,11 @@
       "redTeam": "征途",
       "blueSchool": "广州铁路职业技术学院",
       "blueTeam": "IRONR",
-      "redScore": "-",
-      "blueScore": "-",
+      "redScore": "0",
+      "blueScore": "2",
       "title": "福建站 第31场 珠海科技学院 征途战队 vs 广州铁路职业技术学院 IRONR战队 | RMUL 2025 高校联盟赛",
       "url": "https://www.bilibili.com/video/BV1cCXHYBE5s/",
-      "uncertain": true
+      "uncertain": false
     },
     {
       "id": "RMUL-2025-福建站-32-BV1cCXHYBEtr",
@@ -24632,11 +24794,11 @@
       "redTeam": "天启",
       "blueSchool": "海南大学",
       "blueTeam": "南海鲨",
-      "redScore": "-",
-      "blueScore": "-",
+      "redScore": "0",
+      "blueScore": "2",
       "title": "福建站 第32场 江西工程学院 天启战队 vs 海南大学 南海鲨战队 | RoboMaster 2025 高校联盟赛",
       "url": "https://www.bilibili.com/video/BV1cCXHYBEtr/",
-      "uncertain": true
+      "uncertain": false
     },
     {
       "id": "RMUL-2025-福建站-33-BV1NiXHYVEJ2",
@@ -24648,11 +24810,11 @@
       "redTeam": "苍侠",
       "blueSchool": "深圳技术大学",
       "blueTeam": "悍匠",
-      "redScore": "-",
-      "blueScore": "-",
+      "redScore": "0",
+      "blueScore": "2",
       "title": "福建站 第33场 福建理工大学 苍侠战队 vs 深圳技术大学 悍匠战队 | RoboMaster 2025 高校联盟赛",
       "url": "https://www.bilibili.com/video/BV1NiXHYVEJ2/",
-      "uncertain": true
+      "uncertain": false
     },
     {
       "id": "RMUL-2025-福建站-34-BV1nKXWYrEe6",
@@ -24664,11 +24826,11 @@
       "redTeam": "乘风",
       "blueSchool": "福州大学",
       "blueTeam": "浮舟湿地",
-      "redScore": "-",
-      "blueScore": "-",
+      "redScore": "0",
+      "blueScore": "2",
       "title": "福建站 第34场 江西理工大学 乘风战队 vs 福州大学 浮舟湿地战队 | RoboMaster 2025 高校联盟赛",
       "url": "https://www.bilibili.com/video/BV1nKXWYrEe6/",
-      "uncertain": true
+      "uncertain": false
     },
     {
       "id": "RMUL-2025-福建站-35-BV1mjXsYXEEd",
@@ -24680,11 +24842,11 @@
       "redTeam": "District 46",
       "blueSchool": "厦门大学",
       "blueTeam": "RCS",
-      "redScore": "-",
-      "blueScore": "-",
+      "redScore": "2",
+      "blueScore": "0",
       "title": "福建站 第35场 惠州学院 District 46战队 vs 厦门大学 RCS战队 | RoboMaster 2025 高校联盟赛",
       "url": "https://www.bilibili.com/video/BV1mjXsYXEEd/",
-      "uncertain": true
+      "uncertain": false
     },
     {
       "id": "RMUL-2025-福建站-36-BV11JXsYDEqZ",
@@ -24696,11 +24858,11 @@
       "redTeam": "科来",
       "blueSchool": "湖北第二师范学院",
       "blueTeam": "Duang One",
-      "redScore": "-",
-      "blueScore": "-",
+      "redScore": "2",
+      "blueScore": "0",
       "title": "福建站 第36场 集美大学 科来战队 vs 湖北第二师范学院 Duang One战队 | RoboMaster 2025 高校联盟赛",
       "url": "https://www.bilibili.com/video/BV11JXsYDEqZ/",
-      "uncertain": true
+      "uncertain": false
     },
     {
       "id": "RMUL-2025-福建站-37-BV1LFXsYvE88",
@@ -24712,11 +24874,11 @@
       "redTeam": "浪潮",
       "blueSchool": "长安大学",
       "blueTeam": "VGD",
-      "redScore": "-",
-      "blueScore": "-",
+      "redScore": "0",
+      "blueScore": "2",
       "title": "福建站 第37场 广东海洋大学 浪潮战队 vs 长安大学 VGD战队 | RoboMaster 2025 高校联盟赛福建站 第37场 广东海洋大学 浪潮战队 v",
       "url": "https://www.bilibili.com/video/BV1LFXsYvE88/",
-      "uncertain": true
+      "uncertain": false
     },
     {
       "id": "RMUL-2025-福建站-38-BV1RwXsYAENZ",
@@ -24728,11 +24890,11 @@
       "redTeam": "醒狮",
       "blueSchool": "珠海科技学院",
       "blueTeam": "征途",
-      "redScore": "-",
-      "blueScore": "-",
+      "redScore": "2",
+      "blueScore": "0",
       "title": "福建站 第38场 佛山大学 醒狮战队 vs 珠海科技学院 征途战队 | RoboMaster 2025 高校联盟赛",
       "url": "https://www.bilibili.com/video/BV1RwXsYAENZ/",
-      "uncertain": true
+      "uncertain": false
     },
     {
       "id": "RMUL-2025-福建站-39-BV1pwXWY5E1w",
@@ -24744,11 +24906,11 @@
       "redTeam": "PFA",
       "blueSchool": "厦门大学嘉庚学院",
       "blueTeam": "TCR",
-      "redScore": "-",
-      "blueScore": "-",
+      "redScore": "1",
+      "blueScore": "1",
       "title": "福建站 第39场 厦门理工学院 PFA战队 vs 厦门大学嘉庚学院 TCR战队 | RoboMaster 2025 高校联盟赛",
       "url": "https://www.bilibili.com/video/BV1pwXWY5E1w/",
-      "uncertain": true
+      "uncertain": false
     },
     {
       "id": "RMUL-2025-福建站-40-BV1pwXWY5ECf",
@@ -24760,11 +24922,11 @@
       "redTeam": "Pikachu",
       "blueSchool": "北京理工大学珠海学院",
       "blueTeam": "毅恒",
-      "redScore": "-",
-      "blueScore": "-",
+      "redScore": "2",
+      "blueScore": "0",
       "title": "福建站 第40场 福建师范大学 Pikachu战队 vs 北京理工大学珠海学院 毅恒战队 | RoboMaster 2025 高校联盟赛",
       "url": "https://www.bilibili.com/video/BV1pwXWY5ECf/",
-      "uncertain": true
+      "uncertain": false
     },
     {
       "id": "RMUL-2025-福建站-41-BV1pwXWY5Emz",
@@ -24776,11 +24938,11 @@
       "redTeam": "ACE",
       "blueSchool": "湖南工学院",
       "blueTeam": "Seeker",
-      "redScore": "-",
-      "blueScore": "-",
+      "redScore": "2",
+      "blueScore": "0",
       "title": "福建站 第41场 东莞理工学院 ACE战队 vs 湖南工学院 Seeker战队 | RoboMaster 2025 高校联盟赛",
       "url": "https://www.bilibili.com/video/BV1pwXWY5Emz/",
-      "uncertain": true
+      "uncertain": false
     },
     {
       "id": "RMUL-2025-福建站-42-BV1Z5XWYKELP",
@@ -24792,11 +24954,11 @@
       "redTeam": "洪鹰",
       "blueSchool": "福建农林大学",
       "blueTeam": "零七一",
-      "redScore": "-",
-      "blueScore": "-",
+      "redScore": "1",
+      "blueScore": "1",
       "title": "福建站 第42场 南昌航空大学 洪鹰战队 vs 福建农林大学 零七一战队 | RoboMaster 2025 高校联盟赛",
       "url": "https://www.bilibili.com/video/BV1Z5XWYKELP/",
-      "uncertain": true
+      "uncertain": false
     },
     {
       "id": "RMUL-2025-福建站-43-BV15EXWYYEoJ",
@@ -24808,11 +24970,11 @@
       "redTeam": "Alice",
       "blueSchool": "南京工业大学",
       "blueTeam": "BlueSpace",
-      "redScore": "-",
-      "blueScore": "-",
+      "redScore": "0",
+      "blueScore": "2",
       "title": "福建站 第43场 广州工商学院 Alice战队 vs 南京工业大学 BlueSpace战队 | RoboMaster 2025 高校联盟赛",
       "url": "https://www.bilibili.com/video/BV15EXWYYEoJ/",
-      "uncertain": true
+      "uncertain": false
     },
     {
       "id": "RMUL-2025-福建站-44-BV1LEXWYYEio",
@@ -24824,11 +24986,11 @@
       "redTeam": "撼龙",
       "blueSchool": "广州南方学院",
       "blueTeam": "南風",
-      "redScore": "-",
-      "blueScore": "-",
+      "redScore": "2",
+      "blueScore": "0",
       "title": "福建站 第44场 深圳信息职业技术学院 撼龙战队 vs 广州南方学院 南風战队 | RoboMaster 2025 高校联盟赛",
       "url": "https://www.bilibili.com/video/BV1LEXWYYEio/",
-      "uncertain": true
+      "uncertain": false
     },
     {
       "id": "RMUL-2025-福建站-45-BV1vEXWYYEgi",
@@ -24840,11 +25002,11 @@
       "redTeam": "IRONR",
       "blueSchool": "集美大学诚毅学院",
       "blueTeam": "潜渊",
-      "redScore": "-",
-      "blueScore": "-",
+      "redScore": "1",
+      "blueScore": "1",
       "title": "福建45视频福建站 第45场 广州铁路职业技术学院 IRONR战队 vs 集美大学诚毅学院 潜渊战队 | RoboMaster 2025 高校联盟赛",
       "url": "https://www.bilibili.com/video/BV1vEXWYYEgi/",
-      "uncertain": true
+      "uncertain": false
     },
     {
       "id": "RMUL-2025-福建站-46-BV1vXXhYpEvm",
@@ -24856,11 +25018,11 @@
       "redTeam": "南海鲨",
       "blueSchool": "深圳技术大学",
       "blueTeam": "悍匠",
-      "redScore": "-",
-      "blueScore": "-",
+      "redScore": "0",
+      "blueScore": "2",
       "title": "福建站 第46场 海南大学 南海鲨战队 vs 深圳技术大学 悍匠战队 | RoboMaster 2025 高校联盟赛",
       "url": "https://www.bilibili.com/video/BV1vXXhYpEvm/",
-      "uncertain": true
+      "uncertain": false
     },
     {
       "id": "RMUL-2025-福建站-47-BV1yeXhYvEp8",
@@ -24872,11 +25034,11 @@
       "redTeam": "District 46",
       "blueSchool": "东莞理工学院",
       "blueTeam": "ACE",
-      "redScore": "-",
-      "blueScore": "-",
+      "redScore": "0",
+      "blueScore": "2",
       "title": "福建站 第47场 惠州学院 District 46战队 vs 东莞理工学院 ACE战队 | RoboMaster 2025 高校联盟赛",
       "url": "https://www.bilibili.com/video/BV1yeXhYvEp8/",
-      "uncertain": true
+      "uncertain": false
     },
     {
       "id": "RMUL-2025-福建站-48-BV11YXhYKETh",
@@ -24888,11 +25050,11 @@
       "redTeam": "BlueSpace",
       "blueSchool": "长安大学",
       "blueTeam": "VGD",
-      "redScore": "-",
-      "blueScore": "-",
+      "redScore": "0",
+      "blueScore": "2",
       "title": "福建站 第48场 南京工业大学 BlueSpace战队 vs 长安大学 VGD战队 | RoboMaster 2025 高校联盟赛",
       "url": "https://www.bilibili.com/video/BV11YXhYKETh/",
-      "uncertain": true
+      "uncertain": false
     },
     {
       "id": "RMUL-2025-福建站-49-BV1m4XhYgEXV",
@@ -24904,11 +25066,11 @@
       "redTeam": "MSE STAR",
       "blueSchool": "佛山大学",
       "blueTeam": "醒狮",
-      "redScore": "-",
-      "blueScore": "-",
+      "redScore": "0",
+      "blueScore": "2",
       "title": "福建站 第49场 文华学院 MSE STAR战队 vs 佛山大学 醒狮战队 | RoboMaster 2025 高校联盟赛",
       "url": "https://www.bilibili.com/video/BV1m4XhYgEXV/",
-      "uncertain": true
+      "uncertain": false
     },
     {
       "id": "RMUL-2025-福建站-50-BV1m4XhYgEyM",
@@ -24920,11 +25082,11 @@
       "redTeam": "PFA",
       "blueSchool": "福建师范大学",
       "blueTeam": "Pikachu",
-      "redScore": "-",
-      "blueScore": "-",
+      "redScore": "0",
+      "blueScore": "2",
       "title": "福建站 第50场 厦门理工学院 PFA战队 vs 福建师范大学 Pikachu战队 | RoboMaster 2025 高校联盟赛",
       "url": "https://www.bilibili.com/video/BV1m4XhYgEyM/",
-      "uncertain": true
+      "uncertain": false
     },
     {
       "id": "RMUL-2025-福建站-51-BV1ByXhYZEo4",
@@ -24936,11 +25098,11 @@
       "redTeam": "零七一",
       "blueSchool": "湖南工学院",
       "blueTeam": "Seeker",
-      "redScore": "-",
-      "blueScore": "-",
+      "redScore": "2",
+      "blueScore": "0",
       "title": "福建站 第51场 福建农林大学 零七一战队 vs 湖南工学院 Seeker战队 | RoboMaster 2025 高校联盟赛",
       "url": "https://www.bilibili.com/video/BV1ByXhYZEo4/",
-      "uncertain": true
+      "uncertain": false
     },
     {
       "id": "RMUL-2025-福建站-52-BV1ByXhYZEdP",
@@ -24952,11 +25114,11 @@
       "redTeam": "科来",
       "blueSchool": "深圳信息职业技术学院",
       "blueTeam": "撼龙",
-      "redScore": "-",
-      "blueScore": "-",
+      "redScore": "0",
+      "blueScore": "2",
       "title": "福建站 第52场 集美大学 科来战队 vs 深圳信息职业技术学院 撼龙战队 | RoboMaster 2025 高校联盟赛",
       "url": "https://www.bilibili.com/video/BV1ByXhYZEdP/",
-      "uncertain": true
+      "uncertain": false
     },
     {
       "id": "RMUL-2025-福建站-53-BV1kzXhYwEjx",
@@ -24968,11 +25130,11 @@
       "redTeam": "Nautilus",
       "blueSchool": "广州铁路职业技术学院",
       "blueTeam": "IRONR",
-      "redScore": "-",
-      "blueScore": "-",
+      "redScore": "2",
+      "blueScore": "0",
       "title": "福建站 第53场 武汉工程大学 Nautilus战队 vs 广州铁路职业技术学院 IRONR战队 | RoboMaster 2025 高校联盟赛",
       "url": "https://www.bilibili.com/video/BV1kzXhYwEjx/",
-      "uncertain": true
+      "uncertain": false
     },
     {
       "id": "RMUL-2025-福建站-54-BV1HfX8Y8EiS",
@@ -24984,11 +25146,11 @@
       "redTeam": "悍匠",
       "blueSchool": "东莞理工学院",
       "blueTeam": "ACE",
-      "redScore": "-",
-      "blueScore": "-",
+      "redScore": "0",
+      "blueScore": "2",
       "title": "福建站 第54场 深圳技术大学 悍匠战队 vs 东莞理工学院 ACE战队 | RoboMaster 2025 高校联盟赛",
       "url": "https://www.bilibili.com/video/BV1HfX8Y8EiS/",
-      "uncertain": true
+      "uncertain": false
     },
     {
       "id": "RMUL-2025-福建站-55-BV1cfX8Y8Eiz",
@@ -25000,11 +25162,11 @@
       "redTeam": "VGD",
       "blueSchool": "佛山大学",
       "blueTeam": "醒狮",
-      "redScore": "-",
-      "blueScore": "-",
+      "redScore": "0",
+      "blueScore": "2",
       "title": "福建站 第55场 长安大学 VGD战队 vs 佛山大学 醒狮战队 | RoboMaster 2025 高校联盟赛",
       "url": "https://www.bilibili.com/video/BV1cfX8Y8Eiz/",
-      "uncertain": true
+      "uncertain": false
     },
     {
       "id": "RMUL-2025-福建站-56-BV13qX8YyEhS",
@@ -25016,11 +25178,11 @@
       "redTeam": "Pikachu",
       "blueSchool": "福建农林大学",
       "blueTeam": "零七一",
-      "redScore": "-",
-      "blueScore": "-",
+      "redScore": "2",
+      "blueScore": "0",
       "title": "福建站 第56场 福建师范大学 Pikachu战队 vs 福建农林大学 零七一战队 | RoboMaster 2025 高校联盟赛",
       "url": "https://www.bilibili.com/video/BV13qX8YyEhS/",
-      "uncertain": true
+      "uncertain": false
     },
     {
       "id": "RMUL-2025-福建站-57-BV13qX8YyECe",
@@ -25031,12 +25193,12 @@
       "redSchool": "深圳信息职业技术学院",
       "redTeam": "撼龙",
       "blueSchool": "武汉工程大学",
-      "blueTeam": "Natilus",
-      "redScore": "-",
-      "blueScore": "-",
+      "blueTeam": "Nautilus",
+      "redScore": "0",
+      "blueScore": "2",
       "title": "福建站 第57场 深圳信息职业技术学院 撼龙战队 vs 武汉工程大学 Natilus战队 | RoboMaster 2025 高校联盟赛",
       "url": "https://www.bilibili.com/video/BV13qX8YyECe/",
-      "uncertain": true
+      "uncertain": false
     },
     {
       "id": "RMUL-2025-福建站-58-BV1NvXYYCEdp",
@@ -25048,11 +25210,11 @@
       "redTeam": "ACE",
       "blueSchool": "佛山大学",
       "blueTeam": "醒狮",
-      "redScore": "-",
-      "blueScore": "-",
+      "redScore": "2",
+      "blueScore": "0",
       "title": "福建站 第58场 东莞理工学院 ACE战队 vs 佛山大学 醒狮战队 | RoboMaster 2025 高校联盟赛",
       "url": "https://www.bilibili.com/video/BV1NvXYYCEdp/",
-      "uncertain": true
+      "uncertain": false
     },
     {
       "id": "RMUL-2025-福建站-59-BV1MhXYYjEFF",
@@ -25064,11 +25226,11 @@
       "redTeam": "Pikachu",
       "blueSchool": "武汉工程大学",
       "blueTeam": "Nautilus",
-      "redScore": "-",
-      "blueScore": "-",
+      "redScore": "0",
+      "blueScore": "2",
       "title": "福建站 第59场 福建师范大学 Pikachu战队 vs 武汉工程大学 Nautilus战队 | RoboMaster 2025 高校联盟赛",
       "url": "https://www.bilibili.com/video/BV1MhXYYjEFF/",
-      "uncertain": true
+      "uncertain": false
     },
     {
       "id": "RMUL-2025-福建站-60-BV1DsXYYJE4Q",
@@ -25080,11 +25242,11 @@
       "redTeam": "醒狮",
       "blueSchool": "福建师范大学",
       "blueTeam": "Pikachu",
-      "redScore": "-",
-      "blueScore": "-",
+      "redScore": "1",
+      "blueScore": "2",
       "title": "福建站 第60场 佛山大学 醒狮战队 vs 福建师范大学 Pikachu战队 | RoboMaster 2025 高校联盟赛",
       "url": "https://www.bilibili.com/video/BV1DsXYYJE4Q/",
-      "uncertain": true
+      "uncertain": false
     },
     {
       "id": "RMUL-2025-福建站-61-BV1XEXYYWE9A",
@@ -25096,11 +25258,11 @@
       "redTeam": "ACE",
       "blueSchool": "武汉工程大学",
       "blueTeam": "Nautilus",
-      "redScore": 2,
-      "blueScore": 1,
+      "redScore": "2",
+      "blueScore": "1",
       "title": "福建站 第61场 东莞理工学院 ACE战队 vs 武汉工程大学 Nautilus战队 | RoboMaster 2025 高校联盟赛",
       "url": "https://www.bilibili.com/video/BV1XEXYYWE9A/",
-      "uncertain": true
+      "uncertain": false
     },
     {
       "id": "RMUL-2025-西北站-1-BV1mkQgY1Ehx",
@@ -25112,11 +25274,11 @@
       "redTeam": "606",
       "blueSchool": "内蒙古师范大学",
       "blueTeam": "猛码",
-      "redScore": "-",
-      "blueScore": "-",
+      "redScore": "2",
+      "blueScore": "0",
       "title": "西北站 第1场 中北大学 606战队 vs 内蒙古师范大学 猛码战队 | RoboMaster 2025 高校联盟赛",
       "url": "https://www.bilibili.com/video/BV1mkQgY1Ehx/",
-      "uncertain": true
+      "uncertain": false
     },
     {
       "id": "RMUL-2025-西北站-2-BV1brQgYjEFY",
@@ -25128,11 +25290,11 @@
       "redTeam": "猎隼",
       "blueSchool": "北京工业大学",
       "blueTeam": "PIP",
-      "redScore": "-",
-      "blueScore": "-",
+      "redScore": "0",
+      "blueScore": "2",
       "title": "西北站 第2场 西北农林科技大学 猎隼战队 vs 北京工业大学 PIP战队 | RoboMaster 2025 高校联盟赛",
       "url": "https://www.bilibili.com/video/BV1brQgYjEFY/",
-      "uncertain": true
+      "uncertain": false
     },
     {
       "id": "RMUL-2025-西北站-3-BV1brQgYjEcw",
@@ -25144,11 +25306,11 @@
       "redTeam": "狼牙",
       "blueSchool": "西安交通大学",
       "blueTeam": "笃行",
-      "redScore": "-",
-      "blueScore": "-",
+      "redScore": "0",
+      "blueScore": "2",
       "title": "西北站 第3场 华中科技大学 狼牙战队 vs 西安交通大学 笃行战队 | RoboMaster 2025 高校联盟赛",
       "url": "https://www.bilibili.com/video/BV1brQgYjEcw/",
-      "uncertain": true
+      "uncertain": false
     },
     {
       "id": "RMUL-2025-西北站-4-BV1VNQrYGEBs",
@@ -25160,11 +25322,11 @@
       "redTeam": "IRobot",
       "blueSchool": "太原理工大学",
       "blueTeam": "TRoMaC",
-      "redScore": "-",
-      "blueScore": "-",
+      "redScore": "2",
+      "blueScore": "0",
       "title": "西北站 第4场 西安电子科技大学 IRobot战队 vs 太原理工大学 TRoMaC战队 | RoboMaster 2025 高校联盟赛",
       "url": "https://www.bilibili.com/video/BV1VNQrYGEBs/",
-      "uncertain": true
+      "uncertain": false
     },
     {
       "id": "RMUL-2025-西北站-5-BV1VNQrYGE6i",
@@ -25176,11 +25338,11 @@
       "redTeam": "DreamTeam",
       "blueSchool": "中国人民警察大学",
       "blueTeam": "无畏先锋",
-      "redScore": "-",
-      "blueScore": "-",
+      "redScore": "2",
+      "blueScore": "0",
       "title": "西北站 第5场 北方工业大学 DreamTeam战队 vs 中国人民警察大学 无畏先锋战队 | RoboMaster 2025 高校联盟赛",
       "url": "https://www.bilibili.com/video/BV1VNQrYGE6i/",
-      "uncertain": true
+      "uncertain": false
     },
     {
       "id": "RMUL-2025-西北站-6-BV1eNQrYGE7L",
@@ -25192,11 +25354,11 @@
       "redTeam": "WMJ",
       "blueSchool": "首都师范大学",
       "blueTeam": "PIE",
-      "redScore": "-",
-      "blueScore": "-",
+      "redScore": "1",
+      "blueScore": "1",
       "title": "西北站 第6场 西北工业大学 WMJ战队 vs 首都师范大学 PIE战队 | RoboMaster 2025 高校联盟赛",
       "url": "https://www.bilibili.com/video/BV1eNQrYGE7L/",
-      "uncertain": true
+      "uncertain": false
     },
     {
       "id": "RMUL-2025-西北站-7-BV17oQ6YmEKG",
@@ -25208,11 +25370,11 @@
       "redTeam": "SPR",
       "blueSchool": "河北科技大学",
       "blueTeam": "Actor & Thinker",
-      "redScore": "-",
-      "blueScore": "-",
+      "redScore": "2",
+      "blueScore": "0",
       "title": "西北站 第7场 中国石油大学（北京） SPR战队 vs 河北科技大学 Actor & Thinker战队 | RoboMaster 2025 高校联盟赛",
       "url": "https://www.bilibili.com/video/BV17oQ6YmEKG/",
-      "uncertain": true
+      "uncertain": false
     },
     {
       "id": "RMUL-2025-西北站-8-BV1vnQ6YGE8T",
@@ -25224,11 +25386,11 @@
       "redTeam": "NewMaker",
       "blueSchool": "防灾科技学院",
       "blueTeam": "思玄",
-      "redScore": "-",
-      "blueScore": "-",
+      "redScore": "2",
+      "blueScore": "0",
       "title": "西北站 第8场 太原科技大学 NewMaker战队 vs 防灾科技学院 思玄战队 | RoboMaster 2025 高校联盟赛",
       "url": "https://www.bilibili.com/video/BV1vnQ6YGE8T/",
-      "uncertain": true
+      "uncertain": false
     },
     {
       "id": "RMUL-2025-西北站-9-BV1YWQ6YgEmz",
@@ -25240,11 +25402,11 @@
       "redTeam": "科创者",
       "blueSchool": "陕西科技大学",
       "blueTeam": "BattleSwanX",
-      "redScore": "-",
-      "blueScore": "-",
+      "redScore": "2",
+      "blueScore": "0",
       "title": "西北站 第9场 广东工商职业技术大学 科创者战队 vs 陕西科技大学 BattleSwanX战队 | RoboMaster 2025 高校联盟赛",
       "url": "https://www.bilibili.com/video/BV1YWQ6YgEmz/",
-      "uncertain": true
+      "uncertain": false
     },
     {
       "id": "RMUL-2025-西北站-10-BV1kNQ6YpEJi",
@@ -25256,11 +25418,11 @@
       "redTeam": "雷霆",
       "blueSchool": "火箭军工程大学",
       "blueTeam": "东风",
-      "redScore": "-",
-      "blueScore": "-",
+      "redScore": "0",
+      "blueScore": "2",
       "title": "西北站 第10场 内蒙古科技大学 雷霆战队 vs 火箭军工程大学 东风战队 | RoboMaster 2025 高校联盟赛",
       "url": "https://www.bilibili.com/video/BV1kNQ6YpEJi/",
-      "uncertain": true
+      "uncertain": false
     },
     {
       "id": "RMUL-2025-西北站-11-BV1kNQ6YpEsJ",
@@ -25272,11 +25434,11 @@
       "redTeam": "火线",
       "blueSchool": "山西机电职业技术学院",
       "blueTeam": "筑梦",
-      "redScore": "-",
-      "blueScore": "-",
+      "redScore": "2",
+      "blueScore": "0",
       "title": "西北站 第11场 太原工业学院 火线战队 vs 山西机电职业技术学院 筑梦战队 | RoboMaster 2025 高校联盟赛",
       "url": "https://www.bilibili.com/video/BV1kNQ6YpEsJ/",
-      "uncertain": true
+      "uncertain": false
     },
     {
       "id": "RMUL-2025-西北站-12-BV1dqQzYrEnc",
@@ -25288,11 +25450,11 @@
       "redTeam": "TRoMaC",
       "blueSchool": "西安理工大学",
       "blueTeam": "NEXT E",
-      "redScore": "-",
-      "blueScore": "-",
+      "redScore": "2",
+      "blueScore": "0",
       "title": "西北站 第12场 太原理工大学 TRoMaC战队 vs 西安理工大学 NEXT E战队 | RoboMaster 2025 高校联盟赛",
       "url": "https://www.bilibili.com/video/BV1dqQzYrEnc/",
-      "uncertain": true
+      "uncertain": false
     },
     {
       "id": "RMUL-2025-西北站-13-BV1DSQzYYEw9",
@@ -25304,11 +25466,11 @@
       "redTeam": "铁道兵",
       "blueSchool": "河北师范大学",
       "blueTeam": "金钢",
-      "redScore": "-",
-      "blueScore": "-",
+      "redScore": "1",
+      "blueScore": "1",
       "title": "西北站 第13场 石家庄铁道大学 铁道兵战队 vs 河北师范大学 金钢战队 | RoboMaster 2025 高校联盟赛",
       "url": "https://www.bilibili.com/video/BV1DSQzYYEw9/",
-      "uncertain": true
+      "uncertain": false
     },
     {
       "id": "RMUL-2025-西北站-14-BV1hUQzYNEHY",
@@ -25320,11 +25482,11 @@
       "redTeam": "PIE",
       "blueSchool": "北京航空航天大学",
       "blueTeam": "Transistor",
-      "redScore": "-",
-      "blueScore": "-",
+      "redScore": "2",
+      "blueScore": "0",
       "title": "西北站 第14场 首都师范大学 PIE战队 vs 北京航空航天大学 Transistor战队 | RoboMaster 2025 高校联盟赛",
       "url": "https://www.bilibili.com/video/BV1hUQzYNEHY/",
-      "uncertain": true
+      "uncertain": false
     },
     {
       "id": "RMUL-2025-西北站-15-BV1a1QzYTEB7",
@@ -25336,11 +25498,11 @@
       "redTeam": "中州烛龙",
       "blueSchool": "北京交通大学",
       "blueTeam": "BNGU",
-      "redScore": "-",
-      "blueScore": "-",
+      "redScore": "0",
+      "blueScore": "2",
       "title": "西北站 第15场 郑州大学 中州烛龙战队 vs 北京交通大学 BNGU战队 | RoboMaster 2025 高校联盟赛",
       "url": "https://www.bilibili.com/video/BV1a1QzYTEB7/",
-      "uncertain": true
+      "uncertain": false
     },
     {
       "id": "RMUL-2025-西北站-16-BV131QzYTEo4",
@@ -25352,11 +25514,11 @@
       "redTeam": "思玄",
       "blueSchool": "西安科技大学",
       "blueTeam": "秦风",
-      "redScore": "-",
-      "blueScore": "-",
+      "redScore": "2",
+      "blueScore": "0",
       "title": "西北站 第16场 防灾科技学院 思玄战队 vs 西安科技大学 秦风战队 | RoboMaster 2025 高校联盟赛",
       "url": "https://www.bilibili.com/video/BV131QzYTEo4/",
-      "uncertain": true
+      "uncertain": false
     },
     {
       "id": "RMUL-2025-西北站-17-BV1k9QyYKEva",
@@ -25368,11 +25530,11 @@
       "redTeam": "BattleSwanX",
       "blueSchool": "中北大学",
       "blueTeam": "606",
-      "redScore": "-",
-      "blueScore": "-",
+      "redScore": "0",
+      "blueScore": "2",
       "title": "西北站 第17场 陕西科技大学 BattleSwanX战队 vs 中北大学 606战队 | RoboMaster 2025 高校联盟赛",
       "url": "https://www.bilibili.com/video/BV1k9QyYKEva/",
-      "uncertain": true
+      "uncertain": false
     },
     {
       "id": "RMUL-2025-西北站-18-BV1LMQ1YdEGa",
@@ -25384,11 +25546,11 @@
       "redTeam": "东风",
       "blueSchool": "西北农林科技大学",
       "blueTeam": "猎隼",
-      "redScore": "-",
-      "blueScore": "-",
+      "redScore": "2",
+      "blueScore": "0",
       "title": "西北站 第18场 火箭军工程大学 东风战队 vs 西北农林科技大学 猎隼战队 | RoboMaster 2025 高校联盟赛",
       "url": "https://www.bilibili.com/video/BV1LMQ1YdEGa/",
-      "uncertain": true
+      "uncertain": false
     },
     {
       "id": "RMUL-2025-西北站-19-BV1LMQ1YdEgd",
@@ -25400,11 +25562,11 @@
       "redTeam": "筑梦",
       "blueSchool": "华中科技大学",
       "blueTeam": "狼牙",
-      "redScore": "-",
-      "blueScore": "-",
+      "redScore": "0",
+      "blueScore": "2",
       "title": "西北站 第19场 山西机电职业技术学院 筑梦战队 vs 华中科技大学 狼牙战队 | RoboMaster 2025 高校联盟赛",
       "url": "https://www.bilibili.com/video/BV1LMQ1YdEgd/",
-      "uncertain": true
+      "uncertain": false
     },
     {
       "id": "RMUL-2025-西北站-20-BV1vbQyYpE7V",
@@ -25416,11 +25578,11 @@
       "redTeam": "NEXT E",
       "blueSchool": "西安电子科技大学",
       "blueTeam": "IRobot",
-      "redScore": "-",
-      "blueScore": "-",
+      "redScore": "0",
+      "blueScore": "2",
       "title": "西北站 第20场 西安理工大学 NEXT E战队 vs 西安电子科技大学 IRobot战队 | RoboMaster 2025 高校联盟赛",
       "url": "https://www.bilibili.com/video/BV1vbQyYpE7V/",
-      "uncertain": true
+      "uncertain": false
     },
     {
       "id": "RMUL-2025-西北站-21-BV1myQyYGEgH",
@@ -25432,11 +25594,11 @@
       "redTeam": "金钢",
       "blueSchool": "北方工业大学",
       "blueTeam": "DreamTeam",
-      "redScore": "-",
-      "blueScore": "-",
+      "redScore": "0",
+      "blueScore": "2",
       "title": "西北站 第21场 河北师范大学 金钢战队 vs 北方工业大学 DreamTeam战队 | RoboMaster 2025 高校联盟赛",
       "url": "https://www.bilibili.com/video/BV1myQyYGEgH/",
-      "uncertain": true
+      "uncertain": false
     },
     {
       "id": "RMUL-2025-西北站-22-BV1tyQyYGENk",
@@ -25448,11 +25610,11 @@
       "redTeam": "Transistor",
       "blueSchool": "西北工业大学",
       "blueTeam": "WMJ",
-      "redScore": "-",
-      "blueScore": "-",
+      "redScore": "0",
+      "blueScore": "2",
       "title": "西北站 第22场 北京航空航天大学 Transistor战队 vs 西北工业大学 WMJ战队 | RoboMaster 2025 高校联盟赛",
       "url": "https://www.bilibili.com/video/BV1tyQyYGENk/",
-      "uncertain": true
+      "uncertain": false
     },
     {
       "id": "RMUL-2025-西北站-23-BV1UkQyYCEc8",
@@ -25464,11 +25626,11 @@
       "redTeam": "BNGU",
       "blueSchool": "中国石油大学（北京）",
       "blueTeam": "SPR",
-      "redScore": "-",
-      "blueScore": "-",
+      "redScore": "0",
+      "blueScore": "2",
       "title": "西北站 第23场 北京交通大学 BNGU战队 vs 中国石油大学（北京） SPR战队 | RoboMaster 2025 高校联盟赛",
       "url": "https://www.bilibili.com/video/BV1UkQyYCEc8/",
-      "uncertain": true
+      "uncertain": false
     },
     {
       "id": "RMUL-2025-西北站-24-BV11mQyYgEfp",
@@ -25480,11 +25642,11 @@
       "redTeam": "秦风",
       "blueSchool": "太原科技大学",
       "blueTeam": "NewMaker",
-      "redScore": "-",
-      "blueScore": "-",
+      "redScore": "0",
+      "blueScore": "2",
       "title": "西北站 第24场 西安科技大学 秦风战队 vs 太原科技大学 NewMaker战队 | RoboMaster 2025 高校联盟赛",
       "url": "https://www.bilibili.com/video/BV11mQyYgEfp/",
-      "uncertain": true
+      "uncertain": false
     },
     {
       "id": "RMUL-2025-西北站-25-BV1x1QyYrEQb",
@@ -25496,11 +25658,11 @@
       "redTeam": "猛码",
       "blueSchool": "广东工商职业技术大学",
       "blueTeam": "科创者",
-      "redScore": "-",
-      "blueScore": "-",
+      "redScore": "2",
+      "blueScore": "0",
       "title": "西北站 第25场 内蒙古师范大学 猛码战队 vs 广东工商职业技术大学 科创者战队 | RoboMaster 2025 高校联盟赛",
       "url": "https://www.bilibili.com/video/BV1x1QyYrEQb/",
-      "uncertain": true
+      "uncertain": false
     },
     {
       "id": "RMUL-2025-西北站-26-BV1hBQyYjEcb",
@@ -25512,11 +25674,11 @@
       "redTeam": "PIP",
       "blueSchool": "内蒙古科技大学",
       "blueTeam": "雷霆",
-      "redScore": "-",
-      "blueScore": "-",
+      "redScore": "2",
+      "blueScore": "0",
       "title": "西北站 第26场 北京工业大学 PIP战队 vs 内蒙古科技大学 雷霆战队 | RoboMaster 2025 高校联盟赛",
       "url": "https://www.bilibili.com/video/BV1hBQyYjEcb/",
-      "uncertain": true
+      "uncertain": false
     },
     {
       "id": "RMUL-2025-西北站-27-BV1sRQ2YVEPm",
@@ -25528,11 +25690,11 @@
       "redTeam": "笃行",
       "blueSchool": "太原工业学院",
       "blueTeam": "火线",
-      "redScore": "-",
-      "blueScore": "-",
+      "redScore": "0",
+      "blueScore": "2",
       "title": "西北站 第27场 西安交通大学 笃行战队 vs 太原工业学院 火线战队 | RoboMaster 2025 高校联盟赛",
       "url": "https://www.bilibili.com/video/BV1sRQ2YVEPm/",
-      "uncertain": true
+      "uncertain": false
     },
     {
       "id": "RMUL-2025-西北站-28-BV1j3QmYaEHf",
@@ -25544,11 +25706,11 @@
       "redTeam": "无畏先锋",
       "blueSchool": "石家庄铁道大学",
       "blueTeam": "铁道兵",
-      "redScore": "-",
-      "blueScore": "-",
+      "redScore": "1",
+      "blueScore": "1",
       "title": "西北站 第28场 中国人民警察大学 无畏先锋战队 vs 石家庄铁道大学 铁道兵战队 | RoboMaster 2025 高校联盟赛",
       "url": "https://www.bilibili.com/video/BV1j3QmYaEHf/",
-      "uncertain": true
+      "uncertain": false
     },
     {
       "id": "RMUL-2025-西北站-29-BV1vVQmYcECD",
@@ -25560,11 +25722,11 @@
       "redTeam": "Actor & Thinker",
       "blueSchool": "郑州大学",
       "blueTeam": "中州烛龙",
-      "redScore": "-",
-      "blueScore": "-",
+      "redScore": "2",
+      "blueScore": "0",
       "title": "西北站 第29场 河北科技大学 Actor & Thinker战队 vs 郑州大学 中州烛龙战队 | RoboMaster 2025 高校联盟赛",
       "url": "https://www.bilibili.com/video/BV1vVQmYcECD/",
-      "uncertain": true
+      "uncertain": false
     },
     {
       "id": "RMUL-2025-西北站-30-BV17TQmYNEzA",
@@ -25576,11 +25738,11 @@
       "redTeam": "606",
       "blueSchool": "广东工商职业技术大学",
       "blueTeam": "科创者",
-      "redScore": "-",
-      "blueScore": "-",
+      "redScore": "2",
+      "blueScore": "0",
       "title": "西北站 第30场 中北大学 606战队 vs 广东工商职业技术大学 科创者战队 | RoboMaster 2025 高校联盟赛",
       "url": "https://www.bilibili.com/video/BV17TQmYNEzA/",
-      "uncertain": true
+      "uncertain": false
     },
     {
       "id": "RMUL-2025-西北站-31-BV1vYQ2YtEJ8",
@@ -25592,11 +25754,11 @@
       "redTeam": "猎隼",
       "blueSchool": "内蒙古科技大学",
       "blueTeam": "雷霆",
-      "redScore": "-",
-      "blueScore": "-",
+      "redScore": "0",
+      "blueScore": "2",
       "title": "西北站 第31场 西北农林科技大学 猎隼战队 vs 内蒙古科技大学 雷霆战队 | RoboMaster 2025 高校联盟赛",
       "url": "https://www.bilibili.com/video/BV1vYQ2YtEJ8/",
-      "uncertain": true
+      "uncertain": false
     },
     {
       "id": "RMUL-2025-西北站-32-BV1xSQ2Y2EfX",
@@ -25608,11 +25770,11 @@
       "redTeam": "狼牙",
       "blueSchool": "太原工业学院",
       "blueTeam": "火线",
-      "redScore": "-",
-      "blueScore": "-",
+      "redScore": "0",
+      "blueScore": "2",
       "title": "西北站 第32场 华中科技大学 狼牙战队 vs 太原工业学院 火线战队 | RoboMaster 2025 高校联盟赛",
       "url": "https://www.bilibili.com/video/BV1xSQ2Y2EfX/",
-      "uncertain": true
+      "uncertain": false
     },
     {
       "id": "RMUL-2025-西北站-33-BV1tUQ2Y7E3K",
@@ -25624,11 +25786,11 @@
       "redTeam": "DreamTeam",
       "blueSchool": "石家庄铁道大学",
       "blueTeam": "铁道兵",
-      "redScore": "-",
-      "blueScore": "-",
+      "redScore": "2",
+      "blueScore": "0",
       "title": "西北站 第33场 北方工业大学 DreamTeam战队 vs 石家庄铁道大学 铁道兵战队 | RoboMaster 2025 高校联盟赛",
       "url": "https://www.bilibili.com/video/BV1tUQ2Y7E3K/",
-      "uncertain": true
+      "uncertain": false
     },
     {
       "id": "RMUL-2025-西北站-34-BV18CQ2YDEJP",
@@ -25640,11 +25802,11 @@
       "redTeam": "SPR",
       "blueSchool": "郑州大学",
       "blueTeam": "中州烛龙",
-      "redScore": "-",
-      "blueScore": "-",
+      "redScore": "2",
+      "blueScore": "0",
       "title": "西北站 第34场 中国石油大学（北京） SPR战队 vs 郑州大学 中州烛龙战队 | RoboMaster 2025 高校联盟赛",
       "url": "https://www.bilibili.com/video/BV18CQ2YDEJP/",
-      "uncertain": true
+      "uncertain": false
     },
     {
       "id": "RMUL-2025-西北站-35-BV1SwQ2YUE1G",
@@ -25656,11 +25818,11 @@
       "redTeam": "猛码",
       "blueSchool": "陕西科技大学",
       "blueTeam": "BattleSwanX",
-      "redScore": "-",
-      "blueScore": "-",
+      "redScore": "2",
+      "blueScore": "0",
       "title": "西北站 第35场 内蒙古师范大学 猛码战队 vs 陕西科技大学 BattleSwanX战队 | RoboMaster 2025 高校联盟赛",
       "url": "https://www.bilibili.com/video/BV1SwQ2YUE1G/",
-      "uncertain": true
+      "uncertain": false
     },
     {
       "id": "RMUL-2025-西北站-36-BV1mTQ2YLE3P",
@@ -25672,11 +25834,11 @@
       "redTeam": "PIP",
       "blueSchool": "火箭军工程大学",
       "blueTeam": "东风",
-      "redScore": "-",
-      "blueScore": "-",
+      "redScore": "1",
+      "blueScore": "1",
       "title": "西北站 第36场 北京工业大学 PIP战队 vs 火箭军工程大学 东风战队 | RoboMaster 2025 高校联盟赛",
       "url": "https://www.bilibili.com/video/BV1mTQ2YLE3P/",
-      "uncertain": true
+      "uncertain": false
     },
     {
       "id": "RMUL-2025-西北站-37-BV1cJQ2YMEye",
@@ -25688,11 +25850,11 @@
       "redTeam": "笃行",
       "blueSchool": "山西机电职业技术学院",
       "blueTeam": "筑梦",
-      "redScore": "-",
-      "blueScore": "-",
+      "redScore": "2",
+      "blueScore": "0",
       "title": "西北站 第37场 西安交通大学 笃行战队 vs 山西机电职业技术学院 筑梦战队 | RoboMaster 2025 高校联盟赛",
       "url": "https://www.bilibili.com/video/BV1cJQ2YMEye/",
-      "uncertain": true
+      "uncertain": false
     },
     {
       "id": "RMUL-2025-西北站-38-BV1k7Q2YBEJt",
@@ -25704,11 +25866,11 @@
       "redTeam": "无畏先锋",
       "blueSchool": "河北师范大学",
       "blueTeam": "金钢",
-      "redScore": "-",
-      "blueScore": "-",
+      "redScore": "2",
+      "blueScore": "0",
       "title": "西北站 第38场 中国人民警察大学 无畏先锋战队 vs 河北师范大学 金钢战队 | RoboMaster 2025 高校联盟赛",
       "url": "https://www.bilibili.com/video/BV1k7Q2YBEJt/",
-      "uncertain": true
+      "uncertain": false
     },
     {
       "id": "RMUL-2025-西北站-39-BV1HAQSY1Eo2",
@@ -25720,11 +25882,11 @@
       "redTeam": "Actor & Thinker",
       "blueSchool": "北京交通大学",
       "blueTeam": "BNGU",
-      "redScore": "-",
-      "blueScore": "-",
+      "redScore": "2",
+      "blueScore": "0",
       "title": "西北站 第39场 河北科技大学 Actor & Thinker战队 vs 北京交通大学 BNGU战队 | RoboMaster 2025 高校联盟赛",
       "url": "https://www.bilibili.com/video/BV1HAQSY1Eo2/",
-      "uncertain": true
+      "uncertain": false
     },
     {
       "id": "RMUL-2025-西北站-40-BV1C7QUYjE1u",
@@ -25736,11 +25898,11 @@
       "redTeam": "606",
       "blueSchool": "北京工业大学",
       "blueTeam": "PIP",
-      "redScore": "-",
-      "blueScore": "-",
+      "redScore": "2",
+      "blueScore": "1",
       "title": "西北站 第40场 中北大学 606战队 vs 北京工业大学 PIP战队 | RoboMaster 2025 高校联盟赛",
       "url": "https://www.bilibili.com/video/BV1C7QUYjE1u/",
-      "uncertain": true
+      "uncertain": false
     },
     {
       "id": "RMUL-2025-西北站-41-BV1C7QUYjEvB",
@@ -25752,11 +25914,11 @@
       "redTeam": "TRoMaC",
       "blueSchool": "太原工业学院",
       "blueTeam": "火线",
-      "redScore": "-",
-      "blueScore": "-",
+      "redScore": "0",
+      "blueScore": "2",
       "title": "西北站 第41场 太原理工大学 TRoMaC战队 vs 太原工业学院 火线战队 | RoboMaster 2025 高校联盟赛",
       "url": "https://www.bilibili.com/video/BV1C7QUYjEvB/",
-      "uncertain": true
+      "uncertain": false
     },
     {
       "id": "RMUL-2025-西北站-42-BV1J1QmYuEq3",
@@ -25768,11 +25930,11 @@
       "redTeam": "DreamTeam",
       "blueSchool": "首都师范大学",
       "blueTeam": "PIE",
-      "redScore": "-",
-      "blueScore": "-",
+      "redScore": "2",
+      "blueScore": "0",
       "title": "西北站 第42场 北方工业大学 DreamTeam战队 vs 首都师范大学 PIE战队 | RoboMaster 2025 高校联盟赛",
       "url": "https://www.bilibili.com/video/BV1J1QmYuEq3/",
-      "uncertain": true
+      "uncertain": false
     },
     {
       "id": "RMUL-2025-西北站-43-BV1F1QmYuEpp",
@@ -25784,11 +25946,11 @@
       "redTeam": "思玄",
       "blueSchool": "中国石油大学（北京）",
       "blueTeam": "SPR",
-      "redScore": "-",
-      "blueScore": "-",
+      "redScore": "0",
+      "blueScore": "2",
       "title": "西北站 第43场 防灾科技学院 思玄战队 vs 中国石油大学（北京） SPR战队 | RoboMaster 2025 高校联盟赛",
       "url": "https://www.bilibili.com/video/BV1F1QmYuEpp/",
-      "uncertain": true
+      "uncertain": false
     },
     {
       "id": "RMUL-2025-西北站-44-BV1xZQtYbE4q",
@@ -25800,11 +25962,11 @@
       "redTeam": "猛码",
       "blueSchool": "火箭军工程大学",
       "blueTeam": "东风",
-      "redScore": "-",
-      "blueScore": "-",
+      "redScore": "0",
+      "blueScore": "2",
       "title": "西北站 第44场 内蒙古师范大学 猛码战队 vs 火箭军工程大学 东风战队 | RoboMaster 2025 高校联盟赛",
       "url": "https://www.bilibili.com/video/BV1xZQtYbE4q/",
-      "uncertain": true
+      "uncertain": false
     },
     {
       "id": "RMUL-2025-西北站-45-BV1KZQtYbEjR",
@@ -25816,11 +25978,11 @@
       "redTeam": "IRobot",
       "blueSchool": "华中科技大学",
       "blueTeam": "狼牙",
-      "redScore": "-",
-      "blueScore": "-",
+      "redScore": "0",
+      "blueScore": "2",
       "title": "西北站 第45场 西安电子科技大学 IRobot战队 vs 华中科技大学 狼牙战队 | RoboMaster 2025 高校联盟赛",
       "url": "https://www.bilibili.com/video/BV1KZQtYbEjR/",
-      "uncertain": true
+      "uncertain": false
     },
     {
       "id": "RMUL-2025-西北站-46-BV1NZQtYbEo1",
@@ -25832,11 +25994,11 @@
       "redTeam": "无畏先锋",
       "blueSchool": "西北工业大学",
       "blueTeam": "WMJ",
-      "redScore": "-",
-      "blueScore": "-",
+      "redScore": "0",
+      "blueScore": "2",
       "title": "西北站 第46场 中国人民警察大学 无畏先锋战队 vs 西北工业大学 WMJ战队 | RoboMaster 2025 高校联盟赛",
       "url": "https://www.bilibili.com/video/BV1NZQtYbEo1/",
-      "uncertain": true
+      "uncertain": false
     },
     {
       "id": "RMUL-2025-西北站-47-BV1xZQtYbE47",
@@ -25848,11 +26010,11 @@
       "redTeam": "NewMaker",
       "blueSchool": "河北科技大学",
       "blueTeam": "Actor & Thinker",
-      "redScore": "-",
-      "blueScore": "-",
+      "redScore": "2",
+      "blueScore": "0",
       "title": "西北站 第47场 太原科技大学 NewMaker战队 vs 河北科技大学 Actor & Thinker战队 | RoboMaster 2025 高校联盟赛",
       "url": "https://www.bilibili.com/video/BV1xZQtYbE47/",
-      "uncertain": true
+      "uncertain": false
     },
     {
       "id": "RMUL-2025-西北站-48-BV1KZQtYbELB",
@@ -25864,11 +26026,11 @@
       "redTeam": "606",
       "blueSchool": "太原工业学院",
       "blueTeam": "火线",
-      "redScore": "-",
-      "blueScore": "-",
+      "redScore": "0",
+      "blueScore": "2",
       "title": "西北站 第48场 中北大学 606战队 vs 太原工业学院 火线战队 | RoboMaster 2025 高校联盟赛",
       "url": "https://www.bilibili.com/video/BV1KZQtYbELB/",
-      "uncertain": true
+      "uncertain": false
     },
     {
       "id": "RMUL-2025-西北站-49-BV1AwQbYdEfu",
@@ -25880,11 +26042,11 @@
       "redTeam": "DreamTeam",
       "blueSchool": "中国石油大学（北京）",
       "blueTeam": "SPR",
-      "redScore": "-",
-      "blueScore": "-",
+      "redScore": "0",
+      "blueScore": "2",
       "title": "西北站 第49场 北方工业大学 DreamTeam战队 vs 中国石油大学（北京） SPR战队 | RoboMaster 2025 高校联盟赛",
       "url": "https://www.bilibili.com/video/BV1AwQbYdEfu/",
-      "uncertain": true
+      "uncertain": false
     },
     {
       "id": "RMUL-2025-西北站-50-BV1GkQtYzERo",
@@ -25896,11 +26058,11 @@
       "redTeam": "东风",
       "blueSchool": "华中科技大学",
       "blueTeam": "狼牙",
-      "redScore": "-",
-      "blueScore": "-",
+      "redScore": "2",
+      "blueScore": "1",
       "title": "西北站 第50场 火箭军工程大学 东风战队 vs 华中科技大学 狼牙战队 | RoboMaster 2025 高校联盟赛",
       "url": "https://www.bilibili.com/video/BV1GkQtYzERo/",
-      "uncertain": true
+      "uncertain": false
     },
     {
       "id": "RMUL-2025-西北站-51-BV1VkQtYzEMw",
@@ -25912,11 +26074,11 @@
       "redTeam": "WMJ",
       "blueSchool": "太原科技大学",
       "blueTeam": "NewMaker",
-      "redScore": "-",
-      "blueScore": "-",
+      "redScore": "2",
+      "blueScore": "0",
       "title": "西北站 第51场 西北工业大学 WMJ战队 vs 太原科技大学 NewMaker战队 | RoboMaster 2025 高校联盟赛",
       "url": "https://www.bilibili.com/video/BV1VkQtYzEMw/",
-      "uncertain": true
+      "uncertain": false
     },
     {
       "id": "RMUL-2025-西北站-52-BV1bgQtYhEp2",
@@ -25928,11 +26090,11 @@
       "redTeam": "火线",
       "blueSchool": "中国石油大学（北京）",
       "blueTeam": "SPR",
-      "redScore": "-",
-      "blueScore": "-",
+      "redScore": "2",
+      "blueScore": "0",
       "title": "西北站 第52场 太原工业学院 火线战队 vs 中国石油大学（北京） SPR战队 | RoboMaster 2025 高校联盟赛",
       "url": "https://www.bilibili.com/video/BV1bgQtYhEp2/",
-      "uncertain": true
+      "uncertain": false
     },
     {
       "id": "RMUL-2025-西北站-53-BV18TQtYYEaP",
@@ -25944,11 +26106,11 @@
       "redTeam": "东风",
       "blueSchool": "西北工业大学",
       "blueTeam": "WMJ",
-      "redScore": "-",
-      "blueScore": "-",
+      "redScore": "0",
+      "blueScore": "2",
       "title": "西北站 第53场 火箭军工程大学 东风战队 vs 西北工业大学 WMJ战队 | RoboMaster 2025 高校联盟赛",
       "url": "https://www.bilibili.com/video/BV18TQtYYEaP/",
-      "uncertain": true
+      "uncertain": false
     },
     {
       "id": "RMUL-2025-西北站-54-BV1WTQhYcEBJ",
@@ -25960,11 +26122,11 @@
       "redTeam": "SPR",
       "blueSchool": "火箭军工程大学",
       "blueTeam": "东风",
-      "redScore": "-",
-      "blueScore": "-",
+      "redScore": "0",
+      "blueScore": "2",
       "title": "西北站 第54场 中国石油大学（北京） SPR战队 vs 火箭军工程大学 东风战队 | RoboMaster 2025 高校联盟赛",
       "url": "https://www.bilibili.com/video/BV1WTQhYcEBJ/",
-      "uncertain": true
+      "uncertain": false
     },
     {
       "id": "RMUL-2025-西北站-55-BV16hQ8YREib",
@@ -25976,11 +26138,29 @@
       "redTeam": "火线",
       "blueSchool": "西北工业大学",
       "blueTeam": "WMJ",
-      "redScore": "-",
-      "blueScore": "-",
+      "redScore": "2",
+      "blueScore": "1",
       "title": "西北站 第55场 太原工业学院 火线战队 vs 西北工业大学 WMJ战队 | RoboMaster 2025 高校联盟赛",
       "url": "https://www.bilibili.com/video/BV16hQ8YREib/",
-      "uncertain": true
+      "uncertain": false
+    },
+    {
+      "id": "RMUL-INFERRED-2025-西南站-1",
+      "stage": "小组赛",
+      "redScore": "0",
+      "blueScore": "2",
+      "title": "",
+      "url": "",
+      "uncertain": false,
+      "inferred": true,
+      "inferenceNote": "按同组单循环已知场次的唯一缺边推定；官方回放未知",
+      "season": "2025",
+      "zone": "西南站",
+      "order": "1",
+      "redSchool": "重庆交通大学",
+      "redTeam": "铺路石",
+      "blueSchool": "西南石油大学南充校区",
+      "blueTeam": "泓龙"
     },
     {
       "id": "RMUL-2025-西南站-2-BV13YoXYnExr",
@@ -25992,11 +26172,11 @@
       "redTeam": "小白杨",
       "blueSchool": "西南交通大学",
       "blueTeam": "Helios",
-      "redScore": "-",
-      "blueScore": "-",
+      "redScore": "0",
+      "blueScore": "2",
       "title": "西南站 第2场 新疆大学 小白杨战队 vs 西南交通大学 Helios战队 ｜RoboMaster 2025 高校联盟赛",
       "url": "https://www.bilibili.com/video/BV13YoXYnExr/",
-      "uncertain": true
+      "uncertain": false
     },
     {
       "id": "RMUL-2025-西南站-3-BV13YoXYnEJU",
@@ -26008,11 +26188,11 @@
       "redTeam": "云嵌",
       "blueSchool": "重庆理工大学",
       "blueTeam": "士继DREAMER",
-      "redScore": "-",
-      "blueScore": "-",
+      "redScore": "1",
+      "blueScore": "1",
       "title": "西南站 第3场 长沙理工大学 云嵌战队 vs 重庆理工大学 士继DREAMER战队 ｜RoboMaster 2025 高校联盟赛",
       "url": "https://www.bilibili.com/video/BV13YoXYnEJU/",
-      "uncertain": true
+      "uncertain": false
     },
     {
       "id": "RMUL-2025-西南站-4-BV1heoXYSEPJ",
@@ -26024,11 +26204,11 @@
       "redTeam": "宜宾火燃面",
       "blueSchool": "云南大学",
       "blueTeam": "Future",
-      "redScore": "-",
-      "blueScore": "-",
+      "redScore": "0",
+      "blueScore": "2",
       "title": "西南站 第4场 宜宾学院 宜宾火燃面战队 vs 云南大学 Future战队 ｜RoboMaster 2025 高校联盟赛",
       "url": "https://www.bilibili.com/video/BV1heoXYSEPJ/",
-      "uncertain": true
+      "uncertain": false
     },
     {
       "id": "RMUL-2025-西南站-5-BV18eoXYSEqJ",
@@ -26040,11 +26220,11 @@
       "redTeam": "千里",
       "blueSchool": "贵阳人文科技学院",
       "blueTeam": "BIU",
-      "redScore": "-",
-      "blueScore": "-",
+      "redScore": "2",
+      "blueScore": "0",
       "title": "西南站 第5场 重庆大学 千里战队 vs 贵阳人文科技学院 BIU战队 ｜RoboMaster 2025 高校联盟赛",
       "url": "https://www.bilibili.com/video/BV18eoXYSEqJ/",
-      "uncertain": true
+      "uncertain": false
     },
     {
       "id": "RMUL-2025-西南站-6-BV1P2oXYrExZ",
@@ -26056,11 +26236,11 @@
       "redTeam": "Vortex",
       "blueSchool": "贵州师范大学",
       "blueTeam": "CEC",
-      "redScore": "-",
-      "blueScore": "-",
+      "redScore": "2",
+      "blueScore": "0",
       "title": "西南站 第6场 湖南工程学院 Vortex战队 vs 贵州师范大学 CEC战队 ｜RoboMaster 2025 高校联盟赛",
       "url": "https://www.bilibili.com/video/BV1P2oXYrExZ/",
-      "uncertain": true
+      "uncertain": false
     },
     {
       "id": "RMUL-2025-西南站-7-BV1WUoXYgEmh",
@@ -26072,11 +26252,29 @@
       "redTeam": "微城市",
       "blueSchool": "重庆第二师范学院",
       "blueTeam": "扶光",
-      "redScore": "-",
-      "blueScore": "-",
+      "redScore": "2",
+      "blueScore": "0",
       "title": "西南站 第7场 电子科技大学成都学院 微城市战队 vs 重庆第二师范学院 扶光战队 ｜RoboMaster 2025 高校联盟赛",
       "url": "https://www.bilibili.com/video/BV1WUoXYgEmh/",
-      "uncertain": true
+      "uncertain": false
+    },
+    {
+      "id": "RMUL-INFERRED-2025-西南站-8",
+      "stage": "小组赛",
+      "redScore": 0,
+      "blueScore": 0,
+      "title": "",
+      "url": "",
+      "uncertain": true,
+      "inferred": true,
+      "inferenceNote": "轮空",
+      "season": "2025",
+      "zone": "西南站",
+      "order": "8",
+      "redSchool": "",
+      "redTeam": "",
+      "blueSchool": "",
+      "blueTeam": ""
     },
     {
       "id": "RMUL-2025-西南站-9-BV1EJoXYFE3J",
@@ -26088,11 +26286,11 @@
       "redTeam": "鼎行·双创",
       "blueSchool": "新疆工程学院",
       "blueTeam": "金胡杨",
-      "redScore": "-",
-      "blueScore": "-",
+      "redScore": "0",
+      "blueScore": "2",
       "title": "西南站 第9场 河南科技大学 鼎行·双创战队 vs 新疆工程学院 金胡杨战队 ｜RoboMaster 2025 高校联盟赛",
       "url": "https://www.bilibili.com/video/BV1EJoXYFE3J/",
-      "uncertain": true
+      "uncertain": false
     },
     {
       "id": "RMUL-2025-西南站-10-BV1cfoRY3ExJ",
@@ -26104,11 +26302,11 @@
       "redTeam": "LionHeart",
       "blueSchool": "成都信息工程大学",
       "blueTeam": "风信子",
-      "redScore": "-",
-      "blueScore": "-",
+      "redScore": "0",
+      "blueScore": "2",
       "title": "西南站 第10场 重庆三峡学院 LionHeart战队 vs 成都信息工程大学 风信子战队 ｜RoboMaster 2025 高校联盟赛",
       "url": "https://www.bilibili.com/video/BV1cfoRY3ExJ/",
-      "uncertain": true
+      "uncertain": false
     },
     {
       "id": "RMUL-2025-西南站-11-BV1ajodYfEqw",
@@ -26120,11 +26318,11 @@
       "redTeam": "VANGUARD",
       "blueSchool": "西南大学",
       "blueTeam": "GKD",
-      "redScore": "-",
-      "blueScore": "-",
+      "redScore": "2",
+      "blueScore": "0",
       "title": "西南站 第11场 华南师范大学（佛山校区） VANGUARD战队 vs 西南大学 GKD战队 ｜RoboMaster 2025 高校联盟赛",
       "url": "https://www.bilibili.com/video/BV1ajodYfEqw/",
-      "uncertain": true
+      "uncertain": false
     },
     {
       "id": "RMUL-2025-西南站-12-BV1pdoRYVEpJ",
@@ -26136,11 +26334,11 @@
       "redTeam": "重山",
       "blueSchool": "西南石油大学",
       "blueTeam": "铁人",
-      "redScore": "-",
-      "blueScore": "-",
+      "redScore": "1",
+      "blueScore": "1",
       "title": "西南站 第12场 重庆邮电大学 重山战队 vs 西南石油大学 铁人战队 ｜RoboMaster 2025 高校联盟赛",
       "url": "https://www.bilibili.com/video/BV1pdoRYVEpJ/",
-      "uncertain": true
+      "uncertain": false
     },
     {
       "id": "RMUL-2025-西南站-13-BV1pdoRYVEu7",
@@ -26152,11 +26350,11 @@
       "redTeam": "逐曦",
       "blueSchool": "四川大学",
       "blueTeam": "火锅",
-      "redScore": "-",
-      "blueScore": "-",
+      "redScore": "0",
+      "blueScore": "2",
       "title": "西南站 第13场 湘潭大学 逐曦战队 vs 四川大学 火锅战队 ｜RoboMaster 2025 高校联盟赛",
       "url": "https://www.bilibili.com/video/BV1pdoRYVEu7/",
-      "uncertain": true
+      "uncertain": false
     },
     {
       "id": "RMUL-2025-西南站-14-BV1AfofYoEkU",
@@ -26168,11 +26366,11 @@
       "redTeam": "MTI",
       "blueSchool": "西南民族大学",
       "blueTeam": "新竹",
-      "redScore": "-",
-      "blueScore": "-",
+      "redScore": "2",
+      "blueScore": "0",
       "title": "西南站 第14场 茅台学院 MTI战队 vs 西南民族大学 新竹战队 ｜RoboMaster 2025 高校联盟赛",
       "url": "https://www.bilibili.com/video/BV1AfofYoEkU/",
-      "uncertain": true
+      "uncertain": false
     },
     {
       "id": "RMUL-2025-西南站-15-BV1nLoRY6EvJ",
@@ -26184,11 +26382,11 @@
       "redTeam": "戈壁明珠",
       "blueSchool": "成都工业学院",
       "blueTeam": "Success",
-      "redScore": "-",
-      "blueScore": "-",
+      "redScore": "0",
+      "blueScore": "2",
       "title": "西南站 第15场 石河子大学 戈壁明珠战队 vs 成都工业学院 Success战队 ｜RoboMaster 2025 高校联盟赛",
       "url": "https://www.bilibili.com/video/BV1nLoRY6EvJ/",
-      "uncertain": true
+      "uncertain": false
     },
     {
       "id": "RMUL-2025-西南站-16-BV1rLoRY6EDK",
@@ -26200,11 +26398,11 @@
       "redTeam": "奇点",
       "blueSchool": "成都大学",
       "blueTeam": "Ultra",
-      "redScore": "-",
-      "blueScore": "-",
+      "redScore": "1",
+      "blueScore": "1",
       "title": "西南站 第16场 仲恺农业工程学院 奇点战队 vs 成都大学 Ultra战队 ｜RoboMaster 2025 高校联盟赛",
       "url": "https://www.bilibili.com/video/BV1rLoRY6EDK/",
-      "uncertain": true
+      "uncertain": false
     },
     {
       "id": "RMUL-2025-西南站-17-BV1ppZcYFEoc",
@@ -26216,11 +26414,11 @@
       "redTeam": "金胡杨",
       "blueSchool": "重庆交通大学",
       "blueTeam": "铺路石",
-      "redScore": "-",
-      "blueScore": "-",
+      "redScore": "2",
+      "blueScore": "0",
       "title": "西南站 第17场 新疆工程学院 金胡杨战队 vs 重庆交通大学 铺路石战队｜RoboMaster 2025 高校联盟赛",
       "url": "https://www.bilibili.com/video/BV1ppZcYFEoc/",
-      "uncertain": true
+      "uncertain": false
     },
     {
       "id": "RMUL-2025-西南站-18-BV1WpZcYFE3p",
@@ -26232,11 +26430,11 @@
       "redTeam": "风信子",
       "blueSchool": "新疆大学",
       "blueTeam": "小白杨",
-      "redScore": "-",
-      "blueScore": "-",
+      "redScore": "2",
+      "blueScore": "0",
       "title": "西南站 第18场 成都信息工程大学 风信子战队 vs 新疆大学 小白杨战队｜RoboMaster 2025 高校联盟赛",
       "url": "https://www.bilibili.com/video/BV1WpZcYFE3p/",
-      "uncertain": true
+      "uncertain": false
     },
     {
       "id": "RMUL-2025-西南站-19-BV1pWZcYbEHq",
@@ -26248,11 +26446,11 @@
       "redTeam": "GKD",
       "blueSchool": "长沙理工大学",
       "blueTeam": "云嵌",
-      "redScore": "-",
-      "blueScore": "-",
+      "redScore": "0",
+      "blueScore": "2",
       "title": "西南站 第19场 西南大学 GKD战队 vs 长沙理工大学 云嵌战队｜RoboMaster 2025 高校联盟赛",
       "url": "https://www.bilibili.com/video/BV1pWZcYbEHq/",
-      "uncertain": true
+      "uncertain": false
     },
     {
       "id": "RMUL-2025-西南站-20-BV1pWZcYbEfj",
@@ -26264,11 +26462,11 @@
       "redTeam": "铁人",
       "blueSchool": "宜宾学院",
       "blueTeam": "宜宾火燃面",
-      "redScore": "-",
-      "blueScore": "-",
+      "redScore": "2",
+      "blueScore": "0",
       "title": "西南站 第20场 西南石油大学 铁人战队 vs 宜宾学院 宜宾火燃面战队｜RoboMaster 2025 高校联盟赛",
       "url": "https://www.bilibili.com/video/BV1pWZcYbEfj/",
-      "uncertain": true
+      "uncertain": false
     },
     {
       "id": "RMUL-2025-西南站-21-BV1pWZcYbEkA",
@@ -26280,11 +26478,11 @@
       "redTeam": "火锅",
       "blueSchool": "重庆大学",
       "blueTeam": "千里",
-      "redScore": "-",
-      "blueScore": "-",
+      "redScore": "2",
+      "blueScore": "0",
       "title": "西南站 第21场 四川大学 火锅战队 vs 重庆大学 千里战队｜RoboMaster 2025 高校联盟赛",
       "url": "https://www.bilibili.com/video/BV1pWZcYbEkA/",
-      "uncertain": true
+      "uncertain": false
     },
     {
       "id": "RMUL-2025-西南站-22-BV1WpZcYFEK8",
@@ -26296,11 +26494,11 @@
       "redTeam": "新竹",
       "blueSchool": "湖南工程学院",
       "blueTeam": "Vortex",
-      "redScore": "-",
-      "blueScore": "-",
+      "redScore": "2",
+      "blueScore": "0",
       "title": "西南站 第22场 西南民族大学 新竹战队 vs 湖南工程学院 Vortex战队｜RoboMaster 2025 高校联盟赛",
       "url": "https://www.bilibili.com/video/BV1WpZcYFEK8/",
-      "uncertain": true
+      "uncertain": false
     },
     {
       "id": "RMUL-2025-西南站-23-BV1sJZcYwEoR",
@@ -26312,11 +26510,11 @@
       "redTeam": "Success",
       "blueSchool": "电子科技大学成都学院",
       "blueTeam": "微城市",
-      "redScore": "-",
-      "blueScore": "-",
+      "redScore": "2",
+      "blueScore": "0",
       "title": "西南站 第23场 成都工业学院 Success战队 vs 电子科技大学成都学院 微城市战队｜RoboMaster 2025 高校联盟赛",
       "url": "https://www.bilibili.com/video/BV1sJZcYwEoR/",
-      "uncertain": true
+      "uncertain": false
     },
     {
       "id": "RMUL-2025-西南站-24-BV1RzZcYjE7t",
@@ -26328,11 +26526,11 @@
       "redTeam": "Ultra",
       "blueSchool": "陆军勤务学院",
       "blueTeam": "陆擎",
-      "redScore": "-",
-      "blueScore": "-",
+      "redScore": "2",
+      "blueScore": "0",
       "title": "西南站 第24场 成都大学 Ultra战队 vs 陆军勤务学院 陆擎战队｜RoboMaster 2025 高校联盟赛",
       "url": "https://www.bilibili.com/video/BV1RzZcYjE7t/",
-      "uncertain": true
+      "uncertain": false
     },
     {
       "id": "RMUL-2025-西南站-25-BV1LzZcYEEt8",
@@ -26342,13 +26540,13 @@
       "stage": "小组赛",
       "redSchool": "河南科技大学",
       "redTeam": "鼎行·双创",
-      "blueSchool": "西南石油大学",
-      "blueTeam": "南充校区 泓龙",
-      "redScore": "-",
-      "blueScore": "-",
+      "blueSchool": "西南石油大学南充校区",
+      "blueTeam": "泓龙",
+      "redScore": "1",
+      "blueScore": "1",
       "title": "西南站 第25场 河南科技大学 鼎行·双创战队 vs 西南石油大学南充校区 泓龙战队｜RoboMaster 2025 高校联盟赛",
       "url": "https://www.bilibili.com/video/BV1LzZcYEEt8/",
-      "uncertain": true
+      "uncertain": false
     },
     {
       "id": "RMUL-2025-西南站-26-BV1LzZcYEEpx",
@@ -26360,11 +26558,11 @@
       "redTeam": "LionHeart",
       "blueSchool": "西南交通大学",
       "blueTeam": "Helios",
-      "redScore": "-",
-      "blueScore": "-",
+      "redScore": "0",
+      "blueScore": "2",
       "title": "西南站 第26场 重庆三峡学院 LionHeart战队 vs 西南交通大学 Helios战队｜RoboMaster 2025 高校联盟赛",
       "url": "https://www.bilibili.com/video/BV1LzZcYEEpx/",
-      "uncertain": true
+      "uncertain": false
     },
     {
       "id": "RMUL-2025-西南站-27-BV1izZcYEE8E",
@@ -26376,11 +26574,11 @@
       "redTeam": "VANGUARD",
       "blueSchool": "重庆理工大学",
       "blueTeam": "士继DREAMER",
-      "redScore": "-",
-      "blueScore": "-",
+      "redScore": "1",
+      "blueScore": "1",
       "title": "西南站 第27场 华南师范大学（佛山校区） VANGUARD战队 vs 重庆理工大学 士继DREAMER战队｜RoboMaster 2025 高校联盟赛",
       "url": "https://www.bilibili.com/video/BV1izZcYEE8E/",
-      "uncertain": true
+      "uncertain": false
     },
     {
       "id": "RMUL-2025-西南站-28-BV1FLZPYaEsT",
@@ -26392,11 +26590,11 @@
       "redTeam": "重山",
       "blueSchool": "云南大学",
       "blueTeam": "Future",
-      "redScore": "-",
-      "blueScore": "-",
+      "redScore": "0",
+      "blueScore": "2",
       "title": "西南站 第28场 重庆邮电大学 重山战队 vs 云南大学 Future战队｜RoboMaster 2025 高校联盟赛",
       "url": "https://www.bilibili.com/video/BV1FLZPYaEsT/",
-      "uncertain": true
+      "uncertain": false
     },
     {
       "id": "RMUL-2025-西南站-29-BV1LzZcYEEBY",
@@ -26408,11 +26606,11 @@
       "redTeam": "逐曦",
       "blueSchool": "贵阳人文科技学院",
       "blueTeam": "BIU",
-      "redScore": "-",
-      "blueScore": "-",
+      "redScore": "2",
+      "blueScore": "0",
       "title": "西南站 第29场 湘潭大学 逐曦战队 vs 贵阳人文科技学院 BIU战队｜RoboMaster 2025 高校联盟赛",
       "url": "https://www.bilibili.com/video/BV1LzZcYEEBY/",
-      "uncertain": true
+      "uncertain": false
     },
     {
       "id": "RMUL-2025-西南站-30-BV1LzZcYEEbz",
@@ -26424,11 +26622,11 @@
       "redTeam": "MTI",
       "blueSchool": "贵州师范大学",
       "blueTeam": "CEC",
-      "redScore": "-",
-      "blueScore": "-",
+      "redScore": "2",
+      "blueScore": "0",
       "title": "西南站 第30场 茅台学院 MTI战队 vs 贵州师范大学 CEC战队｜RoboMaster 2025 高校联盟赛",
       "url": "https://www.bilibili.com/video/BV1LzZcYEEbz/",
-      "uncertain": true
+      "uncertain": false
     },
     {
       "id": "RMUL-2025-西南站-31-BV1izZcYEE59",
@@ -26440,11 +26638,29 @@
       "redTeam": "戈壁明珠",
       "blueSchool": "重庆第二师范学院",
       "blueTeam": "扶光",
-      "redScore": "-",
-      "blueScore": "-",
+      "redScore": "0",
+      "blueScore": "2",
       "title": "西南站 第31场 石河子大学 戈壁明珠战队 vs 重庆第二师范学院 扶光战队｜RoboMaster 2025 高校联盟赛",
       "url": "https://www.bilibili.com/video/BV1izZcYEE59/",
-      "uncertain": true
+      "uncertain": false
+    },
+    {
+      "id": "RMUL-INFERRED-2025-西南站-32",
+      "stage": "小组赛",
+      "redScore": 0,
+      "blueScore": 0,
+      "title": "",
+      "url": "",
+      "uncertain": true,
+      "inferred": true,
+      "inferenceNote": "轮空",
+      "season": "2025",
+      "zone": "西南站",
+      "order": "32",
+      "redSchool": "",
+      "redTeam": "",
+      "blueSchool": "",
+      "blueTeam": ""
     },
     {
       "id": "RMUL-2025-西南站-33-BV1g9ZAY2ELw",
@@ -26456,11 +26672,11 @@
       "redTeam": "铺路石",
       "blueSchool": "河南科技大学",
       "blueTeam": "鼎行·双创",
-      "redScore": "-",
-      "blueScore": "-",
+      "redScore": "0",
+      "blueScore": "2",
       "title": "西南站 第33场 重庆交通大学 铺路石战队 vs 河南科技大学 鼎行·双创战队｜RoboMaster 2025 高校联盟赛",
       "url": "https://www.bilibili.com/video/BV1g9ZAY2ELw/",
-      "uncertain": true
+      "uncertain": false
     },
     {
       "id": "RMUL-2025-西南站-34-BV1g9ZAY2EcM",
@@ -26472,11 +26688,11 @@
       "redTeam": "小白杨",
       "blueSchool": "重庆三峡学院",
       "blueTeam": "LionHeart",
-      "redScore": "-",
-      "blueScore": "-",
+      "redScore": "2",
+      "blueScore": "0",
       "title": "西南站 第34场 新疆大学 小白杨战队 vs 重庆三峡学院 LionHeart战队｜RoboMaster 2025 高校联盟赛",
       "url": "https://www.bilibili.com/video/BV1g9ZAY2EcM/",
-      "uncertain": true
+      "uncertain": false
     },
     {
       "id": "RMUL-2025-西南站-35-BV19xZPY9ECy",
@@ -26488,11 +26704,11 @@
       "redTeam": "云嵌",
       "blueSchool": "华南师范大学（佛山校区）",
       "blueTeam": "VANGUARD",
-      "redScore": "-",
-      "blueScore": "-",
+      "redScore": "0",
+      "blueScore": "2",
       "title": "西南站 第35场 长沙理工大学 云嵌战队 vs 华南师范大学（佛山校区） VANGUARD战队｜RoboMaster 2025 高校联盟赛",
       "url": "https://www.bilibili.com/video/BV19xZPY9ECy/",
-      "uncertain": true
+      "uncertain": false
     },
     {
       "id": "RMUL-2025-西南站-36-BV19xZPY9EQ2",
@@ -26504,11 +26720,11 @@
       "redTeam": "宜宾火燃面",
       "blueSchool": "重庆邮电大学",
       "blueTeam": "重山",
-      "redScore": "-",
-      "blueScore": "-",
+      "redScore": "0",
+      "blueScore": "2",
       "title": "西南站 第36场 宜宾学院 宜宾火燃面战队 vs 重庆邮电大学 重山战队｜RoboMaster 2025 高校联盟赛",
       "url": "https://www.bilibili.com/video/BV19xZPY9EQ2/",
-      "uncertain": true
+      "uncertain": false
     },
     {
       "id": "RMUL-2025-西南站-37-BV15xZPYREZa",
@@ -26520,11 +26736,11 @@
       "redTeam": "千里",
       "blueSchool": "湘潭大学",
       "blueTeam": "逐曦",
-      "redScore": "-",
-      "blueScore": "-",
+      "redScore": "1",
+      "blueScore": "1",
       "title": "西南站 第37场 重庆大学 千里战队 vs 湘潭大学 逐曦战队｜RoboMaster 2025 高校联盟赛",
       "url": "https://www.bilibili.com/video/BV15xZPYREZa/",
-      "uncertain": true
+      "uncertain": false
     },
     {
       "id": "RMUL-2025-西南站-38-BV19xZPY9EC3",
@@ -26536,11 +26752,11 @@
       "redTeam": "Vortex",
       "blueSchool": "茅台学院",
       "blueTeam": "MTI",
-      "redScore": "-",
-      "blueScore": "-",
+      "redScore": "0",
+      "blueScore": "2",
       "title": "西南站 第38场 湖南工程学院 Vortex战队 vs 茅台学院 MTI战队｜RoboMaster 2025 高校联盟赛",
       "url": "https://www.bilibili.com/video/BV19xZPY9EC3/",
-      "uncertain": true
+      "uncertain": false
     },
     {
       "id": "RMUL-2025-西南站-39-BV1RxZPY9ECL",
@@ -26552,11 +26768,11 @@
       "redTeam": "微城市",
       "blueSchool": "石河子大学",
       "blueTeam": "戈壁明珠",
-      "redScore": "-",
-      "blueScore": "-",
+      "redScore": "2",
+      "blueScore": "0",
       "title": "西南站 第39场 电子科技大学成都学院 微城市战队 vs 石河子大学 戈壁明珠战队｜RoboMaster 2025 高校联盟赛",
       "url": "https://www.bilibili.com/video/BV1RxZPY9ECL/",
-      "uncertain": true
+      "uncertain": false
     },
     {
       "id": "RMUL-2025-西南站-40-BV1g9ZAY2EDD",
@@ -26568,11 +26784,11 @@
       "redTeam": "陆擎",
       "blueSchool": "仲恺农业工程学院",
       "blueTeam": "奇点",
-      "redScore": "-",
-      "blueScore": "-",
+      "redScore": "0",
+      "blueScore": "2",
       "title": "西南站 第40场 陆军勤务学院 陆擎战队 vs 仲恺农业工程学院 奇点战队｜RoboMaster 2025 高校联盟赛",
       "url": "https://www.bilibili.com/video/BV1g9ZAY2EDD/",
-      "uncertain": true
+      "uncertain": false
     },
     {
       "id": "RMUL-2025-西南站-41-BV1CsZAYiEoN",
@@ -26580,15 +26796,15 @@
       "zone": "西南站",
       "order": "41",
       "stage": "小组赛",
-      "redSchool": "西南石油大学",
-      "redTeam": "南充校区 泓龙",
+      "redSchool": "西南石油大学南充校区",
+      "redTeam": "泓龙",
       "blueSchool": "新疆工程学院",
       "blueTeam": "金胡杨",
-      "redScore": "-",
-      "blueScore": "-",
+      "redScore": "0",
+      "blueScore": "2",
       "title": "西南站 第41场 西南石油大学南充校区 泓龙战队 vs 新疆工程学院 金胡杨战队｜RoboMaster 2025 高校联盟赛",
       "url": "https://www.bilibili.com/video/BV1CsZAYiEoN/",
-      "uncertain": true
+      "uncertain": false
     },
     {
       "id": "RMUL-2025-西南站-42-BV17BZAYoEbV",
@@ -26600,11 +26816,11 @@
       "redTeam": "Helios",
       "blueSchool": "成都信息工程大学",
       "blueTeam": "风信子",
-      "redScore": "-",
-      "blueScore": "-",
+      "redScore": "1",
+      "blueScore": "1",
       "title": "西南站 第42场 西南交通大学 Helios战队 vs 成都信息工程大学 风信子战队｜RoboMaster 2025 高校联盟赛",
       "url": "https://www.bilibili.com/video/BV17BZAYoEbV/",
-      "uncertain": true
+      "uncertain": false
     },
     {
       "id": "RMUL-2025-西南站-43-BV1JeZAY8EMJ",
@@ -26616,11 +26832,11 @@
       "redTeam": "士继DREAMER",
       "blueSchool": "西南大学",
       "blueTeam": "GKD",
-      "redScore": "-",
-      "blueScore": "-",
+      "redScore": "2",
+      "blueScore": "0",
       "title": "西南站 第43场 重庆理工大学 士继DREAMER战队 vs 西南大学 GKD战队｜RoboMaster 2025 高校联盟赛",
       "url": "https://www.bilibili.com/video/BV1JeZAY8EMJ/",
-      "uncertain": true
+      "uncertain": false
     },
     {
       "id": "RMUL-2025-西南站-44-BV1h3ZAYLETb",
@@ -26632,11 +26848,11 @@
       "redTeam": "Future",
       "blueSchool": "西南石油大学",
       "blueTeam": "铁人",
-      "redScore": "-",
-      "blueScore": "-",
+      "redScore": "2",
+      "blueScore": "0",
       "title": "西南站 第44场 云南大学 Future战队 vs 西南石油大学 铁人战队｜RoboMaster 2025 高校联盟赛",
       "url": "https://www.bilibili.com/video/BV1h3ZAYLETb/",
-      "uncertain": true
+      "uncertain": false
     },
     {
       "id": "RMUL-2025-西南站-45-BV14EZAY6EJ1",
@@ -26648,11 +26864,11 @@
       "redTeam": "BIU",
       "blueSchool": "四川大学",
       "blueTeam": "火锅",
-      "redScore": "-",
-      "blueScore": "-",
+      "redScore": "0",
+      "blueScore": "2",
       "title": "西南站 第45场 贵阳人文科技学院 BIU战队 vs 四川大学 火锅战队｜RoboMaster 2025 高校联盟赛",
       "url": "https://www.bilibili.com/video/BV14EZAY6EJ1/",
-      "uncertain": true
+      "uncertain": false
     },
     {
       "id": "RMUL-2025-西南站-46-BV1tgZYYtE8R",
@@ -26664,11 +26880,11 @@
       "redTeam": "CEC",
       "blueSchool": "西南民族大学",
       "blueTeam": "新竹",
-      "redScore": "-",
-      "blueScore": "-",
+      "redScore": "0",
+      "blueScore": "2",
       "title": "西南站 第46场 贵州师范大学 CEC战队 vs 西南民族大学 新竹战队｜RoboMaster 2025 高校联盟赛",
       "url": "https://www.bilibili.com/video/BV1tgZYYtE8R/",
-      "uncertain": true
+      "uncertain": false
     },
     {
       "id": "RMUL-2025-西南站-47-BV12EZAY6EmQ",
@@ -26680,29 +26896,29 @@
       "redTeam": "扶光",
       "blueSchool": "成都工业学院",
       "blueTeam": "Success",
-      "redScore": "-",
-      "blueScore": "-",
+      "redScore": "0",
+      "blueScore": "2",
       "title": "西南站 第47场 重庆第二师范学院 扶光战队 vs 成都工业学院 Success战队｜RoboMaster 2025 高校联盟赛",
       "url": "https://www.bilibili.com/video/BV12EZAY6EmQ/",
-      "uncertain": true
+      "uncertain": false
     },
     {
       "id": "RMUL-INFERRED-2025-西南站-48",
       "stage": "小组赛",
-      "redScore": "-",
-      "blueScore": "-",
+      "redScore": 0,
+      "blueScore": 0,
       "title": "",
       "url": "",
       "uncertain": true,
       "inferred": true,
-      "inferenceNote": "按同组单循环缺边及相邻轮次排表唯一推定；红蓝方、比分及官方回放未知",
+      "inferenceNote": "轮空",
       "season": "2025",
       "zone": "西南站",
       "order": "48",
-      "redSchool": "重庆交通大学",
-      "redTeam": "铺路石",
-      "blueSchool": "西南石油大学",
-      "blueTeam": "南充校区 泓龙"
+      "redSchool": "",
+      "redTeam": "",
+      "blueSchool": "",
+      "blueTeam": ""
     },
     {
       "id": "RMUL-2025-西南站-49-BV1hdZqYVEuz",
@@ -26714,11 +26930,11 @@
       "redTeam": "金胡杨",
       "blueSchool": "西南交通大学",
       "blueTeam": "Helios",
-      "redScore": "-",
-      "blueScore": "-",
+      "redScore": "0",
+      "blueScore": "2",
       "title": "西南站 第49场 新疆工程学院 金胡杨战队 vs 西南交通大学 Helios战队｜RoboMaster 2025 高校联盟赛",
       "url": "https://www.bilibili.com/video/BV1hdZqYVEuz/",
-      "uncertain": true
+      "uncertain": false
     },
     {
       "id": "RMUL-2025-西南站-50-BV1hdZqYVEFf",
@@ -26730,11 +26946,11 @@
       "redTeam": "铁人",
       "blueSchool": "华南师范大学（佛山校区）",
       "blueTeam": "VANGUARD",
-      "redScore": "-",
-      "blueScore": "-",
+      "redScore": "2",
+      "blueScore": "0",
       "title": "西南站 第50场 西南石油大学 铁人战队 vs 华南师范大学（佛山校区） VANGUARD战队｜RoboMaster 2025 高校联盟赛",
       "url": "https://www.bilibili.com/video/BV1hdZqYVEFf/",
-      "uncertain": true
+      "uncertain": false
     },
     {
       "id": "RMUL-2025-西南站-51-BV18dZqYVEx5",
@@ -26746,11 +26962,11 @@
       "redTeam": "火锅",
       "blueSchool": "茅台学院",
       "blueTeam": "MTI",
-      "redScore": "-",
-      "blueScore": "-",
+      "redScore": "0",
+      "blueScore": "2",
       "title": "西南站 第51场 四川大学 火锅战队 vs 茅台学院 MTI战队｜RoboMaster 2025 高校联盟赛",
       "url": "https://www.bilibili.com/video/BV18dZqYVEx5/",
-      "uncertain": true
+      "uncertain": false
     },
     {
       "id": "RMUL-2025-西南站-52-BV1gdZqYVEWn",
@@ -26762,11 +26978,11 @@
       "redTeam": "Ultra",
       "blueSchool": "成都工业学院",
       "blueTeam": "Success",
-      "redScore": "-",
-      "blueScore": "-",
+      "redScore": "0",
+      "blueScore": "2",
       "title": "西南站 第52场 成都大学 Ultra战队 vs 成都工业学院 Success战队｜RoboMaster 2025 高校联盟赛",
       "url": "https://www.bilibili.com/video/BV1gdZqYVEWn/",
-      "uncertain": true
+      "uncertain": false
     },
     {
       "id": "RMUL-2025-西南站-53-BV1TAZBYBEP6",
@@ -26774,15 +26990,15 @@
       "zone": "西南站",
       "order": "53",
       "stage": "16进8淘汰赛",
-      "redSchool": "西南石油大学",
-      "redTeam": "南充校区 泓龙",
+      "redSchool": "西南石油大学南充校区",
+      "redTeam": "泓龙",
       "blueSchool": "成都信息工程大学",
       "blueTeam": "风信子",
-      "redScore": "-",
-      "blueScore": "-",
+      "redScore": "0",
+      "blueScore": "2",
       "title": "西南站 第53场 西南石油大学南充校区 泓龙战队 vs 成都信息工程大学 风信子战队｜RoboMaster 2025 高校联盟赛",
       "url": "https://www.bilibili.com/video/BV1TAZBYBEP6/",
-      "uncertain": true
+      "uncertain": false
     },
     {
       "id": "RMUL-2025-西南站-54-BV14AZBYBEsM",
@@ -26794,11 +27010,11 @@
       "redTeam": "Future",
       "blueSchool": "重庆理工大学",
       "blueTeam": "士继DREAMER",
-      "redScore": "-",
-      "blueScore": "-",
+      "redScore": "2",
+      "blueScore": "0",
       "title": "西南站 第54场 云南大学 Future战队 vs 重庆理工大学 士继DREAMER战队｜RoboMaster 2025 高校联盟赛",
       "url": "https://www.bilibili.com/video/BV14AZBYBEsM/",
-      "uncertain": true
+      "uncertain": false
     },
     {
       "id": "RMUL-2025-西南站-55-BV1mCZBYgE42",
@@ -26810,11 +27026,11 @@
       "redTeam": "逐曦",
       "blueSchool": "西南民族大学",
       "blueTeam": "新竹",
-      "redScore": "-",
-      "blueScore": "-",
+      "redScore": "0",
+      "blueScore": "2",
       "title": "西南站 第55场 湘潭大学 逐曦战队 vs 西南民族大学 新竹战队｜RoboMaster 2025 高校联盟赛",
       "url": "https://www.bilibili.com/video/BV1mCZBYgE42/",
-      "uncertain": true
+      "uncertain": false
     },
     {
       "id": "RMUL-2025-西南站-56-BV12HZqYiEvj",
@@ -26826,11 +27042,11 @@
       "redTeam": "奇点",
       "blueSchool": "电子科技大学成都学院",
       "blueTeam": "微城市",
-      "redScore": "-",
-      "blueScore": "-",
+      "redScore": "0",
+      "blueScore": "2",
       "title": "西南站 第56场 仲恺农业工程学院 奇点战队 vs 电子科技大学成都学院 微城市战队｜RoboMaster 2025 高校联盟赛",
       "url": "https://www.bilibili.com/video/BV12HZqYiEvj/",
-      "uncertain": true
+      "uncertain": false
     },
     {
       "id": "RMUL-2025-西南站-57-BV12HZqYiExx",
@@ -26842,11 +27058,11 @@
       "redTeam": "Helios",
       "blueSchool": "西南石油大学",
       "blueTeam": "铁人",
-      "redScore": "-",
-      "blueScore": "-",
+      "redScore": "2",
+      "blueScore": "0",
       "title": "西南站 第57场 西南交通大学 Helios战队 vs 西南石油大学 铁人战队｜RoboMaster 2025 高校联盟赛",
       "url": "https://www.bilibili.com/video/BV12HZqYiExx/",
-      "uncertain": true
+      "uncertain": false
     },
     {
       "id": "RMUL-2025-西南站-58-BV14HZqYiECy",
@@ -26858,11 +27074,11 @@
       "redTeam": "MTI",
       "blueSchool": "成都工业学院",
       "blueTeam": "Success",
-      "redScore": "-",
-      "blueScore": "-",
+      "redScore": "0",
+      "blueScore": "2",
       "title": "西南站 第58场 茅台学院 MTI战队 vs 成都工业学院 Success战队｜RoboMaster 2025 高校联盟赛",
       "url": "https://www.bilibili.com/video/BV14HZqYiECy/",
-      "uncertain": true
+      "uncertain": false
     },
     {
       "id": "RMUL-2025-西南站-59-BV14HZqYiEGs",
@@ -26874,11 +27090,11 @@
       "redTeam": "风信子",
       "blueSchool": "云南大学",
       "blueTeam": "Future",
-      "redScore": "-",
-      "blueScore": "-",
+      "redScore": "2",
+      "blueScore": "0",
       "title": "西南站 第59场 成都信息工程大学 风信子战队 vs 云南大学 Future战队｜RoboMaster 2025 高校联盟赛",
       "url": "https://www.bilibili.com/video/BV14HZqYiEGs/",
-      "uncertain": true
+      "uncertain": false
     },
     {
       "id": "RMUL-2025-西南站-60-BV1b7ZqYuEt1",
@@ -26890,11 +27106,11 @@
       "redTeam": "新竹",
       "blueSchool": "电子科技大学成都学院",
       "blueTeam": "微城市",
-      "redScore": "-",
-      "blueScore": "-",
+      "redScore": "2",
+      "blueScore": "1",
       "title": "西南站 第60场 西南民族大学 新竹战队 vs 电子科技大学成都学院 微城市战队｜RoboMaster 2025 高校联盟赛",
       "url": "https://www.bilibili.com/video/BV1b7ZqYuEt1/",
-      "uncertain": true
+      "uncertain": false
     },
     {
       "id": "RMUL-2025-西南站-61-BV1FXZiY4ESc",
@@ -26906,11 +27122,11 @@
       "redTeam": "Helios",
       "blueSchool": "成都工业学院",
       "blueTeam": "Success",
-      "redScore": "-",
-      "blueScore": "-",
+      "redScore": "1",
+      "blueScore": "2",
       "title": "西南站 第61场 西南交通大学 Helios战队 vs 成都工业学院 Success战队｜RoboMaster 2025 高校联盟赛",
       "url": "https://www.bilibili.com/video/BV1FXZiY4ESc/",
-      "uncertain": true
+      "uncertain": false
     },
     {
       "id": "RMUL-2025-西南站-62-BV1vDZzYsEYv",
@@ -26922,11 +27138,11 @@
       "redTeam": "风信子",
       "blueSchool": "西南民族大学",
       "blueTeam": "新竹",
-      "redScore": "-",
-      "blueScore": "-",
+      "redScore": "2",
+      "blueScore": "0",
       "title": "西南站 第62场 成都信息工程大学 风信子战队 vs 西南民族大学 新竹战队｜RoboMaster 2025 高校联盟赛",
       "url": "https://www.bilibili.com/video/BV1vDZzYsEYv/",
-      "uncertain": true
+      "uncertain": false
     },
     {
       "id": "RMUL-2025-西南站-63-BV1hjZzYmEXJ",
@@ -26938,11 +27154,11 @@
       "redTeam": "Helios",
       "blueSchool": "西南民族大学",
       "blueTeam": "新竹",
-      "redScore": "-",
-      "blueScore": "-",
+      "redScore": "2",
+      "blueScore": "0",
       "title": "西南站 第63场 西南交通大学 Helios战队 vs 西南民族大学 新竹战队｜RoboMaster 2025 高校联盟赛",
       "url": "https://www.bilibili.com/video/BV1hjZzYmEXJ/",
-      "uncertain": true
+      "uncertain": false
     },
     {
       "id": "RMUL-2025-西南站-64-BV1kXZBYPE2E",
@@ -26954,11 +27170,11 @@
       "redTeam": "Success",
       "blueSchool": "成都信息工程大学",
       "blueTeam": "风信子",
-      "redScore": "-",
-      "blueScore": "-",
+      "redScore": "0",
+      "blueScore": "2",
       "title": "西南站 第64场 成都工业学院 Success战队 vs 成都信息工程大学 风信子战队｜RoboMaster 2025 高校联盟赛",
       "url": "https://www.bilibili.com/video/BV1kXZBYPE2E/",
-      "uncertain": true
+      "uncertain": false
     },
     {
       "id": "RMUL-2025-辽宁站-1-BV1SioXYEEWz",
@@ -27033,7 +27249,7 @@
       "url": "",
       "uncertain": true,
       "inferred": true,
-      "inferenceNote": "按同组单循环已知场次的唯一缺边推定；红蓝方、比分及官方回放未知",
+      "inferenceNote": "按同组单循环已知场次的唯一缺边推定；官方回放未知",
       "season": "2025",
       "zone": "辽宁站",
       "order": "5",
@@ -28101,20 +28317,20 @@
     {
       "id": "RMUL-INFERRED-2026-上海站-8",
       "stage": "小组赛",
-      "redScore": 2,
+      "redScore": 0,
       "blueScore": 0,
       "title": "",
       "url": "",
       "uncertain": true,
       "inferred": true,
-      "inferenceNote": "蓝方缺赛",
+      "inferenceNote": "轮空",
       "season": "2026",
       "zone": "上海站",
       "order": "8",
-      "redSchool": "南京航空航天大学金城学院",
-      "redTeam": "Born of Fire",
-      "blueSchool": "新疆铁道职业技术学院",
-      "blueTeam": "巨人机器人"
+      "redSchool": "",
+      "redTeam": "",
+      "blueSchool": "",
+      "blueTeam": ""
     },
     {
       "id": "RMUL-2026-上海站-9-BV1pT9MBFEGy",
@@ -28493,14 +28709,14 @@
       "url": "",
       "uncertain": true,
       "inferred": true,
-      "inferenceNote": "蓝方缺赛",
+      "inferenceNote": "轮空",
       "season": "2026",
       "zone": "上海站",
       "order": "32",
-      "redSchool": "上海电机学院",
-      "redTeam": "拾荒",
-      "blueSchool": "新疆铁道职业技术学院",
-      "blueTeam": "巨人机器人"
+      "redSchool": "",
+      "redTeam": "",
+      "blueSchool": "",
+      "blueTeam": ""
     },
     {
       "id": "RMUL-2026-上海站-33-BV12QDTBtEkx",
@@ -28751,14 +28967,14 @@
       "url": "",
       "uncertain": true,
       "inferred": true,
-      "inferenceNote": "蓝方缺赛",
+      "inferenceNote": "轮空",
       "season": "2026",
       "zone": "上海站",
       "order": "48",
-      "redSchool": "宁波诺丁汉大学",
-      "redTeam": "AIM",
-      "blueSchool": "新疆铁道职业技术学院",
-      "blueTeam": "巨人机器人"
+      "redSchool": "",
+      "redTeam": "",
+      "blueSchool": "",
+      "blueTeam": ""
     },
     {
       "id": "RMUL-2026-上海站-49-BV1LTDLBhE3W",
