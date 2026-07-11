@@ -5,11 +5,15 @@ from __future__ import annotations
 
 import json
 import re
+import shutil
 import sys
 import threading
+import subprocess
+import time
 import urllib.error
 import urllib.parse
 import urllib.request
+import uuid
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 from pathlib import Path
 
@@ -18,8 +22,16 @@ DEFAULT_ROOM_ID = "82357"
 HOST = "127.0.0.1"
 PORT = 8765
 ROOT = Path(__file__).resolve().parent
+RECORDINGS_DIR = ROOT / "recordings"
+FFMPEG_HEADERS = (
+    "User-Agent: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 Chrome/126 Safari/537.36\r\n"
+    "Referer: https://live.bilibili.com/\r\n"
+    "Origin: https://live.bilibili.com\r\n"
+)
 URL_CACHE: dict[str, str] = {}
 URL_CACHE_LOCK = threading.Lock()
+RECORDINGS: dict[str, dict] = {}
+RECORDINGS_LOCK = threading.Lock()
 
 
 def cache_url(url: str) -> str:
@@ -69,12 +81,203 @@ def rewrite_m3u8(payload: bytes, base_url: str) -> bytes:
     return ("\n".join(lines) + "\n").encode("utf-8")
 
 
+def safe_filename(value: str, fallback: str = "RoboMaster直播") -> str:
+    cleaned = re.sub(r'[\\/:*?"<>|\x00-\x1f]+', "_", str(value or fallback))
+    cleaned = re.sub(r"\s+", " ", cleaned).strip(" ._")
+    return (cleaned or fallback)[:120]
+
+
+def unique_recording_path(name: str, extension: str = "mp4") -> Path:
+    RECORDINGS_DIR.mkdir(parents=True, exist_ok=True)
+    stem = safe_filename(name)
+    extension = re.sub(r"[^a-z0-9]+", "", extension.lower()) or "mp4"
+    for index in range(1000):
+        suffix = f"_{index + 1}" if index else ""
+        candidate = RECORDINGS_DIR / f"{stem}{suffix}.{extension}"
+        if not candidate.exists():
+            return candidate
+    return RECORDINGS_DIR / f"{stem}_{int(time.time())}.{extension}"
+
+
+def resolve_recording_url(raw_url: str, host: str) -> str:
+    url = str(raw_url or "").strip()
+    if url.startswith("//"):
+        url = "https:" + url
+    elif url.startswith("/"):
+        url = f"http://{host}{url}"
+    parsed = urllib.parse.urlparse(url)
+    if parsed.scheme not in ("http", "https") or not parsed.netloc:
+        raise ValueError("录制源不是有效的 HTTP/HLS 地址")
+    if parsed.scheme == "http" and parsed.hostname not in {"127.0.0.1", "localhost"}:
+        raise ValueError("HTTP 录制源只能来自本地代理")
+    return url
+
+
+def public_recording_session(session: dict) -> dict:
+    output_path = Path(session["outputPath"])
+    payload = {
+        "id": session["id"],
+        "state": session["state"],
+        "filename": session["filename"],
+        "relativePath": str(output_path.relative_to(ROOT)) if output_path.is_relative_to(ROOT) else session["filename"],
+        "outputPath": session["outputPath"],
+        "viewName": session.get("viewName", ""),
+        "matchName": session.get("matchName", ""),
+        "startedAt": session.get("startedAt", 0),
+        "endedAt": session.get("endedAt"),
+        "returncode": session.get("returncode"),
+    }
+    started_at = float(session.get("startedAt") or time.time())
+    ended_at = float(session.get("endedAt") or time.time())
+    payload["elapsed"] = max(0, ended_at - started_at)
+    try:
+        payload["size"] = output_path.stat().st_size
+    except OSError:
+        payload["size"] = 0
+    return payload
+
+
+def active_recording_count() -> int:
+    with RECORDINGS_LOCK:
+        return sum(1 for session in RECORDINGS.values() if session.get("state") in {"recording", "stopping"})
+
+
+def build_ffmpeg_args(source_url: str, output_path: Path) -> list[str]:
+    ffmpeg = shutil.which("ffmpeg")
+    if not ffmpeg:
+        raise RuntimeError("找不到 ffmpeg，无法启用本地 MP4 录制")
+    return [
+        ffmpeg,
+        "-hide_banner",
+        "-loglevel",
+        "warning",
+        "-y",
+        "-headers",
+        FFMPEG_HEADERS,
+        "-reconnect",
+        "1",
+        "-reconnect_streamed",
+        "1",
+        "-reconnect_delay_max",
+        "5",
+        "-rw_timeout",
+        "15000000",
+        "-i",
+        source_url,
+        "-map",
+        "0",
+        "-c",
+        "copy",
+        "-max_muxing_queue_size",
+        "4096",
+        "-movflags",
+        "+faststart",
+        str(output_path),
+    ]
+
+
+def watch_recording_session(session_id: str) -> None:
+    with RECORDINGS_LOCK:
+        session = RECORDINGS.get(session_id)
+        process = session.get("process") if session else None
+    if not session or not process:
+        return
+    returncode = process.wait()
+    with RECORDINGS_LOCK:
+        session = RECORDINGS.get(session_id)
+        if not session:
+            return
+        session["returncode"] = returncode
+        session["endedAt"] = time.time()
+        if session.get("stopRequested"):
+            session["state"] = "stopped"
+        elif returncode == 0:
+            session["state"] = "ended"
+        else:
+            session["state"] = "failed"
+
+
+def start_recording_session(item: dict, host: str) -> dict:
+    source_url = resolve_recording_url(item.get("url") or item.get("source") or "", host)
+    match_name = safe_filename(item.get("matchName") or item.get("name") or "RoboMaster直播")
+    view_name = safe_filename(item.get("viewName") or "")
+    name = safe_filename(item.get("name") or (f"{match_name}_{view_name}" if view_name else match_name))
+    output_path = unique_recording_path(name, "mp4")
+    log_path = output_path.with_suffix(output_path.suffix + ".log")
+    args = build_ffmpeg_args(source_url, output_path)
+    session_id = uuid.uuid4().hex[:12]
+    with log_path.open("ab") as log_file:
+        log_file.write(f"\n[{time.strftime('%Y-%m-%d %H:%M:%S')}] start {source_url}\n".encode("utf-8"))
+        process = subprocess.Popen(
+            args,
+            cwd=str(ROOT),
+            stdin=subprocess.PIPE,
+            stdout=subprocess.DEVNULL,
+            stderr=log_file,
+        )
+    session = {
+        "id": session_id,
+        "state": "recording",
+        "process": process,
+        "url": source_url,
+        "filename": output_path.name,
+        "outputPath": str(output_path),
+        "logPath": str(log_path),
+        "viewName": view_name,
+        "matchName": match_name,
+        "startedAt": time.time(),
+        "endedAt": None,
+        "returncode": None,
+        "stopRequested": False,
+    }
+    with RECORDINGS_LOCK:
+        RECORDINGS[session_id] = session
+    watcher = threading.Thread(target=watch_recording_session, args=(session_id,), daemon=True)
+    watcher.start()
+    return public_recording_session(session)
+
+
+def stop_recording_session(session_id: str) -> dict:
+    with RECORDINGS_LOCK:
+        session = RECORDINGS.get(session_id)
+        process = session.get("process") if session else None
+        if session:
+            session["stopRequested"] = True
+            if session.get("state") == "recording":
+                session["state"] = "stopping"
+    if not session or not process:
+        return {"id": session_id, "state": "missing"}
+    if process.poll() is None:
+        try:
+            if process.stdin:
+                process.stdin.write(b"q\n")
+                process.stdin.flush()
+        except (BrokenPipeError, OSError):
+            pass
+        try:
+            process.wait(timeout=8)
+        except subprocess.TimeoutExpired:
+            process.terminate()
+            try:
+                process.wait(timeout=5)
+            except subprocess.TimeoutExpired:
+                process.kill()
+                process.wait(timeout=3)
+    with RECORDINGS_LOCK:
+        session = RECORDINGS.get(session_id, session)
+        if session.get("state") == "stopping":
+            session["state"] = "stopped"
+            session["endedAt"] = session.get("endedAt") or time.time()
+            session["returncode"] = process.returncode
+        return public_recording_session(session)
+
+
 class BiliProxyHandler(BaseHTTPRequestHandler):
     server_version = "BiliLiveProxy/0.1"
 
     def end_headers(self) -> None:
         self.send_header("Access-Control-Allow-Origin", "*")
-        self.send_header("Access-Control-Allow-Methods", "GET, HEAD, OPTIONS")
+        self.send_header("Access-Control-Allow-Methods", "GET, HEAD, POST, OPTIONS")
         self.send_header("Access-Control-Allow-Headers", "Range, Content-Type")
         self.send_header("Access-Control-Allow-Private-Network", "true")
         self.send_header("Access-Control-Expose-Headers", "Content-Length, Content-Range, Accept-Ranges")
@@ -98,8 +301,21 @@ class BiliProxyHandler(BaseHTTPRequestHandler):
             self.handle_proxy(query, send_body)
         elif parsed.path.startswith("/bili/cached/"):
             self.handle_cached(parsed.path.rsplit("/", 1)[-1], send_body)
+        elif parsed.path == "/record/health":
+            self.handle_record_health(send_body)
+        elif parsed.path == "/record/status":
+            self.handle_record_status(send_body)
         else:
             self.send_json(404, {"error": "not found"}, send_body)
+
+    def do_POST(self) -> None:
+        parsed = urllib.parse.urlparse(self.path)
+        if parsed.path == "/record/start":
+            self.handle_record_start()
+        elif parsed.path == "/record/stop":
+            self.handle_record_stop()
+        else:
+            self.send_json(404, {"error": "not found"}, True)
 
     def send_dashboard(self, send_body: bool) -> None:
         dashboard = ROOT / "docs" / "index.html"
@@ -183,6 +399,79 @@ class BiliProxyHandler(BaseHTTPRequestHandler):
         self.end_headers()
         if send_body:
             self.wfile.write(body)
+
+    def read_json_body(self) -> dict:
+        length = int(self.headers.get("Content-Length", "0") or 0)
+        if length <= 0:
+            return {}
+        body = self.rfile.read(min(length, 1024 * 1024))
+        if not body:
+            return {}
+        payload = json.loads(body.decode("utf-8"))
+        if not isinstance(payload, dict):
+            raise ValueError("JSON body must be an object")
+        return payload
+
+    def handle_record_health(self, send_body: bool) -> None:
+        ffmpeg = shutil.which("ffmpeg")
+        self.send_json(200, {
+            "ok": bool(ffmpeg),
+            "ffmpeg": bool(ffmpeg),
+            "ffmpegPath": ffmpeg or "",
+            "outputDir": str(RECORDINGS_DIR),
+            "active": active_recording_count(),
+        }, send_body)
+
+    def handle_record_status(self, send_body: bool) -> None:
+        with RECORDINGS_LOCK:
+            sessions = [public_recording_session(session) for session in RECORDINGS.values()]
+        self.send_json(200, {
+            "ok": True,
+            "outputDir": str(RECORDINGS_DIR),
+            "active": sum(1 for session in sessions if session.get("state") in {"recording", "stopping"}),
+            "sessions": sessions[-80:],
+        }, send_body)
+
+    def handle_record_start(self) -> None:
+        try:
+            payload = self.read_json_body()
+            items = payload.get("items") or []
+            if not isinstance(items, list) or not items:
+                self.send_json(400, {"ok": False, "error": "没有可录制的直播源"}, True)
+                return
+            if len(items) > 12:
+                self.send_json(400, {"ok": False, "error": "一次最多录制 12 路视角"}, True)
+                return
+            sessions = []
+            errors = []
+            host = self.headers.get("Host", f"{HOST}:{PORT}")
+            for item in items:
+                try:
+                    if not isinstance(item, dict):
+                        raise ValueError("录制项格式错误")
+                    sessions.append(start_recording_session(item, host))
+                except Exception as error:  # Keep other selected views starting when one source is bad.
+                    errors.append({"name": item.get("name", "") if isinstance(item, dict) else "", "error": str(error)})
+            if not sessions:
+                self.send_json(500, {"ok": False, "error": errors[0]["error"] if errors else "录制启动失败", "errors": errors}, True)
+                return
+            self.send_json(200, {"ok": True, "sessions": sessions, "errors": errors, "outputDir": str(RECORDINGS_DIR)}, True)
+        except json.JSONDecodeError as error:
+            self.send_json(400, {"ok": False, "error": f"JSON 解析失败：{error}"}, True)
+        except Exception as error:
+            self.send_json(500, {"ok": False, "error": str(error)}, True)
+
+    def handle_record_stop(self) -> None:
+        try:
+            payload = self.read_json_body()
+        except Exception:
+            payload = {}
+        ids = payload.get("ids") if isinstance(payload, dict) else None
+        if not isinstance(ids, list) or not ids:
+            with RECORDINGS_LOCK:
+                ids = [session_id for session_id, session in RECORDINGS.items() if session.get("state") in {"recording", "stopping"}]
+        sessions = [stop_recording_session(str(session_id)) for session_id in ids]
+        self.send_json(200, {"ok": True, "sessions": sessions, "outputDir": str(RECORDINGS_DIR)}, True)
 
     def send_json(self, status: int, payload: dict, send_body: bool) -> None:
         body = json.dumps(payload, ensure_ascii=False).encode("utf-8")

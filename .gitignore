@@ -9,3 +9,4 @@ data/*
 !data/rules/*.pdf
 __pycache__/
 *.pyc
+recordings/

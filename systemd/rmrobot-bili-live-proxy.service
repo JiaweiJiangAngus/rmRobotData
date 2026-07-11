@@ -1,0 +1,14 @@
+[Unit]
+Description=RM Robot Data Bilibili live proxy
+After=network-online.target
+
+[Service]
+Type=simple
+WorkingDirectory=/home/jwj/Desktop/rmRobotData
+ExecStart=/usr/bin/python3 /home/jwj/Desktop/rmRobotData/bili_live_proxy.py
+Restart=always
+RestartSec=2
+Environment=PYTHONUNBUFFERED=1
+
+[Install]
+WantedBy=default.target

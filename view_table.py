@@ -9791,6 +9791,8 @@ def render_html(title, payload):
     let liveRecordingMatchName = "";
     let liveRecordingIntent = false;
     let liveRecordingTransition = false;
+    let liveLocalRecordingAvailable = false;
+    let liveLocalRecordingOutputDir = "recordings";
     let liveBroadcastMonitor = null;
     let liveLastVolume = 0.7;
     let liveChatLoader = null;
@@ -10047,6 +10049,37 @@ def render_html(title, payload):
       return title.textContent;
     }}
 
+    async function fetchLocalProxyJson(path, options = {{}}, timeout = 1400) {{
+      const controller = new AbortController();
+      const timer = setTimeout(() => controller.abort(), timeout);
+      try {{
+        const response = await fetch(`${{BILI_LOCAL_PROXY_ORIGIN}}${{path}}`, {{
+          ...options,
+          signal: controller.signal,
+          cache: "no-store",
+        }});
+        const payload = await response.json().catch(() => ({{}}));
+        return {{ response, payload }};
+      }} finally {{
+        clearTimeout(timer);
+      }}
+    }}
+
+    async function refreshLocalRecordingAvailability() {{
+      try {{
+        const {{ response, payload }} = await fetchLocalProxyJson(`/record/health?_=${{Date.now()}}`);
+        liveLocalRecordingAvailable = !!(response.ok && payload.ok && payload.ffmpeg);
+        liveLocalRecordingOutputDir = payload.outputDir || "recordings";
+      }} catch (error) {{
+        liveLocalRecordingAvailable = false;
+      }}
+      return liveLocalRecordingAvailable;
+    }}
+
+    function isUsableRecordingFormat(format) {{
+      return !!(format?.local || format?.mimeType);
+    }}
+
     function populateLiveRecordingViews(views) {{
       const container = document.getElementById("liveRecordViews");
       container.innerHTML = views.map((view, index) =>
@@ -10060,12 +10093,16 @@ def render_html(title, payload):
       liveRecordQuality.disabled = !qualitySources.length;
       const recordingFormats = populateRecordingFormats();
       document.getElementById("liveRecordAll").disabled = !views.length;
-      liveRecordStart.disabled = !views.length || !recordingFormats.some((format) => format.mimeType);
+      liveRecordStart.disabled = !views.length || !recordingFormats.some(isUsableRecordingFormat);
     }}
 
     function detectRecordingFormats() {{
-      if (!window.MediaRecorder?.isTypeSupported) return [];
-      const formats = [
+      const formats = [];
+      if (liveLocalRecordingAvailable) {{
+        formats.push({{ key: "local-mp4", label: "MP4 · 原始流（本地）", extension: "mp4", mimeType: "video/mp4", local: true }});
+      }}
+      if (!window.MediaRecorder?.isTypeSupported) return formats;
+      const browserFormats = [
         {{ key: "mp4", label: "MP4 · H.264/AAC", extension: "mp4", candidates: [
           "video/mp4;codecs=avc1.42E01E,mp4a.40.2",
           "video/mp4;codecs=avc1,mp4a.40.2",
@@ -10077,18 +10114,18 @@ def render_html(title, payload):
           "video/webm",
         ] }},
       ];
-      return formats.map((format) => ({{
+      return formats.concat(browserFormats.map((format) => ({{
         ...format,
         mimeType: format.candidates.find((type) => MediaRecorder.isTypeSupported(type)) || "",
-      }}));
+      }})));
     }}
 
     function populateRecordingFormats() {{
       const formats = detectRecordingFormats();
       liveRecordFormat.innerHTML = formats.map((format) =>
-        `<option value="${{format.key}}" ${{format.mimeType ? "" : "disabled"}}>${{format.label}}${{format.mimeType ? "" : "（不支持）"}}</option>`
+        `<option value="${{format.key}}" ${{isUsableRecordingFormat(format) ? "" : "disabled"}}>${{format.label}}${{isUsableRecordingFormat(format) ? "" : "（不支持）"}}</option>`
       ).join("");
-      const preferred = formats.find((format) => format.key === "mp4" && format.mimeType) || formats.find((format) => format.mimeType);
+      const preferred = formats.find((format) => format.local) || formats.find((format) => format.key === "mp4" && format.mimeType) || formats.find(isUsableRecordingFormat);
       liveRecordFormat.value = preferred?.key || "";
       liveRecordFormat.disabled = !preferred;
       syncLiveRecordingDirectoryControl();
@@ -10096,7 +10133,7 @@ def render_html(title, payload):
     }}
 
     function getSelectedRecordingFormat() {{
-      return detectRecordingFormats().find((format) => format.key === liveRecordFormat.value && format.mimeType) || null;
+      return detectRecordingFormats().find((format) => format.key === liveRecordFormat.value && isUsableRecordingFormat(format)) || null;
     }}
 
     function safeRecordingName(value) {{
@@ -10172,6 +10209,13 @@ def render_html(title, payload):
     }}
 
     function syncLiveRecordingDirectoryControl() {{
+      const selectedFormat = getSelectedRecordingFormat();
+      if (selectedFormat?.local) {{
+        liveRecordDirectory.disabled = true;
+        liveRecordDirectory.textContent = "保存到 recordings";
+        liveRecordDirectory.title = `本地代理会保存到 ${{liveLocalRecordingOutputDir || "recordings"}}`;
+        return;
+      }}
       const supported = "showDirectoryPicker" in window;
       liveRecordDirectory.disabled = !supported || !!liveRecordingSessions.length || liveRecordingTransition;
       if (!supported) {{
@@ -10184,6 +10228,11 @@ def render_html(title, payload):
     }}
 
     async function chooseLiveRecordingDirectory() {{
+      if (getSelectedRecordingFormat()?.local) {{
+        liveRecorderStatus.textContent = `本地 MP4 将保存到 ${{liveLocalRecordingOutputDir || "recordings"}}`;
+        syncLiveRecordingDirectoryControl();
+        return;
+      }}
       if (!("showDirectoryPicker" in window)) {{
         liveRecorderStatus.textContent = "当前浏览器不支持选择保存目录";
         syncLiveRecordingDirectoryControl();
@@ -10209,8 +10258,65 @@ def render_html(title, payload):
       }});
     }}
 
+    function getLiveRecordingSource(view, quality) {{
+      return view.sources.find((item) => (item.res || item.label) === quality) || view.sources[0];
+    }}
+
+    function resolveLocalRecordingSourceUrl(src) {{
+      const url = String(src || "").trim();
+      if (!url) return "";
+      if (url.startsWith("/")) return `${{BILI_LOCAL_PROXY_ORIGIN}}${{url}}`;
+      return url;
+    }}
+
+    async function startLocalLiveRecording(views, quality, matchName, includeViewName) {{
+      const items = views.map((view) => {{
+        const source = getLiveRecordingSource(view, quality);
+        if (!source?.src) throw new Error(`${{view.name}} 没有可用流`);
+        const name = includeViewName ? `${{safeRecordingName(matchName)}}_${{safeRecordingName(view.name)}}` : safeRecordingName(matchName);
+        return {{
+          url: resolveLocalRecordingSourceUrl(source.src),
+          name,
+          matchName,
+          viewName: view.name,
+          quality: source.label || source.res || quality,
+        }};
+      }});
+      const {{ response, payload }} = await fetchLocalProxyJson("/record/start", {{
+        method: "POST",
+        headers: {{ "Content-Type": "application/json" }},
+        body: JSON.stringify({{ items, matchName, quality }}),
+      }}, 12000);
+      if (!response.ok || !payload.ok || !payload.sessions?.length) {{
+        const detail = payload.error || payload.errors?.[0]?.error || "本地 MP4 录制启动失败";
+        throw new Error(detail);
+      }}
+      liveLocalRecordingOutputDir = payload.outputDir || liveLocalRecordingOutputDir;
+      return payload.sessions.map((session) => ({{
+        ...session,
+        local: true,
+        extension: "mp4",
+        matchName,
+        includeViewName,
+      }}));
+    }}
+
+    async function stopLocalLiveRecording(sessions) {{
+      const ids = sessions.map((session) => session.id).filter(Boolean);
+      if (!ids.length) return "本地录制已停止";
+      const {{ response, payload }} = await fetchLocalProxyJson("/record/stop", {{
+        method: "POST",
+        headers: {{ "Content-Type": "application/json" }},
+        body: JSON.stringify({{ ids }}),
+      }}, 20000);
+      if (!response.ok || !payload.ok) throw new Error(payload.error || "本地录制停止失败");
+      liveLocalRecordingOutputDir = payload.outputDir || liveLocalRecordingOutputDir;
+      const files = (payload.sessions || []).map((session) => session.relativePath || session.filename).filter(Boolean);
+      return files.length ? `已保存：${{files.join("、")}}` : "本地录制已停止";
+    }}
+
     async function createLiveRecordingSession(view, quality, format, matchName, startedAt, includeViewName) {{
-      const source = view.sources.find((item) => (item.res || item.label) === quality) || view.sources[0];
+      const source = getLiveRecordingSource(view, quality);
       if (!source?.src) throw new Error(`${{view.name}} 没有可用流`);
       let video = liveVideo;
       let hls = null;
@@ -10289,9 +10395,13 @@ def render_html(title, payload):
       liveRecordingMatchName = updateLiveMatchTitle() || document.getElementById("liveMatchTitle").textContent || "RoboMaster直播";
       liveRecorderStatus.textContent = "正在准备录制流...";
       try {{
-        const results = await Promise.allSettled(views.map((view) => createLiveRecordingSession(view, liveRecordQuality.value, recordingFormat, liveRecordingMatchName, liveRecordingStartedAt, views.length > 1)));
-        liveRecordingSessions = results.filter((result) => result.status === "fulfilled").map((result) => result.value);
-        if (!liveRecordingSessions.length) throw results.find((result) => result.status === "rejected")?.reason || new Error("录制启动失败");
+        if (recordingFormat.local) {{
+          liveRecordingSessions = await startLocalLiveRecording(views, liveRecordQuality.value, liveRecordingMatchName, views.length > 1);
+        }} else {{
+          const results = await Promise.allSettled(views.map((view) => createLiveRecordingSession(view, liveRecordQuality.value, recordingFormat, liveRecordingMatchName, liveRecordingStartedAt, views.length > 1)));
+          liveRecordingSessions = results.filter((result) => result.status === "fulfilled").map((result) => result.value);
+          if (!liveRecordingSessions.length) throw results.find((result) => result.status === "rejected")?.reason || new Error("录制启动失败");
+        }}
         syncLiveRecordingDirectoryControl();
         liveRecordStop.disabled = false;
         liveRecorderStatus.classList.add("recording");
@@ -10314,10 +10424,18 @@ def render_html(title, payload):
       if (liveRecordingTimer) clearInterval(liveRecordingTimer);
       liveRecordingTimer = null;
       const sessions = liveRecordingSessions.splice(0);
-      sessions.forEach((session) => {{ if (session.recorder.state !== "inactive") session.recorder.stop(); }});
-      await Promise.all(sessions.map((session) => session.stopped));
+      const localSessions = sessions.filter((session) => session.local);
+      const browserSessions = sessions.filter((session) => !session.local);
+      let stopMessage = "";
+      browserSessions.forEach((session) => {{ if (session.recorder.state !== "inactive") session.recorder.stop(); }});
+      try {{
+        if (localSessions.length) stopMessage = await stopLocalLiveRecording(localSessions);
+      }} catch (error) {{
+        stopMessage = error.message || "本地录制停止失败";
+      }}
+      await Promise.all(browserSessions.map((session) => session.stopped));
       liveRecorderStatus.classList.remove("recording");
-      liveRecorderStatus.textContent = sessions.length ? "录制结束，正在保存文件" : (leavingBoard ? "已停止" : "待机");
+      liveRecorderStatus.textContent = sessions.length ? (stopMessage || "录制结束，正在保存文件") : (leavingBoard ? "已停止" : "待机");
       liveRecordStop.disabled = true;
       document.getElementById("liveRefreshButton").disabled = false;
       document.querySelectorAll("#liveRecordViews input").forEach((input) => {{ input.disabled = false; }});
@@ -10532,7 +10650,7 @@ def render_html(title, payload):
 
     function requestBiliRoomId() {{
       const savedRoomId = localStorage.getItem("rm-dashboard-bili-room") || BILI_TEST_DEFAULT_ROOM_ID;
-      const roomId = normalizeBiliRoomId(window.prompt("输入 B站直播房间号", savedRoomId));
+      const roomId = normalizeBiliRoomId(window.prompt("输入B站直播房间号", savedRoomId));
       if (!roomId) return "";
       localStorage.setItem("rm-dashboard-bili-room", roomId);
       return roomId;
@@ -10583,6 +10701,19 @@ def render_html(title, payload):
 
     async function fetchBiliTestPayload(roomId, cacheBust) {{
       try {{
+        const proxyResponse = await fetch(getBiliProxyUrl(roomId) + `&_=${{Date.now()}}`, {{ cache: "no-store" }});
+        if (!proxyResponse.ok) throw new Error(`本地代理返回 ${{proxyResponse.status}}`);
+        const payload = await proxyResponse.json();
+        return {{ ...payload, viaProxy: !payload.proxiedStreams }};
+      }} catch (proxyError) {{
+        try {{
+          const {{ response }} = await fetchLocalProxyJson(`/record/health?_=${{Date.now()}}`);
+          if (!response.ok) throw proxyError;
+        }} catch (healthError) {{
+          throw new Error("本地B站代理没有响应。请确认 rmrobot-bili-live-proxy.service 已启动，或运行 python3 bili_live_proxy.py");
+        }}
+      }}
+      try {{
         const [playResponse, roomResponse] = await Promise.all([
           fetch(getBiliPlayUrl(roomId) + cacheBust, {{ cache: "no-store" }}),
           fetch(getBiliRoomInfoUrl(roomId) + `&_=${{Date.now()}}`, {{ cache: "no-store" }}).catch(() => null),
@@ -10594,14 +10725,7 @@ def render_html(title, payload):
           viaProxy: false,
         }};
       }} catch (error) {{
-        try {{
-          const proxyResponse = await fetch(getBiliProxyUrl(roomId) + `&_=${{Date.now()}}`, {{ cache: "no-store" }});
-          if (!proxyResponse.ok) throw new Error(`本地代理返回 ${{proxyResponse.status}}`);
-          const payload = await proxyResponse.json();
-          return {{ ...payload, viaProxy: !payload.proxiedStreams }};
-        }} catch (proxyError) {{
-          throw new Error("B站接口被浏览器拦截。请先运行 python3 bili_live_proxy.py，再在当前页面点 B站测试源");
-        }}
+        throw new Error("B站接口被浏览器拦截，且本地代理没有返回可用直播流");
       }}
     }}
 
@@ -10609,6 +10733,7 @@ def render_html(title, payload):
       roomId = normalizeBiliRoomId(roomId) || requestBiliRoomId();
       if (!roomId) return;
       const requestId = ++liveRequestId;
+      await refreshLocalRecordingAvailability();
       populateRecordingFormats();
       if (liveBroadcastMonitor) clearInterval(liveBroadcastMonitor);
       liveBroadcastMonitor = null;
@@ -10658,6 +10783,7 @@ def render_html(title, payload):
 
     async function initializeLiveBoard() {{
       const requestId = ++liveRequestId;
+      await refreshLocalRecordingAvailability();
       populateRecordingFormats();
       setLiveMessage("正在获取官方直播流...", "正在连接");
       document.getElementById("liveEventName").textContent = "正在检查 RoboMaster 官方直播状态...";
@@ -10732,6 +10858,7 @@ def render_html(title, payload):
     }});
     liveRecordStart.addEventListener("click", () => startLiveRecording(false));
     liveRecordStop.addEventListener("click", () => stopLiveRecording(false));
+    liveRecordFormat.addEventListener("change", syncLiveRecordingDirectoryControl);
     liveRecordDirectory.addEventListener("click", chooseLiveRecordingDirectory);
     document.getElementById("liveDanmakuToggle").addEventListener("click", (event) => {{
       liveDanmakuEnabled = !liveDanmakuEnabled;
