@@ -4568,7 +4568,7 @@ def render_html(title, payload):
     .live-recorder.recorder-collapsed > :not(.live-recorder-head) {{ display: none; }}
     .live-recorder-status {{ color: #aebbc4; font-size: 12px; }}
     .live-recorder-status.recording {{ color: #ff7b72; font-weight: 850; }}
-    .live-record-controls {{ display: grid; grid-template-columns: minmax(130px, 190px) minmax(150px, 190px) repeat(4, minmax(110px, 1fr)); gap: 8px; }}
+    .live-record-controls {{ display: grid; grid-template-columns: minmax(130px, 190px) minmax(150px, 190px) minmax(120px, 150px) repeat(4, minmax(110px, 1fr)); gap: 8px; }}
     .live-record-controls select,
     .live-record-controls button {{
       min-width: 0;
@@ -4582,6 +4582,23 @@ def render_html(title, payload):
     .live-record-controls button {{ cursor: pointer; font-weight: 850; }}
     .live-record-controls button:disabled,
     .live-record-controls select:disabled {{ opacity: .45; cursor: default; }}
+    .live-record-background {{
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 7px;
+      min-width: 0;
+      min-height: 40px;
+      padding: 7px 10px;
+      border: 1px solid rgba(255,255,255,.16);
+      background: #131f29;
+      color: #d9e5ea;
+      font-size: 12px;
+      font-weight: 850;
+      white-space: nowrap;
+    }}
+    .live-record-background input {{ width: 17px; height: 17px; margin: 0; accent-color: var(--accent); }}
+    .live-record-background:has(input:disabled) {{ opacity: .55; }}
     .live-record-views {{ display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 6px; }}
     .live-record-view {{
       display: flex;
@@ -5740,6 +5757,7 @@ def render_html(title, payload):
           <div class="live-record-controls">
             <select id="liveRecordQuality" aria-label="录制清晰度" disabled><option value="high">录制 1080p</option></select>
             <select id="liveRecordFormat" aria-label="录制文件格式" disabled><option value="">检测格式...</option></select>
+            <label class="live-record-background"><input id="liveRecordBackground" type="checkbox">后台录制</label>
             <button id="liveRecordDirectory" type="button">选择目录</button>
             <button id="liveRecordAll" type="button" disabled>全选视角</button>
             <button id="liveRecordStart" type="button" disabled>开始录制</button>
@@ -9767,6 +9785,7 @@ def render_html(title, payload):
     const liveRecordQuality = document.getElementById("liveRecordQuality");
     const liveRecordFormat = document.getElementById("liveRecordFormat");
     const liveRecordDirectory = document.getElementById("liveRecordDirectory");
+    const liveRecordBackground = document.getElementById("liveRecordBackground");
     const liveRecordStart = document.getElementById("liveRecordStart");
     const liveRecordStop = document.getElementById("liveRecordStop");
     const liveRecorderStatus = document.getElementById("liveRecorderStatus");
@@ -9790,6 +9809,7 @@ def render_html(title, payload):
     let liveRecordingStartedAt = 0;
     let liveRecordingMatchName = "";
     let liveRecordingIntent = false;
+    let liveRecordingBackground = false;
     let liveRecordingTransition = false;
     let liveLocalRecordingAvailable = false;
     let liveLocalRecordingOutputDir = "recordings";
@@ -9806,6 +9826,7 @@ def render_html(title, payload):
     let liveDanmakuLane = 0;
     let liveControlsTimer = null;
     let liveControlsWereHiddenOnPointerDown = false;
+    liveRecordBackground.checked = localStorage.getItem("rm-dashboard-live-record-background") === "true";
 
     function syncLivePlaybackControls() {{
       const unavailable = !liveVideo.currentSrc && !liveHls;
@@ -10080,20 +10101,27 @@ def render_html(title, payload):
       return !!(format?.local || format?.mimeType);
     }}
 
+    function isBackgroundRecordingActive() {{
+      return !!(liveRecordingBackground && liveRecordingSessions.length);
+    }}
+
     function populateLiveRecordingViews(views) {{
       const container = document.getElementById("liveRecordViews");
+      const recordingActive = !!liveRecordingSessions.length;
       container.innerHTML = views.map((view, index) =>
-        `<label class="live-record-view"><input type="checkbox" value="${{scheduleEscape(view.key)}}" ${{index === 0 ? "checked" : ""}}><span>${{scheduleEscape(view.name)}}</span></label>`
+        `<label class="live-record-view"><input type="checkbox" value="${{scheduleEscape(view.key)}}" ${{index === 0 ? "checked" : ""}} ${{recordingActive ? "disabled" : ""}}><span>${{scheduleEscape(view.name)}}</span></label>`
       ).join("");
       const qualitySources = views[0]?.sources || [];
       liveRecordQuality.innerHTML = qualitySources.filter((source) => source.src).map((source) =>
         `<option value="${{scheduleEscape(source.res || source.label)}}">录制 ${{scheduleEscape(source.label || source.res)}}</option>`
       ).join("");
       liveRecordQuality.value = qualitySources.some((source) => source.res === "high") ? "high" : (qualitySources[0]?.res || "");
-      liveRecordQuality.disabled = !qualitySources.length;
+      liveRecordQuality.disabled = !qualitySources.length || recordingActive;
       const recordingFormats = populateRecordingFormats();
-      document.getElementById("liveRecordAll").disabled = !views.length;
-      liveRecordStart.disabled = !views.length || !recordingFormats.some(isUsableRecordingFormat);
+      document.getElementById("liveRecordAll").disabled = !views.length || recordingActive;
+      liveRecordStart.disabled = recordingActive || !views.length || !recordingFormats.some(isUsableRecordingFormat);
+      liveRecordStop.disabled = !recordingActive;
+      liveRecordBackground.disabled = recordingActive;
     }}
 
     function detectRecordingFormats() {{
@@ -10127,7 +10155,7 @@ def render_html(title, payload):
       ).join("");
       const preferred = formats.find((format) => format.local) || formats.find((format) => format.key === "mp4" && format.mimeType) || formats.find(isUsableRecordingFormat);
       liveRecordFormat.value = preferred?.key || "";
-      liveRecordFormat.disabled = !preferred;
+      liveRecordFormat.disabled = !preferred || !!liveRecordingSessions.length;
       syncLiveRecordingDirectoryControl();
       return formats;
     }}
@@ -10315,12 +10343,12 @@ def render_html(title, payload):
       return files.length ? `已保存：${{files.join("、")}}` : "本地录制已停止";
     }}
 
-    async function createLiveRecordingSession(view, quality, format, matchName, startedAt, includeViewName) {{
+    async function createLiveRecordingSession(view, quality, format, matchName, startedAt, includeViewName, forceHiddenVideo = false) {{
       const source = getLiveRecordingSource(view, quality);
       if (!source?.src) throw new Error(`${{view.name}} 没有可用流`);
       let video = liveVideo;
       let hls = null;
-      const usesVisiblePlayer = view.key === liveSourceSelect.value &&
+      const usesVisiblePlayer = !forceHiddenVideo && view.key === liveSourceSelect.value &&
         (liveQualitySelect.value === (source.res || source.label)) && liveVideo.readyState >= 2;
       if (!usesVisiblePlayer) {{
         video = document.createElement("video");
@@ -10386,19 +10414,21 @@ def render_html(title, payload):
       liveRecordQuality.disabled = true;
       liveRecordFormat.disabled = true;
       liveRecordDirectory.disabled = true;
+      liveRecordBackground.disabled = true;
       document.getElementById("liveRecordAll").disabled = true;
       document.getElementById("liveRefreshButton").disabled = true;
       document.querySelectorAll("#liveRecordViews input").forEach((input) => {{ input.disabled = true; }});
       liveSourceSelect.disabled = true;
       liveQualitySelect.disabled = true;
       liveRecordingStartedAt = Date.now();
+      liveRecordingBackground = liveRecordBackground.checked;
       liveRecordingMatchName = updateLiveMatchTitle() || document.getElementById("liveMatchTitle").textContent || "RoboMaster直播";
       liveRecorderStatus.textContent = "正在准备录制流...";
       try {{
         if (recordingFormat.local) {{
           liveRecordingSessions = await startLocalLiveRecording(views, liveRecordQuality.value, liveRecordingMatchName, views.length > 1);
         }} else {{
-          const results = await Promise.allSettled(views.map((view) => createLiveRecordingSession(view, liveRecordQuality.value, recordingFormat, liveRecordingMatchName, liveRecordingStartedAt, views.length > 1)));
+          const results = await Promise.allSettled(views.map((view) => createLiveRecordingSession(view, liveRecordQuality.value, recordingFormat, liveRecordingMatchName, liveRecordingStartedAt, views.length > 1, liveRecordingBackground)));
           liveRecordingSessions = results.filter((result) => result.status === "fulfilled").map((result) => result.value);
           if (!liveRecordingSessions.length) throw results.find((result) => result.status === "rejected")?.reason || new Error("录制启动失败");
         }}
@@ -10407,13 +10437,15 @@ def render_html(title, payload):
         liveRecorderStatus.classList.add("recording");
         const refreshStatus = () => {{
           const seconds = Math.floor((Date.now() - liveRecordingStartedAt) / 1000);
-          liveRecorderStatus.textContent = `录制中 · ${{liveRecordingSessions.length}} 路 · ${{String(Math.floor(seconds / 60)).padStart(2, "0")}}:${{String(seconds % 60).padStart(2, "0")}}`;
+          const label = liveRecordingBackground ? "后台录制中" : "录制中";
+          liveRecorderStatus.textContent = `${{label}} · ${{liveRecordingSessions.length}} 路 · ${{String(Math.floor(seconds / 60)).padStart(2, "0")}}:${{String(seconds % 60).padStart(2, "0")}}`;
         }};
         refreshStatus();
         liveRecordingTimer = setInterval(refreshStatus, 1000);
       }} catch (error) {{
         const message = error.message || "录制启动失败";
         liveRecordingIntent = false;
+        liveRecordingBackground = false;
         stopLiveRecording(false);
         liveRecorderStatus.textContent = message;
       }}
@@ -10436,7 +10468,9 @@ def render_html(title, payload):
       await Promise.all(browserSessions.map((session) => session.stopped));
       liveRecorderStatus.classList.remove("recording");
       liveRecorderStatus.textContent = sessions.length ? (stopMessage || "录制结束，正在保存文件") : (leavingBoard ? "已停止" : "待机");
+      if (!preserveIntent) liveRecordingBackground = false;
       liveRecordStop.disabled = true;
+      liveRecordBackground.disabled = false;
       document.getElementById("liveRefreshButton").disabled = false;
       document.querySelectorAll("#liveRecordViews input").forEach((input) => {{ input.disabled = false; }});
       syncLiveRecordingDirectoryControl();
@@ -10456,16 +10490,44 @@ def render_html(title, payload):
       liveRecorderStatus.textContent = "对局已切换，正在保存并开始下一段...";
       try {{
         await stopLiveRecording(false, true);
-        if (liveRecordingIntent && activeDataset === "live" && liveZones.length) await startLiveRecording(true);
+        if (liveRecordingIntent && (activeDataset === "live" || liveRecordingBackground) && liveZones.length) await startLiveRecording(true);
       }} finally {{
         liveRecordingTransition = false;
       }}
     }}
 
+    function stopLiveRecordingOnPageExit() {{
+      if (!liveRecordingSessions.length) return;
+      const sessions = liveRecordingSessions.splice(0);
+      const localIds = sessions.filter((session) => session.local && session.id).map((session) => session.id);
+      const browserSessions = sessions.filter((session) => !session.local);
+      if (liveRecordingTimer) clearInterval(liveRecordingTimer);
+      liveRecordingTimer = null;
+      liveRecordingIntent = false;
+      liveRecordingBackground = false;
+      browserSessions.forEach((session) => {{
+        try {{
+          if (session.recorder?.state !== "inactive") session.recorder.stop();
+        }} catch (error) {{}}
+      }});
+      if (!localIds.length) return;
+      const body = JSON.stringify({{ ids: localIds }});
+      const url = `${{BILI_LOCAL_PROXY_ORIGIN}}/record/stop`;
+      const blob = new Blob([body], {{ type: "text/plain;charset=UTF-8" }});
+      if (navigator.sendBeacon?.(url, blob)) return;
+      fetch(url, {{
+        method: "POST",
+        headers: {{ "Content-Type": "application/json" }},
+        body,
+        keepalive: true,
+      }}).catch(() => {{}});
+    }}
+
     function destroyLivePlayer(resetInterface = false) {{
-      stopLiveRecording(true);
-      if (liveBroadcastMonitor) clearInterval(liveBroadcastMonitor);
-      liveBroadcastMonitor = null;
+      const keepBackgroundRecording = isBackgroundRecordingActive();
+      if (!keepBackgroundRecording) stopLiveRecording(true);
+      if (liveBroadcastMonitor && !keepBackgroundRecording) clearInterval(liveBroadcastMonitor);
+      if (!keepBackgroundRecording) liveBroadcastMonitor = null;
       disconnectLiveChat(resetInterface);
       resetLiveDisplayMode();
       liveRequestId += 1;
@@ -10479,21 +10541,30 @@ def render_html(title, payload):
       liveVideo.load();
       syncLivePlaybackControls();
       if (resetInterface) {{
-        liveZones = [];
-        liveMatchMap.clear();
-        liveSourceSelect.disabled = true;
-        liveQualitySelect.disabled = true;
-        liveEdgeButton.disabled = true;
-        liveRecordQuality.disabled = true;
-        liveRecordFormat.disabled = true;
-        liveRecordStart.disabled = true;
-        liveRecordStop.disabled = true;
-        document.getElementById("liveRecordAll").disabled = true;
-        document.getElementById("liveRecordViews").innerHTML = "";
-        document.getElementById("liveMatchTitle").textContent = "当前对阵待获取";
-        document.getElementById("liveMatchStage").textContent = "官方赛事信号";
-        livePlaybackStats.textContent = "播放器仅在本板块打开时工作";
-        setLiveMessage("切换到直播板块后自动获取当前赛事。", "已停止");
+        if (keepBackgroundRecording) {{
+          liveRecordStart.disabled = true;
+          liveRecordStop.disabled = false;
+          liveRecordBackground.disabled = true;
+          livePlaybackStats.textContent = "后台录制保持运行，关闭本页面时自动停止";
+          setLiveMessage("后台录制保持运行，播放器已暂停。", "后台录制");
+        }} else {{
+          liveZones = [];
+          liveMatchMap.clear();
+          liveSourceSelect.disabled = true;
+          liveQualitySelect.disabled = true;
+          liveEdgeButton.disabled = true;
+          liveRecordQuality.disabled = true;
+          liveRecordFormat.disabled = true;
+          liveRecordStart.disabled = true;
+          liveRecordStop.disabled = true;
+          liveRecordBackground.disabled = false;
+          document.getElementById("liveRecordAll").disabled = true;
+          document.getElementById("liveRecordViews").innerHTML = "";
+          document.getElementById("liveMatchTitle").textContent = "当前对阵待获取";
+          document.getElementById("liveMatchStage").textContent = "官方赛事信号";
+          livePlaybackStats.textContent = "播放器仅在本板块打开时工作";
+          setLiveMessage("切换到直播板块后自动获取当前赛事。", "已停止");
+        }}
       }}
     }}
 
@@ -10599,7 +10670,7 @@ def render_html(title, payload):
     }}
 
     async function monitorLiveBroadcast() {{
-      if (activeDataset !== "live") return;
+      if (activeDataset !== "live" && !isBackgroundRecordingActive()) return;
       try {{
         const cacheBust = `?t=${{Date.now()}}`;
         const [stateResponse, matchResponse] = await Promise.all([
@@ -10859,6 +10930,9 @@ def render_html(title, payload):
     liveRecordStart.addEventListener("click", () => startLiveRecording(false));
     liveRecordStop.addEventListener("click", () => stopLiveRecording(false));
     liveRecordFormat.addEventListener("change", syncLiveRecordingDirectoryControl);
+    liveRecordBackground.addEventListener("change", () => {{
+      localStorage.setItem("rm-dashboard-live-record-background", liveRecordBackground.checked ? "true" : "false");
+    }});
     liveRecordDirectory.addEventListener("click", chooseLiveRecordingDirectory);
     document.getElementById("liveDanmakuToggle").addEventListener("click", (event) => {{
       liveDanmakuEnabled = !liveDanmakuEnabled;
@@ -10967,6 +11041,8 @@ def render_html(title, payload):
       await stopLiveRecording(false);
       liveRecorderStatus.textContent = "直播流已结束，录制已自动停止";
     }});
+    window.addEventListener("pagehide", stopLiveRecordingOnPageExit);
+    window.addEventListener("beforeunload", stopLiveRecordingOnPageExit);
 
     const boardScrollPositions = {{}};
     let activeDataset = document.querySelector("[data-dataset-tab].active")?.dataset.datasetTab || "robot";
