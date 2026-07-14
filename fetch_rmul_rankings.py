@@ -8,8 +8,9 @@ from pathlib import Path
 
 from bs4 import BeautifulSoup
 
+from data_store import load_rmul_results, save_rmul_results
 
-DATA = Path("data/rmul_results.json")
+DATA = Path("data/rmul_results")
 ANNOUNCEMENTS = {
     "2026": "https://www.robomaster.com/zh-CN/resource/pages/announcement/1913",
     "2025": "https://www.robomaster.com/zh-CN/resource/pages/announcement/1830",
@@ -116,7 +117,7 @@ def annotate_brackets(matches, rankings):
 
 
 def main():
-    payload = json.loads(DATA.read_text(encoding="utf-8"))
+    payload = load_rmul_results() or {"matches": [], "collections": [], "coverage": []}
     official = []
     for year, url in ANNOUNCEMENTS.items():
         rows = parse_rankings(year, url, download(year, url))
@@ -125,7 +126,7 @@ def main():
     payload["rankings"] = [item for item in payload.get("rankings", []) if item.get("season") not in ANNOUNCEMENTS] + official
     payload["rankingSources"] = ANNOUNCEMENTS
     annotate_brackets(payload["matches"], payload["rankings"])
-    DATA.write_text(json.dumps(payload, ensure_ascii=False, indent=2), encoding="utf-8")
+    save_rmul_results(payload)
     print(f"saved {len(payload['rankings'])} official ranking rows")
 
 

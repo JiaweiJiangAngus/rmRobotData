@@ -6,6 +6,7 @@ import shutil
 import sys
 from pathlib import Path
 
+from data_store import load_rmuc_results, load_rmul_results
 from team_eval_rules import get_team_evaluation_config
 
 try:
@@ -21,12 +22,7 @@ DEFAULT_RESULTS_XLSX = Path("/home/jwj/Downloads/RoboMaster 2015-2026 赛果记�
 
 def load_schedule_data():
     """Load the unified repository schedule data; use the workbook as a fallback."""
-    repository_path = Path(__file__).resolve().parent / "data" / "schedule_results.json"
-    if repository_path.exists():
-        with repository_path.open("r", encoding="utf-8") as handle:
-            payload = json.load(handle)
-    else:
-        payload = None
+    payload = load_rmuc_results(Path(__file__).resolve().parent / "data")
     configured = os.environ.get("RM_RESULTS_XLSX")
     path = Path(configured) if configured else DEFAULT_RESULTS_XLSX
     if payload is None:
@@ -38,7 +34,7 @@ def load_schedule_data():
 
 
 def load_replay_links():
-    path = Path(__file__).resolve().parent / "data" / "replay_links.json"
+    path = Path(__file__).resolve().parent / "data" / "rmuc_results" / "replay_links.json"
     links = {}
     if path.exists():
         with path.open("r", encoding="utf-8") as handle:
@@ -51,19 +47,27 @@ def load_replay_links():
 
 
 def load_rmul_data():
-    path = Path(__file__).resolve().parent / "data" / "rmul_results.json"
-    if not path.exists():
-        return {"matches": [], "collections": [], "coverage": []}
-    with path.open("r", encoding="utf-8") as handle:
-        return json.load(handle)
+    payload = load_rmul_results(Path(__file__).resolve().parent / "data")
+    return payload or {"matches": [], "collections": [], "coverage": []}
 
 
 def load_rule_documents():
-    path = Path(__file__).resolve().parent / "data" / "rule_documents.json"
+    path = Path(__file__).resolve().parent / "data" / "rules" / "manifest.json"
     if not path.exists():
         return {"rmuc": {}, "rmul": {}}
     with path.open("r", encoding="utf-8") as handle:
         return json.load(handle)
+
+
+def load_full_form_rankings():
+    path = Path(__file__).resolve().parent / "data" / "rmuc_results" / "full_form_rankings.json"
+    if not path.exists():
+        return []
+    with path.open("r", encoding="utf-8") as handle:
+        payload = json.load(handle)
+    if isinstance(payload, list):
+        return payload
+    return payload.get("rankings", [])
 
 
 def parse_value(raw):
@@ -4136,6 +4140,10 @@ def render_html(title, payload):
       margin: 18px 0 0;
     }}
 
+    .below-table-grid .full-form-panel {{
+      margin-top: 0;
+    }}
+
     .below-table-grid[hidden] {{
       display: none;
     }}
@@ -4921,6 +4929,282 @@ def render_html(title, payload):
     .rank-gray {{ background: linear-gradient(135deg, #3d424a, #626873); }}
     .schedule-source {{ margin-top: 14px; color: var(--muted); font-size: 12px; line-height: 1.7; }}
     .schedule-source a {{ color: var(--accent-deep); font-weight: 900; }}
+    .history-panel {{
+      margin-top: 18px;
+      border: 1px solid var(--line);
+      background:
+        linear-gradient(135deg, color-mix(in srgb, var(--hud-cyan-soft), transparent 18%), transparent 42%),
+        var(--panel-soft);
+      box-shadow: inset 0 1px 0 rgba(255,255,255,.06);
+      overflow: hidden;
+    }}
+    .history-panel[hidden] {{ display: none; }}
+    .history-head {{
+      display: flex;
+      align-items: end;
+      justify-content: space-between;
+      gap: 14px;
+      padding: 14px 16px;
+      border-bottom: 1px solid var(--line);
+      background: linear-gradient(90deg, color-mix(in srgb, var(--accent-soft), transparent 10%), transparent);
+    }}
+    .history-head b {{ display: block; color: var(--text); font-size: 16px; }}
+    .history-head span {{ color: var(--muted); font-size: 12px; }}
+    .history-list {{ display: grid; gap: 8px; padding: 12px; }}
+    .history-season-group,
+    .history-zone-group,
+    .history-stage-group {{ display: grid; gap: 8px; }}
+    .history-season-group:not(:first-child) {{ margin-top: 12px; }}
+    .history-season-title {{
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 12px 14px;
+      border: 1px solid color-mix(in srgb, var(--accent), var(--line) 48%);
+      border-left: 4px solid var(--accent);
+      background: linear-gradient(90deg, var(--accent-soft), transparent);
+      color: var(--text);
+      font-weight: 950;
+    }}
+    .history-season-title b {{ font-size: 20px; }}
+    .history-season-stat {{
+      display: grid;
+      justify-items: end;
+      gap: 2px;
+      min-width: 210px;
+    }}
+    .history-winrate {{
+      font-size: clamp(24px, 3.2vw, 38px);
+      line-height: 1;
+      font-weight: 950;
+      color: var(--accent-deep);
+      text-shadow: 0 0 18px var(--accent-soft);
+    }}
+    .history-small-record {{ color: var(--muted); font-size: 13px; font-weight: 850; }}
+    .history-zone-title span,
+    .history-stage-title span {{ color: var(--muted); font-size: 13px; font-weight: 800; }}
+    .history-zone-group {{
+      padding: 10px;
+      border: 1px solid var(--line);
+      background: color-mix(in srgb, var(--panel-soft), transparent 16%);
+    }}
+    .history-zone-title {{
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 6px 2px 10px;
+      color: var(--hud-cyan);
+      font-weight: 900;
+    }}
+    .history-zone-stat {{
+      display: grid;
+      justify-items: end;
+      gap: 1px;
+      color: var(--muted);
+    }}
+    .history-zone-rate {{
+      color: var(--hud-cyan);
+      font-size: 18px;
+      line-height: 1;
+      font-weight: 950;
+    }}
+    .history-zone-record {{ font-size: 12px; font-weight: 800; }}
+    .history-stage-title {{
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 7px 10px;
+      border-left: 3px solid var(--hud-cyan);
+      background: var(--hud-cyan-soft);
+      color: var(--text);
+      font-size: 13px;
+      font-weight: 900;
+    }}
+    .history-row {{
+      display: grid;
+      grid-template-columns: 96px 150px 150px minmax(220px, 1fr) 96px 70px;
+      align-items: center;
+      gap: 12px;
+      min-height: 58px;
+      padding: 10px 12px;
+      position: relative;
+      isolation: isolate;
+      overflow: hidden;
+      border: 1px solid var(--line);
+      background: var(--panel-strong);
+    }}
+    .history-row::before {{
+      content: "";
+      position: absolute;
+      inset: 0;
+      z-index: -1;
+      opacity: .72;
+      background:
+        linear-gradient(110deg, transparent 0 44%, rgba(255,255,255,.18) 49%, transparent 54%),
+        repeating-linear-gradient(90deg, rgba(255,255,255,.06) 0 1px, transparent 1px 20px);
+    }}
+    .history-row.result-win {{ border-color: color-mix(in srgb, #f2635d, var(--line) 34%); box-shadow: inset 4px 0 0 rgba(242,99,93,.9); }}
+    .history-row.result-win::before {{ background-color: rgba(242,99,93,.10); }}
+    .history-row.result-loss {{ border-color: color-mix(in srgb, #36b879, var(--line) 36%); box-shadow: inset 4px 0 0 rgba(54,184,121,.9); }}
+    .history-row.result-loss::before {{ background-color: rgba(54,184,121,.11); }}
+    .history-row.result-draw {{ border-color: color-mix(in srgb, #8e9aa7, var(--line) 32%); box-shadow: inset 4px 0 0 rgba(142,154,167,.9); }}
+    .history-row.result-draw::before {{ background-color: rgba(142,154,167,.12); }}
+    .history-meta b,
+    .history-opponent b {{
+      display: block;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      color: var(--text);
+    }}
+    .history-meta span,
+    .history-opponent span {{ color: var(--muted); font-size: 13px; }}
+    .history-stage {{ color: var(--text); font-size: 14px; font-weight: 900; }}
+    .history-vs {{ color: var(--accent-deep); font-size: 15px; font-weight: 950; letter-spacing: .08em; text-align: center; }}
+    .history-score {{ font-size: 22px; font-weight: 950; text-align: center; color: var(--text); }}
+    .history-badge {{
+      justify-self: end;
+      min-width: 48px;
+      padding: 6px 10px;
+      text-align: center;
+      font-weight: 950;
+      border: 1px solid currentColor;
+      background: rgba(255,255,255,.08);
+    }}
+    .history-row.result-win .history-badge {{ color: #d7363f; }}
+    .history-row.result-loss .history-badge {{ color: #168858; }}
+    .history-row.result-draw .history-badge {{ color: #737d88; }}
+    html[data-theme="night"] .history-row.result-win .history-badge {{ color: #ff8f8f; }}
+    html[data-theme="night"] .history-row.result-loss .history-badge {{ color: #61d69b; }}
+    html[data-theme="night"] .history-row.result-draw .history-badge {{ color: #c7d0da; }}
+    .full-form-panel {{
+      margin-top: 18px;
+      border: 1px solid color-mix(in srgb, var(--hud-cyan), var(--line) 42%);
+      background:
+        linear-gradient(135deg, color-mix(in srgb, var(--hud-cyan-soft), transparent 4%), transparent 46%),
+        radial-gradient(circle at 86% 20%, color-mix(in srgb, var(--accent-soft), transparent 20%), transparent 34%),
+        var(--panel-soft);
+      box-shadow: inset 0 1px 0 rgba(255,255,255,.08), 0 18px 46px rgba(0,0,0,.10);
+      overflow: hidden;
+    }}
+    .full-form-panel[hidden] {{ display: none; }}
+    .full-form-head {{
+      display: flex;
+      align-items: end;
+      justify-content: space-between;
+      gap: 14px;
+      padding: 15px 16px 12px;
+      border-bottom: 1px solid var(--line);
+      background: linear-gradient(90deg, color-mix(in srgb, var(--hud-cyan-soft), transparent 8%), transparent);
+    }}
+    .full-form-head b {{
+      display: block;
+      color: var(--text);
+      font-size: 18px;
+      font-weight: 950;
+    }}
+    .full-form-head span {{
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 800;
+    }}
+    .full-form-best {{
+      min-width: 92px;
+      padding: 7px 11px;
+      border: 1px solid color-mix(in srgb, var(--hud-cyan), var(--line) 38%);
+      background: color-mix(in srgb, var(--hud-cyan-soft), transparent 8%);
+      color: var(--hud-cyan);
+      text-align: center;
+      font-size: 13px;
+      font-weight: 950;
+    }}
+    .full-form-body {{
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) 230px;
+      gap: 16px;
+      padding: 14px 16px 16px;
+    }}
+    .full-form-chart {{
+      width: 100%;
+      min-height: 250px;
+      overflow: visible;
+    }}
+    .full-form-chart .grid-line {{
+      stroke: color-mix(in srgb, var(--line), transparent 4%);
+      stroke-width: 1;
+    }}
+    .full-form-chart .rank-line {{
+      fill: none;
+      stroke: var(--hud-cyan);
+      stroke-width: 3.2;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      filter: drop-shadow(0 0 8px color-mix(in srgb, var(--hud-cyan), transparent 35%));
+    }}
+    .full-form-chart .rank-area {{
+      fill: color-mix(in srgb, var(--hud-cyan-soft), transparent 20%);
+    }}
+    .full-form-chart .rank-point {{
+      fill: var(--panel-strong);
+      stroke: var(--hud-cyan);
+      stroke-width: 3;
+    }}
+    .full-form-chart .rank-point.best {{
+      fill: #ffd25d;
+      stroke: #fff0b2;
+      filter: drop-shadow(0 0 10px rgba(255,210,93,.65));
+    }}
+    .full-form-chart text {{
+      fill: var(--muted);
+      font-size: 12px;
+      font-weight: 850;
+    }}
+    .full-form-chart .rank-label {{
+      fill: var(--text);
+      font-size: 13px;
+      font-weight: 950;
+    }}
+    .full-form-years {{
+      display: grid;
+      gap: 8px;
+      align-content: center;
+    }}
+    .full-form-year {{
+      display: grid;
+      grid-template-columns: 54px 1fr;
+      gap: 8px;
+      align-items: center;
+      min-height: 42px;
+      padding: 8px 10px;
+      border: 1px solid var(--line);
+      background: color-mix(in srgb, var(--panel-strong), transparent 8%);
+    }}
+    .full-form-year b {{
+      color: var(--muted);
+      font-size: 13px;
+      font-weight: 900;
+    }}
+    .full-form-year strong {{
+      color: var(--text);
+      font-size: 19px;
+      font-weight: 950;
+      text-align: right;
+    }}
+    .full-form-year.missing strong {{
+      color: var(--muted);
+      font-size: 14px;
+    }}
+    .full-form-year.best {{
+      border-color: color-mix(in srgb, #ffd25d, var(--line) 32%);
+      background: linear-gradient(90deg, rgba(255,210,93,.20), color-mix(in srgb, var(--panel-strong), transparent 4%));
+    }}
+    .full-form-empty {{
+      padding: 18px 16px;
+      color: var(--muted);
+      font-weight: 850;
+    }}
     .rule-document-bar {{ display: grid; grid-template-columns: minmax(0, 1fr) auto; align-items: center; gap: 14px; padding: 14px 16px; border: 1px solid var(--line); border-left: 4px solid var(--hud-cyan); background: linear-gradient(90deg, var(--hud-cyan-soft), var(--panel)); box-shadow: var(--shadow); }}
     .rule-document-copy {{ min-width: 0; }}
     .rule-document-copy b {{ display: block; color: var(--text); font-size: 14px; }}
@@ -4941,6 +5225,22 @@ def render_html(title, payload):
       .schedule-controls input {{ grid-column: 1 / -1; }}
       .schedule-match {{ grid-template-columns: 62px minmax(0,1fr) 76px minmax(0,1fr); }}
       .schedule-tail {{ grid-column: 1 / -1; border-left: 0; border-top: 1px solid var(--line); }}
+      .history-head {{ align-items: start; flex-direction: column; }}
+      .history-row {{ grid-template-columns: 1fr 70px; gap: 7px 10px; }}
+      .history-meta, .history-stage, .history-vs, .history-opponent {{ grid-column: 1 / 2; }}
+      .history-score, .history-badge {{ grid-column: 2 / 3; grid-row: span 2; }}
+      .history-season-title {{ align-items: flex-start; flex-direction: column; }}
+      .history-season-stat {{ justify-items: start; min-width: 0; }}
+      .history-zone-title {{ align-items: flex-start; flex-direction: column; }}
+      .history-zone-stat {{ justify-items: start; }}
+      .history-winrate {{ font-size: 28px; }}
+      .history-stage {{ font-size: 13px; }}
+      .history-vs {{ text-align: left; font-size: 14px; }}
+      .history-score {{ align-self: end; font-size: 19px; }}
+      .history-badge {{ align-self: start; justify-self: stretch; }}
+      .full-form-head {{ align-items: start; flex-direction: column; }}
+      .full-form-body {{ grid-template-columns: 1fr; }}
+      .full-form-years {{ grid-template-columns: repeat(2, minmax(0, 1fr)); }}
       .season-recap {{ grid-template-columns: repeat(2, 1fr); }}
     }}
     @media (max-width: 560px) {{
@@ -4957,6 +5257,7 @@ def render_html(title, payload):
       .schedule-match {{ grid-template-columns: 48px minmax(0,1fr) 60px minmax(0,1fr); }}
       .schedule-team {{ padding: 8px; }} .schedule-team b {{ font-size: 12px; }}
       .season-recap {{ grid-template-columns: 1fr; }}
+      .full-form-years {{ grid-template-columns: 1fr; }}
       .rule-document-bar {{ grid-template-columns: 1fr; }}
       .rule-document-actions {{ justify-content: flex-start; }}
       .live-toolbar {{ grid-template-columns: 1fr 1fr; }}
@@ -5594,7 +5895,7 @@ def render_html(title, payload):
       <section class="schedule-hero">
         <span class="eyebrow">RMUC MATCH ARCHIVE // 2015—2026</span>
         <h1>超级对抗赛赛程赛果</h1>
-        <p>已将原始工作簿归纳为统一的“赛季—赛区—阶段—红蓝双方—比分”结构。2015—2025 按逐场赛果查询；2026 工作簿目前记录的是全国赛名单与最终席位，因此单独归纳，不计入逐场对阵总数。</p>
+        <p>整理自RoboMaster机甲大师B站官号的超级赛逐场合集。</p>
       </section>
       <section class="schedule-summary" aria-label="赛程数据概览">
         <div class="schedule-stat"><b id="scheduleMatchCount">0</b><span>有效逐场记录</span></div>
@@ -5622,6 +5923,8 @@ def render_html(title, payload):
         <div class="schedule-panel-head"><div><span class="eyebrow">MATCH SCHEDULE</span><h2>逐场赛程</h2></div><span class="schedule-count" id="scheduleCountLabel"></span></div>
         <div class="schedule-list" id="scheduleList"></div>
         <div class="schedule-pagination"><button id="schedulePrev" type="button">上一页</button><span class="schedule-count" id="schedulePageLabel"></span><button id="scheduleNext" type="button">下一页</button></div>
+        <section class="history-panel" id="scheduleHistoryPanel" aria-live="polite" hidden></section>
+        <section id="scheduleFullFormPanel" aria-live="polite" hidden></section>
       </section>
       </div>
       <div class="content-page" data-content-page="schedule:season" role="tabpanel" hidden>
@@ -5649,7 +5952,7 @@ def render_html(title, payload):
       <section class="schedule-hero">
         <span class="eyebrow">RMUL MATCH ARCHIVE // 2021 · 2023—2026</span>
         <h1>高校联盟赛赛程赛果</h1>
-        <p>整理自RoboMaster机甲大师B站官号的高校联盟赛逐场合集。2021为多P视频逐场拆分，2023—2026为官方season合集；2022没有高校联盟赛记录。</p>
+        <p>整理自RoboMaster机甲大师B站官号的高校联盟赛逐场合集。</p>
       </section>
       <section class="schedule-summary" aria-label="高校联盟赛数据概览">
         <div class="schedule-stat"><b id="rmulMatchCount">0</b><span>逐场回放</span></div>
@@ -5693,6 +5996,7 @@ def render_html(title, payload):
         <div class="schedule-panel-head"><div><span class="eyebrow">RMUL SCHEDULE</span><h2>逐场赛程与回放</h2></div><span class="schedule-count" id="rmulCountLabel"></span></div>
         <div class="schedule-list" id="rmulList"></div>
         <div class="schedule-pagination"><button id="rmulPrev" type="button">上一页</button><span class="schedule-count" id="rmulPageLabel"></span><button id="rmulNext" type="button">下一页</button></div>
+        <section class="history-panel" id="rmulHistoryPanel" aria-live="polite" hidden></section>
         <div id="rmulMissingBlock" hidden><div class="schedule-stage-heading"><b>官号回放编号断档</b><span id="rmulMissingLabel"></span></div><div class="season-recap" id="rmulMissingList"></div></div>
         <p class="schedule-source">数据与回放来源：<a href="https://space.bilibili.com/20554233/lists" target="_blank" rel="noopener">RoboMaster机甲大师 B站官方合集</a>。多数RMUL回放标题未提供比分，因此仅展示可核验的年份、站点、场次、双方与直达回放，不推测比分。</p>
       </section>
@@ -7469,10 +7773,182 @@ def render_html(title, payload):
       `;
     }}
 
-    function renderBelowTableCards() {{
+    const fullFormYears = ["2022", "2023", "2024", "2025", "2026"];
+
+    function normalizeFullFormText(value) {{
+      return String(value || "")
+        .toLowerCase()
+        .replace(/战队/g, "")
+        .replace(/[\s·・,，.。:：;；/／\\-—_()[\]（）【】<>《》"'“”‘’]/g, "")
+        .replace(/[^0-9a-z\u4e00-\u9fff]/g, "");
+    }}
+
+    function getFullFormEntryKey(entry) {{
+      return `${{normalizeFullFormText(entry.school)}}::${{normalizeFullFormText(entry.team)}}`;
+    }}
+
+    function fullFormEntryMatches(entry, target) {{
+      if (!target) return false;
+      const entrySchool = normalizeFullFormText(entry.school);
+      const entryTeam = normalizeFullFormText(entry.team);
+      const entryCombined = normalizeFullFormText(`${{entry.school || ""}}${{entry.team || ""}}`);
+      const targetSchool = normalizeFullFormText(target.school);
+      const targetTeam = normalizeFullFormText(target.team);
+      const targetKeyword = normalizeFullFormText(target.keyword);
+      if (targetSchool || targetTeam) {{
+        const schoolMatched = !targetSchool || entrySchool.includes(targetSchool) || targetSchool.includes(entrySchool);
+        const teamMatched = !targetTeam || entryTeam.includes(targetTeam) || targetTeam.includes(entryTeam) || entryCombined.includes(targetTeam);
+        return schoolMatched && teamMatched;
+      }}
+      return targetKeyword && entryCombined.includes(targetKeyword);
+    }}
+
+    function getFullFormTargetFromSingleTeam(singleTeam) {{
+      if (!singleTeam) return null;
+      const [school = "", team = ""] = String(singleTeam.key || "").split("::");
+      return {{
+        school,
+        team,
+        label: singleTeam.label || [school, team].filter(Boolean).join(" / "),
+      }};
+    }}
+
+    function getFullFormTargetFromScheduleRows(rows, keyword) {{
+      const normalizedKeyword = normalizeFullFormText(keyword);
+      if (!normalizedKeyword) return null;
+      const teams = new Map();
+      rows.forEach((item) => {{
+        [
+          {{ school: item.redSchool, team: item.redTeam }},
+          {{ school: item.blueSchool, team: item.blueTeam }},
+        ].forEach((side) => {{
+          const school = String(side.school || "").trim();
+          const team = String(side.team || "").trim();
+          if (!school || school === "轮空" || team === "轮空") return;
+          const combined = normalizeFullFormText(`${{school}}${{team}}`);
+          if (!combined || !combined.includes(normalizedKeyword)) return;
+          const key = `${{normalizeFullFormText(school)}}::${{normalizeFullFormText(team)}}`;
+          if (!teams.has(key)) {{
+            teams.set(key, {{ school, team, label: [school, team].filter(Boolean).join(" / ") }});
+          }}
+        }});
+      }});
+      if (teams.size === 1) return Array.from(teams.values())[0];
+
+      const rankingMatches = new Map();
+      fullFormRankings.forEach((entry) => {{
+        const combined = normalizeFullFormText(`${{entry.school || ""}}${{entry.team || ""}}`);
+        if (!combined.includes(normalizedKeyword)) return;
+        const key = getFullFormEntryKey(entry);
+        if (!rankingMatches.has(key)) {{
+          rankingMatches.set(key, {{
+            school: entry.school || "",
+            team: entry.team || "",
+            label: [entry.school, entry.team].filter(Boolean).join(" / "),
+          }});
+        }}
+      }});
+      return rankingMatches.size === 1 ? Array.from(rankingMatches.values())[0] : null;
+    }}
+
+    function buildFullFormSeries(target) {{
+      const yearMap = new Map();
+      fullFormRankings
+        .filter((entry) => fullFormEntryMatches(entry, target))
+        .forEach((entry) => {{
+          const season = String(entry.season || "");
+          const rank = Number(entry.rank);
+          if (!fullFormYears.includes(season) || !Number.isFinite(rank)) return;
+          const current = yearMap.get(season);
+          if (!current || rank < current.rank) yearMap.set(season, {{ ...entry, rank }});
+        }});
+      return fullFormYears.map((season) => yearMap.get(season) || {{ season, rank: null }});
+    }}
+
+    function renderFullFormRankingCard(target) {{
+      if (!target) return "";
+      const series = buildFullFormSeries(target);
+      const points = series.filter((item) => Number.isFinite(item.rank));
+      const title = target.label || [target.school, target.team].filter(Boolean).join(" / ") || String(target.keyword || "").trim();
+      if (!points.length) {{
+        return `
+          <section class="full-form-panel">
+            <div class="full-form-head">
+              <div><b>完整形态考核排名</b><span>${{escapeHtml(title)}} · 2022—2026</span></div>
+              <div class="full-form-best">暂无记录</div>
+            </div>
+            <div class="full-form-empty">没有匹配到这支队伍的超级对抗赛完整形态考核排名。</div>
+          </section>
+        `;
+      }}
+
+      const chartWidth = 720;
+      const chartHeight = 260;
+      const pad = {{ left: 52, right: 30, top: 28, bottom: 42 }};
+      const bottom = chartHeight - pad.bottom;
+      const maxRank = Math.max(16, ...points.map((item) => item.rank));
+      const bestRank = Math.min(...points.map((item) => item.rank));
+      const xFor = (index) => pad.left + (index * (chartWidth - pad.left - pad.right)) / (fullFormYears.length - 1);
+      const yFor = (rank) => pad.top + ((rank - 1) / Math.max(1, maxRank - 1)) * (bottom - pad.top);
+      const plotted = series
+        .map((item, index) => Number.isFinite(item.rank) ? {{ ...item, x: xFor(index), y: yFor(item.rank) }} : null)
+        .filter(Boolean);
+      const linePath = plotted.map((point, index) => `${{index ? "L" : "M"}} ${{point.x.toFixed(1)}} ${{point.y.toFixed(1)}}`).join(" ");
+      const areaPath = plotted.length > 1
+        ? `M ${{plotted[0].x.toFixed(1)}} ${{bottom}} L ${{plotted.map((point) => `${{point.x.toFixed(1)}} ${{point.y.toFixed(1)}}`).join(" L ")}} L ${{plotted[plotted.length - 1].x.toFixed(1)}} ${{bottom}} Z`
+        : "";
+      const gridRanks = [1, Math.max(2, Math.round(maxRank / 2)), maxRank];
+      return `
+        <section class="full-form-panel">
+          <div class="full-form-head">
+            <div><b>完整形态考核排名</b><span>${{escapeHtml(title)}} · RoboMaster 超级对抗赛 2022—2026</span></div>
+            <div class="full-form-best">最佳 #${{bestRank}}</div>
+          </div>
+          <div class="full-form-body">
+            <svg class="full-form-chart" viewBox="0 0 ${{chartWidth}} ${{chartHeight}}" role="img" aria-label="${{escapeHtml(title)}} 2022到2026完整形态考核排名折线图">
+              ${{gridRanks.map((rank) => {{
+                const y = yFor(rank);
+                return `<line class="grid-line" x1="${{pad.left}}" y1="${{y.toFixed(1)}}" x2="${{chartWidth - pad.right}}" y2="${{y.toFixed(1)}}"></line><text x="12" y="${{(y + 4).toFixed(1)}}">#${{rank}}</text>`;
+              }}).join("")}}
+              ${{areaPath ? `<path class="rank-area" d="${{areaPath}}"></path>` : ""}}
+              ${{linePath ? `<path class="rank-line" d="${{linePath}}"></path>` : ""}}
+              ${{series.map((item, index) => {{
+                const x = xFor(index);
+                const yearLabel = `<text x="${{x.toFixed(1)}}" y="${{chartHeight - 12}}" text-anchor="middle">${{item.season}}</text>`;
+                if (!Number.isFinite(item.rank)) {{
+                  return `${{yearLabel}}<circle class="rank-point missing" cx="${{x.toFixed(1)}}" cy="${{bottom}}" r="4" opacity=".28"></circle>`;
+                }}
+                const y = yFor(item.rank);
+                return `${{yearLabel}}<circle class="rank-point ${{item.rank === bestRank ? "best" : ""}}" cx="${{x.toFixed(1)}}" cy="${{y.toFixed(1)}}" r="6"></circle><text class="rank-label" x="${{x.toFixed(1)}}" y="${{(y - 12).toFixed(1)}}" text-anchor="middle">#${{item.rank}}</text>`;
+              }}).join("")}}
+            </svg>
+            <div class="full-form-years">
+              ${{series.map((item) => `
+                <div class="full-form-year ${{Number.isFinite(item.rank) ? "" : "missing"}} ${{item.rank === bestRank ? "best" : ""}}">
+                  <b>${{escapeHtml(item.season)}}</b>
+                  <strong>${{Number.isFinite(item.rank) ? `#${{item.rank}}` : "未入榜"}}</strong>
+                </div>
+              `).join("")}}
+            </div>
+          </div>
+        </section>
+      `;
+    }}
+
+    function renderFullFormRankingPanel(panelId, target) {{
+      const panel = document.getElementById(panelId);
+      if (!panel) return;
+      const html = renderFullFormRankingCard(target);
+      panel.hidden = !html;
+      panel.innerHTML = html;
+    }}
+
+    function renderBelowTableCards(filteredRows) {{
       const crossZoneRankingCard = renderCrossZoneRankingCard();
-      els.belowTableGrid.innerHTML = crossZoneRankingCard;
-      els.belowTableGrid.hidden = !crossZoneRankingCard;
+      const fullFormCard = renderFullFormRankingCard(getFullFormTargetFromSingleTeam(getSingleTeamCandidate(filteredRows)));
+      const cards = [crossZoneRankingCard, fullFormCard].filter(Boolean).join("");
+      els.belowTableGrid.innerHTML = cards;
+      els.belowTableGrid.hidden = !cards;
     }}
 
     function getTeamEvaluationConfig() {{
@@ -8681,7 +9157,7 @@ def render_html(title, payload):
       renderTacticalBrief(filteredRows, sortedRows, visibleColumns);
       renderCharts(sortedRows);
       renderTable(rows, tableVisibleColumns);
-      renderBelowTableCards();
+      renderBelowTableCards(filteredRows);
       writeStoredState("rm-dashboard-robot-filters", {{
         selectedZones: getSelectedZones(),
         selectedType: state.selectedType,
@@ -8892,6 +9368,7 @@ def render_html(title, payload):
     const scheduleData = payload.scheduleData || {{ matches: [], qualifiers: [] }};
     const rmulData = payload.rmulData || {{ matches: [], collections: [], coverage: [] }};
     const ruleDocuments = payload.ruleDocuments || {{ rmuc: {{}}, rmul: {{}} }};
+    const fullFormRankings = Array.isArray(payload.fullFormRankings) ? payload.fullFormRankings : [];
     const storedScheduleFilters = readStoredState("rm-dashboard-schedule-filters");
     const storedRmulFilters = readStoredState("rm-dashboard-rmul-filters");
     let schedulePage = 1;
@@ -9407,6 +9884,189 @@ def render_html(title, payload):
       return `${{presentation.nodeClass}} ${{presentation.redClass === "winner" ? "final-red-winner" : "final-blue-winner"}}`;
     }}
 
+    function normalizeHistoryKeyword(value) {{
+      return String(value || "").trim().toLowerCase();
+    }}
+
+    function historySideMatches(item, keyword, side) {{
+      if (!keyword) return false;
+      const school = String(item[`${{side}}School`] || "").toLowerCase();
+      const team = String(item[`${{side}}Team`] || "").toLowerCase();
+      return school.includes(keyword) || team.includes(keyword) || `${{school}} ${{team}}`.includes(keyword);
+    }}
+
+    function getHistoryStageRank(stage) {{
+      const value = String(stage || "");
+      const rules = [
+        [/小组|循环|积分|瑞士轮/i, 10],
+        [/入围|资格|预选/i, 18],
+        [/32\\s*进\\s*16|三十二/i, 25],
+        [/16\\s*进\\s*8|十六/i, 30],
+        [/8\\s*进\\s*4|四分之一|1\\/4/i, 40],
+        [/半决赛|4\\s*进\\s*2/i, 50],
+        [/季军|三四名/i, 60],
+        [/冠军|冠亚军|决赛|总决赛/i, 70],
+        [/排位|名额|复活|踢馆/i, 80],
+      ];
+      const matched = rules.find(([pattern]) => pattern.test(value));
+      return matched ? matched[1] : 45;
+    }}
+
+    function compareHistoryEntries(a, b) {{
+      const seasonDifference = Number(b.item.season) - Number(a.item.season);
+      if (seasonDifference) return seasonDifference;
+      const zoneDifference = compareHistoryZones(a.item.zone, b.item.zone);
+      if (zoneDifference) return zoneDifference;
+      const stageDifference = getHistoryStageRank(a.item.stage) - getHistoryStageRank(b.item.stage);
+      if (stageDifference) return stageDifference;
+      const stageNameDifference = String(a.item.stage || "").localeCompare(String(b.item.stage || ""), "zh-CN", {{ numeric: true }});
+      if (stageNameDifference) return stageNameDifference;
+      return Number(a.item.order || 0) - Number(b.item.order || 0);
+    }}
+
+    function getHistoryZoneRank(zone) {{
+      const value = String(zone || "");
+      if (/全国赛|总决赛|决赛/.test(value)) return 10;
+      if (/复活赛|踢馆/.test(value)) return 15;
+      if (/分区|东部|西部|南部|北部|中部|东区|西区|南区|北区|中区|华东|华北|中南|东北|西北|西南|上海|江苏|浙江|山东|山西|广东|广西|福建|湖北|辽宁|四川|重庆|安徽|黑龙江/.test(value)) return 20;
+      if (/海外|国际|北美|港澳台/.test(value)) return 30;
+      if (/交流|邀请/.test(value)) return 40;
+      return 50;
+    }}
+
+    function compareHistoryZones(a, b) {{
+      const rankDifference = getHistoryZoneRank(a) - getHistoryZoneRank(b);
+      if (rankDifference) return rankDifference;
+      return String(a || "").localeCompare(String(b || ""), "zh-CN", {{ numeric: true }});
+    }}
+
+    function groupHistoryRows(rows) {{
+      const seasons = [];
+      rows.forEach((entry) => {{
+        const seasonName = entry.item.season || "赛季未明";
+        let season = seasons.find((item) => item.name === seasonName);
+        if (!season) {{
+          season = {{ name: seasonName, count: 0, smallWins: 0, smallLosses: 0, zones: [] }};
+          seasons.push(season);
+        }}
+        season.count += 1;
+        season.smallWins += entry.ownScore;
+        season.smallLosses += entry.opponentScore;
+        const zoneName = entry.item.zone || "赛区未明";
+        let zone = season.zones.find((item) => item.name === zoneName);
+        if (!zone) {{
+          zone = {{ name: zoneName, count: 0, smallWins: 0, smallLosses: 0, stages: [] }};
+          season.zones.push(zone);
+        }}
+        zone.count += 1;
+        zone.smallWins += entry.ownScore;
+        zone.smallLosses += entry.opponentScore;
+        const stageName = entry.item.stage || "赛段未明";
+        let stage = zone.stages.find((item) => item.name === stageName);
+        if (!stage) {{
+          stage = {{ name: stageName, rows: [] }};
+          zone.stages.push(stage);
+        }}
+        stage.rows.push(entry);
+      }});
+      return seasons;
+    }}
+
+    function formatHistoryWinRate(wins, losses) {{
+      const total = wins + losses;
+      if (!total) return "胜率 —";
+      return `胜率 ${{((wins / total) * 100).toFixed(1)}}%`;
+    }}
+
+    function buildHistoryRows(matches, keyword, compareFn) {{
+      const normalizedKeyword = normalizeHistoryKeyword(keyword);
+      if (!normalizedKeyword) return [];
+      return matches.flatMap((item) => {{
+        const redScore = parseScheduleScore(item.redScore);
+        const blueScore = parseScheduleScore(item.blueScore);
+        if (redScore === null || blueScore === null) return [];
+        const redMatched = historySideMatches(item, normalizedKeyword, "red");
+        const blueMatched = historySideMatches(item, normalizedKeyword, "blue");
+        if (!redMatched && !blueMatched) return [];
+        const side = redMatched ? "red" : "blue";
+        const opponent = side === "red" ? "blue" : "red";
+        const ownScore = side === "red" ? redScore : blueScore;
+        const opponentScore = side === "red" ? blueScore : redScore;
+        const outcome = ownScore > opponentScore ? "win" : ownScore < opponentScore ? "loss" : "draw";
+        return [{{
+          item,
+          side,
+          opponentSchool: item[`${{opponent}}School`] || "",
+          opponentTeam: item[`${{opponent}}Team`] || "",
+          ownScore,
+          opponentScore,
+          outcome,
+        }}];
+      }}).sort(compareHistoryEntries);
+    }}
+
+    function renderHistoryPanel(panelId, matches, keyword, eventLabel, compareFn) {{
+      const panel = document.getElementById(panelId);
+      const normalizedKeyword = normalizeHistoryKeyword(keyword);
+      if (!panel || !normalizedKeyword) {{
+        if (panel) {{
+          panel.hidden = true;
+          panel.innerHTML = "";
+        }}
+        return;
+      }}
+      const rows = buildHistoryRows(matches, normalizedKeyword, compareFn);
+      const seasonGroups = groupHistoryRows(rows);
+      const outcomeText = {{ win: "胜", loss: "负", draw: "平" }};
+      panel.hidden = false;
+      const renderHistoryRow = (entry) => `
+        <article class="history-row result-${{entry.outcome}}">
+          <div class="history-meta"><b>第 ${{scheduleEscape(entry.item.order || "—")}} 场</b><span>${{scheduleEscape(entry.item.zone || "赛区未明")}}</span></div>
+          <div class="history-stage">${{scheduleEscape(entry.item.stage || "赛段未明")}}</div>
+          <div class="history-vs">VS</div>
+          <div class="history-opponent"><b>${{scheduleEscape(entry.opponentSchool || "学校未明")}}</b><span>${{scheduleEscape(entry.opponentTeam || "战队未明")}}</span></div>
+          <div class="history-score">${{scheduleEscape(entry.ownScore)}}:${{scheduleEscape(entry.opponentScore)}}</div>
+          <div class="history-badge">${{outcomeText[entry.outcome]}}</div>
+        </article>
+      `;
+      panel.innerHTML = `
+        <div class="history-head">
+          <div><b>${{scheduleEscape(String(keyword || "").trim())}} 历史战绩</b><span>${{scheduleEscape(eventLabel)}} · 有比分记录的对局</span></div>
+          <span>${{rows.length ? `共 ${{rows.length.toLocaleString()}} 场` : "暂无可判定胜负的记录"}}</span>
+        </div>
+        <div class="history-list">
+          ${{seasonGroups.length ? seasonGroups.map((season) => `
+            <section class="history-season-group">
+              <div class="history-season-title">
+                <b>${{scheduleEscape(season.name)}}年</b>
+                <span class="history-season-stat">
+                  <strong class="history-winrate">${{formatHistoryWinRate(season.smallWins, season.smallLosses)}}</strong>
+                  <span class="history-small-record">小局 ${{season.smallWins}} 胜 / ${{season.smallLosses}} 负 · ${{season.count}} 场</span>
+                </span>
+              </div>
+              ${{season.zones.map((zone) => `
+                <section class="history-zone-group">
+                  <div class="history-zone-title">
+                    <b>${{scheduleEscape(zone.name)}}</b>
+                    <span class="history-zone-stat">
+                      <strong class="history-zone-rate">${{formatHistoryWinRate(zone.smallWins, zone.smallLosses)}}</strong>
+                      <span class="history-zone-record">小局 ${{zone.smallWins}} 胜 / ${{zone.smallLosses}} 负 · ${{zone.count}} 场</span>
+                    </span>
+                  </div>
+                  ${{zone.stages.map((stage) => `
+                    <section class="history-stage-group">
+                      <div class="history-stage-title"><b>${{scheduleEscape(stage.name)}}</b><span>${{stage.rows.length}} 场</span></div>
+                      ${{stage.rows.map(renderHistoryRow).join("")}}
+                    </section>
+                  `).join("")}}
+                </section>
+              `).join("")}}
+            </section>
+          `).join("") : '<div class="schedule-empty">这个搜索词暂时没有可判定胜负平的历史战绩。</div>'}}
+        </div>
+      `;
+    }}
+
     function renderSchedule() {{
       renderRuleDocument("rmuc");
       renderZoneRankings();
@@ -9451,6 +10111,17 @@ def render_html(title, payload):
       document.getElementById("schedulePageLabel").textContent = `第 ${{schedulePage}} / ${{pages}} 页`;
       document.getElementById("schedulePrev").disabled = schedulePage <= 1;
       document.getElementById("scheduleNext").disabled = schedulePage >= pages;
+      renderHistoryPanel(
+        "scheduleHistoryPanel",
+        scheduleData.matches,
+        document.getElementById("scheduleSearch").value,
+        "超级对抗赛",
+        (a, b) => Number(b.season) - Number(a.season) || Number(b.order || 0) - Number(a.order || 0)
+      );
+      renderFullFormRankingPanel(
+        "scheduleFullFormPanel",
+        getFullFormTargetFromScheduleRows(rows, document.getElementById("scheduleSearch").value)
+      );
       writeStoredState("rm-dashboard-schedule-filters", {{
         season: document.getElementById("scheduleSeason").value,
         zone: document.getElementById("scheduleZone").value,
@@ -9699,6 +10370,13 @@ def render_html(title, payload):
       document.getElementById("rmulCountLabel").textContent=`共 ${{rows.length.toLocaleString()}} 场，当前显示 ${{visible.length}} 场`;
       document.getElementById("rmulPageLabel").textContent=`第 ${{rmulPage}} / ${{pages}} 页`;
       document.getElementById("rmulPrev").disabled=rmulPage<=1;document.getElementById("rmulNext").disabled=rmulPage>=pages;
+      renderHistoryPanel(
+        "rmulHistoryPanel",
+        rmulData.matches,
+        document.getElementById("rmulSearch").value,
+        "高校联盟赛",
+        compareRmulLatestFirst
+      );
       const missing=(rmulData.missingReplays||[]).filter((item)=>(!document.getElementById("rmulSeason").value||item.season===document.getElementById("rmulSeason").value)&&(!document.getElementById("rmulZone").value||item.zone===document.getElementById("rmulZone").value)).sort(compareRmulLatestFirst);
       document.getElementById("rmulMissingBlock").hidden=!missing.length;
       document.getElementById("rmulMissingLabel").textContent=`${{missing.length}} 个场号在官方合集与官号搜索中均未找到`;
@@ -11263,6 +11941,7 @@ def main(csv_file, title, default_sort=None, initial_zone="全部", initial_type
         "rmulData": load_rmul_data(),
         "ruleDocuments": load_rule_documents(),
         "replayLinks": load_replay_links(),
+        "fullFormRankings": load_full_form_rankings(),
     }
 
     output_path = csv_path.with_name("robot_dashboard.html")

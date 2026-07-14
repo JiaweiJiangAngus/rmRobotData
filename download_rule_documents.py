@@ -8,7 +8,7 @@ from urllib.parse import quote
 
 
 ROOT = Path(__file__).resolve().parent
-MANIFEST_PATH = ROOT / "data" / "rule_documents.json"
+MANIFEST_PATH = ROOT / "data" / "rules" / "manifest.json"
 RULES_DIR = ROOT / "data" / "rules"
 WIKI_POST_RE = re.compile(r"bbs\.robomaster\.com/wiki/\d+/(\d+)")
 VERSION_RE = re.compile(r"V(\d+(?:\.\d+)+)", re.IGNORECASE)

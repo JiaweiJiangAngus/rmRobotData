@@ -1,0 +1,482 @@
+[
+  {
+    "school": "东北大学",
+    "team": "TDT",
+    "zone": "北部赛区",
+    "type": "甲级",
+    "rank2025": 3,
+    "result": "冠军",
+    "regionalCount": 11,
+    "nationalCount": 10
+  },
+  {
+    "school": "华南农业大学",
+    "team": "Taurus",
+    "zone": "南部赛区",
+    "type": "甲级",
+    "rank2025": 5,
+    "result": "冠军",
+    "regionalCount": 9,
+    "nationalCount": 5
+  },
+  {
+    "school": "中国石油大学（华东）",
+    "team": "RPS",
+    "zone": "东部赛区",
+    "type": "甲级",
+    "rank2025": 11,
+    "result": "冠军",
+    "regionalCount": 10,
+    "nationalCount": 6
+  },
+  {
+    "school": "哈尔滨工业大学",
+    "team": "I Hiter",
+    "zone": "北部赛区",
+    "type": "甲级",
+    "rank2025": 9,
+    "result": "亚军",
+    "regionalCount": 11,
+    "nationalCount": 8
+  },
+  {
+    "school": "五邑大学",
+    "team": "IMCA",
+    "zone": "南部赛区",
+    "type": "甲级",
+    "rank2025": 17,
+    "result": "亚军",
+    "regionalCount": 10,
+    "nationalCount": 4
+  },
+  {
+    "school": "山东科技大学",
+    "team": "SmartRobot",
+    "zone": "东部赛区",
+    "type": "甲级",
+    "rank2025": 24,
+    "result": "亚军",
+    "regionalCount": 11,
+    "nationalCount": 8
+  },
+  {
+    "school": "哈尔滨工业大学（威海）",
+    "team": "HERO",
+    "zone": "北部赛区",
+    "type": "甲级",
+    "rank2025": 15,
+    "result": "季军",
+    "regionalCount": 8,
+    "nationalCount": 6
+  },
+  {
+    "school": "广州城市理工学院",
+    "team": "野狼",
+    "zone": "南部赛区",
+    "type": "甲级",
+    "rank2025": 52,
+    "result": "季军",
+    "regionalCount": 9,
+    "nationalCount": 3
+  },
+  {
+    "school": "合肥工业大学（宣城校区）",
+    "team": "WDR",
+    "zone": "东部赛区",
+    "type": "甲级",
+    "rank2025": 65,
+    "result": "季军",
+    "regionalCount": 5,
+    "nationalCount": 1
+  },
+  {
+    "school": "浙江大学",
+    "team": "Hello World",
+    "zone": "东部赛区",
+    "type": "甲级",
+    "rank2025": 4,
+    "result": "殿军",
+    "regionalCount": 9,
+    "nationalCount": 5
+  },
+  {
+    "school": "西北工业大学",
+    "team": "WMJ",
+    "zone": "北部赛区",
+    "type": "甲级",
+    "rank2025": 36,
+    "result": "殿军",
+    "regionalCount": 9,
+    "nationalCount": 4
+  },
+  {
+    "school": "东莞理工学院",
+    "team": "ACE",
+    "zone": "南部赛区",
+    "type": "甲级",
+    "rank2025": 61,
+    "result": "殿军",
+    "regionalCount": 8,
+    "nationalCount": 1
+  },
+  {
+    "school": "上海交通大学",
+    "team": "交龙",
+    "zone": "南部赛区",
+    "type": "甲级",
+    "rank2025": 1,
+    "result": "八强",
+    "regionalCount": 10,
+    "nationalCount": 9
+  },
+  {
+    "school": "华南理工大学",
+    "team": "华南虎",
+    "zone": "南部赛区",
+    "type": "甲级",
+    "rank2025": 2,
+    "result": "八强",
+    "regionalCount": 11,
+    "nationalCount": 10
+  },
+  {
+    "school": "深圳大学",
+    "team": "RobotPilots",
+    "zone": "南部赛区",
+    "type": "甲级",
+    "rank2025": 6,
+    "result": "十强",
+    "regionalCount": 11,
+    "nationalCount": 10
+  },
+  {
+    "school": "西安交通大学",
+    "team": "笃行",
+    "zone": "北部赛区",
+    "type": "甲级",
+    "rank2025": 10,
+    "result": "八强",
+    "regionalCount": 11,
+    "nationalCount": 8
+  },
+  {
+    "school": "大连理工大学",
+    "team": "凌BUG",
+    "zone": "北部赛区",
+    "type": "甲级",
+    "rank2025": 16,
+    "result": "十强",
+    "regionalCount": 7,
+    "nationalCount": 4
+  },
+  {
+    "school": "电子科技大学中山学院",
+    "team": "RoboBraver",
+    "zone": "南部赛区",
+    "type": "甲级",
+    "rank2025": 20,
+    "result": "八强",
+    "regionalCount": 11,
+    "nationalCount": 4
+  },
+  {
+    "school": "同济大学",
+    "team": "SuperPower",
+    "zone": "北部赛区",
+    "type": "甲级",
+    "rank2025": 27,
+    "result": "八强",
+    "regionalCount": 11,
+    "nationalCount": 5
+  },
+  {
+    "school": "武汉工程大学",
+    "team": "Nautilus",
+    "zone": "南部赛区",
+    "type": "甲级",
+    "rank2025": 29,
+    "result": "十强",
+    "regionalCount": 6,
+    "nationalCount": 3
+  },
+  {
+    "school": "哈尔滨工业大学（深圳）",
+    "team": "南工骁鹰",
+    "zone": "东部赛区",
+    "type": "甲级",
+    "rank2025": 32,
+    "result": "八强",
+    "regionalCount": 9,
+    "nationalCount": 4
+  },
+  {
+    "school": "北京理工大学（珠海）",
+    "team": "毅恒",
+    "zone": "东部赛区",
+    "type": "甲级",
+    "rank2025": 40,
+    "result": "八强",
+    "regionalCount": 9,
+    "nationalCount": 6
+  },
+  {
+    "school": "南京理工大学",
+    "team": "Alliance",
+    "zone": "东部赛区",
+    "type": "甲级",
+    "rank2025": 42,
+    "result": "八强",
+    "regionalCount": 10,
+    "nationalCount": 5
+  },
+  {
+    "school": "北京理工大学",
+    "team": "追梦",
+    "zone": "北部赛区",
+    "type": "甲级",
+    "rank2025": 43,
+    "result": "八强",
+    "regionalCount": 9,
+    "nationalCount": 3
+  },
+  {
+    "school": "华东理工大学",
+    "team": "起源",
+    "zone": "东部赛区",
+    "type": "甲级",
+    "rank2025": 71,
+    "result": "八强",
+    "regionalCount": 3,
+    "nationalCount": 1
+  },
+  {
+    "school": "长安大学",
+    "team": "VGD",
+    "zone": "北部赛区",
+    "type": "甲级",
+    "rank2025": 72,
+    "result": "十强",
+    "regionalCount": 8,
+    "nationalCount": 1
+  },
+  {
+    "school": "仲恺农业工程学院",
+    "team": "奇点",
+    "zone": "南部赛区",
+    "type": "非甲级",
+    "rank2025": 100,
+    "result": "八强",
+    "regionalCount": 8,
+    "nationalCount": 1
+  },
+  {
+    "school": "复旦大学",
+    "team": "星云EGA",
+    "zone": "北部赛区",
+    "type": "非甲级",
+    "rank2025": 220,
+    "result": "八强",
+    "regionalCount": 1,
+    "nationalCount": 1
+  },
+  {
+    "school": "TB1",
+    "team": "",
+    "zone": "",
+    "type": "",
+    "rank2025": "-",
+    "result": "待赛",
+    "regionalCount": "-",
+    "nationalCount": "-"
+  },
+  {
+    "school": "TB2",
+    "team": "",
+    "zone": "",
+    "type": "",
+    "rank2025": "-",
+    "result": "待赛",
+    "regionalCount": "-",
+    "nationalCount": "-"
+  },
+  {
+    "school": "TB3",
+    "team": "",
+    "zone": "",
+    "type": "",
+    "rank2025": "-",
+    "result": "待赛",
+    "regionalCount": "-",
+    "nationalCount": "-"
+  },
+  {
+    "school": "TB4",
+    "team": "",
+    "zone": "",
+    "type": "",
+    "rank2025": "-",
+    "result": "待赛",
+    "regionalCount": "-",
+    "nationalCount": "-"
+  },
+  {
+    "school": "广东工业大学",
+    "team": "DynamicX",
+    "zone": "南部赛区",
+    "type": "甲级",
+    "rank2025": 6,
+    "result": "十二强",
+    "regionalCount": 6,
+    "nationalCount": 4
+  },
+  {
+    "school": "南方科技大学",
+    "team": "ARTINX",
+    "zone": "东部赛区",
+    "type": "甲级",
+    "rank2025": 12,
+    "result": "十二强",
+    "regionalCount": 11,
+    "nationalCount": 4
+  },
+  {
+    "school": "中国科学技术大学",
+    "team": "RoboWalker",
+    "zone": "东部赛区",
+    "type": "甲级",
+    "rank2025": 19,
+    "result": "十二强",
+    "regionalCount": 8,
+    "nationalCount": 4
+  },
+  {
+    "school": "南京航空航天大学金城学院",
+    "team": "Born of Fire",
+    "zone": "东部赛区",
+    "type": "甲级",
+    "rank2025": 26,
+    "result": "十二强",
+    "regionalCount": 11,
+    "nationalCount": 3
+  },
+  {
+    "school": "桂林电子科技大学",
+    "team": "Evolution",
+    "zone": "南部赛区",
+    "type": "甲级",
+    "rank2025": 28,
+    "result": "十六强",
+    "regionalCount": 11,
+    "nationalCount": 6
+  },
+  {
+    "school": "中国矿业大学",
+    "team": "CUBOT",
+    "zone": "东部赛区",
+    "type": "甲级",
+    "rank2025": 30,
+    "result": "十二强",
+    "regionalCount": 10,
+    "nationalCount": 7
+  },
+  {
+    "school": "华中科技大学",
+    "team": "狼牙",
+    "zone": "南部赛区",
+    "type": "甲级",
+    "rank2025": 33,
+    "result": "十六强",
+    "regionalCount": 11,
+    "nationalCount": 6
+  },
+  {
+    "school": "西安电子科技大学",
+    "team": "IRobot",
+    "zone": "北部赛区",
+    "type": "甲级",
+    "rank2025": 35,
+    "result": "十二强",
+    "regionalCount": 9,
+    "nationalCount": 4
+  },
+  {
+    "school": "应急管理大学",
+    "team": "风暴",
+    "zone": "北部赛区",
+    "type": "甲级",
+    "rank2025": 44,
+    "result": "十二强",
+    "regionalCount": 9,
+    "nationalCount": 4
+  },
+  {
+    "school": "沈阳理工大学",
+    "team": "Ambition",
+    "zone": "北部赛区",
+    "type": "甲级",
+    "rank2025": 51,
+    "result": "十四强",
+    "regionalCount": 8,
+    "nationalCount": 0
+  },
+  {
+    "school": "厦门大学嘉庚学院",
+    "team": "TCR",
+    "zone": "南部赛区",
+    "type": "甲级",
+    "rank2025": 56,
+    "result": "十六强",
+    "regionalCount": 8,
+    "nationalCount": 0
+  },
+  {
+    "school": "太原科技大学",
+    "team": "NewMaker",
+    "zone": "东部赛区",
+    "type": "非甲级",
+    "rank2025": 75,
+    "result": "十四强",
+    "regionalCount": 10,
+    "nationalCount": 4
+  },
+  {
+    "school": "南华大学",
+    "team": "MA",
+    "zone": "南部赛区",
+    "type": "非甲级",
+    "rank2025": 77,
+    "result": "十二强",
+    "regionalCount": 9,
+    "nationalCount": 0
+  },
+  {
+    "school": "山东理工大学",
+    "team": "齐奇",
+    "zone": "北部赛区",
+    "type": "非甲级",
+    "rank2025": 77,
+    "result": "十四强",
+    "regionalCount": 6,
+    "nationalCount": 0
+  },
+  {
+    "school": "深圳技术大学",
+    "team": "悍匠",
+    "zone": "南部赛区",
+    "type": "非甲级",
+    "rank2025": 79,
+    "result": "十六强",
+    "regionalCount": 5,
+    "nationalCount": 0
+  },
+  {
+    "school": "江南大学霞客湾校区",
+    "team": "SHARK",
+    "zone": "东部赛区",
+    "type": "非甲级",
+    "rank2025": 220,
+    "result": "十四强",
+    "regionalCount": 1,
+    "nationalCount": 0
+  }
+]

@@ -8,10 +8,11 @@ from collections import defaultdict
 from pathlib import Path
 
 import fetch_replay_links as bili
+from data_store import save_rmul_results
 
 
-OUTPUT = Path("data/rmul_results.json")
-RAW_CACHE = Path("data/rmul_raw_cache.json")
+OUTPUT = Path("data/rmul_results")
+RAW_CACHE = Path("data/cache/rmul_raw_cache.json")
 YEARS = {"2021", "2023", "2024", "2025", "2026"}
 STATIONS = ("黑龙江站", "辽宁站", "华北站", "东北站", "山东站", "山西站", "西北站",
             "江苏站", "上海站", "浙江站", "安徽站", "福建站", "湖北站", "广东站",
@@ -314,7 +315,7 @@ def main():
     cache = fetch_2021_multipart(opener, cache)
     payload = normalize(cache)
     payload = supplement_missing(opener, payload, cache)
-    OUTPUT.write_text(json.dumps(payload, ensure_ascii=False, indent=2), encoding="utf-8")
+    save_rmul_results(payload)
     print(f"saved {len(payload['matches'])} parsed matches from {len(payload['collections'])} collections to {OUTPUT}")
 
 

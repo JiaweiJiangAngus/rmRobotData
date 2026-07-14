@@ -21,8 +21,8 @@ PAGELIST_API = "https://api.bilibili.com/x/player/pagelist"
 SEASON_LIST_API = "https://api.bilibili.com/x/polymer/web-space/seasons_archives_list"
 SEASON_CATALOG_API = "https://api.bilibili.com/x/polymer/web-space/seasons_series_list"
 XLSX = Path("/home/jwj/Downloads/RoboMaster 2015-2026 赛果记录.xlsx")
-OUTPUT = Path("data/replay_links.json")
-CHECKED_OUTPUT = Path("data/replay_checked.json")
+OUTPUT = Path("data/rmuc_results/replay_links.json")
+CHECKED_OUTPUT = Path("data/cache/replay_checked.json")
 ZONE_NAMES = {
     "总决赛": "全国赛", "北区": "北部赛区", "南区": "南部赛区", "中区": "中部赛区",
     "北部": "北部赛区", "南部": "南部赛区", "中部": "中部赛区", "东部": "东部赛区",

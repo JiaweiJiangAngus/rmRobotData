@@ -1,0 +1,47 @@
+[
+  {
+    "id": "1678",
+    "season": "2021",
+    "zone": "国际赛",
+    "order": "2",
+    "stage": "W组第1轮",
+    "redSchool": "东莞理工粤台中法",
+    "redTeam": "KineticRobotic",
+    "blueSchool": "西交利物浦大学&University of Liverpool",
+    "blueTeam": "Liverbot",
+    "redScore": 1,
+    "blueScore": 1,
+    "note": "",
+    "uncertain": false
+  },
+  {
+    "id": "1679",
+    "season": "2021",
+    "zone": "国际赛",
+    "order": "4",
+    "stage": "W组第2轮",
+    "redSchool": "浙大UIUC联队",
+    "redTeam": "Meta lllint",
+    "blueSchool": "东莞理工粤台中法",
+    "blueTeam": "KineticRobotic",
+    "redScore": 0,
+    "blueScore": 2,
+    "note": "",
+    "uncertain": false
+  },
+  {
+    "id": "1680",
+    "season": "2021",
+    "zone": "国际赛",
+    "order": "6",
+    "stage": "W组第3轮",
+    "redSchool": "西交利物浦大学&University of Liverpool",
+    "redTeam": "Liverbot",
+    "blueSchool": "浙大UIUC联队",
+    "blueTeam": "Meta lllint",
+    "redScore": 2,
+    "blueScore": 0,
+    "note": "",
+    "uncertain": false
+  }
+]

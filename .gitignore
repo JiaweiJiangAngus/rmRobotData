@@ -2,10 +2,14 @@
 bin/
 data/*
 !data/mvp_*.txt
-!data/schedule_results.json
-!data/rmul_results.json
-!data/rule_documents.json
+!data/rmuc_results/
+!data/rmuc_results/**
+!data/rmul_results/
+!data/rmul_results/**
+!data/cache/
+!data/cache/.gitkeep
 !data/rules/
+!data/rules/manifest.json
 !data/rules/*.pdf
 __pycache__/
 *.pyc

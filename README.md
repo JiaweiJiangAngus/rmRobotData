@@ -15,7 +15,11 @@
 
 ```text
 rmRobotData/
-├── data/                 # 原始数据文件
+├── data/                 # 原始数据、赛果拆分目录、规则文件和缓存
+│   ├── rmuc_results/      # 超级对抗赛赛果；replay_links.json 也在这里
+│   ├── rmul_results/      # 高校联盟赛赛果，按 matches/年份/赛区.json 拆分
+│   ├── rules/             # 规则 PDF 与 manifest.json
+│   └── cache/             # 抓取缓存，不参与页面运行
 ├── docs/
 │   └── index.html         # 机器人数据 + 2015—2026 赛程赛果
 ├── bin/
@@ -94,7 +98,7 @@ python3 -m http.server 8000 -d docs
 http://localhost:8000
 ```
 
-页面顶部可切换“机器人数据”和“赛程赛果”。发布时默认从以下文件读取历年赛果：
+页面顶部可切换“机器人数据”和“赛程赛果”。发布时优先读取 `data/rmuc_results/` 和 `data/rmul_results/` 中的拆分赛果；如果拆分数据不存在，才回退到以下工作簿重新归纳：
 
 ```bash
 /home/jwj/Downloads/RoboMaster 2015-2026 赛果记录.xlsx

@@ -1,0 +1,2886 @@
+{
+  "source": "/home/jwj/Downloads/RoboMaster_历年完整形态排名_精简版_已补全2025.xlsx",
+  "description": "RoboMaster 2022-2026 超级对抗赛完整形态考核排名",
+  "rankings": [
+    {
+      "season": "2022",
+      "rank": 1,
+      "school": "东北大学",
+      "team": "中鸿TDT"
+    },
+    {
+      "season": "2022",
+      "rank": 2,
+      "school": "西北工业大学",
+      "team": "WMJ"
+    },
+    {
+      "season": "2022",
+      "rank": 3,
+      "school": "东南大学",
+      "team": "3SE"
+    },
+    {
+      "season": "2022",
+      "rank": 4,
+      "school": "华中科技大学",
+      "team": "狼牙"
+    },
+    {
+      "season": "2022",
+      "rank": 5,
+      "school": "上海交通大学",
+      "team": "云汉交龙"
+    },
+    {
+      "season": "2022",
+      "rank": 6,
+      "school": "哈尔滨工程大学",
+      "team": "Nooploop创梦之翼"
+    },
+    {
+      "season": "2022",
+      "rank": 7,
+      "school": "哈尔滨工业大学",
+      "team": "I Hiter"
+    },
+    {
+      "season": "2022",
+      "rank": 8,
+      "school": "中南大学",
+      "team": "FYT"
+    },
+    {
+      "season": "2022",
+      "rank": 9,
+      "school": "广东工业大学",
+      "team": "DynamicX"
+    },
+    {
+      "season": "2022",
+      "rank": 10,
+      "school": "合肥工业大学",
+      "team": "苍穹"
+    },
+    {
+      "season": "2022",
+      "rank": 11,
+      "school": "西安交通大学",
+      "team": "笃行"
+    },
+    {
+      "season": "2022",
+      "rank": 12,
+      "school": "东华大学",
+      "team": "DIODE"
+    },
+    {
+      "season": "2022",
+      "rank": 13,
+      "school": "华北理工大学",
+      "team": "Horizon"
+    },
+    {
+      "season": "2022",
+      "rank": 14,
+      "school": "福建工程学院",
+      "team": "中维动力"
+    },
+    {
+      "season": "2022",
+      "rank": 15,
+      "school": "中国石油大学（华东）",
+      "team": "RPS"
+    },
+    {
+      "season": "2022",
+      "rank": 16,
+      "school": "北京理工大学珠海学院",
+      "team": "高巨毅恒"
+    },
+    {
+      "season": "2022",
+      "rank": 17,
+      "school": "桂林电子科技大学",
+      "team": "Evolution"
+    },
+    {
+      "season": "2022",
+      "rank": 18,
+      "school": "西交利物浦大学",
+      "team": "GMaster"
+    },
+    {
+      "season": "2022",
+      "rank": 19,
+      "school": "北京理工大学",
+      "team": "Dream Chaser"
+    },
+    {
+      "season": "2022",
+      "rank": 20,
+      "school": "华南农业大学",
+      "team": "Taurus"
+    },
+    {
+      "season": "2022",
+      "rank": 21,
+      "school": "深圳大学",
+      "team": "RobotPilots"
+    },
+    {
+      "season": "2022",
+      "rank": 22,
+      "school": "华南理工大学",
+      "team": "普渡华南虎"
+    },
+    {
+      "season": "2022",
+      "rank": 23,
+      "school": "南昌大学",
+      "team": "Passion"
+    },
+    {
+      "season": "2022",
+      "rank": 24,
+      "school": "南京理工大学",
+      "team": "Alliance"
+    },
+    {
+      "season": "2022",
+      "rank": 25,
+      "school": "中国矿业大学",
+      "team": "CUBOT"
+    },
+    {
+      "season": "2022",
+      "rank": 26,
+      "school": "哈尔滨工业大学（深圳）",
+      "team": "南工骁鹰"
+    },
+    {
+      "season": "2022",
+      "rank": 27,
+      "school": "深圳技术大学",
+      "team": "悍匠"
+    },
+    {
+      "season": "2022",
+      "rank": 28,
+      "school": "广州城市理工学院",
+      "team": "野狼"
+    },
+    {
+      "season": "2022",
+      "rank": 29,
+      "school": "长安大学",
+      "team": "VGD"
+    },
+    {
+      "season": "2022",
+      "rank": 30,
+      "school": "四川大学",
+      "team": "火锅"
+    },
+    {
+      "season": "2022",
+      "rank": 31,
+      "school": "太原理工大学",
+      "team": "TRoMaC"
+    },
+    {
+      "season": "2022",
+      "rank": 32,
+      "school": "西安电子科技大学",
+      "team": "IRobot"
+    },
+    {
+      "season": "2022",
+      "rank": 33,
+      "school": "大连交通大学",
+      "team": "纵维立方TOE"
+    },
+    {
+      "season": "2022",
+      "rank": 34,
+      "school": "江西理工大学",
+      "team": "乘风"
+    },
+    {
+      "season": "2022",
+      "rank": 35,
+      "school": "山东理工大学",
+      "team": "齐奇"
+    },
+    {
+      "season": "2022",
+      "rank": 36,
+      "school": "东北林业大学",
+      "team": "Ares"
+    },
+    {
+      "season": "2022",
+      "rank": 37,
+      "school": "南方科技大学",
+      "team": "ARTINX"
+    },
+    {
+      "season": "2022",
+      "rank": 38,
+      "school": "上海工程技术大学",
+      "team": "木鸢Birdiebot"
+    },
+    {
+      "season": "2022",
+      "rank": 39,
+      "school": "厦门大学",
+      "team": "RCS"
+    },
+    {
+      "season": "2022",
+      "rank": 40,
+      "school": "哈尔滨工业大学（威海）",
+      "team": "HERO"
+    },
+    {
+      "season": "2022",
+      "rank": 41,
+      "school": "首都师范大学",
+      "team": "PIE"
+    },
+    {
+      "season": "2022",
+      "rank": 42,
+      "school": "西南石油大学",
+      "team": "铁人"
+    },
+    {
+      "season": "2022",
+      "rank": 43,
+      "school": "武汉工程大学",
+      "team": "Nautilus"
+    },
+    {
+      "season": "2022",
+      "rank": 44,
+      "school": "杭州电子科技大学",
+      "team": "PHOENIX"
+    },
+    {
+      "season": "2022",
+      "rank": 45,
+      "school": "华北科技学院",
+      "team": "风暴"
+    },
+    {
+      "season": "2022",
+      "rank": 46,
+      "school": "安徽信息工程学院",
+      "team": "Artisans"
+    },
+    {
+      "season": "2022",
+      "rank": 47,
+      "school": "佛山科学技术学院",
+      "team": "醒狮"
+    },
+    {
+      "season": "2022",
+      "rank": 48,
+      "school": "南京航空航天大学金城学院",
+      "team": "Born of Fire"
+    },
+    {
+      "season": "2022",
+      "rank": 49,
+      "school": "北京工业大学",
+      "team": "PIP"
+    },
+    {
+      "season": "2022",
+      "rank": 50,
+      "school": "中国人民解放军国防科技大学",
+      "team": "军临"
+    },
+    {
+      "season": "2022",
+      "rank": 51,
+      "school": "西南交通大学",
+      "team": "Helios"
+    },
+    {
+      "season": "2022",
+      "rank": 52,
+      "school": "沈阳航空航天大学",
+      "team": "TUP"
+    },
+    {
+      "season": "2022",
+      "rank": 53,
+      "school": "北京科技大学",
+      "team": "Reborn"
+    },
+    {
+      "season": "2022",
+      "rank": 54,
+      "school": "五邑大学",
+      "team": "IMCA"
+    },
+    {
+      "season": "2022",
+      "rank": 55,
+      "school": "贵州师范学院",
+      "team": "Jumper"
+    },
+    {
+      "season": "2022",
+      "rank": 56,
+      "school": "上海科技大学",
+      "team": "Magician"
+    },
+    {
+      "season": "2022",
+      "rank": 57,
+      "school": "南京航空航天大学",
+      "team": "长空御风"
+    },
+    {
+      "season": "2022",
+      "rank": 58,
+      "school": "深圳职业技术学院",
+      "team": "RCIA"
+    },
+    {
+      "season": "2022",
+      "rank": 59,
+      "school": "辽宁科技大学",
+      "team": "COD"
+    },
+    {
+      "season": "2022",
+      "rank": 60,
+      "school": "电子科技大学中山学院",
+      "team": "RoboBraver"
+    },
+    {
+      "season": "2022",
+      "rank": 61,
+      "school": "厦门理工学院",
+      "team": "PFA"
+    },
+    {
+      "season": "2022",
+      "rank": 62,
+      "school": "大连理工大学",
+      "team": "凌BUG"
+    },
+    {
+      "season": "2022",
+      "rank": 63,
+      "school": "南华大学",
+      "team": "MA"
+    },
+    {
+      "season": "2022",
+      "rank": 64,
+      "school": "湖南大学",
+      "team": "跃鹿"
+    },
+    {
+      "season": "2022",
+      "rank": 65,
+      "school": "桂林信息科技学院",
+      "team": "兴禾GIRT"
+    },
+    {
+      "season": "2022",
+      "rank": 66,
+      "school": "新乡学院",
+      "team": "电创"
+    },
+    {
+      "season": "2022",
+      "rank": 67,
+      "school": "华南师范大学",
+      "team": "PIONEER"
+    },
+    {
+      "season": "2022",
+      "rank": 68,
+      "school": "浙江大学",
+      "team": "Hello World"
+    },
+    {
+      "season": "2022",
+      "rank": 69,
+      "school": "燕山大学",
+      "team": "燕鹰"
+    },
+    {
+      "season": "2022",
+      "rank": 70,
+      "school": "云南大学",
+      "team": "Future"
+    },
+    {
+      "season": "2022",
+      "rank": 71,
+      "school": "常州大学",
+      "team": "Climber"
+    },
+    {
+      "season": "2022",
+      "rank": 72,
+      "school": "电子科技大学成都学院",
+      "team": "微城市"
+    },
+    {
+      "season": "2022",
+      "rank": 73,
+      "school": "中北大学",
+      "team": "606"
+    },
+    {
+      "season": "2022",
+      "rank": 74,
+      "school": "东莞理工学院",
+      "team": "ACE"
+    },
+    {
+      "season": "2022",
+      "rank": 75,
+      "school": "上海大学",
+      "team": "SRM"
+    },
+    {
+      "season": "2022",
+      "rank": 76,
+      "school": "太原科技大学",
+      "team": "NewMaker"
+    },
+    {
+      "season": "2022",
+      "rank": 77,
+      "school": "仲恺农业工程学院",
+      "team": "奇点"
+    },
+    {
+      "season": "2022",
+      "rank": 78,
+      "school": "重庆理工大学",
+      "team": "士继 DREAMER"
+    },
+    {
+      "season": "2022",
+      "rank": 79,
+      "school": "闽江学院",
+      "team": "FURY"
+    },
+    {
+      "season": "2022",
+      "rank": 80,
+      "school": "防灾科技学院",
+      "team": "思玄"
+    },
+    {
+      "season": "2022",
+      "rank": 81,
+      "school": "浙江纺织服装职业技术学院",
+      "team": "Robofuture"
+    },
+    {
+      "season": "2022",
+      "rank": 82,
+      "school": "江苏大学",
+      "team": "FIVE PINES"
+    },
+    {
+      "season": "2022",
+      "rank": 83,
+      "school": "山东科技大学",
+      "team": "SmartRobot"
+    },
+    {
+      "season": "2022",
+      "rank": 84,
+      "school": "中国石油大学（北京）",
+      "team": "SPR"
+    },
+    {
+      "season": "2022",
+      "rank": 85,
+      "school": "同济大学",
+      "team": "SuperPower"
+    },
+    {
+      "season": "2022",
+      "rank": 86,
+      "school": "合肥工业大学宣城校区",
+      "team": "WDR"
+    },
+    {
+      "season": "2022",
+      "rank": 87,
+      "school": "天津大学",
+      "team": "北洋机甲"
+    },
+    {
+      "season": "2022",
+      "rank": 88,
+      "school": "宁波工程学院",
+      "team": "New Legends"
+    },
+    {
+      "season": "2022",
+      "rank": 89,
+      "school": "太原工业学院",
+      "team": "火线"
+    },
+    {
+      "season": "2022",
+      "rank": 90,
+      "school": "湖北工业大学",
+      "team": "纵维立方—力创RM"
+    },
+    {
+      "season": "2022",
+      "rank": 91,
+      "school": "重庆三峡学院",
+      "team": "LionHeart"
+    },
+    {
+      "season": "2022",
+      "rank": 92,
+      "school": "福建师范大学",
+      "team": "Pikachu"
+    },
+    {
+      "season": "2022",
+      "rank": 93,
+      "school": "吉林大学",
+      "team": "TARS_Go"
+    },
+    {
+      "season": "2022",
+      "rank": 94,
+      "school": "东北大学秦皇岛分校",
+      "team": "英联sudo"
+    },
+    {
+      "season": "2022",
+      "rank": 95,
+      "school": "华侨大学",
+      "team": "EDR"
+    },
+    {
+      "season": "2022",
+      "rank": 96,
+      "school": "西南民族大学",
+      "team": "欣竹"
+    },
+    {
+      "season": "2023",
+      "rank": 1,
+      "school": "西北工业大学",
+      "team": "WMJ"
+    },
+    {
+      "season": "2023",
+      "rank": 2,
+      "school": "广东工业大学",
+      "team": "DynamicX"
+    },
+    {
+      "season": "2023",
+      "rank": 3,
+      "school": "桂林电子科技大学",
+      "team": "Evolution"
+    },
+    {
+      "season": "2023",
+      "rank": 4,
+      "school": "东北林业大学",
+      "team": "Ares"
+    },
+    {
+      "season": "2023",
+      "rank": 5,
+      "school": "西南石油大学",
+      "team": "铁人"
+    },
+    {
+      "season": "2023",
+      "rank": 6,
+      "school": "浙江大学",
+      "team": "Hello World"
+    },
+    {
+      "season": "2023",
+      "rank": 7,
+      "school": "东北大学",
+      "team": "TDT"
+    },
+    {
+      "season": "2023",
+      "rank": 8,
+      "school": "东南大学",
+      "team": "3SE"
+    },
+    {
+      "season": "2023",
+      "rank": 9,
+      "school": "华南师范大学",
+      "team": "PIONEER"
+    },
+    {
+      "season": "2023",
+      "rank": 10,
+      "school": "长安大学",
+      "team": "VGD"
+    },
+    {
+      "season": "2023",
+      "rank": 11,
+      "school": "深圳技术大学",
+      "team": "悍匠"
+    },
+    {
+      "season": "2023",
+      "rank": 12,
+      "school": "哈尔滨工程大学",
+      "team": "创梦之翼"
+    },
+    {
+      "season": "2023",
+      "rank": 13,
+      "school": "华南理工大学",
+      "team": "华南虎"
+    },
+    {
+      "season": "2023",
+      "rank": 14,
+      "school": "四川大学",
+      "team": "火锅"
+    },
+    {
+      "season": "2023",
+      "rank": 15,
+      "school": "北京理工大学珠海学院",
+      "team": "毅恒"
+    },
+    {
+      "season": "2023",
+      "rank": 16,
+      "school": "华南农业大学",
+      "team": "Taurus"
+    },
+    {
+      "season": "2023",
+      "rank": 17,
+      "school": "中国人民解放军国防科技大学",
+      "team": "军临"
+    },
+    {
+      "season": "2023",
+      "rank": 18,
+      "school": "太原理工大学",
+      "team": "TRoMaC"
+    },
+    {
+      "season": "2023",
+      "rank": 19,
+      "school": "上海工程技术大学",
+      "team": "木鸢Birdiebot"
+    },
+    {
+      "season": "2023",
+      "rank": 20,
+      "school": "燕山大学",
+      "team": "燕鹰"
+    },
+    {
+      "season": "2023",
+      "rank": 21,
+      "school": "山东理工大学",
+      "team": "齐奇"
+    },
+    {
+      "season": "2023",
+      "rank": 22,
+      "school": "中南大学",
+      "team": "FYT"
+    },
+    {
+      "season": "2023",
+      "rank": 23,
+      "school": "上海交通大学",
+      "team": "交龙"
+    },
+    {
+      "season": "2023",
+      "rank": 24,
+      "school": "深圳大学",
+      "team": "RobotPilots"
+    },
+    {
+      "season": "2023",
+      "rank": 25,
+      "school": "辽宁科技大学",
+      "team": "COD"
+    },
+    {
+      "season": "2023",
+      "rank": 26,
+      "school": "南京航空航天大学",
+      "team": "长空御风"
+    },
+    {
+      "season": "2023",
+      "rank": 27,
+      "school": "大连理工大学",
+      "team": "凌BUG"
+    },
+    {
+      "season": "2023",
+      "rank": 28,
+      "school": "合肥工业大学(宣城校区)",
+      "team": "WDR"
+    },
+    {
+      "season": "2023",
+      "rank": 29,
+      "school": "哈尔滨工业大学",
+      "team": "I Hiter"
+    },
+    {
+      "season": "2023",
+      "rank": 30,
+      "school": "西南交通大学",
+      "team": "Helios"
+    },
+    {
+      "season": "2023",
+      "rank": 31,
+      "school": "山东科技大学",
+      "team": "SmartRobot"
+    },
+    {
+      "season": "2023",
+      "rank": 32,
+      "school": "福建工程学院",
+      "team": "苍侠"
+    },
+    {
+      "season": "2023",
+      "rank": 33,
+      "school": "南京理工大学",
+      "team": "Alliance"
+    },
+    {
+      "season": "2023",
+      "rank": 34,
+      "school": "沈阳理工大学",
+      "team": "Ambition"
+    },
+    {
+      "season": "2023",
+      "rank": 35,
+      "school": "桂林理工大学",
+      "team": "群星"
+    },
+    {
+      "season": "2023",
+      "rank": 36,
+      "school": "桂林信息科技学院",
+      "team": "GIRT"
+    },
+    {
+      "season": "2023",
+      "rank": 37,
+      "school": "沈阳航空航天大学",
+      "team": "TUP"
+    },
+    {
+      "season": "2023",
+      "rank": 38,
+      "school": "北京林业大学&北京信息科技大学",
+      "team": "Sirius"
+    },
+    {
+      "season": "2023",
+      "rank": 39,
+      "school": "厦门大学嘉庚学院",
+      "team": "TCR"
+    },
+    {
+      "season": "2023",
+      "rank": 40,
+      "school": "北京理工大学",
+      "team": "追梦"
+    },
+    {
+      "season": "2023",
+      "rank": 41,
+      "school": "哈尔滨工业大学（威海）",
+      "team": "HERO"
+    },
+    {
+      "season": "2023",
+      "rank": 42,
+      "school": "电子科技大学中山学院",
+      "team": "RoboBraver"
+    },
+    {
+      "season": "2023",
+      "rank": 43,
+      "school": "江苏大学",
+      "team": "FIVE PINES"
+    },
+    {
+      "season": "2023",
+      "rank": 44,
+      "school": "仲恺农业工程学院",
+      "team": "奇点"
+    },
+    {
+      "season": "2023",
+      "rank": 45,
+      "school": "厦门大学",
+      "team": "RCS"
+    },
+    {
+      "season": "2023",
+      "rank": 46,
+      "school": "防灾科技学院",
+      "team": "思玄"
+    },
+    {
+      "season": "2023",
+      "rank": 47,
+      "school": "西安交通大学",
+      "team": "笃行"
+    },
+    {
+      "season": "2023",
+      "rank": 48,
+      "school": "杭州电子科技大学",
+      "team": "PHOENIX"
+    },
+    {
+      "season": "2023",
+      "rank": 49,
+      "school": "南京航空航天大学金城学院",
+      "team": "Born of Fire"
+    },
+    {
+      "season": "2023",
+      "rank": 50,
+      "school": "南昌大学",
+      "team": "Passion"
+    },
+    {
+      "season": "2023",
+      "rank": 51,
+      "school": "南方科技大学",
+      "team": "ARTINX"
+    },
+    {
+      "season": "2023",
+      "rank": 52,
+      "school": "太原科技大学",
+      "team": "NewMaker"
+    },
+    {
+      "season": "2023",
+      "rank": 53,
+      "school": "中国石油大学（华东）",
+      "team": "RPS"
+    },
+    {
+      "season": "2023",
+      "rank": 54,
+      "school": "中国矿业大学",
+      "team": "CUBOT"
+    },
+    {
+      "season": "2023",
+      "rank": 55,
+      "school": "哈尔滨工业大学（深圳）",
+      "team": "南工骁鹰"
+    },
+    {
+      "season": "2023",
+      "rank": 56,
+      "school": "首都师范大学",
+      "team": "PIE"
+    },
+    {
+      "season": "2023",
+      "rank": 57,
+      "school": "合肥工业大学",
+      "team": "苍穹"
+    },
+    {
+      "season": "2023",
+      "rank": 58,
+      "school": "安徽信息工程学院",
+      "team": "Artisans"
+    },
+    {
+      "season": "2023",
+      "rank": 59,
+      "school": "吉林大学",
+      "team": "TARS_Go"
+    },
+    {
+      "season": "2023",
+      "rank": 60,
+      "school": "大连交通大学",
+      "team": "TOE"
+    },
+    {
+      "season": "2023",
+      "rank": 61,
+      "school": "华侨大学",
+      "team": "EDR"
+    },
+    {
+      "season": "2023",
+      "rank": 62,
+      "school": "太原工业学院",
+      "team": "火线"
+    },
+    {
+      "season": "2023",
+      "rank": 63,
+      "school": "中国民航大学",
+      "team": "因特雷"
+    },
+    {
+      "season": "2023",
+      "rank": 64,
+      "school": "华北理工大学",
+      "team": "Horizon"
+    },
+    {
+      "season": "2023",
+      "rank": 65,
+      "school": "湖南大学",
+      "team": "跃鹿"
+    },
+    {
+      "season": "2023",
+      "rank": 66,
+      "school": "江西理工大学",
+      "team": "乘风"
+    },
+    {
+      "season": "2023",
+      "rank": 67,
+      "school": "西交利物浦大学",
+      "team": "GMaster"
+    },
+    {
+      "season": "2023",
+      "rank": 68,
+      "school": "中国石油大学（北京）",
+      "team": "SPR"
+    },
+    {
+      "season": "2023",
+      "rank": 69,
+      "school": "重庆大学",
+      "team": "MechaX"
+    },
+    {
+      "season": "2023",
+      "rank": 70,
+      "school": "同济大学",
+      "team": "SuperPower"
+    },
+    {
+      "season": "2023",
+      "rank": 71,
+      "school": "厦门理工学院",
+      "team": "PFA"
+    },
+    {
+      "season": "2023",
+      "rank": 72,
+      "school": "华北科技学院",
+      "team": "风暴"
+    },
+    {
+      "season": "2023",
+      "rank": 73,
+      "school": "深圳职业技术学院",
+      "team": "RCIA"
+    },
+    {
+      "season": "2023",
+      "rank": 74,
+      "school": "五邑大学",
+      "team": "IMCA"
+    },
+    {
+      "season": "2023",
+      "rank": 75,
+      "school": "东北大学秦皇岛分校",
+      "team": "征龙凌沧"
+    },
+    {
+      "season": "2023",
+      "rank": 76,
+      "school": "华中科技大学",
+      "team": "狼牙"
+    },
+    {
+      "season": "2023",
+      "rank": 77,
+      "school": "河北科技大学",
+      "team": "Actor&Thinker"
+    },
+    {
+      "season": "2023",
+      "rank": 78,
+      "school": "上海大学",
+      "team": "SRM"
+    },
+    {
+      "season": "2023",
+      "rank": 79,
+      "school": "北京科技大学",
+      "team": "Reborn"
+    },
+    {
+      "season": "2023",
+      "rank": 80,
+      "school": "佛山科学技术学院",
+      "team": "醒狮"
+    },
+    {
+      "season": "2023",
+      "rank": 81,
+      "school": "北京工业大学",
+      "team": "PIP"
+    },
+    {
+      "season": "2023",
+      "rank": 82,
+      "school": "宁波工程学院",
+      "team": "New Legends"
+    },
+    {
+      "season": "2023",
+      "rank": 83,
+      "school": "浙江纺织服装职业技术学院",
+      "team": "RoboFuture"
+    },
+    {
+      "season": "2023",
+      "rank": 84,
+      "school": "中国科学技术大学",
+      "team": "RoboWalker"
+    },
+    {
+      "season": "2023",
+      "rank": 85,
+      "school": "南华大学",
+      "team": "MA"
+    },
+    {
+      "season": "2023",
+      "rank": 86,
+      "school": "湖北工业大学",
+      "team": "力创RM"
+    },
+    {
+      "season": "2023",
+      "rank": 87,
+      "school": "中北大学",
+      "team": "606"
+    },
+    {
+      "season": "2023",
+      "rank": 88,
+      "school": "广州城市理工学院",
+      "team": "野狼"
+    },
+    {
+      "season": "2023",
+      "rank": 89,
+      "school": "天津大学",
+      "team": "北洋机甲"
+    },
+    {
+      "season": "2023",
+      "rank": 90,
+      "school": "常州大学",
+      "team": "Climber"
+    },
+    {
+      "season": "2023",
+      "rank": 91,
+      "school": "福建师范大学",
+      "team": "Pikachu"
+    },
+    {
+      "season": "2023",
+      "rank": 92,
+      "school": "武汉工程大学",
+      "team": "Nautilus"
+    },
+    {
+      "season": "2023",
+      "rank": 93,
+      "school": "茅台学院",
+      "team": "MTI"
+    },
+    {
+      "season": "2023",
+      "rank": 94,
+      "school": "上海科技大学",
+      "team": "Magician"
+    },
+    {
+      "season": "2023",
+      "rank": 95,
+      "school": "重庆理工大学",
+      "team": "星渝士继"
+    },
+    {
+      "season": "2023",
+      "rank": 96,
+      "school": "西安电子科技大学",
+      "team": "IRobot"
+    },
+    {
+      "season": "2024",
+      "rank": 1,
+      "school": "中南大学",
+      "team": "FYT"
+    },
+    {
+      "season": "2024",
+      "rank": 2,
+      "school": "桂林信息科技学院",
+      "team": "GIRT"
+    },
+    {
+      "season": "2024",
+      "rank": 3,
+      "school": "哈尔滨工业大学",
+      "team": "I Hiter"
+    },
+    {
+      "season": "2024",
+      "rank": 4,
+      "school": "上海交通大学",
+      "team": "交龙"
+    },
+    {
+      "season": "2024",
+      "rank": 5,
+      "school": "西南交通大学",
+      "team": "Helios"
+    },
+    {
+      "season": "2024",
+      "rank": 6,
+      "school": "浙江大学",
+      "team": "Hello World"
+    },
+    {
+      "season": "2024",
+      "rank": 7,
+      "school": "深圳技术大学",
+      "team": "悍匠"
+    },
+    {
+      "season": "2024",
+      "rank": 8,
+      "school": "哈尔滨工程大学",
+      "team": "创梦之翼"
+    },
+    {
+      "season": "2024",
+      "rank": 9,
+      "school": "西安交通大学",
+      "team": "笃行"
+    },
+    {
+      "season": "2024",
+      "rank": 10,
+      "school": "齐鲁工业大学",
+      "team": "Adam"
+    },
+    {
+      "season": "2024",
+      "rank": 11,
+      "school": "首都师范大学",
+      "team": "PIE"
+    },
+    {
+      "season": "2024",
+      "rank": 12,
+      "school": "哈尔滨工业大学（深圳）",
+      "team": "南工骁鹰"
+    },
+    {
+      "season": "2024",
+      "rank": 13,
+      "school": "电子科技大学中山学院",
+      "team": "RoboBraver"
+    },
+    {
+      "season": "2024",
+      "rank": 14,
+      "school": "沈阳航空航天大学",
+      "team": "TUP"
+    },
+    {
+      "season": "2024",
+      "rank": 15,
+      "school": "南方科技大学",
+      "team": "ARTINX"
+    },
+    {
+      "season": "2024",
+      "rank": 16,
+      "school": "深圳大学",
+      "team": "RobotPilots"
+    },
+    {
+      "season": "2024",
+      "rank": 17,
+      "school": "中北大学",
+      "team": "606"
+    },
+    {
+      "season": "2024",
+      "rank": 18,
+      "school": "四川大学",
+      "team": "火锅"
+    },
+    {
+      "season": "2024",
+      "rank": 19,
+      "school": "东北大学",
+      "team": "TDT"
+    },
+    {
+      "season": "2024",
+      "rank": 20,
+      "school": "北京理工大学珠海学院",
+      "team": "毅恒"
+    },
+    {
+      "season": "2024",
+      "rank": 21,
+      "school": "北京理工大学",
+      "team": "追梦"
+    },
+    {
+      "season": "2024",
+      "rank": 22,
+      "school": "广东工业大学",
+      "team": "DynamicX"
+    },
+    {
+      "season": "2024",
+      "rank": 23,
+      "school": "东莞理工学院",
+      "team": "ACE"
+    },
+    {
+      "season": "2024",
+      "rank": 24,
+      "school": "华南师范大学",
+      "team": "PIONEER"
+    },
+    {
+      "season": "2024",
+      "rank": 25,
+      "school": "重庆大学",
+      "team": "千里"
+    },
+    {
+      "season": "2024",
+      "rank": 26,
+      "school": "西安电子科技大学",
+      "team": "IRobot"
+    },
+    {
+      "season": "2024",
+      "rank": 27,
+      "school": "中国科学技术大学",
+      "team": "RoboWalker"
+    },
+    {
+      "season": "2024",
+      "rank": 28,
+      "school": "湖南大学",
+      "team": "跃鹿"
+    },
+    {
+      "season": "2024",
+      "rank": 29,
+      "school": "吉林大学",
+      "team": "TARS_Go"
+    },
+    {
+      "season": "2024",
+      "rank": 30,
+      "school": "南京理工大学",
+      "team": "Alliance"
+    },
+    {
+      "season": "2024",
+      "rank": 31,
+      "school": "山东理工大学",
+      "team": "齐奇"
+    },
+    {
+      "season": "2024",
+      "rank": 32,
+      "school": "桂林电子科技大学",
+      "team": "Evolution"
+    },
+    {
+      "season": "2024",
+      "rank": 33,
+      "school": "中国石油大学（华东）",
+      "team": "RPS"
+    },
+    {
+      "season": "2024",
+      "rank": 34,
+      "school": "青岛大学",
+      "team": "未来"
+    },
+    {
+      "season": "2024",
+      "rank": 35,
+      "school": "天津大学",
+      "team": "北洋机甲"
+    },
+    {
+      "season": "2024",
+      "rank": 36,
+      "school": "深圳职业技术大学",
+      "team": "RCIA"
+    },
+    {
+      "season": "2024",
+      "rank": 37,
+      "school": "太原科技大学",
+      "team": "NewMaker"
+    },
+    {
+      "season": "2024",
+      "rank": 38,
+      "school": "广州城市理工学院",
+      "team": "野狼"
+    },
+    {
+      "season": "2024",
+      "rank": 39,
+      "school": "合肥工业大学(宣城校区)",
+      "team": "WDR"
+    },
+    {
+      "season": "2024",
+      "rank": 40,
+      "school": "太原理工大学",
+      "team": "TRoMaC"
+    },
+    {
+      "season": "2024",
+      "rank": 41,
+      "school": "西南石油大学",
+      "team": "铁人"
+    },
+    {
+      "season": "2024",
+      "rank": 42,
+      "school": "南昌大学",
+      "team": "Passion"
+    },
+    {
+      "season": "2024",
+      "rank": 43,
+      "school": "哈尔滨工业大学（威海）",
+      "team": "HERO"
+    },
+    {
+      "season": "2024",
+      "rank": 44,
+      "school": "福建理工大学",
+      "team": "苍侠"
+    },
+    {
+      "season": "2024",
+      "rank": 45,
+      "school": "华南农业大学",
+      "team": "Taurus"
+    },
+    {
+      "season": "2024",
+      "rank": 46,
+      "school": "西安理工大学",
+      "team": "NEXT E"
+    },
+    {
+      "season": "2024",
+      "rank": 47,
+      "school": "华南理工大学",
+      "team": "华南虎"
+    },
+    {
+      "season": "2024",
+      "rank": 48,
+      "school": "东北林业大学",
+      "team": "Ares"
+    },
+    {
+      "season": "2024",
+      "rank": 49,
+      "school": "成都大学",
+      "team": "Ultra"
+    },
+    {
+      "season": "2024",
+      "rank": 50,
+      "school": "西北工业大学",
+      "team": "WMJ"
+    },
+    {
+      "season": "2024",
+      "rank": 51,
+      "school": "福建师范大学",
+      "team": "Pikachu"
+    },
+    {
+      "season": "2024",
+      "rank": 52,
+      "school": "河北科技大学",
+      "team": "Actor&Thinker"
+    },
+    {
+      "season": "2024",
+      "rank": 53,
+      "school": "中国人民解放军国防科技大学",
+      "team": "军临"
+    },
+    {
+      "season": "2024",
+      "rank": 54,
+      "school": "沈阳理工大学",
+      "team": "Ambition"
+    },
+    {
+      "season": "2024",
+      "rank": 55,
+      "school": "五邑大学",
+      "team": "IMCA"
+    },
+    {
+      "season": "2024",
+      "rank": 56,
+      "school": "佛山科学技术学院",
+      "team": "醒狮"
+    },
+    {
+      "season": "2024",
+      "rank": 57,
+      "school": "上海科技大学",
+      "team": "Magician"
+    },
+    {
+      "season": "2024",
+      "rank": 58,
+      "school": "厦门大学",
+      "team": "RCS"
+    },
+    {
+      "season": "2024",
+      "rank": 59,
+      "school": "太原工业学院",
+      "team": "火线"
+    },
+    {
+      "season": "2024",
+      "rank": 60,
+      "school": "中国石油大学（北京）",
+      "team": "SPR"
+    },
+    {
+      "season": "2024",
+      "rank": 61,
+      "school": "大连理工大学",
+      "team": "凌BUG"
+    },
+    {
+      "season": "2024",
+      "rank": 62,
+      "school": "常州大学",
+      "team": "Climber"
+    },
+    {
+      "season": "2024",
+      "rank": 63,
+      "school": "武汉工程大学",
+      "team": "Nautilus"
+    },
+    {
+      "season": "2024",
+      "rank": 64,
+      "school": "杭州电子科技大学",
+      "team": "PHOENIX"
+    },
+    {
+      "season": "2024",
+      "rank": 65,
+      "school": "东华大学",
+      "team": "DIODE"
+    },
+    {
+      "season": "2024",
+      "rank": 66,
+      "school": "燕山大学",
+      "team": "燕鹰"
+    },
+    {
+      "season": "2024",
+      "rank": 67,
+      "school": "华中科技大学",
+      "team": "狼牙"
+    },
+    {
+      "season": "2024",
+      "rank": 68,
+      "school": "北京科技大学",
+      "team": "Reborn"
+    },
+    {
+      "season": "2024",
+      "rank": 69,
+      "school": "陆军勤务学院",
+      "team": "陆擎"
+    },
+    {
+      "season": "2024",
+      "rank": 70,
+      "school": "山东科技大学",
+      "team": "SmartRobot"
+    },
+    {
+      "season": "2024",
+      "rank": 71,
+      "school": "东南大学",
+      "team": "3SE"
+    },
+    {
+      "season": "2024",
+      "rank": 72,
+      "school": "北京信息科技大学",
+      "team": "星辰"
+    },
+    {
+      "season": "2024",
+      "rank": 73,
+      "school": "湘潭大学",
+      "team": "逐曦"
+    },
+    {
+      "season": "2024",
+      "rank": 74,
+      "school": "辽宁科技大学",
+      "team": "COD"
+    },
+    {
+      "season": "2024",
+      "rank": 75,
+      "school": "重庆三峡学院",
+      "team": "LionHeart"
+    },
+    {
+      "season": "2024",
+      "rank": 76,
+      "school": "南华大学",
+      "team": "MA"
+    },
+    {
+      "season": "2024",
+      "rank": 77,
+      "school": "同济大学",
+      "team": "SuperPower"
+    },
+    {
+      "season": "2024",
+      "rank": 78,
+      "school": "厦门大学嘉庚学院",
+      "team": "TCR"
+    },
+    {
+      "season": "2024",
+      "rank": 79,
+      "school": "桂林理工大学",
+      "team": "群星"
+    },
+    {
+      "season": "2024",
+      "rank": 80,
+      "school": "南京航空航天大学",
+      "team": "长空御风"
+    },
+    {
+      "season": "2024",
+      "rank": 81,
+      "school": "长安大学",
+      "team": "VGD"
+    },
+    {
+      "season": "2024",
+      "rank": 82,
+      "school": "内蒙古科技大学",
+      "team": "雷霆"
+    },
+    {
+      "season": "2024",
+      "rank": 83,
+      "school": "华北科技学院",
+      "team": "风暴"
+    },
+    {
+      "season": "2024",
+      "rank": 84,
+      "school": "华东理工大学",
+      "team": "起源"
+    },
+    {
+      "season": "2024",
+      "rank": 85,
+      "school": "厦门理工学院",
+      "team": "PFA"
+    },
+    {
+      "season": "2024",
+      "rank": 86,
+      "school": "安徽信息工程学院",
+      "team": "Artisans"
+    },
+    {
+      "season": "2024",
+      "rank": 87,
+      "school": "中国矿业大学",
+      "team": "CUBOT"
+    },
+    {
+      "season": "2024",
+      "rank": 88,
+      "school": "浙江纺织服装职业技术学院",
+      "team": "RoboFuture"
+    },
+    {
+      "season": "2024",
+      "rank": 89,
+      "school": "南京航空航天大学金城学院",
+      "team": "Born of Fire"
+    },
+    {
+      "season": "2024",
+      "rank": 90,
+      "school": "东北大学秦皇岛分校",
+      "team": "征龙凌沧"
+    },
+    {
+      "season": "2024",
+      "rank": 91,
+      "school": "华北理工大学",
+      "team": "Horizon"
+    },
+    {
+      "season": "2024",
+      "rank": 92,
+      "school": "上海工程技术大学",
+      "team": "木鸢Birdiebot"
+    },
+    {
+      "season": "2024",
+      "rank": 93,
+      "school": "河北工业大学",
+      "team": "山海Mas"
+    },
+    {
+      "season": "2024",
+      "rank": 94,
+      "school": "桂林电子科技大学北海校区",
+      "team": "破浪笃行"
+    },
+    {
+      "season": "2024",
+      "rank": 95,
+      "school": "合肥工业大学",
+      "team": "苍穹"
+    },
+    {
+      "season": "2024",
+      "rank": 96,
+      "school": "西交利物浦大学&利物浦大学",
+      "team": "Gmaster"
+    },
+    {
+      "season": "2025",
+      "rank": 1,
+      "school": "东莞理工学院",
+      "team": "ACE"
+    },
+    {
+      "season": "2025",
+      "rank": 2,
+      "school": "西安交通大学",
+      "team": "笃行"
+    },
+    {
+      "season": "2025",
+      "rank": 3,
+      "school": "中国石油大学（华东）",
+      "team": "RPS"
+    },
+    {
+      "season": "2025",
+      "rank": 4,
+      "school": "五邑大学",
+      "team": "IMCA"
+    },
+    {
+      "season": "2025",
+      "rank": 5,
+      "school": "东北大学",
+      "team": "TDT"
+    },
+    {
+      "season": "2025",
+      "rank": 6,
+      "school": "浙江大学",
+      "team": "Hello World"
+    },
+    {
+      "season": "2025",
+      "rank": 7,
+      "school": "太原工业学院",
+      "team": "火线"
+    },
+    {
+      "season": "2025",
+      "rank": 8,
+      "school": "华南理工大学",
+      "team": "华南虎"
+    },
+    {
+      "season": "2025",
+      "rank": 9,
+      "school": "佛山大学",
+      "team": "醒狮"
+    },
+    {
+      "season": "2025",
+      "rank": 10,
+      "school": "上海交通大学",
+      "team": "交龙"
+    },
+    {
+      "season": "2025",
+      "rank": 11,
+      "school": "华南农业大学",
+      "team": "Taurus"
+    },
+    {
+      "season": "2025",
+      "rank": 12,
+      "school": "武汉工程大学",
+      "team": "Nautilus"
+    },
+    {
+      "season": "2025",
+      "rank": 13,
+      "school": "同济大学",
+      "team": "SuperPower"
+    },
+    {
+      "season": "2025",
+      "rank": 14,
+      "school": "国防科技大学",
+      "team": "军临"
+    },
+    {
+      "season": "2025",
+      "rank": 15,
+      "school": "北京科技大学",
+      "team": "Reborn"
+    },
+    {
+      "season": "2025",
+      "rank": 16,
+      "school": "太原理工大学",
+      "team": "TRoMaC"
+    },
+    {
+      "season": "2025",
+      "rank": 17,
+      "school": "深圳大学",
+      "team": "RobotPilots"
+    },
+    {
+      "season": "2025",
+      "rank": 18,
+      "school": "南方科技大学",
+      "team": "ARTINX"
+    },
+    {
+      "season": "2025",
+      "rank": 19,
+      "school": "南京航空航天大学",
+      "team": "长空御风"
+    },
+    {
+      "season": "2025",
+      "rank": 20,
+      "school": "天津大学",
+      "team": "北洋机甲"
+    },
+    {
+      "season": "2025",
+      "rank": 21,
+      "school": "合肥工业大学(宣城校区)",
+      "team": "WDR"
+    },
+    {
+      "season": "2025",
+      "rank": 22,
+      "school": "仲恺农业工程学院",
+      "team": "奇点"
+    },
+    {
+      "season": "2025",
+      "rank": 23,
+      "school": "中南大学",
+      "team": "FYT"
+    },
+    {
+      "season": "2025",
+      "rank": 24,
+      "school": "桂林理工大学",
+      "team": "群星"
+    },
+    {
+      "season": "2025",
+      "rank": 25,
+      "school": "哈尔滨工业大学（威海）",
+      "team": "HERO"
+    },
+    {
+      "season": "2025",
+      "rank": 26,
+      "school": "南京理工大学",
+      "team": "Alliance"
+    },
+    {
+      "season": "2025",
+      "rank": 27,
+      "school": "西北工业大学",
+      "team": "WMJ"
+    },
+    {
+      "season": "2025",
+      "rank": 28,
+      "school": "湖南大学",
+      "team": "跃鹿"
+    },
+    {
+      "season": "2025",
+      "rank": 29,
+      "school": "重庆理工大学",
+      "team": "士继DREAMER"
+    },
+    {
+      "season": "2025",
+      "rank": 30,
+      "school": "西南石油大学",
+      "team": "铁人"
+    },
+    {
+      "season": "2025",
+      "rank": 31,
+      "school": "深圳技术大学",
+      "team": "悍匠"
+    },
+    {
+      "season": "2025",
+      "rank": 32,
+      "school": "河北工业大学",
+      "team": "山海机甲"
+    },
+    {
+      "season": "2025",
+      "rank": 33,
+      "school": "华北科技学院",
+      "team": "风暴"
+    },
+    {
+      "season": "2025",
+      "rank": 34,
+      "school": "中北大学",
+      "team": "606"
+    },
+    {
+      "season": "2025",
+      "rank": 35,
+      "school": "成都信息工程大学",
+      "team": "风信子"
+    },
+    {
+      "season": "2025",
+      "rank": 36,
+      "school": "合肥工业大学",
+      "team": "苍穹"
+    },
+    {
+      "season": "2025",
+      "rank": 37,
+      "school": "吉林大学",
+      "team": "TARS_Go"
+    },
+    {
+      "season": "2025",
+      "rank": 38,
+      "school": "电子科技大学中山学院",
+      "team": "RoboBraver"
+    },
+    {
+      "season": "2025",
+      "rank": 39,
+      "school": "哈尔滨工业大学",
+      "team": "I Hiter"
+    },
+    {
+      "season": "2025",
+      "rank": 40,
+      "school": "中国矿业大学",
+      "team": "CUBOT"
+    },
+    {
+      "season": "2025",
+      "rank": 41,
+      "school": "中国科学技术大学",
+      "team": "RoboWalker"
+    },
+    {
+      "season": "2025",
+      "rank": 42,
+      "school": "首都师范大学",
+      "team": "PIE"
+    },
+    {
+      "season": "2025",
+      "rank": 43,
+      "school": "四川大学",
+      "team": "火锅"
+    },
+    {
+      "season": "2025",
+      "rank": 44,
+      "school": "西南交通大学",
+      "team": "Helios"
+    },
+    {
+      "season": "2025",
+      "rank": 45,
+      "school": "华东理工大学",
+      "team": "起源"
+    },
+    {
+      "season": "2025",
+      "rank": 46,
+      "school": "北京理工大学珠海学院",
+      "team": "毅恒"
+    },
+    {
+      "season": "2025",
+      "rank": 47,
+      "school": "华中科技大学",
+      "team": "狼牙"
+    },
+    {
+      "season": "2025",
+      "rank": 48,
+      "school": "沈阳理工大学",
+      "team": "Ambition"
+    },
+    {
+      "season": "2025",
+      "rank": 49,
+      "school": "深圳职业技术大学",
+      "team": "RCIA"
+    },
+    {
+      "season": "2025",
+      "rank": 50,
+      "school": "东北大学秦皇岛分校",
+      "team": "征龙凌沧"
+    },
+    {
+      "season": "2025",
+      "rank": 51,
+      "school": "安徽信息工程学院",
+      "team": "Artisans"
+    },
+    {
+      "season": "2025",
+      "rank": 52,
+      "school": "广东工业大学",
+      "team": "DynamicX"
+    },
+    {
+      "season": "2025",
+      "rank": 53,
+      "school": "西安电子科技大学",
+      "team": "IRobot"
+    },
+    {
+      "season": "2025",
+      "rank": 54,
+      "school": "广州城市理工学院",
+      "team": "野狼"
+    },
+    {
+      "season": "2025",
+      "rank": 55,
+      "school": "哈尔滨工业大学（深圳）",
+      "team": "南工骁鹰"
+    },
+    {
+      "season": "2025",
+      "rank": 56,
+      "school": "桂林信息科技学院",
+      "team": "GIRT"
+    },
+    {
+      "season": "2025",
+      "rank": 57,
+      "school": "湘潭大学",
+      "team": "逐曦"
+    },
+    {
+      "season": "2025",
+      "rank": 58,
+      "school": "厦门大学嘉庚学院",
+      "team": "TCR"
+    },
+    {
+      "season": "2025",
+      "rank": 59,
+      "school": "云南大学",
+      "team": "Future"
+    },
+    {
+      "season": "2025",
+      "rank": 60,
+      "school": "长沙理工大学",
+      "team": "云嵌"
+    },
+    {
+      "season": "2025",
+      "rank": 61,
+      "school": "江苏大学",
+      "team": "Aurora"
+    },
+    {
+      "season": "2025",
+      "rank": 62,
+      "school": "辽宁科技大学",
+      "team": "COD"
+    },
+    {
+      "season": "2025",
+      "rank": 63,
+      "school": "北方工业大学",
+      "team": "DreamTeam"
+    },
+    {
+      "season": "2025",
+      "rank": 64,
+      "school": "南华大学",
+      "team": "MA"
+    },
+    {
+      "season": "2025",
+      "rank": 65,
+      "school": "香港科技大学（广州）",
+      "team": "PnX"
+    },
+    {
+      "season": "2025",
+      "rank": 66,
+      "school": "河北科技大学",
+      "team": "Actor&Thinker"
+    },
+    {
+      "season": "2025",
+      "rank": 67,
+      "school": "齐鲁工业大学",
+      "team": "Adam"
+    },
+    {
+      "season": "2025",
+      "rank": 68,
+      "school": "西安理工大学",
+      "team": "NEXT E"
+    },
+    {
+      "season": "2025",
+      "rank": 69,
+      "school": "福建理工大学",
+      "team": "苍侠"
+    },
+    {
+      "season": "2025",
+      "rank": 70,
+      "school": "宁波工程学院",
+      "team": "New Legends"
+    },
+    {
+      "season": "2025",
+      "rank": 71,
+      "school": "青岛大学",
+      "team": "未来"
+    },
+    {
+      "season": "2025",
+      "rank": 72,
+      "school": "哈尔滨工程大学",
+      "team": "创梦之翼"
+    },
+    {
+      "season": "2025",
+      "rank": 73,
+      "school": "浙江理工大学",
+      "team": "钱塘蛟"
+    },
+    {
+      "season": "2025",
+      "rank": 74,
+      "school": "重庆大学",
+      "team": "千里"
+    },
+    {
+      "season": "2025",
+      "rank": 75,
+      "school": "沈阳航空航天大学",
+      "team": "TUP"
+    },
+    {
+      "season": "2025",
+      "rank": 76,
+      "school": "大连理工大学",
+      "team": "凌BUG"
+    },
+    {
+      "season": "2025",
+      "rank": 77,
+      "school": "广西大学",
+      "team": "ROBOTZ"
+    },
+    {
+      "season": "2025",
+      "rank": 78,
+      "school": "桂林电子科技大学",
+      "team": "Evolution"
+    },
+    {
+      "season": "2025",
+      "rank": 79,
+      "school": "成都大学",
+      "team": "Ultra"
+    },
+    {
+      "season": "2025",
+      "rank": 80,
+      "school": "南京航空航天大学金城学院",
+      "team": "Born of Fire"
+    },
+    {
+      "season": "2025",
+      "rank": 81,
+      "school": "山东科技大学",
+      "team": "SmartRobot"
+    },
+    {
+      "season": "2025",
+      "rank": 82,
+      "school": "长安大学",
+      "team": "VGD"
+    },
+    {
+      "season": "2025",
+      "rank": 83,
+      "school": "北京工业大学",
+      "team": "PIP"
+    },
+    {
+      "season": "2025",
+      "rank": 84,
+      "school": "上海科技大学",
+      "team": "Magician"
+    },
+    {
+      "season": "2025",
+      "rank": 85,
+      "school": "东南大学",
+      "team": "3SE"
+    },
+    {
+      "season": "2025",
+      "rank": 86,
+      "school": "燕山大学",
+      "team": "燕鹰"
+    },
+    {
+      "season": "2025",
+      "rank": 87,
+      "school": "浙江纺织服装职业技术学院",
+      "team": "RoboFuture"
+    },
+    {
+      "season": "2025",
+      "rank": 88,
+      "school": "南昌大学",
+      "team": "Passion"
+    },
+    {
+      "season": "2025",
+      "rank": 89,
+      "school": "山东理工大学",
+      "team": "齐奇"
+    },
+    {
+      "season": "2025",
+      "rank": 90,
+      "school": "上海工程技术大学",
+      "team": "木鸢Birdiebot"
+    },
+    {
+      "season": "2025",
+      "rank": 91,
+      "school": "北京理工大学",
+      "team": "追梦"
+    },
+    {
+      "season": "2025",
+      "rank": 92,
+      "school": "中国石油大学（北京）",
+      "team": "SPR"
+    },
+    {
+      "season": "2025",
+      "rank": 93,
+      "school": "东北林业大学",
+      "team": "Ares"
+    },
+    {
+      "season": "2025",
+      "rank": 94,
+      "school": "华北理工大学",
+      "team": "Horizon"
+    },
+    {
+      "season": "2025",
+      "rank": 95,
+      "school": "东华大学",
+      "team": "DIODE"
+    },
+    {
+      "season": "2025",
+      "rank": 96,
+      "school": "北京信息科技大学",
+      "team": "星辰"
+    },
+    {
+      "season": "2026",
+      "rank": 1,
+      "school": "西安交通大学",
+      "team": "笃行"
+    },
+    {
+      "season": "2026",
+      "rank": 2,
+      "school": "东莞理工学院",
+      "team": "ACE"
+    },
+    {
+      "season": "2026",
+      "rank": 3,
+      "school": "华南农业大学",
+      "team": "Taurus"
+    },
+    {
+      "season": "2026",
+      "rank": 4,
+      "school": "五邑大学",
+      "team": "IMCA"
+    },
+    {
+      "season": "2026",
+      "rank": 5,
+      "school": "太原科技大学",
+      "team": "NewMaker"
+    },
+    {
+      "season": "2026",
+      "rank": 6,
+      "school": "华北科技学院",
+      "team": "风暴"
+    },
+    {
+      "season": "2026",
+      "rank": 7,
+      "school": "哈尔滨工业大学（深圳）",
+      "team": "南工骁鹰"
+    },
+    {
+      "season": "2026",
+      "rank": 8,
+      "school": "东北大学",
+      "team": "TDT"
+    },
+    {
+      "season": "2026",
+      "rank": 9,
+      "school": "西北工业大学",
+      "team": "WMJ"
+    },
+    {
+      "season": "2026",
+      "rank": 10,
+      "school": "中国石油大学（华东）",
+      "team": "RPS"
+    },
+    {
+      "season": "2026",
+      "rank": 11,
+      "school": "北京理工大学",
+      "team": "追梦"
+    },
+    {
+      "season": "2026",
+      "rank": 12,
+      "school": "华南理工大学",
+      "team": "华南虎"
+    },
+    {
+      "season": "2026",
+      "rank": 13,
+      "school": "太原工业学院",
+      "team": "火线"
+    },
+    {
+      "season": "2026",
+      "rank": 14,
+      "school": "武汉工程大学",
+      "team": "Nautilus"
+    },
+    {
+      "season": "2026",
+      "rank": 15,
+      "school": "仲恺农业工程学院",
+      "team": "奇点"
+    },
+    {
+      "season": "2026",
+      "rank": 16,
+      "school": "华东理工大学",
+      "team": "起源"
+    },
+    {
+      "season": "2026",
+      "rank": 17,
+      "school": "长安大学",
+      "team": "VGD"
+    },
+    {
+      "season": "2026",
+      "rank": 18,
+      "school": "同济大学",
+      "team": "SuperPower"
+    },
+    {
+      "season": "2026",
+      "rank": 19,
+      "school": "南京理工大学",
+      "team": "Alliance"
+    },
+    {
+      "season": "2026",
+      "rank": 20,
+      "school": "中国科学技术大学",
+      "team": "RoboWalker"
+    },
+    {
+      "season": "2026",
+      "rank": 21,
+      "school": "中南大学",
+      "team": "FYT"
+    },
+    {
+      "season": "2026",
+      "rank": 22,
+      "school": "江南大学霞客湾校区",
+      "team": "SHARK"
+    },
+    {
+      "season": "2026",
+      "rank": 23,
+      "school": "哈尔滨工业大学",
+      "team": "I Hiter"
+    },
+    {
+      "season": "2026",
+      "rank": 24,
+      "school": "沈阳理工大学",
+      "team": "Ambition"
+    },
+    {
+      "season": "2026",
+      "rank": 25,
+      "school": "深圳大学",
+      "team": "RobotPilots"
+    },
+    {
+      "season": "2026",
+      "rank": 26,
+      "school": "合肥工业大学（宣城校区）",
+      "team": "WDR"
+    },
+    {
+      "season": "2026",
+      "rank": 27,
+      "school": "广州城市理工学院",
+      "team": "野狼"
+    },
+    {
+      "season": "2026",
+      "rank": 28,
+      "school": "哈尔滨工业大学（威海）",
+      "team": "HERO"
+    },
+    {
+      "season": "2026",
+      "rank": 29,
+      "school": "华北理工大学",
+      "team": "Horizon"
+    },
+    {
+      "season": "2026",
+      "rank": 30,
+      "school": "太原理工大学",
+      "team": "TRoMaC"
+    },
+    {
+      "season": "2026",
+      "rank": 31,
+      "school": "北方工业大学",
+      "team": "DreamTeam"
+    },
+    {
+      "season": "2026",
+      "rank": 32,
+      "school": "桂林电子科技大学",
+      "team": "Evolution"
+    },
+    {
+      "season": "2026",
+      "rank": 33,
+      "school": "合肥工业大学",
+      "team": "苍穹"
+    },
+    {
+      "season": "2026",
+      "rank": 34,
+      "school": "安徽信息工程学院",
+      "team": "Artisans"
+    },
+    {
+      "season": "2026",
+      "rank": 35,
+      "school": "武汉科技大学",
+      "team": "崇实"
+    },
+    {
+      "season": "2026",
+      "rank": 36,
+      "school": "广东工业大学",
+      "team": "DynamicX"
+    },
+    {
+      "season": "2026",
+      "rank": 37,
+      "school": "电子科技大学中山学院",
+      "team": "RoboBraver"
+    },
+    {
+      "season": "2026",
+      "rank": 38,
+      "school": "首都师范大学",
+      "team": "PIE"
+    },
+    {
+      "season": "2026",
+      "rank": 39,
+      "school": "河北科技大学",
+      "team": "Actor&Thinker"
+    },
+    {
+      "season": "2026",
+      "rank": 40,
+      "school": "东南大学",
+      "team": "3SE"
+    },
+    {
+      "season": "2026",
+      "rank": 41,
+      "school": "大连理工大学",
+      "team": "凌BUG"
+    },
+    {
+      "season": "2026",
+      "rank": 42,
+      "school": "浙江大学",
+      "team": "Hello World"
+    },
+    {
+      "season": "2026",
+      "rank": 43,
+      "school": "山东理工大学",
+      "team": "齐奇"
+    },
+    {
+      "season": "2026",
+      "rank": 44,
+      "school": "香港科技大学（广州）",
+      "team": "PnX"
+    },
+    {
+      "season": "2026",
+      "rank": 45,
+      "school": "东北大学秦皇岛分校",
+      "team": "征龙凌沧"
+    },
+    {
+      "season": "2026",
+      "rank": 46,
+      "school": "上海交通大学",
+      "team": "交龙"
+    },
+    {
+      "season": "2026",
+      "rank": 47,
+      "school": "江苏大学",
+      "team": "Aurora"
+    },
+    {
+      "season": "2026",
+      "rank": 48,
+      "school": "南华大学",
+      "team": "MA"
+    },
+    {
+      "season": "2026",
+      "rank": 49,
+      "school": "复旦大学",
+      "team": "星云EGA"
+    },
+    {
+      "season": "2026",
+      "rank": 50,
+      "school": "成都信息工程大学",
+      "team": "风信子"
+    },
+    {
+      "season": "2026",
+      "rank": 51,
+      "school": "长沙理工大学",
+      "team": "云嵌"
+    },
+    {
+      "season": "2026",
+      "rank": 52,
+      "school": "哈尔滨工程大学",
+      "team": "创梦之翼"
+    },
+    {
+      "season": "2026",
+      "rank": 53,
+      "school": "山东科技大学",
+      "team": "SmartRobot"
+    },
+    {
+      "season": "2026",
+      "rank": 54,
+      "school": "国防科技大学",
+      "team": "军临"
+    },
+    {
+      "season": "2026",
+      "rank": 55,
+      "school": "杭州电子科技大学",
+      "team": "PHOENIX"
+    },
+    {
+      "season": "2026",
+      "rank": 56,
+      "school": "吉林大学",
+      "team": "TARS Go"
+    },
+    {
+      "season": "2026",
+      "rank": 57,
+      "school": "广西大学",
+      "team": "ROBOTZ"
+    },
+    {
+      "season": "2026",
+      "rank": 58,
+      "school": "桂林理工大学",
+      "team": "群星"
+    },
+    {
+      "season": "2026",
+      "rank": 59,
+      "school": "深圳技术大学",
+      "team": "悍匠"
+    },
+    {
+      "season": "2026",
+      "rank": 60,
+      "school": "广州航海学院",
+      "team": "ICBK破冰船"
+    },
+    {
+      "season": "2026",
+      "rank": 61,
+      "school": "中北大学",
+      "team": "606"
+    },
+    {
+      "season": "2026",
+      "rank": 62,
+      "school": "南昌大学",
+      "team": "Passion"
+    },
+    {
+      "season": "2026",
+      "rank": 63,
+      "school": "天津大学",
+      "team": "北洋机甲"
+    },
+    {
+      "season": "2026",
+      "rank": 64,
+      "school": "上海大学",
+      "team": "SRM"
+    },
+    {
+      "season": "2026",
+      "rank": 65,
+      "school": "成都大学",
+      "team": "Ultra"
+    },
+    {
+      "season": "2026",
+      "rank": 66,
+      "school": "齐鲁工业大学",
+      "team": "Adam"
+    },
+    {
+      "season": "2026",
+      "rank": 67,
+      "school": "西安电子科技大学",
+      "team": "IRobot"
+    },
+    {
+      "season": "2026",
+      "rank": 68,
+      "school": "桂林信息科技学院",
+      "team": "GIRT"
+    },
+    {
+      "season": "2026",
+      "rank": 69,
+      "school": "上海工程技术大学",
+      "team": "木鸢Birdiebot"
+    },
+    {
+      "season": "2026",
+      "rank": 70,
+      "school": "厦门大学",
+      "team": "RCS"
+    },
+    {
+      "season": "2026",
+      "rank": 71,
+      "school": "湘潭大学",
+      "team": "逐曦"
+    },
+    {
+      "season": "2026",
+      "rank": 72,
+      "school": "香港科技大学",
+      "team": "ENTERPRIZE"
+    },
+    {
+      "season": "2026",
+      "rank": 73,
+      "school": "四川大学",
+      "team": "火锅"
+    },
+    {
+      "season": "2026",
+      "rank": 74,
+      "school": "厦门大学嘉庚学院",
+      "team": "TCR"
+    },
+    {
+      "season": "2026",
+      "rank": 75,
+      "school": "青岛大学",
+      "team": "未来"
+    },
+    {
+      "season": "2026",
+      "rank": 76,
+      "school": "中国石油大学（北京）",
+      "team": "SPR"
+    },
+    {
+      "season": "2026",
+      "rank": 77,
+      "school": "南京航空航天大学金城学院",
+      "team": "Born of Fire"
+    },
+    {
+      "season": "2026",
+      "rank": 78,
+      "school": "华中科技大学",
+      "team": "狼牙"
+    },
+    {
+      "season": "2026",
+      "rank": 79,
+      "school": "西交利物浦大学",
+      "team": "GMaster"
+    },
+    {
+      "season": "2026",
+      "rank": 80,
+      "school": "内蒙古科技大学",
+      "team": "雷霆"
+    },
+    {
+      "season": "2026",
+      "rank": 81,
+      "school": "华南师范大学",
+      "team": "PIONEER"
+    },
+    {
+      "season": "2026",
+      "rank": 82,
+      "school": "辽宁石油化工大学",
+      "team": "TCN"
+    },
+    {
+      "season": "2026",
+      "rank": 83,
+      "school": "南京理工大学江阴校区",
+      "team": "Combat"
+    },
+    {
+      "season": "2026",
+      "rank": 84,
+      "school": "西南交通大学",
+      "team": "Helios"
+    },
+    {
+      "season": "2026",
+      "rank": 85,
+      "school": "中国矿业大学",
+      "team": "CUBOT"
+    },
+    {
+      "season": "2026",
+      "rank": 86,
+      "school": "香港大学",
+      "team": "HerKules"
+    },
+    {
+      "season": "2026",
+      "rank": 87,
+      "school": "厦门理工学院",
+      "team": "PFA"
+    },
+    {
+      "season": "2026",
+      "rank": 88,
+      "school": "福建师范大学",
+      "team": "PKA"
+    },
+    {
+      "season": "2026",
+      "rank": 89,
+      "school": "华南师范大学（佛山校区）",
+      "team": "VANGUARD"
+    },
+    {
+      "season": "2026",
+      "rank": 90,
+      "school": "重庆理工大学",
+      "team": "士继DREAMER"
+    },
+    {
+      "season": "2026",
+      "rank": 91,
+      "school": "北京理工大学（珠海）",
+      "team": "毅恒"
+    },
+    {
+      "season": "2026",
+      "rank": 92,
+      "school": "常州大学",
+      "team": "Climber"
+    },
+    {
+      "season": "2026",
+      "rank": 93,
+      "school": "北京信息科技大学",
+      "team": "星辰"
+    },
+    {
+      "season": "2026",
+      "rank": 94,
+      "school": "南方科技大学",
+      "team": "ARTINX"
+    },
+    {
+      "season": "2026",
+      "rank": 95,
+      "school": "武汉大学",
+      "team": "珞珈狐"
+    },
+    {
+      "season": "2026",
+      "rank": 96,
+      "school": "福建理工大学",
+      "team": "苍侠"
+    }
+  ]
+}

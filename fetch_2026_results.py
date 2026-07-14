@@ -8,6 +8,7 @@ import urllib.request
 from pathlib import Path
 
 import fetch_replay_links as replay
+from data_store import load_rmuc_results, save_rmuc_results
 from build_results_dashboard import build_payload, read_workbook
 
 
@@ -18,7 +19,7 @@ SEASONS = {
 }
 SCHEDULE_URL = "https://rm-static.djicdn.com/live_json/schedule.json"
 OUTPUT = Path("results_2026.json")
-UNIFIED_OUTPUT = Path("data/schedule_results.json")
+UNIFIED_OUTPUT = Path("data/rmuc_results")
 CN_DIGITS = {"零": 0, "一": 1, "二": 2, "两": 2, "三": 3, "四": 4,
              "五": 5, "六": 6, "七": 7, "八": 8, "九": 9}
 
@@ -236,10 +237,10 @@ def main():
     rows.sort(key=lambda item: (item["zone"], int(item["order"])))
     rankings = derive_regional_results(rows, rankings)
     OUTPUT.write_text(json.dumps({"matches": rows, "rankings": rankings, "replayLinks": links}, ensure_ascii=False, indent=2), encoding="utf-8")
+    unified = load_rmuc_results() or {"matches": [], "qualifiers": [], "rankings": []}
+    unified["matches"] = [item for item in unified.get("matches", []) if item.get("season") != "2026"] + rows
+    save_rmuc_results(unified)
     if UNIFIED_OUTPUT.exists():
-        unified = json.loads(UNIFIED_OUTPUT.read_text(encoding="utf-8"))
-        unified["matches"] = [item for item in unified.get("matches", []) if item.get("season") != "2026"] + rows
-        UNIFIED_OUTPUT.write_text(json.dumps(unified, ensure_ascii=False, indent=2), encoding="utf-8")
         print(f"updated unified schedule data in {UNIFIED_OUTPUT}")
     print(f"saved {len(rows)} matches, {len(rankings)} rankings and {len(links)} links to {OUTPUT}")
 
