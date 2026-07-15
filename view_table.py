@@ -4776,6 +4776,25 @@ def render_html(title, payload):
     html[data-theme="night"] .schedule-match.third-place-final.final-blue-winner .schedule-team.red b,
     html[data-theme="night"] .schedule-match.third-place-final.final-red-winner .schedule-score .blue,
     html[data-theme="night"] .schedule-match.third-place-final.final-blue-winner .schedule-score .red {{ color:#c7a287; }}
+    .schedule-match.elite-clash {{
+      border-color: color-mix(in srgb, #9f72ed, var(--line) 28%);
+      box-shadow: inset 3px 0 0 #ed6967, inset -3px 0 0 #54bde8, 0 0 0 1px rgba(159,114,237,.44), 0 8px 20px rgba(111,78,190,.11);
+    }}
+    .schedule-match.elite-clash::before {{
+      background:
+        linear-gradient(90deg, rgba(255,226,231,.68) 0%, rgba(242,103,111,.20) 28%, rgba(159,114,237,.28) 50%, rgba(84,189,232,.20) 72%, rgba(222,246,255,.72) 100%),
+        linear-gradient(90deg, transparent 0 48%, rgba(255,255,255,.42) 50%, transparent 52%);
+    }}
+    .schedule-match.elite-clash::after {{ opacity: .54; }}
+    html[data-theme="night"] .schedule-match.elite-clash {{
+      border-color: color-mix(in srgb, #b28aff, var(--line) 30%);
+      box-shadow: inset 3px 0 0 #ef777a, inset -3px 0 0 #63c8ef, 0 0 0 1px rgba(178,138,255,.48), 0 9px 24px rgba(111,78,190,.24);
+    }}
+    html[data-theme="night"] .schedule-match.elite-clash::before {{
+      background:
+        linear-gradient(90deg, rgba(100,32,44,.68) 0%, rgba(195,61,78,.30) 28%, rgba(102,65,151,.48) 50%, rgba(38,108,145,.32) 72%, rgba(18,65,93,.74) 100%),
+        linear-gradient(90deg, transparent 0 48%, rgba(211,190,255,.22) 50%, transparent 52%);
+    }}
     .schedule-meta, .schedule-tail {{ padding: 10px 13px; color: var(--muted); font-size: 11px; }}
     .schedule-meta {{ border-right: 1px solid var(--line); }}
     .schedule-meta b, .schedule-stage {{ display: block; color: var(--text); font-weight: 950; }}
@@ -9884,6 +9903,47 @@ def render_html(title, payload):
       return `${{presentation.nodeClass}} ${{presentation.redClass === "winner" ? "final-red-winner" : "final-blue-winner"}}`;
     }}
 
+    function normalizeEliteTeamPart(value) {{
+      return String(value || "").toLowerCase().replace(/[^0-9a-z\u4e00-\u9fff]/g, "");
+    }}
+
+    function eliteTeamKey(school, team) {{
+      const normalizedSchool = normalizeEliteTeamPart(school);
+      const normalizedTeam = normalizeEliteTeamPart(team);
+      return normalizedSchool && normalizedTeam ? `${{normalizedSchool}}|${{normalizedTeam}}` : "";
+    }}
+
+    function isMedalFinalMatch(item) {{
+      const stage = `${{item.stage || ""}} ${{item.title || ""}}`;
+      return /冠军争夺|冠亚军|冠军赛|季军争夺|三四名决赛|季军赛/.test(stage) ||
+        /(^|[\s【】\-—])(?:总决赛|决赛)(?:$|[\s【】\-—])/.test(stage.trim());
+    }}
+
+    function buildEliteTeamIndex(rankings, limit) {{
+      const index = new Map();
+      (rankings || []).forEach((item) => {{
+        if (Number(item.sortOrder) > limit) return;
+        const key = eliteTeamKey(item.school, item.team);
+        if (!key) return;
+        const eventKey = `${{item.season || ""}}|${{item.zone || ""}}`;
+        if (!index.has(eventKey)) index.set(eventKey, new Set());
+        index.get(eventKey).add(key);
+      }});
+      return index;
+    }}
+
+    const rmucEliteTeams = buildEliteTeamIndex(scheduleData.rankings, 8);
+    const rmulEliteTeams = buildEliteTeamIndex(rmulData.rankings, 4);
+
+    function getEliteClashClass(item, eliteTeams) {{
+      if (isMedalFinalMatch(item)) return "";
+      const teams = eliteTeams.get(`${{item.season || ""}}|${{item.zone || ""}}`);
+      if (!teams) return "";
+      const red = eliteTeamKey(item.redSchool, item.redTeam);
+      const blue = eliteTeamKey(item.blueSchool, item.blueTeam);
+      return red && blue && teams.has(red) && teams.has(blue) ? "elite-clash" : "";
+    }}
+
     function normalizeHistoryKeyword(value) {{
       return String(value || "").trim().toLowerCase();
     }}
@@ -9897,19 +9957,23 @@ def render_html(title, payload):
 
     function getHistoryStageRank(stage) {{
       const value = String(stage || "");
+      const groupRound = value.match(/小组[^\\d]*(?:第\\s*)?(\\d+)\\s*轮/i);
+      if (groupRound) {{
+        const round = Number(groupRound[1]);
+        if (Number.isFinite(round)) return 60 - Math.min(Math.max(round, 1), 9);
+      }}
       const rules = [
-        [/小组|循环|积分|瑞士轮/i, 10],
-        [/入围|资格|预选/i, 18],
-        [/32\\s*进\\s*16|三十二/i, 25],
-        [/16\\s*进\\s*8|十六/i, 30],
-        [/8\\s*进\\s*4|四分之一|1\\/4/i, 40],
-        [/半决赛|4\\s*进\\s*2/i, 50],
-        [/季军|三四名/i, 60],
-        [/冠军|冠亚军|决赛|总决赛/i, 70],
-        [/排位|名额|复活|踢馆/i, 80],
+        [/冠军|冠亚军|决赛|总决赛|季军|三四名/i, 10],
+        [/半决赛|4\\s*进\\s*2/i, 20],
+        [/8\\s*进\\s*4|四分之一|1\\/4/i, 30],
+        [/16\\s*进\\s*8|十六/i, 40],
+        [/32\\s*进\\s*16|三十二/i, 45],
+        [/小组|循环|积分|瑞士轮/i, 70],
+        [/入围|资格|预选/i, 80],
+        [/排位|名额|复活|踢馆/i, 90],
       ];
       const matched = rules.find(([pattern]) => pattern.test(value));
-      return matched ? matched[1] : 45;
+      return matched ? matched[1] : 65;
     }}
 
     function compareHistoryEntries(a, b) {{
@@ -9921,7 +9985,7 @@ def render_html(title, payload):
       if (stageDifference) return stageDifference;
       const stageNameDifference = String(a.item.stage || "").localeCompare(String(b.item.stage || ""), "zh-CN", {{ numeric: true }});
       if (stageNameDifference) return stageNameDifference;
-      return Number(a.item.order || 0) - Number(b.item.order || 0);
+      return Number(b.item.order || 0) - Number(a.item.order || 0);
     }}
 
     function getHistoryZoneRank(zone) {{
@@ -10002,7 +10066,7 @@ def render_html(title, payload):
           opponentScore,
           outcome,
         }}];
-      }}).sort(compareHistoryEntries);
+      }}).sort((a, b) => compareFn ? compareFn(a.item, b.item) : compareHistoryEntries(a, b));
     }}
 
     function renderHistoryPanel(panelId, matches, keyword, eventLabel, compareFn) {{
@@ -10092,7 +10156,7 @@ def render_html(title, payload):
         const replayButton = replay
           ? `<br><a class="schedule-replay" href="${{scheduleEscape(replay.url)}}" target="_blank" rel="noopener" title="${{scheduleEscape(replay.title)}}">▶ 直接看回放</a>`
           : "";
-        const resultClass = `${{getScheduleResultClass(item)}} ${{getScheduleFinalClass(item)}}`;
+        const resultClass = `${{getScheduleResultClass(item)}} ${{getScheduleFinalClass(item)}} ${{getEliteClashClass(item, rmucEliteTeams)}}`;
         return `
         <article class="schedule-match ${{resultClass}}" data-schedule-match="${{scheduleEscape(`${{item.season}}|${{item.zone}}|${{item.order}}|${{item.id}}`)}}">
           <div class="schedule-meta"><b>${{scheduleEscape(item.season)}}</b>${{scheduleEscape(item.zone || "未标注")}}</div>
@@ -10340,7 +10404,7 @@ def render_html(title, payload):
     function renderRmulMatchCard(item) {{
       const redScore=item.redScore==='-'?'—':item.redScore,blueScore=item.blueScore==='-'?'—':item.blueScore;
       const replay=item.url?`<a class="schedule-replay" href="${{scheduleEscape(item.url)}}" target="_blank" rel="noopener" title="${{scheduleEscape(item.title)}}">▶ 直接看回放</a>`:`<span class="schedule-replay" title="${{scheduleEscape(item.inferenceNote||'')}}">△ 对阵推定 · 回放缺失</span>`;
-      const resultClass=`${{getScheduleResultClass(item)}} ${{getScheduleFinalClass(item)}}`;
+      const resultClass=`${{getScheduleResultClass(item)}} ${{getScheduleFinalClass(item)}} ${{getEliteClashClass(item, rmulEliteTeams)}}`;
       return `<article class="schedule-match ${{resultClass}}"><div class="schedule-meta"><b>${{scheduleEscape(item.season)}}</b>${{scheduleEscape(item.zone)}}</div><div class="schedule-team red"><b>${{scheduleEscape(item.redTeam)}}</b><small>${{scheduleEscape(item.redSchool)}}</small></div><div class="schedule-score"><span class="red">${{scheduleEscape(redScore)}}</span><span>:</span><span class="blue">${{scheduleEscape(blueScore)}}</span></div><div class="schedule-team"><b>${{scheduleEscape(item.blueTeam)}}</b><small>${{scheduleEscape(item.blueSchool)}}</small></div><div class="schedule-tail"><span class="schedule-stage">${{scheduleEscape(item.stage)}}${{item.inferred?' · 推定':''}}</span>第 ${{scheduleEscape(item.order)}} 场<br>${{replay}}</div></article>`;
     }}
 
