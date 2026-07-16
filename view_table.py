@@ -4705,14 +4705,14 @@ def render_html(title, payload):
         linear-gradient(90deg, transparent 30%, rgba(85,194,223,.18) 50%, rgba(196,240,255,.54) 69%, rgba(245,252,255,.92) 100%);
     }}
     .schedule-match.result-neutral {{
-      border-color: color-mix(in srgb, #9f8de8, var(--line) 38%);
-      box-shadow: inset 3px 0 0 rgba(210,126,156,.62), inset -3px 0 0 rgba(119,160,230,.62), 0 0 0 1px rgba(159,141,232,.08);
+      border-color: color-mix(in srgb, #718f80, var(--line) 38%);
+      box-shadow: inset 3px 0 0 rgba(100,139,116,.68), inset -3px 0 0 rgba(132,148,151,.66), 0 0 0 1px rgba(113,143,128,.10);
     }}
     .schedule-match.result-neutral::before {{
       background:
-        linear-gradient(90deg, rgba(255,247,252,.92) 0%, rgba(221,190,232,.42) 48%, rgba(196,202,244,.44) 52%, rgba(246,249,255,.92) 100%),
-        radial-gradient(circle at 34% 50%, rgba(255,120,148,.18), transparent 32%),
-        radial-gradient(circle at 66% 50%, rgba(78,178,236,.18), transparent 32%);
+        linear-gradient(90deg, rgba(243,250,246,.92) 0%, rgba(178,207,190,.48) 48%, rgba(200,211,211,.48) 52%, rgba(246,249,249,.92) 100%),
+        radial-gradient(circle at 34% 50%, rgba(85,133,106,.16), transparent 32%),
+        radial-gradient(circle at 66% 50%, rgba(101,124,130,.15), transparent 32%);
     }}
     html[data-theme="night"] .schedule-match.result-red::before {{
       background:
@@ -4726,9 +4726,9 @@ def render_html(title, payload):
     }}
     html[data-theme="night"] .schedule-match.result-neutral::before {{
       background:
-        linear-gradient(90deg, rgba(65,36,62,.72) 0%, rgba(91,55,98,.36) 48%, rgba(58,67,118,.38) 52%, rgba(31,45,78,.72) 100%),
-        radial-gradient(circle at 34% 50%, rgba(255,120,148,.18), transparent 35%),
-        radial-gradient(circle at 66% 50%, rgba(78,178,236,.18), transparent 35%);
+        linear-gradient(90deg, rgba(29,64,49,.74) 0%, rgba(58,96,76,.38) 48%, rgba(67,85,88,.40) 52%, rgba(35,49,53,.74) 100%),
+        radial-gradient(circle at 34% 50%, rgba(112,181,139,.17), transparent 35%),
+        radial-gradient(circle at 66% 50%, rgba(155,183,185,.14), transparent 35%);
     }}
     .schedule-match.result-red .schedule-team.red,
     .schedule-match.result-blue .schedule-team:not(.red) {{ color: var(--text); }}
