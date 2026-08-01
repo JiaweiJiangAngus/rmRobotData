@@ -4265,7 +4265,7 @@ def render_html(title, payload):
       min-width: 0;
       max-width: 100%;
       display: grid;
-      grid-template-columns: minmax(0, 1fr) 520px;
+      grid-template-columns: minmax(0, 1fr) 460px;
       grid-template-areas:
         "match chat"
         "next chat"
@@ -4290,9 +4290,9 @@ def render_html(title, payload):
       display: grid;
       grid-template-columns: minmax(0, 1fr) auto;
       align-items: center;
-      gap: 20px;
-      min-height: 92px;
-      padding: 15px 20px;
+      gap: 16px;
+      min-height: 80px;
+      padding: 12px 18px;
       border-bottom: 1px solid rgba(255,255,255,.12);
       background: #0c141b;
       color: #eef4f7;
@@ -4303,10 +4303,10 @@ def render_html(title, payload):
       display: grid;
       grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
       align-items: center;
-      gap: 16px;
+      gap: 13px;
     }}
     .live-match-title.is-plain,
-    .live-next-title.is-plain {{ display: block; font-size: 30px; font-weight: 950; }}
+    .live-next-title.is-plain {{ display: block; font-size: 28px; font-weight: 950; }}
     .live-match-side {{
       min-width: 0;
       display: flex;
@@ -4318,7 +4318,7 @@ def render_html(title, payload):
       min-width: 0;
       overflow: hidden;
       color: #f7fbfd;
-      font-size: clamp(32px, 1.65vw, 40px);
+      font-size: clamp(30px, 1.35vw, 34px);
       font-weight: 950;
       line-height: 1.08;
       text-overflow: ellipsis;
@@ -4328,30 +4328,30 @@ def render_html(title, payload):
       flex: 0 1 auto;
       overflow: hidden;
       color: #98dce7;
-      font-size: 20px;
+      font-size: 18px;
       font-weight: 850;
       line-height: 1.15;
       text-overflow: ellipsis;
       white-space: nowrap;
     }}
-    .live-match-vs {{ color: #748894; font-size: 17px; font-weight: 950; letter-spacing: .08em; }}
-    #liveMatchStage {{ color: #aebbc4; font-size: 16px; white-space: nowrap; }}
+    .live-match-vs {{ color: #748894; font-size: 15px; font-weight: 950; letter-spacing: .08em; }}
+    #liveMatchStage {{ color: #aebbc4; font-size: 15px; white-space: nowrap; }}
     .live-next-banner {{
       display: grid;
       grid-template-columns: auto minmax(0, 1fr);
       align-items: center;
       gap: 4px 16px;
-      min-height: 86px;
-      padding: 12px 20px;
+      min-height: 74px;
+      padding: 10px 18px;
       border-bottom: 1px solid rgba(255,255,255,.12);
       background: #101a22;
       color: #eef4f7;
     }}
     .live-next-banner[hidden] {{ display: none; }}
     .live-next-label {{ grid-row: 1 / 3; padding: 5px 9px; border: 1px solid rgba(255,190,92,.45); color: #ffc86b; font-size: 14px; font-weight: 950; letter-spacing: .08em; }}
-    .live-next-title .live-match-school {{ font-size: clamp(28px, 1.25vw, 32px); }}
-    .live-next-title .live-match-team {{ font-size: 17px; }}
-    .live-next-banner > span:last-child {{ grid-column: 2; color: #aebbc4; font-size: 15px; white-space: nowrap; }}
+    .live-next-title .live-match-school {{ font-size: clamp(28px, 1.12vw, 30px); }}
+    .live-next-title .live-match-team {{ font-size: 16px; }}
+    .live-next-banner > span:last-child {{ grid-column: 2; color: #aebbc4; font-size: 14px; white-space: nowrap; }}
     .live-video {{ display: block; width: 100%; min-width: 0; height: 100%; object-fit: contain; background: #020406; cursor: pointer; }}
     .live-placeholder {{
       position: absolute;
@@ -5463,8 +5463,8 @@ def render_html(title, payload):
     .back-to-top:hover {{ transform: translateY(-2px); border-color: var(--accent); }}
 
     .page {{
-      width: calc(100vw - 24px);
-      max-width: none;
+      width: calc(100vw - 48px);
+      max-width: 2200px;
       padding: 12px 0 44px;
     }}
     .cockpit-rail {{ display: none; }}
