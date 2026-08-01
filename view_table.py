@@ -4268,7 +4268,6 @@ def render_html(title, payload):
       grid-template-columns: minmax(0, 1fr) 460px;
       grid-template-areas:
         "match chat"
-        "next chat"
         "video chat"
         "toolbar chat"
         "recorder chat"
@@ -4278,7 +4277,7 @@ def render_html(title, payload):
       background: #05090d;
       box-shadow: var(--shadow);
     }}
-    .live-stage.chat-hidden {{ grid-template-columns: minmax(0, 1fr); grid-template-areas: "match" "next" "video" "toolbar" "recorder" "meta"; }}
+    .live-stage.chat-hidden {{ grid-template-columns: minmax(0, 1fr); grid-template-areas: "match" "video" "toolbar" "recorder" "meta"; }}
     .live-match-banner {{ grid-area: match; }}
     .live-next-banner {{ grid-area: next; }}
     .live-video-wrap {{ grid-area: video; }}
@@ -4288,15 +4287,19 @@ def render_html(title, payload):
     .live-video-wrap {{ position: relative; aspect-ratio: 16 / 9; background: #020406; overflow: hidden; }}
     .live-match-banner {{
       display: grid;
-      grid-template-columns: minmax(0, 1fr) auto;
+      grid-template-columns: minmax(0, 1fr) minmax(360px, 34%);
+      grid-template-areas:
+        "current next"
+        "stage next";
       align-items: center;
-      gap: 16px;
-      min-height: 80px;
-      padding: 12px 18px;
+      gap: 5px 18px;
+      min-height: 104px;
+      padding: 12px 0 12px 18px;
       border-bottom: 1px solid rgba(255,255,255,.12);
       background: #0c141b;
       color: #eef4f7;
     }}
+    #liveMatchTitle {{ grid-area: current; }}
     .live-match-title,
     .live-next-title {{
       min-width: 0;
@@ -4335,23 +4338,33 @@ def render_html(title, payload):
       white-space: nowrap;
     }}
     .live-match-vs {{ color: #748894; font-size: 15px; font-weight: 950; letter-spacing: .08em; }}
-    #liveMatchStage {{ color: #aebbc4; font-size: 15px; white-space: nowrap; }}
+    #liveMatchStage {{ grid-area: stage; color: #aebbc4; font-size: 15px; white-space: nowrap; }}
     .live-next-banner {{
+      grid-area: next;
+      align-self: stretch;
       display: grid;
       grid-template-columns: auto minmax(0, 1fr);
+      grid-template-areas:
+        "label title"
+        "meta meta";
+      align-content: center;
       align-items: center;
-      gap: 4px 16px;
-      min-height: 74px;
-      padding: 10px 18px;
-      border-bottom: 1px solid rgba(255,255,255,.12);
+      gap: 6px 10px;
+      min-height: 0;
+      padding: 10px 14px;
+      border-left: 1px solid rgba(255,255,255,.14);
       background: #101a22;
       color: #eef4f7;
     }}
     .live-next-banner[hidden] {{ display: none; }}
-    .live-next-label {{ grid-row: 1 / 3; padding: 5px 9px; border: 1px solid rgba(255,190,92,.45); color: #ffc86b; font-size: 14px; font-weight: 950; letter-spacing: .08em; }}
-    .live-next-title .live-match-school {{ font-size: clamp(28px, 1.12vw, 30px); }}
-    .live-next-title .live-match-team {{ font-size: 16px; }}
-    .live-next-banner > span:last-child {{ grid-column: 2; color: #aebbc4; font-size: 14px; white-space: nowrap; }}
+    .live-next-label {{ grid-area: label; padding: 4px 7px; border: 1px solid rgba(255,190,92,.45); color: #ffc86b; font-size: 12px; font-weight: 950; letter-spacing: .08em; }}
+    .live-next-title {{ grid-area: title; gap: 6px; }}
+    .live-next-title .live-match-side {{ flex-direction: column; align-items: flex-start; gap: 1px; }}
+    .live-next-title .live-match-side:last-child {{ align-items: flex-end; }}
+    .live-next-title .live-match-school {{ font-size: clamp(18px, .88vw, 22px); }}
+    .live-next-title .live-match-team {{ font-size: 13px; }}
+    .live-next-title .live-match-vs {{ font-size: 11px; }}
+    .live-next-banner > span:last-child {{ grid-area: meta; color: #aebbc4; font-size: 12px; white-space: nowrap; }}
     .live-video {{ display: block; width: 100%; min-width: 0; height: 100%; object-fit: contain; background: #020406; cursor: pointer; }}
     .live-placeholder {{
       position: absolute;
@@ -5653,12 +5666,16 @@ def render_html(title, payload):
       .live-stage,
       .live-stage.chat-hidden {{
         grid-template-columns: minmax(0, 1fr);
-        grid-template-areas: "match" "next" "video" "toolbar" "chat" "recorder" "meta";
+        grid-template-areas: "match" "video" "toolbar" "chat" "recorder" "meta";
       }}
-      .live-match-banner {{ grid-template-columns: 1fr; }}
+      .live-match-banner {{
+        grid-template-columns: 1fr;
+        grid-template-areas: "current" "stage" "next";
+        padding-right: 12px;
+      }}
       #liveMatchStage {{ white-space: normal; }}
-      .live-next-banner {{ grid-template-columns: auto minmax(0, 1fr); gap: 4px 12px; }}
-      .live-next-banner > span:last-child {{ grid-column: 2; white-space: normal; }}
+      .live-next-banner {{ margin-top: 6px; border-top: 1px solid rgba(255,255,255,.12); border-left: 0; }}
+      .live-next-banner > span:last-child {{ white-space: normal; }}
       .live-chat-panel {{ grid-template-rows: auto minmax(0, 1fr); height: 240px; border-top: 1px solid rgba(255,255,255,.12); border-left: 0; }}
       .live-stage.live-theater:not(.chat-hidden) .live-recorder,
       .live-stage:fullscreen:not(.chat-hidden) .live-recorder {{ right: 16px; }}
@@ -6164,11 +6181,11 @@ def render_html(title, payload):
         <div class="live-match-banner">
           <div class="live-match-title is-plain" id="liveMatchTitle">当前对阵待获取</div>
           <span id="liveMatchStage">官方赛事信号</span>
-        </div>
-        <div class="live-next-banner" id="liveNextBanner" hidden>
-          <span class="live-next-label">NEXT</span>
-          <div class="live-next-title is-plain" id="liveNextTitle">下场对阵待公布</div>
-          <span id="liveNextMeta"></span>
+          <div class="live-next-banner" id="liveNextBanner" hidden>
+            <span class="live-next-label">NEXT</span>
+            <div class="live-next-title is-plain" id="liveNextTitle">下场对阵待公布</div>
+            <span id="liveNextMeta"></span>
+          </div>
         </div>
         <div class="live-video-wrap">
           <video class="live-video" id="liveVideo" playsinline muted preload="none"></video>
