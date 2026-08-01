@@ -4568,7 +4568,7 @@ def render_html(title, payload):
     .live-chat-title {{ display: flex; align-items: baseline; gap: 9px; min-width: 0; }}
     .live-chat-state {{ color: #95a5af; font-size: 11px; }}
     .live-chat-close {{ min-height: 32px; padding: 5px 9px; border: 1px solid rgba(255,255,255,.14); background: #131f29; color: #eef4f7; font: inherit; cursor: pointer; }}
-    .live-chat-list {{ overflow-y: auto; overscroll-behavior: contain; padding: 6px 12px 10px; }}
+    .live-chat-list {{ min-height: 0; overflow-y: auto; overscroll-behavior: contain; padding: 6px 12px 10px; }}
     .live-chat-message {{ display: grid; grid-template-columns: minmax(72px, auto) 1fr; gap: 9px; padding: 7px 0; border-bottom: 1px solid rgba(255,255,255,.06); font-size: 12px; line-height: 1.5; }}
     .live-chat-message b {{ max-width: 160px; overflow: hidden; color: #55c2df; text-overflow: ellipsis; white-space: nowrap; }}
     .live-chat-message span {{ min-width: 0; overflow-wrap: anywhere; color: #d9e1e5; }}
@@ -10591,6 +10591,7 @@ def render_html(title, payload):
     const LEANCLOUD_LIBRARY_URL = "https://cdn.jsdelivr.net/npm/leancloud-realtime@4.3.1/dist/realtime.browser.min.js";
     const LEANCLOUD_APP_ID = "UqaoAgYDPakCHxtDiMXVy2Sw-gzGzoHsz";
     const LEANCLOUD_APP_KEY = "xYO2wtjhri9dJR7Vor8kDFl4";
+    const LIVE_CHAT_MESSAGE_LIMIT = 20;
     const liveStage = document.querySelector(".live-stage");
     const liveVideoWrap = document.querySelector(".live-video-wrap");
     const liveVideo = document.getElementById("liveVideo");
@@ -10767,7 +10768,7 @@ def render_html(title, payload):
       text.textContent = item.text;
       row.append(name, text);
       liveChatList.appendChild(row);
-      while (liveChatList.children.length > 100) liveChatList.firstElementChild?.remove();
+      while (liveChatList.children.length > LIVE_CHAT_MESSAGE_LIMIT) liveChatList.firstElementChild?.remove();
       liveChatList.scrollTop = liveChatList.scrollHeight;
       if (showDanmaku) pushLiveDanmaku(item.text);
     }}
@@ -10826,12 +10827,12 @@ def render_html(title, payload):
         liveChatConversation = conversation;
         liveChatRoomId = roomId;
         liveChatList.replaceChildren();
-        const history = await conversation.queryMessages({{ limit: 100 }});
+        const history = await conversation.queryMessages({{ limit: LIVE_CHAT_MESSAGE_LIMIT }});
         history.map(parseLiveChatMessage).filter(Boolean).forEach((item) => appendLiveChatMessage(item, false));
         if (!liveChatList.children.length) liveChatList.innerHTML = '<div class="live-chat-empty">聊天室暂无消息</div>';
         liveChatMessageHandler = (message) => appendLiveChatMessage(parseLiveChatMessage(message), true);
         conversation.on(AV.Event.MESSAGE, liveChatMessageHandler);
-        liveChatState.textContent = "实时连接";
+        liveChatState.textContent = `实时连接 · 最近 ${{LIVE_CHAT_MESSAGE_LIMIT}} 条`;
       }} catch (error) {{
         if (requestId !== liveChatRequestId) return;
         liveChatState.textContent = "连接失败";
