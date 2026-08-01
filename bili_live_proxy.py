@@ -55,6 +55,9 @@ def fetch_url(url: str, headers: dict[str, str] | None = None) -> tuple[int, dic
             return response.status, dict(response.headers.items()), response.read()
     except urllib.error.HTTPError as error:
         return error.code, dict(error.headers.items()), error.read()
+    except (urllib.error.URLError, TimeoutError, OSError) as error:
+        body = json.dumps({"code": -1, "message": f"upstream request failed: {error}"}).encode("utf-8")
+        return 502, {"Content-Type": "application/json; charset=utf-8"}, body
 
 
 def proxy_url(url: str) -> str:
@@ -353,7 +356,14 @@ class BiliProxyHandler(BaseHTTPRequestHandler):
 
     def rewrite_play_payload(self, payload: dict) -> None:
         origin = f"http://{self.headers.get('Host', f'{HOST}:{PORT}')}"
-        playurl = payload.get("playData", {}).get("data", {}).get("playurl_info", {}).get("playurl", {})
+        play_data = payload.get("playData")
+        play_data_body = play_data.get("data") if isinstance(play_data, dict) else None
+        playurl_info = play_data_body.get("playurl_info") if isinstance(play_data_body, dict) else None
+        playurl = playurl_info.get("playurl") if isinstance(playurl_info, dict) else None
+        if not isinstance(playurl, dict):
+            payload["proxiedStreams"] = False
+            return
+        rewritten = False
         for stream in playurl.get("stream", []) or []:
             for fmt in stream.get("format", []) or []:
                 for codec in fmt.get("codec", []) or []:
@@ -366,7 +376,8 @@ class BiliProxyHandler(BaseHTTPRequestHandler):
                         continue
                     codec["base_url"] = cache_url(full_url)
                     codec["url_info"] = [{"host": origin, "extra": "", "stream_ttl": first.get("stream_ttl", 0)}]
-        payload["proxiedStreams"] = True
+                    rewritten = True
+        payload["proxiedStreams"] = rewritten
 
     def handle_proxy(self, query: dict[str, list[str]], send_body: bool) -> None:
         raw_url = query.get("url", [""])[0]

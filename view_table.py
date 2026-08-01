@@ -336,7 +336,7 @@ def render_html(title, payload):
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>{safe_title}</title>
+  <title>T-DT 机器人数据及赛事回放</title>
   <script>
     (() => {{
       const savedTheme = localStorage.getItem("rm-dashboard-theme");
@@ -805,12 +805,12 @@ def render_html(title, payload):
 
     .main-grid {{
       display: grid;
-      grid-template-columns: 280px minmax(0, 1fr);
+      grid-template-columns: 320px minmax(0, 1fr);
       gap: 20px;
     }}
 
     .control-panel {{
-      padding: 22px;
+      padding: 22px 22px 44px;
       height: fit-content;
       position: sticky;
       top: 20px;
@@ -855,12 +855,53 @@ def render_html(title, payload):
     .zone-checklist {{
       display: grid;
       gap: 8px;
-      max-height: 260px;
+      max-height: 320px;
       overflow: auto;
       padding: 10px;
       border: 1px solid var(--line);
       border-radius: 14px;
       background: var(--panel-soft);
+    }}
+
+    .zone-group {{
+      display: grid;
+      gap: 5px;
+      padding: 7px;
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      background: linear-gradient(135deg, var(--hud-cyan-soft), transparent 72%);
+    }}
+
+    .zone-year-heading {{
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      padding: 5px 7px 7px;
+      color: var(--text);
+      font-size: 13px;
+      font-weight: 850;
+      letter-spacing: 0.04em;
+      border-bottom: 1px solid var(--line);
+    }}
+
+    .zone-year-heading small {{
+      color: var(--muted);
+      font-size: 11px;
+      font-weight: 650;
+      letter-spacing: 0;
+    }}
+
+    .zone-group-options {{
+      display: grid;
+      gap: 3px;
+      margin-left: 5px;
+      padding-left: 8px;
+      border-left: 2px solid var(--hud-cyan-soft);
+    }}
+
+    .zone-group-options .zone-option {{
+      padding: 7px 8px;
     }}
 
     .zone-option {{
@@ -2153,7 +2194,7 @@ def render_html(title, payload):
     }}
 
     html[data-density="compact"] .zone-checklist {{
-      max-height: 210px;
+      max-height: 250px;
     }}
 
     @keyframes hex-slide {{
@@ -6928,24 +6969,60 @@ def render_html(title, payload):
       els.metricSelect.disabled = metrics.length === 0;
     }}
 
+    function getZoneYear(zone) {{
+      const match = String(zone || "").match(/^(20\d{{2}})/);
+      return match ? match[1] : "2026";
+    }}
+
+    function getZoneChildLabel(zone, year) {{
+      return String(zone || "").replace(new RegExp(`^${{year}}(?:赛季)?`), "");
+    }}
+
     function renderZoneChecklist() {{
       const selectedZones = new Set(getSelectedZones());
       const allSelected = selectedZones.size === 0;
-      const options = [
-        {{ value: "全部", label: "全部赛区", checked: allSelected }},
-        ...payload.zones.map((zone) => ({{
-          value: zone,
-          label: zone,
-          checked: selectedZones.has(zone),
-        }})),
+      const zoneGroups = new Map();
+      payload.zones.forEach((zone) => {{
+        const year = getZoneYear(zone);
+        if (!zoneGroups.has(year)) zoneGroups.set(year, []);
+        zoneGroups.get(year).push(zone);
+      }});
+      const years = [
+        ...["2025", "2026"].filter((year) => zoneGroups.has(year)),
+        ...Array.from(zoneGroups.keys()).filter((year) => !["2025", "2026"].includes(year)),
       ];
 
-      els.zoneChecklist.innerHTML = options.map((option) => `
-        <label class="zone-option ${{option.checked ? "active" : ""}}" title="${{escapeHtml(option.label)}}">
-          <input type="checkbox" value="${{escapeHtml(option.value)}}" ${{option.checked ? "checked" : ""}}>
-          <span>${{escapeHtml(option.label)}}</span>
+      const allOption = `
+        <label class="zone-option ${{allSelected ? "active" : ""}}" title="全部赛区">
+          <input type="checkbox" value="全部" ${{allSelected ? "checked" : ""}}>
+          <span>全部赛区</span>
         </label>
-      `).join("");
+      `;
+      const groupedOptions = years.map((year) => {{
+        const zones = zoneGroups.get(year);
+        return `
+          <section class="zone-group" aria-label="${{escapeHtml(year)}} 年赛区">
+            <div class="zone-year-heading">
+              <span>${{escapeHtml(year)}} 年</span>
+              <small>${{zones.length}} 个赛区</small>
+            </div>
+            <div class="zone-group-options">
+              ${{zones.map((zone) => {{
+                const checked = selectedZones.has(zone);
+                const label = getZoneChildLabel(zone, year);
+                return `
+                  <label class="zone-option ${{checked ? "active" : ""}}" title="${{escapeHtml(`${{year}} 年 · ${{label}}`)}}">
+                    <input type="checkbox" value="${{escapeHtml(zone)}}" ${{checked ? "checked" : ""}}>
+                    <span>${{escapeHtml(label)}}</span>
+                  </label>
+                `;
+              }}).join("")}}
+            </div>
+          </section>
+        `;
+      }}).join("");
+
+      els.zoneChecklist.innerHTML = allOption + groupedOptions;
 
       els.zoneChecklist.querySelectorAll("input").forEach((input) => {{
         input.addEventListener("change", () => {{
@@ -9157,7 +9234,7 @@ def render_html(title, payload):
         : (selectedZones.length > 1
           ? `当前显示 ${{pageMeta}}，已选择 ${{selectedZones.length}} 个赛区；“图表分析”页的总实力表按各兵种关键数据相对合并均值排序`
           : `当前显示 ${{pageMeta}}，按“${{metricLabel}}”排序`);
-      document.title = heroTitle;
+      document.title = "T-DT 机器人数据及赛事回放";
     }}
 
     function render() {{
@@ -11353,6 +11430,11 @@ def render_html(title, payload):
       livePlaybackStats.textContent = `延迟 ${{latency.toFixed(1)}} 秒 · 丢帧 ${{quality.droppedVideoFrames}} / ${{quality.totalVideoFrames}}`;
     }}
 
+    function isOfficialLiveState(state) {{
+      // live_state encodes the active zone in groups of four; remainder 2 means live.
+      return Number(state?.match_state) === 1 && Number(state?.live_state) % 4 === 2;
+    }}
+
     async function playSelectedLiveSource(keepQuality = true) {{
       const requestId = ++liveRequestId;
       const view = getSelectedLiveView();
@@ -11421,7 +11503,7 @@ def render_html(title, payload):
         ]);
         if (!stateResponse.ok) return;
         const state = await stateResponse.json();
-        if (Number(state.live_state) !== 1) {{
+        if (!isOfficialLiveState(state)) {{
           if (liveRecordingIntent || liveRecordingSessions.length) {{
             await stopLiveRecording(false);
             liveRecorderStatus.textContent = "直播已结束，录制已自动停止";
@@ -11626,7 +11708,7 @@ def render_html(title, payload):
           const match = item.currentMatch || null;
           return [String(match?.zone?.id || ""), match];
         }}).filter(([zoneId, match]) => zoneId && match));
-        if (Number(state.live_state) !== 1 || !liveZones.length) {{
+        if (!isOfficialLiveState(state) || !liveZones.length) {{
           if (liveRecordingIntent || liveRecordingSessions.length) {{
             await stopLiveRecording(false);
             liveRecorderStatus.textContent = "直播已结束，录制已自动停止";
