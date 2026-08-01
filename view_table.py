@@ -336,6 +336,7 @@ def render_html(title, payload):
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="referrer" content="no-referrer">
   <title>T-DT 机器人数据及赛事回放</title>
   <script>
     (() => {{
@@ -11496,10 +11497,9 @@ def render_html(title, payload):
     async function monitorLiveBroadcast() {{
       if (activeDataset !== "live" && !isBackgroundRecordingActive()) return;
       try {{
-        const cacheBust = `?t=${{Date.now()}}`;
         const [stateResponse, matchResponse] = await Promise.all([
-          fetch(LIVE_STATE_URL + cacheBust, {{ cache: "no-store" }}),
-          fetch(LIVE_MATCH_URL + cacheBust, {{ cache: "no-store" }}),
+          fetch(LIVE_STATE_URL, {{ cache: "no-store" }}),
+          fetch(LIVE_MATCH_URL, {{ cache: "no-store" }}),
         ]);
         if (!stateResponse.ok) return;
         const state = await stateResponse.json();
@@ -11687,11 +11687,10 @@ def render_html(title, payload):
       liveEdgeButton.disabled = true;
       liveRecordStart.disabled = true;
       try {{
-        const cacheBust = `?t=${{Date.now()}}`;
         const [gameResponse, stateResponse, matchResponse] = await Promise.all([
-          fetch(LIVE_GAME_INFO_URL + cacheBust, {{ cache: "no-store" }}),
-          fetch(LIVE_STATE_URL + cacheBust, {{ cache: "no-store" }}),
-          fetch(LIVE_MATCH_URL + cacheBust, {{ cache: "no-store" }}).catch(() => null),
+          fetch(LIVE_GAME_INFO_URL, {{ cache: "no-store" }}),
+          fetch(LIVE_STATE_URL, {{ cache: "no-store" }}),
+          fetch(LIVE_MATCH_URL, {{ cache: "no-store" }}).catch(() => null),
         ]);
         if (!gameResponse.ok || !stateResponse.ok) throw new Error("官方直播接口暂时不可用");
         const [game, state, matches] = await Promise.all([
