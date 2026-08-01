@@ -4265,7 +4265,7 @@ def render_html(title, payload):
       min-width: 0;
       max-width: 100%;
       display: grid;
-      grid-template-columns: minmax(0, 1fr) 320px;
+      grid-template-columns: minmax(0, 1fr) 360px;
       grid-template-areas:
         "match chat"
         "video chat"
@@ -4557,8 +4557,11 @@ def render_html(title, payload):
       grid-area: chat;
       display: grid;
       grid-template-rows: auto minmax(0, 1fr);
+      align-self: start;
+      height: clamp(360px, 54dvh, 560px);
       min-width: 0;
       min-height: 0;
+      overflow: hidden;
       border-left: 1px solid rgba(255,255,255,.12);
       background: #0b1218;
       color: #eef4f7;
@@ -4568,8 +4571,8 @@ def render_html(title, payload):
     .live-chat-title {{ display: flex; align-items: baseline; gap: 9px; min-width: 0; }}
     .live-chat-state {{ color: #95a5af; font-size: 11px; }}
     .live-chat-close {{ min-height: 32px; padding: 5px 9px; border: 1px solid rgba(255,255,255,.14); background: #131f29; color: #eef4f7; font: inherit; cursor: pointer; }}
-    .live-chat-list {{ min-height: 0; overflow-y: auto; overscroll-behavior: contain; padding: 6px 12px 10px; }}
-    .live-chat-message {{ display: grid; grid-template-columns: minmax(72px, auto) 1fr; gap: 9px; padding: 7px 0; border-bottom: 1px solid rgba(255,255,255,.06); font-size: 12px; line-height: 1.5; }}
+    .live-chat-list {{ min-height: 0; overflow-y: auto; overscroll-behavior: contain; scrollbar-gutter: stable; padding: 8px 14px 12px; }}
+    .live-chat-message {{ display: grid; grid-template-columns: minmax(84px, auto) 1fr; gap: 10px; padding: 9px 0; border-bottom: 1px solid rgba(255,255,255,.06); font-size: 14px; line-height: 1.6; }}
     .live-chat-message b {{ max-width: 160px; overflow: hidden; color: #55c2df; text-overflow: ellipsis; white-space: nowrap; }}
     .live-chat-message span {{ min-width: 0; overflow-wrap: anywhere; color: #d9e1e5; }}
     .live-chat-empty {{ padding: 28px 12px; color: #95a5af; text-align: center; }}
@@ -5396,7 +5399,7 @@ def render_html(title, payload):
     .back-to-top:hover {{ transform: translateY(-2px); border-color: var(--accent); }}
 
     .page {{
-      width: min(100%, 1540px);
+      width: min(100%, 1880px);
       max-width: none;
       padding: 16px 18px 44px;
     }}
@@ -10591,7 +10594,6 @@ def render_html(title, payload):
     const LEANCLOUD_LIBRARY_URL = "https://cdn.jsdelivr.net/npm/leancloud-realtime@4.3.1/dist/realtime.browser.min.js";
     const LEANCLOUD_APP_ID = "UqaoAgYDPakCHxtDiMXVy2Sw-gzGzoHsz";
     const LEANCLOUD_APP_KEY = "xYO2wtjhri9dJR7Vor8kDFl4";
-    const LIVE_CHAT_MESSAGE_LIMIT = 20;
     const liveStage = document.querySelector(".live-stage");
     const liveVideoWrap = document.querySelector(".live-video-wrap");
     const liveVideo = document.getElementById("liveVideo");
@@ -10768,7 +10770,6 @@ def render_html(title, payload):
       text.textContent = item.text;
       row.append(name, text);
       liveChatList.appendChild(row);
-      while (liveChatList.children.length > LIVE_CHAT_MESSAGE_LIMIT) liveChatList.firstElementChild?.remove();
       liveChatList.scrollTop = liveChatList.scrollHeight;
       if (showDanmaku) pushLiveDanmaku(item.text);
     }}
@@ -10827,12 +10828,12 @@ def render_html(title, payload):
         liveChatConversation = conversation;
         liveChatRoomId = roomId;
         liveChatList.replaceChildren();
-        const history = await conversation.queryMessages({{ limit: LIVE_CHAT_MESSAGE_LIMIT }});
+        const history = await conversation.queryMessages({{ limit: 100 }});
         history.map(parseLiveChatMessage).filter(Boolean).forEach((item) => appendLiveChatMessage(item, false));
         if (!liveChatList.children.length) liveChatList.innerHTML = '<div class="live-chat-empty">聊天室暂无消息</div>';
         liveChatMessageHandler = (message) => appendLiveChatMessage(parseLiveChatMessage(message), true);
         conversation.on(AV.Event.MESSAGE, liveChatMessageHandler);
-        liveChatState.textContent = `实时连接 · 最近 ${{LIVE_CHAT_MESSAGE_LIMIT}} 条`;
+        liveChatState.textContent = "实时连接 · 可滚动回看";
       }} catch (error) {{
         if (requestId !== liveChatRequestId) return;
         liveChatState.textContent = "连接失败";
