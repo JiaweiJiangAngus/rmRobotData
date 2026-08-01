@@ -4287,33 +4287,71 @@ def render_html(title, payload):
     .live-meta {{ grid-area: meta; }}
     .live-video-wrap {{ position: relative; aspect-ratio: 16 / 9; background: #020406; overflow: hidden; }}
     .live-match-banner {{
-      display: flex;
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
       align-items: center;
-      justify-content: space-between;
-      gap: 12px;
-      min-height: 58px;
-      padding: 12px 18px;
+      gap: 20px;
+      min-height: 92px;
+      padding: 15px 20px;
       border-bottom: 1px solid rgba(255,255,255,.12);
       background: #0c141b;
       color: #eef4f7;
     }}
-    .live-match-banner b {{ min-width: 0; font-size: 18px; }}
-    .live-match-banner span {{ flex: 0 0 auto; color: #aebbc4; font-size: 14px; }}
+    .live-match-title,
+    .live-next-title {{
+      min-width: 0;
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+      align-items: center;
+      gap: 16px;
+    }}
+    .live-match-title.is-plain,
+    .live-next-title.is-plain {{ display: block; font-size: 30px; font-weight: 950; }}
+    .live-match-side {{
+      min-width: 0;
+      display: flex;
+      align-items: baseline;
+      gap: 10px;
+    }}
+    .live-match-side:last-child {{ justify-content: flex-end; text-align: right; }}
+    .live-match-school {{
+      min-width: 0;
+      overflow: hidden;
+      color: #f7fbfd;
+      font-size: clamp(32px, 1.65vw, 40px);
+      font-weight: 950;
+      line-height: 1.08;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }}
+    .live-match-team {{
+      flex: 0 1 auto;
+      overflow: hidden;
+      color: #98dce7;
+      font-size: 20px;
+      font-weight: 850;
+      line-height: 1.15;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }}
+    .live-match-vs {{ color: #748894; font-size: 17px; font-weight: 950; letter-spacing: .08em; }}
+    #liveMatchStage {{ color: #aebbc4; font-size: 16px; white-space: nowrap; }}
     .live-next-banner {{
       display: grid;
-      grid-template-columns: auto minmax(0, 1fr) auto;
+      grid-template-columns: auto minmax(0, 1fr);
       align-items: center;
-      gap: 14px;
-      min-height: 52px;
-      padding: 10px 18px;
+      gap: 4px 16px;
+      min-height: 86px;
+      padding: 12px 20px;
       border-bottom: 1px solid rgba(255,255,255,.12);
       background: #101a22;
       color: #eef4f7;
     }}
     .live-next-banner[hidden] {{ display: none; }}
-    .live-next-label {{ padding: 4px 8px; border: 1px solid rgba(255,190,92,.45); color: #ffc86b; font-size: 13px; font-weight: 950; letter-spacing: .08em; }}
-    .live-next-banner b {{ min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-size: 17px; }}
-    .live-next-banner > span:last-child {{ color: #aebbc4; font-size: 14px; white-space: nowrap; }}
+    .live-next-label {{ grid-row: 1 / 3; padding: 5px 9px; border: 1px solid rgba(255,190,92,.45); color: #ffc86b; font-size: 14px; font-weight: 950; letter-spacing: .08em; }}
+    .live-next-title .live-match-school {{ font-size: clamp(28px, 1.25vw, 32px); }}
+    .live-next-title .live-match-team {{ font-size: 17px; }}
+    .live-next-banner > span:last-child {{ grid-column: 2; color: #aebbc4; font-size: 15px; white-space: nowrap; }}
     .live-video {{ display: block; width: 100%; min-width: 0; height: 100%; object-fit: contain; background: #020406; cursor: pointer; }}
     .live-placeholder {{
       position: absolute;
@@ -5357,7 +5395,13 @@ def render_html(title, payload):
       .live-volume output {{ display: none; }}
       .live-center-play {{ width: 54px; height: 54px; }}
       .live-meta {{ align-items: flex-start; flex-direction: column; gap: 4px; }}
-      .live-match-banner {{ align-items: flex-start; flex-direction: column; gap: 3px; }}
+      .live-match-banner {{ grid-template-columns: 1fr; align-items: flex-start; gap: 5px; }}
+      .live-match-title,
+      .live-next-title {{ grid-template-columns: 1fr; justify-items: start; gap: 3px; }}
+      .live-match-side:last-child {{ justify-content: flex-start; text-align: left; }}
+      .live-match-school {{ font-size: 28px; white-space: normal; }}
+      .live-match-team {{ font-size: 17px; }}
+      .live-match-vs {{ font-size: 13px; }}
       .live-record-controls {{ grid-template-columns: 1fr 1fr; }}
       .live-record-views {{ grid-template-columns: 1fr; }}
       .live-stage.live-theater .live-recorder,
@@ -5611,8 +5655,10 @@ def render_html(title, payload):
         grid-template-columns: minmax(0, 1fr);
         grid-template-areas: "match" "next" "video" "toolbar" "chat" "recorder" "meta";
       }}
-      .live-next-banner {{ grid-template-columns: 1fr; gap: 4px; }}
-      .live-next-banner > span:last-child {{ white-space: normal; }}
+      .live-match-banner {{ grid-template-columns: 1fr; }}
+      #liveMatchStage {{ white-space: normal; }}
+      .live-next-banner {{ grid-template-columns: auto minmax(0, 1fr); gap: 4px 12px; }}
+      .live-next-banner > span:last-child {{ grid-column: 2; white-space: normal; }}
       .live-chat-panel {{ grid-template-rows: auto minmax(0, 1fr); height: 240px; border-top: 1px solid rgba(255,255,255,.12); border-left: 0; }}
       .live-stage.live-theater:not(.chat-hidden) .live-recorder,
       .live-stage:fullscreen:not(.chat-hidden) .live-recorder {{ right: 16px; }}
@@ -6116,12 +6162,12 @@ def render_html(title, payload):
       </section>
       <section class="live-stage" aria-label="RoboMaster 赛事直播播放器">
         <div class="live-match-banner">
-          <b id="liveMatchTitle">当前对阵待获取</b>
+          <div class="live-match-title is-plain" id="liveMatchTitle">当前对阵待获取</div>
           <span id="liveMatchStage">官方赛事信号</span>
         </div>
         <div class="live-next-banner" id="liveNextBanner" hidden>
           <span class="live-next-label">NEXT</span>
-          <b id="liveNextTitle">下场对阵待公布</b>
+          <div class="live-next-title is-plain" id="liveNextTitle">下场对阵待公布</div>
           <span id="liveNextMeta"></span>
         </div>
         <div class="live-video-wrap">
@@ -10916,13 +10962,50 @@ def render_html(title, payload):
       return null;
     }}
 
-    function formatLiveSide(side, fallback) {{
+    function getLiveSideParts(side, fallback) {{
       const player = side?.player || side;
       const team = player?.team || {{}};
       const school = team.collegeName || player?.collegeName || "";
-      const name = team.name || player?.name || side?.name || "";
-      if (school && name && !name.includes(school)) return `${{school}} ${{name}}`;
-      return name || school || fallback;
+      let name = team.name || player?.name || side?.name || "";
+      if (school && name.startsWith(school)) name = name.slice(school.length).trim();
+      return school
+        ? {{ school, team: name }}
+        : {{ school: name || fallback, team: "" }};
+    }}
+
+    function formatLiveSide(side, fallback) {{
+      const parts = getLiveSideParts(side, fallback);
+      return [parts.school, parts.team].filter(Boolean).join(" ");
+    }}
+
+    function renderLiveMatchup(container, redSide, blueSide, redFallback, blueFallback) {{
+      const makeSide = (side, fallback) => {{
+        const parts = getLiveSideParts(side, fallback);
+        const wrapper = document.createElement("span");
+        wrapper.className = "live-match-side";
+        const school = document.createElement("strong");
+        school.className = "live-match-school";
+        school.textContent = parts.school;
+        wrapper.appendChild(school);
+        if (parts.team) {{
+          const team = document.createElement("span");
+          team.className = "live-match-team";
+          team.textContent = parts.team;
+          wrapper.appendChild(team);
+        }}
+        return wrapper;
+      }};
+      const versus = document.createElement("span");
+      versus.className = "live-match-vs";
+      versus.textContent = "VS";
+      container.classList.remove("is-plain");
+      container.replaceChildren(makeSide(redSide, redFallback), versus, makeSide(blueSide, blueFallback));
+      return `${{formatLiveSide(redSide, redFallback)}} VS ${{formatLiveSide(blueSide, blueFallback)}}`;
+    }}
+
+    function setLiveMatchupPlaceholder(container, text) {{
+      container.classList.add("is-plain");
+      container.textContent = text;
     }}
 
     function buildLiveMatchMap(matches) {{
@@ -10950,9 +11033,13 @@ def render_html(title, payload):
         banner.hidden = true;
         return;
       }}
-      const red = formatLiveSide(next.redSide, next.redTeamName || "红方待定");
-      const blue = formatLiveSide(next.blueSide, next.blueTeamName || "蓝方待定");
-      document.getElementById("liveNextTitle").textContent = `${{red}} VS ${{blue}}`;
+      renderLiveMatchup(
+        document.getElementById("liveNextTitle"),
+        next.redSide,
+        next.blueSide,
+        next.redTeamName || "红方待定",
+        next.blueTeamName || "蓝方待定",
+      );
       document.getElementById("liveNextMeta").textContent = [
         next.zone?.name || zone?.zoneName,
         formatLiveMatchType(next.matchType),
@@ -10971,18 +11058,18 @@ def render_html(title, payload):
       const stage = document.getElementById("liveMatchStage");
       updateLiveNextPreview(matchEntry?.next || null, zone);
       if (zone?.testTitle) {{
-        title.textContent = zone.testTitle;
+        setLiveMatchupPlaceholder(title, zone.testTitle);
         stage.textContent = zone.zoneName || "B站直播测试源";
         return title.textContent;
       }}
       if (!match) {{
-        title.textContent = zone ? `${{zone.zoneName}} · 当前对阵待官方更新` : "当前对阵待获取";
+        setLiveMatchupPlaceholder(title, zone ? `${{zone.zoneName}} · 当前对阵待官方更新` : "当前对阵待获取");
         stage.textContent = zone?.zoneName || "官方赛事信号";
         return "";
       }}
-      title.textContent = `${{formatLiveSide(match.redSide, "红方待定")}} VS ${{formatLiveSide(match.blueSide, "蓝方待定")}}`;
-      stage.textContent = [zone?.zoneName, match.matchType, match.orderNumber ? `第 ${{match.orderNumber}} 场` : ""].filter(Boolean).join(" · ");
-      return title.textContent;
+      const matchName = renderLiveMatchup(title, match.redSide, match.blueSide, "红方待定", "蓝方待定");
+      stage.textContent = [zone?.zoneName, formatLiveMatchType(match.matchType), match.orderNumber ? `第 ${{match.orderNumber}} 场` : ""].filter(Boolean).join(" · ");
+      return matchName;
     }}
 
     async function fetchLocalProxyJson(path, options = {{}}, timeout = 1400) {{
@@ -11475,7 +11562,7 @@ def render_html(title, payload):
           liveRecordBackground.disabled = false;
           document.getElementById("liveRecordAll").disabled = true;
           document.getElementById("liveRecordViews").innerHTML = "";
-          document.getElementById("liveMatchTitle").textContent = "当前对阵待获取";
+          setLiveMatchupPlaceholder(document.getElementById("liveMatchTitle"), "当前对阵待获取");
           document.getElementById("liveMatchStage").textContent = "官方赛事信号";
           document.getElementById("liveNextBanner").hidden = true;
           livePlaybackStats.textContent = "播放器仅在本板块打开时工作";
