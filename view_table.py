@@ -4265,9 +4265,10 @@ def render_html(title, payload):
       min-width: 0;
       max-width: 100%;
       display: grid;
-      grid-template-columns: minmax(0, 1fr) 360px;
+      grid-template-columns: minmax(0, 1fr) 520px;
       grid-template-areas:
         "match chat"
+        "next chat"
         "video chat"
         "toolbar chat"
         "recorder chat"
@@ -4277,8 +4278,9 @@ def render_html(title, payload):
       background: #05090d;
       box-shadow: var(--shadow);
     }}
-    .live-stage.chat-hidden {{ grid-template-columns: minmax(0, 1fr); grid-template-areas: "match" "video" "toolbar" "recorder" "meta"; }}
+    .live-stage.chat-hidden {{ grid-template-columns: minmax(0, 1fr); grid-template-areas: "match" "next" "video" "toolbar" "recorder" "meta"; }}
     .live-match-banner {{ grid-area: match; }}
+    .live-next-banner {{ grid-area: next; }}
     .live-video-wrap {{ grid-area: video; }}
     .live-toolbar {{ grid-area: toolbar; }}
     .live-recorder {{ grid-area: recorder; }}
@@ -4289,14 +4291,29 @@ def render_html(title, payload):
       align-items: center;
       justify-content: space-between;
       gap: 12px;
-      min-height: 50px;
-      padding: 10px 14px;
+      min-height: 58px;
+      padding: 12px 18px;
       border-bottom: 1px solid rgba(255,255,255,.12);
       background: #0c141b;
       color: #eef4f7;
     }}
-    .live-match-banner b {{ min-width: 0; font-size: 15px; }}
-    .live-match-banner span {{ flex: 0 0 auto; color: #aebbc4; font-size: 12px; }}
+    .live-match-banner b {{ min-width: 0; font-size: 18px; }}
+    .live-match-banner span {{ flex: 0 0 auto; color: #aebbc4; font-size: 14px; }}
+    .live-next-banner {{
+      display: grid;
+      grid-template-columns: auto minmax(0, 1fr) auto;
+      align-items: center;
+      gap: 14px;
+      min-height: 52px;
+      padding: 10px 18px;
+      border-bottom: 1px solid rgba(255,255,255,.12);
+      background: #101a22;
+      color: #eef4f7;
+    }}
+    .live-next-banner[hidden] {{ display: none; }}
+    .live-next-label {{ padding: 4px 8px; border: 1px solid rgba(255,190,92,.45); color: #ffc86b; font-size: 13px; font-weight: 950; letter-spacing: .08em; }}
+    .live-next-banner b {{ min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-size: 17px; }}
+    .live-next-banner > span:last-child {{ color: #aebbc4; font-size: 14px; white-space: nowrap; }}
     .live-video {{ display: block; width: 100%; min-width: 0; height: 100%; object-fit: contain; background: #020406; cursor: pointer; }}
     .live-placeholder {{
       position: absolute;
@@ -4317,7 +4334,7 @@ def render_html(title, payload):
       width: max-content;
       max-width: 75%;
       color: #fff;
-      font-size: 15px;
+      font-size: var(--live-danmaku-font-size, 22px);
       font-weight: 750;
       line-height: 1.5;
       text-shadow: 0 1px 3px #000, 1px 0 2px #000, -1px 0 2px #000;
@@ -4344,6 +4361,7 @@ def render_html(title, payload):
       color: #eef4f7;
       padding: 8px 11px;
       font: inherit;
+      font-size: 16px;
     }}
     .live-toolbar button {{ cursor: pointer; font-weight: 850; }}
     .live-toolbar button:disabled,
@@ -4402,6 +4420,7 @@ def render_html(title, payload):
       background: transparent;
       color: #eef4f7;
       font: inherit;
+      font-size: 15px;
       font-weight: 850;
       cursor: pointer;
     }}
@@ -4409,18 +4428,18 @@ def render_html(title, payload):
     .live-player-chrome button:disabled {{ opacity: .45; cursor: default; background: transparent; }}
     .live-player-chrome select {{
       min-height: 34px;
-      max-width: 92px;
+      max-width: 120px;
       border: 0;
       background: transparent;
       color: #eef4f7;
       font: inherit;
-      font-size: 12px;
+      font-size: 15px;
       font-weight: 850;
       cursor: pointer;
     }}
     .live-player-chrome select option {{ background: #131f29; color: #eef4f7; }}
     .live-player-chrome select:disabled {{ opacity: .45; }}
-    .live-live-badge {{ padding: 3px 7px; border-radius: 3px; background: #d94747; color: #fff; font-size: 11px; font-weight: 900; }}
+    .live-live-badge {{ padding: 4px 8px; border-radius: 3px; background: #d94747; color: #fff; font-size: 13px; font-weight: 900; }}
     .live-volume-control {{ position: relative; }}
     .live-volume-popover {{
       position: absolute;
@@ -4558,7 +4577,7 @@ def render_html(title, payload):
       display: grid;
       grid-template-rows: auto minmax(0, 1fr);
       align-self: start;
-      height: clamp(360px, 54dvh, 560px);
+      height: clamp(480px, 62dvh, 720px);
       min-width: 0;
       min-height: 0;
       overflow: hidden;
@@ -4567,13 +4586,14 @@ def render_html(title, payload):
       color: #eef4f7;
     }}
     .live-chat-panel[hidden] {{ display: none; }}
-    .live-chat-head {{ display: flex; align-items: center; justify-content: space-between; gap: 10px; padding: 10px 12px; border-bottom: 1px solid rgba(255,255,255,.1); }}
+    .live-chat-head {{ display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 14px 18px; border-bottom: 1px solid rgba(255,255,255,.1); }}
     .live-chat-title {{ display: flex; align-items: baseline; gap: 9px; min-width: 0; }}
-    .live-chat-state {{ color: #95a5af; font-size: 11px; }}
-    .live-chat-close {{ min-height: 32px; padding: 5px 9px; border: 1px solid rgba(255,255,255,.14); background: #131f29; color: #eef4f7; font: inherit; cursor: pointer; }}
-    .live-chat-list {{ min-height: 0; overflow-y: auto; overscroll-behavior: contain; scrollbar-gutter: stable; padding: 8px 14px 12px; }}
-    .live-chat-message {{ display: grid; grid-template-columns: minmax(84px, auto) 1fr; gap: 10px; padding: 9px 0; border-bottom: 1px solid rgba(255,255,255,.06); font-size: 14px; line-height: 1.6; }}
-    .live-chat-message b {{ max-width: 160px; overflow: hidden; color: #55c2df; text-overflow: ellipsis; white-space: nowrap; }}
+    .live-chat-title strong {{ font-size: 18px; }}
+    .live-chat-state {{ color: #95a5af; font-size: 14px; }}
+    .live-chat-close {{ min-height: 38px; padding: 7px 12px; border: 1px solid rgba(255,255,255,.14); background: #131f29; color: #eef4f7; font: inherit; font-size: 14px; cursor: pointer; }}
+    .live-chat-list {{ min-height: 0; overflow-y: auto; overscroll-behavior: contain; scrollbar-gutter: stable; padding: 10px 18px 16px; }}
+    .live-chat-message {{ display: grid; grid-template-columns: minmax(110px, auto) 1fr; gap: 14px; padding: 12px 0; border-bottom: 1px solid rgba(255,255,255,.06); font-size: 18px; line-height: 1.65; }}
+    .live-chat-message b {{ max-width: 210px; overflow: hidden; color: #55c2df; text-overflow: ellipsis; white-space: nowrap; font-size: 18px; }}
     .live-chat-message span {{ min-width: 0; overflow-wrap: anywhere; color: #d9e1e5; }}
     .live-chat-empty {{ padding: 28px 12px; color: #95a5af; text-align: center; }}
     .live-recorder {{
@@ -5399,9 +5419,9 @@ def render_html(title, payload):
     .back-to-top:hover {{ transform: translateY(-2px); border-color: var(--accent); }}
 
     .page {{
-      width: min(100%, 1880px);
+      width: calc(100vw - 24px);
       max-width: none;
-      padding: 16px 18px 44px;
+      padding: 12px 0 44px;
     }}
     .cockpit-rail {{ display: none; }}
     .dataset-nav {{
@@ -5513,6 +5533,19 @@ def render_html(title, payload):
       line-height: 1.2;
     }}
     .schedule-hero p {{ line-height: 1.65; font-size: 14px; }}
+    .live-board > .schedule-hero {{
+      display: grid;
+      grid-template-columns: auto auto minmax(0, 1fr);
+      align-items: center;
+      gap: 14px;
+      padding: 10px 16px;
+    }}
+    .live-board > .schedule-hero h1 {{ margin: 0; font-size: 28px; line-height: 1.15; }}
+    .live-board > .schedule-hero p {{ justify-self: end; }}
+    @media (max-width: 900px) {{
+      .live-board > .schedule-hero {{ grid-template-columns: 1fr; gap: 4px; padding: 12px 14px; }}
+      .live-board > .schedule-hero p {{ justify-self: start; }}
+    }}
     .schedule-stat {{ padding: 14px 18px; }}
     .schedule-stat b {{ font-size: 25px; }}
     .schedule-controls {{ padding: 10px; }}
@@ -5576,8 +5609,10 @@ def render_html(title, payload):
       .live-stage,
       .live-stage.chat-hidden {{
         grid-template-columns: minmax(0, 1fr);
-        grid-template-areas: "match" "video" "toolbar" "chat" "recorder" "meta";
+        grid-template-areas: "match" "next" "video" "toolbar" "chat" "recorder" "meta";
       }}
+      .live-next-banner {{ grid-template-columns: 1fr; gap: 4px; }}
+      .live-next-banner > span:last-child {{ white-space: normal; }}
       .live-chat-panel {{ grid-template-rows: auto minmax(0, 1fr); height: 240px; border-top: 1px solid rgba(255,255,255,.12); border-left: 0; }}
       .live-stage.live-theater:not(.chat-hidden) .live-recorder,
       .live-stage:fullscreen:not(.chat-hidden) .live-recorder {{ right: 16px; }}
@@ -6084,6 +6119,11 @@ def render_html(title, payload):
           <b id="liveMatchTitle">当前对阵待获取</b>
           <span id="liveMatchStage">官方赛事信号</span>
         </div>
+        <div class="live-next-banner" id="liveNextBanner" hidden>
+          <span class="live-next-label">NEXT</span>
+          <b id="liveNextTitle">下场对阵待公布</b>
+          <span id="liveNextMeta"></span>
+        </div>
         <div class="live-video-wrap">
           <video class="live-video" id="liveVideo" playsinline muted preload="none"></video>
           <div class="live-placeholder" id="livePlaceholder" aria-live="polite">切换到直播板块后自动获取当前赛事。</div>
@@ -6101,6 +6141,9 @@ def render_html(title, payload):
               </div>
               <select id="liveQualitySelect" aria-label="直播清晰度" disabled><option value="high">1080p</option></select>
               <button id="liveDanmakuToggle" type="button" aria-pressed="true">弹幕</button>
+              <select id="liveDanmakuSize" aria-label="弹幕字号" title="弹幕字号">
+                <option value="18">小字</option><option value="22" selected>中字</option><option value="28">大字</option><option value="36">特大</option>
+              </select>
               <button id="liveChatToggle" type="button" aria-pressed="true">聊天</button>
               <button id="liveTheaterButton" type="button" title="网页内全屏">网页</button>
               <button id="liveFullscreenButton" type="button" title="浏览器全屏">全屏</button>
@@ -10619,6 +10662,7 @@ def render_html(title, payload):
     const liveChatList = document.getElementById("liveChatList");
     const liveChatState = document.getElementById("liveChatState");
     const liveDanmakuLayer = document.getElementById("liveDanmakuLayer");
+    const liveDanmakuSize = document.getElementById("liveDanmakuSize");
     let liveZones = [];
     let liveMatchMap = new Map();
     let liveHls = null;
@@ -10650,6 +10694,15 @@ def render_html(title, payload):
     let liveControlsTimer = null;
     let liveControlsWereHiddenOnPointerDown = false;
     liveRecordBackground.checked = localStorage.getItem("rm-dashboard-live-record-background") === "true";
+
+    function setLiveDanmakuSize(value) {{
+      const size = [18, 22, 28, 36].includes(Number(value)) ? Number(value) : 22;
+      liveDanmakuSize.value = String(size);
+      liveDanmakuLayer.style.setProperty("--live-danmaku-font-size", `${{size}}px`);
+      localStorage.setItem("rm-dashboard-live-danmaku-size", String(size));
+    }}
+
+    setLiveDanmakuSize(localStorage.getItem("rm-dashboard-live-danmaku-size"));
 
     function syncLivePlaybackControls() {{
       const unavailable = !liveVideo.currentSrc && !liveHls;
@@ -10872,11 +10925,51 @@ def render_html(title, payload):
       return name || school || fallback;
     }}
 
+    function buildLiveMatchMap(matches) {{
+      return new Map((Array.isArray(matches) ? matches : []).map((item) => {{
+        const current = item?.currentMatch || null;
+        const next = item?.nextMatch || null;
+        const zoneId = String(current?.zone?.id || next?.zone?.id || "");
+        return [zoneId, {{ current, next }}];
+      }}).filter(([zoneId, item]) => zoneId && (item.current || item.next)));
+    }}
+
+    function formatLiveMatchType(value) {{
+      return {{ WARMUP: "热身赛", GROUP: "小组赛", ROUND_ROBIN: "循环赛", ELIMINATION: "淘汰赛", FINAL: "决赛" }}[String(value || "").toUpperCase()] || value || "";
+    }}
+
+    function formatLiveMatchTime(value) {{
+      const date = value ? new Date(value) : null;
+      if (!date || Number.isNaN(date.getTime())) return "时间待定";
+      return date.toLocaleString("zh-CN", {{ month: "2-digit", day: "2-digit", hour: "2-digit", minute: "2-digit", hour12: false }}).replace("/", "-");
+    }}
+
+    function updateLiveNextPreview(next, zone) {{
+      const banner = document.getElementById("liveNextBanner");
+      if (!next || zone?.testTitle) {{
+        banner.hidden = true;
+        return;
+      }}
+      const red = formatLiveSide(next.redSide, next.redTeamName || "红方待定");
+      const blue = formatLiveSide(next.blueSide, next.blueTeamName || "蓝方待定");
+      document.getElementById("liveNextTitle").textContent = `${{red}} VS ${{blue}}`;
+      document.getElementById("liveNextMeta").textContent = [
+        next.zone?.name || zone?.zoneName,
+        formatLiveMatchType(next.matchType),
+        next.orderNumber ? `第 ${{next.orderNumber}} 场` : "",
+        formatLiveMatchTime(next.planStartedAt),
+        next.planGameCount ? `${{next.planGameCount}} 局制` : "",
+      ].filter(Boolean).join(" · ");
+      banner.hidden = false;
+    }}
+
     function updateLiveMatchTitle() {{
       const zone = getSelectedLiveZone();
-      const match = zone ? liveMatchMap.get(String(zone.zoneId)) : null;
+      const matchEntry = zone ? liveMatchMap.get(String(zone.zoneId)) : null;
+      const match = matchEntry?.current || null;
       const title = document.getElementById("liveMatchTitle");
       const stage = document.getElementById("liveMatchStage");
+      updateLiveNextPreview(matchEntry?.next || null, zone);
       if (zone?.testTitle) {{
         title.textContent = zone.testTitle;
         stage.textContent = zone.zoneName || "B站直播测试源";
@@ -11384,6 +11477,7 @@ def render_html(title, payload):
           document.getElementById("liveRecordViews").innerHTML = "";
           document.getElementById("liveMatchTitle").textContent = "当前对阵待获取";
           document.getElementById("liveMatchStage").textContent = "官方赛事信号";
+          document.getElementById("liveNextBanner").hidden = true;
           livePlaybackStats.textContent = "播放器仅在本板块打开时工作";
           setLiveMessage("切换到直播板块后自动获取当前赛事。", "已停止");
         }}
@@ -11516,10 +11610,7 @@ def render_html(title, payload):
         }}
         if (!matchResponse.ok) return;
         const matches = await matchResponse.json();
-        liveMatchMap = new Map((Array.isArray(matches) ? matches : []).map((item) => {{
-          const match = item.currentMatch || null;
-          return [String(match?.zone?.id || ""), match];
-        }}).filter(([zoneId, match]) => zoneId && match));
+        liveMatchMap = buildLiveMatchMap(matches);
         const nextMatchName = updateLiveMatchTitle();
         await rotateLiveRecording(nextMatchName);
       }} catch (error) {{
@@ -11705,10 +11796,7 @@ def render_html(title, payload):
         liveZones = (game.eventData || []).filter((zone) =>
           Number(zone.liveState) === 1 && Number(zone.matchState) === 1 && getLiveViews(zone).length
         );
-        liveMatchMap = new Map((Array.isArray(matches) ? matches : []).map((item) => {{
-          const match = item.currentMatch || null;
-          return [String(match?.zone?.id || ""), match];
-        }}).filter(([zoneId, match]) => zoneId && match));
+        liveMatchMap = buildLiveMatchMap(matches);
         if (!isOfficialLiveState(state) || !liveZones.length) {{
           if (liveRecordingIntent || liveRecordingSessions.length) {{
             await stopLiveRecording(false);
@@ -11765,6 +11853,7 @@ def render_html(title, payload):
       event.currentTarget.textContent = liveDanmakuEnabled ? "弹幕" : "开弹幕";
       if (!liveDanmakuEnabled) liveDanmakuLayer.replaceChildren();
     }});
+    liveDanmakuSize.addEventListener("change", () => setLiveDanmakuSize(liveDanmakuSize.value));
     document.getElementById("liveChatToggle").addEventListener("click", () => setLiveChatVisible(liveChatPanel.hidden));
     document.getElementById("liveChatClose").addEventListener("click", () => setLiveChatVisible(false));
     liveRecorderFloatToggle.addEventListener("click", () => setLiveRecorderCollapsed(!liveRecorder.classList.contains("recorder-collapsed")));
