@@ -4269,9 +4269,9 @@ def render_html(title, payload):
       grid-template-areas:
         "match chat"
         "video chat"
-        "toolbar chat"
-        "recorder chat"
-        "meta chat";
+        "toolbar toolbar"
+        "recorder recorder"
+        "meta meta";
       overflow: hidden;
       border: 1px solid var(--glass-line);
       background: #05090d;
@@ -4627,11 +4627,12 @@ def render_html(title, payload):
       grid-area: chat;
       display: grid;
       grid-template-rows: auto minmax(0, 1fr);
-      align-self: start;
-      height: clamp(480px, 62dvh, 720px);
+      align-self: stretch;
+      height: auto;
       min-width: 0;
       min-height: 0;
       overflow: hidden;
+      contain: size layout paint;
       border-left: 1px solid rgba(255,255,255,.12);
       background: #0b1218;
       color: #eef4f7;
