@@ -4477,6 +4477,32 @@ def render_html(title, payload):
     }}
     .live-player-chrome button:hover {{ color: #fff; background: rgba(255,255,255,.12); }}
     .live-player-chrome button:disabled {{ opacity: .45; cursor: default; background: transparent; }}
+    .live-player-chrome .live-danmaku-switch {{ display: inline-flex; align-items: center; gap: 7px; padding-inline: 5px; white-space: nowrap; }}
+    .live-switch-track {{
+      position: relative;
+      width: 42px;
+      height: 24px;
+      border: 1px solid rgba(255,255,255,.32);
+      border-radius: 999px;
+      background: rgba(255,255,255,.14);
+      transition: border-color .18s ease, background .18s ease;
+    }}
+    .live-switch-track::after {{
+      content: "";
+      position: absolute;
+      top: 3px;
+      left: 3px;
+      width: 16px;
+      height: 16px;
+      border-radius: 50%;
+      background: #d6e0e5;
+      box-shadow: 0 1px 4px rgba(0,0,0,.35);
+      transition: transform .18s ease, background .18s ease;
+    }}
+    .live-danmaku-switch[aria-checked="true"] .live-switch-track {{ border-color: var(--hud-cyan); background: color-mix(in srgb, var(--hud-cyan) 65%, #14212a); }}
+    .live-danmaku-switch[aria-checked="true"] .live-switch-track::after {{ transform: translateX(18px); background: #fff; }}
+    .live-switch-state {{ min-width: 1em; color: #aebbc4; font-size: 13px; text-align: left; }}
+    .live-danmaku-switch[aria-checked="true"] .live-switch-state {{ color: #fff; }}
     .live-player-chrome select {{
       min-height: 34px;
       max-width: 120px;
@@ -6204,7 +6230,9 @@ def render_html(title, payload):
                 <div class="live-volume-popover"><label class="live-volume" for="liveVolume"><input id="liveVolume" type="range" min="0" max="100" value="0" aria-label="直播音量"><output id="liveVolumeValue">0%</output></label></div>
               </div>
               <select id="liveQualitySelect" aria-label="直播清晰度" disabled><option value="high">1080p</option></select>
-              <button id="liveDanmakuToggle" type="button" aria-pressed="true">弹幕</button>
+              <button class="live-danmaku-switch" id="liveDanmakuToggle" type="button" role="switch" aria-checked="true" aria-label="弹幕开关">
+                <span>弹幕</span><span class="live-switch-track" aria-hidden="true"></span><span class="live-switch-state">开</span>
+              </button>
               <select id="liveDanmakuSize" aria-label="弹幕字号" title="弹幕字号">
                 <option value="18">小字</option><option value="22" selected>中字</option><option value="28">大字</option><option value="36">特大</option>
               </select>
@@ -11954,8 +11982,8 @@ def render_html(title, payload):
     liveRecordDirectory.addEventListener("click", chooseLiveRecordingDirectory);
     document.getElementById("liveDanmakuToggle").addEventListener("click", (event) => {{
       liveDanmakuEnabled = !liveDanmakuEnabled;
-      event.currentTarget.setAttribute("aria-pressed", liveDanmakuEnabled ? "true" : "false");
-      event.currentTarget.textContent = liveDanmakuEnabled ? "弹幕" : "开弹幕";
+      event.currentTarget.setAttribute("aria-checked", liveDanmakuEnabled ? "true" : "false");
+      event.currentTarget.querySelector(".live-switch-state").textContent = liveDanmakuEnabled ? "开" : "关";
       if (!liveDanmakuEnabled) liveDanmakuLayer.replaceChildren();
     }});
     liveDanmakuSize.addEventListener("change", () => setLiveDanmakuSize(liveDanmakuSize.value));
