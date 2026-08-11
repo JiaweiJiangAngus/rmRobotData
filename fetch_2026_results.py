@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Build normalized 2026 regional match rows from official Bilibili seasons."""
+"""Build normalized 2026 match rows from official schedule and replay data."""
 
 import json
 import re
@@ -9,13 +9,12 @@ from pathlib import Path
 
 import fetch_replay_links as replay
 from data_store import load_rmuc_results, save_rmuc_results
-from build_results_dashboard import build_payload, read_workbook
-
-
 SEASONS = {
     "8208439": "北部赛区",
     "8156146": "东部赛区",
     "8110609": "南部赛区",
+    "8716384": "复活赛",
+    "8746598": "全国赛",
 }
 SCHEDULE_URL = "https://rm-static.djicdn.com/live_json/schedule.json"
 OUTPUT = Path("results_2026.json")
@@ -85,6 +84,48 @@ def regional_stage(zone, order):
     return "淘汰赛"
 
 
+def finals_stage(zone, order):
+    """Return the published bracket phase for the 2026 revival/finals."""
+    if zone == "复活赛":
+        for start, end, stage in (
+            (1, 4, "A组第1轮"), (5, 8, "B组第1轮"),
+            (9, 12, "A组第2轮"), (13, 16, "B组第2轮"),
+            (17, 19, "A组第3轮"), (20, 22, "B组第3轮"),
+            (23, 26, "8进4淘汰赛"),
+            (27, 28, "8进4败者组第一轮"),
+            (29, 30, "8进4胜者组"),
+            (31, 32, "8进4败者组第二轮"),
+        ):
+            if start <= order <= end:
+                return stage
+        return "复活赛"
+
+    for start, end, stage in (
+        (1, 8, "A组第1轮"), (9, 16, "B组第1轮"),
+        (17, 24, "A组第2轮"), (25, 32, "B组第2轮"),
+        (33, 40, "A组第3轮"), (41, 48, "B组第3轮"),
+        (49, 54, "A组第4轮"), (55, 60, "B组第4轮"),
+        (61, 63, "A组第5轮"), (64, 66, "B组第5轮"),
+        (67, 74, "16进8淘汰赛"),
+        (75, 78, "16进8败者组第一轮"),
+        (79, 82, "16进8胜者组"),
+        (83, 86, "16进8败者组第二轮"),
+        (87, 88, "8进4胜者组"),
+        (89, 90, "8进4败者组第一轮"),
+        (91, 92, "8进4败者组第二轮"),
+        (93, 94, "半决赛"),
+    ):
+        if start <= order <= end:
+            return stage
+    return {95: "季军争夺战", 96: "冠军争夺战", 97: "全明星赛", 98: "全明星赛"}.get(order, "全国赛")
+
+
+def match_stage(zone, order):
+    if zone in {"复活赛", "全国赛"}:
+        return finals_stage(zone, order)
+    return regional_stage(zone, order)
+
+
 def derive_regional_results(rows, group_rankings):
     """Derive final regional placements from the completed main knockout bracket."""
     placements = {}
@@ -137,10 +178,6 @@ def derive_regional_results(rows, group_rankings):
 
 
 def main():
-    payload = build_payload(read_workbook(replay.XLSX))
-    schools = {row[side] for row in payload["matches"] for side in ("redSchool", "blueSchool")}
-    schools.update(row["school"] for row in payload["qualifiers"])
-    schools = sorted((name for name in schools if name), key=len, reverse=True)
     opener = replay.make_opener()
     schedule_request = urllib.request.Request(SCHEDULE_URL, headers={
         "User-Agent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 Chrome/131 Safari/537.36",
@@ -181,13 +218,15 @@ def main():
                     "stage": stage,
                     "groupRound": group_round_by_order.get(int(match["orderNumber"])),
                     "status": match.get("status"),
+                    "redSchool": (((match.get("redSide") or {}).get("player") or {}).get("team") or {}).get("collegeName", "-"),
+                    "redTeam": (((match.get("redSide") or {}).get("player") or {}).get("team") or {}).get("name", "-"),
+                    "blueSchool": (((match.get("blueSide") or {}).get("player") or {}).get("team") or {}).get("collegeName", "-"),
+                    "blueTeam": (((match.get("blueSide") or {}).get("player") or {}).get("team") or {}).get("name", "-"),
                 }
     rows = []
     links = {}
-    pattern = re.compile(
-        r"^(?:RoboMaster\s*)?(?P<zone>[^ ]*赛区)\s+第(?P<number>[零一二两三四五六七八九十百\d]+)场\s+"
-        r"(?P<red>.+?)\s*战队\s+[Vv][Ss]\s+(?P<blue>.+?)(?:\s*战队)?\s+(?:RoboMaster|RMUC|RM)\s"
-    )
+    pattern = re.compile(r"(?P<zone>[^\s]*赛区|复活赛|全国赛)\s+第(?P<number>[零一二两三四五六七八九十百\d]+)场")
+    all_star_pattern = re.compile(r"全明星赛\s+第(?P<number>[一二两\d]+)局")
     for season_id, expected_zone in SEASONS.items():
         archives = []
         page = 1
@@ -204,22 +243,33 @@ def main():
             title = archive.get("title", "")
             match = pattern.search(title)
             if not match:
-                print(f"unparsed: {title}")
-                continue
-            order = chinese_number(match.group("number"))
-            zone = match.group("zone") or expected_zone
-            red_school, red_team = split_competitor(match.group("red"), schools)
-            blue_school, blue_team = split_competitor(match.group("blue"), schools)
+                all_star_match = all_star_pattern.search(title) if expected_zone == "全国赛" else None
+                if not all_star_match:
+                    print(f"ignored non-match video: {title}")
+                    continue
+                order = 96 + chinese_number(all_star_match.group("number"))
+            else:
+                order = chinese_number(match.group("number"))
+            zone = expected_zone
             official = official_matches.get((zone, order), {})
+            if not official:
+                print(f"missing official result: {zone} #{order}: {title}")
+                continue
+            normalized_title = replay.plain(title)
+            for side in ("red", "blue"):
+                school = replay.plain(official[f"{side}School"])
+                team = replay.plain(official[f"{side}Team"])
+                if school not in normalized_title and team not in normalized_title:
+                    raise RuntimeError(f"{zone} #{order} {side} competitor does not match replay title: {title}")
             red_score = official.get("redScore")
             blue_score = official.get("blueScore")
             completed = official.get("status") == "DONE" and red_score is not None and blue_score is not None
             item_id = f"2026-{zone}-{order}"
             rows.append({
                 "id": item_id, "season": "2026", "zone": zone, "order": str(order),
-                "stage": regional_stage(zone, order),
-                "redSchool": red_school, "redTeam": red_team,
-                "blueSchool": blue_school, "blueTeam": blue_team,
+                "stage": match_stage(zone, order),
+                "redSchool": official["redSchool"], "redTeam": official["redTeam"],
+                "blueSchool": official["blueSchool"], "blueTeam": official["blueTeam"],
                 "redScore": red_score if completed else "-",
                 "blueScore": blue_score if completed else "-",
                 "note": "比分与回放均来自官方数据" if completed else "官方回放已发布，比分待补",
@@ -227,19 +277,39 @@ def main():
                 "matchId": official.get("matchId", ""),
                 "redSourceMatch": official.get("redSourceMatch", ""),
                 "blueSourceMatch": official.get("blueSourceMatch", ""),
-                "groupRound": official.get("groupRound"),
             })
             links[f"2026|{zone}|{order}|{item_id}"] = {
                 "title": title,
                 "url": f'https://www.bilibili.com/video/{archive["bvid"]}/',
             }
         print(f"{expected_zone}: {len(archives)} videos")
+    expected_keys = {
+        key for key in official_matches
+        if key[0] in set(SEASONS.values())
+    }
+    actual_keys = {(item["zone"], int(item["order"])) for item in rows}
+    if len(actual_keys) != len(rows):
+        raise RuntimeError("duplicate 2026 replay match rows detected")
+    if actual_keys != expected_keys:
+        missing = sorted(expected_keys - actual_keys)
+        unexpected = sorted(actual_keys - expected_keys)
+        raise RuntimeError(f"official/replay coverage mismatch; missing={missing}, unexpected={unexpected}")
     rows.sort(key=lambda item: (item["zone"], int(item["order"])))
-    rankings = derive_regional_results(rows, rankings)
+    regional_zones = {"北部赛区", "东部赛区", "南部赛区"}
+    rankings = derive_regional_results(
+        [item for item in rows if item["zone"] in regional_zones],
+        [item for item in rankings if item["zone"] in regional_zones],
+    )
     OUTPUT.write_text(json.dumps({"matches": rows, "rankings": rankings, "replayLinks": links}, ensure_ascii=False, indent=2), encoding="utf-8")
     unified = load_rmuc_results() or {"matches": [], "qualifiers": [], "rankings": []}
     unified["matches"] = [item for item in unified.get("matches", []) if item.get("season") != "2026"] + rows
     save_rmuc_results(unified)
+    existing_links = {}
+    if replay.OUTPUT.exists():
+        existing_links = json.loads(replay.OUTPUT.read_text(encoding="utf-8"))
+    existing_links = {key: value for key, value in existing_links.items() if not key.startswith("2026|")}
+    existing_links.update(links)
+    replay.save_links(existing_links)
     if UNIFIED_OUTPUT.exists():
         print(f"updated unified schedule data in {UNIFIED_OUTPUT}")
     print(f"saved {len(rows)} matches, {len(rankings)} rankings and {len(links)} links to {OUTPUT}")
