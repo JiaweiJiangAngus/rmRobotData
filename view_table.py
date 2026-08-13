@@ -4929,6 +4929,24 @@ def render_html(title, payload):
         linear-gradient(90deg, transparent 0 48%, rgba(255,255,255,.42) 50%, transparent 52%);
     }}
     .schedule-match.elite-clash::after {{ opacity: .54; }}
+    .schedule-match.elite-clash.result-red {{
+      border-color: color-mix(in srgb, #a45fe1 62%, #e85369 38%);
+      box-shadow: inset 4px 0 0 #ed5967, inset -2px 0 0 #679fdf, 0 0 0 1px rgba(154,88,218,.48), 0 8px 22px rgba(158,69,139,.16);
+    }}
+    .schedule-match.elite-clash.result-red::before {{
+      background:
+        linear-gradient(90deg, rgba(255,215,225,.82) 0%, rgba(232,76,105,.36) 32%, rgba(163,91,220,.36) 58%, rgba(102,143,220,.16) 79%, rgba(229,246,255,.58) 100%),
+        radial-gradient(circle at 33% 50%, rgba(225,63,91,.18), transparent 39%);
+    }}
+    .schedule-match.elite-clash.result-blue {{
+      border-color: color-mix(in srgb, #9168e1 62%, #399ed8 38%);
+      box-shadow: inset 2px 0 0 #d27491, inset -4px 0 0 #45afe2, 0 0 0 1px rgba(126,95,220,.48), 0 8px 22px rgba(65,108,174,.17);
+    }}
+    .schedule-match.elite-clash.result-blue::before {{
+      background:
+        linear-gradient(90deg, rgba(255,229,235,.58) 0%, rgba(197,99,145,.16) 21%, rgba(139,91,218,.36) 42%, rgba(56,155,216,.35) 68%, rgba(216,245,255,.84) 100%),
+        radial-gradient(circle at 67% 50%, rgba(40,150,213,.19), transparent 39%);
+    }}
     html[data-theme="night"] .schedule-match.elite-clash {{
       border-color: color-mix(in srgb, #b28aff, var(--line) 30%);
       box-shadow: inset 3px 0 0 #ef777a, inset -3px 0 0 #63c8ef, 0 0 0 1px rgba(178,138,255,.48), 0 9px 24px rgba(111,78,190,.24);
@@ -4937,6 +4955,24 @@ def render_html(title, payload):
       background:
         linear-gradient(90deg, rgba(100,32,44,.68) 0%, rgba(195,61,78,.30) 28%, rgba(102,65,151,.48) 50%, rgba(38,108,145,.32) 72%, rgba(18,65,93,.74) 100%),
         linear-gradient(90deg, transparent 0 48%, rgba(211,190,255,.22) 50%, transparent 52%);
+    }}
+    html[data-theme="night"] .schedule-match.elite-clash.result-red {{
+      border-color: color-mix(in srgb, #bd79ee 60%, #ec6173 40%);
+      box-shadow: inset 4px 0 0 #f06a76, inset -2px 0 0 #699fe0, 0 0 0 1px rgba(187,112,232,.52), 0 9px 26px rgba(170,55,116,.27);
+    }}
+    html[data-theme="night"] .schedule-match.elite-clash.result-red::before {{
+      background:
+        linear-gradient(90deg, rgba(119,30,48,.84) 0%, rgba(190,48,72,.48) 32%, rgba(112,62,158,.54) 58%, rgba(42,83,139,.22) 79%, rgba(18,57,88,.56) 100%),
+        radial-gradient(circle at 33% 50%, rgba(255,109,128,.18), transparent 40%);
+    }}
+    html[data-theme="night"] .schedule-match.elite-clash.result-blue {{
+      border-color: color-mix(in srgb, #a77bf0 60%, #4ab5e7 40%);
+      box-shadow: inset 2px 0 0 #cf7595, inset -4px 0 0 #55bdea, 0 0 0 1px rgba(151,119,235,.52), 0 9px 26px rgba(47,101,173,.29);
+    }}
+    html[data-theme="night"] .schedule-match.elite-clash.result-blue::before {{
+      background:
+        linear-gradient(90deg, rgba(97,34,53,.58) 0%, rgba(142,50,104,.22) 21%, rgba(91,57,151,.54) 42%, rgba(31,111,164,.48) 68%, rgba(14,65,98,.86) 100%),
+        radial-gradient(circle at 67% 50%, rgba(91,202,255,.18), transparent 40%);
     }}
     .schedule-meta, .schedule-tail {{ padding: 10px 13px; color: var(--muted); font-size: 11px; }}
     .schedule-meta {{ border-right: 1px solid var(--line); }}
