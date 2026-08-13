@@ -59,7 +59,9 @@ int main() {
             for (auto& team : zone["teams"]) {
                 std::string college = get_string(team, "collegeName");
                 std::string teamName = get_string(team, "name");
-                if (teamName.find("INNOVATOR") != std::string::npos || teamName.find("CREATOR") != std::string::npos) continue;
+                if (teamName.find("INNOVATOR") != std::string::npos ||
+                    teamName.find("CREATOR") != std::string::npos ||
+                    teamName == "HUMAN" || teamName == "ROBOT") continue;
                 out << "Team: " << college << " (" << teamName << ")\n";
 
                 if (!team.contains("robots") || !team["robots"].is_array()) continue;
