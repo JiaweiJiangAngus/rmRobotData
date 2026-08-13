@@ -4879,28 +4879,58 @@ def render_html(title, payload):
     .schedule-match.result-blue .schedule-team:not(.red) b {{ color: #087699; text-shadow: 0 0 12px rgba(255,255,255,.40); }}
     html[data-theme="night"] .schedule-match.result-red .schedule-team.red b {{ color: #ffd5d2; }}
     html[data-theme="night"] .schedule-match.result-blue .schedule-team:not(.red) b {{ color: #c8f4ff; }}
-    html[data-theme] .schedule-match.championship-final {{ border-color:color-mix(in srgb,#d4af37,var(--line) 34%); box-shadow:inset 3px 0 0 #d4af37,inset -3px 0 0 #aeb8c3,0 0 0 1px rgba(212,175,55,.08); }}
-    html[data-theme] .schedule-match.championship-final.final-blue-winner {{ box-shadow:inset 3px 0 0 #aeb8c3,inset -3px 0 0 #d4af37,0 0 0 1px rgba(212,175,55,.08); }}
-    html[data-theme] .schedule-match.championship-final.final-red-winner::before {{ background:linear-gradient(90deg,rgba(239,214,125,.42) 0%,rgba(239,214,125,.18) 24%,transparent 43%,transparent 57%,rgba(220,225,231,.18) 76%,rgba(220,225,231,.42) 100%); }}
-    html[data-theme] .schedule-match.championship-final.final-blue-winner::before {{ background:linear-gradient(90deg,rgba(220,225,231,.42) 0%,rgba(220,225,231,.18) 24%,transparent 43%,transparent 57%,rgba(239,214,125,.18) 76%,rgba(239,214,125,.42) 100%); }}
-    html[data-theme] .schedule-match.third-place-final {{ border-color:color-mix(in srgb,#b76e79,var(--line) 34%); box-shadow:inset 3px 0 0 #b76e79,inset -3px 0 0 #6f4e37,0 0 0 1px rgba(183,110,121,.11); }}
-    html[data-theme] .schedule-match.third-place-final.final-blue-winner {{ box-shadow:inset 3px 0 0 #6f4e37,inset -3px 0 0 #b76e79,0 0 0 1px rgba(183,110,121,.11); }}
-    html[data-theme] .schedule-match.third-place-final.final-red-winner::before {{ background:linear-gradient(90deg,rgba(124,52,71,.18) 0%,rgba(183,110,121,.32) 10%,rgba(224,157,139,.22) 18%,rgba(183,110,121,.13) 30%,transparent 43%,transparent 57%,rgba(111,78,55,.16) 76%,rgba(111,78,55,.36) 100%); }}
-    html[data-theme] .schedule-match.third-place-final.final-blue-winner::before {{ background:linear-gradient(90deg,rgba(111,78,55,.36) 0%,rgba(111,78,55,.16) 24%,transparent 43%,transparent 57%,rgba(183,110,121,.13) 70%,rgba(224,157,139,.22) 82%,rgba(183,110,121,.32) 90%,rgba(124,52,71,.18) 100%); }}
+    html[data-theme] .schedule-match.championship-final {{
+      border-width: 2px;
+      border-color: #c79614;
+      box-shadow: inset 6px 0 0 #d4af37, inset -5px 0 0 #9ba7b4, 0 0 0 1px rgba(212,175,55,.42), 0 10px 28px rgba(171,126,13,.25);
+    }}
+    html[data-theme] .schedule-match.championship-final.final-blue-winner {{
+      box-shadow: inset 5px 0 0 #9ba7b4, inset -6px 0 0 #d4af37, 0 0 0 1px rgba(212,175,55,.42), 0 10px 28px rgba(171,126,13,.25);
+    }}
+    html[data-theme] .schedule-match.championship-final.final-red-winner::before {{
+      background:
+        linear-gradient(90deg,rgba(255,211,55,.92) 0%,rgba(239,190,54,.62) 25%,rgba(220,170,37,.22) 45%,rgba(174,184,196,.18) 56%,rgba(174,184,196,.56) 77%,rgba(217,224,232,.88) 100%),
+        radial-gradient(circle at 27% 50%,rgba(255,248,192,.72),transparent 34%);
+    }}
+    html[data-theme] .schedule-match.championship-final.final-blue-winner::before {{
+      background:
+        linear-gradient(90deg,rgba(217,224,232,.88) 0%,rgba(174,184,196,.56) 23%,rgba(174,184,196,.18) 44%,rgba(220,170,37,.22) 55%,rgba(239,190,54,.62) 75%,rgba(255,211,55,.92) 100%),
+        radial-gradient(circle at 73% 50%,rgba(255,248,192,.72),transparent 34%);
+    }}
+    html[data-theme] .schedule-match.championship-final::after {{ opacity:.7; }}
+    html[data-theme] .schedule-match.third-place-final {{
+      border-width: 2px;
+      border-color: #a85365;
+      box-shadow: inset 6px 0 0 #b76e79, inset -5px 0 0 #6f4e37, 0 0 0 1px rgba(183,110,121,.42), 0 10px 26px rgba(132,63,77,.24);
+    }}
+    html[data-theme] .schedule-match.third-place-final.final-blue-winner {{
+      box-shadow: inset 5px 0 0 #6f4e37, inset -6px 0 0 #b76e79, 0 0 0 1px rgba(183,110,121,.42), 0 10px 26px rgba(132,63,77,.24);
+    }}
+    html[data-theme] .schedule-match.third-place-final.final-red-winner::before {{
+      background:
+        linear-gradient(90deg,rgba(190,92,105,.88) 0%,rgba(210,122,123,.60) 25%,rgba(183,110,121,.23) 45%,rgba(111,78,55,.18) 56%,rgba(111,78,55,.52) 77%,rgba(139,98,66,.78) 100%),
+        radial-gradient(circle at 27% 50%,rgba(255,197,171,.52),transparent 34%);
+    }}
+    html[data-theme] .schedule-match.third-place-final.final-blue-winner::before {{
+      background:
+        linear-gradient(90deg,rgba(139,98,66,.78) 0%,rgba(111,78,55,.52) 23%,rgba(111,78,55,.18) 44%,rgba(183,110,121,.23) 55%,rgba(210,122,123,.60) 75%,rgba(190,92,105,.88) 100%),
+        radial-gradient(circle at 73% 50%,rgba(255,197,171,.52),transparent 34%);
+    }}
+    html[data-theme] .schedule-match.third-place-final::after {{ opacity:.66; }}
     html[data-theme] .schedule-match.championship-final.final-red-winner .schedule-team.red b,
-    html[data-theme] .schedule-match.championship-final.final-blue-winner .schedule-team:not(.red) b {{ color:#8b6508; text-shadow:none; }}
+    html[data-theme] .schedule-match.championship-final.final-blue-winner .schedule-team:not(.red) b {{ color:#694600; text-shadow:0 1px 0 rgba(255,255,255,.72); }}
     html[data-theme] .schedule-match.championship-final.final-red-winner .schedule-team:not(.red) b,
     html[data-theme] .schedule-match.championship-final.final-blue-winner .schedule-team.red b {{ color:#626b76; text-shadow:none; }}
     html[data-theme] .schedule-match.third-place-final.final-red-winner .schedule-team.red b,
-    html[data-theme] .schedule-match.third-place-final.final-blue-winner .schedule-team:not(.red) b {{ color:#7c3447; text-shadow:none; }}
+    html[data-theme] .schedule-match.third-place-final.final-blue-winner .schedule-team:not(.red) b {{ color:#681f34; text-shadow:0 1px 0 rgba(255,255,255,.58); }}
     html[data-theme] .schedule-match.third-place-final.final-red-winner .schedule-team:not(.red) b,
     html[data-theme] .schedule-match.third-place-final.final-blue-winner .schedule-team.red b {{ color:#6f4e37; text-shadow:none; }}
     html[data-theme] .schedule-match.championship-final.final-red-winner .schedule-score .red,
-    html[data-theme] .schedule-match.championship-final.final-blue-winner .schedule-score .blue {{ color:#a77c0b; }}
+    html[data-theme] .schedule-match.championship-final.final-blue-winner .schedule-score .blue {{ color:#6f4d00; text-shadow:0 1px 0 rgba(255,255,255,.75); }}
     html[data-theme] .schedule-match.championship-final.final-red-winner .schedule-score .blue,
     html[data-theme] .schedule-match.championship-final.final-blue-winner .schedule-score .red {{ color:#737d88; }}
     html[data-theme] .schedule-match.third-place-final.final-red-winner .schedule-score .red,
-    html[data-theme] .schedule-match.third-place-final.final-blue-winner .schedule-score .blue {{ color:#9b4a5f; }}
+    html[data-theme] .schedule-match.third-place-final.final-blue-winner .schedule-score .blue {{ color:#6f2539; text-shadow:0 1px 0 rgba(255,255,255,.62); }}
     html[data-theme] .schedule-match.third-place-final.final-red-winner .schedule-score .blue,
     html[data-theme] .schedule-match.third-place-final.final-blue-winner .schedule-score .red {{ color:#6f4e37; }}
     html[data-theme="night"] .schedule-match.championship-final.final-red-winner .schedule-team.red b,
@@ -4919,6 +4949,18 @@ def render_html(title, payload):
     html[data-theme="night"] .schedule-match.third-place-final.final-blue-winner .schedule-team.red b,
     html[data-theme="night"] .schedule-match.third-place-final.final-red-winner .schedule-score .blue,
     html[data-theme="night"] .schedule-match.third-place-final.final-blue-winner .schedule-score .red {{ color:#c7a287; }}
+    html[data-theme] .schedule-match.championship-final .schedule-stage {{ color:#765400; text-shadow:0 1px 0 rgba(255,255,255,.65); }}
+    html[data-theme] .schedule-match.third-place-final .schedule-stage {{ color:#70283c; text-shadow:0 1px 0 rgba(255,255,255,.52); }}
+    html[data-theme="night"] .schedule-match.championship-final {{ border-color:#f0c84e; box-shadow:inset 6px 0 0 #f0c84e,inset -5px 0 0 #b6c0cb,0 0 0 1px rgba(240,200,78,.58),0 10px 32px rgba(214,161,24,.34); }}
+    html[data-theme="night"] .schedule-match.championship-final.final-blue-winner {{ box-shadow:inset 5px 0 0 #b6c0cb,inset -6px 0 0 #f0c84e,0 0 0 1px rgba(240,200,78,.58),0 10px 32px rgba(214,161,24,.34); }}
+    html[data-theme="night"] .schedule-match.championship-final.final-red-winner::before {{ background:linear-gradient(90deg,rgba(139,98,7,.92) 0%,rgba(113,78,10,.70) 27%,rgba(91,63,19,.28) 46%,rgba(73,82,94,.22) 55%,rgba(77,88,102,.62) 77%,rgba(91,103,117,.88) 100%),radial-gradient(circle at 27% 50%,rgba(255,224,105,.26),transparent 36%); }}
+    html[data-theme="night"] .schedule-match.championship-final.final-blue-winner::before {{ background:linear-gradient(90deg,rgba(91,103,117,.88) 0%,rgba(77,88,102,.62) 23%,rgba(73,82,94,.22) 45%,rgba(91,63,19,.28) 54%,rgba(113,78,10,.70) 73%,rgba(139,98,7,.92) 100%),radial-gradient(circle at 73% 50%,rgba(255,224,105,.26),transparent 36%); }}
+    html[data-theme="night"] .schedule-match.third-place-final {{ border-color:#dc8792; box-shadow:inset 6px 0 0 #dc8792,inset -5px 0 0 #987052,0 0 0 1px rgba(220,135,146,.54),0 10px 30px rgba(179,79,99,.32); }}
+    html[data-theme="night"] .schedule-match.third-place-final.final-blue-winner {{ box-shadow:inset 5px 0 0 #987052,inset -6px 0 0 #dc8792,0 0 0 1px rgba(220,135,146,.54),0 10px 30px rgba(179,79,99,.32); }}
+    html[data-theme="night"] .schedule-match.third-place-final.final-red-winner::before {{ background:linear-gradient(90deg,rgba(126,45,63,.92) 0%,rgba(112,49,62,.70) 27%,rgba(93,48,59,.30) 46%,rgba(74,54,41,.24) 55%,rgba(91,65,47,.62) 77%,rgba(112,78,53,.88) 100%),radial-gradient(circle at 27% 50%,rgba(255,160,164,.22),transparent 36%); }}
+    html[data-theme="night"] .schedule-match.third-place-final.final-blue-winner::before {{ background:linear-gradient(90deg,rgba(112,78,53,.88) 0%,rgba(91,65,47,.62) 23%,rgba(74,54,41,.24) 45%,rgba(93,48,59,.30) 54%,rgba(112,49,62,.70) 73%,rgba(126,45,63,.92) 100%),radial-gradient(circle at 73% 50%,rgba(255,160,164,.22),transparent 36%); }}
+    html[data-theme="night"] .schedule-match.championship-final .schedule-stage {{ color:#ffe27c; text-shadow:0 0 12px rgba(240,200,78,.38); }}
+    html[data-theme="night"] .schedule-match.third-place-final .schedule-stage {{ color:#ffb2bc; text-shadow:0 0 12px rgba(220,135,146,.34); }}
     .schedule-match.elite-clash {{
       border-color: color-mix(in srgb, #9f72ed, var(--line) 28%);
       box-shadow: inset 3px 0 0 #ed6967, inset -3px 0 0 #54bde8, 0 0 0 1px rgba(159,114,237,.44), 0 8px 20px rgba(111,78,190,.11);
