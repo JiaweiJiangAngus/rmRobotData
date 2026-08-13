@@ -177,6 +177,54 @@ def derive_regional_results(rows, group_rankings):
     return sorted(output, key=lambda item: (item["zone"], item["sortOrder"], item["school"], item["team"]))
 
 
+def derive_national_results(rows):
+    """Derive the 2026 national placements from its completed double-elimination bracket."""
+    national_rows = [item for item in rows if item.get("zone") == "全国赛" and item.get("stage") != "全明星赛"]
+    placements = {}
+
+    def competitors(items):
+        for item in items:
+            for side in ("red", "blue"):
+                school = item.get(f"{side}School")
+                team = item.get(f"{side}Team")
+                if school and team:
+                    yield school, team
+
+    for key in competitors(national_rows):
+        placements[key] = ("未出线", 17)
+    for key in competitors(item for item in national_rows if item.get("stage") == "16进8淘汰赛"):
+        placements[key] = ("十六强", 9)
+    for key in competitors(item for item in national_rows if str(item.get("stage", "")).startswith("8进4")):
+        placements[key] = ("八强", 5)
+
+    for stage, winner_result, winner_order, loser_result, loser_order in (
+        ("季军争夺战", "季军", 3, "殿军", 4),
+        ("冠军争夺战", "冠军", 1, "亚军", 2),
+    ):
+        matches = [item for item in national_rows if item.get("stage") == stage]
+        if len(matches) != 1:
+            raise RuntimeError(f"expected one national {stage}, found {len(matches)}")
+        item = matches[0]
+        red_score, blue_score = int(item["redScore"]), int(item["blueScore"])
+        if red_score == blue_score:
+            raise RuntimeError(f"national {stage} cannot be tied")
+        winner, loser = ("red", "blue") if red_score > blue_score else ("blue", "red")
+        placements[(item[f"{winner}School"], item[f"{winner}Team"])] = (winner_result, winner_order)
+        placements[(item[f"{loser}School"], item[f"{loser}Team"])] = (loser_result, loser_order)
+
+    output = [
+        {
+            "season": "2026", "zone": "全国赛", "school": school, "team": team,
+            "result": result, "sortOrder": sort_order,
+        }
+        for (school, team), (result, sort_order) in placements.items()
+    ]
+    top_eight = [item for item in output if item["sortOrder"] <= 8]
+    if len(top_eight) != 8:
+        raise RuntimeError(f"expected eight national top-eight teams, found {len(top_eight)}")
+    return sorted(output, key=lambda item: (item["sortOrder"], item["school"], item["team"]))
+
+
 def main():
     opener = replay.make_opener()
     schedule_request = urllib.request.Request(SCHEDULE_URL, headers={
@@ -300,9 +348,15 @@ def main():
         [item for item in rows if item["zone"] in regional_zones],
         [item for item in rankings if item["zone"] in regional_zones],
     )
+    national_rankings = derive_national_results(rows)
+    rankings.extend(national_rankings)
     OUTPUT.write_text(json.dumps({"matches": rows, "rankings": rankings, "replayLinks": links}, ensure_ascii=False, indent=2), encoding="utf-8")
     unified = load_rmuc_results() or {"matches": [], "qualifiers": [], "rankings": []}
     unified["matches"] = [item for item in unified.get("matches", []) if item.get("season") != "2026"] + rows
+    unified["rankings"] = [
+        item for item in unified.get("rankings", [])
+        if not (item.get("season") == "2026" and item.get("zone") == "全国赛")
+    ] + national_rankings
     save_rmuc_results(unified)
     existing_links = {}
     if replay.OUTPUT.exists():

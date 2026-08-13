@@ -39,20 +39,22 @@ int main() {
 
             if (!zone.contains("teams") || !zone["teams"].is_array()) continue;
 
-            if (files.find(zoneName) == files.end()) {
-                size_t pos = zoneName.find("部赛区");
-                if (pos != std::string::npos) {
-                    zoneName.replace(pos, std::string("部赛区").length(), "部分区赛");
-                }
-                pos = zoneName.find("站");
-                if (pos != std::string::npos) {
-                    zoneName.replace(pos, std::string("站").length(), "站3V3联盟赛");
-                }
-                files[zoneName] = std::ofstream("data/zone_" + zoneName + ".txt");
+            std::string outputZoneName = zoneName;
+            size_t pos = outputZoneName.find("部赛区");
+            if (pos != std::string::npos) {
+                outputZoneName.replace(pos, std::string("部赛区").length(), "部分区赛");
+            }
+            pos = outputZoneName.find("站");
+            if (pos != std::string::npos) {
+                outputZoneName.replace(pos, std::string("站").length(), "站3V3联盟赛");
+            }
+            outputZoneName = "2026" + outputZoneName;
+            if (files.find(outputZoneName) == files.end()) {
+                files[outputZoneName] = std::ofstream("data/zone_" + outputZoneName + ".txt");
             }
 
-            std::ofstream& out = files[zoneName];
-            out << "Zone Name: " << zoneName << "\n\n";
+            std::ofstream& out = files[outputZoneName];
+            out << "Zone Name: " << outputZoneName << "\n\n";
 
             for (auto& team : zone["teams"]) {
                 std::string college = get_string(team, "collegeName");
