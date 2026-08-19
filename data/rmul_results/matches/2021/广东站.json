@@ -41,11 +41,11 @@
     "redTeam": "奇点",
     "blueSchool": "华南理工大学",
     "blueTeam": "华南虎",
-    "redScore": "-",
-    "blueScore": "-",
+    "redScore": 2,
+    "blueScore": 1,
     "title": "【8进4】仲恺农业工程学院vs华南理工大学",
     "url": "https://www.bilibili.com/video/BV1S64y1S77E/?p=44",
-    "uncertain": true
+    "uncertain": false
   },
   {
     "id": "RMUL-2021-广东站-45-BV1S64y1S77E",
@@ -57,11 +57,11 @@
     "redTeam": "RoboBraver",
     "blueSchool": "东莞理工学院",
     "blueTeam": "ACE",
-    "redScore": "-",
-    "blueScore": "-",
+    "redScore": 0,
+    "blueScore": 2,
     "title": "【8进4】电科中山vs东莞理工粤台中法",
     "url": "https://www.bilibili.com/video/BV1S64y1S77E/?p=45",
-    "uncertain": true
+    "uncertain": false
   },
   {
     "id": "RMUL-2021-广东站-49-BV1S64y1S77E",
@@ -121,11 +121,11 @@
     "redTeam": "PIONEER",
     "blueSchool": "仲恺农业工程学院",
     "blueTeam": "奇点",
-    "redScore": "-",
-    "blueScore": "-",
+    "redScore": 2,
+    "blueScore": 1,
     "title": "【季军争夺战】华南师范大学vs仲恺农业工程学院",
     "url": "https://www.bilibili.com/video/BV1S64y1S77E/?p=48",
-    "uncertain": true
+    "uncertain": false
   },
   {
     "id": "RMUL-2021-广东站-1-BV1S64y1S77E",
@@ -185,11 +185,11 @@
     "redTeam": "ACE",
     "blueSchool": "广州城市理工学院",
     "blueTeam": "野狼",
-    "redScore": "-",
-    "blueScore": "-",
+    "redScore": 1,
+    "blueScore": 1,
     "title": "【9】东莞理工学院vs东莞理工城市学院",
     "url": "https://www.bilibili.com/video/BV1S64y1S77E/?p=3",
-    "uncertain": true
+    "uncertain": false
   },
   {
     "id": "RMUL-2021-广东站-4-BV1S64y1S77E",
@@ -201,11 +201,11 @@
     "redTeam": "IMCA",
     "blueSchool": "福建农林大学",
     "blueTeam": "零七一",
-    "redScore": "-",
-    "blueScore": "-",
+    "redScore": 2,
+    "blueScore": 0,
     "title": "【10】五邑大学vs福建农林大学",
     "url": "https://www.bilibili.com/video/BV1S64y1S77E/?p=4",
-    "uncertain": true
+    "uncertain": false
   },
   {
     "id": "RMUL-2021-广东站-5-BV1S64y1S77E",
@@ -217,11 +217,11 @@
     "redTeam": "华南虎",
     "blueSchool": "深圳职业技术大学",
     "blueTeam": "RCIA",
-    "redScore": "-",
-    "blueScore": "-",
+    "redScore": 2,
+    "blueScore": 0,
     "title": "【11】华南理工大学vs深圳职业技术学院",
     "url": "https://www.bilibili.com/video/BV1S64y1S77E/?p=5",
-    "uncertain": true
+    "uncertain": false
   },
   {
     "id": "RMUL-2021-广东站-6-BV1S64y1S77E",
@@ -233,11 +233,11 @@
     "redTeam": "RoboBraver",
     "blueSchool": "深圳大学",
     "blueTeam": "RobotPilots",
-    "redScore": "-",
-    "blueScore": "-",
+    "redScore": 1,
+    "blueScore": 1,
     "title": "【12】电子科技大学中山学院vs深圳大学",
     "url": "https://www.bilibili.com/video/BV1S64y1S77E/?p=6",
-    "uncertain": true
+    "uncertain": false
   },
   {
     "id": "RMUL-2021-广东站-7-BV1S64y1S77E",
@@ -265,11 +265,11 @@
     "redTeam": "RCS",
     "blueSchool": "东莞理工学院",
     "blueTeam": "ACE",
-    "redScore": "-",
-    "blueScore": "-",
+    "redScore": 0,
+    "blueScore": 2,
     "title": "【14】厦门大学vs东莞理工粤台中法队",
     "url": "https://www.bilibili.com/video/BV1S64y1S77E/?p=8",
-    "uncertain": true
+    "uncertain": false
   },
   {
     "id": "RMUL-2021-广东站-9-BV1S64y1S77E",
@@ -345,11 +345,11 @@
     "redTeam": "IMCA",
     "blueSchool": "茅台学院",
     "blueTeam": "MTI",
-    "redScore": "-",
-    "blueScore": "-",
+    "redScore": 2,
+    "blueScore": 0,
     "title": "【26】五邑大学vs茅台学院",
     "url": "https://www.bilibili.com/video/BV1S64y1S77E/?p=13",
-    "uncertain": true
+    "uncertain": false
   },
   {
     "id": "RMUL-2021-广东站-14-BV1S64y1S77E",
@@ -377,11 +377,11 @@
     "redTeam": "RoboBraver",
     "blueSchool": "华南师范大学",
     "blueTeam": "PIONEER",
-    "redScore": "-",
-    "blueScore": "-",
+    "redScore": 0,
+    "blueScore": 2,
     "title": "【28】电子科技大学中山学院vs华南师范大学（勷勤）",
     "url": "https://www.bilibili.com/video/BV1S64y1S77E/?p=15",
-    "uncertain": true
+    "uncertain": false
   },
   {
     "id": "RMUL-2021-广东站-16-BV1S64y1S77E",
@@ -393,11 +393,11 @@
     "redTeam": "醒狮",
     "blueSchool": "桂林理工大学",
     "blueTeam": "群星",
-    "redScore": "-",
-    "blueScore": "-",
+    "redScore": 2,
+    "blueScore": 0,
     "title": "【29】佛山科学技术学院vs桂林理工大学",
     "url": "https://www.bilibili.com/video/BV1S64y1S77E/?p=16",
-    "uncertain": true
+    "uncertain": false
   },
   {
     "id": "RMUL-2021-广东站-18-BV1S64y1S77E",
@@ -409,11 +409,11 @@
     "redTeam": "奇点",
     "blueSchool": "华南农业大学",
     "blueTeam": "Taurus",
-    "redScore": "-",
-    "blueScore": "-",
+    "redScore": 0,
+    "blueScore": 2,
     "title": "【31】仲恺农业工程学院vs华南农业大学",
     "url": "https://www.bilibili.com/video/BV1S64y1S77E/?p=18",
-    "uncertain": true
+    "uncertain": false
   },
   {
     "id": "RMUL-2021-广东站-19-BV1S64y1S77E",
@@ -457,11 +457,11 @@
     "redTeam": "PFA",
     "blueSchool": "华南理工大学",
     "blueTeam": "华南虎",
-    "redScore": "-",
-    "blueScore": "-",
+    "redScore": 0,
+    "blueScore": 2,
     "title": "【34】厦门理工学院vs华南理工大学",
     "url": "https://www.bilibili.com/video/BV1S64y1S77E/?p=21",
-    "uncertain": true
+    "uncertain": false
   },
   {
     "id": "RMUL-2021-广东站-22-BV1S64y1S77E",
@@ -521,11 +521,11 @@
     "redTeam": "追梦",
     "blueSchool": "桂林信息科技学院",
     "blueTeam": "GIRT",
-    "redScore": "-",
-    "blueScore": "-",
+    "redScore": 2,
+    "blueScore": 0,
     "title": "【38】北京理工大学珠海学院vs桂电信息科技学院",
     "url": "https://www.bilibili.com/video/BV1S64y1S77E/?p=25",
-    "uncertain": true
+    "uncertain": false
   },
   {
     "id": "RMUL-2021-广东站-26-BV1S64y1S77E",
@@ -649,11 +649,11 @@
     "redTeam": "飞虎",
     "blueSchool": "东莞理工学院",
     "blueTeam": "ACE",
-    "redScore": "-",
-    "blueScore": "-",
+    "redScore": 0,
+    "blueScore": 2,
     "title": "【45】北部湾大学vs东莞理工学院粤台&中法",
     "url": "https://www.bilibili.com/video/BV1S64y1S77E/?p=33",
-    "uncertain": true
+    "uncertain": false
   },
   {
     "id": "RMUL-2021-广东站-34-BV1S64y1S77E",
@@ -681,11 +681,11 @@
     "redTeam": "RCIA",
     "blueSchool": "桂林电子科技大学",
     "blueTeam": "Evolution",
-    "redScore": "-",
-    "blueScore": "-",
+    "redScore": 0,
+    "blueScore": 2,
     "title": "【47】深圳职业技术学院vs桂林电子科技大学",
     "url": "https://www.bilibili.com/video/BV1S64y1S77E/?p=35",
-    "uncertain": true
+    "uncertain": false
   },
   {
     "id": "RMUL-2021-广东站-36-BV1S64y1S77E",
@@ -713,11 +713,11 @@
     "redTeam": "破浪笃行",
     "blueSchool": "南方科技大学",
     "blueTeam": "ARTINX",
-    "redScore": "-",
-    "blueScore": "-",
+    "redScore": 0,
+    "blueScore": 2,
     "title": "【49】桂电北海vs南方科技大学（有缺损）",
     "url": "https://www.bilibili.com/video/BV1S64y1S77E/?p=37",
-    "uncertain": true
+    "uncertain": false
   },
   {
     "id": "RMUL-2021-广东站-38-BV1S64y1S77E",
@@ -761,11 +761,11 @@
     "redTeam": "RoboBraver",
     "blueSchool": "佛山科学技术学院",
     "blueTeam": "醒狮",
-    "redScore": "-",
-    "blueScore": "-",
+    "redScore": 2,
+    "blueScore": 0,
     "title": "【52】电科中山vs佛山科学技术学院（有缺损）",
     "url": "https://www.bilibili.com/video/BV1S64y1S77E/?p=40",
-    "uncertain": true
+    "uncertain": false
   },
   {
     "id": "RMUL-2021-广东站-41-BV1S64y1S77E",

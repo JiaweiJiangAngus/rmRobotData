@@ -89,11 +89,11 @@
     "redTeam": "创梦之翼",
     "blueSchool": "大连民族大学",
     "blueTeam": "C·ONE",
-    "redScore": "-",
-    "blueScore": "-",
+    "redScore": 0,
+    "blueScore": 2,
     "title": "【8进4第二轮】哈尔滨工程大学vs大连民族大学（修正）",
     "url": "https://www.bilibili.com/video/BV1PK4y1m76x/?p=22",
-    "uncertain": true
+    "uncertain": false
   },
   {
     "id": "RMUL-2021-黑龙江站-21-BV1PK4y1m76x",
@@ -121,11 +121,11 @@
     "redTeam": "I Hiter",
     "blueSchool": "哈尔滨工程大学",
     "blueTeam": "创梦之翼",
-    "redScore": "-",
-    "blueScore": "-",
+    "redScore": 2,
+    "blueScore": 0,
     "title": "【半决赛】哈尔滨工业大学vs哈尔滨工程大学",
     "url": "https://www.bilibili.com/video/BV1PK4y1m76x/?p=18",
-    "uncertain": true
+    "uncertain": false
   },
   {
     "id": "RMUL-2021-黑龙江站-19-BV1PK4y1m76x",
@@ -137,11 +137,11 @@
     "redTeam": "交龙",
     "blueSchool": "大连理工大学",
     "blueTeam": "凌BUG",
-    "redScore": "-",
-    "blueScore": "-",
+    "redScore": 0,
+    "blueScore": 2,
     "title": "【半决赛】上海交通大学vs大连理工大学",
     "url": "https://www.bilibili.com/video/BV1PK4y1m76x/?p=19",
-    "uncertain": true
+    "uncertain": false
   },
   {
     "id": "RMUL-2021-黑龙江站-20-BV1PK4y1m76x",
@@ -169,11 +169,11 @@
     "redTeam": "TRoMaC",
     "blueSchool": "哈尔滨工业大学",
     "blueTeam": "I Hiter",
-    "redScore": "-",
-    "blueScore": "-",
+    "redScore": 0,
+    "blueScore": 2,
     "title": "【小组赛】太原理工大学vs哈尔滨工业大学",
     "url": "https://www.bilibili.com/video/BV1PK4y1m76x/?p=1",
-    "uncertain": true
+    "uncertain": false
   },
   {
     "id": "RMUL-2021-黑龙江站-2-BV1PK4y1m76x",
@@ -233,11 +233,11 @@
     "redTeam": "创梦之翼",
     "blueSchool": "太原理工大学",
     "blueTeam": "TRoMaC",
-    "redScore": "-",
-    "blueScore": "-",
+    "redScore": 1,
+    "blueScore": 1,
     "title": "【小组赛】哈尔滨工程大学vs太原理工大学",
     "url": "https://www.bilibili.com/video/BV1PK4y1m76x/?p=5",
-    "uncertain": true
+    "uncertain": false
   },
   {
     "id": "RMUL-2021-黑龙江站-6-BV1PK4y1m76x",
@@ -313,11 +313,11 @@
     "redTeam": "TRoMaC",
     "blueSchool": "大连理工大学",
     "blueTeam": "凌BUG",
-    "redScore": "-",
-    "blueScore": "-",
+    "redScore": 1,
+    "blueScore": 1,
     "title": "【小组赛】太原理工大学vs大连理工大学",
     "url": "https://www.bilibili.com/video/BV1PK4y1m76x/?p=10",
-    "uncertain": true
+    "uncertain": false
   },
   {
     "id": "RMUL-2021-黑龙江站-11-BV1PK4y1m76x",
@@ -345,10 +345,10 @@
     "redTeam": "Ares",
     "blueSchool": "重庆大学",
     "blueTeam": "千里",
-    "redScore": "-",
-    "blueScore": "-",
+    "redScore": 2,
+    "blueScore": 0,
     "title": "【小组赛】东北林业大学vs重庆大学",
     "url": "https://www.bilibili.com/video/BV1PK4y1m76x/?p=12",
-    "uncertain": true
+    "uncertain": false
   }
 ]
