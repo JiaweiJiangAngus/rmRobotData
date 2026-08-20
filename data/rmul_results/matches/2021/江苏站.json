@@ -1,37 +1,5 @@
 [
   {
-    "id": "RMUL-2021-江苏站-54-BV1Zy4y1W7z5",
-    "season": "2021",
-    "zone": "江苏站",
-    "order": "54",
-    "stage": "冠军争夺战",
-    "redSchool": "南京理工大学",
-    "redTeam": "Alliance",
-    "blueSchool": "上海交通大学",
-    "blueTeam": "交龙",
-    "redScore": 0,
-    "blueScore": 2,
-    "title": "【61冠军争夺战】南京理工大学vs上海交通大学",
-    "url": "https://www.bilibili.com/video/BV1Zy4y1W7z5/?p=54",
-    "uncertain": true
-  },
-  {
-    "id": "RMUL-2021-江苏站-53-BV1Zy4y1W7z5",
-    "season": "2021",
-    "zone": "江苏站",
-    "order": "53",
-    "stage": "季军争夺战",
-    "redSchool": "上海大学",
-    "redTeam": "SRM",
-    "blueSchool": "浙江大学",
-    "blueTeam": "Hello World",
-    "redScore": 0,
-    "blueScore": 2,
-    "title": "【60季军争夺战】上海大学vs浙江大学",
-    "url": "https://www.bilibili.com/video/BV1Zy4y1W7z5/?p=53",
-    "uncertain": true
-  },
-  {
     "id": "RMUL-2021-江苏站-1-BV1Zy4y1W7z5",
     "season": "2021",
     "zone": "江苏站",
@@ -617,8 +585,8 @@
     "redTeam": "PHOENIX",
     "blueSchool": "常熟理工学院",
     "blueTeam": "R&A",
-    "redScore": "-",
-    "blueScore": "-",
+    "redScore": 1,
+    "blueScore": 1,
     "title": "【45】杭州电子科技大学vs常熟理工学院",
     "url": "https://www.bilibili.com/video/BV1Zy4y1W7z5/?p=37",
     "uncertain": true
@@ -861,6 +829,38 @@
     "blueScore": 0,
     "title": "【59】上海交通大学vs浙江大学（两场缺开头）",
     "url": "https://www.bilibili.com/video/BV1Zy4y1W7z5/?p=52",
+    "uncertain": true
+  },
+  {
+    "id": "RMUL-2021-江苏站-53-BV1Zy4y1W7z5",
+    "season": "2021",
+    "zone": "江苏站",
+    "order": "53",
+    "stage": "季军争夺战",
+    "redSchool": "上海大学",
+    "redTeam": "SRM",
+    "blueSchool": "浙江大学",
+    "blueTeam": "Hello World",
+    "redScore": 0,
+    "blueScore": 2,
+    "title": "【60季军争夺战】上海大学vs浙江大学",
+    "url": "https://www.bilibili.com/video/BV1Zy4y1W7z5/?p=53",
+    "uncertain": true
+  },
+  {
+    "id": "RMUL-2021-江苏站-54-BV1Zy4y1W7z5",
+    "season": "2021",
+    "zone": "江苏站",
+    "order": "54",
+    "stage": "冠军争夺战",
+    "redSchool": "南京理工大学",
+    "redTeam": "Alliance",
+    "blueSchool": "上海交通大学",
+    "blueTeam": "交龙",
+    "redScore": 0,
+    "blueScore": 2,
+    "title": "【61冠军争夺战】南京理工大学vs上海交通大学",
+    "url": "https://www.bilibili.com/video/BV1Zy4y1W7z5/?p=54",
     "uncertain": true
   }
 ]

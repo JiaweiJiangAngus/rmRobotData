@@ -32,6 +32,23 @@ def _write_json(path: Path, payload: Any) -> None:
     path.write_text(json.dumps(payload, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
 
 
+def _natural_sort_part(value: Any) -> tuple[int, int | str]:
+    text = str(value or "").strip()
+    if text.isdigit():
+        return (0, int(text))
+    return (1, text)
+
+
+def _match_order_key(item: dict[str, Any]) -> tuple[Any, ...]:
+    order = str(item.get("order") or "").strip()
+    return (
+        0 if order.isdigit() else 1,
+        int(order) if order.isdigit() else 0,
+        _natural_sort_part(item.get("id")),
+        str(item.get("stage", "")),
+    )
+
+
 def _load_partitioned_matches(root: Path) -> list[dict[str, Any]]:
     matches: list[dict[str, Any]] = []
     match_root = root / "matches"
@@ -52,11 +69,7 @@ def _save_partitioned_matches(root: Path, matches: list[dict[str, Any]]) -> None
     for item in matches:
         grouped.setdefault((str(item.get("season", "未标注")), str(item.get("zone", "未标注"))), []).append(item)
     for (season, zone), rows in sorted(grouped.items()):
-        rows.sort(key=lambda item: (
-            str(item.get("stage", "")),
-            int(item.get("order") or 0) if str(item.get("order") or "").isdigit() else str(item.get("order") or ""),
-            str(item.get("id", "")),
-        ))
+        rows.sort(key=_match_order_key)
         _write_json(match_root / _safe_name(season) / f"{_safe_name(zone)}.json", rows)
 
 

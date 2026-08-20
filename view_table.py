@@ -5319,6 +5319,33 @@ def render_html(title, payload):
     html[data-theme="night"] .history-row.result-win .history-badge {{ color: #ff8f8f; }}
     html[data-theme="night"] .history-row.result-loss .history-badge {{ color: #61d69b; }}
     html[data-theme="night"] .history-row.result-draw .history-badge {{ color: #c7d0da; }}
+    .history-best-rankings {{
+      margin: 0 12px 12px;
+      padding: 14px;
+      border: 1px solid color-mix(in srgb, var(--accent), var(--line) 42%);
+      border-top: 3px solid var(--accent);
+      background: linear-gradient(135deg, color-mix(in srgb, var(--accent-soft), transparent 18%), var(--panel-soft));
+    }}
+    .history-best-head {{
+      display: flex;
+      align-items: end;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 10px;
+    }}
+    .history-best-head b {{ color: var(--text); font-size: 16px; }}
+    .history-best-head span {{ color: var(--muted); font-size: 12px; }}
+    .history-best-chart-scroll {{ overflow-x: auto; padding-bottom: 4px; scrollbar-width: thin; }}
+    .history-best-chart {{ display: block; width: 100%; height: auto; min-height: 330px; }}
+    .history-best-grid-line {{ stroke: color-mix(in srgb, var(--line), transparent 18%); stroke-width: 1; stroke-dasharray: 3 5; }}
+    .history-best-year-line {{ stroke: color-mix(in srgb, var(--line), transparent 52%); stroke-width: 1; }}
+    .history-best-trend {{ fill: none; stroke: var(--accent); stroke-width: 3; stroke-linecap: round; stroke-linejoin: round; }}
+    .history-best-trend-gap {{ stroke-dasharray: 7 6; opacity: .62; }}
+    .history-best-axis-label {{ fill: var(--muted); font-size: 11px; font-weight: 750; }}
+    .history-best-year-label {{ fill: var(--text); font-size: 12px; font-weight: 900; }}
+    .history-best-zone-label {{ fill: var(--muted); font-size: 11px; font-weight: 750; }}
+    .history-best-result-label {{ fill: var(--text); font-size: 12px; font-weight: 950; }}
+    .history-best-point {{ stroke: var(--panel); stroke-width: 3; filter: drop-shadow(0 2px 3px rgba(0,0,0,.24)); }}
     .full-form-panel {{
       margin-top: 18px;
       border: 1px solid color-mix(in srgb, var(--hud-cyan), var(--line) 42%);
@@ -5478,6 +5505,7 @@ def render_html(title, payload):
       .history-vs {{ text-align: left; font-size: 14px; }}
       .history-score {{ align-self: end; font-size: 19px; }}
       .history-badge {{ align-self: start; justify-self: stretch; }}
+      .history-best-head {{ align-items: flex-start; flex-direction: column; }}
       .full-form-head {{ align-items: start; flex-direction: column; }}
       .full-form-body {{ grid-template-columns: 1fr; }}
       .full-form-years {{ grid-template-columns: repeat(2, minmax(0, 1fr)); }}
@@ -10327,6 +10355,10 @@ def render_html(title, payload):
         }}
         stage.rows.push(entry);
       }});
+      seasons.sort((a, b) => Number(b.name) - Number(a.name));
+      seasons.forEach((season) => {{
+        season.zones.sort((a, b) => compareHistoryZones(a.name, b.name));
+      }});
       return seasons;
     }}
 
@@ -10363,7 +10395,177 @@ def render_html(title, payload):
       }}).sort((a, b) => compareFn ? compareFn(a.item, b.item) : compareHistoryEntries(a, b));
     }}
 
-    function renderHistoryPanel(panelId, matches, keyword, eventLabel, compareFn) {{
+    function classifyRmucHistoryRanking(item) {{
+      const zone = String(item.zone || "");
+      const sourceResult = String(item.sourceResult || item.result || "未出线");
+      const result = String(item.result || "未出线").replace(/（.*?）/g, "");
+      const nationwide = /全国赛|总决赛/.test(zone);
+      if (nationwide && result === "冠军") return {{ ...item, sourceResult, result: "冠军", chartLabel: "全国赛冠军", chartLevel: 0 }};
+      if (nationwide && result === "亚军") return {{ ...item, sourceResult, result: "亚军", chartLabel: "全国赛亚军", chartLevel: 1 }};
+      if (nationwide && result === "季军") return {{ ...item, sourceResult, result: "季军", chartLabel: "全国赛季军", chartLevel: 2 }};
+      if (nationwide && result === "殿军") return {{ ...item, sourceResult, result: "殿军", chartLabel: "全国赛殿军", chartLevel: 3 }};
+      const topEight = ["冠军", "亚军", "季军", "殿军", "第五", "第六", "六强", "第七", "第八", "八强"].includes(result);
+      const band = topEight ? 8 : result === "未出线" ? 32 : 16;
+      const prefix = nationwide ? "全国赛" : "分区赛";
+      const chartLevel = (nationwide ? {{ 8: 4, 16: 5, 32: 6 }} : {{ 8: 7, 16: 8, 32: 9 }})[band];
+      return {{ ...item, sourceResult, result: `${{band}}强`, chartLabel: `${{prefix}}${{band}}强`, chartLevel }};
+    }}
+
+    function getHistoryAnnualBestRankings(rows, keyword, rankings, useRmucTier = false) {{
+      const normalizedKeyword = normalizeEliteTeamPart(keyword);
+      if (!normalizedKeyword || !rows.length || !Array.isArray(rankings) || !rankings.length) return [];
+      const allCandidates = new Map();
+      const exactCandidates = new Map();
+      rows.forEach((entry) => {{
+        const school = String(entry.item[`${{entry.side}}School`] || "").trim();
+        const team = String(entry.item[`${{entry.side}}Team`] || "").trim();
+        const key = eliteTeamKey(school, team);
+        if (!key) return;
+        const candidate = {{ school, team }};
+        allCandidates.set(key, candidate);
+        if (
+          normalizeEliteTeamPart(team) === normalizedKeyword ||
+          normalizeEliteTeamPart(`${{school}} ${{team}}`) === normalizedKeyword
+        ) exactCandidates.set(key, candidate);
+      }});
+      const candidates = exactCandidates.size ? exactCandidates : allCandidates;
+      if (!candidates.size) return [];
+      if (candidates.size > 1) return [];
+
+      const candidate = [...candidates.values()][0];
+      const candidateSchool = normalizeEliteTeamPart(candidate.school);
+      const numberedSubteam = new RegExp(`^${{normalizedKeyword}}\\\\d+$`);
+      const matchesCandidate = (school, team) => {{
+        const schoolPart = normalizeEliteTeamPart(school);
+        const teamPart = normalizeEliteTeamPart(team);
+        if (candidates.has(eliteTeamKey(school, team))) return true;
+        return schoolPart === candidateSchool && teamPart.includes(normalizedKeyword) && !numberedSubteam.test(teamPart);
+      }};
+      const matched = rankings.filter((item) => matchesCandidate(item.school, item.team));
+      const candidateRows = rows.filter((entry) => matchesCandidate(
+        entry.item[`${{entry.side}}School`],
+        entry.item[`${{entry.side}}Team`]
+      ));
+      const bySeason = new Map();
+      matched.forEach((item) => {{
+        const season = String(item.season || "赛季未明");
+        if (!bySeason.has(season)) bySeason.set(season, []);
+        bySeason.get(season).push(item);
+      }});
+      if (useRmucTier) {{
+        const seasons = [...new Set(rankings.map((item) => String(item.season || "")).filter(Boolean))]
+          .sort((a, b) => Number(b) - Number(a));
+        return seasons.map((season) => {{
+          const ranked = (bySeason.get(season) || []).map(classifyRmucHistoryRanking)
+            .sort((a, b) => a.chartLevel - b.chartLevel || Number(a.sortOrder || 999) - Number(b.sortOrder || 999));
+          if (ranked.length) return {{ ...ranked[0], season }};
+          const seasonRows = candidateRows.filter((entry) => String(entry.item.season || "") === season);
+          if (seasonRows.length) {{
+            const nationwideRow = seasonRows.find((entry) => /全国赛|总决赛/.test(String(entry.item.zone || "")));
+            const source = (nationwideRow || seasonRows.slice().sort((a, b) => compareHistoryZones(a.item.zone, b.item.zone))[0]).item;
+            return classifyRmucHistoryRanking({{
+              season,
+              zone: source.zone || "分区赛",
+              school: candidate.school,
+              team: candidate.team,
+              result: "未出线",
+              sourceResult: "有对局记录",
+            }});
+          }}
+          return {{
+            season,
+            zone: "",
+            school: candidate.school,
+            team: candidate.team,
+            result: "未参加超抗",
+            sourceResult: "未参加超抗",
+            chartLabel: "未参加超抗",
+            chartLevel: 10,
+          }};
+        }});
+      }}
+      return [...bySeason.entries()].map(([season, items]) => {{
+        const placed = items.filter((item) => item.result && item.result !== "未出线");
+        const pool = placed.length ? placed : items;
+        const best = pool.slice().sort((a, b) =>
+          getHistoryZoneRank(a.zone) - getHistoryZoneRank(b.zone) ||
+          Number(a.sortOrder || 999) - Number(b.sortOrder || 999) ||
+          String(a.zone || "").localeCompare(String(b.zone || ""), "zh-CN", {{ numeric: true }})
+        )[0];
+        return {{ ...best, season }};
+      }}).sort((a, b) => Number(b.season) - Number(a.season));
+    }}
+
+    function getHistoryRankingLevel(item, useRmucTier = false) {{
+      if (useRmucTier && Number.isFinite(Number(item.chartLevel))) return Number(item.chartLevel);
+      const value = String(item.result || "未出线").replace(/（.*?）/g, "");
+      if (value === "冠军") return 0;
+      if (value === "亚军") return 1;
+      if (value === "季军") return 2;
+      if (value === "殿军") return 3;
+      if (["第五", "第六", "六强", "第七", "第八", "八强"].includes(value)) return 4;
+      if (["第九", "第十", "十强", "第十一", "第十二", "十二强"].includes(value)) return 5;
+      if (value !== "未出线") return 6;
+      return 7;
+    }}
+
+    function getHistoryRankingColor(item, useRmucTier = false) {{
+      const level = getHistoryRankingLevel(item, useRmucTier);
+      const rmucColors = ["#d4af37", "#aeb7c4", "#cd7f32", "#b76e79", "#7755bd", "#6964ad", "#66708f", "#956348", "#806b5a", "#706d69", "#777f89"];
+      return useRmucTier ? rmucColors[level] : ["#d4af37", "#aeb7c4", "#cd7f32", "#b76e79", "#8a6246", "#687487", "#596270", "#777f89"][level];
+    }}
+
+    function formatHistoryRankingZone(zone) {{
+      const value = String(zone || "");
+      if (!value) return "";
+      if (/全国赛|总决赛|复活赛|踢馆|赛区|站|海外|国际/.test(value)) return value;
+      if (/^(东北|华北|华东|华南|西北|西南|中南|东部|西部|南部|北部|中部|东区|西区|南区|北区|中区)$/.test(value)) return `${{value}}赛区`;
+      return value;
+    }}
+
+    function renderHistoryRankingChart(items, useRmucTier = false) {{
+      const ordered = items.slice().sort((a, b) => Number(a.season) - Number(b.season));
+      const levelLabels = useRmucTier
+        ? ["全国赛冠军", "全国赛亚军", "全国赛季军", "全国赛殿军", "全国赛8强", "全国赛16强", "全国赛32强", "分区赛8强", "分区赛16强", "分区赛32强", "未参加超抗"]
+        : ["冠军", "亚军", "季军", "殿军", "八强", "十二强", "十六强", "未出线"];
+      const left = useRmucTier ? 104 : 66;
+      const right = 36;
+      const top = 46;
+      const plotHeight = useRmucTier ? 340 : 260;
+      const bottom = top + plotHeight;
+      const width = Math.max(720, left + right + Math.max(0, ordered.length - 1) * 112);
+      const plotWidth = width - left - right;
+      const xAt = (index) => ordered.length === 1 ? left + plotWidth / 2 : left + index * plotWidth / (ordered.length - 1);
+      const yAt = (item) => top + getHistoryRankingLevel(item, useRmucTier) * plotHeight / (levelLabels.length - 1);
+      const points = ordered.map((item, index) => ({{ item, x: xAt(index), y: yAt(item) }}));
+      const horizontalGrid = levelLabels.map((label, index) => {{
+        const y = top + index * plotHeight / (levelLabels.length - 1);
+        return `<line class="history-best-grid-line" x1="${{left}}" y1="${{y}}" x2="${{width - right}}" y2="${{y}}"></line><text class="history-best-axis-label" x="${{left - 10}}" y="${{y + 4}}" text-anchor="end">${{label}}</text>`;
+      }}).join("");
+      const yearGrid = points.map((point) => `<line class="history-best-year-line" x1="${{point.x}}" y1="${{top}}" x2="${{point.x}}" y2="${{bottom}}"></line>`).join("");
+      const trend = points.slice(1).map((point, index) => {{
+        const previous = points[index];
+        const hasYearGap = Number(point.item.season) - Number(previous.item.season) > 1;
+        return `<line class="history-best-trend${{hasYearGap ? " history-best-trend-gap" : ""}}" x1="${{previous.x}}" y1="${{previous.y}}" x2="${{point.x}}" y2="${{point.y}}"></line>`;
+      }}).join("");
+      const marks = points.map((point) => {{
+        const zone = formatHistoryRankingZone(point.item.zone);
+        const result = String(point.item.result || "未出线");
+        const sourceResult = String(point.item.sourceResult || result);
+        const title = scheduleEscape(`${{point.item.season}} · ${{zone ? `${{zone}} · ` : ""}}${{result}}${{sourceResult !== result ? `（官方记录：${{sourceResult}}）` : ""}}`);
+        return `
+          <g>
+            <title>${{title}}</title>
+            <text class="history-best-zone-label" x="${{point.x}}" y="${{point.y - 12}}" text-anchor="middle">${{scheduleEscape(zone)}}</text>
+            <circle class="history-best-point" cx="${{point.x}}" cy="${{point.y}}" r="7" fill="${{getHistoryRankingColor(point.item, useRmucTier)}}"></circle>
+            <text class="history-best-result-label" x="${{point.x}}" y="${{point.y + 21}}" text-anchor="middle">${{scheduleEscape(result)}}</text>
+            <text class="history-best-year-label" x="${{point.x}}" y="${{bottom + 34}}" text-anchor="middle">${{scheduleEscape(point.item.season)}}</text>
+          </g>`;
+      }}).join("");
+      return `<div class="history-best-chart-scroll"><svg class="history-best-chart" style="min-width:${{width}}px" viewBox="0 0 ${{width}} ${{bottom + 54}}" role="img" aria-label="战队历年最高名次趋势图">${{horizontalGrid}}${{yearGrid}}${{trend}}${{marks}}</svg></div>`;
+    }}
+
+    function renderHistoryPanel(panelId, matches, keyword, eventLabel, compareFn, rankings = []) {{
       const panel = document.getElementById(panelId);
       const normalizedKeyword = normalizeHistoryKeyword(keyword);
       if (!panel || !normalizedKeyword) {{
@@ -10375,6 +10577,8 @@ def render_html(title, payload):
       }}
       const rows = buildHistoryRows(matches, normalizedKeyword, compareFn);
       const seasonGroups = groupHistoryRows(rows);
+      const useRmucTier = eventLabel === "超级对抗赛";
+      const annualBestRankings = getHistoryAnnualBestRankings(rows, keyword, rankings, useRmucTier);
       const outcomeText = {{ win: "胜", loss: "负", draw: "平" }};
       panel.hidden = false;
       const renderHistoryRow = (entry) => `
@@ -10422,6 +10626,15 @@ def render_html(title, payload):
             </section>
           `).join("") : '<div class="schedule-empty">这个搜索词暂时没有可判定胜负平的历史战绩。</div>'}}
         </div>
+        ${{annualBestRankings.length ? `
+          <section class="history-best-rankings">
+            <div class="history-best-head">
+              <b>历年最高名次</b>
+              <span>${{useRmucTier ? "按全国赛、分区赛晋级层级折算；未参赛赛季落在底部" : "年份从左到右；虚线表示中间年份暂无名次数据"}}</span>
+            </div>
+            ${{renderHistoryRankingChart(annualBestRankings, useRmucTier)}}
+          </section>
+        ` : ""}}
       `;
     }}
 
@@ -10474,7 +10687,8 @@ def render_html(title, payload):
         scheduleData.matches,
         document.getElementById("scheduleSearch").value,
         "超级对抗赛",
-        (a, b) => Number(b.season) - Number(a.season) || Number(b.order || 0) - Number(a.order || 0)
+        undefined,
+        scheduleData.rankings
       );
       renderFullFormRankingPanel(
         "scheduleFullFormPanel",
@@ -10733,7 +10947,8 @@ def render_html(title, payload):
         rmulData.matches,
         document.getElementById("rmulSearch").value,
         "高校联盟赛",
-        compareRmulLatestFirst
+        compareRmulLatestFirst,
+        rmulData.rankings
       );
       const missing=(rmulData.missingReplays||[]).filter((item)=>(!document.getElementById("rmulSeason").value||item.season===document.getElementById("rmulSeason").value)&&(!document.getElementById("rmulZone").value||item.zone===document.getElementById("rmulZone").value)).sort(compareRmulLatestFirst);
       document.getElementById("rmulMissingBlock").hidden=!missing.length;

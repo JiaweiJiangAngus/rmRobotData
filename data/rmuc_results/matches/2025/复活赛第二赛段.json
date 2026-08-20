@@ -165,21 +165,6 @@
     "uncertain": false
   },
   {
-    "id": "3098",
-    "season": "2025",
-    "zone": "复活赛第二赛段",
-    "order": "35",
-    "stage": "复活赛名额争夺战",
-    "redSchool": "武汉工程大学",
-    "redTeam": "Nautilus",
-    "blueSchool": "华东理工大学",
-    "blueTeam": "起源",
-    "redScore": 2,
-    "blueScore": 1,
-    "note": "",
-    "uncertain": false
-  },
-  {
     "id": "3097",
     "season": "2025",
     "zone": "复活赛第二赛段",
@@ -191,6 +176,21 @@
     "blueTeam": "起源",
     "redScore": 0,
     "blueScore": 2,
+    "note": "",
+    "uncertain": false
+  },
+  {
+    "id": "3098",
+    "season": "2025",
+    "zone": "复活赛第二赛段",
+    "order": "35",
+    "stage": "复活赛名额争夺战",
+    "redSchool": "武汉工程大学",
+    "redTeam": "Nautilus",
+    "blueSchool": "华东理工大学",
+    "blueTeam": "起源",
+    "redScore": 2,
+    "blueScore": 1,
     "note": "",
     "uncertain": false
   }
