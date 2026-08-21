@@ -155,6 +155,8 @@ std::string get_chinese_header(const std::string& key) {
         {"EA Small Hit Rate", "小弹丸命中率"},
         {"EA Big Hit Rate", "大弹丸命中率"},
         {"EAG Hurt", "对敌伤害量"},
+        {"EA Total Damage", "局均总伤害"},
+        {"EA Key Damage", "局均关键伤害"},
         {"EA KDA", "KDA"},
         {"KDA_Kills", "场均击杀数"},
         {"KDA_Deaths", "场均死亡数"},
@@ -166,6 +168,8 @@ std::string get_chinese_header(const std::string& key) {
         
         // 英雄专用
         {"EA Snipe Count", "部署命中次数"},
+        {"Top Total Damage", "单局最高总伤害"},
+        {"Event Average Game Hurt", "赛季局均总伤害"},
         
         // 工程专用
         {"A Mine Time", "平均兑矿时间(s)"},
@@ -174,9 +178,12 @@ std::string get_chinese_header(const std::string& key) {
         {"EA Assemble Economy", "局均组装经济数"},
         {"EA Assemble Success Count", "局均组装成功次数"},
         {"A Assemble Difficulty", "平均组装难度系数"},
+        {"Max Assemble Level", "最高装配等级"},
         
         // 能量机关 (大符/小符)
         {"Big Energy", "大能量机关平均激活环数"},
+        {"Average Big Rune Ring", "大能量机关平均环数"},
+        {"Average Big Rune Arm", "大能量机关平均臂数"},
         
         // 飞镖
         {"ET Outpost Count", "累计命中前哨站数"},
@@ -324,7 +331,12 @@ public:
         std::string fileZone = zone_name_from_file(filepath);
         std::map<std::string, double> currStats;
         auto save = [&]() {
-            if (!currType.empty() && !currCollege.empty()) 
+            // 兼容旧赛季字段：历史文件继续保留原列，同时向新版面板提供统一名称。
+            if (currStats.count("EAG Hurt"))
+                currStats["EA Total Damage"] = currStats.at("EAG Hurt");
+            if (currStats.count("GK Damage"))
+                currStats["EA Key Damage"] = currStats.at("GK Damage");
+            if (!currType.empty() && !currCollege.empty())
                 database.push_back({currZone, currCollege, currTeam, currType, currStats});
             currType = ""; currStats.clear();
         };

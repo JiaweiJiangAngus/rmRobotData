@@ -77,14 +77,19 @@ int main() {
                             out << "  EA KDA: " << get_string(r, "eaKDA") << "\n";
                             out << "  EA gkda Score: " << get_string(r, "eagKdaScore") << "\n";
                             out << "  Big Energy: " << get_string(r, "matchLargeEnergyActRoundsAvg") << "\n";
+                            write_stat_if_present(out, r, "Average Big Rune Ring", "avgRuneRing");
+                            write_stat_if_present(out, r, "Average Big Rune Arm", "avgRuneArm");
                             out << "  GK Damage: " << get_string(r, "gkDamage") << "\n";
                             out << "  G Kill Count: " << get_string(r, "gKillCount") << "\n";
                             break;
                         case 1 :
                             out << "  EA Big Hit Rate: " << get_string(r, "eaBigHitRate") << "\n";
+                            out << "  EAG Hurt: " << get_string(r, "eagHurt") << "\n";
                             out << "  EA KDA: " << get_string(r, "eaKDA") << "\n";
                             out << "  EA gkda Score: " << get_string(r, "eagKdaScore") << "\n";
                             out << "  GK Damage: " << get_string(r, "gkDamage") << "\n";
+                            write_stat_if_present(out, r, "Top Total Damage", "topTotalDamage");
+                            write_stat_if_present(out, r, "Event Average Game Hurt", "eventAverageGameHurt");
                             out << "  G Kill Count: " << get_string(r, "gKillCount") << "\n";
                             out << "  EA Snipe Count: " << get_string(r, "eaSnipeCnt") << "\n";
                             break;
@@ -97,6 +102,7 @@ int main() {
                             out << "  EA Exchange Economy: " << get_string(r, "eaExchangeEcon") << "\n";
                             out << "  A Mine Time: " << get_string(r, "avgMineTime") << "\n";
                             out << "  A Mine Difficulty: " << get_string(r, "avgMineDiff") << "\n";
+                            write_stat_if_present(out, r, "Max Assemble Level", "maxAssembleLevel");
                             break;
                         case 3 :
                             out << "  EA Small Hit Rate: " << get_string(r, "eaSmallHitRate") << "\n";

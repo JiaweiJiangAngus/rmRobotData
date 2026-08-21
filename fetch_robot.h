@@ -25,6 +25,14 @@ std::string get_string(const json& j, const std::string& key) {
     return j[key].dump();
 }
 
+// 新版接口有些指标只在实际产生数据时才返回。只写入真实存在的字段，
+// 避免把“接口未提供”误记成 0。
+void write_stat_if_present(std::ofstream& out, const json& robot,
+                           const std::string& label, const std::string& key) {
+    std::string value = get_string(robot, key);
+    if (!value.empty()) out << "  " << label << ": " << value << "\n";
+}
+
 // 检查 zoneName 是否包含目标关键词
 bool is_target_zone(const std::string& zoneName) {
     return zoneName.find("联盟赛") != std::string::npos ||

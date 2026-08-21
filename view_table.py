@@ -87,6 +87,7 @@ DART_SCORE_COLUMN = "总场次飞镖分数"
 RADAR_SCORE_COLUMN = "局均雷达分数"
 MVP_COUNT_COLUMN = "MVP次数"
 MVP_DATA_PREFIX = "mvp_"
+LEGACY_DAMAGE_COLUMNS = {"对敌伤害量", "建筑伤害"}
 
 
 def normalize_key_part(value):
@@ -301,6 +302,9 @@ def choose_default_metric(columns, preferred_metric):
         "小弹丸命中率",
         "大弹丸命中率",
         "KDA得分",
+        "局均总伤害",
+        "局均关键伤害",
+        "单局最高总伤害",
         "对敌伤害量",
         "建筑伤害",
         "击杀数",
@@ -326,6 +330,14 @@ def choose_default_metric(columns, preferred_metric):
             continue
         return column
     return ""
+
+
+def hide_migrated_damage_columns(columns):
+    """旧列仍留在 CSV/行数据中供兼容读取，面板只展示语义更准确的新列。"""
+    canonical_columns = {"局均总伤害", "局均关键伤害"}
+    if not canonical_columns.issubset(columns):
+        return columns
+    return [column for column in columns if column not in LEGACY_DAMAGE_COLUMNS]
 
 
 def render_html(title, payload):
@@ -1403,6 +1415,12 @@ def render_html(title, payload):
     .axis-list {{
       display: grid;
       gap: 10px;
+    }}
+
+    .metric-radar-card .axis-list {{
+      max-height: 720px;
+      overflow: auto;
+      padding-right: 4px;
     }}
 
     .axis-card {{
@@ -6416,6 +6434,9 @@ def render_html(title, payload):
       "小弹丸命中率",
       "大弹丸命中率",
       "KDA得分",
+      "局均总伤害",
+      "局均关键伤害",
+      "单局最高总伤害",
       "对敌伤害量",
       "建筑伤害",
       "击杀数",
@@ -6438,10 +6459,16 @@ def render_html(title, payload):
       "MVP次数",
     ]);
     const radarAxes = [
-      {{ type: "英雄", metricKey: "对敌伤害量", fallbackMetricKeys: ["建筑伤害"], metricLabel: "局均总伤害" }},
-      {{ type: "步兵", metricKey: "对敌伤害量", metricLabel: "局均总伤害" }},
-      {{ type: "哨兵", metricKey: "对敌伤害量", metricLabel: "局均总伤害" }},
-      {{ type: "无人机", metricKey: "对敌伤害量", metricLabel: "局均总伤害" }},
+      {{
+        type: "英雄",
+        metricKey: "局均总伤害",
+        fallbackMetricKeys: ["局均关键伤害", "建筑伤害"],
+        metricLabel: "局均总伤害",
+        metricLabels: {{ "局均关键伤害": "局均关键伤害", "建筑伤害": "局均关键伤害（建筑伤害）" }},
+      }},
+      {{ type: "步兵", metricKey: "局均总伤害", fallbackMetricKeys: ["对敌伤害量"], metricLabel: "局均总伤害" }},
+      {{ type: "哨兵", metricKey: "局均总伤害", fallbackMetricKeys: ["对敌伤害量"], metricLabel: "局均总伤害" }},
+      {{ type: "无人机", metricKey: "局均总伤害", fallbackMetricKeys: ["对敌伤害量"], metricLabel: "局均总伤害" }},
       {{ type: "雷达", metricKey: "局均雷达分数", fallbackMetricKeys: ["双倍易伤时间"], metricLabel: "局均雷达分数" }},
       {{ type: "工程", metricKey: "局均组装经济数", fallbackMetricKeys: ["局均兑换经济数"], metricLabel: "局均工程经济" }},
       {{ type: "飞镖", metricKey: "总场次飞镖分数", fallbackMetricKeys: ["建筑伤害"], metricLabel: "总场次飞镖分数" }},
@@ -6458,6 +6485,7 @@ def render_html(title, payload):
     ];
     const league3v3Types = ["英雄", "步兵", "哨兵"];
     const radarScaleSteps = [0.6, 1, 2, 3];
+    const singleRobotRadarScaleSteps = [1, 2, 3, 4, 5];
 
     const compareMaxTeams = 8;
     const comparePalette = [
@@ -6673,12 +6701,9 @@ def render_html(title, payload):
     function getFireRawValue(row) {{
       const type = row ? row["兵种"] : "";
       if (!attackTypes.has(type)) return null;
-      if (type === "英雄") {{
-        return getFiniteNumber(row, "建筑伤害")
-          ?? getFiniteNumber(row, "击杀数")
-          ?? getFiniteNumber(row, "场均击杀数");
-      }}
-      return getFiniteNumber(row, "对敌伤害量")
+      return getFiniteNumber(row, "局均总伤害")
+        ?? getFiniteNumber(row, "对敌伤害量")
+        ?? getFiniteNumber(row, "局均关键伤害")
         ?? getFiniteNumber(row, "建筑伤害")
         ?? getFiniteNumber(row, "击杀数")
         ?? getFiniteNumber(row, "场均击杀数");
@@ -6745,6 +6770,12 @@ def render_html(title, payload):
       return (markerTime || 0) + ((counterTime || 0) / 45 * 20) + ((parseScore || 0) * 200);
     }}
 
+    function getAxisMetricKey(row, axis) {{
+      if (!row) return null;
+      const metricKeys = [axis.metricKey, ...(axis.fallbackMetricKeys || [])];
+      return metricKeys.find((key) => typeof row[key] === "number" && Number.isFinite(row[key])) || null;
+    }}
+
     function getAxisMetricValue(row, axis) {{
       if (!row) return null;
       if (axis.metricKey === "总场次飞镖分数") {{
@@ -6756,14 +6787,8 @@ def render_html(title, payload):
         return value === null ? calculateRadarScore(row) : value;
       }}
 
-      const metricKeys = [axis.metricKey, ...(axis.fallbackMetricKeys || [])];
-      for (const key of metricKeys) {{
-        const value = row[key];
-        if (typeof value === "number" && Number.isFinite(value)) {{
-          return value;
-        }}
-      }}
-      return null;
+      const metricKey = getAxisMetricKey(row, axis);
+      return metricKey === null ? null : row[metricKey];
     }}
 
     function buildRadarModel(teamKey, zoneName) {{
@@ -6784,6 +6809,7 @@ def render_html(title, payload):
           ? zoneValues.reduce((sum, value) => sum + value, 0) / zoneValues.length
           : null;
         const teamValue = getAxisMetricValue(teamRow, axis);
+        const teamMetricKey = getAxisMetricKey(teamRow, axis);
 
         let ratio = null;
         if (teamValue !== null && zoneAverage !== null) {{
@@ -6792,6 +6818,7 @@ def render_html(title, payload):
 
         return {{
           ...axis,
+          metricLabel: (axis.metricLabels && axis.metricLabels[teamMetricKey]) || axis.metricLabel,
           teamValue,
           zoneAverage,
           ratio,
@@ -6801,6 +6828,96 @@ def render_html(title, payload):
       }});
 
       return {{ teamLabel, zoneName, axes, shapeLabel: getRadarShapeLabel(zoneName) }};
+    }}
+
+    const metricRadarShortLabels = {{
+      "大能量机关平均激活环数": "能量机关激活",
+      "大能量机关平均环数": "能量机关环数",
+      "大能量机关平均臂数": "能量机关臂数",
+      "局均组装成功次数": "组装成功",
+      "局均组装经济数": "组装经济",
+      "局均兑换经济数": "兑换经济",
+      "平均组装难度系数": "组装难度",
+      "平均兑矿时间(s)": "兑矿时间",
+      "兑矿难度系数": "兑矿难度",
+      "累计移动靶末端命中数": "移动靶末端",
+      "累计随机移动靶数": "随机移动靶",
+      "累计随机固定靶数": "随机固定靶",
+      "累计命中固定靶数": "固定靶",
+      "累计命中前哨站数": "前哨站",
+      "雷达解算成功次数": "雷达解算",
+      "雷达反制时长": "雷达反制",
+      "赛季局均总伤害": "赛季总伤害",
+      "单局最高总伤害": "最高总伤害",
+    }};
+
+    function getMetricRadarShortLabel(metric) {{
+      if (metricRadarShortLabels[metric]) return metricRadarShortLabels[metric];
+      return metric.length > 9 ? `${{metric.slice(0, 8)}}…` : metric;
+    }}
+
+    function buildSingleRobotMetricRadarModel(teamKey, zoneName, robotType) {{
+      if (!teamKey || !zoneName || !robotType || robotType === "全部") return null;
+      const zoneTypeRows = getZoneRows(zoneName).filter((row) => row["兵种"] === robotType);
+      const teamRow = zoneTypeRows.find((row) => getTeamKey(row) === teamKey);
+      if (!teamRow || !zoneTypeRows.length) return null;
+
+      const excludedColumns = new Set([
+        ...baseColumns,
+        ...virtualMetricColumns,
+        "场均击杀数",
+        "场均助攻数",
+        "场均死亡数",
+      ]);
+      const axes = payload.columns
+        .filter((metric) => !excludedColumns.has(metric))
+        .map((metric) => {{
+          const teamValue = getFiniteNumber(teamRow, metric);
+          if (teamValue === null) return null;
+          const zoneValues = zoneTypeRows
+            .map((row) => getFiniteNumber(row, metric))
+            .filter((value) => value !== null);
+          if (!zoneValues.length) return null;
+          const zoneAverage = zoneValues.reduce((sum, value) => sum + value, 0) / zoneValues.length;
+          if (!Number.isFinite(zoneAverage) || zoneAverage <= 0) return null;
+          const ratio = teamValue / zoneAverage;
+          if (!Number.isFinite(ratio)) return null;
+          return {{
+            type: getMetricRadarShortLabel(metric),
+            fullLabel: metric,
+            metricKey: metric,
+            metricLabel: metric,
+            teamValue,
+            zoneAverage,
+            zoneAverageLabel: "同赛区同兵种均值",
+            ratio,
+            clippedRatio: Math.max(0, Math.min(ratio, 5)),
+            overflow: ratio > 5,
+          }};
+        }})
+        .filter(Boolean);
+
+      if (axes.length < 3) return null;
+      const teamLabel = getTeamLabel(teamRow);
+      return {{
+        teamLabel,
+        zoneName,
+        axes,
+        shapeLabel: `${{axes.length}}边形全指标雷达图`,
+        eyebrow: "ROBOT METRIC RADAR",
+        title: `${{teamLabel}} · ${{robotType}} ${{axes.length}}边形雷达图`,
+        description: `${{zoneName}} · ${{robotType}}全部有效指标；每条轴按该队原值除以同赛区同兵种平均值计算。`,
+        gradientId: "singleRobotMetricRadarFill",
+        cardClass: "metric-radar-card",
+        scaleSteps: singleRobotRadarScaleSteps,
+        maxRatio: 5,
+        legendChips: [
+          "范围: 0%–500%",
+          `100% = ${{zoneName}} ${{robotType}}该指标平均值`,
+          `有效指标: ${{axes.length}} 项`,
+        ],
+        noteText: "数值超过 500% 时图形在外圈封顶，右侧仍显示真实比例；高于 100% 仅表示数值更高，死亡、耗时等低值更优指标不能据此直接判强。",
+      }};
     }}
 
     function buildMvpRadarModel(teamKey, zoneName) {{
@@ -6855,9 +6972,9 @@ def render_html(title, payload):
       }};
     }}
 
-    function getRadarPoint(index, ratio, center, radius, count) {{
+    function getRadarPoint(index, ratio, center, radius, count, maxRatio = 3) {{
       const angle = (-Math.PI / 2) + (Math.PI * 2 * index) / count;
-      const scaled = (ratio / 3) * radius;
+      const scaled = (ratio / maxRatio) * radius;
       return {{
         x: center + Math.cos(angle) * scaled,
         y: center + Math.sin(angle) * scaled,
@@ -6883,58 +7000,66 @@ def render_html(title, payload):
       const radarTitle = radar.title || `${{radar.teamLabel}} ${{radar.shapeLabel}}`;
       const radarDescription = radar.description || `${{radar.zoneName}}赛区基线下的兵种综合水平，100% 表示该赛区该兵种均值。`;
       const gradientId = radar.gradientId || "radarAreaFill";
+      const scaleSteps = radar.scaleSteps || radarScaleSteps;
+      const maxRatio = radar.maxRatio || scaleSteps[scaleSteps.length - 1] || 3;
       const legendChips = radar.legendChips || [
-        "等高线: 60% / 100% / 200% / 300%",
+        `等高线: ${{scaleSteps.map((step) => `${{Math.round(step * 100)}}%`).join(" / ")}}`,
         "100% = 该赛区对应兵种均值",
       ];
-      const size = 420;
-      const center = size / 2;
-      const radius = 146;
       const axisCount = radar.axes.length;
-      const gridPolygons = radarScaleSteps.map((step) => {{
+      const size = axisCount >= 13 ? 560 : (axisCount >= 9 ? 500 : 420);
+      const center = size / 2;
+      const radius = size * (axisCount >= 9 ? 0.33 : 0.348);
+      const gridPolygons = scaleSteps.map((step) => {{
         const points = radar.axes.map((_, index) => {{
-          const point = getRadarPoint(index, step, center, radius, axisCount);
+          const point = getRadarPoint(index, step, center, radius, axisCount, maxRatio);
           return `${{point.x.toFixed(2)}},${{point.y.toFixed(2)}}`;
         }}).join(" ");
         return {{ step, points }};
       }});
+      const outerGrid = gridPolygons[gridPolygons.length - 1];
 
       const areaPoints = radar.axes.map((axis, index) => {{
-        const point = getRadarPoint(index, axis.clippedRatio, center, radius, axisCount);
+        const displayRatio = axis.ratio === null ? 0 : Math.max(0, Math.min(axis.ratio, maxRatio));
+        const point = getRadarPoint(index, displayRatio, center, radius, axisCount, maxRatio);
         return `${{point.x.toFixed(2)}},${{point.y.toFixed(2)}}`;
       }}).join(" ");
 
       const axisMarkup = radar.axes.map((axis, index) => {{
-        const outer = getRadarPoint(index, 3, center, radius, axisCount);
-        const label = getRadarPoint(index, 3.32, center, radius, axisCount);
-        const dot = getRadarPoint(index, axis.clippedRatio, center, radius, axisCount);
+        const displayRatio = axis.ratio === null ? 0 : Math.max(0, Math.min(axis.ratio, maxRatio));
+        const outer = getRadarPoint(index, maxRatio, center, radius, axisCount, maxRatio);
+        const label = getRadarPoint(index, maxRatio * 1.12, center, radius, axisCount, maxRatio);
+        const dot = getRadarPoint(index, displayRatio, center, radius, axisCount, maxRatio);
         const anchor = label.x < center - 20 ? "end" : (label.x > center + 20 ? "start" : "middle");
+        const labelSize = axisCount >= 10 ? 11 : 13;
         return `
           <line x1="${{center}}" y1="${{center}}" x2="${{outer.x}}" y2="${{outer.y}}" stroke="var(--line)" stroke-width="1" />
           <circle cx="${{dot.x}}" cy="${{dot.y}}" r="4.5" fill="var(--accent-deep)" />
-          <text x="${{label.x}}" y="${{label.y}}" text-anchor="${{anchor}}" font-size="13" fill="var(--text)">${{escapeHtml(axis.type)}}</text>
+          <text x="${{label.x}}" y="${{label.y}}" text-anchor="${{anchor}}" font-size="${{labelSize}}" fill="var(--text)">${{escapeHtml(axis.type)}}</text>
         `;
       }}).join("");
 
-      const scaleMarkup = radarScaleSteps.map((step) => {{
-        const y = center - (step / 3) * radius;
+      const scaleMarkup = [`
+        <text x="${{center + 10}}" y="${{center + 4}}" font-size="11" fill="var(--muted)">0%</text>
+      `, ...scaleSteps.map((step) => {{
+        const y = center - (step / maxRatio) * radius;
         return `
           <text x="${{center + 10}}" y="${{y + 4}}" font-size="11" fill="var(--muted)">
             ${{Math.round(step * 100)}}%
           </text>
         `;
-      }}).join("");
+      }})].join("");
 
-      const overflowAxes = radar.axes.filter((axis) => axis.overflow).map((axis) => axis.type);
+      const overflowAxes = radar.axes.filter((axis) => axis.ratio !== null && axis.ratio > maxRatio).map((axis) => axis.fullLabel || axis.type);
       const defaultNoteText = overflowAxes.length
-        ? `注: ${{overflowAxes.join("、")}} 超过 300% 均值，图形按外圈封顶显示。`
+        ? `注: ${{overflowAxes.join("、")}} 超过 ${{Math.round(maxRatio * 100)}}% 均值，图形按外圈封顶显示。`
         : (radar.axes.length === 3
-          ? "注: 3V3 联盟赛仅展示英雄、步兵、哨兵，三条轴都按局均总伤害计算。"
-          : "注: 英雄、步兵、哨兵、无人机按局均总伤害，雷达按局均雷达分数，工程优先按局均组装经济，飞镖按总场次飞镖分数。");
+          ? "注: 3V3 联盟赛仅展示英雄、步兵、哨兵；英雄有局均总伤害时使用总伤害，否则使用局均关键（建筑）伤害。"
+          : "注: 英雄有局均总伤害时使用总伤害，否则使用局均关键（建筑）伤害；步兵、哨兵、无人机按局均总伤害，雷达按局均雷达分数，工程优先按局均组装经济，飞镖按总场次飞镖分数。");
       const noteText = radar.noteText || defaultNoteText;
 
       return `
-        <article class="chart-card radar-card">
+        <article class="chart-card radar-card ${{escapeHtml(radar.cardClass || "")}}">
           <div class="radar-header">
             <div>
               <span class="eyebrow">${{escapeHtml(eyebrow)}}</span>
@@ -6954,8 +7079,8 @@ def render_html(title, payload):
                     <stop offset="100%" stop-color="#b85c38" stop-opacity="0.22" />
                   </linearGradient>
                 </defs>
-                <polygon points="${{gridPolygons[3].points}}" fill="rgba(212,168,74,0.05)" stroke="#c9a227" stroke-width="2.4" />
-                ${{gridPolygons.slice(0, 3).map((grid, index) => `
+                <polygon points="${{outerGrid.points}}" fill="rgba(212,168,74,0.05)" stroke="#c9a227" stroke-width="2.4" />
+                ${{gridPolygons.slice(0, -1).map((grid, index) => `
                   <polygon
                     points="${{grid.points}}"
                     fill="none"
@@ -6976,7 +7101,7 @@ def render_html(title, payload):
                 ${{radar.axes.map((axis) => `
                   <article class="axis-card">
                     <div class="axis-top">
-                      <div class="axis-name">${{escapeHtml(axis.type)}}</div>
+                      <div class="axis-name">${{escapeHtml(axis.fullLabel || axis.type)}}</div>
                       <div class="axis-ratio">${{axis.ratio === null ? "缺数据" : escapeHtml(formatPercent(axis.ratio))}}</div>
                     </div>
                     <div class="axis-meta">
@@ -9054,12 +9179,48 @@ def render_html(title, payload):
           title: "火力输出综合",
           desc: "用于把能主动造成进攻收益的兵种放到同一个视图里看。英雄、步兵、哨兵、无人机参与；飞镖独立看飞镖打击，工程和雷达不参与。",
           rules: [
-            ["英雄", "优先看建筑伤害，缺失时回退到击杀相关字段。"],
-            ["步兵 / 哨兵 / 无人机", "优先看对敌伤害量，缺失时回退到建筑伤害或击杀字段。"],
+            ["英雄", "优先看局均总伤害；旧赛季缺失时回退到对敌伤害、关键伤害（建筑伤害）或击杀字段。"],
+            ["步兵 / 哨兵 / 无人机", "优先看局均总伤害；旧赛季兼容对敌伤害量，并回退到关键伤害或击杀字段。"],
             ["归一化", "按同赛区同兵种均值归一化，100 约等于同类平均水平。"],
             ["排除项", "飞镖、工程、雷达不混进火力输出。"],
           ],
           caveat: "综合火力是归一化复盘指标，不是官方定义；跨兵种看趋势，精确判断仍要回到单兵种数据。",
+        }},
+        "局均总伤害": {{
+          title: "局均总伤害",
+          desc: "官方机器人统计接口返回的单局平均总伤害。旧赛季中同义的“对敌伤害量”会自动归入这一列。",
+          rules: [
+            ["统计口径", "按当前赛区或比赛阶段统计的单局平均伤害。"],
+            ["旧数据", "历史“对敌伤害量”按同一指标兼容读取。"],
+          ],
+          caveat: "不同赛区的对局数量和对手强度不同，跨赛区比较时要结合赛程看。",
+        }},
+        "局均关键伤害": {{
+          title: "局均关键伤害",
+          desc: "官方接口的关键伤害字段；在旧版数据中它以“建筑伤害”保存，面板会自动合并。",
+          rules: [
+            ["含义", "关键伤害即原有建筑伤害。"],
+            ["兼容", "历史建筑伤害不丢失，直接映射到本列。"],
+          ],
+          caveat: "该指标更偏战略目标压力，不能替代对机器人交火输出的判断。",
+        }},
+        "赛季局均总伤害": {{
+          title: "赛季局均总伤害",
+          desc: "2026 接口给出的跨阶段赛季平均值；同一队伍在分区赛、复活赛和全国赛记录中可能重复出现。",
+          rules: [
+            ["范围", "用于观察整赛季总体水平。"],
+            ["阶段比较", "比较单个阶段时应优先使用“局均总伤害”。"],
+          ],
+          caveat: "这是赛季汇总值，不应当误读为当前赛区单独统计。",
+        }},
+        "单局最高总伤害": {{
+          title: "单局最高总伤害",
+          desc: "2026 接口返回的单局总伤害峰值，用于辅助识别高爆发场次。",
+          rules: [
+            ["阅读方式", "反映峰值上限，不代表稳定输出。"],
+            ["搭配指标", "建议与局均总伤害、命中率一起看。"],
+          ],
+          caveat: "极值容易受加时、对手阵容和比赛时长影响。",
         }},
         "MVP次数": {{
           title: "MVP次数",
@@ -9274,7 +9435,11 @@ def render_html(title, payload):
       if (singleTeam) {{
         const radar = buildRadarModel(singleTeam.key, singleTeam.zone);
         const mvpRadar = buildMvpRadarModel(singleTeam.key, singleTeam.zone);
+        const robotMetricRadar = state.selectedType !== "全部"
+          ? buildSingleRobotMetricRadarModel(singleTeam.key, singleTeam.zone, state.selectedType)
+          : null;
         const cards = [];
+        if (robotMetricRadar) cards.push(renderRadarCard(robotMetricRadar));
         cards.push(renderTeamEvaluationCard(buildTeamEvaluationModel(radar, mvpRadar, singleTeam.key, singleTeam.zone)));
         cards.push(renderRadarCard(radar));
         if (mvpRadar) cards.push(renderRadarCard(mvpRadar));
@@ -9464,18 +9629,21 @@ def render_html(title, payload):
       const singleTeam = getSingleTeamCandidate(filteredRows);
       const radarLabel = getRadarShapeLabel(singleTeam ? singleTeam.zone : (selectedZones.length === 1 ? selectedZones[0] : "全部"));
       const mvpRadar = singleTeam ? buildMvpRadarModel(singleTeam.key, singleTeam.zone) : null;
+      const hasFocusedRobotRadar = Boolean(singleTeam && state.selectedType !== "全部");
 
       els.heroTitle.textContent = heroTitle;
       els.heroSubtitle.textContent = filteredRows.length
         ? (singleTeam
-          ? `当前已锁定 ${{singleTeam.label}}，${{radarLabel}}会显示在“图表分析”页，对比它在 ${{singleTeam.zone}} 赛区里的兵种综合水平。${{mvpRadar ? "检测到该队伍此赛区的 MVP 数据，已同步展示 MVP 雷达图。" : ""}}`
+          ? (hasFocusedRobotRadar
+            ? `当前已锁定 ${{singleTeam.label}} · ${{state.selectedType}}，“图表分析”首张卡片会拉取该兵种全部有效指标，并以 ${{singleTeam.zone}} 同兵种均值为 100% 绘制 N 边形雷达图。`
+            : `当前已锁定 ${{singleTeam.label}}，${{radarLabel}}会显示在“图表分析”页，对比它在 ${{singleTeam.zone}} 赛区里的兵种综合水平。${{mvpRadar ? "检测到该队伍此赛区的 MVP 数据，已同步展示 MVP 雷达图。" : ""}}`)
           : (selectedZones.length > 1
             ? `当前正在比较 ${{selectedZones.length}} 个赛区，主数据表可按兵种分页查看；跨赛区总实力表位于“图表分析”页，并按七边形雷达图规则汇总。`
             : `当前筛选命中 ${{filteredRows.length}} 条记录，你可以继续切赛区、兵种和排序指标，页面会自动收起无数据字段。`))
         : "当前筛选下没有可展示的数据，可以换个赛区、兵种或搜索词再试。";
       els.tableTitle.textContent = currentTitle;
       els.tableMeta.textContent = singleTeam
-        ? `当前显示 ${{pageMeta}}，按“${{metricLabel}}”排序；赛区综合雷达图${{mvpRadar ? "和 MVP 雷达图" : ""}}位于“图表分析”页`
+        ? `当前显示 ${{pageMeta}}，按“${{metricLabel}}”排序；${{hasFocusedRobotRadar ? "单兵种全指标雷达图位于“图表分析”页首张卡片" : `赛区综合雷达图${{mvpRadar ? "和 MVP 雷达图" : ""}}位于“图表分析”页`}}`
         : (selectedZones.length > 1
           ? `当前显示 ${{pageMeta}}，已选择 ${{selectedZones.length}} 个赛区；“图表分析”页的总实力表按各兵种关键数据相对合并均值排序`
           : `当前显示 ${{pageMeta}}，按“${{metricLabel}}”排序`);
@@ -12583,6 +12751,7 @@ def main(csv_file, title, default_sort=None, initial_zone="全部", initial_type
     columns, rows = add_derived_metrics(columns, rows)
     mvp_rows = load_mvp_rows()
     columns, rows = add_mvp_counts(columns, rows, mvp_rows)
+    columns = hide_migrated_damage_columns(columns)
 
     metric = choose_default_metric(columns, default_sort)
     robot_types = sorted({str(row["兵种"]) for row in rows if row.get("兵种")})
